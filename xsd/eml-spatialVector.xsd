@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema 
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    xmlns:res="eml://ecoinformatics.org/resource-2.2.0" 
-    xmlns:doc="eml://ecoinformatics.org/documentation-2.2.0" 
-    xmlns:con="eml://ecoinformatics.org/constraint-2.2.0" 
-    xmlns:att="eml://ecoinformatics.org/attribute-2.2.0" 
-    xmlns:spref="eml://ecoinformatics.org/spatialReference-2.2.0" 
-    xmlns:ent="eml://ecoinformatics.org/entity-2.2.0" 
-    xmlns="eml://ecoinformatics.org/spatialVector-2.2.0" 
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:res="eml://ecoinformatics.org/resource-2.2.0"
+    xmlns:doc="eml://ecoinformatics.org/documentation-2.2.0"
+    xmlns:con="eml://ecoinformatics.org/constraint-2.2.0"
+    xmlns:att="eml://ecoinformatics.org/attribute-2.2.0"
+    xmlns:spref="eml://ecoinformatics.org/spatialReference-2.2.0"
+    xmlns:ent="eml://ecoinformatics.org/entity-2.2.0"
+    xmlns="eml://ecoinformatics.org/spatialVector-2.2.0"
     targetNamespace="eml://ecoinformatics.org/spatialVector-2.2.0">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.2.0" 
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.2.0"
   schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/spatialReference-2.2.0" 
+  <xs:import namespace="eml://ecoinformatics.org/spatialReference-2.2.0"
   schemaLocation="eml-spatialReference.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/entity-2.2.0" 
+  <xs:import namespace="eml://ecoinformatics.org/entity-2.2.0"
   schemaLocation="eml-entity.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.2.0" 
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.2.0"
   schemaLocation="eml-resource.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/attribute-2.2.0" 
+  <xs:import namespace="eml://ecoinformatics.org/attribute-2.2.0"
   schemaLocation="eml-attribute.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/constraint-2.2.0" 
+  <xs:import namespace="eml://ecoinformatics.org/constraint-2.2.0"
   schemaLocation="eml-constraint.xsd"/>
   <xs:annotation>
     <xs:documentation>
@@ -64,14 +64,6 @@
               The eml-spatialVector module - Logical information about
               non-gridded geospatial image data
             </title>
-            <para>
-              The eml-spatialVector module allows for the description of
-              spatial objects in a GIS system that are not defined in a
-              regularly gridded pattern.  These geometries include points and
-              vectors and the relationships among them.  Specific attributes of
-              a spatial vector can be documented here including the vector's
-              geometry type, count and topology level.
-            </para>
           </section>
         </doc:moduleDescription>
         <doc:recommendedUsage>all spatial datasets that contain spatial data
@@ -118,9 +110,9 @@
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Constraint</doc:tooltip>
-              <doc:summary>Description of any relational constraints on 
+              <doc:summary>Description of any relational constraints on
               this entity.</doc:summary>
-              <doc:description>Description of any relational constraints on 
+              <doc:description>Description of any relational constraints on
               this entity.  For more information see the eml-constraint
               module.</doc:description>
             </xs:appinfo>
@@ -262,7 +254,7 @@
           <xs:appinfo>
             <doc:tooltip>Quantitative Accuracy Report</doc:tooltip>
             <doc:summary>A quantitative assessment of the data quality.</doc:summary>
-            <doc:description>A quantitative assessment of the data quality expressed as a value and 
+            <doc:description>A quantitative assessment of the data quality expressed as a value and
             the method of its determination.</doc:description>
           </xs:appinfo>
         </xs:annotation>
@@ -284,7 +276,7 @@
                 <xs:appinfo>
                   <doc:tooltip>Quantitative Accuracy Method</doc:tooltip>
                   <doc:summary>The method used to calculate the accuracy value.</doc:summary>
-                  <doc:description>Identification and explanation of the method used to calculate the quantitative 
+                  <doc:description>Identification and explanation of the method used to calculate the quantitative
                   accuracy assessment.</doc:description>
                   <doc:example>Error expressed as root mean square of 5 control points. </doc:example>
                 </xs:appinfo>

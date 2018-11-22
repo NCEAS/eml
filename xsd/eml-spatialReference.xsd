@@ -52,14 +52,6 @@
             <title>
               Schema for validating spatial referencing descriptions.
             </title>
-            <para>
-             This module defines both projected and unprojected coordinate systems for
-             referencing the spatial coordinates of a dataset to the earth. The schema is based on
-             that used by Environmental Systems Research Inc (ESRI) for its .prj file format. EML provides a library of
-             pre-defined coordinate systems that may be referred to by name in the horizCoordSysName element. A
-             custom projection may be defined using this schema for any projection that does not appear in this
-             dictionary.
-            </para>
           </section>
         </doc:moduleDescription>
         <doc:recommendedUsage>all spatial entities</doc:recommendedUsage>

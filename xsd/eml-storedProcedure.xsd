@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema 
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    xmlns="eml://ecoinformatics.org/storedProcedure-2.2.0" 
-    xmlns:cov="eml://ecoinformatics.org/coverage-2.2.0" 
-    xmlns:prot="eml://ecoinformatics.org/protocol-2.2.0" 
-    xmlns:phys="eml://ecoinformatics.org/physical-2.2.0" 
-    xmlns:att="eml://ecoinformatics.org/attribute-2.2.0" 
-    xmlns:doc="eml://ecoinformatics.org/documentation-2.2.0" 
-    xmlns:ent="eml://ecoinformatics.org/entity-2.2.0" 
-    xmlns:res="eml://ecoinformatics.org/resource-2.2.0" 
-    xmlns:con="eml://ecoinformatics.org/constraint-2.2.0" 
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="eml://ecoinformatics.org/storedProcedure-2.2.0"
+    xmlns:cov="eml://ecoinformatics.org/coverage-2.2.0"
+    xmlns:prot="eml://ecoinformatics.org/protocol-2.2.0"
+    xmlns:phys="eml://ecoinformatics.org/physical-2.2.0"
+    xmlns:att="eml://ecoinformatics.org/attribute-2.2.0"
+    xmlns:doc="eml://ecoinformatics.org/documentation-2.2.0"
+    xmlns:ent="eml://ecoinformatics.org/entity-2.2.0"
+    xmlns:res="eml://ecoinformatics.org/resource-2.2.0"
+    xmlns:con="eml://ecoinformatics.org/constraint-2.2.0"
     targetNamespace="eml://ecoinformatics.org/storedProcedure-2.2.0">
-  <xs:import namespace="eml://ecoinformatics.org/entity-2.2.0" 
+  <xs:import namespace="eml://ecoinformatics.org/entity-2.2.0"
   schemaLocation="eml-entity.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.2.0" 
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.2.0"
   schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/attribute-2.2.0" 
+  <xs:import namespace="eml://ecoinformatics.org/attribute-2.2.0"
   schemaLocation="eml-attribute.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/protocol-2.2.0" 
+  <xs:import namespace="eml://ecoinformatics.org/protocol-2.2.0"
   schemaLocation="eml-protocol.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/physical-2.2.0" 
+  <xs:import namespace="eml://ecoinformatics.org/physical-2.2.0"
   schemaLocation="eml-physical.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/coverage-2.2.0" 
+  <xs:import namespace="eml://ecoinformatics.org/coverage-2.2.0"
   schemaLocation="eml-coverage.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.2.0" 
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.2.0"
   schemaLocation="eml-resource.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/constraint-2.2.0" 
+  <xs:import namespace="eml://ecoinformatics.org/constraint-2.2.0"
   schemaLocation="eml-constraint.xsd"/>
   <xs:annotation>
     <xs:documentation>
@@ -70,14 +70,6 @@
             The eml-storedProcedure module - Data tables
             resulting from procedures stored in a database
           </title>
-          <para>
-            The storedProcedure module is meant to capture information on
-            procedures that produce data output in the form of a data table.
-            In an RDBMS one can code complex queries and transactions into
-            stored procedures and then invoke them directly from front-end
-            applications. It allows the optional description of any parameters
-            that are expected to be passed to the procedure when it is called.
-          </para>
         </section>
         </doc:moduleDescription>
         <doc:recommendedUsage>Use the storedProcedure module to document
@@ -99,10 +91,10 @@
         into stored procedures and then invoke them directly from front-end
         applications. This element allows the optional description of any
         parameters that are expected to be passed to the procedure when it is
-        called. A common use of a stored procedure is to rotate a data table 
-        from attributes in columns to attributes in rows for statistical 
+        called. A common use of a stored procedure is to rotate a data table
+        from attributes in columns to attributes in rows for statistical
         analysis.</doc:description>
-        
+
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
@@ -113,7 +105,7 @@
         <doc:summary>Structure for documenting a stored procedure</doc:summary>
         <doc:description>The StoredProcedureType complex type defines the structure
         for documenting a stored procedure.</doc:description>
-        
+
       </xs:appinfo>
     </xs:annotation>
     <xs:choice>
@@ -150,7 +142,7 @@
               stored procedure.</doc:summary>
               <doc:description>The parameter elements defines the fields that
               may be required to invoke a stored procedure.</doc:description>
-              
+
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
@@ -170,7 +162,7 @@
         <doc:description>The parameter complex type defines the structure for
         documenting the parameters that may be required to invoke a stored
         procedure.</doc:description>
-        
+
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
@@ -182,7 +174,7 @@
             <doc:description>The value of the name field is the name of the
             parameter.</doc:description>
             <doc:example>SiteID</doc:example>
-            
+
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -212,7 +204,7 @@
             parameter being described is or is not required when invoking the
             stored procedure.</doc:description>
             <doc:example>true</doc:example>
-            
+
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
@@ -225,7 +217,7 @@
             not the parameter being described can be repeated when invoking the
             stored procedure.</doc:description>
             <doc:example>true</doc:example>
-            
+
           </xs:appinfo>
         </xs:annotation>
       </xs:element>

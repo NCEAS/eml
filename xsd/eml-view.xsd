@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema 
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    xmlns="eml://ecoinformatics.org/view-2.2.0" 
-    xmlns:cov="eml://ecoinformatics.org/coverage-2.2.0" 
-    xmlns:prot="eml://ecoinformatics.org/protocol-2.2.0" 
-    xmlns:phys="eml://ecoinformatics.org/physical-2.2.0" 
-    xmlns:att="eml://ecoinformatics.org/attribute-2.2.0" 
-    xmlns:ent="eml://ecoinformatics.org/entity-2.2.0" 
-    xmlns:res="eml://ecoinformatics.org/resource-2.2.0" 
-    xmlns:con="eml://ecoinformatics.org/constraint-2.2.0" 
-    xmlns:doc="eml://ecoinformatics.org/documentation-2.2.0" 
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="eml://ecoinformatics.org/view-2.2.0"
+    xmlns:cov="eml://ecoinformatics.org/coverage-2.2.0"
+    xmlns:prot="eml://ecoinformatics.org/protocol-2.2.0"
+    xmlns:phys="eml://ecoinformatics.org/physical-2.2.0"
+    xmlns:att="eml://ecoinformatics.org/attribute-2.2.0"
+    xmlns:ent="eml://ecoinformatics.org/entity-2.2.0"
+    xmlns:res="eml://ecoinformatics.org/resource-2.2.0"
+    xmlns:con="eml://ecoinformatics.org/constraint-2.2.0"
+    xmlns:doc="eml://ecoinformatics.org/documentation-2.2.0"
     targetNamespace="eml://ecoinformatics.org/view-2.2.0">
-  <xs:import namespace="eml://ecoinformatics.org/entity-2.2.0" 
+  <xs:import namespace="eml://ecoinformatics.org/entity-2.2.0"
   schemaLocation="eml-entity.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.2.0" 
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.2.0"
   schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/attribute-2.2.0" 
+  <xs:import namespace="eml://ecoinformatics.org/attribute-2.2.0"
   schemaLocation="eml-attribute.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/protocol-2.2.0" 
+  <xs:import namespace="eml://ecoinformatics.org/protocol-2.2.0"
   schemaLocation="eml-protocol.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/physical-2.2.0" 
+  <xs:import namespace="eml://ecoinformatics.org/physical-2.2.0"
   schemaLocation="eml-physical.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/coverage-2.2.0" 
+  <xs:import namespace="eml://ecoinformatics.org/coverage-2.2.0"
   schemaLocation="eml-coverage.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.2.0" 
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.2.0"
   schemaLocation="eml-resource.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/constraint-2.2.0" 
+  <xs:import namespace="eml://ecoinformatics.org/constraint-2.2.0"
   schemaLocation="eml-constraint.xsd"/>
   <xs:annotation>
     <xs:documentation>
@@ -70,11 +70,6 @@
             The eml-view module - Data tables resulting from a
             database query
           </title>
-          <para>
-            The eml-view module describes a view from a database management system.
-            A view is a query statement that is stored as a database object and
-            executed each time the view is called.
-          </para>
         </section>
         </doc:moduleDescription>
         <doc:recommendedUsage>all datasets that contain one or more
@@ -92,7 +87,7 @@
         <doc:description>The View element is a container for documenting a
         view. The structure of the view element is defined by the
         ViewType.</doc:description>
-        
+
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
@@ -105,7 +100,7 @@
         <doc:description>The ViewType complex type defines the structure for
         documenting a view. This type extends the EntityGroup with a
         queryStatement.</doc:description>
-        
+
       </xs:appinfo>
     </xs:annotation>
     <xs:choice>
@@ -146,7 +141,7 @@
               <doc:example>Select site as SiteID,common_name as CommonName,
               count as CountOfIndividuals from samples inner join taxonlist
               on samples.speciesid=taxonlist.speciesid</doc:example>
-              
+
             </xs:appinfo>
           </xs:annotation>
         </xs:element>

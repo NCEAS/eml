@@ -48,22 +48,6 @@
               The eml-software module - Software specific
               information
             </title>
-            <para>
-              The eml-software module contains general information that
-              describes software resources.  This module is intended to fully
-              document software that is needed in order to view a resource
-              (such as a dataset) or to process a dataset.  The software
-              module is also imported into the eml-methods module in order to
-              document what software was used to process or perform quality
-              control procedures on a dataset.
-            </para>
-            <para>
-              The eml-software module, like other modules, may be
-              "referenced" via the &lt;references&gt; tag.  This
-              allows a software resource to be described once, and then used
-              as a reference in other locations within the EML document via
-              its ID.
-            </para>
           </section>
         </doc:moduleDescription>
         <doc:recommendedUsage>All datasets where software was used in

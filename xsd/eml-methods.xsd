@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema 
-  targetNamespace="eml://ecoinformatics.org/methods-2.2.0" 
-  xmlns:txt="eml://ecoinformatics.org/text-2.2.0" 
-  xmlns:doc="eml://ecoinformatics.org/documentation-2.2.0" 
-  xmlns:sw="eml://ecoinformatics.org/software-2.2.0" 
-  xmlns:pro="eml://ecoinformatics.org/protocol-2.2.0" 
-  xmlns:rp="eml://ecoinformatics.org/party-2.2.0" 
-  xmlns:cov="eml://ecoinformatics.org/coverage-2.2.0" 
-  xmlns:ds="eml://ecoinformatics.org/dataset-2.2.0" 
-  xmlns:cit="eml://ecoinformatics.org/literature-2.2.0" 
-  xmlns:res="eml://ecoinformatics.org/resource-2.2.0" 
-  xmlns="eml://ecoinformatics.org/methods-2.2.0" 
+<xs:schema
+  targetNamespace="eml://ecoinformatics.org/methods-2.2.0"
+  xmlns:txt="eml://ecoinformatics.org/text-2.2.0"
+  xmlns:doc="eml://ecoinformatics.org/documentation-2.2.0"
+  xmlns:sw="eml://ecoinformatics.org/software-2.2.0"
+  xmlns:pro="eml://ecoinformatics.org/protocol-2.2.0"
+  xmlns:rp="eml://ecoinformatics.org/party-2.2.0"
+  xmlns:cov="eml://ecoinformatics.org/coverage-2.2.0"
+  xmlns:ds="eml://ecoinformatics.org/dataset-2.2.0"
+  xmlns:cit="eml://ecoinformatics.org/literature-2.2.0"
+  xmlns:res="eml://ecoinformatics.org/resource-2.2.0"
+  xmlns="eml://ecoinformatics.org/methods-2.2.0"
   xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import namespace="eml://ecoinformatics.org/documentation-2.2.0" schemaLocation="eml-documentation.xsd"/>
   <xs:import namespace="eml://ecoinformatics.org/dataset-2.2.0" schemaLocation="eml-dataset.xsd"/>
@@ -63,29 +63,6 @@
             <title>
             The eml-methods module - Methodological information for resources
           </title>
-            <para>
-            The eml-methods module describes the methods
-            followed in the creation of the dataset, including description of
-            field, laboratory and processing steps, sampling methods and units,
-            quality control procedures.  The eml-methods module is used
-            to describe the <emphasis>actual</emphasis>
-            procedures that are used in the creation or the subsequent
-            processing of a dataset. Likewise, eml-methods is used to describe
-            processes that have been used to define / improve the quality of a
-            data file, or to identify potential problems with the data file.
-            Note that the eml-protocol module is intended to be used to document
-            a <emphasis>prescribed</emphasis> procedure, whereas the eml-method
-            module is used to describe procedures that <emphasis>were actually
-            performed</emphasis>.  The distinction is that the use of the term
-            "protocol" is used in the "prescriptive" sense,
-            and the term "method" is used in the
-            "descriptive" sense.  This distinction allows managers to
-            build a protocol library of well-known, established protocols
-            (procedures), but also document what procedure was truly performed
-            in relation to the established protocol.  The method may have
-            diverged from the protocol purposefully, or perhaps incidentally,
-            but the procedural lineage is still preserved and understandable.
-          </para>
           </section>
         </doc:moduleDescription>
         <doc:recommendedUsage>All datasets</doc:recommendedUsage>

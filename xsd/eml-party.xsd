@@ -44,21 +44,6 @@
             <title>
             The eml-party module - People and organization information
           </title>
-            <para>
-            The eml-party module describes a responsible party 
-            and is typically used to name the creator of a
-            resource or metadata document. A responsible party may be 
-			an individual person, an organization or a named position within
-			an organization. The eml-party module contains detailed contact
-            information. It is used throughout the other EML modules where
-            detailed contact information is needed.
-          </para>
-            <para>
-            The eml-party module, like other modules, may be
-            "referenced" via the &lt;references&gt; tag.  This allows
-            a party to be described once, and then used as a reference in
-            other locations within the EML document via its ID.
-          </para>
           </section>
         </doc:moduleDescription>
         <doc:recommendedUsage>all datasets</doc:recommendedUsage>
@@ -74,22 +59,22 @@
         resource.</doc:summary>
         <doc:description>
           <section xmlns="">
-            <para>The ResponsibleParty Type contains 
+            <para>The ResponsibleParty Type contains
         elements that are used to describe the person, organization or
         position within an organization that is associated in some way with the
         resource. It is intended to be used to fully document contact
         information for many types of associations, such as owner, manager,
         steward, curator, etc.</para>
-            <para>Note that the content model for a responsible party type 
+            <para>Note that the content model for a responsible party type
         allows a sequence of choices for the first
-        element(s): &lt;individualName&gt;, &lt;organizationName&gt; and/or &lt;positionName&gt;. 
-        This means that a parent element (e.g., creator) may use combinations of the 3 sub-elements 
+        element(s): &lt;individualName&gt;, &lt;organizationName&gt; and/or &lt;positionName&gt;.
+        This means that a parent element (e.g., creator) may use combinations of the 3 sub-elements
         to make up a single logical party. For example, a creator with only
                 the individualName of 'Joe Smith' is NOT the same as a
                 creator with the individualName of 'Joe Smith' and the
                 organizationName of 'NSF'. To include both a positionName and
-                 an organizationName as children of a &lt;contact&gt; implies that anyone 
-                currently occupying that positionName at that organizationName 
+                 an organizationName as children of a &lt;contact&gt; implies that anyone
+                currently occupying that positionName at that organizationName
                 is an appropriate contact.
                 The positionName should not be
                 used in conjunction with individualName unless only that specific
@@ -115,16 +100,16 @@
                     <para>The individualName
                 field contains subfields so that  a person's name can be broken
                 down into               parts.</para>
-                    <para>Note that the the content model for the containing type 
+                    <para>Note that the the content model for the containing type
         allows a sequence of choices for the first
-        element(s): &lt;individualName&gt;, &lt;organizationName&gt; and/or &lt;positionName&gt;. 
-        This means that a parent element (e.g., creator) may use combinations of the 3 sub-elements 
+        element(s): &lt;individualName&gt;, &lt;organizationName&gt; and/or &lt;positionName&gt;.
+        This means that a parent element (e.g., creator) may use combinations of the 3 sub-elements
         to make up a single logical party. For example, a creator with only
                 the individualName of 'Joe Smith' is NOT the same as a
                 creator with the individualName of 'Joe Smith' and the
                 organizationName of 'NSF'. To include both a positionName and
-                 an organizationName as children of a &lt;contact&gt; implies that anyone 
-                currently occupying that positionName at that organizationName 
+                 an organizationName as children of a &lt;contact&gt; implies that anyone
+                currently occupying that positionName at that organizationName
                 is an appropriate contact.
                 The positionName should not be
                 used in conjunction with individualName unless only that specific
@@ -151,16 +136,16 @@
                 This field is intended to describe which institution or overall
                 organization is associated with the resource being described.
                </para>
-                    <para>Note that the the content model for the containing type 
+                    <para>Note that the the content model for the containing type
         allows a sequence of choices for the first
-        element(s): &lt;individualName&gt;, &lt;organizationName&gt; and/or &lt;positionName&gt;. 
-        This means that a parent element (e.g., creator) may use combinations of the 3 sub-elements 
+        element(s): &lt;individualName&gt;, &lt;organizationName&gt; and/or &lt;positionName&gt;.
+        This means that a parent element (e.g., creator) may use combinations of the 3 sub-elements
         to make up a single logical party. For example, a creator with only
                 the individualName of 'Joe Smith' is NOT the same as a
                 creator with the individualName of 'Joe Smith' and the
                 organizationName of 'NSF'. To include both a positionName and
-                 an organizationName as children of a &lt;contact&gt; implies that anyone 
-                currently occupying that positionName at that organizationName 
+                 an organizationName as children of a &lt;contact&gt; implies that anyone
+                currently occupying that positionName at that organizationName
                 is an appropriate contact.
                 The positionName should not be
                 used in conjunction with individualName unless only that specific
@@ -185,16 +170,16 @@
                 particular person or full organization name. If the associated
                 person who holds the role changes frequently, then Position
                 Name would be used for consistency. </para>
-                    <para>Note that the the content model for the containing type 
+                    <para>Note that the the content model for the containing type
         allows a sequence of choices for the first
-        element(s): &lt;individualName&gt;, &lt;organizationName&gt; and/or &lt;positionName&gt;. 
-        This means that a parent element (e.g., creator) may use combinations of the 3 sub-elements 
+        element(s): &lt;individualName&gt;, &lt;organizationName&gt; and/or &lt;positionName&gt;.
+        This means that a parent element (e.g., creator) may use combinations of the 3 sub-elements
         to make up a single logical party. For example, a creator with only
                 the individualName of 'Joe Smith' is NOT the same as a
                 creator with the individualName of 'Joe Smith' and the
                 organizationName of 'NSF'. To include both a positionName and
-                 an organizationName as children of a &lt;contact&gt; implies that anyone 
-                currently occupying that positionName at that organizationName 
+                 an organizationName as children of a &lt;contact&gt; implies that anyone
+                currently occupying that positionName at that organizationName
                 is an appropriate contact.
                 The positionName should not be
                 used in conjunction with individualName unless only that specific
@@ -293,7 +278,7 @@
               directory of individuals.  Although specific contact information
               for a party might change, the underlying correspondence to a
               real individual does not.  This identifier provides a pointer
-              within a directory of individuals that may contain further, and 
+              within a directory of individuals that may contain further, and
               possibly more current, information about the party.
               </doc:description>
               <doc:example>https://orcid.org/0000-0002-1825-0097</doc:example>
@@ -343,12 +328,12 @@
         resource.</doc:summary>
         <doc:description>
           <section xmlns="">
-            <para>The person Type is used to enter the salutation, and 
+            <para>The person Type is used to enter the salutation, and
         two types of name parts for an individual associated with the
         resource. It uses these three subfields to help parse the person's
         entire name.</para>
             <para> The two elements, &lt;givenName&gt;  and  &lt;surName&gt;,
-             allow parsing of many types of names, even though distinct elements 
+             allow parsing of many types of names, even though distinct elements
              do not exist for concepts like "middle name" and "compound surname".
         &lt;givenName&gt; should be used for parts of the name that are often
         shortened to a first initial, or are not used for ordering, and typically includes
@@ -356,20 +341,20 @@
         The &lt;surName&gt; field is intended to be used for the part of the name that
         is generally displayed in its entirety and/or is alphabetized or otherwise ordered
         when appropriate. Note that only one
-        &lt;surName&gt; is allowed, and is required, while &lt;givenName&gt;s are 
+        &lt;surName&gt; is allowed, and is required, while &lt;givenName&gt;s are
        optional and unbounded.    </para>
-            <para>The arrangement and content of the sub-elements is entirely 
-       up to the EML document's author, who presumably has first-hand knowledge of 
-       how the names are to be constructed. For example, if element position is important 
+            <para>The arrangement and content of the sub-elements is entirely
+       up to the EML document's author, who presumably has first-hand knowledge of
+       how the names are to be constructed. For example, if element position is important
        (e.g., the list of a book's        authors), then
        EML authors should put the creators in that order. If it is appropriate for a
        resource to have its creators sorted alphabetically, then the EML author
        should construct the name parts so that the&lt;surName&gt; field may be used for
-       this purpose. At this time, EML is not able to express cultural 
-       conventions so that authors may indicate the correct order for 
-       &lt;givenName&gt;s and &lt;surName&gt; when the whole name is expressed. 
+       this purpose. At this time, EML is not able to express cultural
+       conventions so that authors may indicate the correct order for
+       &lt;givenName&gt;s and &lt;surName&gt; when the whole name is expressed.
        However support for international names
-       is under consideration for a future version of 
+       is under consideration for a future version of
        EML, along with other internationalization features.
      </para>
           </section>
@@ -399,11 +384,11 @@
             <doc:summary>The given name of the individual.</doc:summary>
             <doc:description>The given name field can be used for first name of
             the individual associated with the resource, or for any other names
-            that are not intended to be alphabetized, (as appropriate). Note that 
+            that are not intended to be alphabetized, (as appropriate). Note that
             while it is possible  to include all given names in one field (as in the
-            example below), it may be not be good practice to do so. For example, if an 
-            XSL transformation stylesheet were to abbreviate the content of a 
-            givenName to just the first initial, a givenName element that contained 
+            example below), it may be not be good practice to do so. For example, if an
+            XSL transformation stylesheet were to abbreviate the content of a
+            givenName to just the first initial, a givenName element that contained
             more than one name would not be transformed correctly. </doc:description>
             <doc:example>Juan Luis</doc:example>
             <doc:example>Jane</doc:example>

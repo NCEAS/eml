@@ -44,30 +44,6 @@
         <doc:moduleDescription>
           <section xmlns="">
             <title>The eml-physical module - Physical file format</title>
-            <para>
-        The eml-physical module describes the external
-        and internal physical characteristics of a data object as well as the
-        information required for its distribution. Examples of the external
-        physical characteristics of a data object would be the filename,
-        size, compression, encoding methods, and authentication of a file
-        or byte stream.  Internal physical characteristics describe the
-        format of the data object being described.  Both named binary or
-        otherwise proprietary formats can be cited (e.g., Microsoft Access
-        2000), or text formats can be precisely described (e.g., ASCII text
-        delimited with commas).  For these text formats, it also includes the
-        information needed to parse the data object to extract the entity
-        and its attributes from the data object.  Distribution information
-        describes how to retrieve the data object.  The retrieval information
-        can be either online (e.g., a URL or other connection information)
-        or offline (e.g., a data object residing on an archival tape).
-        </para>
-            <para>
-          The eml-physical module, like other modules, may be
-          "referenced" via the &lt;references&gt; tag.  This
-          allows a physical document to be described once, and then
-          used as a reference in other locations within the EML document
-          via its ID.
-        </para>
           </section>
         </doc:moduleDescription>
         <doc:recommendedUsage>Any data object that is being described by EML
@@ -99,17 +75,17 @@
         <doc:summary>Physical structure of an entity or entities.</doc:summary>
         <doc:description>
           <section xmlns="">
-            <para>The eml-physical module describes the physical characteristics of a 
-            data object 
+            <para>The eml-physical module describes the physical characteristics of a
+            data object
         and the information required for its distribution. External physical characteristics
-        include  the filename, size, compression, encoding methods, and authentication 
-        of a file or byte stream. Internal physical characteristics describe the format of 
-        the data object. Proprietary formats can be cited (e.g., Microsoft Access 2000), 
-        or text formats can be precisely described (e.g., ASCII text delimited with commas). 
-        The module includes the information needed to parse the text data object to extract 
-        the entity and its attributes. Distribution information describes how to retrieve the 
-        data object, either as online (a URL or connection definition), offline (e.g., a data 
-        object residing on an archival tape), or inline (i.e., the data are included with the 
+        include  the filename, size, compression, encoding methods, and authentication
+        of a file or byte stream. Internal physical characteristics describe the format of
+        the data object. Proprietary formats can be cited (e.g., Microsoft Access 2000),
+        or text formats can be precisely described (e.g., ASCII text delimited with commas).
+        The module includes the information needed to parse the text data object to extract
+        the entity and its attributes. Distribution information describes how to retrieve the
+        data object, either as online (a URL or connection definition), offline (e.g., a data
+        object residing on an archival tape), or inline (i.e., the data are included with the
         metadata).</para>
             <para>Like many other EML elements, a physical Type can
         contain a reference to another physical element defined elsewhere in the document
@@ -529,8 +505,8 @@
                                   always. The valid values are yes or no.
                                   If it is set to yes, then consecutive
                                   delimiters will be collapsed to one.  If set
-                                  to no or absent, then consecutive delimiters 
-                                  will be treated as separate delimiters. 
+                                  to no or absent, then consecutive delimiters
+                                  will be treated as separate delimiters.
                                   Default behaviour is no; hence, consecutive
                                   delimiters will be treated as separate
                                   delimiters, by default.
@@ -1187,9 +1163,9 @@
     <xs:attribute name="system" type="res:SystemType" use="optional"/>
     <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
   </xs:complexType>
-  <!-- 
+  <!--
 
-physical distribution type built from resource, access and local components 
+physical distribution type built from resource, access and local components
 -->
   <xs:complexType name="PhysicalDistributionType">
     <xs:annotation>
@@ -1202,7 +1178,7 @@ physical distribution type built from resource, access and local components
             for retrieving the resource.
              </para>
             <para>
-             It differs from the 
+             It differs from the
              <ulink url="eml-resource.html#DistributionType">
                 <citetitle>res:DistributionType</citetitle>
               </ulink>:
@@ -1269,7 +1245,7 @@ physical distribution type built from resource, access and local components
               <doc:summary>access</doc:summary>
               <doc:description>When this element occurs in a distribution module,
               it controls access only to the resource being described by the same
-              distribution parent. 
+              distribution parent.
               Please see the Type definition for complete information on constructing
               an access tree.</doc:description>
             </xs:appinfo>
@@ -1292,17 +1268,17 @@ phys:online type -->
         <doc:summary>PhysicalOnlineType</doc:summary>
         <doc:description>
           <section xmlns="">
-            <para>Distribution information for accessing the resource online, 
-            represented either as a URL or as the series of named parameters 
-            needed to connect. The URL field can contain a simple web address 
-            or an entire query string. The connection element allows the components 
+            <para>Distribution information for accessing the resource online,
+            represented either as a URL or as the series of named parameters
+            needed to connect. The URL field can contain a simple web address
+            or an entire query string. The connection element allows the components
             of a complex protocol to be described individually.   </para>
             <para>The PhysicalOnlineType differs from the
             <ulink url="eml-resource.html#OnlineType">
                 <citetitle>res:OnlineType </citetitle>
               </ulink>
-          in that this type only allows a connectionDefinition 
-             to appear as the child of a connection. In other words, in a 
+          in that this type only allows a connectionDefinition
+             to appear as the child of a connection. In other words, in a
              PhysicalOnlineType, the connectionDefinition cannot be abstracted, and
              must be included as part of an actual connection.
              </para>
@@ -1316,7 +1292,7 @@ phys:online type -->
           <xs:appinfo>
             <doc:tooltip>onlineDescription</doc:tooltip>
             <doc:summary>onlineDescription</doc:summary>
-            <doc:description>The onlineDescription element can hold a brief description of the content of the online element's online|offline|inline child. This description element could supply content for an html anchor tag.  
+            <doc:description>The onlineDescription element can hold a brief description of the content of the online element's online|offline|inline child. This description element could supply content for an html anchor tag.
               </doc:description>
           </xs:appinfo>
         </xs:annotation>
@@ -1327,7 +1303,7 @@ phys:online type -->
             <xs:appinfo>
               <doc:tooltip>url</doc:tooltip>
               <doc:summary>url</doc:summary>
-              <doc:description>The URL of the resource that is available online. 
+              <doc:description>The URL of the resource that is available online.
               Please see the Type definition for complete information.</doc:description>
             </xs:appinfo>
           </xs:annotation>
@@ -1337,7 +1313,7 @@ phys:online type -->
             <xs:appinfo>
               <doc:tooltip>connection</doc:tooltip>
               <doc:summary>connection</doc:summary>
-              <doc:description>A connection to a resource that is available online.  
+              <doc:description>A connection to a resource that is available online.
               Please see the Type definition for complete information.</doc:description>
             </xs:appinfo>
           </xs:annotation>

@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema 
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    xmlns:doc="eml://ecoinformatics.org/documentation-2.2.0" 
-    xmlns:res="eml://ecoinformatics.org/resource-2.2.0" 
-    xmlns:ent="eml://ecoinformatics.org/entity-2.2.0" 
-    xmlns:att="eml://ecoinformatics.org/attribute-2.2.0" 
-    xmlns:con="eml://ecoinformatics.org/constraint-2.2.0" 
-    xmlns="eml://ecoinformatics.org/dataTable-2.2.0" 
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:doc="eml://ecoinformatics.org/documentation-2.2.0"
+    xmlns:res="eml://ecoinformatics.org/resource-2.2.0"
+    xmlns:ent="eml://ecoinformatics.org/entity-2.2.0"
+    xmlns:att="eml://ecoinformatics.org/attribute-2.2.0"
+    xmlns:con="eml://ecoinformatics.org/constraint-2.2.0"
+    xmlns="eml://ecoinformatics.org/dataTable-2.2.0"
     targetNamespace="eml://ecoinformatics.org/dataTable-2.2.0">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.2.0" 
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.2.0"
   schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.2.0" 
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.2.0"
   schemaLocation="eml-resource.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/entity-2.2.0" 
+  <xs:import namespace="eml://ecoinformatics.org/entity-2.2.0"
   schemaLocation="eml-entity.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/attribute-2.2.0" 
+  <xs:import namespace="eml://ecoinformatics.org/attribute-2.2.0"
   schemaLocation="eml-attribute.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/constraint-2.2.0" 
+  <xs:import namespace="eml://ecoinformatics.org/constraint-2.2.0"
   schemaLocation="eml-constraint.xsd"/>
   <xs:annotation>
     <xs:documentation>
@@ -47,7 +47,7 @@
     GNU General Public License for more details.
     You should have received a copy of the GNU General Public License
     along with this program; if not, write to the Free Software
-    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA    
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
     </xs:documentation>
     <xs:appinfo>
       <doc:moduleDocs>
@@ -58,22 +58,6 @@
             The eml-dataTable module - Logical information
             about data table entities
           </title>
-          <para>
-            The eml-dataTable module is used to describe the logical
-            characteristics of each tabular set of information in a dataset. A
-            series of comma-separated text files may be considered a dataset,
-            and each file would subsequently be considered a dataTable entity
-            within the dataset.  Since the eml-dataTable module extends the
-            eml-entity module, it uses all of the common entity elements to
-            describe the table, along with a few elements specific to just data
-            table entities.  The eml-dataTable module allows for the
-            description of each attribute (column/field/variable) within the
-            data table through the use of the eml-attribute module.  Likewise,
-            there are fields used to describe the physical distribution of the
-            data table, its overall coverage, the methodology used in creating
-            the data, and other logical structure information such as its
-            orientation, case sensitivity, etc.
-          </para>
         </section>
         </doc:moduleDescription>
         <doc:recommendedUsage>The EML dataTable Module is used to document
@@ -93,10 +77,10 @@
         information about the dataTable's orientation, number of records, case
         sensitivity, and temporal, geographic and taxonomic coverage. Because
         the dataTable element refers to the complex type 'DataTableType', it
-        must contain all the elements defined for the type. 
+        must contain all the elements defined for the type.
         description for DataTableType to review component element
         rules.</doc:description>
-        
+
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
@@ -137,12 +121,12 @@
               specifies text case sensitivity of the data in the
               dataTable. The valid values are yes or no. If it is set to
               yes, then values of attributes that differ only in case (e.g.,
-              LOW, low) represent distinct values.  If set to no, then values 
+              LOW, low) represent distinct values.  If set to no, then values
               of attributes that differ only in case represent the same value.
               </doc:description>
               <doc:example>yes</doc:example>
               <doc:example>no</doc:example>
-              
+
             </xs:appinfo>
           </xs:annotation>
           <xs:simpleType>
@@ -165,7 +149,7 @@
               formatting such as the number of header lines (see eml-physical
               for that information).</doc:description>
               <doc:example>975</doc:example>
-              
+
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
