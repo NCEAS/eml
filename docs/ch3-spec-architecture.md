@@ -24,29 +24,31 @@ an EML package to remain cohesive and to allow for the cross platform
 compatibility of packages, the following rules with respect to packaging
 must be followed.
 
--   An ID is required on the eml root element.
--   IDs are optional on all other elements.
--   If an ID is not provided, that content must be interpreted as
--   If an ID is provided for content then that content is distinct from
-    all other content except for that content that references its ID.
--   If a user wants to reuse content to indicate the repetition of an
-    object, a reference must be used. Two identical ids with the same
-    system attribute cannot exist in a single document.
--   \"Document\" scope is defined as identifiers unique only to a single
-    instance document (if a document does not have a system attribute or
-    if scope is set to \'document\' then all IDs are defined as distinct
-    content).
--   \"System\" scope is defined as identifiers unique to an entire data
-    management system (if two documents share a system string, then any
-    IDs in those two documents that are identical refer to the same
-    object).
--   If an element references another element, it must not have an ID
-    itself. The system attribute must have the same value in both the
-    target and referencing elements or it must be absent in both.
--   All EML packages must have the \'eml\' module as the root.
--   The system and scope attribute are always optional except for at the
-    \'eml\' module where the scope attribute is fixed as \'system\'. The
-    scope attribute defaults to \'document\' for all other modules.
+- An ID is required on the eml root element.
+- Elements which contain an `annotation` element require an ID, which 
+  defines the subject of the annotation.
+- IDs are optional on all other elements.
+- If an ID is not provided, that content must be interpreted as representing a distinct object.
+- If an ID is provided for content then that content is distinct from
+  all other content except for that content that references its ID.
+- If a user wants to reuse content to indicate the repetition of an
+  object, a reference must be used. Two identical ids with the same
+  system attribute cannot exist in a single document.
+- \"Document\" scope is defined as identifiers unique only to a single
+  instance document (if a document does not have a system attribute or
+  if scope is set to \'document\' then all IDs are defined as distinct
+  content).
+- \"System\" scope is defined as identifiers unique to an entire data
+  management system (if two documents share a system string, then any
+  IDs in those two documents that are identical refer to the same
+  object).
+- If an element references another element, it must not have an ID
+  itself. The system attribute must have the same value in both the
+  target and referencing elements or it must be absent in both.
+- All EML packages must have the \'eml\' module as the root.
+- The system and scope attribute are always optional except for at the
+  \'eml\' module where the scope attribute is fixed as \'system\'. The
+  scope attribute defaults to \'document\' for all other modules.
 
 ### ID and Scope Examples
 
