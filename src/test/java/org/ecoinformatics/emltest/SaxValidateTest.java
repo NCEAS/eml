@@ -115,48 +115,6 @@ public class SaxValidateTest extends TestCase
     }
 
     /**
-     * do a test validation on the produced eml-docbook documentation
-     */
-    public void testDocbook()
-    {
-      SAXValidate test = new SAXValidate(false);
-      assertTrue(test != null);
-      File docsDir = new File("build/docs");
-      FilenameFilter filter = FileFilterUtils.and(FileFilterUtils.directoryFileFilter(), FileFilterUtils.prefixFileFilter("eml-"));
-      File f = new File(docsDir.listFiles(filter)[0], "eml-docbook.xml");
-      System.err.println("Validating " + f.getAbsolutePath());
-
-      if (!f.exists())
-      {
-    	  String msg = "The file " + f.getAbsolutePath() + " is not " +
-    	             "in the docs directory.  You " +
-    	             "must run 'ant docbook' before running this test.";
-	        System.err.println(msg);
-	        fail(msg);
-      }
-
-      try
-      {
-        test.runTest(new FileReader(f), DEFAULT_PARSER);
-      }
-      catch(Exception e)
-      {
-        String msg = e.getMessage();
-        if (msg.equals("Attribute \"xmlns:xs\" must be declared for element " +
-                      "type \"book\"."))
-        {
-          //if its just this message. the file is valid.
-          System.err.println(f.getAbsolutePath() + " is valid");
-        }
-        else
-        {
-          System.err.println(f.getAbsolutePath() + " is NOT valid: " + msg);
-          fail(f.getAbsolutePath() + " is NOT valid: " + msg);
-        }
-      }
-    }
-
-    /**
      * Create a suite of tests to be run together
      *
      * @return   The test suite
@@ -166,7 +124,6 @@ public class SaxValidateTest extends TestCase
         TestSuite suite = new TestSuite();
         suite.addTest(new SaxValidateTest("initialize"));
         suite.addTest(new SaxValidateTest("testSchemaValid"));
-        suite.addTest(new SaxValidateTest("testDocbook"));
         return suite;
     }
 
