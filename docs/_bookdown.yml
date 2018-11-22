@@ -1,0 +1,13 @@
+site: "bookdown::bookdown_site"
+output:
+  bookdown::gitbook: default
+documentclass: book
+rmd_files: ["index.Rmd",
+    "../README.md",
+    "contributors.md",
+    "eml-220info.md",
+    "release-notes.md",
+    "about-this-book.md",
+    "references.md"]
+delete_merged_file: true
+
