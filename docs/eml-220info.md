@@ -1,6 +1,4 @@
-[EML Schema Documentation](./index.html)
-
-[EML FAQs](./eml-faq.html)
+# Changes and New Features in EML 2.2.0
 
 This document highlights changes and new features in EML 2.2.  EML authors
 should also refer to the affected sections in the normative schema documents
@@ -16,8 +14,6 @@ relabled as EML 2.2 without violating the schema. However, some predefined value
 See the 'Readme' that accompanies the distribution for a complete list of the
 bugs addressed, and for information of interest to developers.
 
-Changes and New Features in EML 2.2.0
-=====================================
 
 **Q:** Unit Additions and Changes
 
@@ -350,12 +346,7 @@ external identifiers, e.g., to a code from a system like ITIS or WoRMS.
 </taxonomicClassification>
 ```
 
-Converting EML documents from v2.1.0/1 to v2.2.0
-================================================
-
-IS THIS GOING TO HAPPEN FOR 2.2.0???
-
-**Q:** About the EML conversion stylesheet
+**Q:** How can I convert from earlier versions of EML?
 
 **A:** An XSL stylesheet is provided with the EML Utilities to convert valid EML
 2.1-series documents to EML 2.2.0 (see
