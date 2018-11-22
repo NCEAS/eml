@@ -197,12 +197,11 @@
     <!-- Generate HTML documentation using an XSLT transform -->
     <!-- Note that you MUST have a Xalan 1.x XSLT processor on
         your CLASSPATH in order for this to work -->
-    <target name="docs" depends="init,docbookhtml,tablehtml">
+    <target name="docs" depends="init,docbookhtml">
         <style basedir="." destdir="${build.docs}/eml-${version}" style="eml-documentation.xsl"
             includes="xsd/*.xsd" excludes="eml-documentation.xsd" classpath="${cpath}" processor="trax"/>
         <copy todir="${build.docs}" filtering="yes">
             <fileset dir=".">
-                <include name="index.html"/>
                 <include name="default.css"/>
             </fileset>
         </copy>
@@ -259,6 +258,8 @@
         <copy todir="${ver.docs}" filtering="no">
             <fileset dir="./docs">
                 <exclude name="${datamanager.name}/**"/>
+            </fileset>
+            <fileset dir="${build.docs}">
             </fileset>
         </copy>
         <copy todir="${ver.src}" filtering="yes">
@@ -323,20 +324,6 @@
       ************************************************
         Docbook html created.  The html docbook file
         is docs/eml-${version}/eml-docbook.html.
-      ************************************************
-    </echo>
-    </target>
-
-    <target name="tablehtml" depends="init">
-        <copy file="default.css" todir="${build.docs}"/>
-        <style basedir="." style="buildDependencyTable.xsl"
-            in="xsd/eml.xsd"
-           out="${build.docs}/eml-${version}/eml-dependencies.html"
-           classpath="${cpath}" processor="trax"/>
-        <echo>
-      ************************************************
-        Dependency Table rendered to HTML.
-        The html file is docs/eml-${version}/eml-dependencies.html.
       ************************************************
     </echo>
     </target>
