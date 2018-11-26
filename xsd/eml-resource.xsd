@@ -470,7 +470,7 @@
         <xs:complexType>
           <xs:simpleContent>
             <xs:extension base="xs:string">
-              <xs:attribute name="system" type="SystemType" use="optional" default="document"/>
+              <xs:attribute name="system" type="SystemType" use="optional" />
             </xs:extension>
           </xs:simpleContent>
         </xs:complexType>
