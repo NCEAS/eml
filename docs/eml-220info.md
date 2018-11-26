@@ -1,4 +1,4 @@
-# Changes and New Features in EML 2.2.0
+# What's New in EML 2.2.0
 
 This document highlights changes and new features in EML 2.2.  EML authors
 should also refer to the affected sections in the normative schema documents

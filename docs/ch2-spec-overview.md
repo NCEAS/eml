@@ -1,6 +1,6 @@
-# Chapter 2. Overview of EML modules and their use
+# EML modules and their use
 
-## Module Overview Foreword
+## Modules Overview
 
 The following section briefly describes each EML module and how they are
 logically designed in order to document ecological resources. Some of
