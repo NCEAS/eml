@@ -320,15 +320,17 @@
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>Package Identifer</doc:tooltip>
-            <doc:summary>A unique identifier for this entire EML metadata document that can be used
-              to reference it elsewhere. </doc:summary>
-            <doc:description>A unique identifier for this entire EML metadata document that can be
-              used to reference it elsewhere. This identifier can be interpreted as the formal
-              accession number for this EML package, and is therefore required. It must be unique
-              within a particular data management system (see the "system" attribute). </doc:description>
+            <doc:summary>A globally unique identifier for the data package described by this EML metadata document that can be used
+              to cite it elsewhere.</doc:summary>
+            <doc:description>A globally unique identifier for the data package described by this EML metadata document
+              that can be used to cite it elsewhere. This identifier can be interpreted as the formal
+              accession number for the data package, and is therefore required. It must be globally unique
+              within a particular data management system, which should be specified in the system
+              attribute as a URI. Typically a DOI or other identifier that is both citable and
+              resolvable is used for published data packages.</doc:description>
             <doc:example>doi:10.5063/F17P8WGK</doc:example>
+            <doc:example>https://doi.org/10.5063/F17P8WGK</doc:example>
             <doc:example>urn:uuid:04cd34fd-25d4-447f-ab6e-73a572c5d383</doc:example>
-            <doc:example>knb.343.22</doc:example>
           </xs:appinfo>
         </xs:annotation>
       </xs:attribute>
