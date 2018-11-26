@@ -23,33 +23,6 @@
         <doc:moduleDescription>
           <section xmlns="">
             <title>EML Unit Type Definitions</title>
-            <section>
-              <title>Philosophy of Units</title>
-              <para>The concept of "unit" represents one of the most fundamental
-            categories of metadata. The classic example of data entropy is the
-            case in which a reported numeric value loses meaning due to lack of
-            associated units. Much of Ecology is driven by measurement, and
-            most measurements are inherently comparative. Good data description
-            requires a representation of the basis for comparison, i.e., the
-            unit. In modeling units, the authors of EML drew
-            inspiration from the
-            <ulink url="http://physics.nist.gov/cuu/Units/introduction.html">
-            NIST Reference on Constants, Units, and Uncertainty</ulink>.
-            This document defines a unit as "a particular physical quantity,
-            defined and adopted by convention, with which other particular
-            quantities of the same kind are compared to express their value."
-            The authors of the EML 2 specification (hereafter "the authors")
-            decided to make the unit element required, wherever
-            possible.</para>
-              <para>The units are defined in the 
-        <ulink url="http://www.ch.ic.ac.uk/rzepa/codata2/">STMML language</ulink> 
-        in a document that is shipped with each release of
-        EML. See the accompanying STMML file, eml-unitDictionary.xml, for
-        precise, quantitative definitions of each of these units and their
-        relationships to base SI units</para>
-              <para>which modules use these types (and which could but dont yet?)</para>
-              <para>anything else?</para>
-            </section>
           </section>
         </doc:moduleDescription>
         <doc:recommendedUsage>any module that needs units</doc:recommendedUsage>
@@ -57,7 +30,7 @@
       </doc:moduleDocs>
     </xs:appinfo>
   </xs:annotation>
-  <!-- 
+  <!--
 
 
 the dictionary of all the units -->
@@ -73,15 +46,15 @@ the dictionary of all the units -->
         describe an attribute. See the accompanying STMML file, eml-unitDictionary.xml, for
         precise, quantitative definitions of each of these units and their
         relationships to base SI units.</para>
-          <para>The standard Unit Dictionary is built from a union of simpleTypes. 
-          This construct allows unit types to be used individually as appropriate 
+          <para>The standard Unit Dictionary is built from a union of simpleTypes.
+          This construct allows unit types to be used individually as appropriate
           in EML content (e.g., LengthUnitType for distances )</para>
         </doc:description>
       </xs:appinfo>
     </xs:annotation>
     <xs:union memberTypes="unit:LengthUnitType unit:MassUnitType unit:otherUnitType"/>
   </xs:simpleType>
-  <!-- 
+  <!--
 
 length units -->
   <xs:simpleType name="LengthUnitType">
@@ -91,8 +64,8 @@ length units -->
         <doc:summary>The  list of units which are of length type, or have a parentSI of meter
         SI</doc:summary>
         <doc:description>
-          <para>The LengthUnitType is the enumerated list of units which are of length type, or have a parentSI of meter. 
-        These unit names can be used where ever content should be restricted to a length, such as a distance or 
+          <para>The LengthUnitType is the enumerated list of units which are of length type, or have a parentSI of meter.
+        These unit names can be used where ever content should be restricted to a length, such as a distance or
         altitude. The units are defined in the STMML
         language in a document that is shipped with each release of
         EML called  eml-unitDictionary.xml. See this file for
@@ -127,7 +100,7 @@ length units -->
       <xs:enumeration value="mile"/>
     </xs:restriction>
   </xs:simpleType>
-  <!-- 
+  <!--
 
 
 mass units -->
@@ -138,8 +111,8 @@ mass units -->
         <doc:summary>The  list of units which are of mass type, or have a parentSI of kilogram
         </doc:summary>
         <doc:description>
-          <para>The MassUnitType is the enumerated list of units which are of mass type, or have a parentSI of kilogram. 
-        These unit names can be used where ever content should be restricted to a mass, such as an amount. 
+          <para>The MassUnitType is the enumerated list of units which are of mass type, or have a parentSI of kilogram.
+        These unit names can be used where ever content should be restricted to a mass, such as an amount.
         The units are defined in the STMML
         language in a document that is shipped with each release of
         EML called  eml-unitDictionary.xml. See this file for
@@ -164,8 +137,8 @@ mass units -->
       <xs:enumeration value="ton"/>
     </xs:restriction>
   </xs:simpleType>
- 
-  <!-- 
+
+  <!--
 
 
 the other units, not previously described -->
@@ -173,7 +146,7 @@ the other units, not previously described -->
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Other Standard Units</doc:tooltip>
-        <doc:summary>The enumerated list of standard units that are not 
+        <doc:summary>The enumerated list of standard units that are not
         included in the any other named simpleType</doc:summary>
         <doc:description>
           <para>The unitDictionary is the standard set
@@ -184,8 +157,8 @@ the other units, not previously described -->
         EML. See the accompanying STMML file eml-unitDictionary.xml for
         precise, quantitative definitions of each of these units and their
         relationships to base SI units.</para>
-          <para>The standard Unit Dictionary is built from a union of simpleTypes. This Type 
-enumerates the units which are not in other Type definitions, but are to be 
+          <para>The standard Unit Dictionary is built from a union of simpleTypes. This Type
+enumerates the units which are not in other Type definitions, but are to be
 included as standard.</para>
         </doc:description>
       </xs:appinfo>
@@ -489,26 +462,26 @@ included as standard.</para>
       <xs:enumeration value="micromolePerMeterSquaredPerSecond"/>
       <xs:enumeration value="micromolePerCentimeterSquaredPerSecond"/>
       <xs:enumeration value="megajoulePerMeterSquaredPerDay"/>
-      <xs:enumeration value="langleyPerDay"/> 
+      <xs:enumeration value="langleyPerDay"/>
       <!-- removed the mass units to their named type -->
       <!-- removed the length units to their named type -->
       <!-- removed the angle units to their named type -->
     </xs:restriction>
   </xs:simpleType>
- <!-- 
+ <!--
 
 angle units -->
   <xs:simpleType name="angleUnitType">
    <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Angle Units</doc:tooltip>
-        <doc:summary>An example of a group of units which could be added. These units are a 
+        <doc:summary>An example of a group of units which could be added. These units are a
         derived typein the group of derived SI units with a special name or symbol.</doc:summary>
         <doc:description>
           <para>The AngleUnitType is the enumerated list of angle units. For example,
-            plane angle (radian, rad) and solid angle (steradian, sr) are actually 
-            dimensionless, and their symbols used as appropriate 
-       (e.g, sr in photometry). These unit names could be used where 
+            plane angle (radian, rad) and solid angle (steradian, sr) are actually
+            dimensionless, and their symbols used as appropriate
+       (e.g, sr in photometry). These unit names could be used where
        ever content should be restricted.</para>
         </doc:description>
       </xs:appinfo>
@@ -519,6 +492,6 @@ angle units -->
       <xs:enumeration value="grad"/>
       <xs:enumeration value="steradian"/>
     </xs:restriction>
-  </xs:simpleType>  
-  
+  </xs:simpleType>
+
 </xs:schema>

@@ -57,29 +57,6 @@
               The eml-dataset module - Dataset specific
               information
             </title>
-            <para>
-              The eml-dataset module contains general information that describes
-              dataset resources. It is intended to provide overview information
-              about the dataset: broad information such as the title, abstract,
-              keywords, contacts, maintenance history, purpose, and distribution
-              of the data themselves. The eml-dataset module also imports many
-              other modules that are used to describe the dataset in fine
-              detail.  Specifically, it uses the eml-methods module to
-              describe methodology used in collecting or processing the
-              dataset, the eml-project module to describe the overarching
-              research context and experimental design, the eml-access module
-              to define access control rules for the data and metadata, and
-              the eml-entity module to provide detailed information about the
-              logical structure of the dataset. A dataset can be (and often is)
-              composed of a series of data entities (tables) that are linked
-              together by particular integrity constraints.
-            </para>
-            <para>
-              The eml-dataset module, like other modules, may be
-              "referenced" via the &lt;references&gt; tag.  This
-              allows a dataset to be described once, and then used as a
-              reference in other locations within the EML document via its ID.
-            </para>
           </section>
         </doc:moduleDescription>
         <doc:recommendedUsage>all datasets</doc:recommendedUsage>

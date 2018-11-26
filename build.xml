@@ -89,8 +89,8 @@
         <property name="servletpath" value="/emlparser"/>
         <property name="version" value="2.2.0"/>
         <!-- namespaces that the servlet should auto resolve -->
-        
-    <!-- LOCAL TEST VALUES -->    
+
+    <!-- LOCAL TEST VALUES -->
     <property name="namespaces"
               value="eml://ecoinformatics.org/eml-2.0.0 ${server}/${servletdir}/schema/eml-2.0.0/eml.xsd
                 eml://ecoinformatics.org/eml-2.0.1  ${server}/${servletdir}/schema/eml-2.0.1/eml.xsd
@@ -102,7 +102,7 @@
                 eml://ecoinformatics.org/project-2.1.1 ${server}/${servletdir}/schema/eml-2.1.1/eml-project.xsd
                 http://www.xml-cml.org/schema/stmml-1.1 ${server}/${servletdir}/schema/eml-2.1.0/stmml.xsd
                 http://www.xml-cml.org/schema/stmml ${server}/${servletdir}/schema/eml-2.0.1/stmml.xsd" />
-        
+
         <!-- the path from the tomcat/bin directory to the config.xml file -->
         <property name="servletconfigfile" value="${servlet.install.dir}/lib/config.xml"/>
         <property name="servlettempdir" value="build/emlparser"/>
@@ -156,7 +156,7 @@
         <property name="junit" value="lib/junit.jar"/>
         <property name="utilities" value="lib/utilities.jar"/>
 
-        
+
         <property name="htmldocbook-style"
         value="style/docbook-xsl-1.50.0/html/docbook.xsl"/>
         <filter token="server" value="https://knb.ecoinformatics.org"/>
@@ -190,19 +190,18 @@
         <property name="datamanager.name" value="datamanager"/>
 
         <mkdir dir="${build.docs}/eml-${version}"/>
-        
+
     </target>
 
 
     <!-- Generate HTML documentation using an XSLT transform -->
     <!-- Note that you MUST have a Xalan 1.x XSLT processor on
         your CLASSPATH in order for this to work -->
-    <target name="docs" depends="init,docbookhtml,tablehtml">
+    <target name="docs" depends="init">
         <style basedir="." destdir="${build.docs}/eml-${version}" style="eml-documentation.xsl"
             includes="xsd/*.xsd" excludes="eml-documentation.xsd" classpath="${cpath}" processor="trax"/>
         <copy todir="${build.docs}" filtering="yes">
             <fileset dir=".">
-                <include name="index.html"/>
                 <include name="default.css"/>
             </fileset>
         </copy>
@@ -260,6 +259,8 @@
             <fileset dir="./docs">
                 <exclude name="${datamanager.name}/**"/>
             </fileset>
+            <fileset dir="${build.docs}">
+            </fileset>
         </copy>
         <copy todir="${ver.src}" filtering="yes">
             <fileset dir="${srcdir}">
@@ -282,63 +283,6 @@
         <tar tarfile="./eml-${version}.tar" basedir="${dist.dir}"/>
         <gzip zipfile="./eml-${version}.tar.gz" src="./eml-${version}.tar"/>
         <delete file="./eml-${version}.tar"/>
-    </target>
-
-    <target name="docbook" depends="init">
-        <style basedir="." style="buildDocBook.xsl"
-            in="xsd/eml.xsd" out="${build.dir}/eml-docbook-nosort.xml"
-           classpath="${cpath}" processor="trax"/>
-        <style basedir="." style="sortDocBook.xsl"
-           in="${build.dir}/eml-docbook-nosort.xml"
-           out="${build.dir}/eml-docbook.xml"
-           classpath="${cpath}" processor="trax"/>
-        <!-- the following copy is needed to do the ant replacement -->
-        <copy file="${build.dir}/eml-docbook.xml"
-          tofile="${build.docs}/eml-${version}/eml-docbook.xml"
-          filtering="yes"/>
-        <echo>
-      ***********************************************
-        DocBook Created.  The DocBook documentation
-        should now be in docs/eml-docbook.xml.
-      ***********************************************
-    </echo>
-    </target>
-
-    <target name="docbookhtml" depends="docbook">
-        <echo>
-      ************************************************
-        Note that if this does not work for you,
-        you need to check the newest version of
-        Xalan out from the Apache CVS server and
-        put the new xalan.jar file in your classpath.
-        This will not work with Xalan 2.3.1!
-      ************************************************
-    </echo>
-        <style basedir="." style="${htmldocbook-style}"
-           in="${build.docs}/eml-${version}/eml-docbook.xml"
-           out="${build.docs}/eml-${version}/index.html"
-           classpath="${cpath}" processor="trax"/>
-        <copy file="default.css" todir="${build.docs}"/>
-        <echo>
-      ************************************************
-        Docbook html created.  The html docbook file
-        is docs/eml-${version}/eml-docbook.html.
-      ************************************************
-    </echo>
-    </target>
-
-    <target name="tablehtml" depends="init">
-        <copy file="default.css" todir="${build.docs}"/>
-        <style basedir="." style="buildDependencyTable.xsl"
-            in="xsd/eml.xsd"
-           out="${build.docs}/eml-${version}/eml-dependencies.html"
-           classpath="${cpath}" processor="trax"/>
-        <echo>
-      ************************************************
-        Dependency Table rendered to HTML.
-        The html file is docs/eml-${version}/eml-dependencies.html.
-      ************************************************
-    </echo>
     </target>
 
     <target name="buildenumerations" depends="init">
@@ -365,7 +309,7 @@
                 <exclude name="emlconversions/**"/>
             </fileset>
         </copy>
-    
+
         <echo>
       ************************************************
                     copied some stuff to ${build.tests}
@@ -387,9 +331,9 @@
     </target>
 
     <target name="jar" depends="compile">
-        <jar jarfile="${build.dir}/${name}.jar" 
+        <jar jarfile="${build.dir}/${name}.jar"
          basedir="${build.dest}"
-         includes="${package.home}/** config.xml" 
+         includes="${package.home}/** config.xml"
          excludes="${datamanager.dir}/**" />
         <copy file="${build.dir}/${name}.jar" tofile="lib/${name}.jar"/>
     </target>
@@ -419,7 +363,7 @@
     </target>
 
     <!-- use the ant "junit" task to run JUnit tests. -->
-    <target name="test" depends="compile-test,docbook">
+    <target name="test" depends="compile-test">
 
         <!--copy the sample docs into the test directory so they get validated-->
         <copy todir="${test.resources.dir}">
@@ -440,7 +384,7 @@
             copied the unitDictionary
       ************************************************
     </echo>
-    
+
         <!-- use the ant "junit" task to run JUnit tests. -->
         <junit printsummary="yes" haltonfailure="no" fork="no" haltonerror="no" failureproperty="test.failed">
             <classpath>
@@ -475,10 +419,10 @@
             </batchtest>
         </junit>
     </target>
-    
+
     <target name="runonetest" depends="jar">
         <!-- Prompt user for the test name. -->
-            <input 
+            <input
              message="Please enter name of test to run: "
              addproperty="testtorun"
              defaultvalue="HtmlToPdfTest"
@@ -523,7 +467,7 @@
 
         <!-- Copy eml-2.0.0 schema. Add code here for copying any other schemas. -->
         <echo>Getting EML 2.0.0 from source: ${eml2_0_0-tag}</echo>
-        <git-clone-pull repository="${eml.git.repository.url}" 
+        <git-clone-pull repository="${eml.git.repository.url}"
                         dest="${servlettempdir}/eml_${eml2_0_0-tag}" refname="${eml2_0_0-tag}" />
         <mkdir dir="${servlet.install.dir}/schema/eml-2.0.0" />
         <copy todir="${servlet.install.dir}/schema/eml-2.0.0" filtering="yes">
@@ -531,10 +475,10 @@
                 <include name="*.xsd"/>
             </fileset>
         </copy>
-        
+
         <!-- Copy eml-2.0.1 schema. Add code here for copying any other schemas. -->
         <echo>Getting EML 2.0.1 from source: ${eml2_0_1-tag}</echo>
-        <git-clone-pull repository="${eml.git.repository.url}" 
+        <git-clone-pull repository="${eml.git.repository.url}"
                         dest="${servlettempdir}/eml_${eml2_0_1-tag}" refname="${eml2_0_1-tag}" />
         <mkdir dir="${servlet.install.dir}/schema/eml-2.0.1" />
         <copy todir="${servlet.install.dir}/schema/eml-2.0.1" filtering="yes">
@@ -542,10 +486,10 @@
                 <include name="*.xsd"/>
             </fileset>
         </copy>
-        
+
         <!-- Copy eml-2.1.0 schema. Add code here for copying any other schemas. -->
         <echo>Getting EML 2.1.0 from source: ${eml2_1_0-tag}</echo>
-        <git-clone-pull repository="${eml.git.repository.url}" 
+        <git-clone-pull repository="${eml.git.repository.url}"
                         dest="${servlettempdir}/eml_${eml2_1_0-tag}" refname="${eml2_1_0-tag}" />
         <mkdir dir="${servlet.install.dir}/schema/eml-2.1.0" />
         <copy todir="${servlet.install.dir}/schema/eml-2.1.0" filtering="yes">
@@ -553,10 +497,10 @@
                 <include name="*.xsd"/>
             </fileset>
         </copy>
-        
+
         <!-- Copy eml-2.1.1 schema. Add code here for copying any other schemas. -->
         <echo>Getting EML 2.1.1 from source: ${eml2_1_1-tag}</echo>
-        <git-clone-pull repository="${eml.git.repository.url}" 
+        <git-clone-pull repository="${eml.git.repository.url}"
                         dest="${servlettempdir}/eml_${eml2_1_1-tag}" refname="${eml2_1_1-tag}" />
         <mkdir dir="${servlet.install.dir}/schema/eml-2.1.1" />
         <copy todir="${servlet.install.dir}/schema/eml-2.1.1" filtering="yes">
@@ -564,7 +508,7 @@
                 <include name="*.xsd"/>
             </fileset>
         </copy>
-        
+
         <!-- Copy EML docs -->
         <echo>Copying EML documentation from ${build.docs} </echo>
         <mkdir dir="${servlet.install.dir}/docs" />
@@ -572,9 +516,9 @@
             <fileset dir="${build.docs}">
             </fileset>
         </copy>
-        
+
     </target>
-    
+
     <target name="emlparser_war" depends="docs, servletinstall">
         <mkdir dir="${dist.dir}" />
         <war destfile="${dist.dir}/${servletdir}.war"
@@ -583,7 +527,7 @@
             <lib dir="${servlet.install.dir}/WEB-INF/lib" />
             <webinf dir="${servlet.install.dir}/WEB-INF" />
         </war>
-    
+
     </target>
 
     <target name="clean" depends="init">
@@ -598,9 +542,9 @@
 
     <!--
         The following set of targets support the Data Manager library:
-        
-        init-datamanager-lib      
-        compile-datamanager-lib    
+
+        init-datamanager-lib
+        compile-datamanager-lib
         jar-datamanager-lib
         dist-datamanager-lib
         run-datamanager-one
@@ -608,13 +552,13 @@
         test-datamanager-all
         test-datamanager-one
         javadoc-datamanager-lib
-        
+
         Applications can use this library's API to manage EML data (as well as
         other types of data). The library is currently housed under the 'eml'
         module in SVN. At some point in the future, it may be broken out into its
         own module.
     -->
-    
+
     <target name="init-datamanager-lib" depends="init">
         <property name="datamanager.lib" value="lib/datamanager"/>
         <property name="version.datamanager" value="1.0.0"/>
@@ -629,7 +573,7 @@
              default. -->
         <property name="default-datamanager-test" value="DataManagerTest" />
         <property name="default-datamanager-run" value="org.ecoinformatics.datamanager.util.TableGenerator" />
-        
+
         <property name="axis" value="${datamanager.lib}/axis.jar"/>
         <property name="discover" value="${datamanager.lib}/commons-discovery.jar"/>
         <property name="ftp" value="${datamanager.lib}/commons-net-3.3.jar"/>
@@ -648,7 +592,7 @@
         <property name="tar" value="${datamanager.lib}/tar.jar"/>
         <property name="wsdl" value="${datamanager.lib}/wsdl4j.jar"/>
 
-        <property name="cpath.datamanager" 
+        <property name="cpath.datamanager"
             value="${junit}:${axis}:${discover}:${ftp}:${hsql}:${log}:${log4j}:${postgresql-driver}:${queryservice}:${authenticatedqueryservice}:${authenticationservice}:${putservice}:${rpc}:${saaj}:${soap}:${tar}:${utilities}:${wsdl}:${io}:${xalan}:${xml-apis}"/>
     </target>
 
@@ -664,8 +608,8 @@
                 <exclude name="**/.#*"/>
             </fileset>
         </copy>
-        <copy file="${src.resources.dir}/datamanager.properties" todir="${build.dest}" />   
-        <copy file="${src.resources.dir}/endpoint.properties" todir="${build.dest}" />   
+        <copy file="${src.resources.dir}/datamanager.properties" todir="${build.dest}" />
+        <copy file="${src.resources.dir}/endpoint.properties" todir="${build.dest}" />
         <echo>"cpath.datamanager = ${cpath.datamanager}"</echo>
         <javac srcdir="${build.src}"
                   destdir="${build.dest}"
@@ -674,13 +618,13 @@
     </target>
 
     <target name="jar-datamanager-lib" depends="clean,compile-datamanager-lib">
-        <jar jarfile="${build.dir}/${datamanager.name}.jar" 
+        <jar jarfile="${build.dir}/${datamanager.name}.jar"
                basedir="${build.dest}"
                excludes="org/ecoinformatics/**/**Test.class"
           />
     </target>
 
-    <target name="dist-datamanager-lib" 
+    <target name="dist-datamanager-lib"
             depends="jar-datamanager-lib,javadoc-datamanager-lib">
         <mkdir dir="${dist.dir}"/>
         <delete dir="${ver.dir}"/>
@@ -698,7 +642,7 @@
         <copy file="./docs/datamanager/README" todir="${ver.dir.datamanager}"/>
         -->
 
-        <!-- Copy datamanager jar file to the top-level 
+        <!-- Copy datamanager jar file to the top-level
              distribution directory -->
         <copy file="${build.dir}/${datamanager.name}.jar"  filtering="no"
                 todir="${ver.dir.datamanager}"/>
@@ -710,15 +654,15 @@
                 <exclude name="projectManagement/**"/>
             </fileset>
         </copy>
-        
+
         <!-- Copy datamanager javadocs to the distribution documents directory -->
         <mkdir dir="${ver.docs.datamanager}/javadocs" />
         <copy todir="${ver.docs.datamanager}/javadocs" filtering="no">
             <fileset dir="${build.javadocs}">
             </fileset>
         </copy>
-        
-        <!-- Copy datamanager jar files and properties file to 
+
+        <!-- Copy datamanager jar files and properties file to
              the distribution lib directory -->
         <copy todir="${ver.lib.datamanager}" filtering="no">
             <fileset dir="${datamanager.lib}">
@@ -752,12 +696,12 @@
 
             <!-- Prompt user for the classname.
                If user enters a null value, use the default-datamanager-test -->
-            <input 
+            <input
              message="Please enter name of class to run: "
              addproperty="class-to-run"
              defaultvalue="${default-datamanager-run}"
           />
-            <input 
+            <input
                  message="Please enter arguments for the class: "
                  addproperty="class-to-run-args"
                  defaultvalue="tao.1.1 http://knb.ecoinformatics.org/knb/metacat sessionid"
@@ -769,7 +713,7 @@
                 <classpath>
                     <pathelement path="${cpath.datamanager}:${build.dest}:${srcdir}" />
                 </classpath>
-            
+
             </java>
         </target>
 
@@ -811,7 +755,7 @@
 
         <!-- Prompt user for the test name.
            If user enters a null value, use the default-datamanager-test -->
-        <input 
+        <input
          message="Please enter name of test to run: [${default-datamanager-test}]"
          addproperty="test-to-run"
          defaultvalue="${default-datamanager-test}"
@@ -849,7 +793,7 @@
     </target>
 
     <!-- End of targets for Data Manager library -->
-    
+
     <target name="kepler-style-jar" depends="init" description="Generates a kepler-styles.jar for Kepler">
        <mkdir dir="${build.dir}/kepler/style/eml-2.1.0"/>
        <mkdir dir="${build.dir}/kepler/style/kepler"/>
@@ -863,7 +807,7 @@
                     <include name="kepler.css" />
            </fileset>
        </copy>
-       <jar jarfile="${build.dir}/kepler/kepler-styles.jar" 
+       <jar jarfile="${build.dir}/kepler/kepler-styles.jar"
          basedir="${build.dir}/kepler"/>
     </target>
 

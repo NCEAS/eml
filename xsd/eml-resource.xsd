@@ -50,25 +50,6 @@
               The eml-resource module - Base information for
               all resources
             </title>
-            <para>
-              The eml-resource module contains general information that
-              describes dataset resources, literature resources, protocol
-              resources, and software resources. Each of the above four types of
-              resources share a common set of information, but also have
-              information that is unique to that particular resource type.  Each
-              resource type uses the eml-resource module to document the
-              information common to all resources, but then extend
-              eml-resource with modules that are specific to that particular
-              resource type.  For instance, all resources have creators,
-              titles, and perhaps keywords, but only the dataset resource would
-              have a "data table" within it.  Likewise, a literature
-              resource may have an "ISBN" number associated with it,
-              whereas the other resource types would not.
-            </para>
-            <para>
-              The eml-resource module is exclusively used by other modules, and is
-              therefore not a stand-alone module.
-            </para>
           </section>
         </doc:moduleDescription>
         <doc:recommendedUsage>all datasets</doc:recommendedUsage>

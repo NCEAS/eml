@@ -48,60 +48,6 @@
             The eml-coverage module - Geographic, temporal, and taxonomic extents
             of resources
           </title>
-            <para>
-            The eml-coverage module contains fields for describing the coverage
-            of a resource in terms of time, space, and taxonomy. These
-            coverages (temporal, spatial, and taxonomic) represent the extent
-            of applicability of the resource in those domains.
-            The Geographic coverage section allows for 2 means of expressing
-            coverage
-            on the surface of the earth: 1) via a set of bounding coordinates
-            that define the North, South, East and West points in a rectangular
-            area, optionally including a bounding altitude,
-            and 2) using a G-Ring polygon definition, where an irregularly
-            shaped area may be defined using a ordered list of
-            latitude/longitude coordinates.  A G-Ring may also include an
-            "inner G-Ring" that defines one or more
-            "cut-outs" in the area, i.e. the donut hole concept.
-          </para>
-            <para>
-            The temporal coverage section allows for the definition of either a
-            single date or time, or a range of dates or times. These may be
-            expressed as a calendar date according to the ISO 8601 Date and Time
-            Specification, or by using an alternate time scale, such as the
-            geologic time scale. Currently, EML does not have specific fields to indicate
-            that a data resource may be "ongoing." Two examples are data tables 
-			that are planned to be appended in the future, or resources 
-            with complex connection definitions (such as to a database) which may return 
-			data in real time. It is important that EML be 
-            able to  handle data from both the "producer" and "consumer" points of view,
-            although currently the temporal coverage modules are designed for the latter.
-            There is no universally acceptable recommendation for describing "ongoing" data
-            within EML. Some groups have chosen to use the &lt;alternateTimeScale&gt; 
-            node for the end date, with a value of "ongoing," although this practice
-            is not endorsed by the EML authors. A better solution could be to use very
-			general content for the endDate (such as only the current year) so that the 
-			data are accurately described, and searches return datasets as expected.
-			A future version of EML will 
-            accommodate such data types with coverage elements specific to their needs.
-          </para>
-            <para>
-            The taxonomic coverage section allows for detailed description of
-            the taxonomic extent of the dataset or resource.  The taxonomic
-            classification consists of a recursive set of taxon rank names,
-            their values, and their common names.  This construct allows for a
-            taxonomic hierarchy to be built to show the level of identification
-            (e.g. Rank Name = Kingdom, Rank Value = Animalia, Common Name =
-            Animals, and so on down the hierarchy.) The taxonomic coverage
-            module also allows for the definition of the classification system
-            in cases where alternative systems are used.
-          </para>
-            <para>
-            The eml-coverage module, like other modules, may be
-            "referenced" via the &lt;references&gt; tag.  This allows
-            the coverage extent to be described once, and then used as a
-            reference in other locations within the EML document via its ID.
-          </para>
           </section>
         </doc:moduleDescription>
         <doc:recommendedUsage>all datasets where spatial, temporal or taxonomic
@@ -306,7 +252,7 @@
               standard 8601. The recommended format for EML is YYYY-MM-DD,
               where Y is the four digit year, M is the two digit month code
               (01 - 12, where January = 01), and D is the two digit day of
-              the month (01 - 31). This field can also be used to enter just 
+              the month (01 - 31). This field can also be used to enter just
 	      the year portion of a date.</doc:description>
               <doc:example>2001-01-01</doc:example>
               <doc:example>2001-10-12</doc:example>
@@ -492,9 +438,9 @@ the spatialReference schema.</doc:description>
               the data set.</doc:summary>
               <doc:description>
                 <section xmlns="">
-                  <para>geographicDescription is a short text description of a dataset's 
-              geographic areal domain. A text description is especially important to 
-              provide a geographic                           setting 
+                  <para>geographicDescription is a short text description of a dataset's
+              geographic areal domain. A text description is especially important to
+              provide a geographic                           setting
                when the extent of the data set cannot be well described
               by the "boundingCoordinates", or in the case of data
               which are not specifically geospatial. Assuming the
@@ -502,7 +448,7 @@ the spatialReference schema.</doc:description>
               extent of the data set, the discrepancy can be identified and
               described here. The coordinates may define a rectangle around a
               country, with this geographicDescription element
-              containing a disclaimer  
+              containing a disclaimer
                and/or further details concerning the border.
              A study of the diseases of salmon may not have a
               specific geographic extent associated with it, but the salmon
@@ -520,7 +466,7 @@ the spatialReference schema.</doc:description>
               names associated with the data set.  </para>
                   <para>This element can also contain information
               about the collection of the boundingCoordinates, e.g., an altitude value that is referenced
-              to Mean Lower Low Water, or the projection system that the latitude and 
+              to Mean Lower Low Water, or the projection system that the latitude and
               longitude coordinates were taken from.</para>
                 </section>
               </doc:description>
@@ -537,33 +483,33 @@ the spatialReference schema.</doc:description>
           <xs:annotation>
             <xs:appinfo>
               <doc:tooltip>Bounding coordinates</doc:tooltip>
-              <doc:summary>The four margins (N, S, E, W) of a bounding box on the earth's surface, 
+              <doc:summary>The four margins (N, S, E, W) of a bounding box on the earth's surface,
               or when considered in lat-lon pairs, the corners of the box. To define a single
-              point, use the same value in each lat or lon pair.  These elements are meant to convey general 
+              point, use the same value in each lat or lon pair.  These elements are meant to convey general
               information and are not for accurate mapping.  More specific information may be
               included by using the elements in the spatialReference schema.</doc:summary>
               <doc:description>
                 <section>
-                  <para>Bounding Coordinates are the four margins (N, S, E, W) of a bounding box, 
-              or when considered in lat-lon pairs, the corners of the box. These elements are meant to convey general 
+                  <para>Bounding Coordinates are the four margins (N, S, E, W) of a bounding box,
+              or when considered in lat-lon pairs, the corners of the box. These elements are meant to convey general
               information and are not for accurate mapping.  More specific information may be
               included by using the elements in the spatialReference schema.</para>
                   <para>The limits of coverage of a data set should be expressed
               as decimal latitudes and longitudes, and in the order western-most,
-              eastern-most, northern-most, and southern-most. By convention, 
+              eastern-most, northern-most, and southern-most. By convention,
               latitudes and longitudes are referenced to the  Equator and to the Prime Meridian
-              (the datums), respectively. 
-              By definition, the 0 and 180 meridians themselves do not belong in either hemisphere, 
-              but local conventions may place them in either. All coordinates are typed as decimals. 
-              Since all four elements are required, a bounding area that is a 
+              (the datums), respectively.
+              By definition, the 0 and 180 meridians themselves do not belong in either hemisphere,
+              but local conventions may place them in either. All coordinates are typed as decimals.
+              Since all four elements are required, a bounding area that is a
               single point should use the same values for
               northBoundingCoordinate and southBoundingCoordinate, and likewise
              for westBoundingCoordinate and eastBoundingCoordinate. </para>
-                  <para>In the case of a data set that comprises 
-                    all longitudes (e.g., a horizontal band between 2 parallels that fully 
+                  <para>In the case of a data set that comprises
+                    all longitudes (e.g., a horizontal band between 2 parallels that fully
                     encompasses the earth ), please use a westBoundingCoordinate of -180.0, and an
-                    eastBoundingCoordinate of 180.0 (or +180.0). In this case, it could be considered geographically                
-                    appropriate to specify both values as "180" (or any other meridian), but this could 
+                    eastBoundingCoordinate of 180.0 (or +180.0). In this case, it could be considered geographically
+                    appropriate to specify both values as "180" (or any other meridian), but this could
                     also be interpreted as only the  meridian itself, so this is not recommended</para>
                 </section>
               </doc:description>
@@ -581,16 +527,16 @@ the spatialReference schema.</doc:description>
                     <doc:description>The westBoundingCoordinate field defines
                     the longitude of the western-most point of the bounding box that is being
                     described. A longitude coordinate is typed as a decimal, i.e.,
-                    decimal degrees from -180 to 180, inclusive. Decimal degrees may be expressed to 
-                    any precision desired. Fractions of a degree in minutes and seconds should be 
-                    converted to degree fractions. Strings denoting direction or hemisphere (e.g., 'W' or 'west') are 
+                    decimal degrees from -180 to 180, inclusive. Decimal degrees may be expressed to
+                    any precision desired. Fractions of a degree in minutes and seconds should be
+                    converted to degree fractions. Strings denoting direction or hemisphere (e.g., 'W' or 'west') are
                     not allowed. Longitudes east of the prime meridian must be specified by
-                    a plus sign (+), or by the absence of a minus sign (-), and longitudes west of 
-                    the meridian shall be  prefixed with minus sign (-). In the case of a data set that comprises 
-                    all longitudes (e.g., a horizontal band between 2 parallels that fully 
+                    a plus sign (+), or by the absence of a minus sign (-), and longitudes west of
+                    the meridian shall be  prefixed with minus sign (-). In the case of a data set that comprises
+                    all longitudes (e.g., a horizontal band between 2 parallels that fully
                     encompasses the earth ), please use a westBoundingCoordinate of -180.0, and an
-                    eastBoundingCoordinate of 180.0 (or +180.0). In this case, it could be considered geographically                
-                    appropriate to specify both values as "180" (or any other meridian), but this could 
+                    eastBoundingCoordinate of 180.0 (or +180.0). In this case, it could be considered geographically
+                    appropriate to specify both values as "180" (or any other meridian), but this could
                     also be interpreted as only the  meridian itself, so this is not recommended.</doc:description>
                     <doc:example>-118.25</doc:example>
                     <doc:example>+25</doc:example>
@@ -613,16 +559,16 @@ the spatialReference schema.</doc:description>
                     <doc:description>The eastBoundingCoordinate field defines
                     the longitude of the eastern-most point of the bounding box that is being
                     described. A longitude coordinate is typed as a decimal, i.e.,
-                    decimal degrees from -180 to 180, inclusive. Decimal degrees may be expressed to 
-                    any precision desired. Fractions of a degree in minutes and seconds should be 
-                    converted to degree fractions. Strings denoting direction or hemisphere (e.g., 'W' or 'west') are 
+                    decimal degrees from -180 to 180, inclusive. Decimal degrees may be expressed to
+                    any precision desired. Fractions of a degree in minutes and seconds should be
+                    converted to degree fractions. Strings denoting direction or hemisphere (e.g., 'W' or 'west') are
                     not allowed. Longitudes east of the prime meridian must be specified by
-                    a plus sign (+), or by the absence of a minus sign (-), and longitudes west of 
-                    the meridian shall be  prefixed with minus sign (-). In the case of a data set that comprises 
-                    all longitudes (e.g., a horizontal band between 2 parallels that fully 
+                    a plus sign (+), or by the absence of a minus sign (-), and longitudes west of
+                    the meridian shall be  prefixed with minus sign (-). In the case of a data set that comprises
+                    all longitudes (e.g., a horizontal band between 2 parallels that fully
                     encompasses the earth ), please use a westBoundingCoordinate of -180.0, and an
-                    eastBoundingCoordinate of 180.0 (or +180.0). In this case, it could be considered geographically                
-                    appropriate to specify both values as "180" (or any other meridian), but this could 
+                    eastBoundingCoordinate of 180.0 (or +180.0). In this case, it could be considered geographically
+                    appropriate to specify both values as "180" (or any other meridian), but this could
                     also be interpreted as only the  meridian itself, so this is not recommended.</doc:description>
                     <doc:example>-118.25</doc:example>
                     <doc:example>+25</doc:example>
@@ -644,11 +590,11 @@ the spatialReference schema.</doc:description>
                     <doc:description>The northBoundingCoordinate field defines
                     the latitude of the northern-most point of the bounding box that is being
                     described. A latitude coordinate is typed as a decimal, i.e.,
-                    decimal degrees from -180 to 180, inclusive. Decimal degrees may be expressed to 
-                    any precision desired. Fractions of a degree in minutes and seconds should be 
-                    converted to degree fractions. Strings denoting direction or hemisphere (e.g., 'N' or north') are 
+                    decimal degrees from -180 to 180, inclusive. Decimal degrees may be expressed to
+                    any precision desired. Fractions of a degree in minutes and seconds should be
+                    converted to degree fractions. Strings denoting direction or hemisphere (e.g., 'N' or north') are
                     not allowed. Latitudes north of the equator must be denoted by
-                    a plus sign (+), or by the absence of a minus sign (-), and latitudes south of 
+                    a plus sign (+), or by the absence of a minus sign (-), and latitudes south of
                     the equator shall be  prefixed with minus sign (-).  A location with latitude of +90 (90)
                      or -90 degrees will specify the position at the North or South Pole,
                     respectively.</doc:description>
@@ -672,11 +618,11 @@ the spatialReference schema.</doc:description>
                     <doc:description>The southBoundingCoordinate field defines
                     the latitude of the southern-most point of the bounding box that is being
                     described. A latitude coordinate is typed as a decimal, i.e.,
-                    decimal degrees from -180 to 180, inclusive. Decimal degrees may be expressed to 
-                    any precision desired. Fractions of a degree in minutes and seconds should be 
-                    converted to degree fractions. Strings denoting direction or hemisphere (e.g., 'N' or north') are 
+                    decimal degrees from -180 to 180, inclusive. Decimal degrees may be expressed to
+                    any precision desired. Fractions of a degree in minutes and seconds should be
+                    converted to degree fractions. Strings denoting direction or hemisphere (e.g., 'N' or north') are
                     not allowed. Latitudes north of the equator must be denoted by
-                    a plus sign (+), or by the absence of a minus sign (-), and latitudes south of 
+                    a plus sign (+), or by the absence of a minus sign (-), and latitudes south of
                     the equator shall be  prefixed with minus sign (-).  A location with latitude of +90 (90)
                      or -90 degrees will specify the position at the North or South Pole,
                     respectively.</doc:description>
@@ -785,20 +731,20 @@ the spatialReference schema.</doc:description>
                       <section xmlns="">
                         <para>The outer containment loop of a
                     datasetGPolygon.  This is the outer part of the doughnut
-                    shape that encompasses the broadest area of coverage. 
-                    It can be created either by a gRing (list of points) or 3 or more gRingPoints. 
-                    See the sub-elements and their Type definitions for more specific 
+                    shape that encompasses the broadest area of coverage.
+                    It can be created either by a gRing (list of points) or 3 or more gRingPoints.
+                    See the sub-elements and their Type definitions for more specific
                     information.</para>
                         <para>
                     This element is generally analogous to the FGDC outer ring although
-                    somewhat differently specified.  Documentation for an FGDC G-Ring 
-                    states that 4 points are required 
-                    to define a polygon, and the first and last should be identical. 
+                    somewhat differently specified.  Documentation for an FGDC G-Ring
+                    states that 4 points are required
+                    to define a polygon, and the first and last should be identical.
                     However this is not enforceable in XML Schema, and so in EML
                     a minimum of 3 &lt;gRingPoint&gt;s is required to define a polygon, and
                     it can be assumed that a polygon is closed by joining the last point to the
                     first.
-                    XSL stylesheets that transform EML instances to the FGDC specification 
+                    XSL stylesheets that transform EML instances to the FGDC specification
                     should repeat the first gRingPoint node as the last when creating a list of points.
                     </para>
                       </section>
@@ -824,7 +770,7 @@ the spatialReference schema.</doc:description>
                         <xs:appinfo>
                           <doc:tooltip>G-Ring</doc:tooltip>
                           <doc:description>A set of ordered pairs of floating-point numbers,
-        The number of points in the string is not enforced by EML. 
+        The number of points in the string is not enforced by EML.
         However, authors should note that in order for this field is to be directly translated to FGDC, 4 points should
         be included in the string. See the Type for more information on constructing the string. </doc:description>
                           <!--  <doc:example> 12.453,15.0 5,101 -111,45</doc:example> -->
@@ -849,15 +795,15 @@ the spatialReference schema.</doc:description>
                     closed nonintersecting boundary of a void area (or hole in
                     an interior area).  This is the center of the doughnut
                     shape created by the datasetGPolygon. It can be created either by
-                    a gRing (list of points) or one or more gRingPoints. See the sub-elements and their 
+                    a gRing (list of points) or one or more gRingPoints. See the sub-elements and their
                     Type definitions for more information.</para>
                         <para>
-                        This element is generally analogous to an FGDC exclusion ring "Data Set G-Polygon 
+                        This element is generally analogous to an FGDC exclusion ring "Data Set G-Polygon
                         Exclusion G-Ring", although it's children are
                     somewhat differently described.  Documentation for the FGDC component states that
-                    4 points are required to define a polygon, and the first and last should be identical. 
+                    4 points are required to define a polygon, and the first and last should be identical.
                     However this EML element requires only one point so that a single point can be
-                    excluded,  presumably, a single station.  If multiple single stations are to be 
+                    excluded,  presumably, a single station.  If multiple single stations are to be
                     excluded, then authors should include multiple &lt;datasetGPolygonExclusionGRing&gt;s.
                                                 </para>
                       </section>
@@ -873,7 +819,7 @@ the spatialReference schema.</doc:description>
                           <doc:summary>A single geographic location</doc:summary>
                           <doc:description>A single geographic location.  This is useful if you
         register your datasets by a single geospatial point, such as the
-        lat/long of your research station. Please see the sub elements and the Type description 
+        lat/long of your research station. Please see the sub elements and the Type description
 		for more information on constructing a gRingPoint</doc:description>
                         </xs:appinfo>
                       </xs:annotation>
@@ -921,11 +867,11 @@ the spatialReference schema.</doc:description>
             The latitude of a point of the
             g-ring.</doc:summary>
             <doc:description> A latitude coordinate is typed as a decimal, i.e.,
-                    decimal degrees from -90 to 90, inclusive. Decimal degrees may be expressed to 
-                    any precision desired. Fractions of a degree in minutes and seconds should be 
-                    converted to degree fractions. Strings denoting direction or hemisphere (e.g., 'S' or 'south') are 
+                    decimal degrees from -90 to 90, inclusive. Decimal degrees may be expressed to
+                    any precision desired. Fractions of a degree in minutes and seconds should be
+                    converted to degree fractions. Strings denoting direction or hemisphere (e.g., 'S' or 'south') are
                     not allowed. Latitudes north of the equator must be specified by
-                    a plus sign (+), or by the absence of a minus sign (-), and latitudes south of 
+                    a plus sign (+), or by the absence of a minus sign (-), and latitudes south of
                     the equator shall be  prefixed with minus sign (-). </doc:description>
             <doc:example>34.123</doc:example>
             <doc:example>-18.25</doc:example>
@@ -946,11 +892,11 @@ the spatialReference schema.</doc:description>
             <doc:summary/>
             <doc:description>The longitude of a point of the
             g-ring A longitude coordinate is typed as a decimal, i.e.,
-                    decimal degrees from -180 to 180, inclusive. Decimal degrees may be expressed to 
-                    any precision desired. Fractions of a degree in minutes and seconds should be 
-                    converted to degree fractions. Strings denoting direction or hemisphere (e.g., 'W' or 'west') are 
+                    decimal degrees from -180 to 180, inclusive. Decimal degrees may be expressed to
+                    any precision desired. Fractions of a degree in minutes and seconds should be
+                    converted to degree fractions. Strings denoting direction or hemisphere (e.g., 'W' or 'west') are
                     not allowed. Longitudes east of the prime meridian must be specified by
-                    a plus sign (+), or by the absence of a minus sign (-), and longitudes west of 
+                    a plus sign (+), or by the absence of a minus sign (-), and longitudes west of
                     the meridian shall be  prefixed with minus sign (-).</doc:description>
             <doc:example>-118.25</doc:example>
             <doc:example>+25</doc:example>
@@ -980,17 +926,17 @@ the spatialReference schema.</doc:description>
         latitudes positive and south negative, east longitude positive and west
         negative</para>
             <para>Note on the relationship to FGDC:
-        This element is generally analogous to the FGDC component for ring, 
+        This element is generally analogous to the FGDC component for ring,
         although implemented somewhat differently. Documentation for FGDC
-        states that 4 points are required to define a polygon, and the first and last 
+        states that 4 points are required to define a polygon, and the first and last
         should be identical, although this is not enforceable in XML Schema. In addition,
         EML does not enforce any pattern on the string used for a GRingType, so that
-        it may be used differently as a child of EML's &lt;datasetGPolygonOuterGRing&gt;  
+        it may be used differently as a child of EML's &lt;datasetGPolygonOuterGRing&gt;
         or &lt;datasetGPolygonExclusionGRing&gt; elements.
-        If authors of EML instance documents wish the contents of this element  to be 
+        If authors of EML instance documents wish the contents of this element  to be
         directly translated to FGDC, they should comply with the example below when
-        constructing their strings. Alternatively, in most cases, a sequence of gRingPoints 
-        can be used in EML instances, which can be processed into content for an 
+        constructing their strings. Alternatively, in most cases, a sequence of gRingPoints
+        can be used in EML instances, which can be processed into content for an
         FGDC Data Set G-Polygon G-Ring.</para>
           </section>
         </doc:description>
@@ -1264,19 +1210,19 @@ the spatialReference schema.</doc:description>
           <xs:appinfo>
             <doc:tooltip>Taxon rank value</doc:tooltip>
             <doc:summary>The taxonomic rank name being described.</doc:summary>
-            <doc:description>The name for the taxonomic rank being described. 
+            <doc:description>The name for the taxonomic rank being described.
               Typically the values are from authoritative sources
               such as the Integrated Taxonomic
             Information System (ITIS) in the U.S. (http://www/itis.usda.gov)
-            and in Canada (http://sis.agr.gc.ca/pls/itisca/taxaget).  
+            and in Canada (http://sis.agr.gc.ca/pls/itisca/taxaget).
             Species2000 is another source of taxonomic information, found at
             (http://www.sp2000.org). Note that for the taxonomic rank "species", the
             accepted practice is to use binomial nomenclaure, i.e., a combination of
             the genus name plus species epithet is required to denote the species. Therefore
             the "species" is <emphasis>not the species epithet alone</emphasis>.</doc:description>
             <doc:example>For the rank genus, 'Acer' is an example of the rank value,
-            'Acer rubrum' for a species rank value, and a 
-            common name of 'Red Maple'. Additional examples of "species" are 
+            'Acer rubrum' for a species rank value, and a
+            common name of 'Red Maple'. Additional examples of "species" are
             "Homo sapiens" and "Tyrannosaurus rex". </doc:example>
           </xs:appinfo>
         </xs:annotation>
@@ -1300,10 +1246,10 @@ the spatialReference schema.</doc:description>
           <xs:appinfo>
             <doc:tooltip>Taxonomic Identifier</doc:tooltip>
             <doc:summary>Element holds an ID and ID-provider for this taxon. </doc:summary>
-            <doc:description>The identifier for this 
+            <doc:description>The identifier for this
               taxon from an authority, such as ITIS or USDA Plant Database. Using an external
-            system identifer allows referencing of additional information about a taxon, e.g., 
-            authoritative names, historical synonyms, published descriptions or rank 
+            system identifer allows referencing of additional information about a taxon, e.g.,
+            authoritative names, historical synonyms, published descriptions or rank
             hierarchies.</doc:description>
             <doc:example>11274</doc:example>
             <doc:example>35122</doc:example>
@@ -1319,9 +1265,9 @@ the spatialReference schema.</doc:description>
                     <doc:summary>The taxonomic authority or catalog from which the
                       taxonId can be retrieved, defined
                       as the namespace URI for the provider.</doc:summary>
-                    <doc:description>This attribute holds the namespace URI 
-                      for the taxonomic authority or catalog to which this taxonId applies. 
-                      taxonId providers should be chosen for their stability and longevity, 
+                    <doc:description>This attribute holds the namespace URI
+                      for the taxonomic authority or catalog to which this taxonId applies.
+                      taxonId providers should be chosen for their stability and longevity,
                       and with discernable website URIs or APIs.</doc:description>
                     <doc:example>ITIS</doc:example>
                     <doc:example>NCBI</doc:example>

@@ -48,9 +48,6 @@
                 <doc:moduleDescription>
                     <section xmlns="">
                         <title>The eml-text module - Text field formatting</title>
-                        <para>
-                            The eml-text module is a wrapper container that allows general text descriptions to be used within the various modules of eml. It can include either structured or unstructured text blocks. It isn't really appropriate to use this module outside of the context of a parent module, because the parent module determines the appropriate context to which this text description applies. The eml-text module allows one to provide structure to a text description in order to convey concepts such as sections (paragraphs), hierarchy (ordered and unordered lists), emphasis (bold, superscript, subscript) etc. The structured elements can be specified using a subset of <ulink url="http://www.docbook.org">DocBook</ulink> so the predefined DocBook stylesheets can be used to style EML fields that implement this module, or alternatively can be specified using Markdown text blocks.  Combinations of plain text, docbook sections, and markdown sections can be interleaved in any order, but most people will likely find the markdown syntax the easiest to use.
-                        </para>
                     </section>
                 </doc:moduleDescription>
                 <doc:recommendedUsage>any module</doc:recommendedUsage>
@@ -147,7 +144,7 @@
                                 by a key, which consists of an ‘@’ symbol and the citation identifier from the entry for
                                 that citation. Citation keys may optionally have a prefix, a locator, and a suffix to
                                 further qualify what is being cited.  For example, a simple citation would be
-                                constructed as '[@fegraus_2005]', and a list would be '[@jones_2001; @fegraus_2005]'.  
+                                constructed as '[@fegraus_2005]', and a list would be '[@jones_2001; @fegraus_2005]'.
                                 The keys must be present in either the 'id' field of a
                                 citation element in the EML document, or as the BibTex key in a 'bibtex' entry in the
                                 EML document.  It is a validation error to cite an entry for which the corresponding
