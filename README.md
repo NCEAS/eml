@@ -27,16 +27,50 @@ The Ecological Metadata Language (EML) defines a comprehensive vocabulary and a 
 - **Validation service**: https://knb.ecoinformatics.org/emlparser/
 - **Slack Discussion channel**: #eml on http://slack.nceas.ucsb.edu
 
-## History
+## Getting Started
 
-EML was originally based on work done by the [ESA Committee on the Future of Long-Term Ecological Data](https://web.archive.org/web/20040213204322/http://esa.sdsc.edu/FLED/FLED.html) and on a related paper on ecological metadata by Michener et al. (see Michener, William K., et al., 1997. Ecological Applications, "Nongeospatial metadata for the ecological sciences" Vol 7(1). pp. 330-342.).  Version 1.0 was released at NCEAS in 1997, with further internal releases of versions 1.2, 1.3, and 1.4, all of which followed the FLED recommendations closely in its content implementation. Version 2 was modified substantially after experience using the specification and from feedback from the ecological community, and versions 2.1 and 2.2 introduce significant new features like internationalization, semantic annotations, and support for data papers.
+Composing an EML document can be done in a simple text editor (e.g., Atom), 
+via scripting languages like R and python (e.g., the R [eml](https://github.com/ropensci/eml) package), 
+in general-purpose XML authoring tools (e.g., Oxygen), and in custom web-based metadata editing tools 
+(e.g., MetacatUI). While these tools expand and shift over time, the core metadata language
+has been consistent and backwards compatible, allowing for decades of seamless
+interoperability of data sets in many repositories.
 
-## Validation
-Some of the rules regarding EML that are important are expressed only in the EML specification, not in the XML Schema files.  This is because XML Schema was not able to express some of the constraints that we felt were important to creating a coherent metadata document, particularly with respect to identifiers and references to identifiers.  Thus, we have included a EML Validity Parser.  It checks both EML rules and the schema rules to be sure an XML document is a valid EML document.  It is included with the release, and provided as an online service. See docs/index.html.
+EML documents can be started simply, and then additional detail added over time.
+On the simple end, an EML document that provides basic bibliographic information
+would be sufficient for citing a data set and for simple discovery in catalogs:
 
-## Files
+```xml
+<?xml version="1.0"?>
+<eml:eml
+    packageId="doi:10.xxxx/eml.1.1" system="https://doi.org"
+    xmlns:eml="eml://ecoinformatics.org/eml-2.2.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.1"
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.2.0 xsd/eml.xsd">
+    
+    <dataset id="doi:10.xxxx/eml.1.1">
+        <title>Primary production of algal species from Southeast Alaska, 1990-2002</title>
+        <creator id="matt.jones">
+            <individualName>
+                <givenName>Matthew</givenName>
+                <surName>Jones</surName>
+            </individualName>
+            <electronicMailAddress>jones@nceas.ucsb.edu</electronicMailAddress>
+        </creator>
+        <keywordSet>
+            <keyword>biomass</keyword>
+            <keyword>productivity</keyword>
+        </keywordSet>
+        <contact>
+            <references>matt.jones</references>
+        </contact>
+    </dataset>
+</eml:eml>
+```
 
-The files in this directory include a "docs" directory that contains the EML Specification and all documentation for the modules, and an xsd directory with an XML Schema document for each of the modules that make up EML.  Also included is a schema for supporting documentation, and an instance document defining standard attribute units for EML. The "lib/sample/eml-sample.xml" file is a sample document illustrating the use of EML. The "test" directory contains a number of sample instance documents used for testing the schemas, and an application for checking document validity under JUnit (see http://junit.org).
+This document can then be supplemented with additional metadata describing research
+projects and methods, structural information about the data, and much more.
 
 ## About the EML Project
 
@@ -44,9 +78,13 @@ The EML project is an open source, community oriented project dedicated to provi
 
 We welcome contributions to this work in any form. Individuals who invest substantial amounts of time and make valuable contributions to the development and maintenance of EML (in the opinion of current project members) will be invited to become EML project members according to the rules set forth in the [ecoinformatics.org Charter](http://www.ecoinformatics.org/charter.html). Contributions can take many forms, including the development of the EML schemas, writing documentation, and helping with maintenance, among others.
 
-## Development Information
+## Contributing
 
 Developers may be interested in browsing the [source code repository](https://github.com/NCEAS/eml/) that we use in developing EML. This always contains the most recent development version of EML, and therefore may be in flux, or otherwise broken. It is unlikely that it will contain the same files that are in the current release (@version@). Use at your own risk. Write access to this repository is reserved for current project maintainers. Please submit contributions as pull requests. We welcome contributions to this work in any form.  Contributions can take many forms, including the development of the EML schemas, writing documentation, and helping with maintenance, among others. Non-project members can contribute by submitting their feedback, revisions, fixes, code, or any other contribution through pull requests at GitHub. Discussion of issues occurs on the [eml-dev@ecoinformatics.org](https://groups.google.com/a/ecoinformatics.org/forum/#!forum/ecoinfoeml-dev) mailing list, or through the [EML Issue Tracking system](http://github.com/NCEAS/eml/issues). The preferred way to submit problems with EML or feature requests is the issue tracking system.
+
+## History
+
+EML was originally based on work done by the [ESA Committee on the Future of Long-Term Ecological Data](https://web.archive.org/web/20040213204322/http://esa.sdsc.edu/FLED/FLED.html) and on a related paper on ecological metadata by Michener et al. (see Michener, William K., et al., 1997. Ecological Applications, "Nongeospatial metadata for the ecological sciences" Vol 7(1). pp. 330-342.).  Version 1.0 was released at NCEAS in 1997, with further internal releases of versions 1.2, 1.3, and 1.4, all of which followed the FLED recommendations closely in its content implementation. Version 2 was modified substantially after experience using the specification and from feedback from the ecological community, and versions 2.1 and 2.2 introduce significant new features like internationalization, semantic annotations, and support for data papers.
 
 ## Older versions (deprecated)
 
