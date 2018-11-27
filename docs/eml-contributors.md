@@ -35,7 +35,7 @@ Margaret O'Brien | EDI, UCSB | mob@msi.ucsb.edu
 Bryce Mecum | NCEAS, UCSB | mecum@nceas.ucsb.edu
 Carl Boettiger |Berkeley | cboettig@berkeley.edu
 Mitchell Maier | NCEAS, UCSB |
-Timothy Whitaker | | whiteaker@utexas.edu
+Timothy Whiteaker | | whiteaker@utexas.edu
 
 ## Past contributors
 
