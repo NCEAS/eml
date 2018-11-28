@@ -46,7 +46,7 @@ structures in order to do the final consistency check.  For example, in pseudoco
     - For each `references` element
         - If the `references` key is not in `referencesHash`,
           then add it as a key with the `system` value to `referencesHash`
-        - If the `references` key is in `referencesList`, but the current `system` 
+        - If the `references` key is in `referencesHash`, but the current `system` 
           value does not match the value for that key, then the document is invalid
     - For each `references` attribute on an `annotation` element
         - If the `references` key is not in `referencesHash`, 
