@@ -4,7 +4,7 @@ This section explains the validation rules of EML. While most of the validation
 rules are expressed as constraints within the XML Schema definition files, there are 
 some rules that cannot be written directly into the XML Schemas nor enforced 
 by an XML parser. These additional validation rules MUST be enforced by every 
-EML package must follow in order for it to be considered EML-compliant.
+EML package in order for it to be considered EML-compliant.
 
 ## Validation rules
 
@@ -26,12 +26,12 @@ For a document to be EML-valid, all of the following constraints must hold true:
 - If an `additionalMetadata` element references another using a child `describes` element, 
   another element with that value in its `id` attribute MUST exist in the document
 
-## Validation algortihm
+## Validation algorithm
 
 One reasonable algorithm for assessing these constraints without loading the XML into 
 a DOM structure could be implemented by checking `id` and `references` fields while 
 parsing the document and storing their values in `identifierHash` and `referencesHash` data
-structures in order to do the final consistency check.  For example, in pseudocode:
+structures in order to do the final consistency check. For example, in pseudocode:
 
 - Parse the XML document using an XML Schema-compliant parser
     - If the root element is not `eml`, then the document is invalid
@@ -67,7 +67,7 @@ defined elsewhere in the document.  This allows, for example, an author to
 create a single `<creator id='m.jones'>` element with all of its child detail, 
 and then reference that as `<contact><references>m.jones</references></contact>` 
 to indicate that the same person is both the creator and contact.  This creates
-an unambigous linkage via the `id` field that the two elements refer to the same 
+an unambiguous linkage via the `id` field that the two elements refer to the same 
 entity, in this case a person, and avoids having to re-enter the same information
 multiple times in the document.  Another common location for re-use is when a single
 `attributeList` is defined with a set of variables and their metadata, and then
@@ -79,7 +79,7 @@ use of `id`/`references` pairs. Each element that is to be reused will contain a
 unique `id` attribute on the element. Because this identifier is guaranteed to
 be unique within the EML document, any other location that wants to point at that 
 content can do so using the `references` element, as shown in the example above.
-THese types of references can also be used in the `references` attribute of 
+These types of references can also be used in the `references` attribute of 
 `annotation` elements, and in the `describes` element within the `additionalMetadata`
 element.
 
@@ -101,8 +101,8 @@ used in a document. This parser is included with the release of
 EML. To run the parser, you must have Java installed. To execute
 it change into the lib directory of the release and run the
 'runEMLParser' script passing your EML instance file as a parameter.
-There mat also be an [online
-version](https://knb.ecoinformatics.org/emlparser) of this parser which
+There may also be an [online
+version](https://knb.ecoinformatics.org/emlparser) of this parser, which
 is publicly accessible. The online parser will both validate your XML
 document against the schema as well as check the integrity of your
 references.
