@@ -114,21 +114,22 @@ public class EMLParserTest extends TestCase
         int failures = 0;
         File invalidDir = new File(INVALID_DIR);
         Vector invalidList = getXmlFiles(invalidDir);
-        for (int i=0; i < invalidList.size(); i++) {
+        int invalidFileCount = invalidList.size();
+        System.err.println("Checking invalid files: " + invalidFileCount);
+        for (int i=0; i < invalidFileCount; i++) {
             File invalidFile = (File)invalidList.elementAt(i);
+            System.err.println("Invalidating file: " + invalidFile.getName());
             try {
-                System.err.println("Invalidating file: " + invalidFile.getName());
                 emlp = new EMLParser(invalidFile);
                 System.err.println("    Valid.");
             } catch (Exception e) {
                 System.err.println("    Invalid.");
                 failures++;
                 assertTrue(e.getMessage() != null);
-                break;
             }
         }
-        if (failures != invalidList.size()) {
-        	System.err.println(failures + "/" + invalidList.size() + " failures in directory.");
+        if (failures != invalidFileCount) {
+        	System.err.println(failures + "/" + invalidFileCount + " failures in directory.");
         	fail("Error: An EMLParserException should have been thrown for all invalid files.");
         }
 
