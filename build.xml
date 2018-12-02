@@ -125,7 +125,6 @@
         <property name="srcdir" value="./src/main/java" />
         <property name="src.resources.dir" value="./src/main/resources" />
         <property name="invalid.dir" value="${test.resources.dir}/invalidEML"/>
-        <property name="sample.dir" value="lib/sample"/>
         <property name="build.dir" value="build"/>
         <property name="build.tests" value="${build.dir}/tests"/>
         <property name="build.src" value="${build.dir}/src"/>
@@ -364,19 +363,6 @@
 
     <!-- use the ant "junit" task to run JUnit tests. -->
     <target name="test" depends="compile-test">
-
-        <!--copy the sample docs into the test directory so they get validated-->
-        <copy todir="${test.resources.dir}">
-            <fileset dir="${sample.dir}">
-                <exclude name="**/CVS*"/>
-                <exclude name="**/.#*"/>
-            </fileset>
-        </copy>
-        <echo>
-         ************************************************
-            copied from ${sample.dir}
-      ************************************************
-    </echo>
         <!--copy the unit dictionary so it will get validated-->
         <copy file="eml-unitDictionary.xml" tofile="test/eml-unitDictionary.xml"/>
     <echo>

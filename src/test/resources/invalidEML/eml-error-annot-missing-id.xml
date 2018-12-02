@@ -3,7 +3,7 @@
          xmlns:eml="eml://ecoinformatics.org/eml-2.2.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="eml://ecoinformatics.org/eml-2.2.0 eml.xsd">
-  <dataset id="a">
+  <dataset>
     <title>Sample datset Description</title>
     <creator id="23445" scope="document">
       <individualName>
@@ -15,9 +15,13 @@
         <surName>Johnson</surName>
       </individualName>
     </contact>
-    <!-- this file is invalid because contact has both an id and a reference -->
-    <contact id="c">
+    <contact>
       <references>23445</references>
     </contact>
+    <!-- this file is invalid because the containing dataset lacks an id -->
+    <annotation>
+        <propertyURI label="Subject">http://purl.org/dc/elements/1.1/subject</propertyURI>
+        <valueURI label="grassland biome">http://purl.obolibrary.org/obo/ENVO_01000177</valueURI>
+    </annotation>
   </dataset>
 </eml:eml>

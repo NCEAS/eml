@@ -109,27 +109,30 @@ public class EMLParserTest extends TestCase
             }
         }
 
-        // at least one invalid should not validate
+        // All of the invalid files should not validate
         // NOTE: EMLParser does not validate against the schema (see SAXParserTest)
         int failures = 0;
         File invalidDir = new File(INVALID_DIR);
         Vector invalidList = getXmlFiles(invalidDir);
         for (int i=0; i < invalidList.size(); i++) {
             File invalidFile = (File)invalidList.elementAt(i);
-            try { System.err.println("Invalidating file: " + invalidFile.getName());
+            try {
+                System.err.println("Invalidating file: " + invalidFile.getName());
                 emlp = new EMLParser(invalidFile);
-                
+                System.err.println("    Valid.");
             } catch (Exception e) {
-               failures++;
-               assertTrue(e.getMessage() != null);
-               break;
+                System.err.println("    Invalid.");
+                failures++;
+                assertTrue(e.getMessage() != null);
+                break;
             }
         }
-        if (failures == 0) {
-        	fail("Error: An EMLParserException should have been thrown at least once.");
+        if (failures != invalidList.size()) {
+        	System.err.println(failures + "/" + invalidList.size() + " failures in directory.");
+        	fail("Error: An EMLParserException should have been thrown for all invalid files.");
         }
 
-        try { 
+        try {
             File f = new File(ERROR1);
             emlp = new EMLParser(f);
             fail("Error 1. An EMLParserException should have been thrown.");

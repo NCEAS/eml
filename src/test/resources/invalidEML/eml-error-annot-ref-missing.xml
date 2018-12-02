@@ -15,9 +15,14 @@
         <surName>Johnson</surName>
       </individualName>
     </contact>
-    <!-- this file is invalid because contact has both an id and a reference -->
-    <contact id="c">
+    <contact>
       <references>23445</references>
     </contact>
+
   </dataset>
+  <!-- this file is invalid because the annotation references an id that doesn't exist -->
+  <annotation references="missing-reference-01">
+    <propertyURI label="Subject">http://purl.org/dc/elements/1.1/subject</propertyURI>
+    <valueURI label="grassland biome">http://purl.obolibrary.org/obo/ENVO_01000177</valueURI>
+  </annotation>
 </eml:eml>
