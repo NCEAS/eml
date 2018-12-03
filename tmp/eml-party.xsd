@@ -1,0 +1,563 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:res="eml://ecoinformatics.org/resource-2.2.0" xmlns:doc="eml://ecoinformatics.org/documentation-2.2.0" xmlns="eml://ecoinformatics.org/party-2.2.0" targetNamespace="eml://ecoinformatics.org/party-2.2.0">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.2.0" schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.2.0" schemaLocation="eml-resource.xsd"/>
+  <xs:annotation>
+    <xs:documentation>
+       '$RCSfile: eml-party.xsd,v $'
+       Copyright: 1997-2002 Regents of the University of California,
+                            University of New Mexico, and
+                            Arizona State University
+        Sponsors: National Center for Ecological Analysis and Synthesis and
+                  Partnership for Interdisciplinary Studies of Coastal Oceans,
+                     University of California Santa Barbara
+                  Long-Term Ecological Research Network Office,
+                     University of New Mexico
+                  Center for Environmental Studies, Arizona State University
+   Other funding: National Science Foundation (see README for details)
+                  The David and Lucile Packard Foundation
+     For Details: http://knb.ecoinformatics.org/
+
+        '$Author: obrien $'
+          '$Date: 2009-02-25 23:51:54 $'
+      '$Revision: 1.55 $'
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+    </xs:documentation>
+    <xs:documentation>
+moduleName: eml-party
+
+moduleDescription: 
+          
+            
+            The eml-party module - People and organization information
+          
+          
+        
+
+recommendedUsage: all datasets
+
+standAlone: yes
+</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="ResponsibleParty">
+    <xs:annotation>
+      <xs:documentation>
+tooltip: Responsible party
+
+summary: The individual, organization, or role associated with a
+        resource.
+
+description: 
+          
+            The ResponsibleParty Type contains
+        elements that are used to describe the person, organization or
+        position within an organization that is associated in some way with the
+        resource. It is intended to be used to fully document contact
+        information for many types of associations, such as owner, manager,
+        steward, curator, etc.
+            Note that the content model for a responsible party type
+        allows a sequence of choices for the first
+        element(s): &lt;individualName&gt;, &lt;organizationName&gt; and/or &lt;positionName&gt;.
+        This means that a parent element (e.g., creator) may use combinations of the 3 sub-elements
+        to make up a single logical party. For example, a creator with only
+                the individualName of 'Joe Smith' is NOT the same as a
+                creator with the individualName of 'Joe Smith' and the
+                organizationName of 'NSF'. To include both a positionName and
+                 an organizationName as children of a &lt;contact&gt; implies that anyone
+                currently occupying that positionName at that organizationName
+                is an appropriate contact.
+                The positionName should not be
+                used in conjunction with individualName unless only that specific
+                individual at that position would be considered appropriate for that
+                designation.   
+          
+        
+</xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:sequence>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="individualName" type="Person">
+            <xs:annotation>
+              <xs:documentation>
+tooltip: Individual Name
+
+summary: The full name of the person being
+                described
+
+description: 
+                  
+                    The individualName
+                field contains subfields so that  a person's name can be broken
+                down into               parts.
+                    Note that the the content model for the containing type
+        allows a sequence of choices for the first
+        element(s): &lt;individualName&gt;, &lt;organizationName&gt; and/or &lt;positionName&gt;.
+        This means that a parent element (e.g., creator) may use combinations of the 3 sub-elements
+        to make up a single logical party. For example, a creator with only
+                the individualName of 'Joe Smith' is NOT the same as a
+                creator with the individualName of 'Joe Smith' and the
+                organizationName of 'NSF'. To include both a positionName and
+                 an organizationName as children of a &lt;contact&gt; implies that anyone
+                currently occupying that positionName at that organizationName
+                is an appropriate contact.
+                The positionName should not be
+                used in conjunction with individualName unless only that specific
+                individual at that position would be considered appropriate for that
+                designation.   
+                  
+                
+</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="organizationName" type="res:i18nNonEmptyStringType">
+            <xs:annotation>
+              <xs:documentation>
+tooltip: Organization name
+
+summary: The full name of the organization being
+                described
+
+description: 
+                  
+                    The responsible party field contains the full
+                name of the organization that is associated with the resource.
+                This field is intended to describe which institution or overall
+                organization is associated with the resource being described.
+               
+                    Note that the the content model for the containing type
+        allows a sequence of choices for the first
+        element(s): &lt;individualName&gt;, &lt;organizationName&gt; and/or &lt;positionName&gt;.
+        This means that a parent element (e.g., creator) may use combinations of the 3 sub-elements
+        to make up a single logical party. For example, a creator with only
+                the individualName of 'Joe Smith' is NOT the same as a
+                creator with the individualName of 'Joe Smith' and the
+                organizationName of 'NSF'. To include both a positionName and
+                 an organizationName as children of a &lt;contact&gt; implies that anyone
+                currently occupying that positionName at that organizationName
+                is an appropriate contact.
+                The positionName should not be
+                used in conjunction with individualName unless only that specific
+                individual at that position would be considered appropriate for that
+                designation.   
+                  
+                
+</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="positionName" type="res:i18nNonEmptyStringType">
+            <xs:annotation>
+              <xs:documentation>
+tooltip: Position Name
+
+summary: The name of the title or position associated with
+                the resource.
+
+description: 
+                  
+                    This field is intended to be used instead of a
+                particular person or full organization name. If the associated
+                person who holds the role changes frequently, then Position
+                Name would be used for consistency. 
+                    Note that the the content model for the containing type
+        allows a sequence of choices for the first
+        element(s): &lt;individualName&gt;, &lt;organizationName&gt; and/or &lt;positionName&gt;.
+        This means that a parent element (e.g., creator) may use combinations of the 3 sub-elements
+        to make up a single logical party. For example, a creator with only
+                the individualName of 'Joe Smith' is NOT the same as a
+                creator with the individualName of 'Joe Smith' and the
+                organizationName of 'NSF'. To include both a positionName and
+                 an organizationName as children of a &lt;contact&gt; implies that anyone
+                currently occupying that positionName at that organizationName
+                is an appropriate contact.
+                The positionName should not be
+                used in conjunction with individualName unless only that specific
+                individual at that position would be considered appropriate for that
+                designation.   
+                  
+                
+</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+        <xs:element name="address" type="Address" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation>
+tooltip: Contact address
+
+summary: The full address information for a given responsible
+              party entry.
+
+description: The address field is a container for multiple
+              subfields that describe the physical or electronic address of the
+              responsible party for a resource.
+</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="phone" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation>
+tooltip: Phone
+
+summary: Information about the contact's
+              telephone
+
+description: The phone field describes information about the
+              responsible party's telephone, be it a voice phone, fax, or
+              TTD/TTY type telephone. This field contains an attribute used to
+              identify the type.
+</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute name="phonetype" type="xs:string" use="optional" default="voice">
+                  <xs:annotation>
+                    <xs:documentation>
+tooltip: Phone type
+
+summary: The type of the phone to which this number
+                      applies
+
+description: This attribute gives the type of phone
+                      to which this number applies. By default, this is assumed
+                      to be of type "voice", but other possibilities include
+                      "facsimile" and "tdd".
+</xs:documentation>
+                  </xs:annotation>
+                </xs:attribute>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="electronicMailAddress" type="res:i18nNonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation>
+tooltip: Email address
+
+summary: The email address of the contact.
+
+description: The electronic mail address is the email address
+              for the party. It is intended to be an Internet SMTP email
+              address, which should consist of a username followed by the @
+              symbol, followed by the email server domain name address. Other
+              address types are allowable.
+</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="onlineUrl" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation>
+tooltip: Online Link
+
+summary: A link to associated online information, usually a
+              web site.
+
+description: A link to associated online information, usually
+              a web site. When the party represents an organization, this is
+              the URL to a website or other online information about the
+              organization. If the party is an individual, it might be their
+              personal web site or other related online information about the
+              party.
+</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="userId" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation>
+tooltip: User Identifier
+
+summary: An identifier that links this party to a
+              directory of individuals
+
+description: An identifier that links this party to a
+              directory of individuals.  Although specific contact information
+              for a party might change, the underlying correspondence to a
+              real individual does not.  This identifier provides a pointer
+              within a directory of individuals that may contain further, and
+              possibly more current, information about the party.
+              
+</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute name="directory" type="xs:string" use="required">
+                  <xs:annotation>
+                    <xs:documentation>
+tooltip: Directory
+
+summary: The directory system within which the
+                      directoryId can be retrieved.
+
+description: This attribute names the directory system
+                      to which this userId applies. This will generally
+                      be a URL that shows how to look up information, for
+                      example an LDAP URL. However, it could also be a
+                      non-parsable description of the directory system if
+                      that is all that is available.
+</xs:documentation>
+                  </xs:annotation>
+                </xs:attribute>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:group ref="res:ReferencesGroup"/>
+    </xs:choice>
+    <xs:attribute name="id" type="res:IDType" use="optional"/>
+    <xs:attribute name="system" type="res:SystemType" use="optional"/>
+    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
+  </xs:complexType>
+  <xs:complexType name="Person">
+    <xs:annotation>
+      <xs:documentation>
+tooltip: Person
+
+summary: The full name of the individual associated with the
+        resource.
+
+description: 
+          
+            The person Type is used to enter the salutation, and
+        two types of name parts for an individual associated with the
+        resource. It uses these three subfields to help parse the person's
+        entire name.
+             The two elements, &lt;givenName&gt;  and  &lt;surName&gt;,
+             allow parsing of many types of names, even though distinct elements
+             do not exist for concepts like "middle name" and "compound surname".
+        &lt;givenName&gt; should be used for parts of the name that are often
+        shortened to a first initial, or are not used for ordering, and typically includes
+        first and middle names.
+        The &lt;surName&gt; field is intended to be used for the part of the name that
+        is generally displayed in its entirety and/or is alphabetized or otherwise ordered
+        when appropriate. Note that only one
+        &lt;surName&gt; is allowed, and is required, while &lt;givenName&gt;s are
+       optional and unbounded.    
+            The arrangement and content of the sub-elements is entirely
+       up to the EML document's author, who presumably has first-hand knowledge of
+       how the names are to be constructed. For example, if element position is important
+       (e.g., the list of a book's        authors), then
+       EML authors should put the creators in that order. If it is appropriate for a
+       resource to have its creators sorted alphabetically, then the EML author
+       should construct the name parts so that the&lt;surName&gt; field may be used for
+       this purpose. At this time, EML is not able to express cultural
+       conventions so that authors may indicate the correct order for
+       &lt;givenName&gt;s and &lt;surName&gt; when the whole name is expressed.
+       However support for international names
+       is under consideration for a future version of
+       EML, along with other internationalization features.
+     
+          
+        
+</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="salutation" type="res:i18nNonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Salutation
+
+summary: The salutation used to address an
+            individual
+
+description: The salutation field is used in addressing an
+            individual with a particular title, such as Dr., Ms., Mrs., Mr.,
+            etc.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="givenName" type="res:i18nNonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Given name
+
+summary: The given name of the individual.
+
+description: The given name field can be used for first name of
+            the individual associated with the resource, or for any other names
+            that are not intended to be alphabetized, (as appropriate). Note that
+            while it is possible  to include all given names in one field (as in the
+            example below), it may be not be good practice to do so. For example, if an
+            XSL transformation stylesheet were to abbreviate the content of a
+            givenName to just the first initial, a givenName element that contained
+            more than one name would not be transformed correctly. 
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="surName" type="res:i18nNonEmptyStringType">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Last name
+
+summary: The last name of the individual.
+
+description: The surname field is used for the last name of the
+            individual associated with the resource. This is typically the family name
+            of an individual, for example, the name by which s/he is referred to in citations.
+            
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Address">
+    <xs:annotation>
+      <xs:documentation>
+tooltip: Address
+
+summary: The full address of the resposible party.
+
+description: The address field is provides detailed information for
+        communicating with a party contact via electronic mail or postal mail,
+        including the physical delivery location.
+</xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:sequence>
+        <xs:element name="deliveryPoint" type="res:i18nNonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation>
+tooltip: Delivery point
+
+summary: The location for postal deliveries.
+
+description: The delivery point field is used for the
+              physical address for postal communication. This field is used to
+              accommodate the many different international conventions that are
+              the equivalent to a U.S. 'street address'.
+</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="city" type="res:i18nNonEmptyStringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>
+tooltip: City
+
+summary: The name of the city for the contact.
+
+description: The city field is used for the city name of the
+              contact associated with a particular resource.
+</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="administrativeArea" type="res:i18nNonEmptyStringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>
+tooltip: Administrative area
+
+summary: The political area of a country.
+
+description: The administrative area field is the equivalent
+              of a 'state' in the U.S., or Province in Canada. This field is
+              intended to accommodate the many types of international
+              administrative areas.
+</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="postalCode" type="res:i18nNonEmptyStringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>
+tooltip: Postal code
+
+summary: The postal code used for routing to an
+              address.
+
+description: The postal code is equivalent to a U.S. zip
+              code, or the number used for routing to an international address.
+              The U.S. postal code should include the 5 digit code plus the 4
+              digit extension.
+</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="country" type="res:i18nNonEmptyStringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>
+tooltip: Country
+
+summary: The name of the country for the contact's
+              address.
+
+description: The country field is used for the name of the
+              contact's country.
+</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+      <xs:group ref="res:ReferencesGroup"/>
+    </xs:choice>
+    <xs:attribute name="id" type="res:IDType" use="optional"/>
+    <xs:attribute name="system" type="res:SystemType" use="optional"/>
+    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
+  </xs:complexType>
+  <xs:element name="party" type="ResponsibleParty">
+    <xs:annotation>
+      <xs:documentation>
+tooltip: Responsible party
+
+summary: An individual, organization, or role.
+        
+
+description: The responsible party contains multiple
+        subfields that are used to describe a person, organization, or
+        position within an organization.
+        It is intended to be used to fully document contact
+        information for many types of associations, such as owner, manager,
+        steward, curator, etc.
+</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:simpleType name="RoleType">
+    <xs:annotation>
+      <xs:documentation>
+tooltip: Role
+
+summary: The classification of the associated person or
+        organization.
+
+description: The role code field provides information on how a
+        person or organization is related to a resource. There may be many
+        people associated, including an 'originator' of a dataset, an 'author',
+        'editor', or 'publisher' of a literature resource, or an organization
+        that is a 'distributor'. the full list of choices is included in the
+        example.
+</xs:documentation>
+    </xs:annotation>
+    <xs:union>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="contentProvider"/>
+          <xs:enumeration value="custodianSteward"/>
+          <xs:enumeration value="owner"/>
+          <xs:enumeration value="user"/>
+          <xs:enumeration value="distributor"/>
+          <xs:enumeration value="metadataProvider"/>
+          <xs:enumeration value="originator"/>
+          <xs:enumeration value="pointOfContact"/>
+          <xs:enumeration value="principalInvestigator"/>
+          <xs:enumeration value="processor"/>
+          <xs:enumeration value="publisher"/>
+          <xs:enumeration value="author"/>
+          <xs:enumeration value="editor"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType>
+        <xs:restriction base="xs:string"/>
+      </xs:simpleType>
+    </xs:union>
+  </xs:simpleType>
+</xs:schema>

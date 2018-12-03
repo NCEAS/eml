@@ -1,0 +1,1329 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml://ecoinformatics.org/documentation-2.2.0" xmlns:rp="eml://ecoinformatics.org/party-2.2.0" xmlns:cov="eml://ecoinformatics.org/coverage-2.2.0" xmlns:res="eml://ecoinformatics.org/resource-2.2.0" xmlns:acc="eml://ecoinformatics.org/access-2.2.0" xmlns:proj="eml://ecoinformatics.org/project-2.2.0" xmlns="eml://ecoinformatics.org/literature-2.2.0" targetNamespace="eml://ecoinformatics.org/literature-2.2.0">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.2.0" schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.2.0" schemaLocation="eml-resource.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/coverage-2.2.0" schemaLocation="eml-coverage.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/party-2.2.0" schemaLocation="eml-party.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/access-2.2.0" schemaLocation="eml-access.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/project-2.2.0" schemaLocation="eml-project.xsd"/>
+  <xs:annotation>
+    <xs:documentation>
+      '$RCSfile: eml-literature.xsd,v $'
+       Copyright: 1997-2002 Regents of the University of California,
+                            University of New Mexico, and
+                            Arizona State University
+        Sponsors: National Center for Ecological Analysis and Synthesis and
+                  Partnership for Interdisciplinary Studies of Coastal Oceans,
+                     University of California Santa Barbara
+                  Long-Term Ecological Research Network Office,
+                     University of New Mexico
+                  Center for Environmental Studies, Arizona State University
+   Other funding: National Science Foundation (see README for details)
+                  The David and Lucile Packard Foundation
+     For Details: http://knb.ecoinformatics.org/
+
+        '$Author: obrien $'
+          '$Date: 2009-02-25 23:51:54 $'
+      '$Revision: 1.61 $'
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+    </xs:documentation>
+    <xs:documentation>
+moduleName: eml-literature
+
+moduleDescription: 
+          
+            
+              The eml-literature module - Citation specific
+              information
+            
+          
+        
+
+recommendedUsage: All datasets with literary
+        citations
+
+standAlone: yes
+</xs:documentation>
+  </xs:annotation>
+  <xs:element name="citation" type="CitationType">
+    <xs:annotation>
+      <xs:documentation>
+tooltip: Literature Citation
+
+summary: Information describing a literature
+        resource.
+
+description: The citation element contains general information
+        about a literature resource that is being documented, or a piece of
+        literature that is being cited in support of a given resource, such as
+        a dataset. It contains sub-elements that are specific to a literature
+        resource such as a book, a journal article, a thesis, etc. It extends
+        the generic resource elements with literature specific
+        fields.
+</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="CitationType">
+    <xs:choice>
+      <xs:sequence>
+        <xs:group ref="res:ResourceGroup"/>
+        <xs:element name="contact" type="rp:ResponsibleParty" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation>
+tooltip: Contact
+
+summary: An optional contact individual for this citation
+
+description: The contact field contains information about an alternate person to be contacted
+              about this citation. Usually, the first author serves as the contact for a citation resource, e.g., a reprint request. In some cases, an alternate individual(s) may serve that function, and can be indicated here. Since contact is of the type rp:ResponsibleParty, a reference may be used.
+</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:choice>
+          <xs:element name="article" type="Article">
+            <xs:annotation>
+              <xs:documentation>
+tooltip: article
+
+summary: Information for full citation of a journal article
+                or other periodical article.
+
+description: The article field provides sub-fields for a
+                full citation of an article in a journal or other
+                periodical.
+</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="book" type="Book">
+            <xs:annotation>
+              <xs:documentation>
+tooltip: Book
+
+summary: Information for full citation of a
+                book
+
+description: The book field provides sub-fields for a full
+                citation of a book.
+</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="chapter" type="Chapter">
+            <xs:annotation>
+              <xs:documentation>
+tooltip: Book Chapter
+
+summary: Information for citation of a chapter in a
+                book
+
+description: The book chapter allows citation of a single
+                chapter or section of a book. The "creator" for a book chapter
+                are the chapter's authors, while the "editor" is the book
+                editors. Likewise, "title" is the chapter title, while
+                "bookTitle" is the title of the whole book.
+</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="editedBook" type="Book">
+            <xs:annotation>
+              <xs:documentation>
+tooltip: Book
+
+summary: Information for full citation of an edited
+                book
+
+description: The edited book represents a book which was
+                edited by one or more editors, but whose chapters were possibly
+                authored by others. The editors of an edited book should be
+                listed in the "creator" field.
+</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="manuscript" type="Manuscript">
+            <xs:annotation>
+              <xs:documentation>
+tooltip: unpublished manuscipt
+
+summary: Information about an unpublished
+                manuscript
+
+description: The manuscript field provides sub-fields for a
+                full citation of an unpublished manuscript.
+</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="report" type="Report">
+            <xs:annotation>
+              <xs:documentation>
+tooltip: Report
+
+summary: Information about a report published by an
+                institution.
+
+description: The report may be self published by the
+                institution or through a publisher. They usually are available
+                by request to the institution or can be purchased from the
+                publisher.
+</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="thesis" type="Thesis">
+            <xs:annotation>
+              <xs:documentation>
+tooltip: Thesis as part of a degree
+
+summary: Information about a thesis that has been written
+                as part of a degree requirement and is frequently published in
+                small numbers by the degree awarding institution.
+
+description: Information about a thesis that has been
+                written as part of a degree requirement and is frequently
+                published in small numbers by the degree awarding
+                institution.
+</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="conferenceProceedings" type="ConferenceProceedings">
+            <xs:annotation>
+              <xs:documentation>
+tooltip: conference proceedings
+
+summary: The published notes, papers, presentations etc...
+                of a conference.
+
+description: The published notes, papers, presentations,
+                etc..., of a conference.
+</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="personalCommunication" type="PersonalCommunication">
+            <xs:annotation>
+              <xs:documentation>
+tooltip: Personal communication
+
+summary: A personal communication that has been saved
+                online or as hard-copy.
+
+description: This could be a widely distributed memo, an
+                e-mail, a transcript from a conversation or interview,
+                etc...
+</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="map" type="Map">
+            <xs:annotation>
+              <xs:documentation>
+tooltip: map
+
+summary: This element describes the map that is being cited
+                or cataloged.
+
+description: This element describes the map that is being
+                cited or cataloged, including its geographic coverage and
+                scale.
+</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="generic" type="Generic">
+            <xs:annotation>
+              <xs:documentation>
+tooltip: Generic Citation
+
+summary: This reference type was created for references
+                that do not fit in to the other existing reference
+                types
+
+description: This reference type was created for references
+                that do not fit in to the other existing reference
+                types.
+</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="audioVisual" type="AudioVisual">
+            <xs:annotation>
+              <xs:documentation>
+tooltip: audio visual
+
+summary: This reference type is meant to cover all forms of
+                audio and visual media.
+
+description: This reference type is meant to cover all
+                forms of audio and visual media, including film, video,
+                broadcast, other electronic media.
+</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="presentation" type="Presentation">
+            <xs:annotation>
+              <xs:documentation>
+tooltip: Unpublished Presentation
+
+summary: An unpublished presentation from a conference,
+                workshop, workgroup, symposium etc.
+
+description: An unpublished presentation from a conference,
+                workshop, workgroup, symposium, etc. It will be provided upon
+                request in either in paper and/or electronic form. If the
+                presentation was actually published in a proceedings, use the
+                conferenceProceedings type instead.
+</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+      </xs:sequence>
+      <xs:element name="bibtex" type="xs:string">
+          <xs:annotation>
+              <xs:documentation>
+tooltip: Bibtex Citation
+
+summary: Citation in Bibtex format.
+
+description: The bibtex field provides a parseable citation formatted according to
+                      the Bibtex formatting conventions. The citation entry is assigned a unique key that must be unique across all bibtex fields in the EML document. The citation key can be used in markdown sections of the text to refer to this citation using the pandoc-style of inline citation keys.  See the markdown element for more details.  The record is delimited using curly braces. Most reference software can both import and export citations in Bibtex format, so this is a simpler representation to produce and consume than native EML citation representations.
+</xs:documentation>
+          </xs:annotation>
+      </xs:element>
+      <xs:group ref="res:ReferencesGroup"/>
+    </xs:choice>
+    <xs:attribute name="id" type="res:IDType" use="optional"/>
+    <xs:attribute name="system" type="res:SystemType" use="optional"/>
+    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
+  </xs:complexType>
+  <xs:complexType name="Article">
+    <xs:annotation>
+      <xs:documentation>
+tooltip: article
+
+summary: Information for full citation of a journal article or
+        other periodical article.
+
+description: The article field provides sub-fields for a full
+        citation of an article in a journal or other
+        periodical.
+</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="journal" type="res:NonEmptyStringType">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Journal Name
+
+summary: The name of the journal, magazine, newspaper, zine,
+            etc... in which the article was published.
+
+description: The name of the journal, magazine, newspaper,
+            zine, etc... in which the article was published.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="volume" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Journal Volume
+
+summary: The volume of the journal in which the article
+            appears
+
+description: The volume field is used to describe the volume of
+            the journal in which the article appears.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="issue" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Journal issue
+
+summary: The issue of the journal in which the article
+            appears
+
+description: The issue field is used to describe the issue of
+            the journal in which the article appears.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="pageRange" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Journal Pages
+
+summary: The beginning and end page numbers of the journal
+            article
+
+description: The page range field is used for the beginning and
+            ending pages of the journal article that is being
+            documented.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="publisher" type="rp:ResponsibleParty" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Publisher
+
+summary: Organization that actually publishes the
+            article
+
+description: The organization that physically puts together the
+            article and publishes it.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="publicationPlace" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Publication Place
+
+summary: The location at which the work was
+            published.
+
+description: The location at which the work was published. This
+            is usually the name of the city in which the publishing house
+            produced the work.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ISSN" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: International Standard Serial Number
+
+summary: The unique Internation Standard Serial
+            Number
+
+description: The ISSN, or International Standard Serial Number
+            that has been assigned to this literature
+            resource.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Book">
+    <xs:annotation>
+      <xs:documentation>
+tooltip: Book
+
+summary: Information for full citation of a book
+
+description: The book field provides sub-fields for a full citation
+        of a book.
+</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="publisher" type="rp:ResponsibleParty">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Publisher
+
+summary: Organization that actually publishes the
+            book
+
+description: The organization that physically puts together the
+            book and publishes it.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="publicationPlace" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Publication Place
+
+summary: The location at which the work was
+            published.
+
+description: The location at which the work was published. This
+            is usually the name of the city in which the publishing house
+            produced the work.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="edition" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Book edition
+
+summary: The edition of the book being described.
+
+description: The edition field is to document the edition of
+            the book that is being described.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="volume" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Book volume
+
+summary: The volume of the book that is part of a
+            series.
+
+description: The volume field is used to describe the volume
+            number of a book that is part of a multi-volume series of
+            books.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="numberOfVolumes" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Number of Volumes
+
+summary: Number of volumes in a collection
+
+description: Number of volumes in a
+            collection
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="totalPages" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Total book pages
+
+summary: The total number of pages in the book.
+
+description: The total pages field is used to describe the
+            total number of pages in the book that is being
+            described.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="totalFigures" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Number of figures in book
+
+summary: The total number of figures in the book.
+
+description: the total figures field is used to describe the
+            total number of figures, diagrams, and plates in the book that is
+            being documented.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="totalTables" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Number of tables in book
+
+summary: The total number of tables in a book.
+
+description: The total tables field is used to describe the
+            total number of tables that are present in the book that is being
+            documented.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ISBN" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: International Standard Book Number
+
+summary: The unique Internation Standard Book
+            Number
+
+description: The ISBN, or International Standard Book Number
+            that has been assigned to this literature
+            resource.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Chapter">
+    <xs:annotation>
+      <xs:documentation>
+tooltip: Book Chapter
+
+summary: Information for citation of a chapter in a
+        book
+
+description: The book chapter allows citation of a single chapter
+        or section of a book. The "creator" for a book chapter are the
+        chapter's authors, while the "editor" is the book editors. Likewise,
+        "title" is the chapter title, while "bookTitle" is the title of the
+        whole book.
+</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Book">
+        <xs:sequence>
+          <xs:element name="chapterNumber" type="res:NonEmptyStringType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+tooltip: Chapter number
+
+summary: The chapter number of interest within a
+                book
+
+description: The chapter number of the chapter of a book
+                that is being described.
+</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="editor" type="rp:ResponsibleParty" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+tooltip: Book editor
+
+summary: The name of the editor of the book.
+
+description: The book editor field is used to document the
+                name of the editor of the book that is being described. The
+                editor may be a person, organization, or a role within an
+                organization.
+</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="bookTitle" type="res:NonEmptyStringType">
+            <xs:annotation>
+              <xs:documentation>
+tooltip: Book title
+
+summary: The title of the book.
+
+description: The book title field is used to document the
+                title of the book that is being described.
+</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="pageRange" type="res:NonEmptyStringType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+tooltip: Chapter page range
+
+summary: The beginning and ending page numbers of a
+                chapter.
+
+description: The page range field is used to document the
+                beginning and ending pages of a chapter in a
+                book.
+</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ConferenceProceedings">
+    <xs:annotation>
+      <xs:documentation>
+tooltip: conference proceedings
+
+summary: The published notes, papers, presentations etc... of a
+        conference.
+
+description: The published notes, papers, presentations, etc..., of
+        a conference.
+</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Chapter">
+        <xs:sequence>
+          <xs:element name="conferenceName" type="res:NonEmptyStringType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+tooltip: Conference Name
+
+summary: The name of the conference whose proceedings have
+                been published.
+
+description: The name of the conference whose proceedings
+                have been published.
+</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="conferenceDate" type="res:NonEmptyStringType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+tooltip: Conference Date
+
+summary: The date the conference was held.
+
+description: The date the conference was
+                held.
+</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="conferenceLocation" type="rp:Address" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+tooltip: Conference Location
+
+summary: The location where the conference was
+                held.
+
+description: The location where the conference was
+                held.
+</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Manuscript">
+    <xs:annotation>
+      <xs:documentation>
+tooltip: unpublished manuscipt
+
+summary: Information about an unpublished manuscript
+
+description: The manuscript field provides sub-fields for a full
+        citation of an unpublished manuscript.
+</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="institution" type="rp:ResponsibleParty" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Manuscript publication information
+
+summary: The address and contact information needed to request
+            a manuscript.
+
+description: The institution information field is used to
+            provide contact and address information that would be needed to
+            request an unpublished manuscript
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="totalPages" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Total manuscript pages
+
+summary: The total number of pages in the
+            manuscript.
+
+description: The total pages field is used to describe the
+            total number of pages in the manuscript that is being
+            described.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Report">
+    <xs:annotation>
+      <xs:documentation>
+tooltip: Report
+
+summary: Information about a report published by an
+        institution.
+
+description: The report may be self published by the institution or
+        through a publisher. They usually are available by request to the
+        institution or can be purchased from the publisher.
+</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="reportNumber" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Report Number
+
+summary: The unique identification number assigned to the
+            report.
+
+description: The report number field is used to describe the
+            unique identification number that has been issued by the report
+            institution for the report being described.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="publisher" type="rp:ResponsibleParty" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Publisher
+
+summary: Organization that actually publishes the
+            report
+
+description: The organization that physically put together the
+            report and publishes it.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="publicationPlace" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Publication Place
+
+summary: The location at which the work was
+            published.
+
+description: The location at which the work was published. This
+            is usually the name of the city in which the publishing house
+            produced the work.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="totalPages" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Total report pages
+
+summary: The total number of pages in the report.
+
+description: The total pages field is used to describe the
+            total number of pages in the report that is being
+            described.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PersonalCommunication">
+    <xs:annotation>
+      <xs:documentation>
+tooltip: Personal communication
+
+summary: A personal communication that has been saved online or as
+        hard-copy.
+
+description: This could be a widely distributed memo, an e-mail, a
+        transcript from a conversation or interview, etc...
+</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="publisher" type="rp:ResponsibleParty" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Publisher
+
+summary: Organization that actually publishes the
+            communication
+
+description: The organization that physically puts together the
+            communication and publishes it.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="publicationPlace" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Publication Place
+
+summary: The location at which the work was
+            published.
+
+description: The location at which the work was published. This
+            is usually the name of the city in which the publishing house
+            produced the work.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="communicationType" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Type of communication
+
+summary: The type of personal communication.
+
+description: The type of personal communication. Could be an
+            email, letter, memo, transcript of conversation either hardcopy or
+            online.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="recipient" type="rp:ResponsibleParty" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Recipient
+
+summary: Recipient of the communication
+
+description: The person, place or thing the personal
+            communication was sent to.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Map">
+    <xs:annotation>
+      <xs:documentation>
+tooltip: map
+
+summary: This element describes the map that is being cited or
+        cataloged.
+
+description: This element describes the map that is being cited or
+        cataloged, including its geographic coverage and
+        scale.
+</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="publisher" type="rp:ResponsibleParty" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Publisher
+
+summary: Organization that actually publishes the
+            map
+
+description: The organization that physically puts together the
+            map and publishes it.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="edition" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Map edition
+
+summary: The edition of the map being described.
+
+description: The edition field is to document the edition of
+            the map that is being described.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="geographicCoverage" type="cov:GeographicCoverage" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Geographic coverage
+
+summary: Description of the geographic area which the map
+            covers
+
+description: This element describes the geographic area which
+            the map covers. Could be descriptive text or Cartesian coordinates
+            of the area.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="scale" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Scale
+
+summary: The Map's scale
+
+description: The Map's scale
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AudioVisual">
+    <xs:annotation>
+      <xs:documentation>
+tooltip: audio visual
+
+summary: This reference type is meant to cover all forms of audio
+        and visual media.
+
+description: This reference type is meant to cover all forms of
+        audio and visual media, including film, video, broadcast, other
+        electronic media.
+</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="publisher" type="rp:ResponsibleParty">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Publisher
+
+summary: Organization which actually distributes the video,
+            film, the broadcaster etc...
+
+description: Organization which actually distributes the video,
+            film, the broadcaster etc...
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="publicationPlace" type="res:NonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Publication Place
+
+summary: The location at which the work was
+            published.
+
+description: The location at which the work was published. This
+            is usually the name of the city in which the publishing house
+            produced the work.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="performer" type="rp:ResponsibleParty" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Performer
+
+summary: The performers in the audio visual
+            production
+
+description: The performers involved in acting, narrating, or
+            shown in the audio visual production.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ISBN" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: International Standard Book Number
+
+summary: The unique Internation Standard Book
+            Number
+
+description: The ISBN, or International Standard Book Number
+            that has been assigned to this literature
+            resource.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Generic">
+    <xs:sequence>
+      <xs:element name="publisher" type="rp:ResponsibleParty">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Publisher
+
+summary: Organization which actually publishes the
+            reference
+
+description: The organization which physically puts together
+            the reference and publishes it.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="publicationPlace" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Publication Place
+
+summary: The location at which the work was
+            published.
+
+description: The location at which the work was published. This
+            is usually the name of the city in which the publishing house
+            produced the work.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="referenceType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Reference Type
+
+summary: The type of reference.
+
+description: The reference type describes the type of reference
+            this generic type is being used to represent.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="volume" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Reference volume
+
+summary: The volume of the reference that is part of a
+            series.
+
+description: The volume field is used to describe the volume
+            number of a reference that is part of a multi-volume series of
+            references.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="numberOfVolumes" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Number of Volumes
+
+summary: Number of volumes in a collection
+
+description: Number of volumes in a
+            collection
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="totalPages" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Total reference pages
+
+summary: The total number of pages in the
+            references.
+
+description: The total pages field is used to describe the
+            total number of pages in the references that is being
+            described.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="totalFigures" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Number of figures in reference
+
+summary: The total number of figures in the
+            reference.
+
+description: The total figures field is used to describe the
+            total number of figures, diagrams, and plates in the reference that
+            is being documented.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="totalTables" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Number of tables in reference
+
+summary: The total number of tables in a
+            reference.
+
+description: The total tables field is used to describe the
+            total number of tables that are present in the reference that is
+            being documented.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="edition" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: edition
+
+summary: The edition of the generic reference being
+            described.
+
+description: The edition field is to document the edition of
+            the generic reference type that is being
+            described.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="originalPublication" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Original Publication
+
+summary: References current publication to its
+            original.
+
+description: Supplemental information about the original
+            publication of the current reference.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="reprintEdition" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Reprint Edition
+
+summary: Reference for current edition that was originally
+            published under a different title.
+
+description: Reference for current edition that was originally
+            published under a different title.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="reviewedItem" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Reviewed Item
+
+summary: Reference types that are reviews of other
+            references.
+
+description: Use for articles, chapters, audio visual, etc.
+            that are critical review of books, cinema, art, or other
+            works.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:choice minOccurs="0">
+        <xs:element name="ISBN" type="res:NonEmptyStringType">
+          <xs:annotation>
+            <xs:documentation>
+tooltip: International Standard Book Number
+
+summary: The unique Internation Standard Book
+              Number
+
+description: The ISBN, or International Standard Book Number
+              that has been assigned to this literature
+              resource.
+</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="ISSN" type="res:NonEmptyStringType">
+          <xs:annotation>
+            <xs:documentation>
+tooltip: International Standard Serial Number
+
+summary: The unique Internation Standard Serial
+              Number
+
+description: The ISSN, or International Standard Serial
+              Number that has been assigned to this literature
+              resource.
+</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Thesis">
+    <xs:annotation>
+      <xs:documentation>
+tooltip: Thesis as part of a degree
+
+summary: Information about a thesis that has been written as part
+        of a degree requirement and is frequently published in small numbers by
+        the degree awarding institution.
+
+description: Information about a thesis that has been written as
+        part of a degree requirement and is frequently published in small
+        numbers by the degree awarding institution.
+</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="degree" type="res:NonEmptyStringType">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Degee name
+
+summary: The name or degree level for which the thesis was
+            completed.
+
+description: The degree field is used to describe the name or
+            degree level for which the thesis was completed.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="institution" type="rp:ResponsibleParty">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Degree awarding institution
+
+summary: The name of the degree-awarding
+            institution
+
+description: The degree institution field is used to name the
+            institution from which the degree was awarded for the thesis being
+            described.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="totalPages" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Thesis Pages
+
+summary: The total number of pages in the thesis.
+
+description: The total pages field is used to document the
+            number of pages that are present in the thesis that is being
+            described.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Presentation">
+    <xs:annotation>
+      <xs:documentation>
+tooltip: Unpublished Presentation
+
+summary: An unpublished presentation from a conference, workshop,
+        workgroup, symposium, etc.
+
+description: An unpublished presentation from a conference,
+        workshop, workgroup, symposium, etc. It will be provided upon request
+        in either in paper and/or electronic form by contacting the authors. If
+        the presentation was actually published in a proceedings, use the
+        conferenceProceedings type instead.
+</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="conferenceName" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Conference Name
+
+summary: The name of the conference at which this presentation
+            was given.
+
+description: The name of the conference at which this
+            presentation was given.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="conferenceDate" type="res:NonEmptyStringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Conference Date
+
+summary: The date the conference was held.
+
+description: The date the conference was
+            held.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="conferenceLocation" type="rp:Address" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+tooltip: Conference Location
+
+summary: The location where the conference was
+            held.
+
+description: The location where the conference was
+            held.
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CitationListType">
+        <xs:choice minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="citation" type="CitationType">
+                <xs:annotation>
+                    <xs:documentation>
+tooltip: citation
+
+summary: A citation within a list of citations.
+
+description: A citation within a list of citations, usually used for a literatureCited
+                            cited list or similar. Each citation is formatted following the EML CitationType
+                            structure.
+</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="bibtex" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+tooltip: Bibtex Citation List
+
+summary: List of citations in Bibtex format.
+
+description: The bibtex field provides a parseable list of citations formatted according to the Bibtex formatting conventions. Each citation entry is assigned a unique key that must be unique across all bibtex fields in the EML document. The citation key can be used in markdown sections of the text to refer to this citation using the pandoc-style of inline citation keys.  See the markdown element for more details. The record is delimited using curly braces. Most reference software can both import and export citations in Bibtex format, so this is a simpler representation to produce and consume than native EML citation representations.
+</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:choice>
+  </xs:complexType>
+</xs:schema>

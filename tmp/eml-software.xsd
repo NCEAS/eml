@@ -1,0 +1,418 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="eml://ecoinformatics.org/software-2.2.0" xmlns:res="eml://ecoinformatics.org/resource-2.2.0" xmlns:doc="eml://ecoinformatics.org/documentation-2.2.0" xmlns:proj="eml://ecoinformatics.org/project-2.2.0" xmlns:acc="eml://ecoinformatics.org/access-2.2.0" xmlns:phys="eml://ecoinformatics.org/physical-2.2.0" targetNamespace="eml://ecoinformatics.org/software-2.2.0">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.2.0" schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.2.0" schemaLocation="eml-resource.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/access-2.2.0" schemaLocation="eml-access.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/project-2.2.0" schemaLocation="eml-project.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/physical-2.2.0" schemaLocation="eml-physical.xsd"/>
+  <xs:annotation>
+    <xs:documentation>
+    '$RCSfile: eml-software.xsd,v $'
+       Copyright: 1997-2002 Regents of the University of California,
+                            University of New Mexico, and
+                            Arizona State University
+        Sponsors: National Center for Ecological Analysis and Synthesis and
+                  Partnership for Interdisciplinary Studies of Coastal Oceans,
+                     University of California Santa Barbara
+                  Long-Term Ecological Research Network Office,
+                     University of New Mexico
+                  Center for Environmental Studies, Arizona State University
+   Other funding: National Science Foundation (see README for details)
+                  The David and Lucile Packard Foundation
+     For Details: http://knb.ecoinformatics.org/
+
+        '$Author: obrien $'
+          '$Date: 2009-02-25 23:51:54 $'
+      '$Revision: 1.50 $'
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+    </xs:documentation>
+    <xs:documentation>
+moduleName: eml-software
+
+moduleDescription: 
+          
+            
+              The eml-software module - Software specific
+              information
+            
+          
+        
+
+recommendedUsage: All datasets where software was used in
+        the analysis or creation of the dataset.
+
+standAlone: yes
+</xs:documentation>
+  </xs:annotation>
+  <xs:element name="software" type="SoftwareType">
+    <xs:annotation>
+      <xs:documentation>
+tooltip: Software Package
+
+summary: Defines a software distribution and all of its dependent
+        software.
+
+description: The software element contains general information
+        about a software resource that is being documented. This field is
+        intended to give information for software tools that are needed to
+        interpret a dataset, software that was written to process a resource,
+        or software as a resource in itself. It is based on eml-resource and
+        Open Software Description (OSD) a W3C submission. There can be multiple
+        implementations within a software package because a physical software
+        package can run on multiple hardware and/or operating systems. See
+        implementation element documentation for a more thorough
+        explanation.
+</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="SoftwareType">
+    <xs:choice>
+      <xs:sequence>
+        <xs:group ref="res:ResourceGroup"/>
+        <xs:element name="implementation" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation>
+tooltip: Implementation
+
+summary: Describes the hardware and/or operating system
+              requirements for one implementation of a package.
+
+description: Implementation describes the hardware, operating
+              system resources a package runs on. Note, a package can have
+              multiple implementations. So for example, a package may be
+              written in java and the package may run on numerous hardware
+              and/or operating systems like Pentium/Linux, Pentium/NT and so
+              on. Hardware and Software descriptions that have different
+              requirements can be placed here.
+</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="distribution" type="phys:PhysicalDistributionType" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation>
+tooltip: Distribution
+
+summary: Information on how the resource is distributed
+                   online and offline
+
+description: This field provides information on how the
+                   resource is distributed online and offline. Connections to
+                   online systems can be described as URLs and as a list of
+                   relevant connection parameters.
+</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="size" type="res:NonEmptyStringType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation>
+tooltip: Physical Size
+
+summary: Physical size of an implementation.
+                    
+
+description: The physical size of an implementation on
+                    disk.
+</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="language" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation>
+tooltip: International Language
+
+summary: The International Language of the software
+                    implementation.
+
+description: The International Language of the software
+                    implementation.
+</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="LanguageValue" type="res:NonEmptyStringType">
+                      <xs:annotation>
+                        <xs:documentation>
+tooltip: Language Value
+
+summary: The actual value for the language or
+                          a code for the language.
+
+description: The actual value for the language or
+                          a code for the language.
+</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="LanguageCodeStandard" type="res:NonEmptyStringType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation>
+tooltip: Language Code Standard
+
+summary: The International Language Code being
+                          used in the field languageValue.
+
+description: The International Language Code being
+                          used in the field languageValue. See
+                          http://www.loc.gov/standards/iso639-2/
+</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="operatingSystem" type="res:NonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation>
+tooltip: Operating System
+
+summary: The operating system(s) an implementation runs
+                    on.
+
+description: The operating system(s) an implementation runs
+                    on.
+</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="machineProcessor" type="res:NonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation>
+tooltip: Machine Processor
+
+summary: The machine processor(s) required for
+                    executing the implementation.
+
+description: The Machine Processor required for
+                    executing the implementation.
+</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="virtualMachine" type="res:NonEmptyStringType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation>
+tooltip: Virtual Machine
+
+summary: The virtual machine that the implementation
+                    requires.
+
+description: The virtual machine that the implementation
+                    requires.
+</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="diskUsage" type="res:NonEmptyStringType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation>
+tooltip: Disk Usage
+
+summary: The minimum amount of Disk Space required to
+                    install this implementation.
+
+description: The minimum amount of Disk Space required to
+                    install this implementation.
+</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="runtimeMemoryUsage" type="res:NonEmptyStringType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation>
+tooltip: Runtime Memory Usage
+
+summary: The minimum amount of memory required to run
+                    an implementation.
+
+description: The minimum amount of memory required to run
+                    an implementation.
+</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="programmingLanguage" type="res:NonEmptyStringType" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation>
+tooltip: Programming Language
+
+summary: The computer programming language the software
+                    package was programmed in.
+
+description: The computer programming language the software
+                    package was programmed in.
+</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="checksum" type="res:NonEmptyStringType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation>
+tooltip: Checksum
+
+summary: The generated checksum value of a software
+                    package that is a self-contained module.
+
+description: The generated checksum value of a software
+                    package that is a self-contained module.
+</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="dependency" type="DependencyType" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation>
+tooltip: dependency
+
+summary: This fields documents any dependencies
+                    that this implementation might have.
+
+description: This fields documents any dependencies
+                    that this implementation might have.
+</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dependency" type="DependencyType" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation>
+tooltip: dependency
+
+summary: This fields documents any dependencies
+              that this software package in general might have.
+
+description: This fields documents any dependencies
+              that this software package in general might have.
+</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="licenseURL" type="res:NonEmptyStringType">
+            <xs:annotation>
+              <xs:documentation>
+tooltip: URL for License
+
+summary: URL where the license can be found
+
+description: URL where the license can be found
+</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="license" type="res:NonEmptyStringType">
+            <xs:annotation>
+              <xs:documentation>
+tooltip: License
+
+summary: Text of the license
+
+description: Text of the license
+</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+        <xs:element name="version" type="res:NonEmptyStringType">
+          <xs:annotation>
+            <xs:documentation>
+tooltip: Version
+
+summary: Version of the software being
+              packaged.
+
+description: String value corresponding to the major, minor,
+              custom, and build version.
+</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="project" type="proj:ResearchProjectType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>
+tooltip: project descriptor
+
+summary: 
+
+description: This field is a description of the project with
+           which this software product is related.  Please see the eml-project
+           module for more information.
+</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+      <xs:group ref="res:ReferencesGroup"/>
+    </xs:choice>
+    <xs:attribute name="id" type="res:IDType" use="optional"/>
+    <xs:attribute name="system" type="res:SystemType" use="optional"/>
+    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
+  </xs:complexType>
+  <xs:simpleType name="Action">
+    <xs:annotation>
+      <xs:documentation>
+tooltip: Action
+
+summary: Describes what action needs to be undertaken (if any) for
+        a software dependency at either the software package or implementation
+        level.
+
+description: This element and its enumerations of assert and
+        install can be used as commands by a software application to carry out
+        these actions on software package dependencies. This is a change from
+        how we have used all previous elements within eml. Up until now all
+        other elements have been simply metadata designed to describe data,
+        literature citations, etc... with the Action element we can use this
+        module as a command to carry out the action.
+</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="install"/>
+      <xs:enumeration value="assert"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="DependencyType">
+      <xs:annotation>
+        <xs:documentation>
+tooltip: Dependency
+
+summary: Dependency describes the software package(s) that the
+          software package is dependent upon.
+
+description: The dependency element is recursive. It is a
+          sub-element of the software Element but it also has as a sub-element
+          its parent element Software Package. Dependency has been made optional
+          because to make it mandatory does not allow the recursion to end.
+          Dependency has also been made a sub-element of implementation because
+          there can be both implementation and package level dependencies within
+          a package.
+</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element name="action" type="Action">
+          <xs:annotation>
+            <xs:documentation>
+tooltip: Action
+
+summary: Describes what action needs to be undertaken (if any)
+           for a software dependency at either the software package or
+           implementation level.
+
+description: This element and its enumerations of assert and
+           install can be used as commands by a software application to carry
+           out these actions on software package dependencies. This is a change
+           from how we have used all previous elements within eml. Up until now
+           all other elements have been simply metadata designed to describe
+           data, literature citations, etc... with the Action element we can
+           use this module as a command to carry out the action.
+           
+</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="software" type="SoftwareType"/>
+      </xs:sequence>
+  </xs:complexType>
+  <xs:element name="dependency" type="DependencyType"/>
+</xs:schema>
