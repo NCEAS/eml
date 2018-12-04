@@ -44,7 +44,7 @@ public class EMLValidator {
 		return doc;
 	}
 
-	private boolean validate() {
+	public boolean validate() {
 		boolean isValid = true;
 		
 		// TODO: All EML documents MUST have the 'eml' module as the root
@@ -65,7 +65,7 @@ public class EMLValidator {
 		// If an `additionalMetadata` element references another using a child `describes` element, another element with that value in its `id` attribute MUST exist in the document
 		Vector<String> refs = getXPathValues("//annotation[@references]/@references|//references|/describes");
 		for (String s : refs) {
-			System.out.println(s);
+			//System.out.println(s);
 			if (!ids.contains(s)) {
 				System.err.println("Invalid: Reference missing from IDs: " + s);
 				isValid = false;
