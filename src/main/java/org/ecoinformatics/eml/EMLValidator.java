@@ -49,8 +49,10 @@ public class EMLValidator {
 		
 		// TODO: All EML documents MUST have the 'eml' module as the root
 		
-		// All `id` attributes within the document MUST be unique
+		// All `id` attributes and `packageId` within the document MUST be unique
+		Vector<String> packageId = getXPathValues("//*/@packageId");
 		Vector<String> ids = getXPathValues("//*[@id]/@id");
+        ids.addAll(packageId);
 		HashMap idmap = new HashMap();
 		for (String s : ids) {
 			//System.out.println(s);
