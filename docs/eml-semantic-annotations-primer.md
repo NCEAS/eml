@@ -12,13 +12,13 @@ Example EML `attribute` element annotation:
 
 ```
 <attribute id="att.4">
-        <attributeName>pctcov</attributeName>
-        <attributeLabel>percent cover</attributeLabel>
-        <attributeDefinition>The percent ground cover on the field</attributeDefinition>
-        <annotation>
-            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
-            <valueURI label="Plant Cover Percentage">http://purl.dataone.org/odo/ECSO_00001197</valueURI>
-        </annotation>
+    <attributeName>pctcov</attributeName>
+    <attributeLabel>percent cover</attributeLabel>
+    <attributeDefinition>The percent ground cover on the field</attributeDefinition>
+    <annotation>
+        <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+        <valueURI label="Plant Cover Percentage">http://purl.dataone.org/odo/ECSO_00001197</valueURI>
+    </annotation>
 </attribute>
 
 ```
@@ -34,8 +34,28 @@ Example EML `attribute` element annotation:
 
 - describe that this annotation is embedded within an EML `dataset` element and the subject is the `dataset` id attribute value
 - describe the propertyURI and valueURI elements in the annotation, the label attributes of these elements, and the content of these elements  
-- show an example annotation
 
+Example `dataset` annotation:
+
+```
+<dataset id="dataset-01">
+    <title>Data from Cedar Creek LTER on productivity and species richness for use in a workshop titled 
+    "An Analysis of the Relationship between Productivity and Diversity using Experimental Results from 
+    the Long-Term Ecological Research Network" held at NCEAS in September 1996.</title>
+    <creator id="clarence.lehman">
+        <individualName>
+            <salutation>Mr.</salutation>
+            <givenName>Clarence</givenName>
+            <surName>Lehman</surName>
+        </individualName>
+    </creator>
+    <annotation>
+        <propertyURI label="Subject">http://purl.org/dc/elements/1.1/subject</propertyURI>
+        <valueURI label="grassland biome">http://purl.obolibrary.org/obo/ENVO_01000177</valueURI>
+    </annotation>
+</dataset>  
+
+```
 
 ## /eml/annotations
 
