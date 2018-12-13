@@ -7,7 +7,21 @@ insert introductory text here
 
 - describe that this annotation is embedded within an EML `attribute` element and the annotation subject is the `attribute` id attribute value
 - describe the propertyURI and valueURI elements in the annotation, the label attributes of these elements, and the content of these elements  
-- show an example annotation
+
+Example EML `attribute` element annotation:
+
+```
+<attribute id="att.4">
+        <attributeName>pctcov</attributeName>
+        <attributeLabel>percent cover</attributeLabel>
+        <attributeDefinition>The percent ground cover on the field</attributeDefinition>
+        <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="Plant Cover Percentage">http://purl.dataone.org/odo/ECSO_00001197</valueURI>
+        </annotation>
+</attribute>
+
+```
 
 
 ## entity
