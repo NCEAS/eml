@@ -5,6 +5,15 @@ insert introductory text here
 
 ## attribute
 
+An attribute annotation represents a precisely-defined semantic statement that applies to an attribute (e.g. a characteristic of an object such as a column name in a spreadsheet). This semantic statement is used to associate precise measurement semantics with the attribute, such as the property that is being measured, the entity that is being measured, and the measurement standard for interpreting values for the attribute.
+
+A typical attribute annotation is embedded in a containing EML `attribute` element. Each annotation consists of a propertyURI and valueURI that define the property and value of the semantic statement. The subject of the statement is the EML `attribute` that contains the annotation. The associated labels can be used to display the statement to users. Each URI is resolvable to a controlled vocabulary that provides a definition, relationships to other terms, and multiple labels for displaying the statement.
+
+
+In the example EML `attribute` element annotation below, the subject of the annotation is "att.4".
+
+
+
 - describe that this annotation is embedded within an EML `attribute` element and the annotation subject is the `attribute` id attribute value
 - describe the propertyURI and valueURI elements in the annotation, the label attributes of these elements, and the content of these elements  
 
@@ -26,9 +35,11 @@ Example EML `attribute` element annotation:
 
 ## entity
 
-- describe that this annotation is embedded within an EML `dataTable` element and the annotation subject is the `dataTable` id attribute value
+- describe that this annotation is embedded within an EML `dataTable` (?) element and the annotation subject is the `dataTable` id attribute value
 - describe the propertyURI and valueURI elements in the annotation, the label attributes of these elements, and the content of these elements  
 - show an example annotation
+
+
 
 ## dataset
 
