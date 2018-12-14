@@ -25,6 +25,7 @@ Example `dataset` annotation:
             <surName>Lehman</surName>
         </individualName>
     </creator>
+      ...
     <annotation>
         <propertyURI label="Subject">http://purl.org/dc/elements/1.1/subject</propertyURI>
         <valueURI label="grassland biome">http://purl.obolibrary.org/obo/ENVO_01000177</valueURI>
@@ -39,11 +40,26 @@ Example `dataset` annotation:
 - describe the propertyURI and valueURI elements in the annotation, the label attributes of these elements, and the content of these elements  
 - show an example annotation
 
+```
+<otherEntity id="urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b" scope="document">
+    <entityName>DBO_MMWatch_SWL2016_MooreGrebmeierVagle.xlsx</entityName>
+    <entityDescription>Data contained in the file DBO_MMWatch_SWL2016_MooreGrebmeierVagle.xlsx are marine mammal observations and observation conditions from CCGS Sir Wilfrid Laurier July 10-20, 2016.  Data observations and locations are part of the Distributed Biological Observatory (DBO).</entityDescription>
+    <physical scope="document">
+        <objectName>DBO_MMWatch_SWL2016_MooreGrebmeierVagle.xlsx</objectName>
+        <size unit="bytes">24635</size>
+    </physical>
+    <entityType>Other</entityType>
+    <annotation>
+        <propertyURI label="Subject">http://purl.org/dc/elements/1.1/subject</propertyURI>
+        <valueURI label="Mammalia">http://purl.obolibrary.org/obo/NCBITaxon_40674</valueURI>  
+    <annotation>
+</otherEntity>
 
+```
 
 ## attribute-level annotation
 
-An attribute is a characteristic that describes a 'field' or 'variable' in a data entity, such as a column name in a spreadsheet. An attribute annotation represents a precisely-defined semantic statement that applies to an attribute. This semantic statement is used to associate precise measurement semantics with the attribute, such as the property being measured, the entity being measured, and the measurement standard for interpreting values for the attribute. `attribute` elements may be found in the `dataTable`, `spatialRaster`, `spatialVector`, `storedProcedure`, `view`, or `otherEntity` EML elements, in addition to custom modules.   
+An attribute is a characteristic that describes a 'field' or 'variable' in a data entity, such as a column name in a spreadsheet. An attribute annotation represents a precisely-defined semantic statement that applies to an attribute. This semantic statement is used to associate precise measurement semantics with the attribute, such as the property being measured, the entity being measured, and the measurement standard for interpreting values for the attribute. `attribute` elements may be nested in entity-level elements, including the `dataTable`, `spatialRaster`, `spatialVector`, `storedProcedure`, `view`, or `otherEntity` EML elements, in addition to custom modules. Refer to the Data Structures Modules for additional information about attributes [insert link].  
 
 A typical attribute annotation is embedded in a containing EML `attribute` element. Each annotation consists of a `propertyURI` element and `valueURI` element that respectively define the property and value (object) of the semantic statement. The subject of the statement is the `attribute` element that contains the annotation. The associated labels can be used to display the statement in a more readable format to users. Each URI should be resolvable to a controlled vocabulary that provides a precise definition, relationships to other terms, and multiple labels for displaying the statement. Note that for annotating measurements contained in tabular formats the preferred "default" object property is "contains measurements of type" (`http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType`).
 
@@ -87,6 +103,7 @@ Example `/eml/annotations` annotation:
         <valueURI label="BCO-DMO">https://doi.org/10.17616/R37P4C</valueURI>
     </annotation>
 </annotations>
+
 ```
 
 
@@ -107,4 +124,5 @@ Example `/eml/additionalMetadata` annotation:
         </annotation>
     </metadata>
 </additionalMetadata>
+
 ```
