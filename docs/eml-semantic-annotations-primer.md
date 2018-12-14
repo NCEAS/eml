@@ -1,9 +1,12 @@
 # Semantic Annotations Primer
 
 insert introductory text here
+   * why annotate?
+   * describe semantic triples
    * URIs should be resolvable
+   * annotations may be made at the dataset-level, entity-level attribute-level, in `/eml/annotations`, and in `/eml/additionalMetadata`
 
-## dataset level
+## dataset-level annotation
 
 - describe that this annotation is embedded within an EML `dataset` element and the subject is the `dataset` id attribute value
 - describe the propertyURI and valueURI elements in the annotation, the label attributes of these elements, and the content of these elements  
@@ -30,21 +33,21 @@ Example `dataset` annotation:
 
 ```
 
-## entity level
+## entity-level annotation
 
-- describe that this annotation is embedded within an EML `dataTable` (?) element and the annotation subject is the `dataTable` id attribute value
+- describe that this annotation is embedded within an EML `entityType` element (`otherEntity`, `dataTable`, `spatialRaster`, `spatialVector`, `view`, `storedProcedure`). and the annotation subject is the entityType `id` attribute value
 - describe the propertyURI and valueURI elements in the annotation, the label attributes of these elements, and the content of these elements  
 - show an example annotation
 
 
 
-## attribute level
+## attribute-level annotation
 
-An attribute is a characteristic that describes a 'field' or 'variable' in a data entity, such as a column name in a spreadsheet. An attribute annotation represents a precisely-defined semantic statement that applies to an attribute. This semantic statement is used to associate precise measurement semantics with the attribute, such as the property being measured, the entity being measured, and the measurement standard for interpreting values for the attribute.
+An attribute is a characteristic that describes a 'field' or 'variable' in a data entity, such as a column name in a spreadsheet. An attribute annotation represents a precisely-defined semantic statement that applies to an attribute. This semantic statement is used to associate precise measurement semantics with the attribute, such as the property being measured, the entity being measured, and the measurement standard for interpreting values for the attribute. `attribute` elements may be found in the `dataTable`, `spatialRaster`, `spatialVector`, `storedProcedure`, `view`, or `otherEntity` EML elements, in addition to custom modules.   
 
-A typical attribute annotation is embedded in a containing EML `attribute` element. Each annotation consists of a propertyURI and valueURI that define the property and value of the semantic statement. The subject of the statement is the EML `attribute` that contains the annotation. The associated labels can be used to display the statement to users. Each URI is resolvable to a controlled vocabulary that provides a definition, relationships to other terms, and multiple labels for displaying the statement.
+A typical attribute annotation is embedded in a containing EML `attribute` element. Each annotation consists of a propertyURI and valueURI that define the property and value of the semantic statement. The subject of the statement is the `attribute` element that contains the annotation. The associated labels can be used to display the statement in a more readable format to users. Each URI should be resolvable to a controlled vocabulary that provides a precise definition, relationships to other terms, and multiple labels for displaying the statement.
 
-In the following EML `attribute` element annotation below, the subject of the semantic statement is the `id` element attribute value, "att.4". The object property of the statement is `http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType`. Note that the URI for the object property resolves to a specific term in the OBOE ontology (https://github.com/NCEAS/oboe). Finally, the object in the semantic statement is `http://purl.dataone.org/odo/ECSO_00001197`, which resolves to the "Plant Cover Percentage" term in the ECSO Ontology (https://github.com/DataONEorg/sem-prov-ontologies/tree/master/observation). Taken together, the semantic statement can be interpreted as "att.4 contains measurements of type plant cover percentage".
+In the following EML `attribute` element annotation below, the subject of the semantic statement is the `id` element attribute value, "att.4". The object property of the statement is `http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType`. Note that the URI for the object property resolves to a specific term in the OBOE ontology (https://github.com/NCEAS/oboe). Finally, the object in the semantic statement is `http://purl.dataone.org/odo/ECSO_00001197`, which resolves to the "Plant Cover Percentage" term in the ECSO Ontology (https://github.com/DataONEorg/sem-prov-ontologies/tree/master/observation). Taken together, the semantic statement indicates that "att.4 contains measurements of type plant cover percentage".  Note that for annotating measurements contained in tabular formats the "default" object property is "contains measurements of type" (`http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType`).
 
 Example EML `attribute` element annotation:
 
@@ -62,7 +65,7 @@ Example EML `attribute` element annotation:
 ```
 
 
-## /eml/annotations
+## annotations in /eml/annotations
 
 - describe how a `references` attribute (of the annotation element) points to the `id` of the subject of the annotation
 - describe the propertyURI and valueURI elements in the annotation, the label attributes of these elements, and the content of these elements  
@@ -87,7 +90,7 @@ Example `/eml/annotations` annotation:
 ```
 
 
-## /eml/additionalMetadata
+## annotations in /eml/additionalMetadata
 
 - describe how the `describes` element contains the `id` of the annotation subject
 - describe the propertyURI and valueURI elements in the annotation, the label attributes of these elements, and the content of these elements  
