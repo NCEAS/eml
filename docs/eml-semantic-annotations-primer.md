@@ -6,12 +6,17 @@ insert introductory text here
    * URIs should be resolvable
    * annotations may be made at the dataset-level, entity-level attribute-level, in `/eml/annotations`, and in `/eml/additionalMetadata`
 
+
 ## dataset-level annotation
+
+A dataset is defined as all of the information describing a data collection event. This event may take place over some period of time and include many actual collections (e.g. a time series or remote sensing application) or it could be just one actual collection (e.g. a day in the field). The `dataset` EML element encompasses all information about a single dataset. A dataset can be (and often is) composed of a series of data entities (see 'entity-level annotation' section below) that are linked together by particular integrity constraints. Further information about datasets may be found at:[insert link].
+
+
 
 - describe that this annotation is embedded within an EML `dataset` element and the subject is the `dataset` id attribute value
 - describe the propertyURI and valueURI elements in the annotation, the label attributes of these elements, and the content of these elements  
 
-Example `dataset` annotation:
+Example 1: dataset-level annotation
 
 ```
 <dataset id="dataset-01">
