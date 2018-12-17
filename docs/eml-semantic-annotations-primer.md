@@ -1,4 +1,4 @@
-# Semantic Annotations Primer
+# Semantic Annotations Primer (in progress)
 
 insert introductory text here
    * why annotate?
@@ -9,14 +9,13 @@ insert introductory text here
 
 ## dataset-level annotation
 
-A dataset is defined as all of the information describing a data collection event. This event may take place over some period of time and include many actual collections (e.g. a time series or remote sensing application) or it could be just one actual collection (e.g. a day in the field). The `dataset` EML element encompasses all information about a single dataset. A dataset can be (and often is) composed of a series of data entities (see 'entity-level annotation' section below) that are linked together by particular integrity constraints. Further information about datasets may be found at:[insert link].
+A dataset is defined as all of the information describing a data collection event. This event may take place over some period of time and include many actual collections (e.g. a time series or remote sensing application) or it could be just one actual collection (e.g. a day in the field). The `dataset` element encompasses all information about a single dataset. It is intended to provide overview information about the dataset: broad information such as the title, abstract, keywords, contacts, maintenance history, purpose, and distribution of the data themselves. A dataset can be (and often is) composed of a series of data entities (see 'entity-level annotation' section below) that are linked together by particular integrity constraints. Further information about datasets may be found at:[insert link].
 
+A dataset-level annotation represents a precisely-defined semantic statement that applies to a dataset. This semantic statement is used to associate precise measurement semantics with the dataset. A dataset-level annotation is embedded in a containing `dataset` element. The subject of the semantic statement is the `dataset` element that contains the annotation. Each annotation consists of a `propertyURI` element and `valueURI` element, which respectively define a property and a value (object) that apply to the dataset. The associated labels can be used to display the property and value in a more readable format to users. Each URI should be resolvable to a controlled vocabulary that provides a precise definition, relationships to other terms, and multiple labels for displaying the statement. 
 
+In the following dataset-level annotation (Example 1), the subject of the semantic statement is the `dataset` element's `id` attribute value, "dataset-01". The object property of the statement is `http://purl.org/dc/elements/1.1/subject`. Finally, the value (object) in the semantic statement is `http://purl.obolibrary.org/obo/ENVO_01000177`, which resolves to the "grassland biome" term in the ENVO ontology (http://www.obofoundry.org/ontology/envo.html). Taken together, the semantic statement could be read as "the dataset with the id 'dataset-01' is about the subject grassland biome".
 
-- describe that this annotation is embedded within an EML `dataset` element and the subject is the `dataset` id attribute value
-- describe the propertyURI and valueURI elements in the annotation, the label attributes of these elements, and the content of these elements  
-
-Example 1: dataset-level annotation
+* Example 1: dataset-level annotation
 
 ```
 <dataset id="dataset-01">
