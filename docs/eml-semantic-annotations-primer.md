@@ -1,17 +1,18 @@
 # Semantic Annotations Primer (in progress)
 
 insert introductory text here
-   * why annotate?
-   * describe semantic triples
-   * URIs should be resolvable
-   * annotations may be made at the dataset-level, entity-level, attribute-level, in `/eml/annotations`, and in `/eml/additionalMetadata`
+
+* why annotate?
+* describe semantic triples
+* URIs should be resolvable
+* annotations may be made at the dataset-level, entity-level, attribute-level, in `/eml/annotations`, and in `/eml/additionalMetadata`
 
 
 ## dataset-level annotation
 
 A dataset is defined as all of the information describing a data collection event. This event may take place over some period of time and include many actual collections (e.g. a time series or remote sensing application) or it could be just one actual collection (e.g. a day in the field). The `dataset` element encompasses all information about a single dataset. It is intended to provide overview information about the dataset: broad information such as the title, abstract, keywords, contacts, maintenance history, purpose, and distribution of the data themselves. A dataset can be (and often is) composed of a series of data entities (see 'entity-level annotation' section below) that are linked together by particular integrity constraints. Further information about datasets may be found at:[insert link].
 
-A dataset-level annotation represents a precisely-defined semantic statement that applies to a dataset. This semantic statement is used to associate precise measurement semantics with the dataset. A dataset-level annotation is embedded in a containing `dataset` element. The subject of the semantic statement is the `dataset` element that contains the annotation. Each annotation consists of a `propertyURI` element and `valueURI` element, which respectively define a property and a value (object) that apply to the dataset. The associated labels can be used to display the property and value in a more readable format to users. Each URI should be resolvable to a controlled vocabulary that provides a precise definition, relationships to other terms, and multiple labels for displaying the statement. 
+A dataset-level annotation represents a precisely-defined semantic statement that applies to a dataset. This semantic statement is used to associate precise measurement semantics with the dataset. A dataset-level annotation is embedded in a containing `dataset` element. The subject of the semantic statement is the `dataset` element that contains the annotation. Each annotation consists of a `propertyURI` element and `valueURI` element, which respectively define a property and a value (object) that apply to the dataset. The associated labels can be used to display the property and value in a more readable format to users. Each URI should be resolvable to a controlled vocabulary that provides a precise definition, relationships to other terms, and multiple labels for displaying the statement.
 
 In the following dataset-level annotation (Example 1), the subject of the semantic statement is the `dataset` element's `id` attribute value, "dataset-01". The object property of the statement is `http://purl.org/dc/elements/1.1/subject`. Finally, the value (object) in the semantic statement is `http://purl.obolibrary.org/obo/ENVO_01000177`, which resolves to the "grassland biome" term in the ENVO ontology (http://www.obofoundry.org/ontology/envo.html). Taken together, the semantic statement could be read as "the dataset with the id 'dataset-01' is about the subject grassland biome".
 
@@ -19,8 +20,8 @@ In the following dataset-level annotation (Example 1), the subject of the semant
 
 ```
 <dataset id="dataset-01">
-    <title>Data from Cedar Creek LTER on productivity and species richness for use in a workshop titled 
-    "An Analysis of the Relationship between Productivity and Diversity using Experimental Results from 
+    <title>Data from Cedar Creek LTER on productivity and species richness for use in a workshop titled
+    "An Analysis of the Relationship between Productivity and Diversity using Experimental Results from
     the Long-Term Ecological Research Network" held at NCEAS in September 1996.</title>
     <creator id="clarence.lehman">
         <individualName>
@@ -42,7 +43,7 @@ In the following dataset-level annotation (Example 1), the subject of the semant
 
 Entities are usually tables of data (EML element `dataTable`). Data tables may be ascii text files, relational database tables, spreadsheets or other type of tabular data with a fixed logical structure. Related to data tables are views (EML element `view`) and stored procedures (EML element `storedProcedure`). Views and stored procedures are produced by an RDBMS or related system. Other types of data such as: raster (EML element `spatialRaster`), vector (EML element `spatialVector`) or spatialReference image data are also data entities. An `otherEntity` element would be used to describe types of entities that are not described by any other entity type. Entity-level EML elements are nested under `dataset` elements. Further information about entities may be found at: [insert link].
 
-An entity-level annotation represents a precisely-defined semantic statement that applies to an entity. This semantic statement is used to associate precise measurement semantics with the entity. An entity-level annotation is embedded in a containing entity-level element. The subject of the semantic statement is the entity-level element that contains the annotation. Each annotation consists of a `propertyURI` element and `valueURI` element, which respectively define a property and a value (object) that apply to the entity. The associated labels can be used to display the property and value in a more readable format to users. Each URI should be resolvable to a controlled vocabulary that provides a precise definition, relationships to other terms, and multiple labels for displaying the statement. 
+An entity-level annotation represents a precisely-defined semantic statement that applies to an entity. This semantic statement is used to associate precise measurement semantics with the entity. An entity-level annotation is embedded in a containing entity-level element. The subject of the semantic statement is the entity-level element that contains the annotation. Each annotation consists of a `propertyURI` element and `valueURI` element, which respectively define a property and a value (object) that apply to the entity. The associated labels can be used to display the property and value in a more readable format to users. Each URI should be resolvable to a controlled vocabulary that provides a precise definition, relationships to other terms, and multiple labels for displaying the statement.
 
 In the following entity-level annotation (Example 2), the subject of the semantic statement is the `otherEntity` element's `id` attribute value, "urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b". The object property of the statement is `http://purl.org/dc/elements/1.1/subject`. Finally, the value (object) in the semantic statement is `http://purl.obolibrary.org/obo/NCBITaxon_40674`, which resolves to the "Mammalia" term in the NCBITaxon ontology (http://www.ontobee.org/ontology/NCBITaxon). Taken together, the semantic statement indicates that "the entity with the id 'urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b' is about the subject Mammalia".
 
@@ -91,7 +92,7 @@ In the following attribute annotation (Example 3), the subject of the semantic s
 
 ## annotations in /eml/annotations
 
-The `annotations` element contains a list of annotations defining precise semantic statements for parts of a resource. It is nested under the `eml` root element. An annotation represents a precisely-defined semantic statement that applies to the resource. This semantic statement is used to associate precise semantics with a particular element in the EML document. 
+The `annotations` element contains a list of annotations defining precise semantic statements for parts of a resource. It is nested under the `eml` root element. An annotation represents a precisely-defined semantic statement that applies to the resource. This semantic statement is used to associate precise semantics with a particular element in the EML document.
 
 The `annotations` element contains a set of `annotation` elements. Each `annotation` element has a `references` attribute that points to the `id` attribute of the element being annotated. The id of the element being annotated is listed in the `references` attribute, and must point to a unique id within the EML document. In the semantic statement, the subject is implicitly the id that is referenced. Each annotation also consists of a `propertyURI` element and `valueURI` element that respectively define a property and value (object) that apply to the resource. The associated labels can be used to display the statement in a more readable format to users. Each URI should resolve to a controlled vocabulary that provides a definition, relationships to other terms, and multiple labels for displaying the statement.
 
