@@ -95,10 +95,11 @@ The `annotations` element contains a list of annotations defining precise semant
 
 The `annotations` element contains a set of `annotation` elements. Each `annotation` element has a `references` attribute that points to the `id` attribute of the element being annotated. The id of the element being annotated is listed in the `references` attribute, and must point to a unique id within the EML document. In the semantic statement, the subject is implicitly the id that is referenced. Each annotation also consists of a `propertyURI` element and `valueURI` element that respectively define a property and value (object) that apply to the resource. The associated labels can be used to display the statement in a more readable format to users. Each URI should resolve to a controlled vocabulary that provides a definition, relationships to other terms, and multiple labels for displaying the statement.
 
+The following `/eml/annotations` example (Example 4) has 3 different annotations. For the first annotation, the subject of the semantic statement is "CDF-biodiv-table", which is the id of another element in the EML document. The object property of the statement is `http://purl.org/dc/elements/1.1/subject`. Finally, the value (object) in the semantic statement is `http://purl.obolibrary.org/obo/ENVO_01000177`, which resolves to the "grassland biome" term in the ENVO ontology (`http://www.obofoundry.org/ontology/envo.html`). Taken together, the first semantic statement could be read as "CDR-biodiv-table is about the subject grassland biome".
 
+The second semantic statement contains the subject "adam.shepherd", the object property `http://www.w3.org/1999/02/22-rdf-syntax-ns#type` and the value (object) `https://schema.org/Person`. This statement can be interpreted as "adam.shepherd is a person".
 
-- describe how a `references` attribute (of the annotation element) points to the `id` of the subject of the annotation
-- describe the propertyURI and valueURI elements in the annotation, the label attributes of these elements, and the content of these elements  
+The third semantic statement also has the subject "adam.shepherd". The object property is "https://schema.org/memberOf" and the value (object) is "https://doi.org/10.17616/R37P4C". This statement can be read as "adam.shepherd is a member of BCO-DMO".
 
 * Example 4: `/eml/annotations` annotation
 
