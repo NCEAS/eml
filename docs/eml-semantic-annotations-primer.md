@@ -4,7 +4,7 @@ insert introductory text here
    * why annotate?
    * describe semantic triples
    * URIs should be resolvable
-   * annotations may be made at the dataset-level, entity-level attribute-level, in `/eml/annotations`, and in `/eml/additionalMetadata`
+   * annotations may be made at the dataset-level, entity-level, attribute-level, in `/eml/annotations`, and in `/eml/additionalMetadata`
 
 
 ## dataset-level annotation
@@ -44,7 +44,7 @@ Entities are usually tables of data (EML element `dataTable`). Data tables may b
 
 An entity-level annotation represents a precisely-defined semantic statement that applies to an entity. This semantic statement is used to associate precise measurement semantics with the entity. An entity-level annotation is embedded in a containing entity-level element. The subject of the semantic statement is the entity-level element that contains the annotation. Each annotation consists of a `propertyURI` element and `valueURI` element, which respectively define a property and a value (object) that apply to the entity. The associated labels can be used to display the property and value in a more readable format to users. Each URI should be resolvable to a controlled vocabulary that provides a precise definition, relationships to other terms, and multiple labels for displaying the statement. 
 
-In the following entity-level annotation (Example 2), the subject of the semantic statement is the EML `otherEntity` element's `id` attribute value, "urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b". The object property of the statement is `http://purl.org/dc/elements/1.1/subject`. Finally, the value (object) in the semantic statement is `http://purl.obolibrary.org/obo/NCBITaxon_40674`, which resolves to the "Mammalia" term in the NCBITaxon ontology (http://www.ontobee.org/ontology/NCBITaxon). Taken together, the semantic statement indicates that "the entity with the id 'urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b' is about the subject Mammalia".
+In the following entity-level annotation (Example 2), the subject of the semantic statement is the `otherEntity` element's `id` attribute value, "urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b". The object property of the statement is `http://purl.org/dc/elements/1.1/subject`. Finally, the value (object) in the semantic statement is `http://purl.obolibrary.org/obo/NCBITaxon_40674`, which resolves to the "Mammalia" term in the NCBITaxon ontology (http://www.ontobee.org/ontology/NCBITaxon). Taken together, the semantic statement indicates that "the entity with the id 'urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b' is about the subject Mammalia".
 
  * Example 2: entity-level annotation
 
@@ -69,9 +69,9 @@ In the following entity-level annotation (Example 2), the subject of the semanti
 
 An attribute is a characteristic that describes a 'field' or 'variable' in a data entity, such as a column name in a spreadsheet. An attribute annotation represents a precisely-defined semantic statement that applies to an attribute. This semantic statement is used to associate precise measurement semantics with the attribute, such as the property being measured, the entity being measured, and the measurement standard for interpreting values for the attribute. `attribute` elements may be nested in entity-level elements, including the `dataTable`, `spatialRaster`, `spatialVector`, `storedProcedure`, `view`, or `otherEntity` EML elements, in addition to custom modules. Refer to the Data Structures Modules documentation for additional information about attributes [insert link].  
 
-A typical attribute annotation is embedded in a containing EML `attribute` element. The subject of the semantic statement is the `attribute` element that contains the annotation. Each annotation consists of a `propertyURI` element and `valueURI` element that respectively define the property and value (object) of the semantic statement. The associated labels can be used to display the property and value in a more readable format to users. Each URI should be resolvable to a controlled vocabulary that provides a precise definition, relationships to other terms, and multiple labels for displaying the statement. Note that for annotating attributes that are measurements contained in tabular formats the preferred "default" object property is "contains measurements of type" (`http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType`).
+A typical attribute annotation is embedded in a containing `attribute` element. The subject of the semantic statement is the `attribute` element that contains the annotation. Each annotation consists of a `propertyURI` element and `valueURI` element that respectively define the property and value (object) of the semantic statement. The associated labels can be used to display the property and value in a more readable format to users. Each URI should be resolvable to a controlled vocabulary that provides a precise definition, relationships to other terms, and multiple labels for displaying the statement. Note that for annotating attributes that are measurements contained in tabular formats the preferred "default" object property is "contains measurements of type" (`http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType`).
 
-In the following attribute annotation (Example 3), the subject of the semantic statement is the EML `attribute` element's `id` attribute value, "att.4". The object property of the statement is `http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType`. Note that the URI for the object property resolves to a specific term in the OBOE ontology (https://github.com/NCEAS/oboe). Finally, the value(object) in the semantic statement is `http://purl.dataone.org/odo/ECSO_00001197`, which resolves to the "Plant Cover Percentage" term in the ECSO Ontology (https://github.com/DataONEorg/sem-prov-ontologies/tree/master/observation). Taken together, the semantic statement indicates that "att.4 contains measurements of type plant cover percentage".
+In the following attribute annotation (Example 3), the subject of the semantic statement is the `attribute` element's `id` attribute value, "att.4". The object property of the statement is `http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType`. Note that the URI for the object property resolves to a specific term in the OBOE ontology (https://github.com/NCEAS/oboe). Finally, the value(object) in the semantic statement is `http://purl.dataone.org/odo/ECSO_00001197`, which resolves to the "Plant Cover Percentage" term in the ECSO Ontology (https://github.com/DataONEorg/sem-prov-ontologies/tree/master/observation). Taken together, the semantic statement indicates that "att.4 contains measurements of type plant cover percentage".
 
 * Example 3: attribute-level annotation
 
@@ -90,6 +90,12 @@ In the following attribute annotation (Example 3), the subject of the semantic s
 
 
 ## annotations in /eml/annotations
+
+The `annotations` element contains a list of annotations defining precise semantic statements for parts of a resource. It is nested under the `eml` root element. An annotation represents a precisely-defined semantic statement that applies to the resource. This semantic statement is used to associate precise semantics with a particular element in the EML document. 
+
+The `annotations` element contains a set of `annotation` elements. Each `annotation` element has a `references` attribute that points to the `id` attribute of the element being annotated. The id of the element being annotated is listed in the `references` attribute, and must point to a unique id within the EML document. In the semantic statement, the subject is implicitly the id that is referenced. Each annotation also consists of a `propertyURI` element and `valueURI` element that respectively define a property and value (object) that apply to the resource. The associated labels can be used to display the statement in a more readable format to users. Each URI should resolve to a controlled vocabulary that provides a definition, relationships to other terms, and multiple labels for displaying the statement.
+
+
 
 - describe how a `references` attribute (of the annotation element) points to the `id` of the subject of the annotation
 - describe the propertyURI and valueURI elements in the annotation, the label attributes of these elements, and the content of these elements  
