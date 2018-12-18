@@ -92,7 +92,7 @@ In the following attribute annotation (Example 3), the subject of the semantic s
 
 ## annotations in /eml/annotations
 
-The `annotations` element contains a list of annotations defining precise semantic statements for parts of a resource. It is nested under the `eml` root element. An annotation represents a precisely-defined semantic statement that applies to the resource. This semantic statement is used to associate precise semantics with a particular element in the EML document.
+The `annotations` element is nested under the `eml` root element and contains a list of annotations defining precise semantic statements for parts of a resource. An annotation represents a precisely-defined semantic statement that applies to the resource. This statement is used to associate precise semantics with a particular element in the EML document. For additional details, refer to [insert link]
 
 The `annotations` element contains a set of `annotation` elements. Each `annotation` element has a `references` attribute that points to the `id` attribute of the element being annotated. The id of the element being annotated is listed in the `references` attribute, and must point to a unique id within the EML document. In the semantic statement, the subject is implicitly the id that is referenced. Each annotation also consists of a `propertyURI` element and `valueURI` element that respectively define a property and value (object) that apply to the resource. The associated labels can be used to display the statement in a more readable format to users. Each URI should resolve to a controlled vocabulary that provides a definition, relationships to other terms, and multiple labels for displaying the statement.
 
@@ -124,6 +124,9 @@ The third semantic statement also has the subject "adam.shepherd". The object pr
 
 
 ## annotations in /eml/additionalMetadata
+
+The `additionalMetadata` element is nested under the `eml` root element and contains metadata that is not suitable for other parts of the EML document. It is intended to extend EML to include metadata that is not already available in another part of the EML specification, or to include site- or system-specific extensions that are needed beyond the core metadata. The additional metadata contained in this field describes the element referenced in the `describes` element preceding it. The content of this field is any well-formed XML fragment.
+
 
 - describe how the `describes` element contains the `id` of the annotation subject
 - describe the propertyURI and valueURI elements in the annotation, the label attributes of these elements, and the content of these elements  
