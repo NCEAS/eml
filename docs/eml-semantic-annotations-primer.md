@@ -127,13 +127,10 @@ The third semantic statement also has the subject "adam.shepherd". The object pr
 
 The `additionalMetadata` element is nested under the `eml` root element and contains metadata that is not suitable for other parts of the EML document. It is intended to extend EML to include metadata that is not already available in another part of the EML specification, or to include site- or system-specific extensions that are needed beyond the core metadata.  The content of this field is any well-formed XML fragment. Additional information may be found at [insert link].
 
-The `additionalMetadata` element contains `describes` elements, `metadata` elements, and `annotation` elements. The `describes` element has a pointer to the id attribute for the sub-portion of the resource that is described by the additional metadata. It is the `metadata` element that holds the additional metadata to be included in the document. This additional metadata field describes the element referenced in the `describes` element preceding it. Nested under the `metadata` element is the `annotation` element.
+The `additionalMetadata` element contains `describes` elements, `metadata` elements, and `annotation` elements. The `describes` element has a pointer to the `id` attribute for the sub-portion of the resource that is described by the additional metadata. It is the `metadata` element that holds the additional metadata to be included in the document. This additional metadata field describes the element referenced in the `describes` element preceding it. Nested under the `metadata` element is the `annotation` element.  An annotation is a precisely-defined semantic statement about an element in the EML document. The subject of the semantic statement is the id being referenced in the `describes` element that precedes the `metadata` element. Each `annotation` element consists of a `propertyURI` element and `valueURI` element that respectively define the property and value (object) of the semantic statement. The associated labels can be used to display the property and value in a more readable format to users. Each URI should be resolvable to a controlled vocabulary that provides a precise definition, relationships to other terms, and multiple labels for displaying the statement. 
 
+The following `/eml/additionalMetadata` example (Example 5) describes a semantic statement having the subject "adam.shepherd", which is the id of another element in the EML document. The object property of the statement is `https://schema.org/memberOf`. Finally, the value (object) in the semantic statement is `https://doi.org/10.17616/R37P4C`. Taken together, the semantic statement could be read as "adam.shepherd is a member of BCO-DMO".
 
-
-
-- describe how the `describes` element contains the `id` of the annotation subject
-- describe the propertyURI and valueURI elements in the annotation, the label attributes of these elements, and the content of these elements  
 
 * Example 5: `/eml/additionalMetadata` annotation
 
