@@ -125,7 +125,11 @@ The third semantic statement also has the subject "adam.shepherd". The object pr
 
 ## annotations in /eml/additionalMetadata
 
-The `additionalMetadata` element is nested under the `eml` root element and contains metadata that is not suitable for other parts of the EML document. It is intended to extend EML to include metadata that is not already available in another part of the EML specification, or to include site- or system-specific extensions that are needed beyond the core metadata. The additional metadata contained in this field describes the element referenced in the `describes` element preceding it. The content of this field is any well-formed XML fragment.
+The `additionalMetadata` element is nested under the `eml` root element and contains metadata that is not suitable for other parts of the EML document. It is intended to extend EML to include metadata that is not already available in another part of the EML specification, or to include site- or system-specific extensions that are needed beyond the core metadata.  The content of this field is any well-formed XML fragment. Additional information may be found at [insert link].
+
+The `additionalMetadata` element contains `describes` elements, `metadata` elements, and `annotation` elements. The `describes` element has a pointer to the id attribute for the sub-portion of the resource that is described by the additional metadata. It is the `metadata` element that holds the additional metadata to be included in the document. This additional metadata field describes the element referenced in the `describes` element preceding it. Nested under the `metadata` element is the `annotation` element.
+
+
 
 
 - describe how the `describes` element contains the `id` of the annotation subject
