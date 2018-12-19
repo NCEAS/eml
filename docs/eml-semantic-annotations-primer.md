@@ -1,15 +1,15 @@
 # Semantic Annotations Primer (in progress)
 
 ## Introduction
-A semantic annotation is the attachment of semantic metadata to a resource. Semantic metadata provides a precise definition of concepts and clarifies the relationships between concepts. Although the process of semantic annotation may seem tedious, the payoff is enhanced information retrieval and discovery. For example, if a dataset is annotated as being about "carbon dioxide flux" and another annotated with "CO2 flux" the information system should recognize that the datasets are about equivalent concepts. In another example, if a user performs a search for datasets about "litter" (as in "plant litter"), the system will disambiguate the term from other forms of "litter" (as in garbage, the group of animals born at the same time, etc.). Yet another example is if a user searches for datasets about "carbon flux", then datasets about "carbon dioxide flux" will also be returned because "carbon dioxide flux" is a type of "carbon flux".
+A semantic annotation is the attachment of semantic metadata to a resource. Semantic metadata provides a precise definition of concepts and clarifies the relationships between concepts. Although the process of semantic annotation may seem tedious, the payoff is enhanced information retrieval and discovery. For example, if a dataset is annotated as being about "carbon dioxide flux" and another annotated with "CO2 flux" the information system should recognize that the datasets are about equivalent concepts. In another example, if a user performs a search for datasets about "litter" (as in "plant litter"), the system will disambiguate the term from other forms of "litter" (as in garbage, the group of animals born at the same time, etc.). Yet another example is if a user searches for datasets about "carbon flux", then datasets about "carbon dioxide flux" will also be returned because "carbon dioxide flux" is considered a type of "carbon flux".
+
+A semantic annotation follows the Resource Description Framework (RDF) data model and uses semantic triples. A semantic triple is composed of a **subject**, **object property (predicate)**, and **object**. Ideally, these components should be globally unique and should be resolvable uniform resource identifiers (URI) from controlled vocabularies so that users can look up the definitions and relationships of the terms to other terms. An example is "http://purl.obolibrary.org/obo/ENVO_01001357", which resolves to the term "desert" in the Environment Ontology (ENVO) when entered into an address bar in a web browser. Users can find the definition for "desert" and determine its relationship to other terms in the ontology. In general, the subject and object can be thought of as nouns in a sentence and the object property is akin to a verb or relationship that connects the subject and object. The semantic triple expresses a statement about the associated resource.
 
 
 
-insert introductory text here
+* Additional background information on the RDF data model: https://www.w3.org/TR/WD-rdf-syntax-971002/
+* The Ecosystem Ontology (ECSO): https://github.com/DataONEorg/sem-prov-ontologies/tree/master/observation
 
-* why annotate?
-* describe semantic triples
-* URIs should be resolvable
 * annotations may be made at the dataset-level, entity-level, attribute-level, in `/eml/annotations`, and in `/eml/additionalMetadata`
 
 
