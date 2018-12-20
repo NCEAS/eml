@@ -6,10 +6,7 @@ A semantic annotation is the attachment of semantic metadata to a resource. Sema
 A semantic annotation follows the Resource Description Framework (RDF) data model and uses semantic triples. A semantic triple is composed of a **subject**, **object property (predicate)**, and **object**. In general, the subject and object can be thought of as nouns in a sentence and the object property is akin to a verb or relationship that connects the subject and object. The semantic triple expresses a statement about the associated resource. Ideally, these components should be globally unique and should be resolvable uniform resource identifiers (URIs) from controlled vocabularies so that users can look up the definitions and relationships of the terms to other terms. An example is "http://purl.obolibrary.org/obo/ENVO_01001357", which resolves to the term "desert" in the Environment Ontology (ENVO) when entered into an address bar in a web browser. Users can find the definition for "desert" and determine its relationship to other terms in the ontology. 
 * Additional background information on the RDF data model: https://www.w3.org/TR/WD-rdf-syntax-971002/
 
-
 ## Semantic Annotations in EML 2.2.0
-A general introduction to the patterns for creating semantic annotations in an EML document is made here. Users can find additional explanations and examples for each kind of annotation listed in the appropriate section below.   
-
 In **EML 2.2.0** there are 5 kinds of semantic annotations that can be made in an EML document: **dataset-level**, **entity-level**, **attribute-level**, **/eml/annotations** and **/eml/additionalMetadata**
 
 ### Pattern for dataset-level, entity-level, and attribute-level annotations
@@ -30,35 +27,7 @@ Multiple `annotation` elements may be embedded in the same dataset, entity-level
 </dataset or entity-level or attribute>
 ```
 
-### Pattern for /eml/annotations annotations
-Semantic annotations may also be inserted in the `annotations` element that is nested under the `eml` root element. This type of semantic annotation involves an `annotation` element that has a `references` attribute. What is listed in the `references` attribute is the *subject* of the semantic annotation. Within the `annotation` element are `propertyURI` and `valueURI` elements. The `propertyURI` is the *object property* and the `valueURI` is the *object* of the annotation.  
-
-```
-<eml>
-  ...
-    <annotations>
-        <annotation references="test_data">         <- subject is "test_data"
-            <propertyURI>abc</propertyURI>          <- object property is "abc"
-            <valueURI>123</valueURI>                <- object is "123"
-        </annotation>
-    </annotations>
-  ...  
-</eml>
-```
-
-Multiple `annotation` elements can be used to create multiple annotations about the same subject. Please see "Example 4" below for an illustrative example.
-
-
-### Pattern for /eml/additionalMetadata annotations
-
-
-and `additionalMetadata` 
-
-
-
-
-
-### Dataset-level annotations
+#### Dataset-level annotations
 
 A dataset is defined as all of the information describing a data collection event. This event may take place over some period of time and include many actual collections (e.g. a time series or remote sensing application) or it could be just one actual collection (e.g. a day in the field). The `dataset` element encompasses all information about a single dataset. It is intended to provide overview information about the dataset: broad information such as the title, abstract, keywords, contacts, maintenance history, purpose, and distribution of the data themselves. A dataset can be (and often is) composed of a series of data entities (see 'entity-level annotation' section below) that are linked together by particular integrity constraints. Further information about datasets may be found at:[insert link].
 
@@ -89,7 +58,7 @@ In the following dataset-level annotation (Example 1), the subject of the semant
 
 ```
 
-### Entity-level annotations
+#### Entity-level annotations
 
 Entities are usually tables of data (EML element `dataTable`). Data tables may be ascii text files, relational database tables, spreadsheets or other type of tabular data with a fixed logical structure. Related to data tables are views (EML element `view`) and stored procedures (EML element `storedProcedure`). Views and stored procedures are produced by an RDBMS or related system. Other types of data such as: raster (EML element `spatialRaster`), vector (EML element `spatialVector`) or spatialReference image data are also data entities. An `otherEntity` element would be used to describe types of entities that are not described by any other entity type. Entity-level EML elements are nested under `dataset` elements. Further information about entities may be found at: [insert link].
 
@@ -116,7 +85,7 @@ In the following entity-level annotation (Example 2), the subject of the semanti
 
 ```
 
-### Attribute-level annotations
+#### Attribute-level annotations
 
 An attribute is a characteristic that describes a 'field' or 'variable' in a data entity, such as a column name in a spreadsheet. An attribute annotation represents a precisely-defined semantic statement that applies to an attribute. This semantic statement is used to associate precise measurement semantics with the attribute, such as the property being measured, the entity being measured, and the measurement standard for interpreting values for the attribute. `attribute` elements may be nested in entity-level elements, including the `dataTable`, `spatialRaster`, `spatialVector`, `storedProcedure`, `view`, or `otherEntity` EML elements, in addition to custom modules. Refer to the Data Structures Modules documentation for additional information about attributes [insert link].  
 
@@ -139,8 +108,25 @@ In the following attribute annotation (Example 3), the subject of the semantic s
 
 ```
 
+### Pattern for /eml/annotations annotations
+Semantic annotations may also be inserted in the `annotations` element that is nested under the `eml` root element. This type of semantic annotation involves an `annotation` element that has a `references` attribute. What is listed in the `references` attribute is the *subject* of the semantic annotation. Within the `annotation` element are `propertyURI` and `valueURI` elements. The `propertyURI` is the *object property* and the `valueURI` is the *object* of the annotation.  
 
-### Annotations in /eml/annotations
+```
+<eml>
+  ...
+    <annotations>
+        <annotation references="test_data">         <- subject is "test_data"
+            <propertyURI>abc</propertyURI>          <- object property is "abc"
+            <valueURI>123</valueURI>                <- object is "123"
+        </annotation>
+    </annotations>
+  ...  
+</eml>
+```
+
+Multiple `annotation` elements can be used to create multiple annotations about the same subject. Please see "Example 4" below for an illustrative example.
+
+#### Annotations in /eml/annotations
 
 The `annotations` element is nested under the `eml` root element and contains a list of annotations defining precise semantic statements for parts of a resource. An annotation represents a precisely-defined semantic statement that applies to the resource. This statement is used to associate precise semantics with a particular element in the EML document. For additional details, refer to [insert link]
 
@@ -173,7 +159,24 @@ The third semantic statement also has the subject "adam.shepherd". The object pr
 ```
 
 
-### Annotations in /eml/additionalMetadata
+
+
+### Pattern for /eml/additionalMetadata annotations
+
+
+and `additionalMetadata` 
+
+
+
+
+
+
+
+
+
+
+
+#### Annotations in /eml/additionalMetadata
 
 The `additionalMetadata` element is nested under the `eml` root element and contains metadata that is not suitable for other parts of the EML document. It is intended to extend EML to include metadata that is not already available in another part of the EML specification, or to include site- or system-specific extensions that are needed beyond the core metadata.  The content of this field is any well-formed XML fragment. Additional information may be found at [insert link].
 
