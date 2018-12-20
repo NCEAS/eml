@@ -7,10 +7,10 @@ A semantic annotation follows the Resource Description Framework (RDF) data mode
 * Additional background information on the RDF data model: https://www.w3.org/TR/WD-rdf-syntax-971002/
 
 ## Semantic Annotations in EML 2.2.0
-In **EML 2.2.0** there are 5 kinds of semantic annotations that can be made in an EML document: **dataset-level**, **entity-level**, **attribute-level**, **/eml/annotations** and **/eml/additionalMetadata**
+In **EML 2.2.0** there are 5 kinds of semantic annotations that can be made in an EML document: **dataset-level**, **entity-level**, **attribute-level**, **/eml/annotations** and **/eml/additionalMetadata**.
 
 ### Pattern for dataset-level, entity-level, and attribute-level annotations
-Semantic annotations made at the **dataset-level**, **entity-level**, and **attribute-level** follow the same pattern. An annotation made at any of these levels involves inserting an `annotation` element containing a `propertyURI` element and a `valueURI` element within the appropriate element. The *subject* of this annotation is the containing element. The `propertyURI` is the *object property* and the `valueURI` is the *object* of the annotation. For example, an attribute-level annotation involves an `attribute` element. Within the `attribute` element are `propertyURI` and `valueURI` elements. 
+Semantic annotations made at the **dataset-level**, **entity-level**, and **attribute-level** follow the same pattern. An annotation made at any of these levels involves inserting an `annotation` element containing a `propertyURI` element and a `valueURI` element within the appropriate element. The *subject* of this annotation is the containing element. *It is recommended to give the subject element an* `id` *attribute and make the subject the value of the* `id`. The `propertyURI` is the *object property* and the `valueURI` is the *object* of the annotation. For example, an attribute-level annotation involves an `attribute` element. Within the `attribute` element are `propertyURI` and `valueURI` elements. 
 
 Multiple `annotation` elements may be embedded in the same dataset, entity-level or attribute element to assert multiple semantic statements.
 
@@ -31,7 +31,7 @@ Multiple `annotation` elements may be embedded in the same dataset, entity-level
 
 A dataset is defined as all of the information describing a data collection event. This event may take place over some period of time and include many actual collections (e.g. a time series or remote sensing application) or it could be just one actual collection (e.g. a day in the field). The `dataset` element encompasses all information about a single dataset. It is intended to provide overview information about the dataset: broad information such as the title, abstract, keywords, contacts, maintenance history, purpose, and distribution of the data themselves. A dataset can be (and often is) composed of a series of data entities (see 'entity-level annotation' section below) that are linked together by particular integrity constraints. Further information about datasets may be found at:[insert link].
 
-A dataset-level annotation represents a precisely-defined semantic statement that applies to a dataset. This semantic statement is used to associate precise measurement semantics with the dataset. A dataset-level `annotation` elemetn is embedded in a containing `dataset` element. The subject of the semantic statement is the `dataset` element that contains the annotation. Each annotation consists of a `propertyURI` element and `valueURI` element, which respectively define a property and a value (object) that apply to the dataset. The associated labels can be used to display the property and value in a more readable format to users. Each URI should be resolvable to a controlled vocabulary that provides a precise definition, relationships to other terms, and multiple labels for displaying the statement.
+A dataset-level annotation represents a precisely-defined semantic statement that applies to a dataset. This semantic statement is used to associate precise measurement semantics with the dataset. A dataset-level `annotation` element is embedded in a containing `dataset` element. The subject of the semantic statement is the `dataset` element that contains the annotation. If the `dataset` element contains an `id` attribute, then the subject should be the value of the `id` attribute. Each annotation consists of a `propertyURI` element and `valueURI` element, which respectively define a property and a value (object) that apply to the dataset. The associated labels can be used to display the property and value in a more readable format to users. Each URI should be resolvable to a controlled vocabulary that provides a precise definition, relationships to other terms, and multiple labels for displaying the statement.
 
 In the following dataset-level annotation (Example 1), the subject of the semantic statement is the `dataset` element's `id` attribute value, "dataset-01". The object property of the statement is `http://purl.org/dc/elements/1.1/subject`. Finally, the value (object) in the semantic statement is `http://purl.obolibrary.org/obo/ENVO_01000177`, which resolves to the "grassland biome" term in the ENVO ontology (http://www.obofoundry.org/ontology/envo.html). Taken together, the semantic statement could be read as "the dataset with the id 'dataset-01' is about the subject grassland biome".
 
@@ -62,7 +62,7 @@ In the following dataset-level annotation (Example 1), the subject of the semant
 
 Entities are usually tables of data (EML element `dataTable`). Data tables may be ascii text files, relational database tables, spreadsheets or other type of tabular data with a fixed logical structure. Related to data tables are views (EML element `view`) and stored procedures (EML element `storedProcedure`). Views and stored procedures are produced by an RDBMS or related system. Other types of data such as: raster (EML element `spatialRaster`), vector (EML element `spatialVector`) or spatialReference image data are also data entities. An `otherEntity` element would be used to describe types of entities that are not described by any other entity type. Entity-level EML elements are nested under `dataset` elements. Further information about entities may be found at: [insert link].
 
-An entity-level annotation represents a precisely-defined semantic statement that applies to an entity. This semantic statement is used to associate precise measurement semantics with the entity. An entity-level `annotation` element is embedded in a containing entity-level element. The subject of the semantic statement is the entity-level element that contains the annotation. Each annotation consists of a `propertyURI` element and `valueURI` element, which respectively define a property and a value (object) that apply to the entity. The associated labels can be used to display the property and value in a more readable format to users. Each URI should be resolvable to a controlled vocabulary that provides a precise definition, relationships to other terms, and multiple labels for displaying the statement.
+An entity-level annotation represents a precisely-defined semantic statement that applies to an entity. This semantic statement is used to associate precise measurement semantics with the entity. An entity-level `annotation` element is embedded in a containing entity-level element. The subject of the semantic statement is the entity-level element that contains the annotation. If the entity-level element contains an `id` attribute, then the subject should be the value of the `id` attribute. Each annotation consists of a `propertyURI` element and `valueURI` element, which respectively define a property and a value (object) that apply to the entity. The associated labels can be used to display the property and value in a more readable format to users. Each URI should be resolvable to a controlled vocabulary that provides a precise definition, relationships to other terms, and multiple labels for displaying the statement.
 
 In the following entity-level annotation (Example 2), the subject of the semantic statement is the `otherEntity` element's `id` attribute value, "urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b". The object property of the statement is `http://purl.org/dc/elements/1.1/subject`. Finally, the value (object) in the semantic statement is `http://purl.obolibrary.org/obo/NCBITaxon_40674`, which resolves to the "Mammalia" term in the NCBITaxon ontology (http://www.ontobee.org/ontology/NCBITaxon). Taken together, the semantic statement indicates that "the entity with the id 'urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b' is about the subject Mammalia".
 
@@ -89,7 +89,7 @@ In the following entity-level annotation (Example 2), the subject of the semanti
 
 An attribute is a characteristic that describes a 'field' or 'variable' in a data entity, such as a column name in a spreadsheet. An attribute annotation represents a precisely-defined semantic statement that applies to an attribute. This semantic statement is used to associate precise measurement semantics with the attribute, such as the property being measured, the entity being measured, and the measurement standard for interpreting values for the attribute. `attribute` elements may be nested in entity-level elements, including the `dataTable`, `spatialRaster`, `spatialVector`, `storedProcedure`, `view`, or `otherEntity` EML elements, in addition to custom modules. Refer to the Data Structures Modules documentation for additional information about attributes [insert link].  
 
-A typical attribute annotation involves an `annotation` element that is embedded in a containing `attribute` element. The subject of the semantic statement is the `attribute` element that contains the annotation. Each annotation consists of a `propertyURI` element and `valueURI` element that respectively define the property and value (object) of the semantic statement. The associated labels can be used to display the property and value in a more readable format to users. Each URI should be resolvable to a controlled vocabulary that provides a precise definition, relationships to other terms, and multiple labels for displaying the statement. Note that for annotating attributes that are measurements contained in tabular formats the preferred "default" object property is "contains measurements of type" (`http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType`).
+A typical attribute annotation involves an `annotation` element that is embedded in a containing `attribute` element. The subject of the semantic statement is the `attribute` element that contains the annotation. If the `attribute` element contains an `id` attribute, then the subject should be the value of the `id` attribute. Each annotation consists of a `propertyURI` element and `valueURI` element that respectively define the property and value (object) of the semantic statement. The associated labels can be used to display the property and value in a more readable format to users. Each URI should be resolvable to a controlled vocabulary that provides a precise definition, relationships to other terms, and multiple labels for displaying the statement. Note that for annotating attributes that are measurements contained in tabular formats the preferred "default" object property is "contains measurements of type" (`http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType`).
 
 In the following attribute annotation (Example 3), the subject of the semantic statement is the `attribute` element's `id` attribute value, "att.4". The object property of the statement is `http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType`. Note that the URI for the object property resolves to a specific term in the OBOE ontology (https://github.com/NCEAS/oboe). Finally, the value (object) in the semantic statement is `http://purl.dataone.org/odo/ECSO_00001197`, which resolves to the "Plant Cover Percentage" term in the ECSO Ontology (https://github.com/DataONEorg/sem-prov-ontologies/tree/master/observation). Taken together, the semantic statement indicates that "att.4 contains measurements of type plant cover percentage".
 
@@ -111,20 +111,24 @@ In the following attribute annotation (Example 3), the subject of the semantic s
 ### Pattern for /eml/annotations annotations
 Semantic annotations may also be inserted in the `annotations` element that is nested under the `eml` root element. This type of semantic annotation involves an `annotation` element that has a `references` attribute. What is listed in the `references` attribute is the *subject* of the semantic annotation. Within the `annotation` element are `propertyURI` and `valueURI` elements. The `propertyURI` is the *object property* and the `valueURI` is the *object* of the annotation.  
 
+Multiple `annotation` elements can be used to create multiple annotations about the same subject. 
 ```
 <eml>
   ...
     <annotations>
-        <annotation references="test_data">         <- subject is "test_data"
-            <propertyURI>abc</propertyURI>          <- object property is "abc"
-            <valueURI>123</valueURI>                <- object is "123"
+        <annotation references="test_data">         <- subject 1 is "test_data"
+            <propertyURI>abc</propertyURI>          <- object property 1 is "abc"
+            <valueURI>123</valueURI>                <- object 1 is "123"
+        </annotation>
+        <annotation references="test_data">         <- subject 2 is "test_data" (same as subject 1)
+            <propertyURI>xyz</propertyURI>          <- object property 2 is "xyz"
+            <valueURI>789</valueURI>                <- object 2 is "789"
         </annotation>
     </annotations>
   ...  
 </eml>
 ```
 
-Multiple `annotation` elements can be used to create multiple annotations about the same subject. Please see "Example 4" below for an illustrative example.
 
 #### Annotations in /eml/annotations
 
@@ -158,22 +162,29 @@ The third semantic statement also has the subject "adam.shepherd". The object pr
 
 ```
 
-
-
-
 ### Pattern for /eml/additionalMetadata annotations
+Semantic annotations may also be inserted in the `additionalMetadata` element that is nested under the `eml` root element. This type of semantic annotation has a `describes` element and a `metadata` element containing the annotation. The `metadata` element has an `annotation` element. The content of the `describes` element is the *subject* of the semantic annotation. Within the `annotation` element are `propertyURI` and `valueURI` elements. The `propertyURI` is the *object property* and the `valueURI` is the *object* of the annotation.  
 
-
-and `additionalMetadata` 
-
-
-
-
-
-
-
-
-
+Multiple `annotation` elements may be embedded in the same `metadata` element to assert multiple semantic statements about the same subject.
+```
+<eml>
+  ...
+    <additionalMetadata>
+        <describes>john.smith</describes>               <- subject is "john.smith"
+        <metadata>
+            <annotation>
+                <propertyURI>123</propertyURI>          <- object property 1 is "123"    
+                <valueURI>ABC</valueURI>                <- object 1 is "ABC"
+            </annotation>
+            <annotation>
+                <propertyURI>789</propertyURI>          <- object property 2 is "789"
+                <valueURI>XYZ</valueURI>                <- object 2 is "XYZ"
+            </annotation>
+        </metadata>
+    </additionalMetadata>
+  ...
+</eml>
+```
 
 
 #### Annotations in /eml/additionalMetadata
