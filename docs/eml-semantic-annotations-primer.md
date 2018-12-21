@@ -21,7 +21,7 @@ Multiple `annotation` elements may be embedded in the same dataset, entity-level
         <valueURI>https://schema.org/Person</valueURI>                                  <- object 1 is "https://schema.org/Person"
     </annotation>
     <annotation>
-        <propertyURI>789</propertyURI>                                                  <- object property 2 is "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
+        <propertyURI>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</propertyURI>      <- object property 2 is "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
         <valueURI>http://semanticscience.org/resource/SIO_000404</valueURI>             <- object 2 is "http://semanticscience.org/resource/SIO_000404"
     </annotation>
 </dataset or entity-level or attribute>
@@ -89,7 +89,7 @@ In the following entity-level annotation (Example 2), the subject of the semanti
 
 An attribute is a characteristic that describes a 'field' or 'variable' in a data entity, such as a column name in a spreadsheet. An attribute annotation represents a precisely-defined semantic statement that applies to an attribute. This semantic statement is used to associate precise measurement semantics with the attribute, such as the property being measured, the entity being measured, and the measurement standard for interpreting values for the attribute. `attribute` elements may be nested in entity-level elements, including the `dataTable`, `spatialRaster`, `spatialVector`, `storedProcedure`, `view`, or `otherEntity` EML elements, in addition to custom modules. Refer to chapter 6.2 for additional information about attributes.  
 
-A typical attribute annotation involves an `annotation` element that is embedded in a containing `attribute` element. The subject of the semantic statement is the `attribute` element that contains the annotation. If the `attribute` element contains an `id` attribute, then the subject should be the value of the `id` attribute. Each annotation consists of a `propertyURI` element and `valueURI` element that respectively define the property and value (object) of the semantic statement. The associated labels can be used to display the property and value in a more readable format to users. Each URI should be resolvable to a controlled vocabulary that provides a precise definition, relationships to other terms, and multiple labels for displaying the statement. Note that for annotating attributes that are measurements contained in tabular formats the preferred "default" object property is "contains measurements of type" (`http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType`).
+A typical attribute annotation involves an `annotation` element that is embedded in a containing `attribute` element. The subject of the semantic statement is the `attribute` element that contains the annotation. If the `attribute` element contains an `id` attribute, then the subject should be the value of the `id` attribute. Each annotation consists of a `propertyURI` element and `valueURI` element that respectively define the property and value (object) of the semantic statement. The associated labels can be used to display the property and value in a more readable format to users. Each URI should be resolvable to a controlled vocabulary that provides a precise definition, relationships to other terms, and multiple labels for displaying the statement. Note that when annotating attributes that are measurements contained in tabular formats the preferred "default" object property is "contains measurements of type" (`http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType`).
 
 In the following attribute annotation (Example 3), the subject of the semantic statement is the `attribute` element's `id` attribute value, "att.4". The object property of the statement is `http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType`. Note that the URI for the object property resolves to a specific term in the OBOE ontology (https://github.com/NCEAS/oboe). Finally, the value (object) in the semantic statement is `http://purl.dataone.org/odo/ECSO_00001197`, which resolves to the "Plant Cover Percentage" term in the ECSO Ontology (https://github.com/DataONEorg/sem-prov-ontologies/tree/master/observation). Taken together, the semantic statement indicates that "att.4 contains measurements of type plant cover percentage".
 
@@ -111,7 +111,7 @@ In the following attribute annotation (Example 3), the subject of the semantic s
 ### Pattern for the `annotations` element annotations
 Semantic annotations may also be inserted in the `annotations` element that is nested under the `eml` root element. This type of semantic annotation involves an `annotation` element that has a `references` attribute. What is listed in the `references` attribute is the *subject* of the semantic annotation. Within the `annotation` element are `propertyURI` and `valueURI` elements. The `propertyURI` is the *object property* and the `valueURI` is the *object* of the annotation. The URIs should ideally point to terms in controlled vocabularies. 
 
-Multiple `annotation` elements can be used to create multiple annotations about the same subject. 
+Multiple `annotation` elements can be used to create multiple annotations about the same or different subjects. 
 ```
 <eml>
   ...
@@ -128,7 +128,6 @@ Multiple `annotation` elements can be used to create multiple annotations about 
   ...  
 </eml>
 ```
-
 
 #### Annotations in the `annotations` element
 
@@ -165,7 +164,7 @@ The third semantic statement also has the subject "adam.shepherd". The object pr
 ### Pattern for the `additionalMetadata` element annotations
 Semantic annotations may also be inserted in the `additionalMetadata` element that is nested under the `eml` root element. This type of semantic annotation has a `describes` element and a `metadata` element containing the annotation. The `metadata` element has an `annotation` element. The content of the `describes` element is the *subject* of the semantic annotation. Within the `annotation` element are `propertyURI` and `valueURI` elements. The `propertyURI` is the *object property* and the `valueURI` is the *object* of the annotation. The URIs should ideally point to terms in controlled vocabularies.
 
-Multiple `annotation` elements may be embedded in the same `metadata` element to assert multiple semantic statements about the same subject.
+Multiple `annotation` elements may be embedded in the same `metadata` element to assert multiple semantic statements about the same subject. Annotating different subjects requires using additional `describes` elements.
 ```
 <eml>
   ...
@@ -186,15 +185,13 @@ Multiple `annotation` elements may be embedded in the same `metadata` element to
 </eml>
 ```
 
-
 #### Annotations in the `additionalMetadata` element
 
-The `additionalMetadata` element is nested under the `eml` root element and contains metadata that is not suitable for other parts of the EML document. It is intended to extend EML to include metadata that is not already available in another part of the EML specification, or to include site- or system-specific extensions that are needed beyond the core metadata.  The content of this field is any well-formed XML fragment. Additional information may be found in chapter 8.2.
+The `additionalMetadata` element is nested under the `eml` root element and contains metadata that is not suitable for other parts of the EML document. It is intended to extend EML to include metadata that is not already available in another part of the EML specification, or to include site- or system-specific extensions that are needed beyond the core metadata. The content of this field is any well-formed XML fragment. Additional information may be found in chapter 8.2.
 
-The `additionalMetadata` element contains `describes` elements, `metadata` elements, and `annotation` elements. The `describes` element has a pointer to the `id` attribute for the sub-portion of the resource that is described by the additional metadata. It is the `metadata` element that holds the additional metadata to be included in the document. This additional metadata field describes the element referenced in the `describes` element preceding it. Nested under the `metadata` element is the `annotation` element.  An annotation is a precisely-defined semantic statement about an element in the EML document. The subject of the semantic statement is the id being referenced in the `describes` element that precedes the `metadata` element. Each `annotation` element consists of a `propertyURI` element and `valueURI` element that respectively define the property and value (object) of the semantic statement. The associated labels can be used to display the property and value in a more readable format to users. Each URI should be resolvable to a controlled vocabulary that provides a precise definition, relationships to other terms, and multiple labels for displaying the statement. 
+The `additionalMetadata` element contains `describes` elements, `metadata` elements, and `annotation` elements. The `describes` element has a pointer to the `id` attribute for the sub-portion of the resource that is described by the additional metadata. It is the `metadata` element that holds the additional metadata to be included in the document. This `metadata` field describes the element referenced in the `describes` element preceding it. Nested under the `metadata` element is the `annotation` element.  An annotation is a precisely-defined semantic statement about an element in the EML document. The subject of the semantic statement is the id being referenced in the `describes` element that precedes the `metadata` element. Each `annotation` element consists of a `propertyURI` element and `valueURI` element that respectively define the property and value (object) of the semantic statement. The associated labels can be used to display the property and value in a more readable format to users. Each URI should be resolvable to a controlled vocabulary that provides a precise definition, relationships to other terms, and multiple labels for displaying the statement. 
 
-The following `additionalMetadata` example (Example 5) describes a semantic statement having the subject "adam.shepherd", which is the id of another element in the EML document. The object property of the statement is `https://schema.org/memberOf`. Finally, the value (object) in the semantic statement is `https://doi.org/10.17616/R37P4C`. Taken together, the semantic statement could be read as "adam.shepherd is a member of BCO-DMO".
-
+The following `additionalMetadata` annotation (Example 5) describes a semantic statement having the subject "adam.shepherd", which is the id of another element in the EML document. The object property of the statement is `https://schema.org/memberOf`. Finally, the value (object) in the semantic statement is `https://doi.org/10.17616/R37P4C`. Taken together, the semantic statement could be read as "adam.shepherd is a member of BCO-DMO".
 
 * Example 5: `additionalMetadata` element annotation
 
