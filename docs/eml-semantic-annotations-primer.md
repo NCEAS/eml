@@ -116,13 +116,13 @@ Multiple `annotation` elements can be used to create multiple annotations about 
 <eml>
   ...
     <annotations>
-        <annotation references="john_doe">         <- subject 1 is "john_doe"
-            <propertyURI></propertyURI>          <- object property 1 is "abc"
-            <valueURI>123</valueURI>                <- object 1 is "123"
+        <annotation references="john_doe">                                                  <- subject 1 is "john_doe"
+            <propertyURI>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</propertyURI>      <- object property 1 is "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
+            <valueURI>https://schema.org/Person</valueURI>                                  <- object 1 is "https://schema.org/Person"
         </annotation>
-        <annotation references="test_data">         <- subject 2 is "test_data" (same as subject 1)
-            <propertyURI>xyz</propertyURI>          <- object property 2 is "xyz"
-            <valueURI>789</valueURI>                <- object 2 is "789"
+        <annotation references="http://purl.obolibrary.org/obo/GAZ_00002459">               <- subject 2 is "http://purl.obolibrary.org/obo/GAZ_00002459" (same as subject 1)
+            <propertyURI>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</propertyURI>      <- object property 2 is "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
+            <valueURI>http://purl.obolibrary.org/obo/ENVO_00000009</valueURI>               <- object 2 is "http://purl.obolibrary.org/obo/ENVO_00000009"
         </annotation>
     </annotations>
   ...  
@@ -170,15 +170,15 @@ Multiple `annotation` elements may be embedded in the same `metadata` element to
 <eml>
   ...
     <additionalMetadata>
-        <describes>john.smith</describes>                                                           <- subject is "john.smith"
+        <describes>john.smith</describes>                                                        <- subject is "john.smith"
         <metadata>
             <annotation>
-                <propertyURI>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</propertyURI>          <- object property 1 is "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"    
-                <valueURI>https://schema.org/Person</valueURI>                                      <- object 1 is "https://schema.org/Person"
+                <propertyURI>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</propertyURI>       <- object property 1 is "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"    
+                <valueURI>https://schema.org/Person</valueURI>                                   <- object 1 is "https://schema.org/Person"
             </annotation>
             <annotation>
-                <propertyURI>http://schema.org/hasOccupation</propertyURI>                          <- object property 2 is "http://schema.org/hasOccupation"
-                <valueURI>http://purl.obolibrary.org/obo/RoleO_0000248</valueURI>                   <- object 2 is "http://purl.obolibrary.org/obo/RoleO_0000248"
+                <propertyURI>http://schema.org/hasOccupation</propertyURI>                       <- object property 2 is "http://schema.org/hasOccupation"
+                <valueURI>http://purl.obolibrary.org/obo/RoleO_0000248</valueURI>                <- object 2 is "http://purl.obolibrary.org/obo/RoleO_0000248"
             </annotation>
         </metadata>
     </additionalMetadata>
