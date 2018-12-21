@@ -12,17 +12,17 @@ In **EML 2.2.0** there are 5 kinds of semantic annotations that can be made in a
 ### Pattern for dataset-level, entity-level, and attribute-level annotations
 Semantic annotations made at the **dataset-level**, **entity-level**, and **attribute-level** follow the same pattern. An annotation made at any of these levels involves inserting an `annotation` element containing a `propertyURI` element and a `valueURI` element within the appropriate element. The *subject* of this annotation is the containing element. *It is recommended to give the subject element an* `id` *attribute and make the subject the value of the* `id`. The `propertyURI` is the *object property* and the `valueURI` is the *object* of the annotation. For example, an attribute-level annotation involves an `attribute` element. Within the `attribute` element are `propertyURI` and `valueURI` elements. The URIs should ideally point to terms in controlled vocabularies.
 
-Multiple `annotation` elements may be embedded in the same dataset, entity-level or attribute element to assert multiple semantic statements.
+Multiple `annotation` elements may be embedded in the same dataset, entity-level or attribute element to assert multiple semantic statements as shown in the generic example below.
 
 ```
-<dataset or entity-level or attribute>             <- subject 
+<dataset or entity-level or attribute>                                                  <- subject 
     <annotation>
-        <propertyURI>123</propertyURI>             <- object property 1 is "123"
-        <valueURI>abc</valueURI>                   <- object 1 is "abc"
+        <propertyURI>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</propertyURI>      <- object property 1 is "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
+        <valueURI>https://schema.org/Person</valueURI>                                  <- object 1 is "https://schema.org/Person"
     </annotation>
     <annotation>
-        <propertyURI>789</propertyURI>             <- object property 2 is "789"
-        <valueURI>xyz</valueURI>                   <- object 2 is "xyz"
+        <propertyURI>789</propertyURI>                                                  <- object property 2 is "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
+        <valueURI>http://semanticscience.org/resource/SIO_000404</valueURI>             <- object 2 is "http://semanticscience.org/resource/SIO_000404"
     </annotation>
 </dataset or entity-level or attribute>
 ```
@@ -116,8 +116,8 @@ Multiple `annotation` elements can be used to create multiple annotations about 
 <eml>
   ...
     <annotations>
-        <annotation references="test_data">         <- subject 1 is "test_data"
-            <propertyURI>abc</propertyURI>          <- object property 1 is "abc"
+        <annotation references="john_doe">         <- subject 1 is "john_doe"
+            <propertyURI></propertyURI>          <- object property 1 is "abc"
             <valueURI>123</valueURI>                <- object 1 is "123"
         </annotation>
         <annotation references="test_data">         <- subject 2 is "test_data" (same as subject 1)
@@ -170,15 +170,15 @@ Multiple `annotation` elements may be embedded in the same `metadata` element to
 <eml>
   ...
     <additionalMetadata>
-        <describes>john.smith</describes>               <- subject is "john.smith"
+        <describes>john.smith</describes>                                                           <- subject is "john.smith"
         <metadata>
             <annotation>
-                <propertyURI>123</propertyURI>          <- object property 1 is "123"    
-                <valueURI>ABC</valueURI>                <- object 1 is "ABC"
+                <propertyURI>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</propertyURI>          <- object property 1 is "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"    
+                <valueURI>https://schema.org/Person</valueURI>                                      <- object 1 is "https://schema.org/Person"
             </annotation>
             <annotation>
-                <propertyURI>789</propertyURI>          <- object property 2 is "789"
-                <valueURI>XYZ</valueURI>                <- object 2 is "XYZ"
+                <propertyURI>http://schema.org/hasOccupation</propertyURI>                          <- object property 2 is "http://schema.org/hasOccupation"
+                <valueURI>http://purl.obolibrary.org/obo/RoleO_0000248</valueURI>                   <- object 2 is "http://purl.obolibrary.org/obo/RoleO_0000248"
             </annotation>
         </metadata>
     </additionalMetadata>
