@@ -7,7 +7,7 @@ A semantic annotation follows the Resource Description Framework (RDF) data mode
 * Additional background information on the RDF data model: https://www.w3.org/TR/WD-rdf-syntax-971002/
 
 ## Semantic Annotations in EML 2.2.0
-In **EML 2.2.0** there are 5 kinds of semantic annotations that can be made in an EML document: **dataset-level**, **entity-level**, **attribute-level**, **annotations** element and **additionalMetadata** element.
+In **EML 2.2.0** there are 5 kinds of semantic annotations that can be made in an EML document: **dataset-level**, **entity-level**, **attribute-level**, **annotations** element and **additionalMetadata** element annotations.
 
 ### Pattern for dataset-level, entity-level, and attribute-level annotations
 Semantic annotations made at the **dataset-level**, **entity-level**, and **attribute-level** follow the same pattern. An annotation made at any of these levels involves inserting an `annotation` element containing a `propertyURI` element and a `valueURI` element within the appropriate element. The *subject* of this annotation is the containing element. *It is recommended to give the subject element an* `id` *attribute and make the subject the value of the* `id`. The `propertyURI` is the *object property* and the `valueURI` is the *object* of the annotation. For example, an attribute-level annotation involves an `attribute` element. Within the `attribute` element are `propertyURI` and `valueURI` elements. The URIs should ideally point to terms in controlled vocabularies.
@@ -60,7 +60,7 @@ In the following dataset-level annotation (Example 1), the subject of the semant
 
 #### Entity-level annotations
 
-Entities are usually tables of data (EML element `dataTable`). Data tables may be ascii text files, relational database tables, spreadsheets or other type of tabular data with a fixed logical structure. Related to data tables are views (EML element `view`) and stored procedures (EML element `storedProcedure`). Views and stored procedures are produced by an RDBMS or related system. Other types of data such as raster (EML element `spatialRaster`), vector (EML element `spatialVector`) or spatialReference image data are also data entities. An `otherEntity` element should be used to describe types of entities that are not described by any other entity type. Entity-level EML elements are nested under `dataset` elements. Further information about entities may be found in chapter 6.1.
+The entity-level elements include the `dataTable`, `spatialRaster`, `spatialVector`, `storedProcedure`, `view`, and `otherEntity` EML elements, in addition to custom modules. Entities are usually tables of data (`dataTable`). Data tables may be ascii text files, relational database tables, spreadsheets or other type of tabular data with a fixed logical structure. Related to data tables are views (`view`) and stored procedures (`storedProcedure`). Views and stored procedures are produced by a relational database management system or related system. Other types of data such as raster (`spatialRaster`), vector (`spatialVector`) or spatialReference image data are also data entities. An `otherEntity` element should be used to describe types of entities that are not described by any other entity type. The entity-level EML elements are nested under `dataset` elements. Further information about entities may be found in chapter 6.1.
 
 An entity-level annotation represents a precisely-defined semantic statement that applies to an entity. This semantic statement is used to associate precise measurement semantics with the entity. An entity-level `annotation` element is embedded in a containing entity-level element. The subject of the semantic statement is the entity-level element that contains the annotation. If the entity-level element contains an `id` attribute, then the subject should be the value of the `id` attribute. Each annotation consists of a `propertyURI` element and `valueURI` element, which respectively define a property and a value (object) that apply to the entity. The associated labels can be used to display the property and value in a more readable format to users. Each URI should be resolvable to a controlled vocabulary that provides a precise definition, relationships to other terms, and multiple labels for displaying the statement.
 
@@ -87,9 +87,9 @@ In the following entity-level annotation (Example 2), the subject of the semanti
 
 #### Attribute-level annotations
 
-An attribute is a characteristic that describes a 'field' or 'variable' in a data entity, such as a column name in a spreadsheet. An attribute annotation represents a precisely-defined semantic statement that applies to an attribute. This semantic statement is used to associate precise measurement semantics with the attribute, such as the property being measured, the entity being measured, and the measurement standard for interpreting values for the attribute. `attribute` elements may be nested in entity-level elements, including the `dataTable`, `spatialRaster`, `spatialVector`, `storedProcedure`, `view`, or `otherEntity` EML elements, in addition to custom modules. Refer to chapter 6.2 for additional information about attributes.  
+An attribute is a characteristic that describes a 'field' or 'variable' in a data entity, such as a column name in a spreadsheet. An attribute annotation represents a precisely-defined semantic statement that applies to an attribute. This semantic statement is used to associate precise measurement semantics with the attribute, such as the property being measured, the entity being measured, and the measurement standard for interpreting values for the attribute. `attribute` elements may be nested in entity-level elements, including the `dataTable`, `spatialRaster`, `spatialVector`, `storedProcedure`, `view`, or `otherEntity` elements, in addition to custom modules. Refer to chapter 6.2 for additional information about attributes.  
 
-A typical attribute annotation involves an `annotation` element that is embedded in a containing `attribute` element. The subject of the semantic statement is the `attribute` element that contains the annotation. If the `attribute` element contains an `id` attribute, then the subject should be the value of the `id` attribute. Each annotation consists of a `propertyURI` element and `valueURI` element that respectively define the property and value (object) of the semantic statement. The associated labels can be used to display the property and value in a more readable format to users. Each URI should be resolvable to a controlled vocabulary that provides a precise definition, relationships to other terms, and multiple labels for displaying the statement. Note that when annotating attributes that are measurements contained in tabular formats the preferred "default" object property is "contains measurements of type" (`http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType`).
+A typical attribute annotation involves an `annotation` element that is embedded in a containing `attribute` element. The subject of the semantic statement is the `attribute` element that contains the annotation. If the `attribute` element contains an `id` attribute, then the subject should be the value of the `id` attribute. Each annotation consists of a `propertyURI` element and `valueURI` element that respectively define the property and value (object) of the semantic statement. The associated labels can be used to display the property and value in a more readable format to users. Each URI should be resolvable to a controlled vocabulary that provides a precise definition, relationships to other terms, and multiple labels for displaying the statement. Note that when annotating attributes that are measurements contained in tabular formats the preferred "default" object property is "contains measurements of type" from the OBOE ontology (`http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType`).
 
 In the following attribute annotation (Example 3), the subject of the semantic statement is the `attribute` element's `id` attribute value, "att.4". The object property of the statement is `http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType`. Note that the URI for the object property resolves to a specific term in the OBOE ontology (https://github.com/NCEAS/oboe). Finally, the value (object) in the semantic statement is `http://purl.dataone.org/odo/ECSO_00001197`, which resolves to the "Plant Cover Percentage" term in the ECSO Ontology (https://github.com/DataONEorg/sem-prov-ontologies/tree/master/observation). Taken together, the semantic statement indicates that "att.4 contains measurements of type plant cover percentage".
 
@@ -120,9 +120,9 @@ Multiple `annotation` elements can be used to create multiple annotations about 
             <propertyURI>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</propertyURI>      <- object property 1 is "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
             <valueURI>https://schema.org/Person</valueURI>                                  <- object 1 is "https://schema.org/Person"
         </annotation>
-        <annotation references="http://purl.obolibrary.org/obo/GAZ_00002459">               <- subject 2 is "http://purl.obolibrary.org/obo/GAZ_00002459" (same as subject 1)
-            <propertyURI>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</propertyURI>      <- object property 2 is "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
-            <valueURI>http://purl.obolibrary.org/obo/ENVO_00000009</valueURI>               <- object 2 is "http://purl.obolibrary.org/obo/ENVO_00000009"
+        <annotation references="john_doe">                                                  <- subject 2 is "john_doe" (same as subject 1)
+            <propertyURI>http://schema.org/hasOccupation</propertyURI>                      <- object property 2 is "http://schema.org/hasOccupation"
+            <valueURI>http://semanticscience.org/resource/SIO_000404</valueURI>             <- object 2 is "http://semanticscience.org/resource/SIO_000404"
         </annotation>
     </annotations>
   ...  
@@ -144,21 +144,37 @@ The third semantic statement also has the subject "adam.shepherd". The object pr
 * Example 4: `annotations` element annotation
 
 ```
-<annotations>
-    <annotation references="CDR-biodiv-table">
-        <propertyURI label="Subject">http://purl.org/dc/elements/1.1/subject</propertyURI>
-        <valueURI label="grassland biome">http://purl.obolibrary.org/obo/ENVO_01000177</valueURI>
-    </annotation>
-    <annotation references="adam.shepherd">
-        <propertyURI label="is a">http://www.w3.org/1999/02/22-rdf-syntax-ns#type</propertyURI>
-        <valueURI label="Person">https://schema.org/Person</valueURI>
-    </annotation>
-    <annotation references="adam.shepherd">
-        <propertyURI label="member of">https://schema.org/memberOf</propertyURI>
-        <valueURI label="BCO-DMO">https://doi.org/10.17616/R37P4C</valueURI>
-    </annotation>
-</annotations>
-
+<eml>
+    <dataset id="dataset-01">
+        <title>Data from Cedar Creek LTER on productivity and species richness for use in a workshop titled "An Analysis of the Relationship between Productivity and Diversity using Experimental Results from the Long-Term Ecological Research Network" held at NCEAS in September 1996.</title>
+        <creator id="adam.shepherd">
+            <individualName>
+                <salutation>Mr.</salutation>
+                <givenName>Adam</givenName>
+                <surName>Shepherd</surName>
+            </individualName>
+        </creator>
+        <dataTable id="CDR-biodiv-table">
+            <entityName>CDR LTER-patterns among communities.txt</entityName>  
+        ...
+        </dataTable  
+    </dataset>
+    ...
+    <annotations>
+        <annotation references="CDR-biodiv-table">
+            <propertyURI label="Subject">http://purl.org/dc/elements/1.1/subject</propertyURI>
+            <valueURI label="grassland biome">http://purl.obolibrary.org/obo/ENVO_01000177</valueURI>
+        </annotation>
+        <annotation references="adam.shepherd">
+            <propertyURI label="is a">http://www.w3.org/1999/02/22-rdf-syntax-ns#type</propertyURI>
+            <valueURI label="Person">https://schema.org/Person</valueURI>
+        </annotation>
+        <annotation references="adam.shepherd">
+            <propertyURI label="member of">https://schema.org/memberOf</propertyURI>
+            <valueURI label="BCO-DMO">https://doi.org/10.17616/R37P4C</valueURI>
+        </annotation>
+    </annotations>
+</eml>
 ```
 
 ### Pattern for the `additionalMetadata` element annotations
@@ -196,14 +212,31 @@ The following `additionalMetadata` annotation (Example 5) describes a semantic s
 * Example 5: `additionalMetadata` element annotation
 
 ```
-<additionalMetadata>
-    <describes>adam.shepherd</describes>
-    <metadata>
-        <annotation>
-            <propertyURI label="member of">https://schema.org/memberOf</propertyURI>
-            <valueURI label="BCO-DMO">https://doi.org/10.17616/R37P4C</valueURI>
-        </annotation>
-    </metadata>
-</additionalMetadata>
-
+<eml>
+    <dataset id="dataset-01">
+        <title>Data from Cedar Creek LTER on productivity and species richness for use in a workshop titled "An Analysis of the Relationship between Productivity and Diversity using Experimental Results from the Long-Term Ecological Research Network" held at NCEAS in September 1996.</title>
+        <creator id="adam.shepherd">
+            <individualName>
+                <salutation>Mr.</salutation>
+                <givenName>Adam</givenName>
+                <surName>Shepherd</surName>
+            </individualName>
+        </creator>
+        <dataTable id="CDR-biodiv-table">
+            <entityName>CDR LTER-patterns among communities.txt</entityName>  
+         ...
+        </dataTable  
+    </dataset>
+    ...
+     <additionalMetadata>
+         <describes>adam.shepherd</describes>
+         <metadata>
+             <annotation>
+                 <propertyURI label="member of">https://schema.org/memberOf</propertyURI>
+                 <valueURI label="BCO-DMO">https://doi.org/10.17616/R37P4C</valueURI>
+             </annotation>
+         </metadata>
+     </additionalMetadata>
+    ...
+</eml>
 ```
