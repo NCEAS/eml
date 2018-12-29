@@ -18,14 +18,14 @@ Semantic annotations made at the **dataset-level**, **entity-level**, and **attr
 Multiple `annotation` elements may be embedded in the same dataset, entity-level or attribute element to assert multiple semantic statements as shown in the generic example below.
 
 ```
-<dataset or entity-level or attribute>                                                              <- subject 
+<dataset or entity-level or attribute>                                                                            
     <annotation>
-        <propertyURI label="is_a">http://www.w3.org/1999/02/22-rdf-syntax-ns#type</propertyURI>     <- object property 1 is "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
-        <valueURI label="Person">https://schema.org/Person</valueURI>                               <- object 1 is "https://schema.org/Person"
+        <propertyURI label="label name">property URI</propertyURI>                                                                  
+        <valueURI label="label name">value URI</valueURI>                     
     </annotation>
     <annotation>
-        <propertyURI label="is_a">http://www.w3.org/1999/02/22-rdf-syntax-ns#type</propertyURI>     <- object property 2 is "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
-        <valueURI label="professor">http://semanticscience.org/resource/SIO_000404</valueURI>       <- object 2 is "http://semanticscience.org/resource/SIO_000404"
+        <propertyURI label="label name">property URI</propertyURI> 
+        <valueURI label="label name">value URI</valueURI>                                
     </annotation>
 </dataset or entity-level or attribute>
 ```
@@ -112,20 +112,20 @@ In the following attribute annotation (Example 3), the subject of the semantic s
 ```
 
 ### Pattern for the `annotations` element annotations
-Semantic annotations may also be inserted in the `annotations` element that is nested under the `eml` root element. This type of semantic annotation contains an `annotation` element that has a `references` attribute. What is listed in the `references` attribute is the *subject* of the semantic annotation. Within the `annotation` element are `propertyURI` and `valueURI` elements. The `propertyURI` is the *object property* and the `valueURI` is the *object* of the annotation. *The URIs should ideally point to terms in controlled vocabularies*. Each `propertyURI` and `valueURI` element can have a `label` attribute that displays a label associated with each URI. *The labels should ideally be populated from the preferred labels field (skos:prefLabel) or label field (rdfs:label) from a controlled vocabulary*. Labels are intended to provide a more readable format for users and may be displayed in application interfaces.
+Semantic annotations may also be inserted in the `annotations` element that is nested under the `eml` root element. This type of semantic annotation contains an `annotation` element that has a `references` attribute. What is listed in the `references` attribute is the *subject* of the semantic annotation. The `references` attribute should point to the `id` attribute of the subject. Within the `annotation` element are `propertyURI` and `valueURI` elements. The `propertyURI` is the *object property* and the `valueURI` is the *object* of the annotation. *The URIs should ideally point to terms in controlled vocabularies*. Each `propertyURI` and `valueURI` element can have a `label` attribute that displays a label associated with each URI. *The labels should ideally be populated from the preferred labels field (skos:prefLabel) or label field (rdfs:label) from a controlled vocabulary*. Labels are intended to provide a more readable format for users and may be displayed in application interfaces.
 
 Multiple `annotation` elements can be used to create multiple annotations about the same or different subjects. 
 ```
 <eml>
   ...
     <annotations>
-        <annotation references="john_doe">                                                            <- subject 1 is "john_doe"
-            <propertyURI label="is_a">http://www.w3.org/1999/02/22-rdf-syntax-ns#type</propertyURI>   <- object property 1 is "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
-            <valueURI label="Person">https://schema.org/Person</valueURI>                             <- object 1 is "https://schema.org/Person"
+        <annotation references="id of the subject">                                                            
+            <propertyURI label="label name>property URI</propertyURI>
+            <valueURI label="label name">value URI</valueURI>                             
         </annotation>
-        <annotation references="john_doe">                                                            <- subject 2 is "john_doe" (same as subject 1)
-            <propertyURI label="has occupation">http://schema.org/hasOccupation</propertyURI>         <- object property 2 is "http://schema.org/hasOccupation"
-            <valueURI label="professor">http://semanticscience.org/resource/SIO_000404</valueURI>     <- object 2 is "http://semanticscience.org/resource/SIO_000404"
+        <annotation references="id of the subject">                                                           
+            <propertyURI label="label name">property URI</propertyURI>         
+            <valueURI label="label name">value URI</valueURI>     
         </annotation>
     </annotations>
   ...  
@@ -190,15 +190,15 @@ Multiple `annotation` elements may be embedded in the same `metadata` element to
 <eml>
   ...
     <additionalMetadata>
-        <describes>john.smith</describes>                                                                <- subject is "john.smith"
+        <describes>id of the subject</describes>                                                                
         <metadata>
             <annotation>
-                <propertyURI label="is_a">http://www.w3.org/1999/02/22-rdf-syntax-ns#type</propertyURI>  <- object property 1 is "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"    
-                <valueURI label="Person">https://schema.org/Person</valueURI>                            <- object 1 is "https://schema.org/Person"
+                <propertyURI label="label name">property URI</propertyURI>  
+                <valueURI label="label name">value URI</valueURI>                            
             </annotation>
             <annotation>
-                <propertyURI label="has occupation">http://schema.org/hasOccupation</propertyURI>        <- object property 2 is "http://schema.org/hasOccupation"
-                <valueURI label="professor">http://semanticscience.org/resource/SIO_000404</valueURI>    <- object 2 is "http://semanticscience.org/resource/SIO_000404"
+                <propertyURI label="label name">property URI</propertyURI>       
+                <valueURI label="label name">value URI</valueURI>    
             </annotation>
         </metadata>
     </additionalMetadata>
