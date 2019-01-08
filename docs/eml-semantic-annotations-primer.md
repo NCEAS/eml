@@ -30,6 +30,25 @@ Multiple `annotation` elements may be embedded in the same dataset, entity-level
 </dataset or entity-level or attribute>
 ```
 
+Here is an example of an `attribute` element containing 2 annotations:
+```
+<attribute id = "1234" >
+    <annotation>
+        <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+        <valueURI label="Dissolved Organic Carbon Concentration">http://purl.dataone.org/odo/ECSO_00001125</valueURI>
+    </annotation>
+    <annotation>
+        <propertyURI label="has unit">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#hasUnit</propertyURI>
+        <valueURI label="milligram per liter">http://purl.obolibrary.org/obo/UO_0000273</valueURI>
+    </annotation>
+</attribute>
+```
+
+In the above example, the first annotation has the subject the attribute with id "1234", the object property "http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType", and the object "http://purl.dataone.org/odo/ECSO_00001125". After serializing the EML into a semantic web format, such as RDF or JSON-LD, the system could interpret the semantic statement as "the attribute with id '1234' contains measurements of types of dissolved organic carbon concentration".
+
+The second annotation has the subject the attribute with id "1234", the object property "http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#hasUnit", and the object "http://purl.obolibrary.org/obo/UO_0000273". The semantic statement associated with this triple can be read as "the attribute with the id '1234' has units of milligram per liter".
+
+
 #### Dataset-level annotations
 
 A dataset is defined as all of the information describing a data collection event. This event may take place over some period of time and include many actual collections (e.g. a time series or remote sensing application) or it could be just one actual collection (e.g. a day in the field). The `dataset` element encompasses all information about a single dataset. It is intended to provide overview information about the dataset: broad information such as the title, abstract, keywords, contacts, maintenance history, purpose, and distribution of the data themselves. A dataset can be (and often is) composed of a series of data entities (see 'entity-level annotation' section below) that are linked together by particular integrity constraints. Further information about datasets may be found in the "eml-dataset module" section in chapter 5.3.
