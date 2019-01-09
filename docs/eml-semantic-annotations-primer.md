@@ -30,7 +30,7 @@ Multiple `annotation` elements may be embedded in the same dataset, entity-level
 </dataset or entity-level or attribute>
 ```
 
-Here is an example of an `attribute` element containing 2 annotations:
+Here is a more realistic example of two attribute-level annotations:
 ```
 <attribute id = "1234" >
     <annotation>
