@@ -63,8 +63,8 @@ echo "O2_OUTPUT = $O2_OUTPUT";
 
 # copy O2 output to the main documentation area
 
-# cp -r "$TMP_OUT"/"$O2_OUTPUT_DIR" "$OUTPUT" ;
-echo "cp -r $TMP_OUT/$O2_OUTPUT_DIR $OUTPUT ";
+cp -r "$TMP_OUT"/"$O2_OUTPUT_DIR"/* "$OUTPUT" ;
+echo "cp -r $TMP_OUT/$O2_OUTPUT_DIR/* $OUTPUT ";
 echo "Top of schema documentation is $OUTPUT/$O2_OUTPUT_INDEX ";
 
 
