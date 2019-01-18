@@ -10,7 +10,7 @@ A semantic annotation follows the Resource Description Framework (RDF) data mode
 * Tim Berners-Lee's article on the semantic web: ```Berners-Lee, T., Hendler, J., & Lassila, O. (2001). The semantic web. Scientific american, 284(5), 34-43.```
 
 ## Semantic Annotations in EML 2.2.0
-In **EML 2.2.0** there are 5 types of semantic annotations that can be made in an EML document: **dataset-level**, **entity-level**, **attribute-level**, **annotations** element and **additionalMetadata** element annotations.
+In **EML 2.2.0** there are 5 areas where semantic annotations can be made in an EML document: **top-level resource** (e.g. dataset resources, literature resources, software resources, protocol resources), **entity**, **attribute**, **annotations** element and **additionalMetadata** element annotations.
 
 ### Pattern for dataset-level, entity-level, and attribute-level annotations
 Semantic annotations made at the **dataset-level**, **entity-level**, and **attribute-level** follow the same pattern. An annotation made at any of these levels involves inserting an `annotation` element containing a `propertyURI` element and a `valueURI` element within the appropriate element. The *subject* of this annotation is the containing element. *It is recommended to give the subject element an* `id` *attribute and refer to the subject by the value of the* `id`. The `propertyURI` is the *object property* or *data property* and the `valueURI` is the *object* of the annotation. For example, an attribute-level annotation involves an `attribute` element. Nested under the `attribute` element are `propertyURI` and `valueURI` elements. *The URIs should ideally point to terms in controlled vocabularies*. The `propertyURI` and `valueURI` elements can each have a `label` attribute that displays a more readable label suitable for display in application interfaces. *It is recommended that the labels are populated by values from the preferred labels field (skos:prefLabel) or label field (rdfs:label) from a controlled vocabulary*.
@@ -48,7 +48,7 @@ In the above example (Example 1), the first annotation has as its subject the at
 
 The second annotation has as its subject the `attribute` element with the `id` attribute value "1234", has the object property "http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#hasUnit", and has the object "http://purl.obolibrary.org/obo/UO_0000273". The semantic statement associated with this triple can be read as "the attribute with the id '1234' has units of milligram per liter".
 
-#### Dataset-level annotations
+#### Top-level resource annotations (in progress)
 
 A dataset can be (and often is) composed of a series of data entities (see 'entity-level annotations' section below) that are linked together by particular integrity constraints. The `dataset` element encompasses all information about a single dataset. It is intended to provide overview information about the dataset: broad information such as the title, abstract, keywords, contacts, maintenance history, purpose, and distribution of the data themselves. Dataset-level metadata describes a data collection event. This event may take place over some period of time and include many actual collections (e.g. a time series or remote sensing application) or it could be just one actual collection (e.g. a day in the field). Further information about datasets may be found in the [eml-resource module] section.
 
@@ -58,7 +58,7 @@ A dataset-level annotation represents a precisely-defined semantic statement tha
 
 In the following dataset-level annotation (Example 2), the subject of the semantic statement is the `dataset` element containing the `id` attribute value "dataset-01". The object property of the statement is "http://purl.org/dc/elements/1.1/subject". Finally, the value (object) in the semantic statement is "http://purl.obolibrary.org/obo/ENVO_01000177", which resolves to the "grassland biome" term in the ENVO ontology (http://www.obofoundry.org/ontology/envo.html). Taken together, the semantic statement could be read as "the dataset with the id 'dataset-01' is about the subject grassland biome".
 
-* Example 2: dataset-level annotation
+* Example 2: Top-level resource annotation (dataset)
 
 ```xml
 <dataset id="dataset-01">
