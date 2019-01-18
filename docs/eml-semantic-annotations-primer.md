@@ -17,7 +17,7 @@ Semantic annotations made at the **dataset-level**, **entity-level**, and **attr
 
 Multiple `annotation` elements may be embedded in the same dataset, entity-level or attribute element to assert multiple semantic statements as shown in the generic example below.
 
-```
+```xml
 <dataset or entity-level or attribute>                                                                            
     <annotation>
         <propertyURI label="label name">property URI</propertyURI>                                                                  
@@ -31,8 +31,8 @@ Multiple `annotation` elements may be embedded in the same dataset, entity-level
 ```
 
 * Example 1: Attribute-level annotations illustrating the dataset-level, entity-level, and attribute-level annotation pattern
-```
-<attribute id = "1234" >
+```xml
+<attribute id = "1234">
     <annotation>
         <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
         <valueURI label="Dissolved Organic Carbon Concentration">http://purl.dataone.org/odo/ECSO_00001125</valueURI>
@@ -58,7 +58,7 @@ In the following dataset-level annotation (Example 2), the subject of the semant
 
 * Example 2: dataset-level annotation
 
-```
+```xml
 <dataset id="dataset-01">
     <title>Data from Cedar Creek LTER on productivity and species richness for use in a workshop titled
     "An Analysis of the Relationship between Productivity and Diversity using Experimental Results from
@@ -89,7 +89,7 @@ In the following entity-level annotation (Example 3), the subject of the semanti
 
  * Example 3: entity-level annotation
 
-```
+```xml
 <otherEntity id="urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b" scope="document">
     <entityName>DBO_MMWatch_SWL2016_MooreGrebmeierVagle.xlsx</entityName>
     <entityDescription>Data contained in the file DBO_MMWatch_SWL2016_MooreGrebmeierVagle.xlsx are marine mammal observations and observation conditions from CCGS Sir Wilfrid Laurier July 10-20, 2016.  Data observations and locations are part of the Distributed Biological Observatory (DBO).</entityDescription>
@@ -116,7 +116,7 @@ In the following attribute annotation (Example 4), the subject of the semantic s
 
 * Example 4: attribute-level annotation
 
-```
+```xml
 <attribute id="att.4">
     <attributeName>pctcov</attributeName>
     <attributeLabel>percent cover</attributeLabel>
@@ -133,7 +133,7 @@ In the following attribute annotation (Example 4), the subject of the semantic s
 Semantic annotations may also be inserted in the `annotations` element that is nested under the `eml` root element. This type of semantic annotation contains an `annotation` element that has a `references` attribute. What is listed in the `references` attribute is the id of the *subject* of the semantic annotation. The `references` attribute should point to the `id` attribute of the subject. In other words, the subject is the element containing the id that is referenced. Within the `annotation` element are `propertyURI` and `valueURI` elements. The `propertyURI` is the *object property* or *data property* and the `valueURI` is the *object* of the annotation. *The URIs should ideally point to terms in controlled vocabularies*. Each `propertyURI` and `valueURI` element can have a `label` attribute that displays a label associated with each URI. *The labels should ideally be populated from the preferred labels field (skos:prefLabel) or label field (rdfs:label) from a controlled vocabulary*. Labels are intended to provide a more readable format for users and may be displayed in application interfaces.
 
 Multiple `annotation` elements can be used to create multiple annotations about the same or different subjects. 
-```
+```xml
 <eml>
   ...
     <subject id="id of the subject"></subject>
@@ -153,7 +153,7 @@ Multiple `annotation` elements can be used to create multiple annotations about 
 ```
 
 * Example 5: Demonstrating the `annotations` element annotation pattern
-```
+```xml
 <eml>
   ...
     <dataTable id="1234"></dataTable>
@@ -183,7 +183,7 @@ The third annotation also has as its subject the `creator` element that has the 
 
 * Example 6: `annotations` element annotation
 
-```
+```xml
 <eml>
    ...
     <dataset id="dataset-01">
@@ -223,7 +223,7 @@ The third annotation also has as its subject the `creator` element that has the 
 Semantic annotations may also be inserted in the `additionalMetadata` element that is nested under the `eml` root element. This type of semantic annotation has a `describes` element and a `metadata` element containing the annotation. The `metadata` element has an `annotation` element. The content of the `describes` element is the id of the *subject* of the semantic annotation. The subject is the element containing the id. Contained within the `annotation` element are `propertyURI` and `valueURI` elements. The `propertyURI` is the *object property* or *data property* and the `valueURI` is the *object* of the annotation. *The URIs should ideally point to terms in controlled vocabularies*. Each `propertyURI` and `valueURI` element can have a `label` attribute that displays a label associated with each URI. Labels are intended to provide a more readable format for users and may be displayed in application interfaces. *It is recommended that labels are populated with values from the preferred labels field (skos:prefLabel) or label field (rdfs:label) from a controlled vocabulary.* 
 
 Multiple `annotation` elements may be embedded in the same `metadata` element to assert multiple semantic statements about the same subject. Annotating different subjects requires using additional `describes` elements.
-```
+```xml
 <eml>
   ...  
     <subject id="id of the subject"></subject>
@@ -246,7 +246,7 @@ Multiple `annotation` elements may be embedded in the same `metadata` element to
 ```
 
 * Example 7: An `additionalMetadata` element annotation demonstrating the `additionalMetadata` element annotation pattern
-```
+```xml
 <eml>
   ...  
     <creator id="1234"></creator>
@@ -275,7 +275,7 @@ The `additionalMetadata` annotation below (Example 8) describes a semantic state
 
 * Example 8: `additionalMetadata` element annotation
 
-```
+```xml
 <eml>
     ...
     <dataset id="dataset-01">
