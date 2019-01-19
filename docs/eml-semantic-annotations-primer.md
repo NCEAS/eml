@@ -10,7 +10,7 @@ A semantic annotation follows the Resource Description Framework (RDF) data mode
 * Tim Berners-Lee's article on the semantic web: ```Berners-Lee, T., Hendler, J., & Lassila, O. (2001). The semantic web. Scientific american, 284(5), 34-43.```
 
 ## Semantic Annotations in EML 2.2.0
-In **EML 2.2.0** there are 5 areas where semantic annotations can be made in an EML document: **top-level resource** (e.g. dataset resources, literature resources, software resources, protocol resources), **entity**, **attribute**, **annotations** element and **additionalMetadata** element annotations.
+In **EML 2.2.0** there are 5 areas where semantic annotations can be made in an EML document: **top-level resource** (e.g. dataset resources, literature resources, software resources, protocol resources), **entity-level**, **attribute**, **annotations** element and **additionalMetadata** element annotations.
 
 ### Pattern for dataset-level, entity-level, and attribute-level annotations
 Semantic annotations made at the **dataset-level**, **entity-level**, and **attribute-level** follow the same pattern. An annotation made at any of these levels involves inserting an `annotation` element containing a `propertyURI` element and a `valueURI` element within the appropriate element. The *subject* of this annotation is the containing element. *It is recommended to give the subject element an* `id` *attribute and refer to the subject by the value of the* `id`. The `propertyURI` is the *object property* or *data property* and the `valueURI` is the *object* of the annotation. For example, an attribute-level annotation involves an `attribute` element. Nested under the `attribute` element are `propertyURI` and `valueURI` elements. *The URIs should ideally point to terms in controlled vocabularies*. The `propertyURI` and `valueURI` elements can each have a `label` attribute that displays a more readable label suitable for display in application interfaces. *It is recommended that the labels are populated by values from the preferred labels field (skos:prefLabel) or label field (rdfs:label) from a controlled vocabulary*.
@@ -48,15 +48,15 @@ In the above example (Example 1), the first annotation has as its subject the at
 
 The second annotation has as its subject the `attribute` element with the `id` attribute value "1234", has the object property "http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#hasUnit", and has the object "http://purl.obolibrary.org/obo/UO_0000273". The semantic statement associated with this triple can be read as "the attribute with the id '1234' has units of milligram per liter".
 
-#### Top-level resource annotations (in progress)
+### Top-level resource annotations
 
-A dataset can be (and often is) composed of a series of data entities (see 'entity-level annotations' section below) that are linked together by particular integrity constraints. The `dataset` element encompasses all information about a single dataset. It is intended to provide overview information about the dataset: broad information such as the title, abstract, keywords, contacts, maintenance history, purpose, and distribution of the data themselves. Dataset-level metadata describes a data collection event. This event may take place over some period of time and include many actual collections (e.g. a time series or remote sensing application) or it could be just one actual collection (e.g. a day in the field). Further information about datasets may be found in the [eml-resource module] section.
+The top-level resources in EML are dataset resources, literature resources, protocol resources, and software resources. The resource types share some common information, such as title and creator, but also contain information that is specific to a particular resource type. Note that the dataset module can import the other top-level resources at different levels. Further information about top-level resources may be found in the [eml-resource module] section.
 
 [eml-resource module]: eml-modules-resources.md#the-eml-resource-module---base-information-for-all-resources
 
-A dataset-level annotation represents a precisely-defined semantic statement that applies to a dataset. This semantic statement is used to associate precise measurement semantics with the dataset. A dataset-level `annotation` element is embedded in a containing `dataset` element. The subject of the semantic statement is the `dataset` element that contains the annotation. If the `dataset` element contains an `id` attribute, then the subject should refer to the value of the `id` attribute. Each annotation consists of a `propertyURI` element and `valueURI` element, which respectively define a property and a value (object) that apply to the dataset. Each URI should resolve to a controlled vocabulary that provides a precise definition, relationships to other terms, and multiple labels for displaying the statement. The associated `label` attribute for each URI can be used to display the property and value in a more readable format to users. Ideally, each `label` should be populated by a preferred label or label from a controlled vocabulary.
+A top-level resource annotation represents a precisely-defined semantic statement that applies to one of the top-level resources. This semantic statement is used to associate precise measurement semantics with the resource. An `annotation` element is embedded in a containing resource element. The subject of the semantic statement is the resource element that contains the annotation. If the resource element contains an `id` attribute, then the subject should refer to the value of the `id` attribute. Each annotation consists of a `propertyURI` element and `valueURI` element, which respectively define a property and a value (object) that apply to the resource. Each URI should resolve to a controlled vocabulary that provides a precise definition, relationships to other terms, and multiple labels for displaying the statement. The associated `label` attribute for each URI can be used to display the property and value in a more readable format to users. Ideally, each `label` should be populated by a preferred label or label from a controlled vocabulary.
 
-In the following dataset-level annotation (Example 2), the subject of the semantic statement is the `dataset` element containing the `id` attribute value "dataset-01". The object property of the statement is "http://purl.org/dc/elements/1.1/subject". Finally, the value (object) in the semantic statement is "http://purl.obolibrary.org/obo/ENVO_01000177", which resolves to the "grassland biome" term in the ENVO ontology (http://www.obofoundry.org/ontology/envo.html). Taken together, the semantic statement could be read as "the dataset with the id 'dataset-01' is about the subject grassland biome".
+In the following dataset annotation (Example 2), the subject of the semantic statement is the `dataset` element containing the `id` attribute value "dataset-01". The object property of the statement is "http://purl.org/dc/elements/1.1/subject". Finally, the value (object) in the semantic statement is "http://purl.obolibrary.org/obo/ENVO_01000177", which resolves to the "grassland biome" term in the ENVO ontology (http://www.obofoundry.org/ontology/envo.html). Taken together, the semantic statement could be read as "the dataset with the id 'dataset-01' is about the subject grassland biome".
 
 * Example 2: Top-level resource annotation (dataset)
 
@@ -78,10 +78,9 @@ In the following dataset-level annotation (Example 2), the subject of the semant
         <valueURI label="grassland biome">http://purl.obolibrary.org/obo/ENVO_01000177</valueURI>
     </annotation>
 </dataset>  
-
 ```
 
-#### Entity-level annotations
+### Entity-level annotations
 
 The entity-level elements include the `dataTable`, `spatialRaster`, `spatialVector`, `storedProcedure`, `view`, and `otherEntity` elements, in addition to custom modules. Entities are often tables of data (`dataTable`). Data tables may describe ascii text files, relational database tables, spreadsheets, or other type of tabular data with a fixed logical structure. Related to data tables are views (`view`) and stored procedures (`storedProcedure`). Views and stored procedures are produced by a relational database management system or related system. Other types of data such as raster (`spatialRaster`), vector (`spatialVector`) or spatialReference image data are also data entities. An `otherEntity` element should be used to describe types of entities that are not described by any other entity type. The entity-level elements are nested under `dataset` elements. Further information about entities may be found in the [eml-entity module] section.
 
@@ -107,10 +106,9 @@ In the following entity-level annotation (Example 3), the subject of the semanti
         <valueURI label="Mammalia">http://purl.obolibrary.org/obo/NCBITaxon_40674</valueURI>  
     <annotation>
 </otherEntity>
-
 ```
 
-#### Attribute-level annotations
+### Attribute annotations
 
 An attribute is a characteristic that describes a 'field' or 'variable' in a data entity, such as a column name in a spreadsheet. An attribute annotation represents a precisely-defined semantic statement that applies to an attribute. This semantic statement is used to associate precise measurement semantics with the attribute, such as the property being measured, the entity being measured, and the measurement standard for interpreting values for the attribute. `attribute` elements may be nested in entity-level elements, including the `dataTable`, `spatialRaster`, `spatialVector`, `storedProcedure`, `view`, or `otherEntity` elements, in addition to custom modules. Refer to the [eml-attribute module] section for additional information about attributes.
 
@@ -120,7 +118,7 @@ A typical attribute annotation involves an `annotation` element that is embedded
 
 In the following attribute annotation (Example 4), the subject of the semantic statement is the `attribute` element containing the `id` attribute value "att.4". The object property of the statement is "http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType". Note that the URI for the object property resolves to a specific term in the OBOE ontology (https://github.com/NCEAS/oboe). Finally, the value (object) in the semantic statement is "http://purl.dataone.org/odo/ECSO_00001197", which resolves to the "Plant Cover Percentage" term in the ECSO Ontology (https://github.com/DataONEorg/sem-prov-ontologies/tree/master/observation). Taken together, the semantic statement indicates that "the attribute with the id 'att.4' contains measurements of type plant cover percentage".
 
-* Example 4: attribute-level annotation
+* Example 4: attribute annotation
 
 ```xml
 <attribute id="att.4">
@@ -132,7 +130,6 @@ In the following attribute annotation (Example 4), the subject of the semantic s
         <valueURI label="Plant Cover Percentage">http://purl.dataone.org/odo/ECSO_00001197</valueURI>
     </annotation>
 </attribute>
-
 ```
 
 ### Pattern for the `annotations` element annotations
