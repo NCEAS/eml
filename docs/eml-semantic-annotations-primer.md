@@ -101,13 +101,13 @@ The `annotations` element is nested under the `eml` root element and contains a 
 
 The `annotations` element contains a set of `annotation` elements. Each `annotation` element has a `references` attribute that points to the `id` attribute of the element being annotated. Any of the EML modules may be referenced by the `references` attribute and the id must point to a unique id within the EML document. In the semantic statement, the *subject* is implicitly the element containing the id that is referenced. In other words, what is listed in the `references` attribute is the id of the subject of the semantic annotation. Each annotation also consists of a `propertyURI` element and `valueURI` element that respectively define the *object property* or *data property* and *object* (value) that apply to the resource. *A URI should ideally resolve to a controlled vocabulary that provides a precise definition, relationships to other terms, and multiple labels for displaying the statement*. Each `propertyURI` and `valueURI` element can have a `label` attribute that displays a label associated with each URI. Labels are intended to provide a more readable format for users and may be displayed in application interfaces. *It is recommended that labels are populated with values from the preferred labels field (skos:prefLabel) or label field (rdfs:label) from a controlled vocabulary*. 
 
-The following `annotations` element example (Example 6) has 3 different annotations. For the first annotation, the subject of the semantic triple is the `dataTable` element with the `id` attribute "CDF-biodiv-table". Notice that the annotation has a `references` attribute that points to the subject id. The object property of the triple is "http://purl.org/dc/elements/1.1/subject". Finally, the value (object) in the semantic triple is "http://purl.obolibrary.org/obo/ENVO_01000177", which resolves to the "grassland biome" term in the ENVO ontology (http://www.obofoundry.org/ontology/envo.html). Taken together, the first semantic statement could be read as "the dataTable with the id 'CDR-biodiv-table' is about the subject grassland biome".
+The following `annotations` element example (Example 4) has 3 different annotations. For the first annotation, the subject of the semantic triple is the `dataTable` element with the `id` attribute "CDF-biodiv-table". Notice that the annotation has a `references` attribute that points to the subject id. The object property of the triple is "http://purl.org/dc/elements/1.1/subject". Finally, the value (object) in the semantic triple is "http://purl.obolibrary.org/obo/ENVO_01000177", which resolves to the "grassland biome" term in the ENVO ontology (http://www.obofoundry.org/ontology/envo.html). Taken together, the first semantic statement could be read as "the dataTable with the id 'CDR-biodiv-table' is about the subject grassland biome".
 
 The second annotation has as its subject the `creator` element that has the id "adam.shepherd", the object property "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" and the value (object) "https://schema.org/Person". This statement can be interpreted as "'adam.shepherd', the creator (of the dataset), is a person".
 
-The third annotation also has as its subject the `creator` element that has the id "adam.shepherd". The object property is "https://schema.org/memberOf" and the value (object) is "https://doi.org/10.17616/R37P4C". This statement can be read as "'adam.shepherd', the creator (of the dataset), is a member of BCO-DMO".
+The third annotation also has as its subject the `creator` element that has the id "adam.shepherd". The object property is "https://schema.org/memberOf" and the object (value) is "https://doi.org/10.17616/R37P4C". This statement can be read as "'adam.shepherd', the creator (of the dataset), is a member of BCO-DMO".
 
-* Example 6: `annotations` element annotation
+* Example 4: `annotations` element annotation
 
 ```xml
 <eml>
@@ -145,63 +145,19 @@ The third annotation also has as its subject the `creator` element that has the 
 </eml>
 ```
 
-### Pattern for the `additionalMetadata` element annotations
-Semantic annotations may also be inserted in the `additionalMetadata` element that is nested under the `eml` root element. This element is a container for supplemental non-EML metadata that pertains to the subject of interest. Only metadata that is XML-based can be inserted here. Each `additionalMetadata` element semantic annotation has `describes` elements and `metadata` elements for annotations, with each`metadata` element containing at least one `annotation` element. The content of the `describes` element is the id of the *subject* of the semantic annotation. The subject is the element containing the id. Contained within the `annotation` element are `propertyURI` and `valueURI` elements. The `propertyURI` is the *object property* or *data property* and the `valueURI` is the *object* of the annotation. *The URIs should ideally point to terms in controlled vocabularies*. Each `propertyURI` and `valueURI` element can have a `label` attribute that displays a label associated with each URI. Labels are intended to provide a more readable format for users and may be displayed in application interfaces. *It is recommended that labels are populated with values from the preferred labels field (skos:prefLabel) or label field (rdfs:label) from a controlled vocabulary.* 
+### Annotations in the `additionalMetadata` element
 
-Multiple `annotation` elements may be embedded in the same `metadata` element to assert multiple semantic statements about the same subject. Annotating different subjects requires using additional `describes` elements.
-```xml
-<eml>
-  ...  
-    <subject id="id of the subject"></subject>
-  ...
-    <additionalMetadata>
-        <describes>id of the subject</describes>                                                                
-        <metadata>
-            <annotation>
-                <propertyURI label="label name">property URI</propertyURI>  
-                <valueURI label="label name">value URI</valueURI>                            
-            </annotation>
-            <annotation>
-                <propertyURI label="label name">property URI</propertyURI>       
-                <valueURI label="label name">value URI</valueURI>    
-            </annotation>
-        </metadata>
-    </additionalMetadata>
-  ...
-</eml>
-```
-
-* Example 7: An `additionalMetadata` element annotation demonstrating the `additionalMetadata` element annotation pattern
-```xml
-<eml>
-  ...  
-    <creator id="1234"></creator>
-  ...
-    <additionalMetadata>
-        <describes>1234</describes>                                                                
-        <metadata>
-            <annotation>
-                <propertyURI label="has occupation">http://schema.org/hasOccupation</propertyURI>  
-                <valueURI label="researcher">http://schema.org/Researcher</valueURI>                            
-            </annotation>
-        </metadata>
-    </additionalMetadata>
-  ...
-</eml>
-```
-In the above example (Example 7), the `creator` element has the `id` attribute "1234". The `creator` element is the subject in the semantic triple, the object property is "http://schema.org/hasOccupation", and the value (object) is "http://schema.org/Researcher". After serializing the EML into a semantic web format, such as RDF or JSON-LD, the system could interpret the semantic statement as "the creator that has the id '1234' has an occupation as a researcher".
-
-#### Annotations in the `additionalMetadata` element
-
-The `additionalMetadata` element is nested under the `eml` root element and contains metadata that is not suitable for other parts of the EML document. It is intended to extend EML to include metadata that is not already available in another part of the EML specification, or to include site- or system-specific extensions that are needed beyond the core metadata. The content of this field is any well-formed XML fragment. Additional information may be found in the [eml-semantics module] section.
+Semantic annotations may also be inserted in the `additionalMetadata` element that is nested under the `eml` root element. This element is a container for supplemental non-EML metadata that pertains to the subject of interest. Only metadata that is XML-based can be inserted here. Additional information may be found in the [eml-semantics module] section.
 
 [eml-semantics module]: eml-modules-utility.md#the-eml-semantics-module---semantic-annotations-for-formalized-statements-about-eml-components
 
-The `additionalMetadata` element contains `describes` elements, `metadata` elements, and `annotation` elements. The `describes` element has a pointer to the `id` attribute for the sub-portion of the resource that is described by the additional metadata. It is the `metadata` element that holds the additional metadata to be included in the document. This `metadata` field describes the element referenced in the `describes` element preceding it. Nested under the `metadata` element is the `annotation` element.  An annotation is a precisely-defined semantic statement about an element in the EML document. The subject of the semantic statement is referred to by its id in the `describes` element that precedes the `metadata` element. In other words, the subject is the element containing the id that matches the content of the `describes` element. Each `annotation` element consists of a `propertyURI` element and `valueURI` element that respectively define the property and value (object) of the semantic statement. Each URI should be resolvable to a controlled vocabulary that provides a precise definition, relationships to other terms, and multiple labels for displaying the statement. The associated `label` attributes can be used to display the property and value in a more readable format to users. The `label` attribute should ideally be populated by a preferred label or label present in the controlled vocabulary. 
+Each `additionalMetadata` element semantic annotation has `describes` elements and `metadata` elements for annotations, with each`metadata` element containing at least one `annotation` element. The content of the `describes` element is the id of the *subject* of the semantic annotation. The subject is the element containing the id. It is the `metadata` element that holds the additional metadata to be included in the document. This `metadata` field describes the element referenced in the `describes` element preceding it. Contained within the `annotation` element are `propertyURI` and `valueURI` elements. The `propertyURI` is the *object property* or *data property* and the `valueURI` is the *object* of the annotation. *The URIs should ideally point to terms in controlled vocabularies*. Each `propertyURI` and `valueURI` element can have a `label` attribute that displays a label associated with each URI. Labels are intended to provide a more readable format for users and may be displayed in application interfaces. *It is recommended that labels are populated with values from the preferred labels field (skos:prefLabel) or label field (rdfs:label) from a controlled vocabulary.* 
 
-The `additionalMetadata` annotation below (Example 8) describes a semantic statement with the subject being a `creator` element containing the `id` attribute "adam.shepherd". The object property of the statement is "https://schema.org/memberOf". Finally, the value (object) in the semantic statement is "https://doi.org/10.17616/R37P4C". Taken together, the semantic statement could be read as "'adam.shepherd', the creator (of the dataset), is a member of BCO-DMO".
+Multiple `annotation` elements may be embedded in the same `metadata` element to assert multiple semantic statements about the same subject. Annotating different subjects requires using additional `describes` elements.
 
-* Example 8: `additionalMetadata` element annotation
+The `additionalMetadata` annotation below (Example 5) describes a semantic statement with the subject being a `creator` element containing the `id` attribute "adam.shepherd". The object property of the statement is "https://schema.org/memberOf". Finally, the object (value) in the semantic statement is "https://doi.org/10.17616/R37P4C". Taken together, the semantic statement could be read as "'adam.shepherd', the creator (of the dataset), is a member of BCO-DMO".
+
+* Example 5: `additionalMetadata` element annotation
 
 ```xml
 <eml>
