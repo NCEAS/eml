@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml://ecoinformatics.org/documentation-2.2.0" xmlns:unit="eml://ecoinformatics.org/units-2.2.0" targetNamespace="eml://ecoinformatics.org/units-2.2.0">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.2.0" schemaLocation="eml-documentation.xsd"/>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:doc="eml://ecoinformatics.org/documentation-2.2.0"
+  xmlns:unit="eml://ecoinformatics.org/units-2.2.0"
+  targetNamespace="eml://ecoinformatics.org/units-2.2.0">
+  <xs:import namespace="eml://ecoinformatics.org/documentation-2.2.0"
+    schemaLocation="eml-documentation.xsd"/>
   <xs:annotation>
-    <xs:documentation>
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-    </xs:documentation>
+    <xs:documentation> This program is free software; you can redistribute it and/or modify it under
+      the terms of the GNU General Public License as published by the Free Software Foundation;
+      either version 2 of the License, or (at your option) any later version. This program is
+      distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+      implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+      Public License for more details. You should have received a copy of the GNU General Public
+      License along with this program; if not, write to the Free Software Foundation, Inc., 59
+      Temple Place, Suite 330, Boston, MA 02111-1307 USA </xs:documentation>
     <xs:appinfo>
       <doc:moduleDocs>
         <doc:moduleName>eml-unitTypeDefinitions</doc:moduleName>
@@ -40,15 +37,14 @@ the dictionary of all the units -->
         <doc:tooltip>Standard Units</doc:tooltip>
         <doc:summary>The enumerated list of standard units, mainly S unitsI</doc:summary>
         <doc:description>
-          <para>The unitDictionary is the standard set
-        of units included with the EML distribution, mainly from the
-        SI standard. These unit names should  be used in the standardUnit field to
-        describe an attribute. See the accompanying STMML file, eml-unitDictionary.xml, for
-        precise, quantitative definitions of each of these units and their
-        relationships to base SI units.</para>
-          <para>The standard Unit Dictionary is built from a union of simpleTypes.
-          This construct allows unit types to be used individually as appropriate
-          in EML content (e.g., LengthUnitType for distances )</para>
+          <para>The unitDictionary is the standard set of units included with the EML distribution,
+            mainly from the SI standard. These unit names should be used in the standardUnit field
+            to describe an attribute. See the accompanying STMML file, eml-unitDictionary.xml, for
+            precise, quantitative definitions of each of these units and their relationships to base
+            SI units.</para>
+          <para>The standard Unit Dictionary is built from a union of simpleTypes. This construct
+            allows unit types to be used individually as appropriate in EML content (e.g.,
+            LengthUnitType for distances )</para>
         </doc:description>
       </xs:appinfo>
     </xs:annotation>
@@ -61,16 +57,15 @@ length units -->
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Length Units</doc:tooltip>
-        <doc:summary>The  list of units which are of length type, or have a parentSI of meter
-        SI</doc:summary>
+        <doc:summary>The list of units which are of length type, or have a parentSI of meter
+          SI</doc:summary>
         <doc:description>
-          <para>The LengthUnitType is the enumerated list of units which are of length type, or have a parentSI of meter.
-        These unit names can be used where ever content should be restricted to a length, such as a distance or
-        altitude. The units are defined in the STMML
-        language in a document that is shipped with each release of
-        EML called  eml-unitDictionary.xml. See this file for
-        precise, quantitative definitions of each of these units and their
-        relationships to base SI units.</para>
+          <para>The LengthUnitType is the enumerated list of units which are of length type, or have
+            a parentSI of meter. These unit names can be used where ever content should be
+            restricted to a length, such as a distance or altitude. The units are defined in the
+            STMML language in a document that is shipped with each release of EML called
+            eml-unitDictionary.xml. See this file for precise, quantitative definitions of each of
+            these units and their relationships to base SI units.</para>
         </doc:description>
       </xs:appinfo>
     </xs:annotation>
@@ -105,19 +100,17 @@ length units -->
 
 mass units -->
   <xs:simpleType name="MassUnitType">
-     <xs:annotation>
+    <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Mass Units</doc:tooltip>
-        <doc:summary>The  list of units which are of mass type, or have a parentSI of kilogram
-        </doc:summary>
+        <doc:summary>The list of units which are of mass type, or have a parentSI of kilogram </doc:summary>
         <doc:description>
-          <para>The MassUnitType is the enumerated list of units which are of mass type, or have a parentSI of kilogram.
-        These unit names can be used where ever content should be restricted to a mass, such as an amount.
-        The units are defined in the STMML
-        language in a document that is shipped with each release of
-        EML called  eml-unitDictionary.xml. See this file for
-        precise, quantitative definitions of each of these units and their
-        relationships to base SI units.</para>
+          <para>The MassUnitType is the enumerated list of units which are of mass type, or have a
+            parentSI of kilogram. These unit names can be used where ever content should be
+            restricted to a mass, such as an amount. The units are defined in the STMML language in
+            a document that is shipped with each release of EML called eml-unitDictionary.xml. See
+            this file for precise, quantitative definitions of each of these units and their
+            relationships to base SI units.</para>
         </doc:description>
       </xs:appinfo>
     </xs:annotation>
@@ -146,346 +139,339 @@ the other units, not previously described -->
     <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Other Standard Units</doc:tooltip>
-        <doc:summary>The enumerated list of standard units that are not
-        included in the any other named simpleType</doc:summary>
+        <doc:summary>The enumerated list of standard units that are not included in the any other
+          named simpleType</doc:summary>
         <doc:description>
-          <para>The unitDictionary is the standard set
-        of units included with the EML distribution, mainly from the
-        SI standard. These unit names can be used in the standardUnit field to
-        describe an attribute. The units are defined in the STMML
-        language in a document that is shipped with each release of
-        EML. See the accompanying STMML file eml-unitDictionary.xml for
-        precise, quantitative definitions of each of these units and their
-        relationships to base SI units.</para>
+          <para>The unitDictionary is the standard set of units included with the EML distribution,
+            mainly from the SI standard. These unit names can be used in the standardUnit field to
+            describe an attribute. The units are defined in the STMML language in a document that is
+            shipped with each release of EML. See the accompanying STMML file eml-unitDictionary.xml
+            for precise, quantitative definitions of each of these units and their relationships to
+            base SI units.</para>
           <para>The standard Unit Dictionary is built from a union of simpleTypes. This Type
-enumerates the units which are not in other Type definitions, but are to be
-included as standard.</para>
+            enumerates the units which are not in other Type definitions, but are to be included as
+            standard.</para>
         </doc:description>
       </xs:appinfo>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="dimensionless"/>
-      <xs:enumeration value="second"/>
-      <xs:enumeration value="kelvin"/>
-      <xs:enumeration value="coulomb"/>
+      <xs:enumeration value="acre"/>
       <xs:enumeration value="ampere"/>
-      <xs:enumeration value="mole"/>
-      <xs:enumeration value="candela"/>
-      <xs:enumeration value="number"/>
-      <xs:enumeration value="cubicMeter"/>
-      <xs:enumeration value="nominalMinute"/>
-      <xs:enumeration value="nominalHour"/>
-      <xs:enumeration value="nominalDay"/>
-      <xs:enumeration value="nominalWeek"/>
-      <xs:enumeration value="nominalYear"/>
-      <xs:enumeration value="nominalLeapYear"/>
-      <xs:enumeration value="celsius"/>
-      <xs:enumeration value="fahrenheit"/>
-      <xs:enumeration value="nanosecond"/>
-      <xs:enumeration value="microsecond"/>
-      <xs:enumeration value="millisecond"/>
-      <xs:enumeration value="centisecond"/>
-      <xs:enumeration value="decisecond"/>
-      <xs:enumeration value="dekasecond"/>
-      <xs:enumeration value="hectosecond"/>
-      <xs:enumeration value="kilosecond"/>
-      <xs:enumeration value="megasecond"/>
-      <xs:enumeration value="minute"/>
-      <xs:enumeration value="hour"/>
-      <xs:enumeration value="kiloliter"/>
-      <xs:enumeration value="microliter"/>
-      <xs:enumeration value="milliliter"/>
-      <xs:enumeration value="liter"/>
-      <xs:enumeration value="gallon"/>
-      <xs:enumeration value="quart"/>
-      <xs:enumeration value="bushel"/>
-      <xs:enumeration value="cubicInch"/>
-      <xs:enumeration value="pint"/>
-      <xs:enumeration value="meterCubed"/>
-      <xs:enumeration value="centimeterCubed"/>
-      <xs:enumeration value="inchCubed"/>
-      <xs:enumeration value="radian"/>
-      <xs:enumeration value="degree"/>
-      <xs:enumeration value="grad"/>
-      <xs:enumeration value="steradian"/>
-      <xs:enumeration value="megahertz"/>
-      <xs:enumeration value="kilohertz"/>
-      <xs:enumeration value="hertz"/>
-      <xs:enumeration value="millihertz"/>
-      <xs:enumeration value="newton"/>
-      <xs:enumeration value="joule"/>
-      <xs:enumeration value="calorie"/>
-      <xs:enumeration value="britishThermalUnit"/>
-      <xs:enumeration value="footPound"/>
-      <xs:enumeration value="langley"/>
-      <xs:enumeration value="lumen"/>
-      <xs:enumeration value="lux"/>
-      <xs:enumeration value="becquerel"/>
-      <xs:enumeration value="gray"/>
-      <xs:enumeration value="sievert"/>
-      <xs:enumeration value="katal"/>
-      <xs:enumeration value="henry"/>
-      <xs:enumeration value="megawatt"/>
-      <xs:enumeration value="kilowatt"/>
-      <xs:enumeration value="watt"/>
-      <xs:enumeration value="milliwatt"/>
-      <xs:enumeration value="megavolt"/>
-      <xs:enumeration value="kilovolt"/>
-      <xs:enumeration value="volt"/>
-      <xs:enumeration value="millivolt"/>
-      <xs:enumeration value="farad"/>
-      <xs:enumeration value="ohm"/>
-      <xs:enumeration value="ohmMeter"/>
-      <xs:enumeration value="siemensPerMeter"/>
-      <xs:enumeration value="siemensPerCentimeter"/>
-      <xs:enumeration value="siemen"/>
-      <xs:enumeration value="siemens"/>
-      <xs:enumeration value="weber"/>
-      <xs:enumeration value="tesla"/>
-      <xs:enumeration value="pascal"/>
-      <xs:enumeration value="megapascal"/>
-      <xs:enumeration value="kilopascal"/>
-      <xs:enumeration value="hectopascal"/>
+      <xs:enumeration value="amperePerMeter"/>
+      <xs:enumeration value="amperePerMeterSquared"/>
+      <xs:enumeration value="amperePerSquareMeter"/>
+      <xs:enumeration value="are"/>
       <xs:enumeration value="atmosphere"/>
       <xs:enumeration value="bar"/>
-      <xs:enumeration value="millibar"/>
-      <xs:enumeration value="decibar"/>
-      <xs:enumeration value="kilogramsPerSquareMeter"/>
-      <xs:enumeration value="gramsPerSquareMeter"/>
-      <xs:enumeration value="milligramsPerSquareMeter"/>
-      <xs:enumeration value="kilogramsPerHectare"/>
-      <xs:enumeration value="tonnePerHectare"/>
-      <xs:enumeration value="poundsPerSquareInch"/>
-      <xs:enumeration value="gramPercentimeterSquared"/>
-      <xs:enumeration value="gramPerMeterSquared"/>
-      <xs:enumeration value="kilogramPerHectare"/>
-      <xs:enumeration value="kilogramPerMeterSquared"/>
-      <xs:enumeration value="milligramPerMeterSquared"/>
-      <xs:enumeration value="poundPerAcre"/>
-      <xs:enumeration value="poundPerInchSquared"/>
-      <xs:enumeration value="kilogramPerCubicMeter"/>
-      <xs:enumeration value="milliGramsPerMilliLiter"/>
-      <xs:enumeration value="gramsPerLiter"/>
-      <xs:enumeration value="milligramsPerCubicMeter"/>
-      <xs:enumeration value="microgramsPerLiter"/>
-      <xs:enumeration value="milligramsPerLiter"/>
-      <xs:enumeration value="gramsPerCubicCentimeter"/>
-      <xs:enumeration value="gramsPerMilliliter"/>
-      <xs:enumeration value="gramPerCentimeterCubed"/>
-      <xs:enumeration value="gramPerLiter"/>
-      <xs:enumeration value="gramPerMilliliter"/>
-      <xs:enumeration value="microgramPerLiter"/>
-      <xs:enumeration value="milligramPerLiter"/>
-      <xs:enumeration value="milligramPerMeterCubed"/>
-      <xs:enumeration value="kilogramPerMeterCubed"/>
-      <xs:enumeration value="megagramPerMeterCubed"/>
-      <xs:enumeration value="milligramPerMilliliter"/>
-      <xs:enumeration value="gramsPerLiterPerDay"/>
-      <xs:enumeration value="milligramPerMeterCubedPerDay"/>
-      <xs:enumeration value="gramPerDayPerLiter"/>
-      <xs:enumeration value="litersPerSecond"/>
-      <xs:enumeration value="cubicMetersPerSecond"/>
-      <xs:enumeration value="cubicFeetPerSecond"/>
-      <xs:enumeration value="footCubedPerSecond"/>
-      <xs:enumeration value="literPerSecond"/>
-      <xs:enumeration value="meterCubedPerSecond"/>
-      <xs:enumeration value="squareMeter"/>
-      <xs:enumeration value="are"/>
-      <xs:enumeration value="hectare"/>
-      <xs:enumeration value="squareKilometers"/>
-      <xs:enumeration value="squareMillimeters"/>
-      <xs:enumeration value="squareCentimeters"/>
-      <xs:enumeration value="acre"/>
-      <xs:enumeration value="squareFoot"/>
-      <xs:enumeration value="squareYard"/>
-      <xs:enumeration value="squareMile"/>
-      <xs:enumeration value="centimeterSquared"/>
-      <xs:enumeration value="footSquared"/>
-      <xs:enumeration value="kilometerSquared"/>
-      <xs:enumeration value="meterSquared"/>
-      <xs:enumeration value="mileSquared"/>
-      <xs:enumeration value="millimeterSquared"/>
-      <xs:enumeration value="yardSquared"/>
-      <xs:enumeration value="litersPerSquareMeter"/>
-      <xs:enumeration value="bushelsPerAcre"/>
-      <xs:enumeration value="litersPerHectare"/>
+      <xs:enumeration value="becquerel"/>
+      <xs:enumeration value="britishThermalUnit"/>
+      <xs:enumeration value="bushel"/>
       <xs:enumeration value="bushelPerAcre"/>
-      <xs:enumeration value="literPerHectare"/>
-      <xs:enumeration value="literPerMeterSquared"/>
-      <xs:enumeration value="meterCubedPerHectare"/>
-      <xs:enumeration value="meterCubedPerMeterSquared"/>
-      <xs:enumeration value="meterSquaredPerHectare"/>
-      <xs:enumeration value="squareMeterPerKilogram"/>
-      <xs:enumeration value="meterSquaredPerKilogram"/>
-      <xs:enumeration value="metersPerSecond"/>
-      <xs:enumeration value="metersPerDay"/>
-      <xs:enumeration value="feetPerDay"/>
-      <xs:enumeration value="feetPerSecond"/>
-      <xs:enumeration value="feetPerHour"/>
-      <xs:enumeration value="yardsPerSecond"/>
-      <xs:enumeration value="milesPerHour"/>
-      <xs:enumeration value="milesPerSecond"/>
-      <xs:enumeration value="milesPerMinute"/>
-      <xs:enumeration value="centimetersPerSecond"/>
-      <xs:enumeration value="millimetersPerSecond"/>
-      <xs:enumeration value="centimeterPerYear"/>
-      <xs:enumeration value="knots"/>
-      <xs:enumeration value="kilometersPerHour"/>
+      <xs:enumeration value="bushelsPerAcre"/>
+      <xs:enumeration value="calorie"/>
+      <xs:enumeration value="candela"/>
+      <xs:enumeration value="candelaPerMeterSquared"/>
+      <xs:enumeration value="candelaPerSquareMeter"/>
+      <xs:enumeration value="celsius"/>
+      <xs:enumeration value="centimeterCubed"/>
       <xs:enumeration value="centimeterPerSecond"/>
+      <xs:enumeration value="centimeterPerYear"/>
+      <xs:enumeration value="centimeterSquared"/>
+      <xs:enumeration value="centimetersPerSecond"/>
+      <xs:enumeration value="centisecond"/>
+      <xs:enumeration value="coulomb"/>
+      <xs:enumeration value="cubicCentimetersPerCubicCentimeters"/>
+      <xs:enumeration value="cubicFeetPerSecond"/>
+      <xs:enumeration value="cubicInch"/>
+      <xs:enumeration value="cubicMeter"/>
+      <xs:enumeration value="cubicMeterPerKilogram"/>
+      <xs:enumeration value="cubicMetersPerSecond"/>
+      <xs:enumeration value="cubicMicrometersPerGram"/>
+      <xs:enumeration value="decibar"/>
+      <xs:enumeration value="decisecond"/>
+      <xs:enumeration value="dekasecond"/>
+      <xs:enumeration value="dimensionless"/>
+      <xs:enumeration value="equivalentPerLiter"/>
+      <xs:enumeration value="fahrenheit"/>
+      <xs:enumeration value="farad"/>
+      <xs:enumeration value="feetPerDay"/>
+      <xs:enumeration value="feetPerHour"/>
+      <xs:enumeration value="feetPerSecond"/>
+      <xs:enumeration value="feetSquaredPerDay"/>
+      <xs:enumeration value="footCubedPerSecond"/>
       <xs:enumeration value="footPerDay"/>
       <xs:enumeration value="footPerHour"/>
       <xs:enumeration value="footPerSecond"/>
+      <xs:enumeration value="footPound"/>
+      <xs:enumeration value="footSquared"/>
+      <xs:enumeration value="footSquaredPerDay"/>
+      <xs:enumeration value="gallon"/>
+      <xs:enumeration value="gramPerCentimeterCubed"/>
+      <xs:enumeration value="gramPerCentimeterSquaredPerSecond"/>
+      <xs:enumeration value="gramPerDayPerHectare"/>
+      <xs:enumeration value="gramPerDayPerLiter"/>
+      <xs:enumeration value="gramPerGram"/>
+      <xs:enumeration value="gramPerLiter"/>
+      <xs:enumeration value="gramPerMeterSquared"/>
+      <xs:enumeration value="gramPerMeterSquaredPerDay"/>
+      <xs:enumeration value="gramPerMeterSquaredPerYear"/>
+      <xs:enumeration value="gramPerMilliliter"/>
+      <xs:enumeration value="gramPerYear"/>
+      <xs:enumeration value="gramPercentimeterSquared"/>
+      <xs:enumeration value="gramsPerCentimeterSquaredPerSecond"/>
+      <xs:enumeration value="gramsPerCubicCentimeter"/>
+      <xs:enumeration value="gramsPerGram"/>
+      <xs:enumeration value="gramsPerHectarePerDay"/>
+      <xs:enumeration value="gramsPerLiter"/>
+      <xs:enumeration value="gramsPerLiterPerDay"/>
+      <xs:enumeration value="gramsPerMeterSquaredPerYear"/>
+      <xs:enumeration value="gramsPerMilliliter"/>
+      <xs:enumeration value="gramsPerSquareMeter"/>
+      <xs:enumeration value="gramsPerYear"/>
+      <xs:enumeration value="gray"/>
+      <xs:enumeration value="hectare"/>
+      <xs:enumeration value="hectopascal"/>
+      <xs:enumeration value="hectosecond"/>
+      <xs:enumeration value="henry"/>
+      <xs:enumeration value="hertz"/>
+      <xs:enumeration value="hour"/>
+      <xs:enumeration value="inchCubed"/>
       <xs:enumeration value="inchPerHour"/>
+      <xs:enumeration value="inverseCentimeter"/>
+      <xs:enumeration value="inverseMeter"/>
+      <xs:enumeration value="joule"/>
+      <xs:enumeration value="katal"/>
+      <xs:enumeration value="kelvin"/>
+      <xs:enumeration value="kilogramPerCubicMeter"/>
+      <xs:enumeration value="kilogramPerHectare"/>
+      <xs:enumeration value="kilogramPerHectarePerYear"/>
+      <xs:enumeration value="kilogramPerMeterCubed"/>
+      <xs:enumeration value="kilogramPerMeterSquared"/>
+      <xs:enumeration value="kilogramPerMeterSquaredPerDay"/>
+      <xs:enumeration value="kilogramPerMeterSquaredPerSecond"/>
+      <xs:enumeration value="kilogramPerMeterSquaredPerYear"/>
+      <xs:enumeration value="kilogramPerSecond"/>
+      <xs:enumeration value="kilogramsPerHectare"/>
+      <xs:enumeration value="kilogramsPerHectarePerYear"/>
+      <xs:enumeration value="kilogramsPerMeterSquaredPerSecond"/>
+      <xs:enumeration value="kilogramsPerMeterSquaredPerYear"/>
+      <xs:enumeration value="kilogramsPerSecond"/>
+      <xs:enumeration value="kilogramsPerSquareMeter"/>
+      <xs:enumeration value="kilohertz"/>
+      <xs:enumeration value="kiloliter"/>
       <xs:enumeration value="kilometerPerHour"/>
+      <xs:enumeration value="kilometerSquared"/>
+      <xs:enumeration value="kilometersPerHour"/>
+      <xs:enumeration value="kilopascal"/>
+      <xs:enumeration value="kilosecond"/>
+      <xs:enumeration value="kilovolt"/>
+      <xs:enumeration value="kilowatt"/>
+      <xs:enumeration value="kilowattPerMeterSquared"/>
       <xs:enumeration value="knot"/>
+      <xs:enumeration value="knots"/>
+      <xs:enumeration value="langley"/>
+      <xs:enumeration value="langleyPerDay"/>
+      <xs:enumeration value="liter"/>
+      <xs:enumeration value="literPerHectare"/>
+      <xs:enumeration value="literPerLiter"/>
+      <xs:enumeration value="literPerMeterSquared"/>
+      <xs:enumeration value="literPerSecond"/>
+      <xs:enumeration value="litersPerHectare"/>
+      <xs:enumeration value="litersPerSecond"/>
+      <xs:enumeration value="litersPerSquareMeter"/>
+      <xs:enumeration value="lumen"/>
+      <xs:enumeration value="lux"/>
+      <xs:enumeration value="megagramPerMeterCubed"/>
+      <xs:enumeration value="megahertz"/>
+      <xs:enumeration value="megajoulePerMeterSquaredPerDay"/>
+      <xs:enumeration value="megapascal"/>
+      <xs:enumeration value="megasecond"/>
+      <xs:enumeration value="megavolt"/>
+      <xs:enumeration value="megawatt"/>
+      <xs:enumeration value="meterCubed"/>
+      <xs:enumeration value="meterCubedPerHectare"/>
+      <xs:enumeration value="meterCubedPerKilogram"/>
+      <xs:enumeration value="meterCubedPerMeterCubed"/>
+      <xs:enumeration value="meterCubedPerMeterSquared"/>
+      <xs:enumeration value="meterCubedPerSecond"/>
       <xs:enumeration value="meterPerDay"/>
+      <xs:enumeration value="meterPerGram"/>
       <xs:enumeration value="meterPerSecond"/>
+      <xs:enumeration value="meterPerSecondSquared"/>
+      <xs:enumeration value="meterSquared"/>
+      <xs:enumeration value="meterSquaredPerDay"/>
+      <xs:enumeration value="meterSquaredPerHectare"/>
+      <xs:enumeration value="meterSquaredPerKilogram"/>
+      <xs:enumeration value="meterSquaredPerSecond"/>
+      <xs:enumeration value="metersPerDay"/>
+      <xs:enumeration value="metersPerGram"/>
+      <xs:enumeration value="metersPerSecond"/>
+      <xs:enumeration value="metersPerSecondSquared"/>
+      <xs:enumeration value="metersSquaredPerDay"/>
+      <xs:enumeration value="metersSquaredPerSecond"/>
+      <xs:enumeration value="microequivalentPerLiter"/>
+      <xs:enumeration value="microgramPerGram"/>
+      <xs:enumeration value="microgramPerGramPerDay"/>
+      <xs:enumeration value="microgramPerGramPerHour"/>
+      <xs:enumeration value="microgramPerGramPerWeek"/>
+      <xs:enumeration value="microgramPerLiter"/>
+      <xs:enumeration value="microgramsPerGram"/>
+      <xs:enumeration value="microgramsPerLiter"/>
+      <xs:enumeration value="microliter"/>
+      <xs:enumeration value="microliterPerLiter"/>
+      <xs:enumeration value="micrometerCubedPerGram"/>
+      <xs:enumeration value="micromolePerCentimeterSquaredPerSecond"/>
+      <xs:enumeration value="micromolePerGram"/>
+      <xs:enumeration value="micromolePerGramPerDay"/>
+      <xs:enumeration value="micromolePerGramPerHour"/>
+      <xs:enumeration value="micromolePerGramPerSecond"/>
+      <xs:enumeration value="micromolePerKilogram"/>
+      <xs:enumeration value="micromolePerLiter"/>
+      <xs:enumeration value="micromolePerMeterSquaredPerSecond"/>
+      <xs:enumeration value="micromolePerMole"/>
+      <xs:enumeration value="microsecond"/>
+      <xs:enumeration value="microwattPerCentimeterSquaredPerNanometer"/>
+      <xs:enumeration value="microwattPerCentimeterSquaredPerNanometerPerSteradian"/>
+      <xs:enumeration value="microwattPerCentimeterSquaredPerSteradian"/>
       <xs:enumeration value="milePerHour"/>
       <xs:enumeration value="milePerMinute"/>
       <xs:enumeration value="milePerSecond"/>
+      <xs:enumeration value="mileSquared"/>
+      <xs:enumeration value="milesPerHour"/>
+      <xs:enumeration value="milesPerMinute"/>
+      <xs:enumeration value="milesPerSecond"/>
+      <xs:enumeration value="milliGramsPerMilliLiter"/>
+      <xs:enumeration value="millibar"/>
+      <xs:enumeration value="milliequivalentPerLiter"/>
+      <xs:enumeration value="milligramPerKilogram"/>
+      <xs:enumeration value="milligramPerLiter"/>
+      <xs:enumeration value="milligramPerMeterCubed"/>
+      <xs:enumeration value="milligramPerMeterCubedPerDay"/>
+      <xs:enumeration value="milligramPerMeterSquared"/>
+      <xs:enumeration value="milligramPerMeterSquaredPerDay"/>
+      <xs:enumeration value="milligramPerMilliliter"/>
+      <xs:enumeration value="milligramsPerCubicMeter"/>
+      <xs:enumeration value="milligramsPerLiter"/>
+      <xs:enumeration value="milligramsPerSquareMeter"/>
+      <xs:enumeration value="millihertz"/>
+      <xs:enumeration value="milliliter"/>
+      <xs:enumeration value="milliliterPerLiter"/>
       <xs:enumeration value="millimeterPerDay"/>
       <xs:enumeration value="millimeterPerSecond"/>
-      <xs:enumeration value="yardPerSecond"/>
-      <xs:enumeration value="metersPerSecondSquared"/>
-      <xs:enumeration value="meterPerSecondSquared"/>
-      <xs:enumeration value="waveNumber"/>
-      <xs:enumeration value="inverseMeter"/>
-      <xs:enumeration value="inverseCentimeter"/>
-      <xs:enumeration value="cubicMeterPerKilogram"/>
-      <xs:enumeration value="cubicMicrometersPerGram"/>
-      <xs:enumeration value="meterCubedPerKilogram"/>
-      <xs:enumeration value="micrometerCubedPerGram"/>
-      <xs:enumeration value="amperePerSquareMeter"/>
-      <xs:enumeration value="amperePerMeterSquared"/>
-      <xs:enumeration value="amperePerMeter"/>
-      <xs:enumeration value="molePerCubicMeter"/>
-      <xs:enumeration value="molarity"/>
-      <xs:enumeration value="molePerMeterCubed"/>
-      <xs:enumeration value="molePerLiter"/>
-      <xs:enumeration value="millimolePerLiter"/>
-      <xs:enumeration value="micromolePerLiter"/>
-      <xs:enumeration value="nanomolePerLiter"/>
-      <xs:enumeration value="millimolePerMeterCubed"/>
-      <xs:enumeration value="microequivalentPerLiter"/>
-      <xs:enumeration value="milliequivalentPerLiter"/>
-      <xs:enumeration value="equivalentPerLiter"/>
-      <xs:enumeration value="molality"/>
+      <xs:enumeration value="millimeterSquared"/>
+      <xs:enumeration value="millimetersPerSecond"/>
       <xs:enumeration value="millimolePerGram"/>
+      <xs:enumeration value="millimolePerKilogram"/>
+      <xs:enumeration value="millimolePerLiter"/>
+      <xs:enumeration value="millimolePerMeterCubed"/>
+      <xs:enumeration value="millimolePerMole"/>
+      <xs:enumeration value="millimolesPerGram"/>
+      <xs:enumeration value="millisecond"/>
+      <xs:enumeration value="millivolt"/>
+      <xs:enumeration value="milliwatt"/>
+      <xs:enumeration value="minute"/>
+      <xs:enumeration value="molality"/>
+      <xs:enumeration value="molarity"/>
+      <xs:enumeration value="mole"/>
+      <xs:enumeration value="molePerCubicMeter"/>
       <xs:enumeration value="molePerGram"/>
       <xs:enumeration value="molePerKilogram"/>
-      <xs:enumeration value="micromolePerGram"/>
-      <xs:enumeration value="candelaPerSquareMeter"/>
-      <xs:enumeration value="candelaPerMeterSquared"/>
-      <xs:enumeration value="metersSquaredPerSecond"/>
-      <xs:enumeration value="metersSquaredPerDay"/>
-      <xs:enumeration value="feetSquaredPerDay"/>
-      <xs:enumeration value="footSquaredPerDay"/>
-      <xs:enumeration value="meterSquaredPerDay"/>
-      <xs:enumeration value="meterSquaredPerSecond"/>
-      <xs:enumeration value="kilogramsPerMeterSquaredPerSecond"/>
-      <xs:enumeration value="gramsPerCentimeterSquaredPerSecond"/>
-      <xs:enumeration value="gramsPerMeterSquaredPerYear"/>
-      <xs:enumeration value="gramsPerHectarePerDay"/>
-      <xs:enumeration value="kilogramsPerHectarePerYear"/>
-      <xs:enumeration value="kilogramsPerMeterSquaredPerYear"/>
-      <xs:enumeration value="gramPerCentimeterSquaredPerSecond"/>
-      <xs:enumeration value="gramPerDayPerHectare"/>
-      <xs:enumeration value="gramPerMeterSquaredPerYear"/>
-      <xs:enumeration value="kilogramPerHectarePerYear"/>
-      <xs:enumeration value="kilogramPerMeterSquaredPerSecond"/>
-      <xs:enumeration value="kilogramPerMeterSquaredPerDay"/>
-      <xs:enumeration value="gramPerMeterSquaredPerDay"/>
-      <xs:enumeration value="milligramPerMeterSquaredPerDay"/>
-      <xs:enumeration value="kilogramPerMeterSquaredPerYear"/>
-      <xs:enumeration value="molesPerKilogram"/>
-      <xs:enumeration value="molesPerGram"/>
-      <xs:enumeration value="millimolesPerGram"/>
-      <xs:enumeration value="molesPerKilogramPerSecond"/>
-      <xs:enumeration value="nanomolesPerGramPerSecond"/>
-      <xs:enumeration value="molePerKilogramPerSecond"/>
-      <xs:enumeration value="nanomolePerGramPerSecond"/>
-      <xs:enumeration value="nanomolePerGramPerHour"/>
-      <xs:enumeration value="nanomolePerGramPerDay"/>
-      <xs:enumeration value="micromolePerGramPerSecond"/>
-      <xs:enumeration value="micromolePerGramPerHour"/>
-      <xs:enumeration value="micromolePerGramPerDay"/>
-      <xs:enumeration value="kilogramsPerSecond"/>
-      <xs:enumeration value="tonnesPerYear"/>
-      <xs:enumeration value="gramsPerYear"/>
-      <xs:enumeration value="gramPerYear"/>
-      <xs:enumeration value="kilogramPerSecond"/>
-      <xs:enumeration value="tonnePerYear"/>
-      <xs:enumeration value="numberPerMeterSquared"/>
-      <xs:enumeration value="numberPerKilometerSquared"/>
-      <xs:enumeration value="numberPerHectare"/>
-      <xs:enumeration value="numberPerMeterCubed"/>
-      <xs:enumeration value="numberPerLiter"/>
-      <xs:enumeration value="numberPerMilliliter"/>
-      <xs:enumeration value="metersPerGram"/>
-      <xs:enumeration value="meterPerGram"/>
-      <xs:enumeration value="numberPerGram"/>
-      <xs:enumeration value="gramsPerGram"/>
-      <xs:enumeration value="microgramsPerGram"/>
-      <xs:enumeration value="gramPerGram"/>
-      <xs:enumeration value="milligramPerKilogram"/>
-      <xs:enumeration value="microgramPerGram"/>
-      <xs:enumeration value="nanogramPerGram"/>
-      <xs:enumeration value="microgramPerGramPerHour"/>
-      <xs:enumeration value="microgramPerGramPerDay"/>
-      <xs:enumeration value="microgramPerGramPerWeek"/>
-      <xs:enumeration value="nanogramPerGramPerHour"/>
-      <xs:enumeration value="cubicCentimetersPerCubicCentimeters"/>
-      <xs:enumeration value="meterCubedPerMeterCubed"/>
-      <xs:enumeration value="literPerLiter"/>
-      <xs:enumeration value="milliliterPerLiter"/>
-      <xs:enumeration value="microliterPerLiter"/>
-      <xs:enumeration value="nanoliterPerLiter"/>
-      <xs:enumeration value="molePerMole"/>
-      <xs:enumeration value="millimolePerMole"/>
-      <xs:enumeration value="micromolePerMole"/>
-      <xs:enumeration value="nanomolePerMole"/>
       <xs:enumeration value="molePerKilogram"/>
-      <xs:enumeration value="millimolePerKilogram"/>
-      <xs:enumeration value="micromolePerKilogram"/>
+      <xs:enumeration value="molePerKilogramPerSecond"/>
+      <xs:enumeration value="molePerLiter"/>
+      <xs:enumeration value="molePerMeterCubed"/>
+      <xs:enumeration value="molePerMeterSquaredPerSecond"/>
+      <xs:enumeration value="molePerMole"/>
+      <xs:enumeration value="molesPerGram"/>
+      <xs:enumeration value="molesPerKilogram"/>
+      <xs:enumeration value="molesPerKilogramPerSecond"/>
+      <xs:enumeration value="nanogramPerGram"/>
+      <xs:enumeration value="nanogramPerGramPerHour"/>
+      <xs:enumeration value="nanoliterPerLiter"/>
+      <xs:enumeration value="nanomolePerGramPerDay"/>
+      <xs:enumeration value="nanomolePerGramPerHour"/>
+      <xs:enumeration value="nanomolePerGramPerSecond"/>
       <xs:enumeration value="nanomolePerKilogram"/>
+      <xs:enumeration value="nanomolePerLiter"/>
+      <xs:enumeration value="nanomolePerMole"/>
+      <xs:enumeration value="nanomolesPerGramPerSecond"/>
+      <xs:enumeration value="nanosecond"/>
+      <xs:enumeration value="newton"/>
+      <xs:enumeration value="nominalDay"/>
+      <xs:enumeration value="nominalHour"/>
+      <xs:enumeration value="nominalLeapYear"/>
+      <xs:enumeration value="nominalMinute"/>
+      <xs:enumeration value="nominalWeek"/>
+      <xs:enumeration value="nominalYear"/>
+      <xs:enumeration value="number"/>
+      <xs:enumeration value="numberPerGram"/>
+      <xs:enumeration value="numberPerHectare"/>
+      <xs:enumeration value="numberPerKilometerSquared"/>
+      <xs:enumeration value="numberPerLiter"/>
+      <xs:enumeration value="numberPerMeterCubed"/>
+      <xs:enumeration value="numberPerMeterSquared"/>
+      <xs:enumeration value="numberPerMilliliter"/>
+      <xs:enumeration value="ohm"/>
+      <xs:enumeration value="ohmMeter"/>
+      <xs:enumeration value="pascal"/>
       <xs:enumeration value="percent"/>
       <xs:enumeration value="permil"/>
+      <xs:enumeration value="pint"/>
+      <xs:enumeration value="poundPerAcre"/>
+      <xs:enumeration value="poundPerInchSquared"/>
+      <xs:enumeration value="poundsPerSquareInch"/>
+      <xs:enumeration value="quart"/>
+      <xs:enumeration value="second"/>
+      <xs:enumeration value="siemen"/>
+      <xs:enumeration value="siemens"/>
+      <xs:enumeration value="siemensPerCentimeter"/>
+      <xs:enumeration value="siemensPerMeter"/>
+      <xs:enumeration value="sievert"/>
+      <xs:enumeration value="squareCentimeters"/>
+      <xs:enumeration value="squareFoot"/>
+      <xs:enumeration value="squareKilometers"/>
+      <xs:enumeration value="squareMeter"/>
+      <xs:enumeration value="squareMeterPerKilogram"/>
+      <xs:enumeration value="squareMile"/>
+      <xs:enumeration value="squareMillimeters"/>
+      <xs:enumeration value="squareYard"/>
+      <xs:enumeration value="tesla"/>
+      <xs:enumeration value="tonnePerHectare"/>
+      <xs:enumeration value="tonnePerYear"/>
+      <xs:enumeration value="tonnesPerYear"/>
+      <xs:enumeration value="volt"/>
+      <xs:enumeration value="watt"/>
       <xs:enumeration value="wattPerMeterSquared"/>
-      <xs:enumeration value="kilowattPerMeterSquared"/>
-      <xs:enumeration value="wattPerMeterSquaredPerSteradian"/>
-      <xs:enumeration value="microwattPerCentimeterSquaredPerSteradian"/>
       <xs:enumeration value="wattPerMeterSquaredPerNanometer"/>
-      <xs:enumeration value="microwattPerCentimeterSquaredPerNanometer"/>
       <xs:enumeration value="wattPerMeterSquaredPerNanometerPerSteradian"/>
-      <xs:enumeration value="microwattPerCentimeterSquaredPerNanometerPerSteradian"/>
-      <xs:enumeration value="molePerMeterSquaredPerSecond"/>
-      <xs:enumeration value="micromolePerMeterSquaredPerSecond"/>
-      <xs:enumeration value="micromolePerCentimeterSquaredPerSecond"/>
-      <xs:enumeration value="megajoulePerMeterSquaredPerDay"/>
-      <xs:enumeration value="langleyPerDay"/>
+      <xs:enumeration value="wattPerMeterSquaredPerSteradian"/>
+      <xs:enumeration value="waveNumber"/>
+      <xs:enumeration value="weber"/>
+      <xs:enumeration value="yardPerSecond"/>
+      <xs:enumeration value="yardSquared"/>
+      <xs:enumeration value="yardsPerSecond"/>
       <!-- removed the mass units to their named type -->
       <!-- removed the length units to their named type -->
       <!-- removed the angle units to their named type -->
     </xs:restriction>
   </xs:simpleType>
- <!--
+  <!--
 
 angle units -->
   <xs:simpleType name="angleUnitType">
-   <xs:annotation>
+    <xs:annotation>
       <xs:appinfo>
         <doc:tooltip>Angle Units</doc:tooltip>
-        <doc:summary>An example of a group of units which could be added. These units are a
-        derived typein the group of derived SI units with a special name or symbol.</doc:summary>
+        <doc:summary>An example of a group of units which could be added. These units are a derived
+          typein the group of derived SI units with a special name or symbol.</doc:summary>
         <doc:description>
-          <para>The AngleUnitType is the enumerated list of angle units. For example,
-            plane angle (radian, rad) and solid angle (steradian, sr) are actually
-            dimensionless, and their symbols used as appropriate
-       (e.g, sr in photometry). These unit names could be used where
-       ever content should be restricted.</para>
+          <para>The AngleUnitType is the enumerated list of angle units. For example, plane angle
+            (radian, rad) and solid angle (steradian, sr) are actually dimensionless, and their
+            symbols used as appropriate (e.g, sr in photometry). These unit names could be used
+            where ever content should be restricted.</para>
         </doc:description>
       </xs:appinfo>
-      </xs:annotation>
+    </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:enumeration value="radian"/>
       <xs:enumeration value="degree"/>
