@@ -16,9 +16,16 @@
 
 # 4. tmp files do not need to be tracked in git
 
+set -e
+set -o pipefail
 
 INPUT='./xsd';
 TMP_OUT='./tmp';
+
+if [[ ! -d $TMP_OUT ]]; then
+	mkdir $TMP_OUT;
+fi
+
 TEMPLATE='./style/eml_appinfo2documentation.xsl';
 
 # this is the default install location for a mac (OS 10). your install may be different
@@ -32,39 +39,36 @@ O2_OUTPUT_DIR='docs/schema';
 # The name of the documentation index file right now is called "index.html". 
 # could default to "eml.html" (imported schemas docs will be have respective schema's basename)
 O2_OUTPUT_INDEX='index.html';
-O2_OUTPUT="$O2_OUTPUT_DIR"/"$O2_OUTPUT_INDEX";
+O2_OUTPUT="$O2_OUTPUT_DIR/$O2_OUTPUT_INDEX";
 
 # locaton of final documentation (with other EML docs, note that this is anchored at PWD, root of the checkout)
 OUTPUT='./docs/schema';
-
-
-
 
 # loop through schema files and xform
 COUNTER=0;
 
 # 1. for Oxygen, transform the xsd files, moving appinfo node to documentation, with basic text formatting (see xsl)
-for inputfile in `ls $INPUT/*xsd` ;
+for inputfile in "$INPUT"/*xsd;
 
 do
 	# echo $inputfile;
-	filename=`basename $inputfile`;
-	echo ${filename}; 
-	xsltproc $TEMPLATE $INPUT/$filename > $TMP_OUT/$filename
+	filename=$(basename "$inputfile");
+	echo "$filename"; 
+	xsltproc "$TEMPLATE" "$INPUT/$filename" > "$TMP_OUT/$filename"
 	(( COUNTER ++ ));
 done
 
- echo "processed $COUNTER files from $INPUT to $TMP_OUT using $TEMPLATE"; echo;
+echo "processed $COUNTER files from $INPUT to $TMP_OUT using $TEMPLATE"; echo;
  
 # run the Oxygen XML editor's documenation generator and put output in a tmp area that mirrors the docs dir 
 echo "O2_OUTPUT = $O2_OUTPUT";
-"$O2_SCRIPT" $TMP_OUT/eml.xsd -out:$O2_OUTPUT -format:html -split:namespace 
+"$O2_SCRIPT" "$TMP_OUT/eml.xsd" -cfg:bin/oxygen_documentation_settings.xml
 
 
 # copy O2 output to the main documentation area
 
-cp -r "$TMP_OUT"/"$O2_OUTPUT_DIR"/* "$OUTPUT" ;
-echo "cp -r $TMP_OUT/$O2_OUTPUT_DIR/* $OUTPUT ";
+cp -r "$TMP_OUT/$O2_OUTPUT_DIR" "$OUTPUT" ;
+echo "cp -r $TMP_OUT/$O2_OUTPUT_DIR $OUTPUT ";
 echo "Top of schema documentation is $OUTPUT/$O2_OUTPUT_INDEX ";
 
 
