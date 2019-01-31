@@ -6,5 +6,5 @@ addons:
     - xmlstarlet
 
 script:
-    - xmlstarlet val -e -s xsd/eml.xsd lib/sample/eml-sample.xml
+    - xmlstarlet val -e -s xsd/eml.xsd src/test/resources/eml-sample.xml
     - ant test
