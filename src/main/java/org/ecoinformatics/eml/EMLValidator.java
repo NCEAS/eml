@@ -4,8 +4,9 @@ import java.io.File;
 import java.io.InputStream;
 import java.io.FileInputStream;
 import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Vector;
+import java.util.List;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
@@ -32,6 +33,9 @@ public class EMLValidator {
     // The local document being validated, created during construction
     private Document doc = null;
 
+    // An accumulated list of errors from validating a document
+    private List<String> errors = null;
+
     /**
      * Construct an EMLValidator for use on a given file path.
      * @param filename the relative or absolute path to a file to be validated
@@ -40,6 +44,7 @@ public class EMLValidator {
         try {
             FileInputStream f = new FileInputStream(new File(filename));
             doc = parseDocument(new InputSource(f));
+            errors = new ArrayList<String>();
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -58,7 +63,7 @@ public class EMLValidator {
 
     /**
      * Validate the EML document that was provided when the validator was
-     * instantiated.  Thiss runs all of the specialized checks that go beyond
+     * instantiated.  This runs all of the specialized checks that go beyond
      * XML Schema validation.  The method returns true if valid, false
      * otherwise.
      * @return true if the document iss valid, false otherwise
@@ -70,20 +75,20 @@ public class EMLValidator {
         NodeList root_not_eml = getXPathNodeList("/*[local-name() != 'eml']");
         int length = root_not_eml.getLength();
         if (length > 0) {
-            System.err.println("Invalid: root element is not eml.");
+            errors.add("Invalid: root element is not eml.");
             isValid = false;
         }
 
         // All `id` attributes and `packageId` within the document MUST be unique
-        Vector<String> packageId = getXPathValues("//*/@packageId");
-        Vector<String> ids = getXPathValues("//*[@id]/@id");
+        ArrayList<String> packageId = getXPathValues("//*/@packageId");
+        ArrayList<String> ids = getXPathValues("//*[@id]/@id");
         ids.addAll(packageId);
         HashMap idmap = new HashMap();
         for (String s : ids) {
             idmap.put(s, null);
         }
         if (ids.size() != idmap.size()) {
-            System.err.println("Invalid: ID attributes must be unique. Duplicates exist.");
+            errors.add("Invalid: ID attributes must be unique. Duplicates exist.");
             isValid = false;
         }
 
@@ -93,10 +98,10 @@ public class EMLValidator {
         // If an `additionalMetadata` element references another using a child 
         // `describes` element, another element with that value in its `id` 
         // attribute MUST exist in the document
-        Vector<String> refs = getXPathValues("//annotation[@references]/@references|//references|//describes");
+        ArrayList<String> refs = getXPathValues("//annotation[@references]/@references|//references|//describes");
         for (String s : refs) {
             if (!ids.contains(s)) {
-                System.err.println("Invalid: Reference missing from IDs: " + s);
+                errors.add("Invalid: Reference missing from IDs: " + s);
                 isValid = false;
             }
         }
@@ -108,7 +113,7 @@ public class EMLValidator {
         NodeList missing_id_ref = getXPathNodeList("//*[annotation and not(@id) and not(annotation[@references]) and not(parent::*/describes)]");
         length = missing_id_ref.getLength();
         if (length > 0) {
-            System.err.println("Invalid: annotations lack id or references: " + length);
+            errors.add("Invalid: annotations lack id or references: " + length);
             isValid = false;
             //for (int i = 0; i < missing_id_ref.getLength(); i++) {
             //Node n = missing_id_ref.item(i);
@@ -121,7 +126,7 @@ public class EMLValidator {
         NodeList both_id_ref = getXPathNodeList("//*[references and @id]");
         length = both_id_ref.getLength();
         if (length > 0) {
-            System.err.println("Invalid: elements use both @id and references: " + length);
+            errors.add("Invalid: elements use both @id and references: " + length);
             isValid = false;
             //for (int i = 0; i < both_id_ref.getLength(); i++) {
             //Node n = both_id_ref.item(i);
@@ -135,6 +140,15 @@ public class EMLValidator {
         // constraint, as snobody seems to use it.
 
         return isValid;
+    }
+
+    /**
+     * Return an array of validation errors after validation hass been
+     * completed.  If the array is of length 0, no errors occurred.
+     * @return array of String error values
+     */
+    public String[] getErrors() {
+        return(errors.toArray(new String[0]));
     }
 
     /**
@@ -153,9 +167,9 @@ public class EMLValidator {
      * Extract a vector of text values from the document using an XPath
      * expression.
      */
-    private Vector getXPathValues(String xpath) {
+    private ArrayList getXPathValues(String xpath) {
         // Use the simple XPath API to select a nodeIterator.
-        Vector<String> values = new Vector<String>();
+        ArrayList<String> values = new ArrayList<String>();
         try {
             NodeList nl = XPathAPI.selectNodeList(doc, xpath);
 

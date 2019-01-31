@@ -25,7 +25,7 @@
 package org.ecoinformatics.emltest;
 
 import java.io.File;
-import java.util.Vector;
+import java.util.ArrayList;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -90,14 +90,17 @@ public class EMLValidatorTest extends TestCase
 
         // all valid documents should validate
         File testDir = new File(TEST_DIR);
-        Vector fileList = getXmlFiles(testDir);
+        ArrayList fileList = getXmlFiles(testDir);
         for (int i=0; i < fileList.size(); i++) {
-            File testFile = (File)fileList.elementAt(i);
+            File testFile = (File)fileList.get(i);
             try {
                 System.err.println("Validating file: " + testFile.getName());
                 EMLValidator validator = new EMLValidator(testFile.getPath());
                 boolean isValid = validator.validate();
                 if (!isValid) {
+                    for (String e : validator.getErrors()) {
+                        System.err.println(e);
+                    }
                     fail("Validator: NOT valid: " + testFile.getPath());
                 }
             } catch (Exception e) {
@@ -113,11 +116,11 @@ public class EMLValidatorTest extends TestCase
         // NOTE: EMLParser does not validate against the schema (see SAXParserTest)
         int failures = 0;
         File invalidDir = new File(INVALID_DIR);
-        Vector invalidList = getXmlFiles(invalidDir);
+        ArrayList invalidList = getXmlFiles(invalidDir);
         int invalidFileCount = invalidList.size();
         System.err.println("Checking invalid files: " + invalidFileCount);
         for (int i=0; i < invalidFileCount; i++) {
-            File invalidFile = (File)invalidList.elementAt(i);
+            File invalidFile = (File)invalidList.get(i);
             System.err.println("Invalidating file: " + invalidFile.getName());
             try {
                 EMLValidator validator = new EMLValidator(invalidFile.getPath());
@@ -137,7 +140,7 @@ public class EMLValidatorTest extends TestCase
         }
         if (failures != invalidFileCount) {
         	System.err.println(failures + "/" + invalidFileCount + " failures in directory.");
-        	fail("Error: An EMLParserException should have been thrown for all invalid files.");
+        	fail("Error: An error should have been thrown for all invalid files.");
         }
     }
 
@@ -147,16 +150,16 @@ public class EMLValidatorTest extends TestCase
      * @param directory the directory to list
      * @return a vector of File objects in the directory
      */
-    private Vector getXmlFiles(File directory)
+    private ArrayList getXmlFiles(File directory)
     {
         String[] files = directory.list();
-        Vector fileList = new Vector();
+        ArrayList fileList = new ArrayList();
 
         for (int i=0; i < files.length; i++) {
             String filename = files[i];
             File currentFile = new File(directory, filename);
             if (currentFile.isFile() && filename.endsWith(".xml") && !filename.startsWith("stmml")) {
-                fileList.addElement(currentFile);
+                fileList.add(currentFile);
             }
         }
         return fileList;
