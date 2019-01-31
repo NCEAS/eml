@@ -10,6 +10,12 @@
         <surName>Smith</surName>
       </individualName>
     </creator>
+    <!-- this file is invalid because the containing dataset lacks an id -->
+    <!-- and the annotation lacks a references attribute -->
+    <annotation>
+        <propertyURI label="Subject">http://purl.org/dc/elements/1.1/subject</propertyURI>
+        <valueURI label="grassland biome">http://purl.obolibrary.org/obo/ENVO_01000177</valueURI>
+    </annotation>
     <contact id="b">
       <individualName>
         <surName>Johnson</surName>
@@ -18,10 +24,5 @@
     <contact>
       <references>23445</references>
     </contact>
-    <!-- this file is invalid because the containing dataset lacks an id -->
-    <annotation>
-        <propertyURI label="Subject">http://purl.org/dc/elements/1.1/subject</propertyURI>
-        <valueURI label="grassland biome">http://purl.obolibrary.org/obo/ENVO_01000177</valueURI>
-    </annotation>
   </dataset>
 </eml:eml>

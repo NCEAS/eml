@@ -155,7 +155,7 @@ public class EMLValidatorTest extends TestCase
         for (int i=0; i < files.length; i++) {
             String filename = files[i];
             File currentFile = new File(directory, filename);
-            if (currentFile.isFile() && filename.endsWith(".xml")) {
+            if (currentFile.isFile() && filename.endsWith(".xml") && !filename.startsWith("stmml")) {
                 fileList.addElement(currentFile);
             }
         }
