@@ -60,7 +60,7 @@ import com.oreilly.servlet.multipart.ParamPart;
 import com.oreilly.servlet.multipart.Part;
 
 /**
- * Servlet interface for the EMLParser
+ * Servlet interface for the EMLValidator
  */
 public class EMLParserServlet extends HttpServlet {
 
@@ -71,6 +71,7 @@ public class EMLParserServlet extends HttpServlet {
     private static PrintWriter out = null;
     private Hashtable params = new Hashtable();
     private static final String NAMESPACEKEYWORD = "xmlns";
+    public static final String EML2_2_0NAMESPACE = "eml://ecoinformatics.org/eml-2.2.0";
     public static final String EML2_1_1NAMESPACE = "eml://ecoinformatics.org/eml-2.1.1";
     public static final String EML2_1_0NAMESPACE = "eml://ecoinformatics.org/eml-2.1.0";
     public static final String EML2_0_1NAMESPACE = "eml://ecoinformatics.org/eml-2.0.1";
@@ -217,10 +218,19 @@ public class EMLParserServlet extends HttpServlet {
 
         try {
             if(tempfile != null) {
-                EMLParser parser = new EMLParser(tempfile);
-                html.append("<h4>EML specific tests: Passed.</h4><p>The tests which ");
-                html.append("are specific to EML, including validation that IDs are ");
-                html.append("present and properly referenced, have passed.</p>");
+                EMLValidator val = new EMLValidator(tempfile.getAbsolutePath());
+                boolean isValid = val.validate();
+                if (isValid) {
+                    html.append("<h4>EML specific tests: Passed.</h4><p>The tests which ");
+                    html.append("are specific to EML, including validation that IDs are ");
+                    html.append("present and properly referenced, have passed.</p>");
+                } else {
+                    html.append("<h4>EML specific tests: Failed.</h4><p>The following errors were found:<ul>");
+                    for(String e : val.getErrors()) {
+                        html.append("<li>" + e + "</e>");
+                    }
+                    html.append("</ul></p>");
+                }
             } else {
                 html.append("<h4>Error: The file sent to the parser was null.</h4>");
             }
@@ -310,6 +320,7 @@ public class EMLParserServlet extends HttpServlet {
         String eml2_0_1NameSpace = EML2_0_1NAMESPACE;
         String eml2_1_0NameSpace = EML2_1_0NAMESPACE;
         String eml2_1_1NameSpace = EML2_1_1NAMESPACE;
+        String eml2_2_0NameSpace = EML2_2_0NAMESPACE;
 
         if (xml == null) {
             //System.out.println("Validation for schema is "+ namespace);
@@ -379,6 +390,8 @@ public class EMLParserServlet extends HttpServlet {
                     namespace = eml2_1_0NameSpace;
                 } else if (namespaceString.indexOf(eml2_1_1NameSpace) != -1) {
                     namespace = eml2_1_1NameSpace;
+                } else if (namespaceString.indexOf(eml2_2_0NameSpace) != -1) {
+                    namespace = eml2_2_0NameSpace;
                 } else {
                     namespace = namespaceString;
                 }
