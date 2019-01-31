@@ -50,6 +50,7 @@ public class SaxValidateTest extends TestCase
     private final static String
                 DEFAULT_PARSER = "org.apache.xerces.parsers.SAXParser";
     private final static String TEST_DIR = "./src/test/resources/";
+    private final static String MODULES_DIR = TEST_DIR + "/moduleEML/";
 
     /**
      * Constructor to build the test
@@ -91,8 +92,9 @@ public class SaxValidateTest extends TestCase
         SAXValidate test = new SAXValidate(true);
         assertTrue(test != null);
 
-        File testDir = new File(TEST_DIR);
-        Vector fileList = getXmlFiles(testDir);
+        Vector fileList = getXmlFiles(TEST_DIR);
+        Vector modsList = getXmlFiles(MODULES_DIR);
+        fileList.addAll(modsList);
 
         for (int i=0; i<fileList.size(); i++) {
             File testFile = (File)fileList.elementAt(i);
@@ -128,13 +130,14 @@ public class SaxValidateTest extends TestCase
     }
 
     /**
-     * Get the list of files in a directory.
+     * Get the list of files in a directory with XML extensions.
      *
-     * @param directory the directory to list
+     * @param dirname the directory to list
      * @return a vector of File objects in the directory
      */
-    private Vector getXmlFiles(File directory)
+    private Vector getXmlFiles(String dirname)
     {
+        File directory = new File(dirname);
         String[] files = directory.list();
         Vector fileList = new Vector();
 
