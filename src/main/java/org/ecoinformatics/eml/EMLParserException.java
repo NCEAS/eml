@@ -35,10 +35,8 @@ package org.ecoinformatics.eml;
 /**
  * An exception for the EMLParser to throw at a high level.
  */
-public class EMLParserException extends RuntimeException
-{
-  public EMLParserException(String msg)
-  {
-    super(msg);
-  }
+public class EMLParserException extends RuntimeException {
+    public EMLParserException(String msg) {
+        super(msg);
+    }
 }

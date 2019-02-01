@@ -51,195 +51,171 @@ import edu.ucsb.nceas.utilities.config.ConfigXML;
 /**
  * Validate an XML document using a SAX parser
  */
-public class SAXValidate extends DefaultHandler implements ErrorHandler
-{
-  private boolean schemavalidate = false;
-  public final static String
-               DEFAULT_PARSER = "org.apache.xerces.parsers.SAXParser";
-  public static final String EML2_0_1NAMESPACE = "eml://ecoinformatics.org/eml-2.0.1";
-  public static final String EML2_0_0NAMESPACE = "eml://ecoinformatics.org/eml-2.0.0";
+public class SAXValidate extends DefaultHandler implements ErrorHandler {
+    private boolean schemavalidate = false;
+    public final static String
+    DEFAULT_PARSER = "org.apache.xerces.parsers.SAXParser";
+    public static final String EML2_0_1NAMESPACE = "eml://ecoinformatics.org/eml-2.0.1";
+    public static final String EML2_0_0NAMESPACE = "eml://ecoinformatics.org/eml-2.0.0";
 
-  /**
-   * Construct an instance of the handler class
-   *
-   * @param validateschema  Description of Parameter
-   */
-  public SAXValidate(boolean validateschema)
-  {
-    this.schemavalidate = validateschema;
-  }
-
-  /**
-   * Method for handling errors during a parse
-   *
-   * @param exception         The parsing error
-   * @exception SAXException  Description of Exception
-   */
-  public void error(SAXParseException exception) throws SAXException
-  {
-    throw exception;
-  }
-
-  /**
-   * Method for handling warnings during a parse
-   *
-   * @param exception         The parsing error
-   * @exception SAXException  Description of Exception
-   */
-  public void warning(SAXParseException exception)
-    throws SAXException
-  {
-    throw new SAXException("WARNING: " + exception.getMessage());
-  }
-
-  /**
-   * Run the validation test using the DEFAULT_PARSER defined in this
-   * class.
-   * @param xml the xml document to parse
-   * @exception IOException thrown when test files can't be opened
-   * @exception ClassNotFoundException  thrown when the SAX Parser
-   *                                    class can't be located
-   * @exception SAXException
-   * @exception SAXParserException
-   */
-  public void runTest(Reader xml, String namespaceInDoc) throws IOException, ClassNotFoundException,
-                                  SAXException, SAXParseException
-  {
-    runTest(xml, DEFAULT_PARSER, namespaceInDoc);
-  }
-
-  public void runTest(Reader xml, String parserName, String namespaceIndoc)throws IOException,
-                                  ClassNotFoundException,
-                                  SAXException, SAXParseException
-  {
-    ConfigXML config;
-    String namespaces;
-    URL configFile = getClass().getResource("/config.xml");
-    try
-    {
-      config = new ConfigXML(configFile.openStream());
-      namespaces = config.get("namespaces", 0);
+    /**
+     * Construct an instance of the handler class
+     *
+     * @param validateschema  Description of Parameter
+     */
+    public SAXValidate(boolean validateschema) {
+        this.schemavalidate = validateschema;
     }
-    catch(Exception e)
-    {
-      throw new SAXException("Config file not found: " + e.getMessage());
-    }
-    System.out.println("Using configured schemaLocation namespaces: " + namespaces);
-    runTest(xml, parserName, namespaces, namespaceIndoc);
-  }
 
-  /**
-   * Run the validation test.
-   *
-   * @param xml           the xml stream to be validated
-   * @param parserName    the name of a SAX2 compliant parser class
-   * @exception IOException thrown when test files can't be opened
-   * @exception ClassNotFoundException  thrown when the SAX Parser
-   *                                    class can't be located
-   * @exception SAXException
-   * @exception SAXParserException
-   */
-  private void runTest(Reader xml, String parserName, String schemaLocation, String namespaceInDoc)
-           throws IOException, ClassNotFoundException,
-           SAXException, SAXParseException
-  {
+    /**
+     * Method for handling errors during a parse
+     *
+     * @param exception         The parsing error
+     * @exception SAXException  Description of Exception
+     */
+    public void error(SAXParseException exception) throws SAXException {
+        throw exception;
+    }
 
-    // Get an instance of the parser
-    XMLReader parser;
-    if(parserName.equals("DEFAULT"))
-    {
-      parser = XMLReaderFactory.createXMLReader(DEFAULT_PARSER);
+    /**
+     * Method for handling warnings during a parse
+     *
+     * @param exception         The parsing error
+     * @exception SAXException  Description of Exception
+     */
+    public void warning(SAXParseException exception)
+    throws SAXException {
+        throw new SAXException("WARNING: " + exception.getMessage());
     }
-    else
-    {
-      parser = XMLReaderFactory.createXMLReader(parserName);
+
+    /**
+     * Run the validation test using the DEFAULT_PARSER defined in this
+     * class.
+     * @param xml the xml document to parse
+     * @exception IOException thrown when test files can't be opened
+     * @exception ClassNotFoundException  thrown when the SAX Parser
+     *                                    class can't be located
+     * @exception SAXException
+     * @exception SAXParserException
+     */
+    public void runTest(Reader xml, String namespaceInDoc) throws IOException, ClassNotFoundException,
+        SAXException, SAXParseException {
+        runTest(xml, DEFAULT_PARSER, namespaceInDoc);
     }
-    //System.out.println("namespace in doc is "+namespaceInDoc);
-    // Set Handlers in the parser
-    parser.setContentHandler((ContentHandler)this);
-    parser.setErrorHandler((ErrorHandler)this);
-    parser.setFeature("http://xml.org/sax/features/namespaces", true);
-    parser.setFeature("http://xml.org/sax/features/namespace-prefixes", true);
-    parser.setFeature("http://xml.org/sax/features/validation", true);
-    parser.setProperty(
-      "http://apache.org/xml/properties/schema/external-schemaLocation",
-      schemaLocation);
-    if (schemavalidate) {
-        parser.setFeature(
-            "http://apache.org/xml/features/validation/schema",
-            true);
-        //eml201 and eml200 xml couldn't be done a schema-full-checking. The schemas have problem :(
-        if (namespaceInDoc != null &&  !namespaceInDoc.equals(EML2_0_0NAMESPACE)
-        	 && !namespaceInDoc.equals(EML2_0_1NAMESPACE))
-        {
-        	System.out.println("schema-full-checking");
-        	parser.setFeature(
-                "http://apache.org/xml/features/validation/schema-full-checking",
-                true);
+
+    public void runTest(Reader xml, String parserName, String namespaceIndoc)throws IOException,
+        ClassNotFoundException,
+        SAXException, SAXParseException {
+        ConfigXML config;
+        String namespaces;
+        URL configFile = getClass().getResource("/config.xml");
+        try {
+            config = new ConfigXML(configFile.openStream());
+            namespaces = config.get("namespaces", 0);
+        } catch(Exception e) {
+            throw new SAXException("Config file not found: " + e.getMessage());
         }
+        System.out.println("Using configured schemaLocation namespaces: " + namespaces);
+        runTest(xml, parserName, namespaces, namespaceIndoc);
     }
-    // Parse the document
-    parser.parse(new InputSource(xml));
-  }
+
+    /**
+     * Run the validation test.
+     *
+     * @param xml           the xml stream to be validated
+     * @param parserName    the name of a SAX2 compliant parser class
+     * @exception IOException thrown when test files can't be opened
+     * @exception ClassNotFoundException  thrown when the SAX Parser
+     *                                    class can't be located
+     * @exception SAXException
+     * @exception SAXParserException
+     */
+    private void runTest(Reader xml, String parserName, String schemaLocation, String namespaceInDoc)
+    throws IOException, ClassNotFoundException,
+        SAXException, SAXParseException {
+
+        // Get an instance of the parser
+        XMLReader parser;
+        if(parserName.equals("DEFAULT")) {
+            parser = XMLReaderFactory.createXMLReader(DEFAULT_PARSER);
+        } else {
+            parser = XMLReaderFactory.createXMLReader(parserName);
+        }
+        //System.out.println("namespace in doc is "+namespaceInDoc);
+        // Set Handlers in the parser
+        parser.setContentHandler((ContentHandler)this);
+        parser.setErrorHandler((ErrorHandler)this);
+        parser.setFeature("http://xml.org/sax/features/namespaces", true);
+        parser.setFeature("http://xml.org/sax/features/namespace-prefixes", true);
+        parser.setFeature("http://xml.org/sax/features/validation", true);
+        parser.setProperty(
+            "http://apache.org/xml/properties/schema/external-schemaLocation",
+            schemaLocation);
+        if (schemavalidate) {
+            parser.setFeature(
+                "http://apache.org/xml/features/validation/schema",
+                true);
+            //eml201 and eml200 xml couldn't be done a schema-full-checking. The schemas have problem :(
+            if (namespaceInDoc != null &&  !namespaceInDoc.equals(EML2_0_0NAMESPACE)
+                    && !namespaceInDoc.equals(EML2_0_1NAMESPACE)) {
+                System.out.println("schema-full-checking");
+                parser.setFeature(
+                    "http://apache.org/xml/features/validation/schema-full-checking",
+                    true);
+            }
+        }
+        // Parse the document
+        parser.parse(new InputSource(xml));
+    }
 
 
-  /**
-   * Main method will be called by the script file rnEML parser
-   */
-  public static void main(String[] args)
-  {
-	  //System.out.println("the args length is "+args.length);
-	  if(args.length > 0)
-	    {
-		  System.out.println("-----------------------------------------------------------------------");
-	      System.out.println("SAX validate Parser:");
-	      System.out.println("This parser WILL VALIDATE your eml file against the schema");
-	      System.out.println("Usage: java org.ecoinformatics.eml.SAXValidate <eml file> [schema -schemaLocation]");
-	      System.out.println("-----------------------------------------------------------------------");
-	    }
+    /**
+     * Main method will be called by the script file rnEML parser
+     */
+    public static void main(String[] args) {
+        //System.out.println("the args length is "+args.length);
+        if(args.length > 0) {
+            System.out.println("-----------------------------------------------------------------------");
+            System.out.println("SAX validate Parser:");
+            System.out.println("This parser WILL VALIDATE your eml file against the schema");
+            System.out.println("Usage: java org.ecoinformatics.eml.SAXValidate <eml file> [schema -schemaLocation]");
+            System.out.println("-----------------------------------------------------------------------");
+        }
 
-	    if(args.length > 2)
-	    {
-	      System.out.println("Invalid number of arguments.");
-	      System.exit(0);
-	    }
+        if(args.length > 2) {
+            System.out.println("Invalid number of arguments.");
+            System.exit(0);
+        }
 
-	    String emlfile = "";
-	    String schemaLocation ="eml://ecoinformatics.org/eml-2.1.1 ../xsd/eml.xsd "+
-	    "http://www.xml-cml.org/schema/stmml-1.1 ../xsd/stmml.xsd ";
+        String emlfile = "";
+        String schemaLocation ="eml://ecoinformatics.org/eml-2.1.1 ../xsd/eml.xsd "+
+                               "http://www.xml-cml.org/schema/stmml-1.1 ../xsd/stmml.xsd ";
 
-	    if(args.length == 2)
-	    {
-	      emlfile = args[0];
-	      schemaLocation = args[1];
-	      //System.out.println("emlfile: " + emlfile + " schemaLocation: " + schemaLocation);
-	    }
-	    else if(args.length == 1)
-	    {
-	      emlfile = args[0];
-	    }
-	    else
-	    {
+        if(args.length == 2) {
+            emlfile = args[0];
+            schemaLocation = args[1];
+            //System.out.println("emlfile: " + emlfile + " schemaLocation: " + schemaLocation);
+        } else if(args.length == 1) {
+            emlfile = args[0];
+        } else {
 
-	      System.out.println("Usage: java org.ecoinformatics.eml.SAXValidate <eml file> [schema location]");
-	      System.out.println("  <eml file> = the EML file to parse");
-	      System.out.println("  <schema location> = use an alternate schema location. The default one is \"eml://ecoinformatics.org/eml-2.1.1 ../xsd/eml.xsd\"");
+            System.out.println("Usage: java org.ecoinformatics.eml.SAXValidate <eml file> [schema location]");
+            System.out.println("  <eml file> = the EML file to parse");
+            System.out.println("  <schema location> = use an alternate schema location. The default one is \"eml://ecoinformatics.org/eml-2.1.1 ../xsd/eml.xsd\"");
 
-	      System.exit(0);
-	    }
+            System.exit(0);
+        }
 
-	    String namespaceInDoc = null;
+        String namespaceInDoc = null;
 
-	    try{
-	    	//System.out.println("emlfile: " + emlfile + " schemaLocation: " + schemaLocation);
-	        SAXValidate validator = new SAXValidate(true);
-	        validator.runTest(new FileReader(emlfile), "DEFAULT", schemaLocation, namespaceInDoc);
-	        System.out.println(emlfile+ " is XML-schema valid. There were no XML errors found in your document.");
-	      }
-	      catch(Exception e)
-	      {
-	    	  System.out.println("Error: " + e.getMessage());
-	      }
+        try {
+            //System.out.println("emlfile: " + emlfile + " schemaLocation: " + schemaLocation);
+            SAXValidate validator = new SAXValidate(true);
+            validator.runTest(new FileReader(emlfile), "DEFAULT", schemaLocation, namespaceInDoc);
+            System.out.println(emlfile+ " is XML-schema valid. There were no XML errors found in your document.");
+        } catch(Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
 
-  }
+    }
 }
