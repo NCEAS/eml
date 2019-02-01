@@ -33,6 +33,7 @@ package org.ecoinformatics.eml;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -101,35 +102,27 @@ public class EMLParser {
 
     /**
      * parses an eml file
-     * @param xml the eml input stream to parse
+     * @param xml the eml file to parse
      */
     public EMLParser(File xml) {
-        this.xml = xml;
-        URL configFile = getClass().getResource("/config.xml");
-        try {
-
-            config = new ConfigXML(configFile.openStream());
-        } catch(Exception e) {
-            throw new EMLParserException("Config file not found: " + e.getMessage());
-        }
-
-        parseConfig();
-        parseKeys();
-        parseKeyrefs();
+        this(xml, null);
     }
 
     /**
-     * parses an eml file
+     * parses an eml file with an alternate configuration
      * @param xml the eml file to parse
      * @param configFile the alternate config file to use
      */
-    public EMLParser(File xml, File configFile)
-    throws EMLParserException {
+    public EMLParser(File xml, File configFile) throws EMLParserException {
         this.xml = xml;
-        try {
-            config = new ConfigXML(configFile.getAbsolutePath());
-        } catch(Exception e) {
-            throw new EMLParserException("Config file not found: " + e.getMessage());
+        if (configFile == null) { 
+            config = getDefaultConfig();
+        } else {
+            try {
+                config = new ConfigXML(configFile.getAbsolutePath());
+            } catch(Exception e) {
+                throw new EMLParserException("Config file not found: " + e.getMessage());
+            }
         }
 
         parseConfig();
@@ -139,28 +132,43 @@ public class EMLParser {
 
 
     /**
-     * parses an eml reader
-     * @param xmlReader the xml need to parse
-     * @param configFile the alternate config file to use
+     * parses an eml document as a String
+     * @param xmlString the xml to parse
      */
-    public EMLParser(String xmlString)
-    throws EMLParserException, IOException {
+    public EMLParser(String xmlString) throws EMLParserException, IOException {
         if (xmlString == null || xmlString.equals("")) {
-            throw new EMLParserException("The string need to be parse is null");
+            throw new EMLParserException("The EML string to be parsed is null or empty.");
         }
-        URL configFile = getClass().getResource("/config.xml");
-        try {
-
-            config = new ConfigXML(configFile.openStream());
-        } catch(Exception e) {
-            throw new EMLParserException("Config file not found: " + e.getMessage());
-        }
-        // catch the String reader
+        config = getDefaultConfig();
+        
         parseConfig();
         parseKeys(xmlString);
         parseKeyrefs(xmlString);
     }
 
+
+    private ConfigXML getDefaultConfig() throws EMLParserException {
+        URL configFile = getClass().getResource("/config.xml");
+        ConfigXML defaultConfig = null;
+        try {
+            defaultConfig = new ConfigXML(configFile.openStream());
+        } catch(Exception e) {
+            throw new EMLParserException("Config file not found: " + e.getMessage());
+        }
+        return(defaultConfig);
+    }
+
+    public void validateRecent(File xml) throws FileNotFoundException, IOException {
+        FileReader reader = new FileReader(xml);
+        String namespace= EMLParserServlet.findNamespace(reader);
+        reader.close();
+        String version = namespace.split("\\-")[1];
+        SemVersion nsVersion = new SemVersion(version);
+        SemVersion v220 = new SemVersion("2.2.0");
+        if (nsVersion.compareTo(v220) >= 0) {
+            System.out.println("Use EMLValidator!");
+        }
+    }
 
     /**
      * make sure all ids are unique and hash the keys
@@ -403,18 +411,7 @@ public class EMLParser {
     public static NodeList getPathContent(StringReader read, String xpath)
     throws Exception {
         InputSource in = new InputSource(read);
-        DocumentBuilderFactory dfactory = DocumentBuilderFactory.newInstance();
-        dfactory.setNamespaceAware(false);
-        Document doc = dfactory.newDocumentBuilder().parse(in);
-
-        // Set up an identity transformer to use as serializer.
-        Transformer serializer = TransformerFactory.newInstance().newTransformer();
-        serializer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
-
-        // Use the simple XPath API to select a nodeIterator.
-        NodeList nl = XPathAPI.selectNodeList(doc, xpath);
-        return nl;
-        //return getPathContent(in, xpath);
+        return getPathContent(in, xpath);
     }
 
     private static NodeList getPathContent(InputSource in, String xpath)
