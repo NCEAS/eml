@@ -71,11 +71,6 @@ public class EMLParserServlet extends HttpServlet {
     private static PrintWriter out = null;
     private Hashtable params = new Hashtable();
     private static final String NAMESPACEKEYWORD = "xmlns";
-    public static final String EML2_2_0NAMESPACE = "eml://ecoinformatics.org/eml-2.2.0";
-    public static final String EML2_1_1NAMESPACE = "eml://ecoinformatics.org/eml-2.1.1";
-    public static final String EML2_1_0NAMESPACE = "eml://ecoinformatics.org/eml-2.1.0";
-    public static final String EML2_0_1NAMESPACE = "eml://ecoinformatics.org/eml-2.0.1";
-    public static final String EML2_0_0NAMESPACE = "eml://ecoinformatics.org/eml-2.0.0";
 
     /**
      * Initialize the servlet
@@ -316,12 +311,6 @@ public class EMLParserServlet extends HttpServlet {
 
         String namespace = null;
 
-        String eml2_0_0NameSpace = EML2_0_0NAMESPACE;
-        String eml2_0_1NameSpace = EML2_0_1NAMESPACE;
-        String eml2_1_0NameSpace = EML2_1_0NAMESPACE;
-        String eml2_1_1NameSpace = EML2_1_1NAMESPACE;
-        String eml2_2_0NameSpace = EML2_2_0NAMESPACE;
-
         if (xml == null) {
             //System.out.println("Validation for schema is "+ namespace);
             return namespace;
@@ -380,25 +369,10 @@ public class EMLParserServlet extends HttpServlet {
                 namespaceString = targetLine.substring(start + 1, end);
                 //System.out.println("namespaceString is " + namespaceString);
             }
-            //System.out.println("namespace in xml is: "+ namespaceString);
-            if(namespaceString != null) {
-                if (namespaceString.indexOf(eml2_0_0NameSpace) != -1) {
-                    namespace = eml2_0_0NameSpace;
-                } else if (namespaceString.indexOf(eml2_0_1NameSpace) != -1) {
-                    namespace = eml2_0_1NameSpace;
-                } else if (namespaceString.indexOf(eml2_1_0NameSpace) != -1) {
-                    namespace = eml2_1_0NameSpace;
-                } else if (namespaceString.indexOf(eml2_1_1NameSpace) != -1) {
-                    namespace = eml2_1_1NameSpace;
-                } else if (namespaceString.indexOf(eml2_2_0NameSpace) != -1) {
-                    namespace = eml2_2_0NameSpace;
-                } else {
-                    namespace = namespaceString;
-                }
-            }
+            namespace = namespaceString;
         }
 
-        //System.out.println("Validation for eml is " + namespace);
+        System.out.println("Validation for eml is " + namespace);
 
         return namespace;
 

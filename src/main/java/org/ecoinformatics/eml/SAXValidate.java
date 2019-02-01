@@ -56,6 +56,8 @@ public class SAXValidate extends DefaultHandler implements ErrorHandler
   private boolean schemavalidate = false;
   public final static String
                DEFAULT_PARSER = "org.apache.xerces.parsers.SAXParser";
+  public static final String EML2_0_1NAMESPACE = "eml://ecoinformatics.org/eml-2.0.1";
+  public static final String EML2_0_0NAMESPACE = "eml://ecoinformatics.org/eml-2.0.0";
 
   /**
    * Construct an instance of the handler class
@@ -167,8 +169,8 @@ public class SAXValidate extends DefaultHandler implements ErrorHandler
             "http://apache.org/xml/features/validation/schema",
             true);
         //eml201 and eml200 xml couldn't be done a schema-full-checking. The schemas have problem :(
-        if (namespaceInDoc != null &&  !namespaceInDoc.equals(EMLParserServlet.EML2_0_0NAMESPACE)
-        	 && !namespaceInDoc.equals(EMLParserServlet.EML2_0_1NAMESPACE))
+        if (namespaceInDoc != null &&  !namespaceInDoc.equals(EML2_0_0NAMESPACE)
+        	 && !namespaceInDoc.equals(EML2_0_1NAMESPACE))
         {
         	System.out.println("schema-full-checking");
         	parser.setFeature(
