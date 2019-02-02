@@ -95,7 +95,7 @@ public class EMLValidatorTest extends TestCase
             File testFile = (File)fileList.get(i);
             try {
                 System.err.println("Validating file: " + testFile.getName());
-                EMLValidator validator = new EMLValidator(testFile.getPath());
+                EMLValidator validator = new EMLValidator(testFile);
                 boolean isValid = validator.validate();
                 if (!isValid) {
                     for (String e : validator.getErrors()) {
@@ -123,7 +123,7 @@ public class EMLValidatorTest extends TestCase
             File invalidFile = (File)invalidList.get(i);
             System.err.println("Invalidating file: " + invalidFile.getName());
             try {
-                EMLValidator validator = new EMLValidator(invalidFile.getPath());
+                EMLValidator validator = new EMLValidator(invalidFile);
                 boolean isValid = validator.validate();
                 if (!isValid) {
                     System.err.println("    Invalid, which is right.");

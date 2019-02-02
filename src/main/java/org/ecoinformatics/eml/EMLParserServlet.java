@@ -213,7 +213,7 @@ public class EMLParserServlet extends HttpServlet {
 
         try {
             if(tempfile != null) {
-                EMLValidator val = new EMLValidator(tempfile.getAbsolutePath());
+                EMLValidator val = new EMLValidator(tempfile);
                 boolean isValid = val.validate();
                 if (isValid) {
                     html.append("<h4>EML specific tests: Passed.</h4><p>The tests which ");

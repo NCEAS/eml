@@ -38,11 +38,11 @@ public class EMLValidator {
 
     /**
      * Construct an EMLValidator for use on a given file path.
-     * @param filename the relative or absolute path to a file to be validated
+     * @param file a File containing the EML text to validate
      */
-    public EMLValidator(String filename) {
+    public EMLValidator(File file) {
         try {
-            FileInputStream f = new FileInputStream(new File(filename));
+            FileInputStream f = new FileInputStream(file);
             doc = parseDocument(new InputSource(f));
             errors = new ArrayList<String>();
         } catch (Exception e) {
@@ -56,7 +56,8 @@ public class EMLValidator {
      */
     public static void main(String[] args) {
         String emlfile = args[0];
-        EMLValidator validator = new EMLValidator(emlfile);
+        File file = new File(emlfile);
+        EMLValidator validator = new EMLValidator(file);
         boolean isValid = validator.validate();
         System.err.println("isValid: " + (new Boolean(isValid)).toString());
     }

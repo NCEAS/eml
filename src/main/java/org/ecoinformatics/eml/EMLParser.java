@@ -117,7 +117,7 @@ public class EMLParser {
         this.xml = xml;
         try {
             if (isRecentVersion(xml)) {
-                EMLValidator validator = new EMLValidator(xml.getPath());
+                EMLValidator validator = new EMLValidator(xml);
                 boolean isValid = validator.validate();
                 if (!isValid) {
                     throw new EMLParserException(String.join("\n", validator.getErrors()));
