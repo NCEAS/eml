@@ -37,13 +37,27 @@ public class EMLValidator {
     private List<String> errors = null;
 
     /**
-     * Construct an EMLValidator for use on a given file path.
+     * Construct an EMLValidator for use on a given File.
      * @param file a File containing the EML text to validate
      */
     public EMLValidator(File file) {
         try {
             FileInputStream f = new FileInputStream(file);
             doc = parseDocument(new InputSource(f));
+            errors = new ArrayList<String>();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    /**
+     * Construct an EMLValidator for use on a text String.
+     * @param emltext a String containing the EML text to validate
+     */
+    public EMLValidator(String emltext) {
+        try {
+            StringReader reader = new StringReader(emltext);
+            doc = parseDocument(new InputSource(reader));
             errors = new ArrayList<String>();
         } catch (Exception e) {
             System.err.println(e.getMessage());

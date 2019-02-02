@@ -25,6 +25,9 @@
 package org.ecoinformatics.emltest;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import junit.framework.Test;
@@ -36,8 +39,7 @@ import org.ecoinformatics.eml.EMLValidator;
 /**
  * A JUnit test for testing the EMLValidator
  */
-public class EMLValidatorTest extends TestCase
-{
+public class EMLValidatorTest extends TestCase {
     private final static String TEST_DIR = "./src/test/resources";
     private final static String INVALID_DIR = TEST_DIR + "/invalidEML";
 
@@ -46,20 +48,16 @@ public class EMLValidatorTest extends TestCase
      *
      * @param name  the name of the test method
      */
-    public EMLValidatorTest(String name)
-    {
+    public EMLValidatorTest(String name) {
         super(name);
     }
 
     /** Establish a testing framework by initializing appropriate objects  */
-    public void setUp()
-    {
-
+    public void setUp() {
     }
 
     /** Release any objects after tests are complete  */
-    public void tearDown()
-    {
+    public void tearDown() {
     }
 
     /**
@@ -67,12 +65,12 @@ public class EMLValidatorTest extends TestCase
      *
      * @return   The test suite
      */
-    public static Test suite()
-    {
+    public static Test suite() {
         TestSuite suite = new TestSuite();
         suite.addTest(new EMLValidatorTest("initialize"));
         suite.addTest(new EMLValidatorTest("testValidDocs"));
         suite.addTest(new EMLValidatorTest("testInvalidDocs"));
+        suite.addTest(new EMLValidatorTest("testStringInput"));
         return suite;
     }
 
@@ -80,14 +78,11 @@ public class EMLValidatorTest extends TestCase
      * Check that the testing framework is functioning properly with a trivial
      * assertion.
      */
-    public void initialize()
-    {
+    public void initialize() {
         assertTrue(true);
     }
 
-    public void testValidDocs()
-    {
-
+    public void testValidDocs() {
         // all valid documents should validate
         File testDir = new File(TEST_DIR);
         ArrayList fileList = getXmlFiles(testDir);
@@ -106,7 +101,7 @@ public class EMLValidatorTest extends TestCase
             } catch (Exception e) {
                 e.printStackTrace(System.err);
                 fail("Validator exception!\n\n" + e.getClass().getName() +
-                         "(" + e.getMessage() + ")" );
+                     "(" + e.getMessage() + ")" );
             }
         }
     }
@@ -135,12 +130,34 @@ public class EMLValidatorTest extends TestCase
             } catch (Exception e) {
                 e.printStackTrace(System.err);
                 fail("Validator exception!\n\n" + e.getClass().getName() +
-                         "(" + e.getMessage() + ")" );
+                     "(" + e.getMessage() + ")" );
             }
         }
         if (failures != invalidFileCount) {
-        	System.err.println(failures + "/" + invalidFileCount + " failures in directory.");
-        	fail("Error: An error should have been thrown for all invalid files.");
+            System.err.println(failures + "/" + invalidFileCount + " failures in directory.");
+            fail("Error: An error should have been thrown for all invalid files.");
+        }
+    }
+
+    public void testStringInput() {
+        // document should validate when passed in as a String
+        File testDir = new File(TEST_DIR);
+        File testFile = new File(TEST_DIR, "eml-sample.xml");
+        try {
+            System.err.println("Validating string input for: " + testFile.getName());
+            String emltext = new String(Files.readAllBytes(Paths.get(testFile.getAbsolutePath())), StandardCharsets.UTF_8);
+            EMLValidator validator = new EMLValidator(emltext);
+            boolean isValid = validator.validate();
+            if (!isValid) {
+                for (String e : validator.getErrors()) {
+                    System.err.println(e);
+                }
+                fail("Validator: NOT valid: " + testFile.getPath());
+            }
+        } catch (Exception e) {
+            e.printStackTrace(System.err);
+            fail("Validator exception!\n\n" + e.getClass().getName() +
+                 "(" + e.getMessage() + ")" );
         }
     }
 
@@ -150,8 +167,7 @@ public class EMLValidatorTest extends TestCase
      * @param directory the directory to list
      * @return a vector of File objects in the directory
      */
-    private ArrayList getXmlFiles(File directory)
-    {
+    private ArrayList getXmlFiles(File directory) {
         String[] files = directory.list();
         ArrayList fileList = new ArrayList();
 
@@ -164,5 +180,4 @@ public class EMLValidatorTest extends TestCase
         }
         return fileList;
     }
-
 }
