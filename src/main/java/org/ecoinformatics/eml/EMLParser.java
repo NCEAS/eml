@@ -115,19 +115,33 @@ public class EMLParser {
      */
     public EMLParser(File xml, File configFile) throws EMLParserException {
         this.xml = xml;
-        if (configFile == null) { 
-            config = getDefaultConfig();
-        } else {
-            try {
-                config = new ConfigXML(configFile.getAbsolutePath());
-            } catch(Exception e) {
-                throw new EMLParserException("Config file not found: " + e.getMessage());
+        try {
+            if (isRecentVersion(xml)) {
+                EMLValidator validator = new EMLValidator(xml.getPath());
+                boolean isValid = validator.validate();
+                if (!isValid) {
+                    throw new EMLParserException(String.join("\n", validator.getErrors()));
+                }
+            } else {
+                if (configFile == null) { 
+                    config = getDefaultConfig();
+                } else {
+                    try {
+                        config = new ConfigXML(configFile.getAbsolutePath());
+                    } catch(Exception e) {
+                        throw new EMLParserException("Config file not found: " + e.getMessage());
+                    }
+                }
+    
+                parseConfig();
+                parseKeys();
+                parseKeyrefs();
             }
+        } catch (FileNotFoundException e) {
+            throw new EMLParserException(e.getMessage());
+        } catch (IOException e) {
+            throw new EMLParserException(e.getMessage());
         }
-
-        parseConfig();
-        parseKeys();
-        parseKeyrefs();
     }
 
 
@@ -158,16 +172,18 @@ public class EMLParser {
         return(defaultConfig);
     }
 
-    public void validateRecent(File xml) throws FileNotFoundException, IOException {
+    public boolean isRecentVersion(File xml) throws FileNotFoundException, IOException {
+        boolean isRecent = false;
         FileReader reader = new FileReader(xml);
         String namespace= EMLParserServlet.findNamespace(reader);
         reader.close();
         String version = namespace.split("\\-")[1];
-        SemVersion nsVersion = new SemVersion(version);
-        SemVersion v220 = new SemVersion("2.2.0");
-        if (nsVersion.compareTo(v220) >= 0) {
-            System.out.println("Use EMLValidator!");
+        SemVersion docVersion = new SemVersion(version);
+        SemVersion cutoffVersion = new SemVersion("2.2.0");
+        if (docVersion.compareTo(cutoffVersion) >= 0) {
+            isRecent = true;
         }
+        return(isRecent);
     }
 
     /**

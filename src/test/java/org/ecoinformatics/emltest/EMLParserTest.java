@@ -140,35 +140,29 @@ public class EMLParserTest extends TestCase
 
         try {
             File f = new File(ERROR1);
+            System.err.println("Validating file: " + f.getName());
             emlp = new EMLParser(f);
             fail("Error 1. An EMLParserException should have been thrown.");
         } catch(Exception e) {
-            assertTrue(e.getMessage().indexOf("Error in xml document.  " +
-                "This EML document is not valid because the id 23445 occurs more " +
-                "than once.  IDs must be unique.") != -1);
+            assertTrue(e.getMessage().indexOf("valid") != -1);
         }
 
         try {
             File f = new File(ERROR3);
+            System.err.println("Validating file: " + f.getName());
             emlp = new EMLParser(f);
             fail("Error 3. An EMLParserException should have been thrown.");
         } catch(Exception e) {
-            assertTrue(e.getMessage().equals("Error processing keyrefs: " +
-                "//references : Error in xml document. This EML instance is " +
-                "invalid because referenced id 23447 does not exist in the " +
-                "given keys."));
+            assertTrue(e.getMessage().indexOf("valid") != -1);
         }
 
         try {
             File f = new File(ERROR4);
+            System.err.println("Validating file: " + f.getName());
             emlp = new EMLParser(f);
-            fail("Error 3. An EMLParserException should have been thrown.");
+            fail("Error 4. An EMLParserException should have been thrown.");
         } catch(Exception e) {
-            //System.out.println(e.getMessage());
-            assertTrue(e.getMessage().equals("Error processing keyrefs: " +
-                "//references : Error in xml document. This EML instance is invalid " +
-                "because this element has an id and it is being used in " +
-                "a keyref expression."));
+            assertTrue(e.getMessage().indexOf("valid") != -1);
         }
     }
 
