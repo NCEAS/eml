@@ -25,6 +25,9 @@
 package org.ecoinformatics.emltest;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Vector;
 
 import junit.framework.Test;
@@ -79,6 +82,7 @@ public class EMLParserTest extends TestCase
         TestSuite suite = new TestSuite();
         suite.addTest(new EMLParserTest("initialize"));
         suite.addTest(new EMLParserTest("testParse"));
+        suite.addTest(new EMLParserTest("testParseString"));
         return suite;
     }
 
@@ -163,6 +167,20 @@ public class EMLParserTest extends TestCase
             fail("Error 4. An EMLParserException should have been thrown.");
         } catch(Exception e) {
             assertTrue(e.getMessage().indexOf("valid") != -1);
+        }
+    }
+
+    public void testParseString() {
+        // document should validate when passed in as a String
+        File testDir = new File(TEST_DIR);
+        File testFile = new File(TEST_DIR, "eml-sample.xml");
+        try {
+            System.err.println("Validating file: " + testFile.getName());
+            EMLParser emlp = new EMLParser(testFile);
+        } catch (Exception e) {
+            e.printStackTrace(System.err);
+            fail("Document NOT valid!\n\n" + e.getClass().getName() +
+                    "(" + e.getMessage() + ")" );
         }
     }
 

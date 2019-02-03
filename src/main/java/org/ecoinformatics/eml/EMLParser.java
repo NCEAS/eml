@@ -37,6 +37,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Reader;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.net.URL;
@@ -116,7 +117,8 @@ public class EMLParser {
     public EMLParser(File xml, File configFile) throws EMLParserException {
         this.xml = xml;
         try {
-            if (isRecentVersion(xml)) {
+            FileReader reader = new FileReader(xml);
+            if (isRecentVersion(reader)) {
                 EMLValidator validator = new EMLValidator(xml);
                 boolean isValid = validator.validate();
                 if (!isValid) {
@@ -153,14 +155,26 @@ public class EMLParser {
         if (xmlString == null || xmlString.equals("")) {
             throw new EMLParserException("The EML string to be parsed is null or empty.");
         }
-        config = getDefaultConfig();
-        
-        parseConfig();
-        parseKeys(xmlString);
-        parseKeyrefs(xmlString);
+        StringReader reader = new StringReader(xmlString);
+        if (isRecentVersion(reader)) {
+            EMLValidator validator = new EMLValidator(xmlString);
+            boolean isValid = validator.validate();
+            if (!isValid) {
+                throw new EMLParserException(String.join("\n", validator.getErrors()));
+            }
+        } else {
+            config = getDefaultConfig();
+            parseConfig();
+            parseKeys(xmlString);
+            parseKeyrefs(xmlString);
+        }
     }
 
 
+    /**
+     * Locate and return the default configuration for this parser.
+     * @return ConfigXML
+     */
     private ConfigXML getDefaultConfig() throws EMLParserException {
         URL configFile = getClass().getResource("/config.xml");
         ConfigXML defaultConfig = null;
@@ -172,11 +186,15 @@ public class EMLParser {
         return(defaultConfig);
     }
 
-    public boolean isRecentVersion(File xml) throws FileNotFoundException, IOException {
+    /**
+     * Check if the provided EML document is a recent version, after 2.2.0.
+     * @param xml the EML text to be checked as a Reader
+     * @return boolean true if it is a recent version, false otherwise
+     */
+    public boolean isRecentVersion(Reader xml) throws IOException {
         boolean isRecent = false;
-        FileReader reader = new FileReader(xml);
-        String namespace= EMLParserServlet.findNamespace(reader);
-        reader.close();
+        String namespace = EMLParserServlet.findNamespace(xml);
+        xml.close();
         String version = namespace.split("\\-")[1];
         SemVersion docVersion = new SemVersion(version);
         SemVersion cutoffVersion = new SemVersion("2.2.0");
