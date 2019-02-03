@@ -130,7 +130,7 @@ public class SAXValidate extends DefaultHandler implements ErrorHandler {
      * @exception SAXException
      * @exception SAXParserException
      */
-    private void runTest(Reader xml, String parserName, String schemaLocation, String namespaceInDoc)
+    public void runTest(Reader xml, String parserName, String schemaLocation, String namespaceInDoc)
     throws IOException, ClassNotFoundException,
         SAXException, SAXParseException {
 

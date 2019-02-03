@@ -28,6 +28,7 @@ package org.ecoinformatics.emltest;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FilenameFilter;
+import java.net.URL;
 import java.util.Vector;
 
 import junit.framework.Test;
@@ -37,7 +38,11 @@ import junit.framework.TestSuite;
 import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.ecoinformatics.eml.EMLParserServlet;
 import org.ecoinformatics.eml.SAXValidate;
+
+import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
+
+import edu.ucsb.nceas.utilities.config.ConfigXML;
 
 /**
  * A JUnit test for testing instance document validity
@@ -92,6 +97,22 @@ public class SaxValidateTest extends TestCase
         SAXValidate test = new SAXValidate(true);
         assertTrue(test != null);
 
+        ConfigXML config;
+        String namespaces;
+        URL configFile = getClass().getResource("/config.xml");
+        try {
+            config = new ConfigXML(configFile.openStream());
+            namespaces = config.get("namespaces", 0);
+            String EML_VERSION = System.getenv("EML_VERSION");
+            if (EML_VERSION != null) {
+                String systemId = "https://knb.ecoinformatics.org/emlparser/schema/eml-" + EML_VERSION + "/eml.xsd";
+                namespaces = namespaces.replaceAll(systemId, "xsd/eml.xsd");
+            }
+        } catch(Exception e) {
+            namespaces="misssing namespaces";
+        }
+        System.out.println("Using configured schemaLocation namespaces: " + namespaces);
+
         Vector fileList = getXmlFiles(TEST_DIR);
         Vector modsList = getXmlFiles(MODULES_DIR);
         fileList.addAll(modsList);
@@ -103,7 +124,7 @@ public class SaxValidateTest extends TestCase
                 FileReader reader = new FileReader(testFile);
                 String namespace= EMLParserServlet.findNamespace(reader);
                 reader.close();
-                test.runTest(new FileReader(testFile), namespace);
+                test.runTest(new FileReader(testFile), "DEFAULT", namespaces, namespace);
             } catch (Exception e) {
                 if (e instanceof SAXParseException) {
                     SAXParseException spe = (SAXParseException)e;
