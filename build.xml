@@ -100,6 +100,7 @@
                 eml://ecoinformatics.org/eml-2.1.1 ${server}/${servletdir}/schema/eml-2.1.1/eml.xsd
                 eml://ecoinformatics.org/literature-2.1.1 ${server}/${servletdir}/schema/eml-2.1.1/eml-literature.xsd
                 eml://ecoinformatics.org/project-2.1.1 ${server}/${servletdir}/schema/eml-2.1.1/eml-project.xsd
+                eml://ecoinformatics.org/eml-2.2.0 ${server}/${servletdir}/schema/eml-2.2.0/eml.xsd
                 http://www.xml-cml.org/schema/stmml-1.1 ${server}/${servletdir}/schema/eml-2.1.0/stmml.xsd
                 http://www.xml-cml.org/schema/stmml ${server}/${servletdir}/schema/eml-2.0.1/stmml.xsd" />
 
@@ -114,7 +115,7 @@
         <property name="eml2_0_1-tag" value="RELEASE_EML_2_0_1"/>
         <property name="eml2_1_0-tag" value="RELEASE_EML_2_1_0"/>
         <property name="eml2_1_1-tag" value="RELEASE_EML_2_1_1"/>
-        <property name="eml2_2_0-tag" value="RELEASE_EML_2_2_0"/>
+        <property name="eml2_2_0-tag" value="BRANCH_EML_2_2"/>
     </target>
 
     <target name="init" depends="config">
@@ -378,6 +379,7 @@
             </classpath>
 
             <formatter type="plain" />
+            <env key="EML_VERSION" value="${version}"/>
 
             <batchtest fork="yes" todir="${build.dir}">
                 <fileset dir="${build.tests}">
@@ -431,7 +433,7 @@
 
     <target name="servletinstall" depends="jar">
         <copy file="lib/emlparser.html" tofile="${servlet.install.dir}/index.html"/>
-        <copy file="lib/sample/eml-sample.xml"
+        <copy file="src/test/resources/eml-sample.xml"
           tofile="${servlet.install.dir}/eml-sample.xml"/>
         <copy file="${config.file}" tofile="${servlet.install.dir}/lib/config.xml" filtering="yes"/>
         <copy file="lib/web.xml" tofile="${servlet.install.dir}/WEB-INF/web.xml"/>
@@ -491,6 +493,17 @@
         <mkdir dir="${servlet.install.dir}/schema/eml-2.1.1" />
         <copy todir="${servlet.install.dir}/schema/eml-2.1.1" filtering="yes">
             <fileset dir="${servlettempdir}/eml_${eml2_1_1-tag}">
+                <include name="*.xsd"/>
+            </fileset>
+        </copy>
+
+        <!-- Copy eml-2.2.0 schema. Add code here for copying any other schemas. -->
+        <echo>Getting EML 2.2.0 from source: ${eml2_2_0-tag}</echo>
+        <git-clone-pull repository="${eml.git.repository.url}"
+                        dest="${servlettempdir}/eml_${eml2_2_0-tag}" refname="${eml2_2_0-tag}" />
+        <mkdir dir="${servlet.install.dir}/schema/eml-2.2.0" />
+        <copy todir="${servlet.install.dir}/schema/eml-2.2.0" filtering="yes">
+            <fileset dir="${servlettempdir}/eml_${eml2_2_0-tag}/xsd">
                 <include name="*.xsd"/>
             </fileset>
         </copy>
