@@ -62,8 +62,16 @@ import edu.ucsb.nceas.utilities.config.ConfigXML;
 
 
 /**
- * This is a SAX parser to validate EML packages.  This parser will validate
- * an EML package with references based on the following rules:
+ * This is a parser to validate EML packages.  It iss deprecated as of EML
+ * 2.2.0, for which users hsould use EMLValidator.validate() instead.  
+ * This parser will validate all EML 2.2.0 and later documents by delegating
+ * to EMLValidator.validate().  For earlier EML versions, it uses the older
+ * validation logic in EMLParser, which does not fully implement all of the
+ * EML validation rules.  This old behavior was kept in the interest of
+ * backwardsss compatibility, and any new documents should be validated using
+ * EMLValidator.validate().  
+ * This EMLParser implementation tries to validate an EML package with references 
+ * based on the following rules (but has bugs, see above):
  * <ul>
  *  <li>
  *  If a user wants to reuse content to indicate the repetition of an object,
@@ -104,7 +112,9 @@ public class EMLParser {
     /**
      * parses an eml file
      * @param xml the eml file to parse
+     * @deprecated use EMLValidator.validate() instead
      */
+    @Deprecated
     public EMLParser(File xml) {
         this(xml, null);
     }
@@ -113,7 +123,9 @@ public class EMLParser {
      * parses an eml file with an alternate configuration
      * @param xml the eml file to parse
      * @param configFile the alternate config file to use
+     * @deprecated use EMLValidator.validate() instead
      */
+    @Deprecated
     public EMLParser(File xml, File configFile) throws EMLParserException {
         this.xml = xml;
         try {
@@ -150,7 +162,9 @@ public class EMLParser {
     /**
      * parses an eml document as a String
      * @param xmlString the xml to parse
+     * @deprecated use EMLValidator.validate() instead
      */
+    @Deprecated
     public EMLParser(String xmlString) throws EMLParserException, IOException {
         if (xmlString == null || xmlString.equals("")) {
             throw new EMLParserException("The EML string to be parsed is null or empty.");
