@@ -34,14 +34,14 @@ a **subject**, an **object property or data property (predicate)**, and an **obj
 [subject] [predicate] [object]
 ```
 
-These components are analogous to parts of a sentenc; the **subject** 
+These components are analogous to parts of a sentence; the **subject** 
 and **object** can be thought of as nouns in the sentence and the **predicate** (object property or data property)
 is akin to a verb or relationship that connects the **subject** and **object**. The semantic triple 
 expresses the statement about the associated resource. 
 After processing the EML into a semantic web format, such as RDF/XML, the semantic 
 statement becomes interpretable by machines. 
 
-###URIs
+### URIs
 Ideally, the components of the semantic triple should be globally 
 unique and should consist of resolvable uniform resource identifiers (URIs) from controlled vocabularies so 
 that users (or computers) can look up precise definitions and relationships to other terms. An example of a 
@@ -57,14 +57,14 @@ computer-interpretable, not just web-resloveable. If this is long, it can be a s
 ## Semantic Annotations in EML 2.2.0
 In **EML 2.2.0** there are 5 places where annotation elements can appear in an EML document: 
 
-- **top-level resource**  -- an annotation element is a child of `dataset`, `literature`, `software`, `protocol` 
-- **entity** -- an annotation element is a child of a dataset's entity (e.g., `dataTable` )
-- **attribute** -- an annotation element is a child of a dataset entity's `attribute`
+- **top-level resource**  -- an `annotation` element is a child of `dataset`, `literature`, `software`, `protocol` 
+- **entity-level** -- an `annotation` element is a child of a dataset's entity (e.g., `dataTable` )
+- **attribute** -- an `annotation` element is a child of a dataset entity's `attribute` element
 - **eml/annotations** -- a container for a group of `annotation` elements, using references
-- **eml/additionalMetadata**  annotation elements that reference a main-body element by its id
+- **eml/additionalMetadata** -- `annotation` elements that reference a main-body element by its id
 
 ### Annotation element structure
-All annotation nodes are defined as an XML type, so the have the same structure anywhere they appear
+All annotation nodes are defined as an XML type, so they have the same structure anywhere they appear
 in the EML record. Here is the basic structure. Sections below have more examples.
 
 ```xml
@@ -72,14 +72,13 @@ in the EML record. Here is the basic structure. Sections below have more example
         <propertyURI label="property label here">property URI here</propertyURI>
         <valueURI label="value label here">value URI here</valueURI>
     </annotation>
-</dataset>  
 ```
 
-**Subjects**: Any elements that is meant to be a subject must have an id so that a URI for it can be constructed, e.g., 
+**Subjects**: Any element that is meant to be a subject must have an `id` attribute so that a URI for it can be constructed, e.g., 
 `https://example.org/datasets/{dataset-identifier}#element-id`. 
-The parent elements `dataset`, `entity`, and `attribute`) can be assumed to be the *subject*; hence, if they have
+Annotations made at the dataset, entity or attribute level presume that the parent element is the *subject*; hence, if they have
 an annotation child, they must have an id. Annotations at `eml/annotations` or `eml/additionalMetadata` will have 
-subjects defined with a `references=" "` attribute or `describes` element (see examples below).
+subjects defined with a `references` attribute or `describes` element (see examples below).
 
 **Labels**: It is recommended that the labels are populated by values from the preferred labels field 
 (`skos:prefLabel`) or label field (`rdfs:label`) from the referenced vocabulary.
@@ -88,7 +87,7 @@ subjects defined with a `references=" "` attribute or `describes` element (see e
 ### Top-level resource annotations
 
 The top-level resources in EML are `dataset`, `literature`, `protocol`, and `software`. The resource types 
-share common information, such as `title` and `creator`, and then each has other content specific that resource type. 
+share common information, such as `title` and `creator`, and then each has other content specific to that resource type. 
 Note that the dataset module can import the other top-level resources at different levels. Further information about 
 top-level resources may be found in the [eml-resource module] section.
 
@@ -224,13 +223,12 @@ Taken together, the semantic statement indicates that "the attribute with the id
 
 ### Annotations in the `annotations` element
 The `annotations` element is nested under the `eml` root element and contains a list of annotations defining precise 
-semantic statements for parts of a resource. An annotation represents a precisely-defined semantic statement that applies to the 
-resource.
+semantic statements for parts of a resource. An annotation represents a precisely-defined semantic statement that applies to the resource.
 
 The `annotations` element contains a set of `annotation` elements. Each `annotation` element has a `references` attribute that 
 points to the `id` attribute of the element being annotated. Hence, what is listed in the `references` attribute is the id of 
-the subject of the semantic annotation.Any of the EML modules may be referenced by the `references` 
-attribute and since ids are unique within an EML document, this is a single subject. 
+the subject of the semantic annotation. Any of the EML modules may be referenced by the `references` 
+attribute and because ids are unique within an EML document, this is a single subject. 
 
 - The *subject* of the semantic statement is implictly the element containing the referenced `id`. 
 - Each annotation consists of a `propertyURI` element and `valueURI` element, which respectively define an *object property* or *data property* and the *object* (value) of the annotation. 
@@ -306,7 +304,7 @@ element(s) with an id.
 [eml-semantics module]: eml-modules-utility.md#the-eml-semantics-module---semantic-annotations-for-formalized-statements-about-eml-components
 
 By definition, an `additionalMetadata` element contains a `describes` element and a `metadata` element, and 
-annotations make use of these. If an `additionalMetadata` section holds semantic annotation it must have a `describes` elements 
+annotations make use of these. If an `additionalMetadata` section holds a semantic annotation it must have a `describes` element 
 (to hold the subject) with a `metadata` element containing at least one `annotation` element. 
 
 - The *subject* of the semantic statement is implictly the element named in the `additionalMetadata` `describes` element, by its id. 
