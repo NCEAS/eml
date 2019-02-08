@@ -84,18 +84,18 @@ subjects defined with a `references` attribute or `describes` element (see examp
 (`skos:prefLabel`) or label field (`rdfs:label`) from the referenced vocabulary.
 
 
-### Top-level resource annotations
+### Resource level (Top-level) annotations: `dataset`, `literature`, `protocol`, and `software`
 
-The top-level resources in EML are `dataset`, `literature`, `protocol`, and `software`. The resource types 
-share common information, such as `title` and `creator`, and then each has other content specific to that resource type. 
+The top-level resources in EML are `dataset`, `literature`, `protocol`, and `software`. The resource module 
+contains their common information, such as `title` and `creator`, and then each resource type has other content specific
+to it. 
 Note that the dataset module can import the other top-level resources at different levels. Further information about 
 top-level resources may be found in the [eml-resource module] section.
 
 [eml-resource module]: eml-modules-resources.md#the-eml-resource-module---base-information-for-all-resources 
 
-A top-level resource annotation represents a precisely-defined semantic statement that applies to the entire resource. 
-This semantic statement is used to associate precise measurement semantics with the resource. An `annotation` element is 
-embedded in a containing resource element; it is the last element of the resource group (i.e., it appears right after `coverage`). 
+A top-level resource annotation represents a precisely-defined semantic statement that applies to the entire resource, to associate precise measurement semantics with it. The `annotation` element is 
+the last element of the resource group (i.e., it appears right after `coverage`). 
 
 - The *subject* of the semantic statement is the parent element of the annotation. It must have an `id=" "` attribute. 
 - Each annotation consists of a `propertyURI` element and `valueURI` element, which respectively define an *object property* or *data property* and the *object* (value) of the annotation. 
@@ -137,7 +137,7 @@ Taken together, the semantic statement can be read as "the dataset with the id '
 </dataset>  
 ```
 
-### Entity-level annotations
+### Entity-level annotations: `dataTable`, `otherEntity`, `spatialRaster`, etc
 
 The entity-level elements include the `dataTable`, `spatialRaster`, `spatialVector`, `storedProcedure`, `view`, and `otherEntity` elements, in addition to custom modules. Entities are often tables of data (`dataTable`). Data tables may describe ascii text files, relational database tables, spreadsheets, or other type of tabular data with a fixed logical structure. Related to data tables are views (`view`) and stored procedures (`storedProcedure`). Views and stored procedures are produced by a relational database management system or related system. Other types of data such as raster (`spatialRaster`), vector (`spatialVector`) or spatialReference image data are also data entities. An `otherEntity` element should be used to describe types of entities that are not described by any other entity type. The entity-level elements are nested under `dataset` elements. Further information about entities may be found in the [eml-entity module] section.
 
@@ -180,7 +180,7 @@ Taken together, the semantic statement indicates that "the entity with the id 'u
 </otherEntity>
 ```
 
-### Attribute annotations
+### Attribute-level annotations:  `attribute` 
 
 An attribute annotation is a precisely-defined semantic statement that applies to a data entity attribute, such as a column 
 name in a spreadsheet or table. This semantic statement is used to associate precise measurement semantics with the attribute, 
@@ -221,7 +221,7 @@ Taken together, the semantic statement indicates that "the attribute with the id
 </attribute>
 ```
 
-### Annotations in the `annotations` element
+### `eml/annotations` element
 The `annotations` element is nested under the `eml` root element and contains a list of annotations defining precise 
 semantic statements for parts of a resource. An annotation represents a precisely-defined semantic statement that applies to the resource.
 
@@ -291,7 +291,7 @@ This statement can be read as "'adam.shepherd', the creator (of the dataset), is
 </eml>
 ```
 
-### Annotations in the `additionalMetadata` element
+### `eml/additionalMetadata` element
 
 Semantic annotations may also be added to a `additionalMetadata` element that is nested under the `eml` root element. 
 This element is a container for any supplemental non-EML metadata that pertains to the resource, and can reference any
