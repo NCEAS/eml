@@ -380,17 +380,13 @@ External resources:
 
 ### RDF Graphs 
 #### converting annotations to RDF triples
-Graph from Example 3 (attribute annotation):
-
-png here.
+![RDF example A](images/RDF_example_a.png "Graph from Example 3 (attribute annotation):")
 
 ```
 the RDF/XML ? here 
 ```
+![RDF example B](images/RDF_example_b.png "Graph from Example 4 (using `annotations` element):")
 
-Graph from Example 4 (using `annotations` element)
-
-png here
 
 ```
 the RDF/XML ? here 
