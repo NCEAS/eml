@@ -371,10 +371,12 @@ Taken together, the semantic statement could be read as "'adam.shepherd' (the cr
 ### RDF Graphs 
 Below are examples of how annotations can be converted to RDF triples. The parts of a triple (subject, predicate, and object) 
 bbecome nodes and links in a graph.
+
 ![RDF example A](images/RDF_example_a.png "Graph from Example 3 (attribute annotation):")
 
 ```
 the RDF/XML ? here ?? Steven? to do
+
 ```
 ![RDF example B](images/RDF_example_b.png "Graph from Example 4 (using <annotations> element):")
 
