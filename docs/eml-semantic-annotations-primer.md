@@ -4,7 +4,7 @@
 tbd, links to sections here.
 
 ## Introduction
-The purpose of this primer is to provide a gentle introduction to how semantic annotations are structured 
+The purpose of this primer is to provide an introduction to how semantic annotations are structured 
 in EML documents. It is expected that you have some familiarity with the EML schema prior to reading this document. 
 If you want to read more about the Resource Description Framework (RDF) data model, graphs or the semantic web, 
 there is supplemental material at the bottom of this primer. 
@@ -23,11 +23,13 @@ then datasets about "carbon dioxide flux" can also be returned because "carbon d
 considered a type of "carbon flux". 
 
 **Semantic statements must be logically consistent; they are not simply a set of loosely structured keywords.** 
-The examples here should also make clear that inconsistent annotations could have dreadful consequences for 
-searches. So be careful, and if you have questions, bring them up in your community for feedback.
+The examples here should also make clear that inconsistent annotations could have dreadful consequences. 
+So be careful, and if you have questions, bring them up in your community for feedback.
 
-Semantic annotations follow the RDF data model and use semantic triples to make statements about 
-resources. A semantic triple is composed of three parts:
+### Semantic triples
+
+Semantic annotations follow the RDF data model and use semantic triples to make statements about a
+resource. A semantic triple is composed of three parts:
 a **subject**, an **object property or data property (predicate)**, and an **object**.
 
 ```
@@ -41,7 +43,7 @@ expresses the statement about the associated resource.
 After processing the EML into a semantic web format, such as RDF/XML, the semantic 
 statement becomes interpretable by machines. 
 
-### URIs
+#### URIs
 Ideally, the components of the semantic triple should be globally 
 unique and should consist of resolvable uniform resource identifiers (URIs) from controlled vocabularies so 
 that users (or computers) can look up precise definitions and relationships to other terms. An example of a 
@@ -74,13 +76,25 @@ in the EML record. Here is the basic structure. Sections below have more example
     </annotation>
 ```
 
-**Subjects**: Any element that is meant to be a subject must have an `id` attribute so that a URI for it can be constructed, e.g., 
-`https://example.org/datasets/{dataset-identifier}#element-id`. 
-Annotations made at the dataset, entity or attribute level presume that the parent element is the *subject*; hence, if they have
-an annotation child, they must have an id. Annotations at `eml/annotations` or `eml/additionalMetadata` will have 
-subjects defined with a `references` attribute or `describes` element (see examples below).
+#### Annotations map to semantic triples
 
-**Labels**: It is recommended that the labels are populated by values from the preferred labels field 
+```
+[subject] [predicate] [object]
+```
+
+|Triple component|EML location |Note  |Example  |
+|--|--|--|--|
+| `subject` |Parent element of the annotation  |  An element meant to be a subject must have an `id` attribute | `https://example.org/datasets/{dataset-identifier}#element-id` |
+| `predicate` | `//annotation/propoertyURI`  |  | see below  |
+| `object` | `//annotation/valueURI` |  | see below |
+
+**When are IDs required?**
+Annotations at the dataset, entity or attribute level presume that the parent element is the *subject*; hence, if an element has
+an annotation child, an id is required. Annotations at `eml/annotations` or `eml/additionalMetadata` will have 
+subjects defined with a `references` attribute or `describes` element. So as for other internal EML reference an `id` is required.
+The EML-2.2 parser checks for an `id` attribute if an annotation is present. 
+
+**Labels**: It is recommended that the label field of the annotation is populated by the value from the preferred label field 
 (`skos:prefLabel`) or label field (`rdfs:label`) from the referenced vocabulary.
 
 
@@ -364,23 +378,59 @@ External resources:
  
 * Tim Berners-Lee's article on the semantic web: ```Berners-Lee, T., Hendler, J., & Lassila, O. (2001). The semantic web. Scientific american, 284(5), 34-43.```
 
-### RDF examples 
+### RDF Graphs 
 #### converting annotations to RDF triples
+Graph from Example 3 (attribute annotation):
+
+png here.
 
 ```
-example of an RDF triple here, based on real workd example, so reader can see the subject-predicate-object. 
-it would be a useful as a way to connect the EML-annotation examples to what a computer actually uses. 
-so people know that the annotation is not where it ends
-and that the point of URIs is that they can be looked up
+the RDF/XML ? here 
+```
+
+Graph from Example 4 (using `annotations` element)
+
+png here
+
+```
+the RDF/XML ? here 
 ```
 
 #### Check your logic!
-what do we mean by "logical consistency"?
+Sounds easy, right? What could possibly go wrong?
+With semantic annotation, you are adding precise definitions of concepts and relationships that can be traversed 
+with computer logic. Annotations are not simply a set of loosely structured keywords!  This is a really powerful 
+addition to EML, and so comes with some risk. The main thing you should ensure is that your annotations are 
+**logically consistent**.
+
+**The simplest way to check your logic is to write out the RDF triple components and see if it makes sense as a sentence**. 
+
 ```
-example here, eg, in additionalMetadata, watch out that you don't say this: 
+[subject (element-id)]  [predicate (propertyURI)]     [object (valueURI)]
+[att.4]                 [contains measurements of]    [plant cover percentage]
+
+```
+The graph examples above make 'true' statements; they are logically consistent:
+
+- att.4 contains measurements of plant cover percentage
+- adam.shepherd is a person
+- adam.shepherd, member of BCO-DMO
+
+However, below is the kind of statement you would NOT want to make:
+```
 [adam.shepard] [is a type of] [measurement]
 ```
-maybe use the examples pasted into slack
+If you suspect your RDF triple might look like this, you should go back and examine the way you structured the annotation.
+
+Things to check
+
+1. in additionalMetadata, don't combine `<annotations>` with more than one `<describes>` element. EML allows 1:many `<describes>` elements in one additionalMetadata section. So if you have 2 `<describes>` and 2 `<annotations>`, you will have 4 RDF statements. make sure they are all true, and if not, break them up
+1. Item
+1. Item
 
 
+
+
+The examples here should also make clear that inconsistent annotations could have dreadful consequences. 
+So be careful, and if you have questions, bring them up in your community for feedback.
 
