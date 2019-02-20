@@ -85,8 +85,8 @@ in the EML record. Here is the basic structure. Sections below have more example
 |Triple component|EML location |Note  |Example  |
 |--|--|--|--|
 | `subject` |Parent element of the annotation  |  An element meant to be a subject must have an `id` attribute | `https://example.org/datasets/{dataset-identifier}#element-id` |
-| `predicate` | `//annotation/propoertyURI`  |  | see below  |
-| `object` | `//annotation/valueURI` |  | see below |
+| `predicate` | `//annotation/propoertyURI`  | the "verb" in a statement | see below  |
+| `object` | `//annotation/valueURI` | "object" of the "verb"  | see below |
 
 **When are IDs required?**
 Annotations at the dataset, entity or attribute level presume that the parent element is the *subject*; hence, if an element has
