@@ -368,31 +368,20 @@ Taken together, the semantic statement could be read as "'adam.shepherd' (the cr
 </eml>
 ```
 
-
-## Supplemental background information
-
-External resources:
-- http://www.linkeddatatools.com/introducing-rdf
-- RDF data model: https://www.w3.org/TR/WD-rdf-syntax-971002/
-- W3C RDF primer: https://dvcs.w3.org/hg/rdf/raw-file/default/rdf-primer/
- 
-* Tim Berners-Lee's article on the semantic web: ```Berners-Lee, T., Hendler, J., & Lassila, O. (2001). The semantic web. Scientific american, 284(5), 34-43.```
-
 ### RDF Graphs 
 #### converting annotations to RDF triples
 ![RDF example A](images/RDF_example_a.png "Graph from Example 3 (attribute annotation):")
 
 ```
-the RDF/XML ? here 
+the RDF/XML ? here ?? Steven? to do
 ```
 ![RDF example B](images/RDF_example_b.png "Graph from Example 4 (using `annotations` element):")
 
-
 ```
-the RDF/XML ? here 
+the RDF/XML ? here ?? Steven? to do
 ```
 
-#### Check your logic!
+### Logical Consistency
 Sounds easy, right? What could possibly go wrong?
 With semantic annotation, you are adding precise definitions of concepts and relationships that can be traversed 
 with computer logic. Annotations are not simply a set of loosely structured keywords!  This is a really powerful 
@@ -420,13 +409,20 @@ If you suspect your RDF triple might look like this, you should go back and exam
 
 Things to check
 
+1. Be sure you have used the right classes, properties or vocabularies for your annotation components.
+  1. Become familiar with the vocabularies in your annotation, especially definitions and relationships 
+  1. Check with your communitiy for specific recommendations on annotations at different levels 
 1. in additionalMetadata, don't combine `<annotations>` with more than one `<describes>` element. EML allows 1:many `<describes>` elements in one additionalMetadata section. So if you have 2 `<describes>` and 2 `<annotations>`, you will have 4 RDF statements. make sure they are all true, and if not, break them up
-1. Item
-1. Item
 
 
 
+## Supplemental background information
 
-The examples here should also make clear that inconsistent annotations could have dreadful consequences. 
-So be careful, and if you have questions, bring them up in your community for feedback.
+External resources:
+- http://www.linkeddatatools.com/introducing-rdf
+- RDF data model: https://www.w3.org/TR/WD-rdf-syntax-971002/
+- W3C RDF primer: https://dvcs.w3.org/hg/rdf/raw-file/default/rdf-primer/
+ 
+* Tim Berners-Lee's article on the semantic web: ```Berners-Lee, T., Hendler, J., & Lassila, O. (2001). The semantic web. Scientific american, 284(5), 34-43.```
 
+## Glossary
