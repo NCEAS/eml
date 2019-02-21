@@ -59,7 +59,7 @@ computer-interpretable, not just web-resloveable. If this is long, it can be a s
 ## Semantic Annotations in EML 2.2.0
 In **EML 2.2.0** there are 5 places where annotation elements can appear in an EML document: 
 
-- **top-level resource**  -- an `annotation` element is a child of `dataset`, `literature`, `software`, `protocol` 
+- **top-level resource**  -- an `annotation` element is a child of the `dataset`, `literature`, `software`, or `protocol` elements
 - **entity-level** -- an `annotation` element is a child of a dataset's entity (e.g., `dataTable` )
 - **attribute** -- an `annotation` element is a child of a dataset entity's `attribute` element
 - **eml/annotations** -- a container for a group of `annotation` elements, using references
@@ -85,14 +85,14 @@ in the EML record. Here is the basic structure. Sections below have more example
 |Triple component|EML location |Note  |Example  |
 |--|--|--|--|
 | `subject` |Parent element of the annotation  |  An element meant to be a subject must have an `id` attribute | `https://example.org/datasets/{dataset-identifier}#element-id` |
-| `predicate` | `//annotation/propoertyURI`  | the "verb" in a statement | see below  |
+| `predicate` | `//annotation/propertyURI`  | the "verb" in a statement | see below  |
 | `object` | `//annotation/valueURI` | "object" of the "verb"  | see below |
 
 **When are IDs required?**
 Annotations at the dataset, entity or attribute level presume that the parent element is the *subject*; hence, if an element has
-an annotation child, an id is required. Annotations at `eml/annotations` or `eml/additionalMetadata` will have 
-subjects defined with a `references` attribute or `describes` element. So as for other internal EML reference an `id` is required.
-The EML-2.2 parser checks for an `id` attribute if an annotation is present. 
+an annotation child, an id is required (i.e. the subject element must have an `id` attribute value). Annotations at `eml/annotations` or `eml/additionalMetadata` will have 
+subjects defined with a `references` attribute or `describes` element. For other internal EML references, an `id` is required.
+The EML-2.2 parser checks for an `id` attribute if an annotation is present. As a reminder, the `id` must be unique within an EML document.
 
 **Labels**: It is recommended that the label field of the annotation is populated by the value from the preferred label field 
 (`skos:prefLabel`) or label field (`rdfs:label`) from the referenced vocabulary.
@@ -251,7 +251,7 @@ attribute and because ids are unique within an EML document, this is a single su
   - should have URIs that point to terms in controlled vocabularies providing precise definitions, relationships to other terms, and multiple labels for display. 
 - It is recommended that the labels are populated by values from the preferred labels field (`skos:prefLabel`) or label field (`rdfs:label`) from the referenced vocabulary.
 
-Example 4 has 3 different annotations inder `annotations`. For the first annotation, 
+Example 4 has 3 different annotations under `annotations`. For the first annotation, 
 the subject of the semantic triple is the `dataTable` element with the `id` attribute "CDF-biodiv-table". Notice 
 that the annotation has a `references` attribute that points to the subject id. The object property of the triple 
 is "http://purl.org/dc/elements/1.1/subject". Finally, the value (object) in the semantic triple 
@@ -311,7 +311,7 @@ Semantic annotations may also be added to a `additionalMetadata` element that is
 This element is a container for any supplemental non-EML metadata that pertains to the resource, and can reference any
 element in the EML record that has an id. Additional information may be found in the [eml-semantics module] section.
 
-An annotation in `additionalMetadata` uses the `describes` element as the subject, so can reference any EML
+An annotation in `additionalMetadata` uses the `describes` element as the subject, so it can reference any EML
 element(s) with an id. 
 
 
@@ -368,9 +368,9 @@ Taken together, the semantic statement could be read as "'adam.shepherd' (the cr
 </eml>
 ```
 
-### RDF Graphs 
+## Example RDF Graphs 
 Below are examples of how annotations can be converted to RDF triples. The parts of a triple (subject, predicate, and object) 
-bbecome nodes and links in a graph.
+become nodes and links in a graph.
 
 ![RDF example A](images/RDF_example_a.png "Graph from Example 3 (attribute annotation):")
 
@@ -388,7 +388,7 @@ the RDF/XML ? here ?? Steven? to do
 Sounds easy, right? What could possibly go wrong?
 With semantic annotation, you are adding precise definitions of concepts and relationships that can be traversed 
 with computer logic. Annotations are not simply a set of loosely structured keywords!  This is a really powerful 
-addition to EML, and so comes with some risk. The main thing you should ensure is that your annotations are 
+addition to EML, and so it comes with some risk. The main thing you should ensure is that your annotations are 
 **logically consistent**.
 
 **The simplest way to check your logic is to write out the RDF triple components and see if it makes sense as a sentence**. 
@@ -410,12 +410,12 @@ However, below is the kind of statement you would NOT want to make:
 ```
 If you suspect your RDF triple might look like this, you should go back and examine the way you structured the annotation.
 
-Things to check
+Things to check:
 
-1. Be sure you have used the right classes, properties or vocabularies for your annotation components.
+1. Be sure you have used the right classes, properties or vocabularies for your annotation components
   1. Become familiar with the vocabularies in your annotation, especially definitions and relationships 
-  1. Check with your communitiy for specific recommendations on annotations at different levels 
-1. in additionalMetadata, don't combine `<annotations>` with more than one `<describes>` element. EML allows 1:many `<describes>` elements in one additionalMetadata section. So if you have 2 `<describes>` and 2 `<annotations>`, you will have 4 RDF statements. make sure they are all true, and if not, break them up
+  1. Check with your community for specific recommendations on annotations at different levels 
+1. In additionalMetadata, don't combine `<annotations>` with more than one `<describes>` element. EML allows 1:many `<describes>` elements in one additionalMetadata section. So if you have 2 `<describes>` and 2 `<annotations>`, you will have 4 RDF statements. Make sure they are all true, and if not, break them up
 
 
 
