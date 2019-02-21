@@ -374,15 +374,42 @@ become nodes and links in a graph.
 
 ![RDF example A](images/RDF_example_a.png "Graph from Example 3 (attribute annotation):")
 
-```
-the RDF/XML ? here ?? Steven? to do
+```xml
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    
+    <rdf:Description rdf:about="att.4"> ### See note below
+        <owl:ObjectProperty rdf:about="http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType">
+            <owl:Class rdf:about="http://purl.dataone.org/odo/ECSO_00001197" />
+        </owl:ObjectProperty> 
+    </rdf>
+</rdf:RDF>
 
 ```
+Note: The subject described in the `rdf:Description` `about` attribute should actually be the globally unique URI for the attribute, rather than 'att.4'
+
 ![RDF example B](images/RDF_example_b.png "Graph from Example 4 (using <annotations> element):")
 
+```xml
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    
+    <rdf:Description rdf:about="adam.shepherd"> ### See note below 
+        <owl:ObjectProperty rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">
+            <owl:Class rdf:about="https://schema.org/Person" />
+        </owl:ObjectProperty> 
+        <owl:ObjectProperty rdf:about="https://schema.org/memberOf">
+            <owl:Class rdf:about="https://doi.org/10.17616/R37P4C" />
+        </owl:ObjectProperty> 
+    </rdf>
+    
+</rdf:RDF>
+
 ```
-the RDF/XML ? here ?? Steven? to do
-```
+Note: The subject described in the `rdf:Description` `about` attribute should actually be the globally unique URI issued for 'adam.shepherd'.
+
 
 ### Logical Consistency
 Sounds easy, right? What could possibly go wrong?
