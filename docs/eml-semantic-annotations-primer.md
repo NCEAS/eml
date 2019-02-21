@@ -387,7 +387,7 @@ become nodes and links in a graph.
 </rdf:RDF>
 
 ```
-Note: The subject described in the `rdf:Description` `about` attribute should actually be the globally unique URI for the attribute, rather than 'att.4'
+_Note: The subject described in the `rdf:Description` `about` attribute should actually be the globally unique URI for the attribute, rather than 'att.4'_
 
 ![RDF example B](images/RDF_example_b.png "Graph from Example 4 (using <annotations> element):")
 
@@ -408,7 +408,7 @@ Note: The subject described in the `rdf:Description` `about` attribute should ac
 </rdf:RDF>
 
 ```
-Note: The subject described in the `rdf:Description` `about` attribute should actually be the globally unique URI issued for 'adam.shepherd'.
+_Note: The subject described in the `rdf:Description` `about` attribute should actually be the globally unique URI issued for 'adam.shepherd'._
 
 
 ### Logical Consistency
@@ -433,7 +433,7 @@ The graph examples above make 'true' statements; they are logically consistent:
 
 However, below is the kind of statement you would NOT want to make:
 ```
-[adam.shepard] [is a type of] [measurement]
+[adam.shepherd] [is a type of] [measurement]
 ```
 If you suspect your RDF triple might look like this, you should go back and examine the way you structured the annotation.
 
