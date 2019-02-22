@@ -51,10 +51,7 @@ URI is "http://purl.obolibrary.org/obo/ENVO_01001357", which resolves to the ter
 Environment Ontology (ENVO) when entered into the address bar of a web browser. Users can find the 
 definition for "desert" and determine its relationship to other terms in the ontology.  
 
-{ to do: need some help here! I think we should mention that not all URIs are URL, and what it might mean to be
-computer-interpretable, not just web-resloveable. If this is long, it can be a sentence here that links to a section below }
-
-
+It should be pointed out that there is a difference between URLs (universal resource locators) and URIs. URLs, in general, can be thought of as a subset of URIs, specify the locations of specific resources and define how resources can be located on a network. In common usage, a URL typically is used to access a resource on the Internet (e.g. 'https://www.dataone.org/'). A URI, on the other hand, identifies a resource by its location, _name_, or _both_. Both URLs and URIs are computer-readable, meaning machines can process them. However, URIs are not required to be web-resolvable, meaning they don't necessarily point to resources on the Internet. As stated previously, the components of semantic triples should ideally contain URIs that are resolvable and point to resources in controlled vocabularies that provide additional information.   
 
 ## Semantic Annotations in EML 2.2.0
 In **EML 2.2.0** there are 5 places where annotation elements can appear in an EML document: 
