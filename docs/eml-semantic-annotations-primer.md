@@ -428,13 +428,13 @@ addition to EML, and so it comes with some risk. The main thing you should ensur
 **The simplest way to check your logic is to write out the RDF triple components and see if it makes sense as a sentence**. 
 
 ```
-[subject (element-id)]  [predicate (propertyURI)]     [object (valueURI)]
-[att.4]                 [contains measurements of]    [plant cover percentage]
+[subject (element-id)]  [predicate (propertyURI)]          [object (valueURI)]
+[att.4]                 [contains measurements of type]    [plant cover percentage]
 
 ```
 The graph examples above make 'true' statements; they are logically consistent:
 
-- att.4 contains measurements of plant cover percentage
+- att.4 contains measurements of the type plant cover percentage
 - adam.shepherd is a person
 - adam.shepherd, member of BCO-DMO
 
@@ -463,3 +463,8 @@ External resources:
 * Tim Berners-Lee's article on the semantic web: ```Berners-Lee, T., Hendler, J., & Lassila, O. (2001). The semantic web. Scientific american, 284(5), 34-43.```
 
 ## Glossary
+**ontology**: A representation that formally names and definition of the categories, properties, and relations between the concepts, data, and entities that substantiate one, many, or all domains.
+
+**Resource Description Framework (RDF)**: A family of World Wide Web Consortium (W3C) specifications that enable the encoding, exchange and reuse of structured metadata. The RDF data model employs semantic triples composed of a subject, predicate and object to share and integrate data across different applications and communities. 
+
+**uniform resource identifier (URI)**: A string of characters that unambiguously identifies a particular resource. For semantic annotations, the components of semantic triples are ideally URIs that resolve and describe precise definitions and relationships to other terms.
