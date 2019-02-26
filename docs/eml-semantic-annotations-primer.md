@@ -384,7 +384,7 @@ become nodes and links in a graph.
 ```xml
 <rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#">
     
     <rdf:Description rdf:about="att.4"> ### See note below
         <owl:ObjectProperty rdf:about="http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType">
@@ -401,7 +401,7 @@ _Note: The subject described in the `rdf:Description` `about` attribute should a
 ```xml
 <rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#">
     
     <rdf:Description rdf:about="adam.shepherd"> ### See note below 
         <owl:ObjectProperty rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">
