@@ -9,7 +9,7 @@ in EML documents. It is expected that you have some familiarity with the EML sch
 If you want to read more about the W3C's Resource Description Framework (RDF) data model, graphs or the semantic web, 
 there is supplemental material at the bottom of this primer. It is important to note that our approach of using annotations structured in the RDF specification is based on recommendations from the World Wide Web Consortium (W3C) about how a Semantic Web should be constructed.
 
-A semantic annotation involves the attachment ("annotation") of semantic metadata to a resource-- which in this context would be an EML element. A semantic annotation provides a pointer (http URI) that should resolve (and dereference) to useful descriptions, definitions, or relationships that the annotated resource has, relative to other terms or resources, and does so in a computer-usable way. The process of creating semantic annotations may seem tedious, but the payoff is vastly enhanced information discovery and interpretation. Semantic annotations will make it easier for others to find and reuse your data (and thus give you credit). 
+A semantic annotation involves the attachment ("annotation") of semantic metadata to a resource -- which in this context would be an EML element. A semantic annotation provides a pointer (HTTP URI) that should resolve (and dereference) to useful descriptions, definitions, or relationships that the annotated resource has, relative to other terms or resources, and does so in a computer-usable way. The process of creating semantic annotations may seem tedious, but the payoff is vastly enhanced information discovery and interpretation. Semantic annotations will make it easier for others to find and reuse your data (and thus give you credit). 
 
 For  example, if a dataset is annotated as being about "carbon dioxide flux" and another dataset is annotated as being about 
 "CO2 flux" the information system can recognize that these datasets are about equivalent concepts, because this equivalence can be indicated in a "computer-usable" way through the semantic annotation. 
@@ -40,7 +40,7 @@ Semantic annotations added to EML can be extracted and processed into a semantic
 
 #### URIs
 Ideally, the components of the semantic triple should be globally 
-unique and should consist of resolvable HTTP uniform resource identifiers (URIs).  The *subjects* of most EML semantic annotations will likely be HTTP URI's that identify the dataset resource itself, or specific attributes or other features within a dataset.  The *objects* of EML semantic annotations, as well as the *predicates* that relate the subject to the object, will most typically be HTTP URI references to terms in controlled vocabularies accessible through the Web, so 
+unique and should consist of resolvable HTTP uniform resource identifiers (URIs). The *subjects* of most EML semantic annotations will likely be HTTP URI's that identify the dataset resource itself, or specific attributes or other features within a dataset.  The *objects* of EML semantic annotations, as well as the *predicates* that relate the subject to the object, will most typically be HTTP URI references to terms in controlled vocabularies accessible through the Web, so 
 that users (or computers) can dereference the URI's and look up precise definitions and relationships of these resources to other terms. 
 
 An example of a URI is "http://purl.obolibrary.org/obo/ENVO_00000097", which resolves to the term "desert area" in the 
@@ -49,18 +49,16 @@ and explore how the term is related to other terms in the ontology simply by der
 
 An RDF triple might be constructed as follows, with subject URI, predicate URI, and object URI:
 
-<https://pasta.lternet.edu/package/metadata/eml/knb-lter-jrn/210327001/1> 
-<http://purl.obolibrary.org/obo/PATO_0002261>
-<http://purl.obolibrary.org/obo/ENVO_00000097>
+   <https://pasta.lternet.edu/package/metadata/eml/knb-lter-jrn/210327001/1>
+   
+   <http://purl.obolibrary.org/obo/PATO_0002261>
+   
+   <http://purl.obolibrary.org/obo/ENVO_00000097>
 
 ... indicating that the referenced *dataset* (subject) was *"located in"* (predicate) a *"desert area"* (object).
 This is a valid RDF triple. 
 
-Note that the above *RDF triple* consists of three HTTP URI's. While the exact distinction among what is a URI, a URN, and a URL can be debated, essentially all URL's (Uniform Resource Locators) are URI's-- they point to a location where some resource exists (in the case of an HTTP URL, on the Web)- and can be resolved or dereferenced. But a URI can also serve as the unique and ideally, persistent *name* of a resource, i.e., it is a URN (Uniform Resource Name). While URI's, URN's, and URL's don't necessarily have to work with the HTTP protocol, for practical purposes in the present, these are most useful if they work well with the Web, and thus HTTP. Having an HTTP URI, however, does not mean that these are only useful for viewing in a Web browser. Content negotiation between a Web server and a client (that might be a browser, or a Python or R script)-- can enable an HTTP URI to dereference in ways optimized for the requesting client-- e.g. in one case, presenting a readable view of metadata for a dataset, and in another, activating a download of that dataset for import into a script. 
-
-{ MPS-- I tried to address your request in the above paragraph.
-to do: need some help here! I think we should mention that not all URIs are URL, and what it might mean to be
-computer-interpretable, not just web-resloveable. If this is long, it can be a sentence here that links to a section below }
+Note that the above *RDF triple* consists of three HTTP URIs. While the exact distinction among what is a URI, a URN, and a URL can be debated, essentially all URLs (Uniform Resource Locators) are URIs -- they point to a location where some resource exists (in the case of an HTTP URL, on the Web) and can be resolved or dereferenced. But a URI can also serve as the unique and ideally, persistent *name* of a resource, i.e., it is a URN (Uniform Resource Name). While URIs, URNs, and URLs don't necessarily have to work with the HTTP protocol, for practical purposes in the present, these are most useful if they work well with the Web, and thus HTTP. Having an HTTP URI, however, does not mean that these are only useful for viewing in a Web browser. Content negotiation between a Web server and a client (that might be a browser, or a Python or R script) can enable an HTTP URI to dereference in ways optimized for the requesting client -- e.g. in one case, presenting a readable view of metadata for a dataset, and in another, activating a download of that dataset for import into a script. 
 
 
 ## Semantic Annotations in EML 2.2.0
@@ -456,7 +454,7 @@ Things to check:
 ## Supplemental background information
 
 External resources:
-- http://www.linkeddatatools.com/introducing-rdf
+- LinkedDataTools tutorial: http://www.linkeddatatools.com/introducing-rdf
 - RDF data model: https://www.w3.org/TR/WD-rdf-syntax-971002/
 - W3C RDF primer: https://dvcs.w3.org/hg/rdf/raw-file/default/rdf-primer/
  
