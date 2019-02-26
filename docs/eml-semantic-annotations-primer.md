@@ -49,7 +49,7 @@ and explore how the term is related to other terms in the ontology simply by der
 
 An RDF triple might be constructed as follows, with subject URI, predicate URI, and object URI:
 
-   <https://pasta.lternet.edu/package/metadata/eml/knb-lter-jrn/210327001/1>
+   <https://pasta.lternet.edu/package/data/eml/knb-lter-jrn/210327001/1/5756fb95abe3e3511af1c267840781e1>
    
    <http://purl.obolibrary.org/obo/PATO_0002261>
    
