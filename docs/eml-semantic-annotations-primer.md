@@ -6,20 +6,16 @@ tbd, links to sections here.
 ## Introduction
 The purpose of this primer is to provide an introduction to how semantic annotations are structured 
 in EML documents. It is expected that you have some familiarity with the EML schema prior to reading this document. 
-If you want to read more about the Resource Description Framework (RDF) data model, graphs or the semantic web, 
-there is supplemental material at the bottom of this primer. 
+If you want to read more about the W3C's Resource Description Framework (RDF) data model, graphs or the semantic web, 
+there is supplemental material at the bottom of this primer. It is important to note that our approach of using annotations structured in the RDF specification is based on recommendations from the World Wide Web Consortium (W3C) about how a Semantic Web should be constructed.
 
-A semantic annotation is the attachment of semantic metadata to a resource. It provides precise 
-definitions of concepts and clarifies the relationships between concepts, in a computer-usable way. The process of 
-creating semantic annotations may seem tedious, but the payoff is enhanced information retrieval and discovery. Semantic 
-annotations will make it easier for others to find and reuse your data (and thus give you credit). 
+A semantic annotation involves the attachment ("annotation") of semantic metadata to a resource-- which in this context would be an EML element. A semantic annotation provides a pointer (http URI) that should resolve (and dereference) to useful descriptions, definitions, or relationships that the annotated resource has, relative to other terms or resources, and does so in a computer-usable way. The process of creating semantic annotations may seem tedious, but the payoff is vastly enhanced information discovery and interpretation. Semantic annotations will make it easier for others to find and reuse your data (and thus give you credit). 
 
-For  example, if a dataset is annotated as being about "carbon dioxide flux" and another annotated with 
-"CO2 flux" the information system should recognize that the datasets are about equivalent concepts. 
+For  example, if a dataset is annotated as being about "carbon dioxide flux" and another dataset is annotated as being about 
+"CO2 flux" the information system can recognize that these datasets are about equivalent concepts, because this equivalence can be indicated in a "computer-usable" way through the semantic annotation. 
 In another example, if you perform a search for datasets about "litter" (as in "plant litter"), the 
 system will be able to disambiguate the term from the many meanings of "litter" (as in garbage, the grouping of 
-animals born at the same time, etc.). Yet another example is if you search for datasets about "carbon flux", 
-then datasets about "carbon dioxide flux" can also be returned because "carbon dioxide flux" is 
+animals born at the same time to the same mother, etc.). Yet another example is if you search for datasets about "carbon flux", then datasets about "carbon dioxide flux" can also be returned because "carbon dioxide flux" is 
 considered a type of "carbon flux". 
 
 **Semantic statements must be logically consistent; they are not simply a set of loosely structured keywords.** 
@@ -28,7 +24,7 @@ So be careful, and if you have questions, bring them up in your community for fe
 
 ### Semantic triples
 
-Semantic annotations follow the RDF data model and use semantic triples to make statements about a
+Semantic annotations follow the RDF data model and use a *triple structure* to make statements about a
 resource. A semantic triple is composed of three parts:
 a **subject**, an **object property or data property (predicate)**, and an **object**.
 
@@ -36,22 +32,36 @@ a **subject**, an **object property or data property (predicate)**, and an **obj
 [subject] [predicate] [object]
 ```
 
-These components are analogous to parts of a sentence; the **subject** 
+These components are analogous to parts of a sentence: the **subject** 
 and **object** can be thought of as nouns in the sentence and the **predicate** (object property or data property)
 is akin to a verb or relationship that connects the **subject** and **object**. The semantic triple 
 expresses the statement about the associated resource. 
-After processing the EML into a semantic web format, such as RDF/XML, the semantic 
-statement becomes interpretable by machines. 
+Semantic annotations added to EML can be extracted and processed into a semantic web format, such as RDF/XML, such that the semantic statement(s), i.e. RDF triples, become interpretable by any machines that can process the W3C standard of RDF. 
 
 #### URIs
 Ideally, the components of the semantic triple should be globally 
-unique and should consist of resolvable uniform resource identifiers (URIs) from controlled vocabularies so 
-that users (or computers) can look up precise definitions and relationships to other terms. An example of a 
-URI is "http://purl.obolibrary.org/obo/ENVO_01001357", which resolves to the term "desert" in the 
-Environment Ontology (ENVO) when entered into the address bar of a web browser. Users can find the 
-definition for "desert" and determine its relationship to other terms in the ontology.  
+unique and should consist of resolvable HTTP uniform resource identifiers (URIs).  The *subjects* of most EML semantic annotations will likely be HTTP URI's that identify the dataset resource itself, or specific attributes or other features within a dataset.  The *objects* of EML semantic annotations, as well as the *predicates* that relate the subject to the object, will most typically be HTTP URI references to terms in controlled vocabularies accessible through the Web, so 
+that users (or computers) can dereference the URI's and look up precise definitions and relationships of these resources to other terms. 
 
-It should be pointed out that there is a difference between URLs (universal resource locators) and URIs. URLs, in general, can be thought of as a subset of URIs, specify the locations of specific resources and define how resources can be located on a network. In common usage, a URL typically is used to access a resource on the Internet (e.g. 'https://www.dataone.org/'). A URI, on the other hand, identifies a resource by its location, _name_, or _both_. Both URLs and URIs are computer-readable, meaning machines can process them. However, URIs are not required to be web-resolvable, meaning they don't necessarily point to resources on the Internet. As stated previously, the components of semantic triples should ideally contain URIs that are resolvable and point to resources in controlled vocabularies that provide additional information.   
+An example of a URI is "http://purl.obolibrary.org/obo/ENVO_00000097", which resolves to the term "desert area" in the 
+Environment Ontology (ENVO), when entered into the address bar of a web browser. Users can learn what this URI indicates 
+and explore how the term is related to other terms in the ontology simply by dereferencing its URI in a web browser.
+
+An RDF triple might be constructed as follows, with subject URI, predicate URI, and object URI:
+
+<https://pasta.lternet.edu/package/metadata/eml/knb-lter-jrn/210327001/1> 
+<http://purl.obolibrary.org/obo/PATO_0002261>
+<http://purl.obolibrary.org/obo/ENVO_00000097>
+
+... indicating that the referenced *dataset* (subject) was *"located in"* (predicate) a *"desert area"* (object).
+This is a valid RDF triple. 
+
+Note that the above *RDF triple* consists of three HTTP URI's. While the exact distinction among what is a URI, a URN, and a URL can be debated, essentially all URL's (Uniform Resource Locators) are URI's-- they point to a location where some resource exists (in the case of an HTTP URL, on the Web)- and can be resolved or dereferenced. But a URI can also serve as the unique and ideally, persistent *name* of a resource, i.e., it is a URN (Uniform Resource Name). While URI's, URN's, and URL's don't necessarily have to work with the HTTP protocol, for practical purposes in the present, these are most useful if they work well with the Web, and thus HTTP. Having an HTTP URI, however, does not mean that these are only useful for viewing in a Web browser. Content negotiation between a Web server and a client (that might be a browser, or a Python or R script)-- can enable an HTTP URI to dereference in ways optimized for the requesting client-- e.g. in one case, presenting a readable view of metadata for a dataset, and in another, activating a download of that dataset for import into a script. 
+
+{ MPS-- I tried to address your request in the above paragraph.
+to do: need some help here! I think we should mention that not all URIs are URL, and what it might mean to be
+computer-interpretable, not just web-resloveable. If this is long, it can be a sentence here that links to a section below }
+
 
 ## Semantic Annotations in EML 2.2.0
 In **EML 2.2.0** there are 5 places where annotation elements can appear in an EML document: 
@@ -374,7 +384,7 @@ become nodes and links in a graph.
 ```xml
 <rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:owl="http://www.w3.org/2002/07/owl#">
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
     
     <rdf:Description rdf:about="att.4"> ### See note below
         <owl:ObjectProperty rdf:about="http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType">
@@ -391,7 +401,7 @@ _Note: The subject described in the `rdf:Description` `about` attribute should a
 ```xml
 <rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:owl="http://www.w3.org/2002/07/owl#">
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
     
     <rdf:Description rdf:about="adam.shepherd"> ### See note below 
         <owl:ObjectProperty rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">
@@ -418,13 +428,13 @@ addition to EML, and so it comes with some risk. The main thing you should ensur
 **The simplest way to check your logic is to write out the RDF triple components and see if it makes sense as a sentence**. 
 
 ```
-[subject (element-id)]  [predicate (propertyURI)]          [object (valueURI)]
-[att.4]                 [contains measurements of type]    [plant cover percentage]
+[subject (element-id)]  [predicate (propertyURI)]     [object (valueURI)]
+[att.4]                 [contains measurements of]    [plant cover percentage]
 
 ```
 The graph examples above make 'true' statements; they are logically consistent:
 
-- att.4 contains measurements of type plant cover percentage
+- att.4 contains measurements of plant cover percentage
 - adam.shepherd is a person
 - adam.shepherd, member of BCO-DMO
 
@@ -453,8 +463,3 @@ External resources:
 * Tim Berners-Lee's article on the semantic web: ```Berners-Lee, T., Hendler, J., & Lassila, O. (2001). The semantic web. Scientific american, 284(5), 34-43.```
 
 ## Glossary
-**ontology**: A representation that formally names and definition of the categories, properties, and relations between the concepts, data, and entities that substantiate one, many, or all domains.
-
-**Resource Description Framework (RDF)**: A family of World Wide Web Consortium (W3C) specifications that enable the encoding, exchange and reuse of structured metadata. The RDF data model employs semantic triples composed of a subject, predicate and object to share and integrate data across different applications and communities. 
-
-**uniform resource identifier (URI)**: A string of characters that unambiguously identifies a particular resource. For semantic annotations, the components of semantic triples are ideally URIs that resolve and describe precise definitions and relationships to other terms.
