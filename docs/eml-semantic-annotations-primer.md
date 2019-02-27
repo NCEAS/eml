@@ -458,6 +458,7 @@ External resources:
 - LinkedDataTools tutorial: http://www.linkeddatatools.com/introducing-rdf
 - RDF data model: https://www.w3.org/TR/WD-rdf-syntax-971002/
 - W3C RDF primer: https://dvcs.w3.org/hg/rdf/raw-file/default/rdf-primer/
+- A tidyverse lover’s intro to RDF https://ropensci.github.io/rdflib/articles/rdf_intro.html
  
 * Tim Berners-Lee's article on the semantic web: ```Berners-Lee, T., Hendler, J., & Lassila, O. (2001). The semantic web. Scientific american, 284(5), 34-43.```
 
