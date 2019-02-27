@@ -51,7 +51,7 @@ An RDF triple might be constructed as follows, with subject URI, predicate URI, 
 
    <https://portal.edirepository.org/nis/mapbrowse?packageid=knb-lter-jrn.210327001.1>
    
-   <http://purl.obolibrary.org/obo/PATO_0002261>
+   <http://purl.obolibrary.org/obo/RO_0001025>
    
    <http://purl.obolibrary.org/obo/ENVO_00000097>
 
