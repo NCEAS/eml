@@ -276,7 +276,11 @@ backwards compatibility with a note that its use is deprecated.
 
 **Q:** Accommodating Semantic Metadata
 
-**A:** EML 2.2.0 supports entering terms from an ontology via &lt;annotation&gt;
+**A:** 
+See [EML Semantic Annotation Primer](eml-semantic-annotations-primer.md)
+
+
+EML 2.2.0 supports entering terms from an ontology via &lt;annotation&gt;
 elements to further describe items such as data attributes, entity groups, and
 resource groups.  Annotations are allowed in five locations in the EML document:
 
