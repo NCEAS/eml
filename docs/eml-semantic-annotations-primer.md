@@ -54,9 +54,15 @@ An RDF triple might be constructed as follows, with subject URI, predicate URI, 
    <http://purl.obolibrary.org/obo/RO_0001025>
    
    <http://purl.obolibrary.org/obo/ENVO_00000097>
+   
+   .
 
 ... indicating that the referenced *dataset* (subject) was *"located in"* (predicate) a *"desert area"* (object).
-This is a valid RDF triple. 
+Note that a blank-space must separate subject from the predicate from the object, and that a "period" completes the triple. This is essentially a valid RDF triple, although of course there would need to be some additional information associated with it, such as RDF namespace declaration:
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> . 
+
+That enables an RDF parser to recognize the document as consisting of RDF, and interpreting it appropriately.  But the essence of the RDF data model is as simple as having URI's indicating the subject, predicate, and object constituting a *triple*.  Technically there are also "blank nodes* that can occur in the subject and object positions, and *literals* can occur as objects, but these are complexities beyond the scope of this Primer, and not necessary to know in order to do extremely useful semantic annotation of EML elements!
 
 Note that the above *RDF triple* consists of three HTTP URIs. While the exact distinction among what is a URI, a URN, and a URL can be debated, essentially all URLs (Uniform Resource Locators) are URIs -- they point to a location where some resource exists (in the case of an HTTP URL, on the Web) and can be resolved or dereferenced. But a URI can also serve as, ideally, a (globally) *unique and persistent name* of a resource, i.e., it is a URN (Uniform Resource Name). While URIs, URNs, and URLs don't necessarily have to work with the HTTP protocol, for practical purposes in the present, these are most useful if they work well with the Web, and thus HTTP. Having an HTTP URI, however, does not mean that these are only useful for viewing in a Web browser. Content negotiation between a Web server and a client (which might be a browser, or a Python or R script) can enable an HTTP URI to dereference in ways optimized for the requesting client -- e.g. in one case, presenting a human-readable view of metadata for a dataset, and in another, activating a download of that dataset for import into a script.
 
