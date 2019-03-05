@@ -1,7 +1,4 @@
-# Semantic Annotations Primer
-
-## Table of Contents
-tbd, links to sections here.
+# Semantic Annotation Primer
 
 ## Introduction
 The purpose of this primer is to provide an introduction to how semantic annotations are structured 
@@ -55,7 +52,6 @@ An RDF triple might be constructed as follows, with subject URI, predicate URI, 
    
    <http://purl.obolibrary.org/obo/ENVO_00000097>
    
-   .
 
 ... indicating that the referenced *dataset* (subject) was *"located in"* (predicate) a *"desert area"* (object).
 Note that a blank-space must separate the subject, from the predicate, from the object, and that a "period" completes the triple. This is essentially a valid RDF triple, although of course there would need to be some additional information associated with it, such as an RDF namespace declaration:
@@ -296,7 +292,7 @@ This statement can be read as "'adam.shepherd', the creator (of the dataset), is
         <dataTable id="CDR-biodiv-table">
             <entityName>CDR LTER-patterns among communities.txt</entityName>  
         ...
-        </dataTable  
+       </dataTable>  
     </dataset>
     ...
     <annotations>
@@ -365,7 +361,7 @@ Taken together, the semantic statement could be read as "'adam.shepherd' (the cr
         <dataTable id="CDR-biodiv-table">
             <entityName>CDR LTER-patterns among communities.txt</entityName>  
          ...
-        </dataTable  
+       </dataTable>  
     </dataset>
     ...
      <additionalMetadata>
@@ -451,7 +447,7 @@ If you suspect your RDF triple might look like this, you should go back and exam
 
 Things to check:
 
-1. Be sure you have used the right classes, properties or vocabularies for your annotation components
+1. Be sure you have used the right classes, properties, or vocabularies for your annotation components
   1. Become familiar with the vocabularies in your annotation, especially definitions and relationships 
   1. Check with your community for specific recommendations on annotations at different levels 
 1. In additionalMetadata, don't combine `<annotations>` with more than one `<describes>` element. EML allows 1:many `<describes>` elements in one additionalMetadata section. So if you have 2 `<describes>` and 2 `<annotations>`, you will have 4 RDF statements. Make sure they are all true, and if not, break them up
@@ -471,6 +467,6 @@ External resources:
 ## Glossary
 **ontology**: A representation that formally names and definition of the categories, properties, and relations between the concepts, data, and entities that substantiate one, many, or all domains.
 
-**Resource Description Framework (RDF)**: A family of World Wide Web Consortium (W3C) specifications that enable the encoding, exchange and reuse of structured metadata. The RDF data model employs semantic triples composed of a subject, predicate and object to share and integrate data across different applications and communities. 
+**Resource Description Framework (RDF)**: A family of World Wide Web Consortium (W3C) specifications that enable the encoding, exchange, and reuse of structured metadata. The RDF data model employs semantic triples composed of a subject, predicate, and object to share and integrate data across different applications and communities. 
 
 **uniform resource identifier (URI)**: A string of characters that unambiguously identifies a particular resource. For semantic annotations, the components of semantic triples are ideally URIs that resolve and describe precise definitions and relationships to other terms.
