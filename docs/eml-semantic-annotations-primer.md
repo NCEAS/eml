@@ -15,7 +15,7 @@ system will be able to disambiguate the term from the many meanings of "litter" 
 animals born at the same time to the same mother, etc.). Yet another example is if you search for datasets about "carbon flux", then datasets about "carbon dioxide flux" can also be returned because "carbon dioxide flux" is 
 considered a type of "carbon flux". 
 
-**Semantic statements must be logically consistent; they are not simply a set of loosely structured keywords.** 
+**Semantic statements must be logically consistent, as they are not simply a set of loosely structured keywords.** 
 The examples here should also make clear that inconsistent annotations could have dreadful consequences. 
 So be careful, and if you have questions, bring them up in your community for feedback.
 
@@ -104,7 +104,7 @@ in the EML record. Here is the basic structure. Sections below have more example
 | `object` | `//annotation/valueURI` | "object" of the "verb"  | see below |
 
 **When are IDs required?**
-Annotations at the dataset, entity or attribute level presume that the parent element is the *subject*; hence, if an element has
+Annotations at the dataset, entity or attribute level presume that the parent element is the *subject*. If an element has
 an annotation child, an id is required (i.e. the subject element must have an `id` attribute value). Annotations at `eml/annotations` or `eml/additionalMetadata` will have 
 subjects defined with a `references` attribute or `describes` element. For other internal EML references, an `id` is required.
 The EML-2.2 parser checks for an `id` attribute if an annotation is present. As a reminder, the `id` must be unique within an EML document.
@@ -372,7 +372,7 @@ addition to EML, and so it comes with some risk. The main thing you should ensur
 [att.4]                 [contains measurements of type]    [plant cover percentage]
 
 ```
-The graph examples above make 'true' statements; they are logically consistent:
+The graph examples above make 'true' statements that are logically consistent:
 
 - att.4 contains measurements of the type plant cover percentage
 - adam.shepherd is a person
