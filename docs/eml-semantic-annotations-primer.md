@@ -84,6 +84,13 @@ in the EML record. Here is the basic structure. Sections below have more example
     </annotation>
 ```
 
+- `propertyURI` and `valueURI` elements  
+  - must each have a `label` attribute that is suitable for application interfaces
+  - are recommended to have labels populated by values from the preferred labels field (`skos:prefLabel`) or label field (`rdfs:label`) from the referenced vocabulary
+  - should contain URIs that point to terms in controlled vocabularies providing precise definitions, relationships to other terms, and multiple labels for display 
+
+
+
 #### Annotations map to semantic triples
 
 ```
@@ -111,11 +118,7 @@ The EML-2.2 parser checks for an `id` attribute if an annotation is present. As 
 Annotations for top-level resources, entities, and attributes follow the same general pattern.
 
 - The *subject* of the semantic statement is the parent element of the annotation. It must have an `id=" "` attribute. 
-- Each annotation consists of a `propertyURI` element and `valueURI` element, which respectively define an *object property* or *data property* and the *object* (value) of the annotation. 
-- `propertyURI` and `valueURI` elements  
-  - must have a `label` attribute that is suitable for application interfaces. 
-  - should have URIs that point to terms in controlled vocabularies providing precise definitions, relationships to other terms, and multiple labels for display. 
-- It is recommended that the labels are populated by values from the preferred labels field (`skos:prefLabel`) or label field (`rdfs:label`) from the referenced vocabulary.
+
 
 #### Example 1: Top-level resource annotation (dataset)
 
@@ -151,7 +154,7 @@ Taken together, the semantic statement can be read as "the dataset with the id '
 </dataset>  
 ```
 
- #### Example 2: entity-level annotation
+ #### Example 2: Entity-level annotation
 
 In the following entity-level annotation, the subject of the semantic statement refers to the `otherEntity` 
 element's `id` attribute value, "urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b". The object property of the 
@@ -178,7 +181,7 @@ Taken together, the semantic statement indicates that "the entity with the id 'u
 </otherEntity>
 ```
 
-#### Example 3: attribute annotation
+#### Example 3: Attribute annotation
 
 In the following attribute annotation, the subject of the semantic statement is the `attribute` element 
 containing the `id` attribute value "att.4". The object property of the statement is 
@@ -202,23 +205,17 @@ Taken together, the semantic statement indicates that "the attribute with the id
 </attribute>
 ```
 
-### `eml/annotations` element
-The `annotations` element is nested under the `eml` root element and contains a list of annotations defining precise 
-semantic statements for parts of a resource. An annotation represents a precisely-defined semantic statement that applies to the resource.
-
-The `annotations` element contains a set of `annotation` elements. Each `annotation` element has a `references` attribute that 
-points to the `id` attribute of the element being annotated. Hence, what is listed in the `references` attribute is the id of 
-the subject of the semantic annotation. Any of the EML modules may be referenced by the `references` 
+### `eml/annotations` element annotation
+An annotation in the `annotations` element differs from other types of annotations in that the subject is directly referred to by a `references` attribute. Each `annotation` element has a `references` attribute that 
+points to the `id` attribute of the element being annotated. Stated another way, what is listed in the `references` attribute is the id of the subject of the semantic annotation. Any of the EML modules may be referenced by the `references` 
 attribute and because ids are unique within an EML document, this is a single subject. 
 
 - The *subject* of the semantic statement is implictly the element containing the referenced `id`. 
-- Each annotation consists of a `propertyURI` element and `valueURI` element, which respectively define an *object property* or *data property* and the *object* (value) of the annotation. 
-- `propertyURI` and `valueURI` elements  
-  - must have a `label` attribute that is suitable for application interfaces. 
-  - should have URIs that point to terms in controlled vocabularies providing precise definitions, relationships to other terms, and multiple labels for display. 
-- It is recommended that the labels are populated by values from the preferred labels field (`skos:prefLabel`) or label field (`rdfs:label`) from the referenced vocabulary.
 
-Example 4 has 3 different annotations under `annotations`. For the first annotation, 
+
+#### Example 4: `annotations` element annotation
+
+Example 4 contains 3 different annotations. For the first annotation, 
 the subject of the semantic triple is the `dataTable` element with the `id` attribute "CDF-biodiv-table". Notice 
 that the annotation has a `references` attribute that points to the subject id. The object property of the triple 
 is "http://purl.org/dc/elements/1.1/subject". Finally, the value (object) in the semantic triple 
@@ -234,7 +231,6 @@ The third annotation also has as its subject the `creator` element that has the 
 The object property is "https://schema.org/memberOf" and the object (value) is "https://doi.org/10.17616/R37P4C". 
 This statement can be read as "'adam.shepherd', the creator (of the dataset), is a member of BCO-DMO".
 
-* Example 4: `annotations` element annotation
 
 ```xml
 <eml>
@@ -290,11 +286,6 @@ annotations make use of these. If an `additionalMetadata` section holds a semant
 
 - The *subject* of the semantic statement is implictly the element named in the `additionalMetadata` `describes` element, by its id. 
 - The annotation itself is within the `additionalMetadata` `metadata` section
-- Each annotation consists of a `propertyURI` element and `valueURI` element, which respectively define an *object property* or *data property* and the *object* (value) of the annotation. 
-- `propertyURI` and `valueURI` elements  
-  - must have a `label` attribute that is suitable for application interfaces. 
-  - should have URIs that point to terms in controlled vocabularies providing precise definitions, relationships to other terms, and multiple labels for display. 
-- It is recommended that the labels are populated by values from the preferred labels field (`skos:prefLabel`) or label field (`rdfs:label`) from the referenced vocabulary.
 - Multiple `annotation` elements may be embedded in the same `metadata` element to assert multiple semantic statements about the same subject.
 - To annotate different subjects it's best to use additional `additionalMetadata` sections, each with a single subject
 
