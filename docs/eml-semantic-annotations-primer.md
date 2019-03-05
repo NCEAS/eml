@@ -268,33 +268,22 @@ This statement can be read as "'adam.shepherd', the creator (of the dataset), is
 </eml>
 ```
 
-### `eml/additionalMetadata` element
+### `eml/additionalMetadata` element annotation
 
-Semantic annotations may also be added to a `additionalMetadata` element that is nested under the `eml` root element. 
-This element is a container for any supplemental non-EML metadata that pertains to the resource, and can reference any
-element in the EML record that has an id. Additional information may be found in the [eml-semantics module] section.
+If an `additionalMetadata` section holds a semantic annotation, it must have a `describes` element (to hold the subject) with a `metadata` element containing at least one `annotation` element. 
 
-An annotation in `additionalMetadata` uses the `describes` element as the subject, so it can reference any EML
-element(s) with an id. 
-
-
-[eml-semantics module]: eml-modules-utility.md#the-eml-semantics-module---semantic-annotations-for-formalized-statements-about-eml-components
-
-By definition, an `additionalMetadata` element contains a `describes` element and a `metadata` element, and 
-annotations make use of these. If an `additionalMetadata` section holds a semantic annotation it must have a `describes` element 
-(to hold the subject) with a `metadata` element containing at least one `annotation` element. 
-
-- The *subject* of the semantic statement is implictly the element named in the `additionalMetadata` `describes` element, by its id. 
+- The *subject* of the semantic statement has its id contained in the `describes` element. 
 - The annotation itself is within the `additionalMetadata` `metadata` section
 - Multiple `annotation` elements may be embedded in the same `metadata` element to assert multiple semantic statements about the same subject.
 - To annotate different subjects it's best to use additional `additionalMetadata` sections, each with a single subject
 
-The `additionalMetadata` annotation (Example 5) describes a semantic statement where the subject is the `creator` element with the `id` attribute "adam.shepherd". 
-The object property of the statement is "https://schema.org/memberOf". 
+
+#### Example 5: `additionalMetadata` element annotation
+
+The following `additionalMetadata` annotation describes a semantic statement where the subject is the `creator` element with the `id` attribute "adam.shepherd". The object property of the statement is "https://schema.org/memberOf". 
 Finally, the object (value) in the semantic statement is the DOI for BCO-DMO, "https://doi.org/10.17616/R37P4C". 
 Taken together, the semantic statement could be read as "'adam.shepherd' (the creator of the dataset) is a member of BCO-DMO".
 
-* Example 5: `additionalMetadata` element annotation
 
 ```xml
 <eml>
