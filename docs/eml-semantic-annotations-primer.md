@@ -46,13 +46,14 @@ and explore how the term is related to other terms in the ontology simply by der
 
 An RDF triple might be constructed as follows, with subject URI, predicate URI, and object URI:
 
-   <https://pasta.lternet.edu/package/eml/knb-lter-jrn/210327001/1>
+   \<https://pasta.lternet.edu/package/eml/knb-lter-jrn/210327001/1\>
    
-   <http://purl.obolibrary.org/obo/RO_0001025>
+   \<http://purl.obolibrary.org/obo/RO_0001025>
    
-   <http://purl.obolibrary.org/obo/ENVO_00000097>
+   \<http://purl.obolibrary.org/obo/ENVO_00000097>
    
-
+   .
+   
 ... indicating that the referenced *dataset* (subject) was *"located in"* (predicate) a *"desert area"* (object).
 Note that a blank-space must separate the subject, from the predicate, from the object, and that a "period" completes the triple. This is essentially a valid RDF triple, although of course there would need to be some additional information associated with it, such as an RDF namespace declaration:
 
