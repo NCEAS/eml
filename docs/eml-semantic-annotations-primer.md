@@ -54,7 +54,7 @@ An RDF triple might be constructed as follows, with subject URI, predicate URI, 
    .
    
 ... indicating that the referenced *dataset* (subject) was *"located in"* (predicate) a *"desert area"* (object).
-Note that a blank-space must separate the subject, from the predicate, from the object, and that a "period" completes the triple. This is  a valid RDF triple, expressed in N-Triple syntax.  RDF is most often serialized into XML, however, as Web browsers and many applications are good at parsing XML.
+Note that a blank-space must separate the subject, from the predicate, from the object, and that a "period" completes the triple. This is  a valid RDF triple, expressed in N-Triple syntax.  RDF is most often serialized into XML, however, as Web browsers and many applications are good at parsing XML, but it is hard to read for (most!) humans.
 
 While the essence of the RDF data model is as simple as having URI's indicating the subject, predicate, and object constituting a *triple*, there are also *blank nodes* that can occur in the subject and object positions, and *literals* can occur as objects-- but these are complexities beyond the scope of this Primer, and not necessary to know in order to do extremely useful semantic annotation of EML elements.  Most typically the URI associated with an EML element becomes the *subject* of the triple, the *predicate* describes the relationship of that *subject* EML element to the *object* - where again, the *object* will generally be the "pay-off" term describing some aspect of the subject.  While our focus here is on semantic annotation of EML documents, it is easy to see how the RDF model can be used to describe, in a triple, any resource that has a URI.
 
