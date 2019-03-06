@@ -23,7 +23,7 @@ So be careful, and if you have questions, bring them up in your community for fe
 
 Semantic annotations follow the RDF data model and use a *triple structure* to make statements about a
 *resource* (i.e., an object on the Web). A semantic triple is composed of three parts:
-a **subject**, an **object property or data property (predicate)**, and an **object**.
+a **subject**, a **predicate (object property or data property)**, and an **object**.
 
 ```
 [subject] [predicate] [object]
@@ -84,7 +84,7 @@ in the EML record. Here is the basic structure. Sections below have more example
 
 - `propertyURI` and `valueURI` elements  
   - must each have a `label` attribute that is suitable for application interfaces
-  - are recommended to have labels populated by values from the preferred labels field (`skos:prefLabel`) or label field (`rdfs:label`) from the referenced vocabulary
+  - are recommended to have labels populated by values from the label field (`rdfs:label`) or preferred labels field (`skos:prefLabel`) from the referenced vocabulary
   - should contain URIs that point to terms in controlled vocabularies providing precise definitions, relationships to other terms, and multiple labels for display 
 
 
@@ -107,8 +107,7 @@ an annotation child, an id is required (i.e. the subject element must have an `i
 subjects defined with a `references` attribute or `describes` element. For other internal EML references, an `id` is required.
 The EML-2.2 parser checks for an `id` attribute if an annotation is present. As a reminder, the `id` must be unique within an EML document.
 
-**Labels**: It is recommended that the label field of the annotation is populated by the value from the preferred label field 
-(`skos:prefLabel`) or label field (`rdfs:label`) from the referenced vocabulary.
+**Labels**: It is recommended that the label field of the annotation is populated by the value from the label field (`rdfs:label`) or preferred label field (`skos:prefLabel`) from the referenced vocabulary.
 
 
 ### Top-level resource, entity-level, and attribute annotations 
@@ -121,7 +120,7 @@ Annotations for top-level resources, entities, and attributes follow the same ge
 #### Example 1: Top-level resource annotation (dataset)
 
 In the following dataset annotation, the *subject* of the semantic statement is the `dataset` element containing 
-the `id` attribute value `"dataset-01"`. The *object property* of the statement is "http://purl.org/dc/elements/1.1/subject". 
+the `id` attribute value `"dataset-01"`. The predicate-- "http://purl.org/dc/elements/1.1/subject", is an *object property* explicating the relationship of the subject to the object . 
 Finally, the *object* (value) in the semantic statement is "http://purl.obolibrary.org/obo/ENVO_01000177", which resolves 
 to the "grassland biome" term in the ENVO ontology (http://www.obofoundry.org/ontology/envo.html). 
 
