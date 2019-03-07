@@ -105,7 +105,7 @@ an annotation child, an id is required (i.e. the subject element must have an `i
 subjects defined with a `references` attribute or `describes` element. For other internal EML references, an `id` is required.
 The EML-2.2 parser checks for an `id` attribute if an annotation is present. As a reminder, the `id` must be unique within an EML document.
 
-**Labels**: It is recommended that the label field of the annotation is populated by the value from the label field (`rdfs:label`) or preferred label field (`skos:prefLabel`) from the referenced vocabulary.
+**Labels**: It is recommended that the label field of the annotation is populated by the value from the label field (`rdfs:label`: that should always be present) or preferred label field (`skos:prefLabel`: that sometimes are provided) from the referenced vocabulary.
 
 
 ### Top-level resource, entity-level, and attribute annotations 
