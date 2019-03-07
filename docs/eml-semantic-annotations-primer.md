@@ -213,12 +213,12 @@ attribute and because ids are unique within an EML document, this is a single su
 #### Example 4: `annotations` element annotation
 
 Example 4 contains 3 different annotations. For the first annotation, 
-the subject of the semantic triple is the `dataTable` element with the `id` attribute "CDF-biodiv-table". Notice 
+the subject of the semantic triple is the `creator` element with the `id` attribute "adam.shepherd". Notice 
 that the annotation has a `references` attribute that points to the subject id. The object property of the triple 
-is "http://purl.org/dc/elements/1.1/subject". Finally, the value (object) in the semantic triple 
-is "http://purl.obolibrary.org/obo/ENVO_01000177", which resolves to the "grassland biome" term in the 
-ENVO ontology (http://www.obofoundry.org/ontology/envo.html). Taken together, the first semantic statement could be 
-read as "the dataTable with the id 'CDR-biodiv-table' is about the subject grassland biome".
+is "http://schema.org/hasOccupation". Finally, the value (object) in the semantic triple 
+is "http://purl.obolibrary.org/obo/RoleO_0000248", which resolves to the "information technologist" term in the 
+RoleO ontology (https://bioportal.bioontology.org/ontologies/ROLEO). Taken together, the first semantic statement could be 
+read as "'adam.shepherd', the creator (of the dataset), is an information technologist".
 
 The second annotation has as its subject the `creator` element that has the id "adam.shepherd", 
 the object property "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" and the value (object) "https://schema.org/Person". 
@@ -248,9 +248,9 @@ This statement can be read as "'adam.shepherd', the creator (of the dataset), is
     </dataset>
     ...
     <annotations>
-        <annotation references="CDR-biodiv-table">
-            <propertyURI label="Subject">http://purl.org/dc/elements/1.1/subject</propertyURI>
-            <valueURI label="grassland biome">http://purl.obolibrary.org/obo/ENVO_01000177</valueURI>
+        <annotation references="adam.shepherd">
+            <propertyURI label="has occupation">http://schema.org/hasOccupation</propertyURI>
+            <valueURI label="information technologist">http://purl.obolibrary.org/obo/RoleO_0000248</valueURI>
         </annotation>
         <annotation references="adam.shepherd">
             <propertyURI label="is a">http://www.w3.org/1999/02/22-rdf-syntax-ns#type</propertyURI>
