@@ -23,7 +23,7 @@ If you already understand the basics of how RDF and the Semantic Web work, and a
 
 ### Semantic triples
 
-Semantic annotations enable the creation of what are called *triples*, that are 3-part statements conforming to the W3C recommended *RDF data model* (<https://www.w3.org/TR/rdf11-primer/>). 
+Semantic annotations enable the creation of what are called *triples*, that are 3-part statements conforming to the W3C recommended *RDF data model* (learn more: <https://www.w3.org/TR/rdf11-primer/>). 
 
 A *triple* is composed of three parts: a **subject**, a **predicate (object property or data property)**, and an **object**.
 
@@ -33,7 +33,9 @@ A *triple* is composed of three parts: a **subject**, a **predicate (object prop
 
 These components are analogous to parts of a sentence: the **subject** and **object** can be thought of as nouns in the sentence and the **predicate** (object property or data property)is akin to a verb or relationship that connects the **subject** and **object**. The semantic triple expresses a statement about the associated resource, that is generally the **subject**. 
 
-The semantic annotations added to an EML document can be extracted and processed into a semantic web format, such as RDF/XML, such that the semantic statement(s), i.e. RDF triples, become interpretable by any machines that can process the W3C standard of RDF. Those RDF statements contribute to the Semantic Web.
+There are (perhaps unfortunately) several other ways that the components of an RDF statement are sometimes described.  One popular "synonymy" for *subject-predicate-object* is *resource-property-value*, i.e. the subject is referred to as the *resource*, the predicate a *property*, and the object a *value*.  This can be confusing, since the usual definition of a *resource* is any identifiable 'thing'  object, especially one assigned a URI, and by this definition, *resources* can and often do occur in all three components of a triple.  But thinking of a triple as a *resource-property-value* does provide an indication of the directionality of the semantics of an RDF statement.
+
+Semantic annotations added to an EML document can be extracted and processed into a semantic web format, such as RDF/XML, such that the semantic statement(s), i.e. RDF triples, become interpretable by any machines that can process the W3C standard of RDF. Those RDF statements contribute to the Semantic Web.
 
 #### URIs
 Ideally, the components of the semantic triple should be globally 
@@ -51,7 +53,7 @@ An RDF triple can be constructed as follows, with subject URI, predicate URI, an
    
    .
    
-... indicating that the referenced *dataset* (subject) was *"located in"* (predicate) a *"desert area"* (object).
+... indicating that the referenced *dataset* (subject/resource) was *"located in"* (predicate/property) a *"desert area"* (object/value).
 Note that a blank-space must separate the subject, from the predicate, from the object, and that a "period" completes the triple. This is  a valid RDF triple, expressed in N-Triple syntax.  RDF is most often serialized into XML, however, as Web browsers and many applications are good at parsing XML. 
 
 While the *essence* of the RDF data model is as simple as having URI's indicating the subject, predicate, and object constituting a *triple*, there are also *blank nodes* that can occur in the subject and object positions, and *literals* can occur as objects-- but these are complexities beyond the scope of this Primer, and not necessary to know in order to do extremely useful semantic annotation of EML elements. While our focus here is on semantic annotation of EML documents, it is easy to see how the RDF model can be used to describe, in a triple, any resource that has a URI.
@@ -393,7 +395,7 @@ Things to check:
 External resources:
 - LinkedDataTools tutorial: http://www.linkeddatatools.com/introducing-rdf
 - RDF data model: https://www.w3.org/TR/WD-rdf-syntax-971002/
-- W3C RDF primer: https://dvcs.w3.org/hg/rdf/raw-file/default/rdf-primer/
+- W3C RDF primer: https://www.w3.org/TR/rdf11-primer/
 - A tidyverse lover’s intro to RDF https://ropensci.github.io/rdflib/articles/rdf_intro.html
  
 * Tim Berners-Lee's article on the semantic web: ```Berners-Lee, T., Hendler, J., & Lassila, O. (2001). The semantic web. Scientific american, 284(5), 34-43.```
