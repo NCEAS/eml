@@ -23,7 +23,7 @@ If you already understand the basics of how RDF and the Semantic Web work, and a
 
 ### Semantic triples
 
-Semantic annotations enable the creation of what are called *triples*, that are 3-part statements conforming to the W3C recommended *RDF data model* <https://www.w3.org/TR/rdf11-primer/>. 
+Semantic annotations enable the creation of what are called *triples*, that are 3-part statements conforming to the W3C recommended *RDF data model* (<https://www.w3.org/TR/rdf11-primer/>). 
 
 A *triple* is composed of three parts: a **subject**, a **predicate (object property or data property)**, and an **object**.
 
