@@ -314,11 +314,9 @@ Taken together, the semantic statement could be read as "'adam.shepherd' (the cr
 
 ## RDF Graphs 
 
-A graph consists of resources linked to other resources. There isn't a root or hierarchy structure, indicating that  
+A graph consists of resources linked to other resources. There isn't a root or hierarchy structure, indicating that no single resource is more important than another. 
 
-The parts of a triple (subject, predicate, and object) become nodes and links in a graph. 
-
-Below are examples of how annotations can be converted to RDF triples in RDF/XML, so that they are now computer-readable. Be aware that there are several formats for serializing RDF, including RDF/XML, Turtle, N-Triples, and N3, that vary in how human-readable they are.
+The parts of a triple (subject, predicate, and object) become nodes and links in a graph. Below are examples of how annotations can be converted to RDF triples in RDF/XML, so that the RDF information is now computer-readable. Be aware that there are several formats for serializing RDF, including RDF/XML, Turtle, N-Triples, and N3, that vary in the level of how human-readable they are.
 
 ### Graph from Example 3 (attribute annotation):
 
