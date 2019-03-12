@@ -13,7 +13,7 @@ For  example, if a dataset is annotated as being about "carbon dioxide flux" and
 
 As another example, if you perform a search for datasets about "litter" (as in "plant litter"), the 
 system will be able to disambiguate the term from the many meanings of "litter" (as in garbage, the grouping of 
-animals born at the same time to the same mother, etc.). These different types of litter could be disambiguated because they would be annotated with different identifier (HTTP URI). Yet another example is if you search for datasets about "carbon flux", then datasets about "carbon dioxide flux" can also be returned because "carbon dioxide flux" is considered a type of "carbon flux".  This is possible because the identifier (HTTP URI) for "carbon dioxide flux" would be organized into a hierarchy in its knowlege graph, and represented in this case as a subclass of "carbon flux".
+animals born at the same time to the same mother, etc.). These different types of litter could be disambiguated because they would be annotated with different identifier (HTTP URI). Yet another example is if you search for datasets about "carbon flux", then datasets about "carbon dioxide flux" can also be returned because "carbon dioxide flux" is considered a type of "carbon flux".  This is possible because the identifier (HTTP URI) for "carbon dioxide flux" would be organized into a hierarchy in its knowledge graph, and represented in this case as a subclass of "carbon flux".
 
 **Semantic statements must be logically consistent, as they are not simply a set of loosely structured keywords.** 
 The examples here should also make clear that inconsistent annotations could create confusion. 
@@ -120,11 +120,11 @@ Annotations for top-level resources, entities, and attributes follow the same ge
 #### Example 1: Top-level resource annotation (dataset)
 
 In the following dataset annotation, the *subject* of the semantic statement is the `dataset` element containing 
-the `id` attribute value `"dataset-01"`. The predicate-- "http://purl.org/dc/elements/1.1/subject", is an *object property* explicating the relationship of the subject to the object . 
+the `id` attribute value `"dataset-01"`. The predicate-- "http://purl.obolibrary.org/obo/IAO_0000136", is an *object property* explicating the relationship of the subject to the object. 
 Finally, the *object* (value) in the semantic statement is "http://purl.obolibrary.org/obo/ENVO_01000177", which resolves 
-to the "grassland biome" term in the ENVO ontology (http://www.obofoundry.org/ontology/envo.html). 
+to the "grassland biome" term in the EnvO ontology (http://www.obofoundry.org/ontology/envo.html). 
 
-Taken together, the semantic statement can be read as "the dataset with the id 'dataset-01' is about the subject grassland biome".
+Taken together, the semantic statement can be read as "the dataset with the id 'dataset-01' is about grassland biome(s)".
 
 
 ```xml
@@ -144,7 +144,7 @@ Taken together, the semantic statement can be read as "the dataset with the id '
         ...
     </coverage>    
     <annotation>
-        <propertyURI label="Subject">http://purl.org/dc/elements/1.1/subject</propertyURI>
+        <propertyURI label="is about">http://purl.obolibrary.org/obo/IAO_0000136</propertyURI>
         <valueURI label="grassland biome">http://purl.obolibrary.org/obo/ENVO_01000177</valueURI>
     </annotation>
       ...    
@@ -155,11 +155,11 @@ Taken together, the semantic statement can be read as "the dataset with the id '
 
 In the following entity-level annotation, the subject of the semantic statement refers to the `otherEntity` 
 element's `id` attribute value, "urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b". The object property of the 
-statement is "http://purl.org/dc/elements/1.1/subject". Finally, the object (value) in the semantic statement 
+statement is "http://purl.obolibrary.org/obo/IAO_0000136". Finally, the object (value) in the semantic statement 
 is "http://purl.obolibrary.org/obo/NCBITaxon_40674", which resolves to the "Mammalia" term in the NCBITaxon 
 ontology (http://www.ontobee.org/ontology/NCBITaxon). 
 
-Taken together, the semantic statement indicates that "the entity with the id 'urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b' is about the subject Mammalia"
+Taken together, the semantic statement indicates that "the entity with the id 'urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b' is about Mammalia"
 
 
 ```xml
@@ -172,7 +172,7 @@ Taken together, the semantic statement indicates that "the entity with the id 'u
     </physical>
     <entityType>Other</entityType>
     <annotation>
-        <propertyURI label="Subject">http://purl.org/dc/elements/1.1/subject</propertyURI>
+        <propertyURI label="is about">http://purl.obolibrary.org/obo/IAO_0000136</propertyURI>
         <valueURI label="Mammalia">http://purl.obolibrary.org/obo/NCBITaxon_40674</valueURI>  
     <annotation>
 </otherEntity>
