@@ -41,7 +41,7 @@ Semantic annotations added to an EML document can be extracted and processed int
 Ideally, the components of the semantic triple should be globally 
 unique and persistent (unchanging), and consist of resolvable/dereferenceable HTTP uniform resource identifiers (URIs; or more formally, IRI's). The *subjects* of most EML semantic annotations will likely be HTTP URI's that identify the dataset resource itself, or specific attributes or other features within a dataset.  The *objects* of EML semantic annotations, as well as the *predicates* that relate the subject to the object, will most typically be HTTP URI references to terms in controlled vocabularies (also called "knowledge graphs", or "ontologies") accessible through the Web, so that users (or computers) can dereference the URI's and look up precise definitions and relationships of these resources to other terms. 
 
-An example of a URI is "http://purl.obolibrary.org/obo/ENVO_00000097", when entered into the address bar of a web browser, resolves to the term with a label of "desert area" in the Environment Ontology (ENVO). Users can learn what this URI indicates and explore how the term is related to other terms in the ontology simply by dereferencing its URI in a web browser.  All those other aspects you see  on the Web page describing "http://purl.obolibrary.org/obo/ENVO_00000097" are from RDF statements (triples) that have been rendered into HTML. From here, you might realize that a better annotation for your object might be "http://purl.obolibrary.org/obo/ENV0_00000172", which is a "sandy desert".
+An example of a URI is "http://purl.obolibrary.org/obo/ENVO_00000097", when entered into the address bar of a web browser, resolves to the term with a label of "desert area" in the Environment Ontology (EnvO). Users can learn what this URI indicates and explore how the term is related to other terms in the ontology simply by dereferencing its URI in a web browser.  All those other aspects you see  on the Web page describing "http://purl.obolibrary.org/obo/ENVO_00000097" are from RDF statements (triples) that have been rendered into HTML. From here, you might realize that a better annotation for your object might be "http://purl.obolibrary.org/obo/ENV0_00000172", which is a "sandy desert".
 
 An RDF triple can be constructed as follows, with subject URI, predicate URI, and object URI:
 
@@ -213,12 +213,12 @@ attribute and because ids are unique within an EML document, this is a single su
 #### Example 4: `annotations` element annotation
 
 Example 4 contains 3 different annotations. For the first annotation, 
-the subject of the semantic triple is the `creator` element with the `id` attribute "adam.shepherd". Notice 
+the subject of the semantic triple is the `dataTable` element with the `id` attribute "CDF-biodiv-table". Notice 
 that the annotation has a `references` attribute that points to the subject id. The object property of the triple 
-is "http://schema.org/hasOccupation". Finally, the value (object) in the semantic triple 
-is "http://purl.obolibrary.org/obo/RoleO_0000248", which resolves to the "information technologist" term in the 
-RoleO ontology (https://bioportal.bioontology.org/ontologies/ROLEO). Taken together, the first semantic statement could be 
-read as "'adam.shepherd', the creator (of the dataset), is an information technologist".
+is "http://purl.obolibrary.org/obo/IAO_0000136". Finally, the value (object) in the semantic triple 
+is "http://purl.obolibrary.org/obo/ENVO_01000177", which resolves to the "grassland biome" term in the 
+EnvO ontology (http://www.obofoundry.org/ontology/envo.html). Taken together, the first semantic statement could be 
+read as "the dataTable with the id 'CDR-biodiv-table' is about grassland biome(s)".
 
 The second annotation has as its subject the `creator` element that has the id "adam.shepherd", 
 the object property "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" and the value (object) "https://schema.org/Person". 
@@ -248,9 +248,9 @@ This statement can be read as "'adam.shepherd', the creator (of the dataset), is
     </dataset>
     ...
     <annotations>
-        <annotation references="adam.shepherd">
-            <propertyURI label="has occupation">http://schema.org/hasOccupation</propertyURI>
-            <valueURI label="information technologist">http://purl.obolibrary.org/obo/RoleO_0000248</valueURI>
+        <annotation references="CDR-biodiv-table">
+            <propertyURI label="is about">http://purl.obolibrary.org/obo/IAO_0000136</propertyURI>
+            <valueURI label="grassland biome">http://purl.obolibrary.org/obo/ENVO_01000177</valueURI>
         </annotation>
         <annotation references="adam.shepherd">
             <propertyURI label="is a">http://www.w3.org/1999/02/22-rdf-syntax-ns#type</propertyURI>
