@@ -2,9 +2,8 @@
 
 ## Introduction
 The purpose of this primer is to provide an introduction to how semantic annotations are structured 
-in EML documents. It is expected that you have some familiarity with the EML schema prior to reading this document. 
-If you want to read more about the W3C's Resource Description Framework (RDF) data model, graphs or the semantic web, 
-there is supplemental material at the bottom of this primer. It is important to note that our approach of using annotations structured in the RDF specification is based on recommendations from the World Wide Web Consortium (W3C) about how a Semantic Web should be constructed.
+in EML documents. It is expected that you have some familiarity with the EML schema prior to reading this document. It is important to note that our approach of using annotations structured in the Resource Description Framework (RDF) specification is based on recommendations from the World Wide Web Consortium (W3C) about how a Semantic Web should be constructed.
+If you want to read more about the W3C's RDF data model, graphs or the semantic web, there is supplemental material at the bottom of this primer. 
 
 A semantic annotation involves the attachment ("annotation") of semantic metadata to a resource -- which in this context would be an EML element. A semantic annotation provides a pointer (HTTP universal resource identifier; URI) that should resolve (and dereference) to useful descriptions, definitions, or relationships that the annotated resource has, relative to other terms or resources, and do so in a computer-usable way. These "pointers" reference terms organized into web-accessible *knowledge graphs* (also called "ontologies"). The process of creating semantic annotations may seem tedious, but the payoff is vastly enhanced information discovery and interpretation. Semantic annotations will make it easier for others to find and reuse your data (and thus give you credit). 
 
@@ -16,7 +15,7 @@ system will be able to disambiguate the term from the many meanings of "litter" 
 animals born at the same time to the same mother, etc.). These different types of litter could be disambiguated because they would be annotated with different identifiers (HTTP URI). Yet another example is if you search for datasets about "carbon flux", then datasets about "carbon dioxide flux" can also be returned because "carbon dioxide flux" is considered a type of "carbon flux".  This is possible because the identifier (HTTP URI) for "carbon dioxide flux" would be organized into a hierarchy in its knowledge graph, and represented in this case as a subclass of "carbon flux".
 
 **Semantic statements must be logically consistent, as they are not simply a set of loosely structured keywords.** 
-The examples here should also make clear that inconsistent annotations could create confusion. 
+The examples in this primer should also make clear that inconsistent annotations could create confusion. 
 So be careful, and if you have questions, bring them up in your community for feedback.
 
 If you already understand the basics of how RDF and the Semantic Web work, and are eager to simply learn how to implement semantic annotations in your EML documents, feel free to skip the next two sections, and go directly to the section on "Semantic Annotations in EML 2.2.0".  If you want a refresher on how these semantic annotations will work, and why they are immensely powerful, the next two sections may be helpful. 
