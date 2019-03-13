@@ -40,7 +40,7 @@ Semantic annotations added to an EML document can be extracted and processed int
 Ideally, the components of the semantic triple should be globally 
 unique and persistent (unchanging), and consist of resolvable/dereferenceable HTTP uniform resource identifiers (URIs; or more formally, IRI's). The *subjects* of most EML semantic annotations will likely be HTTP URI's that identify the dataset resource itself, or specific attributes or other features within a dataset.  The *objects* of EML semantic annotations, as well as the *predicates* that relate the subject to the object, will most typically be HTTP URI references to terms in controlled vocabularies (also called "knowledge graphs", or "ontologies") accessible through the Web, so that users (or computers) can dereference the URI's and look up precise definitions and relationships of these resources to other terms. 
 
-An example of a URI is "http://purl.obolibrary.org/obo/ENVO_00000097", when entered into the address bar of a web browser, resolves to the term with a label of "desert area" in the Environment Ontology (EnvO). Users can learn what this URI indicates and explore how the term is related to other terms in the ontology simply by dereferencing its URI in a web browser.  All those other aspects you see  on the Web page describing "http://purl.obolibrary.org/obo/ENVO_00000097" are from RDF statements (triples) that have been rendered into HTML. From here, you might realize that a better annotation for your object might be "http://purl.obolibrary.org/obo/ENV0_00000172", which is a "sandy desert".
+An example of a URI is "http://purl.obolibrary.org/obo/ENVO_00000097", when entered into the address bar of a web browser, resolves to the term with a label of "desert area" in the Environment Ontology (EnvO). Users can learn what this URI indicates and explore how the term is related to other terms in the ontology simply by dereferencing its URI in a web browser.  All those other aspects you see on the Web page describing "http://purl.obolibrary.org/obo/ENVO_00000097" are from RDF statements (triples) that have been rendered into HTML. From here, you might realize that "http://purl.obolibrary.org/obo/ENV0_00000172" ("sandy desert") is a better annotation for your object.
 
 An RDF triple can be constructed as follows, with subject URI, predicate URI, and object URI:
 
@@ -146,7 +146,7 @@ statement is "http://purl.obolibrary.org/obo/IAO_0000136". Finally, the object (
 is "http://purl.obolibrary.org/obo/NCBITaxon_40674", which resolves to the "Mammalia" term in the NCBITaxon 
 ontology (http://www.ontobee.org/ontology/NCBITaxon). 
 
-Taken together, the semantic statement indicates that "the entity with the id 'urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b' is about Mammalia"
+Taken together, the semantic statement indicates that "the entity with the id 'urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b' is about Mammalia".
 
 
 ```xml
@@ -350,7 +350,7 @@ _Note: The subject described in the `rdf:Description` `about` attribute should a
 _Note: The subject described in the `rdf:Description` `about` attribute should actually be the globally unique URI issued for 'adam.shepherd'._
 
 
-### Logical Consistency
+### Check for Logical Consistency
 With semantic annotation, you are adding precise definitions of concepts and relationships that can be traversed 
 with computer logic. Annotations are not simply a set of loosely structured keywords!  This is a really powerful 
 addition to EML, and so it comes with some risk. The main thing you should ensure is that your annotations are 
