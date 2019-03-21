@@ -93,11 +93,9 @@ in the EML record. Here is the basic structure. Sections below have more example
 
 **When are IDs required?**
 Annotations at the dataset, entity or attribute level presume that the parent element is the *subject*. If an element has
-an annotation child, an id is required (i.e. the subject element must have an `id` attribute value). Annotations at `eml/annotations` or `eml/additionalMetadata` will have 
-subjects defined with a `references` attribute or `describes` element. For other internal EML references, an `id` is required.
-The EML-2.2 parser checks for an `id` attribute if an annotation is present. As a reminder, the `id` must be unique within an EML document.
+an annotation child, an id is required (i.e. the subject element must have an `id` attribute value). Annotations at `eml/annotations` or `eml/additionalMetadata` will have subjects defined with a `references` attribute or `describes` element. For other internal EML references, an `id` is required. The EML-2.2 parser checks for an `id` attribute if an annotation is present. As a reminder, the `id` must be unique within an EML document.
 
-**Labels**: It is recommended that the label field of the annotation is populated by the value from the label field (`rdfs:label`: that should always be present) or preferred label field (`skos:prefLabel`: that sometimes are provided) from the referenced vocabulary.
+**Labels**: It is recommended that the label field of the annotation is populated by the value from the label field (`rdfs:label`: that should always be present) or preferred label field (`skos:prefLabel`: that sometimes are provided) from the referenced vocabulary.  Note that this assumes the referenced vocabulary is stored as an RDF document, which is best practice.
 
 
 ### Top-level resource, entity-level, and attribute annotations 
@@ -110,7 +108,7 @@ Annotations for top-level resources, entities, and attributes follow the same ge
 #### Example 1: Top-level resource annotation (dataset)
 
 In the following dataset annotation, the *subject* of the semantic statement is the `dataset` element containing 
-the `id` attribute value `"dataset-01"`. The predicate-- "http://purl.obolibrary.org/obo/IAO_0000136", is an *object property* explicating the relationship of the subject to the object. 
+the `id` attribute value `"dataset-01"`. The predicate-- "http://purl.obolibrary.org/obo/IAO_0000136", is an *object property* explicating the relationship of the subject to the object, using a term from the Information Artifact Ontology, IAO (http://www.obofoundry.org/ontology/iao.html). 
 Finally, the *object* (value) in the semantic statement is "http://purl.obolibrary.org/obo/ENVO_01000177", which resolves 
 to the "grassland biome" term in the EnvO ontology (http://www.obofoundry.org/ontology/envo.html). 
 
@@ -171,13 +169,11 @@ Taken together, the semantic statement indicates that "the entity with the id 'u
 #### Example 3: Attribute annotation
 
 In the following attribute annotation, the subject of the semantic statement is the `attribute` element 
-containing the `id` attribute value "att.4". The object property of the statement is 
+containing the `id` attribute value "att.4". The predicate is of the statement is an object property
 "http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType". Note that the URI for the 
-object property resolves to a specific term in the OBOE ontology (https://github.com/NCEAS/oboe). Finally, the object (value) 
-in the semantic statement is "http://purl.dataone.org/odo/ECSO_00001197", which resolves to the "Plant Cover Percentage" 
-term in the ECSO Ontology (https://github.com/DataONEorg/sem-prov-ontologies/tree/master/observation). 
+object property resolves to a specific term in the OBOE ontology (https://github.com/NCEAS/oboe). Finally, the object (value)in the semantic statement is "http://purl.dataone.org/odo/ECSO_00001197", which resolves to the "Plant Cover Percentage" term in the ECSO Ontology (https://github.com/DataONEorg/sem-prov-ontologies/tree/master/observation). 
 
-Taken together, the semantic statement indicates that "the attribute with the id 'att.4' contains measurements of type plant cover percentage".
+Taken together, the semantic statement indicates that "the attribute with the id 'att.4' contains measurements of type plant cover percentage".  Of course, this statement needs to be interpreted in the context of the entity within which 'att.4' occurs.
 
 
 ```xml
@@ -304,7 +300,7 @@ Taken together, the semantic statement could be read as "'adam.shepherd' (the cr
 
 ## RDF Graphs 
 
-A graph consists of resources linked to other resources. There isn't a root or hierarchy structure, indicating that no single resource is more important than another. 
+A graph consists of resources linked to other resources. Thus the simplest graph structure is when you specify how one resource (node) is linked to another resource (node).
 
 The parts of a triple (subject, predicate, and object) become nodes and links in a graph. Below are examples of how annotations can be converted to RDF triples in RDF/XML, so that the RDF information is now computer-readable. Be aware that there are several formats for serializing RDF, including RDF/XML, Turtle, N-Triples, and N3, that vary in the level of how human-readable they are.
 
@@ -326,7 +322,7 @@ The parts of a triple (subject, predicate, and object) become nodes and links in
 </rdf:RDF>
 
 ```
-_Note: The subject described in the `rdf:Description` `about` attribute should actually be the globally unique URI for the attribute, rather than 'att.4'_
+_Note: The subject described in the `rdf:Description` `about` attribute should actually be a globally unique HTTP URI for the attribute, rather than 'att.4'. The details of how this HTTP URI GUID is constructed are being developed by EDI, NCEAS, and others._
 
 
 ### Graph from Example 4 (using `annotations` element):
@@ -350,7 +346,7 @@ _Note: The subject described in the `rdf:Description` `about` attribute should a
 </rdf:RDF>
 
 ```
-_Note: The subject described in the `rdf:Description` `about` attribute should actually be the globally unique URI issued for 'adam.shepherd'._
+_Note: The subject described in the `rdf:Description` `about` attribute should actually be the globally unique URI issued for 'adam.shepherd'. The details of how this HTTP URI GUID is constructed are being developed by EDI, NCEAS, and others._
 
 
 ### Check for Logical Consistency
@@ -398,8 +394,8 @@ External resources:
 * Tim Berners-Lee's article on the semantic web: ```Berners-Lee, T., Hendler, J., & Lassila, O. (2001). The semantic web. Scientific american, 284(5), 34-43.```
 
 ## Glossary
-**ontology**: A representation that formally names and definition of the categories, properties, and relations between the concepts, data, and entities that substantiate one, many, or all domains.
+**ontology**: A knowledge *graph* representation of a set of terms, including their names, and descriptions of the categories, properties, and relationships among those terms.
 
-**Resource Description Framework (RDF)**: A family of World Wide Web Consortium (W3C) specifications that enable the encoding, exchange, and reuse of structured metadata. The RDF data model employs semantic triples composed of a subject, predicate, and object to share and integrate data across different applications and communities. 
+**Resource Description Framework (RDF)**: A family of World Wide Web Consortium (W3C) recommendations that enable the encoding, exchange, and reuse of structured metadata. The RDF data model employs semantic triples composed of a subject, predicate, and object to share and integrate data across different applications and communities through the Web. 
 
-**uniform resource identifier (URI)**: A string of characters that unambiguously identifies a particular resource. For semantic annotations, the components of semantic triples are ideally URIs that resolve and describe precise definitions and relationships to other terms.
+**uniform resource identifier (URI)**: A string of characters that unambiguously identifies a particular resource. For semantic annotations, the components of semantic triples are ideally HTTP URIs that resolve and describe precise definitions and relationships to other terms, using Web technology.
