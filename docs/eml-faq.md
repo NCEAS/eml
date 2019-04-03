@@ -411,3 +411,48 @@ page: [Information for EML 2.1.0 Document Authors.](./eml-210info.html)
 That page also contains instructions for using the transformation
 stylesheet that comes with EML2.1.0 to convert v2.0.0/1 documents to
 v2.1.0.
+
+
+**Q:** 
+
+**A:**
+
+
+**Q:** What does ‘dereferenced’ mean?  (context: a URI in an annotation)
+
+**A:**
+
+
+**Q:** Explain the difference between an URI and a URL. (context: sample URIs look a lot like a URL.  What makes it a URI?)
+
+**A:**
+
+
+**Q:** oveeview (“When are ID’s required in the EML”) - context: annotations
+
+**A:**
+
+
+**Q:** What is SKOS?
+
+**A:**
+
+
+**Q:** What is RDFS?
+
+**A:**
+
+
+**Q:** An example of a controlled vocabulary with a rdfs label or skos label would be helpful here in this text about labels.  
+
+**A:**
+
+
+**Q:** RDF Graph: An image is great, but a computer doesn't parse that.  What does the RDF look like?
+
+**A:**
+
+
+**Q:** Are there tools are available to help data managers select subjects, predicates, and objects to annotate with? 
+
+**A:**
