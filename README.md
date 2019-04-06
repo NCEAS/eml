@@ -21,8 +21,7 @@ The Ecological Metadata Language (EML) defines a comprehensive vocabulary and a 
 - **DOI**: (**NOT YET ISSUED**)
 - **Feedback**: [eml-dev@ecoinformatics.org](mailto:eml-dev@ecoinformatics.org)
 - **Bug reports**: http://github.com/NCEAS/eml/issues
-- **Task Board**: https://waffle.io/NCEAS/eml
-- **Web site**: http://knb.ecoinformatics.org/software/eml
+- **Web site**: https://eml.ecoinformatics.org/
 - **Source code**: http://github.com/NCEAS/eml
 - **Validation service**: https://knb.ecoinformatics.org/emlparser/
 - **Slack Discussion channel**: #eml on http://slack.nceas.ucsb.edu
@@ -51,19 +50,21 @@ would be sufficient for citing a data set and for simple discovery in catalogs:
     
     <dataset id="doi:10.xxxx/eml.1.1">
         <title>Primary production of algal species from Southeast Alaska, 1990-2002</title>
-        <creator id="matt.jones">
+        <creator id="https://orcid.org/0000-0003-0077-4738">
             <individualName>
                 <givenName>Matthew</givenName>
+                <givenName>B.</givenName>
                 <surName>Jones</surName>
             </individualName>
             <electronicMailAddress>jones@nceas.ucsb.edu</electronicMailAddress>
+            <userId directory="https://orcid.org">https://orcid.org/0000-0003-0077-4738</userId>
         </creator>
         <keywordSet>
             <keyword>biomass</keyword>
             <keyword>productivity</keyword>
         </keywordSet>
         <contact>
-            <references>matt.jones</references>
+            <references>https://orcid.org/0000-0003-0077-4738</references>
         </contact>
     </dataset>
 </eml:eml>
@@ -80,11 +81,11 @@ We welcome contributions to this work in any form. Individuals who invest substa
 
 ## Contributing
 
-Developers may be interested in browsing the [source code repository](https://github.com/NCEAS/eml/) that we use in developing EML. This always contains the most recent development version of EML, and therefore may be in flux, or otherwise broken. It is unlikely that it will contain the same files that are in the current release (@version@). Use at your own risk. Write access to this repository is reserved for current project maintainers. Please submit contributions as pull requests. We welcome contributions to this work in any form.  Contributions can take many forms, including the development of the EML schemas, writing documentation, and helping with maintenance, among others. Non-project members can contribute by submitting their feedback, revisions, fixes, code, or any other contribution through pull requests at GitHub. Discussion of issues occurs on the [eml-dev@ecoinformatics.org](https://groups.google.com/a/ecoinformatics.org/forum/#!forum/ecoinfoeml-dev) mailing list, or through the [EML Issue Tracking system](http://github.com/NCEAS/eml/issues). The preferred way to submit problems with EML or feature requests is the issue tracking system.
+Developers may be interested in browsing the [source code repository](https://github.com/NCEAS/eml/) that we use in developing EML. Starting with EML 2.1.1, the master branch reflects the current stable release of EML. Developmet occurs in development branches (e.g., BRANCH_EML_2_2), which allows experimental additions as they are being proposed by the community.  This always contains the most recent development version of EML, and therefore may be in flux, or otherwise broken. It is unlikely that it will contain the same files that are in the current release. Development branches are virtually guaranteed to chage before they are released, and so they should not be ussed i production ennvironmentsm. Use development branches at your own risk for testig.  Write access to this repository is reserved for current project maintainers. Please submit contributions as pull requests. We welcome contributions to this work in any form.  Contributions can take many forms, including the development of the EML schemas, writing documentation, and helping with maintenance, among others. Non-project members can contribute by submitting their feedback, revisions, fixes, code, or any other contribution through pull requests at GitHub. Discussion of issues occurs on the [eml-dev@ecoinformatics.org](https://groups.google.com/a/ecoinformatics.org/forum/#!forum/ecoinfoeml-dev) mailing list, or through the [EML Issue Tracking system](http://github.com/NCEAS/eml/issues). The preferred way to submit problems with EML or feature requests is the issue tracking system.
 
 ## History
 
-EML was originally based on work done by the [ESA Committee on the Future of Long-Term Ecological Data](https://web.archive.org/web/20040213204322/http://esa.sdsc.edu/FLED/FLED.html) and on a related paper on ecological metadata by Michener et al. (see Michener, William K., et al., 1997. Ecological Applications, "Nongeospatial metadata for the ecological sciences" Vol 7(1). pp. 330-342.).  Version 1.0 was released at NCEAS in 1997, with further internal releases of versions 1.2, 1.3, and 1.4, all of which followed the FLED recommendations closely in its content implementation. Version 2 was modified substantially after experience using the specification and from feedback from the ecological community, and versions 2.1 and 2.2 introduce significant new features like internationalization, semantic annotations, and support for data papers.
+EML was originally developed by Matthew Jones at NCEAS based on work done by the [ESA Committee on the Future of Long-Term Ecological Data](https://web.archive.org/web/20040213204322/http://esa.sdsc.edu/FLED/FLED.html) and on a related paper on ecological metadata by Michener et al. (see Michener, William K., et al., 1997. Ecological Applications, "Nongeospatial metadata for the ecological sciences" Vol 7(1). pp. 330-342.).  Version 1.0 was released at NCEAS in 1997 and used internally, with further internal releases of versions 1.2, 1.3, and 1.4, all of which followed the FLED recommendations closely in its content implementation. Version 2 was modified substantially after experience using the specification at NCEAS and from feedback from the ecological community, particularly the Long Term Ecological Research Network. Versions 2.1 and 2.2 introduce significant new features like internationalization, semantic annotations, and support for data papers.
 
 ## Older versions (deprecated)
 
@@ -97,7 +98,7 @@ The following versions are still available for reference purposes, although they
 - [EML 1.4.1](http://knb.ecoinformatics.org/software/dist/eml-1.4.1.tar.gz)
 
 ## Copyright and License
-Copyright: 1997-2018 Regents of the University of California
+Copyright: 1997-2019 Regents of the University of California
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -116,8 +117,12 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 ## Funding and Acknowledgements
 
-This material is based upon work supported by the National Science Foundation
-under Grant No. 0225676, DEB-9980154, DBI-9904777, DEB-0072909, DBI-9983132,
+EML was developed and is maintained with support from the [National Center for 
+Ecological Analysis and Synthesis (NCEAS)](https://www.nceas.ucsb.edu/), a Center
+funded by the University of California Santa Barbara and the state of California. 
+
+This material is based upon work supported by the US [National Science Foundation](https://nsf.gov)
+under Grant No. DEB-9980154, DBI-9904777, 0225676, DEB-0072909, DBI-9983132,
 and DEB-9634135.  Any opinions, findings and conclusions or recommendations
 expressed in this material are those of the author(s) and do not necessarily
 reflect the views of the National Science Foundation (NSF).
