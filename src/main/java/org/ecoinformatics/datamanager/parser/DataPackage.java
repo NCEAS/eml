@@ -101,7 +101,9 @@ public class DataPackage
   private String system = null;
   private String title = null;
   private List<Party> creators = null;
-    
+  private String language = null;
+  private List<String> keywords = null;
+  private String absctrac = null;
   
   /*
    * Constructors
@@ -117,7 +119,7 @@ public class DataPackage
 	  this.packageId = packageId;  
     this.qualityReport = new QualityReport(this);
     this.creators = new ArrayList<Party>();
-    
+    this.keywords = new ArrayList<String> ();
     qualityCheckPackageId(packageId);
   }
   
@@ -251,6 +253,56 @@ public class DataPackage
 	  }
 	  return null;
   }
+  
+  /**
+   * Get the language used in this eml document
+   * @return the language 
+   */
+  public String getLanguage() {
+      return language;
+  }
+
+  /**
+   * Set the language description
+   * @param language
+   */
+  public void setLanguage(String language) {
+      this.language = language;
+  }
+
+
+  /**
+   * Get the list of keywords in this eml document
+   * @return
+   */
+  public List<String> getKeywords() {
+      return keywords;
+  }
+
+  /**
+   * Set the keywords list
+   * @param keywords
+   */
+  public void setKeywords(List<String> keywords) {
+      this.keywords = keywords;
+  }
+
+  /**
+   * Get the abstract of this eml document
+   * @return the abstract
+   */
+  public String getAbsctrac() {
+      return absctrac;
+  }
+
+  /**
+   * Set the abstract 
+   * @param absctrac
+   */
+  public void setAbsctrac(String absctrac) {
+      this.absctrac = absctrac;
+  }
+
   
   
   /**
