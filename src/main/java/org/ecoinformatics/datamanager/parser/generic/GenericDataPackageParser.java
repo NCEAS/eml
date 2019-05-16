@@ -118,6 +118,8 @@ public class GenericDataPackageParser implements DataPackageParserInterface
     protected String datasetTitlePath = null;
     protected String datasetCreatorPath = null;
     protected String datasetAbstractPath = null;
+    protected String datasetLanguagePath = null;
+    protected String datasetKeywordPath =null;
     protected String entityAccessPath = null;
     
     //private Hashtable entityHash = new Hashtable();
@@ -227,6 +229,8 @@ public class GenericDataPackageParser implements DataPackageParserInterface
 		datasetTitlePath = "//dataset/title";
 		datasetCreatorPath = "//dataset/creator";
 		datasetAbstractPath = "//dataset/abstract";
+		datasetLanguagePath = "//dataset/language";
+		datasetKeywordPath = "//dataset/keywordSet/keyword";
 		entityAccessPath = "physical/distribution/access";
 	}
 
@@ -391,9 +395,31 @@ public class GenericDataPackageParser implements DataPackageParserInterface
             }
             emlDataPackage.setPubDate(pubDate);
             
-            // Parse the dataset abstract text
+            // Store the language
+            String language = null;
+            Node languageNode = xpathapi.selectSingleNode(doc, datasetLanguagePath);
+            if (languageNode != null) {
+                language = languageNode.getTextContent().trim();
+            }
+            emlDataPackage.setLanguage(language);
+            
+            // Parse and store the dataset abstract text
             NodeList datasetAbstractNodeList = xpathapi.selectNodeList(doc, datasetAbstractPath);
             parseDatasetAbstract(datasetAbstractNodeList);
+            
+            // Store the keywords
+            NodeList datasetKeywordNodeList = xpathapi.selectNodeList(doc, datasetKeywordPath);
+            if (datasetKeywordNodeList != null) {
+                for (int i=0; i<datasetKeywordNodeList.getLength(); i++) {
+                    Node keywordNode = datasetKeywordNodeList.item(i);
+                    if(keywordNode != null) {
+                        String keyword = keywordNode.getTextContent().trim();
+                        if (keyword != null && !keyword.trim().equals("")) {
+                            emlDataPackage.getKeywords().add(keyword);
+                        }
+                    }
+                }
+            }
       
         } catch (Exception e) {
             e.printStackTrace();
@@ -1819,6 +1845,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
           stringBuffer.append(" " + paraText);
         }
         String abstractText = stringBuffer.toString();
+        emlDataPackage.setAbsctrac(abstractText);
         emlDataPackage.checkDatasetAbstract(abstractText);
       }      
     }
