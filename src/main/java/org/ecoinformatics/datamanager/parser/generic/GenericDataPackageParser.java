@@ -65,7 +65,7 @@ import org.ecoinformatics.datamanager.parser.TextComplexDataFormat;
 import org.ecoinformatics.datamanager.parser.TextDelimitedDataFormat;
 import org.ecoinformatics.datamanager.parser.TextDomain;
 import org.ecoinformatics.datamanager.parser.TextWidthFixedDataFormat;
-
+import org.ecoinformatics.datamanager.parser.UserId;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -381,8 +381,23 @@ public class GenericDataPackageParser implements DataPackageParserInterface
             			organization = orgNode.getTextContent();
             		}
             		
-					Party party = new Party(surName, givenNames, organization);
-					emlDataPackage.getCreators().add(party );
+            		Party party = new Party(surName, givenNames, organization);
+            		
+            		NodeList userIds = xpathapi.selectNodeList(datasetCreatorNode, "userId");
+            		if(userIds!=null) {
+            		    for(int j=0; j<userIds.getLength(); j++) {
+            		        Node userIdNode = userIds.item(j);
+            		        UserId userId = new UserId();
+            		        userId.setValue(userIdNode.getTextContent());
+            		        NamedNodeMap attributeMap = userIdNode.getAttributes();
+            		        Node directoryNode = attributeMap.getNamedItem("directory");
+            		        if(directoryNode != null) {
+            		            userId.setDirectory(directoryNode.getNodeValue());
+            		        }
+            		        party.addUserId(userId);
+            		    }
+            		}
+				emlDataPackage.getCreators().add(party );
             	}
               
             }
