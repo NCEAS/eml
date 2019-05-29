@@ -103,7 +103,9 @@ public class DataPackage
   private List<Party> creators = null;
   private String language = null;
   private List<String> keywords = null;
-  private String absctrac = null;
+  private String absctract = null;
+  private Party publisher = null;
+
   
   /*
    * Constructors
@@ -291,16 +293,16 @@ public class DataPackage
    * Get the abstract of this eml document
    * @return the abstract
    */
-  public String getAbsctrac() {
-      return absctrac;
+  public String getAbsctract() {
+      return absctract;
   }
 
   /**
    * Set the abstract 
    * @param absctrac
    */
-  public void setAbsctrac(String absctrac) {
-      this.absctrac = absctrac;
+  public void setAbsctract(String absctract) {
+      this.absctract = absctract;
   }
 
   
@@ -1095,6 +1097,14 @@ public class DataPackage
     }
   }
   
+  /**
+   * Get the publication date of this package
+   * @return
+   */
+  public String getPubDate() {
+      return this.pubDate;
+  }
+  
   
   /**
    * Sets the value of the 'system' to the specified String 
@@ -1155,12 +1165,29 @@ public class DataPackage
   
   public List<Party> getCreators() {
 	return creators;
-}
+  }
 
 
-public void setCreators(List<Party> creators) {
+  public void setCreators(List<Party> creators) {
 	this.creators = creators;
-}
+  }
+
+  /**
+   * Get the publisher of this package
+   * @return
+   */
+  public Party getPublisher() {
+    return publisher;
+  }
+
+  /**
+   * Set the publisher of this package
+   * @param publisher
+   */
+  public void setPublisher(Party publisher) {
+    this.publisher = publisher;
+  }
+
 
 
 /**

@@ -48,6 +48,7 @@ public class Party {
 	private String surName;
 	private List<String> givenNames;
 	private String organization;
+	private String positionName;
 	private List<UserId> userIdList = new ArrayList<UserId>();
 
 
@@ -112,4 +113,22 @@ public class Party {
 	        this.userIdList.add(userId);
 	    }
 	}
+
+	/**
+	 * Get the position name of this party
+	 * @return
+	 */
+    public String getPositionName() {
+        return positionName;
+    }
+
+    /**
+     * Set the position name of this party
+     * @param positionName
+     */
+    public void setPositionName(String positionName) {
+        this.positionName = positionName;
+    }
+	
+	
 }

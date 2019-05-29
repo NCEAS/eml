@@ -107,6 +107,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
     // previously these were constants, now member variables with defaults
     protected String packageIdPath = null;
     protected String pubDatePath = null;
+    protected String publisherPath = null;
     protected String tableEntityPath = null;
     protected String spatialRasterEntityPath = null;
     protected String spatialVectorEntityPath  = null;
@@ -219,6 +220,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
 		// sets the default path values for documents
 		packageIdPath = "//*/@packageId";
 		pubDatePath = "//dataset/pubDate";
+		publisherPath = "//dataset/publisher";
 		tableEntityPath = "//dataset/dataTable";
 		spatialRasterEntityPath = "//dataset/spatialRaster";
 		spatialVectorEntityPath = "//dataset/spatialVector";
@@ -358,48 +360,11 @@ public class GenericDataPackageParser implements DataPackageParserInterface
             if (datasetCreatorNodeList != null) {
             	for (int i = 0; i < datasetCreatorNodeList.getLength(); i++) {
             		Node datasetCreatorNode = datasetCreatorNodeList.item(i);
-            		
-					String surName = null;
-                    List<String> givenNames = null;
-					String organization = null;
-					
-					Node surNameNode = xpathapi.selectSingleNode(datasetCreatorNode, "individualName/surName");
-            		if (surNameNode != null) {
-            			surName = surNameNode.getTextContent();
+            		Party party = transformPartyNode(xpathapi, datasetCreatorNode);
+            		if(party != null) {
+            		    emlDataPackage.getCreators().add(party );
             		}
-            		
-					Node givenNameNode = xpathapi.selectSingleNode(datasetCreatorNode, "individualName/givenName");
-            		if (givenNameNode != null) {
-            			if (givenNames == null) {
-            				givenNames = new ArrayList<String>();
-            			}
-            			givenNames.add(givenNameNode.getTextContent());
-            		}
-            		
-            		Node orgNode = xpathapi.selectSingleNode(datasetCreatorNode, "organizationName");
-            		if (orgNode != null) {
-            			organization = orgNode.getTextContent();
-            		}
-            		
-            		Party party = new Party(surName, givenNames, organization);
-            		
-            		NodeList userIds = xpathapi.selectNodeList(datasetCreatorNode, "userId");
-            		if(userIds!=null) {
-            		    for(int j=0; j<userIds.getLength(); j++) {
-            		        Node userIdNode = userIds.item(j);
-            		        UserId userId = new UserId();
-            		        userId.setValue(userIdNode.getTextContent());
-            		        NamedNodeMap attributeMap = userIdNode.getAttributes();
-            		        Node directoryNode = attributeMap.getNamedItem("directory");
-            		        if(directoryNode != null) {
-            		            userId.setDirectory(directoryNode.getNodeValue());
-            		        }
-            		        party.addUserId(userId);
-            		    }
-            		}
-				emlDataPackage.getCreators().add(party );
-            	}
-              
+            	  }
             }
             
             // Store the pubDate
@@ -435,7 +400,12 @@ public class GenericDataPackageParser implements DataPackageParserInterface
                     }
                 }
             }
-      
+            //store the publisher
+            Node publisherNode = xpathapi.selectSingleNode(doc, publisherPath);
+            Party publisher = transformPartyNode(xpathapi, publisherNode);
+            if(publisher != null) {
+                emlDataPackage.setPublisher(publisher);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             throw new Exception(
@@ -462,6 +432,63 @@ public class GenericDataPackageParser implements DataPackageParserInterface
         }
     }
 
+    /**
+     * Transform a party node to a party object
+     * @param xpathapi
+     * @param partyNode
+     * @return the party object representing the node. If the partyNode is null, return null.
+     * @throws TransformerException
+     */
+    private Party transformPartyNode(CachedXPathAPI xpathapi, Node partyNode) throws TransformerException {
+        if(partyNode == null) {
+            return null;
+        }
+        String surName = null;
+        List<String> givenNames = null;
+        String organization = null;
+        String positionName = null;
+        Node surNameNode = xpathapi.selectSingleNode(partyNode, "individualName/surName");
+        if (surNameNode != null) {
+            surName = surNameNode.getTextContent();
+        }
+        
+        Node givenNameNode = xpathapi.selectSingleNode(partyNode, "individualName/givenName");
+        if (givenNameNode != null) {
+            if (givenNames == null) {
+                givenNames = new ArrayList<String>();
+            }
+            givenNames.add(givenNameNode.getTextContent());
+        }
+        
+        Node orgNode = xpathapi.selectSingleNode(partyNode, "organizationName");
+        if (orgNode != null) {
+            organization = orgNode.getTextContent();
+        }
+        
+        Party party = new Party(surName, givenNames, organization);
+        
+        Node positionNameNode = xpathapi.selectSingleNode(partyNode, "positionName");
+        if(positionNameNode != null) {
+            positionName = positionNameNode.getTextContent();
+            party.setPositionName(positionName);
+        }
+        
+        NodeList userIds = xpathapi.selectNodeList(partyNode, "userId");
+        if(userIds!=null) {
+            for(int j=0; j<userIds.getLength(); j++) {
+                Node userIdNode = userIds.item(j);
+                UserId userId = new UserId();
+                userId.setValue(userIdNode.getTextContent());
+                NamedNodeMap attributeMap = userIdNode.getAttributes();
+                Node directoryNode = attributeMap.getNamedItem("directory");
+                if(directoryNode != null) {
+                    userId.setDirectory(directoryNode.getNodeValue());
+                }
+                party.addUserId(userId);
+            }
+        }
+        return party;
+    }
     
     /**
      * Returns a hashtable of entity names hashed to the entity description
@@ -1860,7 +1887,7 @@ public class GenericDataPackageParser implements DataPackageParserInterface
           stringBuffer.append(" " + paraText);
         }
         String abstractText = stringBuffer.toString();
-        emlDataPackage.setAbsctrac(abstractText);
+        emlDataPackage.setAbsctract(abstractText);
         emlDataPackage.checkDatasetAbstract(abstractText);
       }      
     }
