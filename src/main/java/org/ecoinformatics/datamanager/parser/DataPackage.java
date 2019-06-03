@@ -103,7 +103,7 @@ public class DataPackage
   private List<Party> creators = null;
   private String language = null;
   private List<String> keywords = null;
-  private String absctract = null;
+  private String abstract_str = null;
   private Party publisher = null;
 
   
@@ -293,16 +293,16 @@ public class DataPackage
    * Get the abstract of this eml document
    * @return the abstract
    */
-  public String getAbsctract() {
-      return absctract;
+  public String getAbstract() {
+      return abstract_str;
   }
 
   /**
    * Set the abstract 
    * @param absctrac
    */
-  public void setAbsctract(String absctract) {
-      this.absctract = absctract;
+  public void setAbstract(String abstract_str) {
+      this.abstract_str = abstract_str;
   }
 
   
