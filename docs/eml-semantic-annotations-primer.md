@@ -407,7 +407,7 @@ addition to EML, and so it comes with some risk. The main thing you should ensur
 [att.4]                 [contains measurements of type]    [plant cover percentage]
 
 ```
-The graph examples above make 'true' statements that are logically consistent:
+The graph examples ([Example 3 RDF graph](#rdf-eml-example-3), [Example 4 RDF graph](#rdf-eml-example-4)) make 'true' statements that are logically consistent:
 
 - att.4 contains measurements of the type plant cover percentage
 - adam.shepherd is a person
