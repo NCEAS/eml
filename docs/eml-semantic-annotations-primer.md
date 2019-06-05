@@ -1,5 +1,6 @@
 # Semantic Annotation Primer
 
+<a name="introduction"></a>
 ## Introduction
 
 EML 2.2.0 now provides ways to embed HTTP URI's within several EML elements, which are semantic annotations of 
@@ -52,7 +53,7 @@ specific related topics, with links from the main text where appropriate.
 - **EML 2.2.0 has five places or methods to add annotations.**
 - **The best place for advice and feedback on EML annotations is your data management community**
 
-<a name="eml22"></a>
+<a name="sa-eml22"></a>
 ## Semantic Annotations in EML 2.2.0
 
 In **EML 2.2.0** there are 5 places where annotation elements can appear in an EML document: 
@@ -386,8 +387,8 @@ _Note: The subject described in the `rdf:Description` `about` attribute should a
 ```
 _Note: The subject described in the `rdf:Description` `about` attribute should actually be the globally unique URI issued for 'adam.shepherd'. The details of how this HTTP URI GUID is constructed are being developed by EDI, NCEAS, and others._
 
-
-### Check for Logical Consistency <a name="logical-consistency"></a>
+<a name="logical-consistency"></a>
+### Check for Logical Consistency 
 With semantic annotation, you are adding precise definitions of concepts and relationships that can be traversed 
 with computer logic. Annotations are not simply a set of loosely structured keywords!  This is a really powerful 
 addition to EML, and so it comes with some risk. The main thing you should ensure is that your annotations are 
@@ -423,19 +424,23 @@ Things to check:
 
 
 
-
-### Glossary -  link terms in the text above to here. <a name="glossary"></a>
-**ontology**: <a name="glossary-TODO"></a> A knowledge *graph* representation of a set of terms, including their names, and descriptions of 
+<a name="glossary"></a>
+### Glossary -  link terms in the text above to here.
+<a name="glossary-ontology"></a> 
+**ontology**: A knowledge *graph* representation of a set of terms, including their names, and descriptions of 
 the categories, properties, and relationships among those terms.
 
-**Resource Description Framework (RDF)**:<a name="glossary-TODO"></a> A family of World Wide Web Consortium (W3C) recommendations that enable the encoding, exchange, and reuse of structured metadata. The RDF data model employs semantic triples composed of a subject, predicate, and object to share and integrate data across different applications and communities through the Web. 
+<a name="glossary-rdf"></a> 
+**Resource Description Framework (RDF)**:A family of World Wide Web Consortium (W3C) recommendations that enable the encoding, exchange, and reuse of structured metadata. The RDF data model employs semantic triples composed of a subject, predicate, and object to share and integrate data across different applications and communities through the Web. 
 
-**uniform resource identifier (URI)**: <a name="glossary-TODO"></a>A string of characters that unambiguously identifies a particular resource. For semantic annotations, the components of semantic triples are ideally HTTP URIs that resolve and describe precise definitions and relationships to other terms, using Web technology.
+<a name="glossary-uri"></a>
+**uniform resource identifier (URI)**: A string of characters that unambiguously identifies a particular resource. For semantic annotations, the components of semantic triples are ideally HTTP URIs that resolve and describe precise definitions and relationships to other terms, using Web technology.
 
 <a name="glossary-pointer"></a>
 **Pointer**  definition here
 
-### External resources <a name="external-resources"></a>
+<a name="external-resources"></a>
+### External resources 
   
 Following are some supplemental background information
 - LinkedDataTools tutorial: http://www.linkeddatatools.com/introducing-rdf
@@ -453,6 +458,8 @@ might not be needed.
 
 
 ## parking area
+
+Left over bits you might need. or not.
 
 So be careful, and if you have questions, bring them up in your community for feedback.
 The examples in this primer should also make clear that inconsistent annotations could create confusion. 
