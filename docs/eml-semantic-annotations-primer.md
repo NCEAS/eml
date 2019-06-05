@@ -10,7 +10,7 @@ context it is attached to an EML element. By referencing external *[knowledge gr
 (sometimes called *controlled vocabularies* or *[ontologies](#glossary-ontology)*), annotations provide rigorous, expressive and consistent interpretation of the 
 metadata contents.  The annotation provides a computer-usable 
 [ pointer](#glossary-pointer) (or [HTTP uniform resource identifier; URI](#glossary-uri)) 
-(#TO DO glossary links)  that  [resolves](#glossary-reslove) (and [dereferences)](#glossary-dereference)) 
+that [resolves](#glossary-reslove) (and [dereferences)](#glossary-dereference)) 
 to a useful description, definition, or relationships for that annotated resource. 
 
 **Benefits of annotation:** The process of creating semantic annotations for datasets may seem tedious, but the payoff is vastly enhanced data 
