@@ -6,13 +6,12 @@
 EML 2.2.0 now provides ways to embed HTTP URI's within several EML elements, which are semantic annotations of 
 those elements. 
 In general, a semantic annotation is the attachment of additional semantic metadata to a resource, and in our  
- context it is attached to an EML element. By referencing external [*knowledge graphs*] (#TO DO glossary link) 
- (also known as *controlled vocabularies* 
-or *ontologies*), annotations provide rigorous, expressive and consistent interpretation of the 
+ context it is attached to an EML element. By referencing external *[knowledge graphs](#glossary-knowledge-graph)*
+ (sometimes called *controlled vocabularies* or *[ontologies](#glossary-ontology)*), annotations provide rigorous, expressive and consistent interpretation of the 
 metadata contents.  The annotation provides a computer-usable 
-[ pointer](#glossary-pointer) (or [HTTP uniform resource identifier; URI] 
- (#TO DO glossary links)  that  [resolves (and dereferences)]   to a useful description, definition, 
-or relationships for that annotated resource. 
+[ pointer](#glossary-pointer) (or [HTTP uniform resource identifier; URI](#glossary-uri)) 
+ (#TO DO glossary links)  that  [resolves](#glossary-reslove) (and [dereferences)](#glossary-dereference)) 
+ to a useful description, definition, or relationships for that annotated resource. 
 
 ### Benefits of annotation
 The process of creating semantic annotations for datasets may seem tedious, but the payoff is vastly enhanced data 
@@ -25,7 +24,7 @@ because the datasets are annotated with the same same HTTP URI.
 1. **Disambiguation:** if you perform a search for datasets about "litter" (as in "plant litter"), if datasets have been annotated the 
 system will be able to understand the different meanings of "litter" (as in garbage, the grouping of 
 animals born at the same time to the same mother, etc.). Each type of "litter" would be associated with a
-different identifier (HTTP URI). 
+different identifier ([HTTP URI](#glossary-uri)). 
 1. **Hierarchical searches:** if you search for 
 datasets about "carbon flux", then datasets about "carbon dioxide flux" can also be returned because "carbon 
 dioxide flux" is a type of "carbon flux".  This is possible because the HTTP URI came from a knowledge graph 
@@ -95,7 +94,7 @@ Annotations for top-level resources, entities, and attributes follow the same ge
 
 - The *subject* of the semantic statement is the parent element of the annotation. It must have an `id=" "` attribute. 
 
-
+<a name="eml-example-1"></a>
 #### Example 1: Top-level resource annotation (dataset)
 
 In the following dataset annotation, the *subject* of the semantic statement is the `dataset` element containing 
@@ -129,7 +128,7 @@ Taken together, the semantic statement can be read as "the dataset with the id '
       ...    
 </dataset>  
 ```
-
+<a name="eml-example-2"></a>
  #### Example 2: Entity-level annotation
 
 In the following entity-level annotation, the subject of the semantic statement refers to the `otherEntity` 
@@ -156,7 +155,7 @@ Taken together, the semantic statement indicates that "the entity with the id 'u
     <annotation>
 </otherEntity>
 ```
-
+<a name="eml-example-3"></a>
 #### Example 3: Attribute annotation
 
 In the following attribute annotation, the subject of the semantic statement is the `attribute` element 
@@ -185,8 +184,10 @@ points to the `id` attribute of the element being annotated. Stated another way,
 attribute and because ids are unique within an EML document, this is a single subject. 
 
 - The *subject* of the semantic statement is implictly the element containing the referenced `id`. 
+- [Example 4 as an RDF graph](#rdf-eml-example-4
 
 
+<a name="eml-example-4"></a>
 #### Example 4: `annotations` element annotation
 
 Example 4 contains 3 different annotations. For the first annotation, 
@@ -242,6 +243,9 @@ This statement can be read as "'adam.shepherd', the creator (of the dataset), is
 </eml>
 ```
 
+**See [Example 4 as an RDF graph](#rdf-eml-example-4)***
+
+
 ### `eml/additionalMetadata` element annotation
 
 If an `additionalMetadata` section holds a semantic annotation, it must have a `describes` element (to hold the subject) with a `metadata` element containing at least one `annotation` element. 
@@ -251,7 +255,7 @@ If an `additionalMetadata` section holds a semantic annotation, it must have a `
 - Multiple `annotation` elements may be embedded in the same `metadata` element to assert multiple semantic statements about the same subject.
 - To annotate different subjects it's best to use additional `additionalMetadata` sections, each with a single subject
 
-
+<a name="eml-example-5"></a>
 #### Example 5: `additionalMetadata` element annotation
 
 The following `additionalMetadata` annotation describes a semantic statement where the subject is the `creator` element with the `id` attribute "adam.shepherd". The object property of the statement is "https://schema.org/memberOf". 
@@ -343,6 +347,7 @@ The parts of a triple (subject, predicate, and object) become nodes and links in
 
 This process of converting a semantic annotation in EML into RDF, is done by parsing applications under development at EDI, NCEAS, rOpenSci, and other data repositories. Careful examination of the examples below also show references to "owl:Class", "owl:ObjectProperty", and other statements that may not be familiar. These are fundamental *entities* or building blocks in W3C-recommended Semantic Web languages, and are determined by the relationships that the triple component identifiers (HTTP URI's) have within their native knowledge graph/ontology.
 
+<a name="rdf-eml-example-3"></a>
 ### Graph from Example 3 (attribute annotation):
 
 
@@ -363,7 +368,7 @@ This process of converting a semantic annotation in EML into RDF, is done by par
 ```
 _Note: The subject described in the `rdf:Description` `about` attribute should actually be a globally unique HTTP URI for the attribute, rather than 'att.4'. The details of how this HTTP URI GUID is constructed are being developed by EDI, NCEAS, and others._
 
-
+<a name="rdf-eml-example-4"></a>
 #### Graph from Example 4 (using `annotations` element):
 
 ![RDF example B](images/RDF_example_b.png "Graph from Example 4 (using <annotations> element):")
