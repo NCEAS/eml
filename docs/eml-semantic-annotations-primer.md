@@ -13,8 +13,7 @@ metadata contents.  The annotation provides a computer-usable
 (#TO DO glossary links)  that  [resolves](#glossary-reslove) (and [dereferences)](#glossary-dereference)) 
 to a useful description, definition, or relationships for that annotated resource. 
 
-### Benefits of annotation
-The process of creating semantic annotations for datasets may seem tedious, but the payoff is vastly enhanced data 
+**Benefits of annotation:** The process of creating semantic annotations for datasets may seem tedious, but the payoff is vastly enhanced data 
 discovery and interpretation. Semantic annotations will make it easier for others to find and reuse data 
 (and thus give proper credit). 
 
@@ -32,12 +31,11 @@ in which the identifier  for "carbon dioxide flux" was a subclass of "carbon flu
 
 
 
-### Organization of this document
-The purpose of this primer is to provide an introduction to how semantic annotations are structured 
+**Organization of this document:** The purpose of this primer is to provide an introduction to how semantic annotations are structured 
 in EML documents. It is expected that you already have some familiarity with the EML schema. The focus of this
 document then, is explanation and examples of annotations in EML. 
 
-An addendum contains additional information on specific related topics, with links from the main text where appropriate.
+An addendum contains the following additional information on specific related topics, with links from the main text where appropriate.
 
 1. **[Glossary:](#glossary)** Glossary of terms 
 1. **[Semantic triples:](#semantic-triples)**  details on their structure, and how structure is leveraged by annotations with examples of their power
