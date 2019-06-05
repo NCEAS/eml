@@ -52,7 +52,7 @@ specific related topics, with links from the main text where appropriate.
 - **EML 2.2.0 has five places or methods to add annotations.**
 - **The best place for advice and feedback on EML annotations is your data management community**
 
-
+<a name="eml22"></a>
 ## Semantic Annotations in EML 2.2.0
 
 In **EML 2.2.0** there are 5 places where annotation elements can appear in an EML document: 
@@ -287,9 +287,10 @@ Taken together, the semantic statement could be read as "'adam.shepherd' (the cr
      </additionalMetadata>
 </eml>
 ```
-
+<a name="appendix"></a>
 ## Appendix
-### Semantic triples <a name="semantic-triples"></a>
+<a name="semantic-triples"></a>
+### Semantic triples 
 
 Semantic annotations enable the creation of what are called *triples*, that are 3-part statements conforming to the W3C recommended *RDF data model* (learn more: <https://www.w3.org/TR/rdf11-primer/>). 
 
@@ -305,8 +306,8 @@ There are (perhaps unfortunately) several other ways that the components of an R
 
 Semantic annotations added to an EML document can be extracted and processed into a semantic web format, such as RDF/XML. These"semantic" statements, i.e. RDF triples, are interpretable by any machines that can process the W3C standard of RDF. Those RDF statements contribute to the Semantic Web.
 
-
-### URIs <a name="uris"></a>
+<a name="uris"></a>
+### URIs 
 Ideally, the components of the semantic triple should be globally unique and persistent (unchanging), and consist of resolvable/dereferenceable HTTP uniform resource identifiers (URIs; or more formally, IRI's). The *subjects* of most EML semantic annotations will likely be HTTP URI's that identify the dataset resource itself, or specific attributes or other features within a dataset.  The *objects* of EML semantic annotations, as well as the *predicates* that relate the subject to the object, will most typically be HTTP URI references to terms in controlled vocabularies (also called "knowledge graphs", or "ontologies") accessible through the Web, so that users (or computers) can dereference the URI's and look up precise definitions and relationships of these resources to other terms [^footnote1]. 
 
 An example of a URI is "http://purl.obolibrary.org/obo/ENVO_00000097", when entered into the address bar of a web browser, resolves to the term with a label of "desert area" in the Environment Ontology (EnvO). Users can learn what this URI indicates and explore how the term is related to other terms in the ontology simply by dereferencing its URI in a web browser.  All those other aspects you see on the Web page describing "http://purl.obolibrary.org/obo/ENVO_00000097" are from other RDF statements (triples) related to "ENVO_00000097", and that have been rendered into HTML. From here, you might decide, e.g. that "http://purl.obolibrary.org/obo/ENV0_00000172" ("sandy desert") is a better annotation for your object.
@@ -332,8 +333,8 @@ The software needed to extract semantic annotations out of EML, and convert thes
 The sections below describe the exact syntax for embedding annotations in EML 2.2.0 documents. 
 
 
-
-### RDF Graphs <a name="rdf"></a>
+<a name="rdf"></a>
+### RDF Graphs 
 
 A graph consists of resources linked to other resources. Thus the simplest graph structure is when you specify how one resource (node) is linked to another resource (node).
 
@@ -431,7 +432,8 @@ the categories, properties, and relationships among those terms.
 
 **uniform resource identifier (URI)**: <a name="glossary-TODO"></a>A string of characters that unambiguously identifies a particular resource. For semantic annotations, the components of semantic triples are ideally HTTP URIs that resolve and describe precise definitions and relationships to other terms, using Web technology.
 
-**Pointer** <a name="glossary-pointer"></a> definition here
+<a name="glossary-pointer"></a>
+**Pointer**  definition here
 
 ### External resources <a name="external-resources"></a>
   
