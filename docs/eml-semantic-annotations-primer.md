@@ -320,12 +320,9 @@ An example of a URI is "http://purl.obolibrary.org/obo/ENVO_00000097", when ente
 
 An RDF triple can be constructed as follows, with subject URI, predicate URI, and object URI:
 
-   <<https://doi.org/10.6073/pasta/06db7b16fe62bcce4c43fd9ddbe43575>>
-   
-   <<http://purl.obolibrary.org/obo/RO_0001025>>
-   
-   <<http://purl.obolibrary.org/obo/ENVO_00000097>>
-   
+```
+<<https://doi.org/10.6073/pasta/06db7b16fe62bcce4c43fd9ddbe43575>> <<http://purl.obolibrary.org/obo/RO_0001025>>   <<http://purl.obolibrary.org/obo/ENVO_00000097>>
+```   
    .
    
 ... indicating that the referenced *dataset* (subject/resource) was *"located in"* (predicate/property) a *"desert area"* (object/value). Note that a blank-space must separate the subject, from the predicate, from the object, and that a "period" completes the triple. This is  a valid RDF triple, expressed in N-Triple syntax.  RDF is most often serialized into XML, however, as Web browsers and many applications are good at parsing XML. 
