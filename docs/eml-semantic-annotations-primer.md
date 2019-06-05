@@ -177,6 +177,8 @@ Taken together, the semantic statement indicates that "the attribute with the id
     </annotation>
 </attribute>
 ```
+**[Example 3 as an RDF graph](#rdf-eml-example-3)**
+
 
 ### `eml/annotations` element annotation
 An annotation in the `annotations` element differs from other types of annotations in that the subject is directly referred to by a `references` attribute. Each `annotation` element has a `references` attribute that 
@@ -184,7 +186,7 @@ points to the `id` attribute of the element being annotated. Stated another way,
 attribute and because ids are unique within an EML document, this is a single subject. 
 
 - The *subject* of the semantic statement is implictly the element containing the referenced `id`. 
-- [Example 4 as an RDF graph](#rdf-eml-example-4)
+
 
 
 <a name="eml-example-4"></a>
