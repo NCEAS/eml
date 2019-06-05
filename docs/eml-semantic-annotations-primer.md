@@ -245,7 +245,7 @@ This statement can be read as "'adam.shepherd', the creator (of the dataset), is
 </eml>
 ```
 
-**See [Example 4 as an RDF graph](#rdf-eml-example-4)***
+**See [Example 4 as an RDF graph](#rdf-eml-example-4)**
 
 
 ### `eml/additionalMetadata` element annotation
