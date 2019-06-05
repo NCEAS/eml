@@ -423,8 +423,8 @@ Things to check:
 
 1. Be sure you have used the right classes, properties, or vocabularies for your annotation components
   1. Become familiar with the vocabularies in your annotation, especially definitions and relationships 
-  1. Check with your community for specific recommendations on annotations at different levels 
-1. In `additionalMetadata`, don't combine `annotations` with more than one `describes` element. EML allows 1:many `describes` elements in one `additionalMetadata` section. So if you have 2 `describes` and 2 `annotations`, you will have 4 RDF statements. Make sure they are all true, and if not, break them up.
+  1. Check with your community for specific recommendations on the best vocabularies to use for annotations at different levels 
+1. In `additionalMetadata`, don't combine `annotations` with more than one `describes` element. EML allows 1:many `describes` elements in a single `additionalMetadata` section. So if you have 2 `describes` and 2 `annotations`, you will have 4 RDF statements. Make sure they are all true, and if not, break them up into multiple `additionalMetadata` sections.
 
 
 
