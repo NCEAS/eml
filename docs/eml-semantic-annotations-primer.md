@@ -38,12 +38,12 @@ in EML documents. It is expected that you already have some familiarity with the
 document then, is explanation and examples of annotations in EML. An addendum contains additional information on 
 specific related topics, with links from the main text where appropriate.
 
-1. **[Glossary:]**(#glossary) Glossary of terms 
-1. **[Semantic triples:]**(#semantic-triples)  details on their structure, and how structure is leveraged by annotations with examples of their power
-1. **[URIs:]**(#uris) defined, and as components of semantic triples
-1. **[RDF model:]**(#rdf) the W3C's RDF model with example graphs based on EML annotations
-1. **[Logical consistency:]**(#logical-consistency) Common mistakes and how to check for them
-1. **[Supplemental background information:]**(#external-resources) The EML annotation approach here is compatible with recommended by the World Wide Web Consortium (W3C) for construction of the Semantic Web
+1. **[Glossary:](#glossary)** Glossary of terms 
+1. **[Semantic triples:](#semantic-triples)**  details on their structure, and how structure is leveraged by annotations with examples of their power
+1. **[URIs:](#uris)** defined, and as components of semantic triples
+1. **[RDF model:](#rdf)** the W3C's RDF model with example graphs based on EML annotations
+1. **[Logical consistency:](#logical-consistency)** Common mistakes and how to check for them
+1. **[Supplemental background information:](#external-resources)** The EML annotation approach here is compatible with recommended by the World Wide Web Consortium (W3C) for construction of the Semantic Web
 
 
 
