@@ -350,7 +350,7 @@ The parts of a triple (subject, predicate, and object) become nodes and links in
 This process of converting a semantic annotation in EML into RDF, is done by parsing applications under development at EDI, NCEAS, rOpenSci, and other data repositories. Careful examination of the examples below also show references to "owl:Class", "owl:ObjectProperty", and other statements that may not be familiar. These are fundamental *entities* or building blocks in W3C-recommended Semantic Web languages, and are determined by the relationships that the triple component identifiers (HTTP URI's) have within their native knowledge graph/ontology.
 
 <a name="rdf-eml-example-3"></a>
-### Graph from Example 3 (attribute annotation): ([back to Example 3 XML](#eml-example-3))
+#### Graph from Example 3 (attribute annotation): ([back to Example 3 XML](#eml-example-3))
 
 
 ![RDF example A](images/RDF_example_a.png "Graph from Example 3 (attribute annotation):") 
