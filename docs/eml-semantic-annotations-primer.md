@@ -184,7 +184,7 @@ points to the `id` attribute of the element being annotated. Stated another way,
 attribute and because ids are unique within an EML document, this is a single subject. 
 
 - The *subject* of the semantic statement is implictly the element containing the referenced `id`. 
-- [Example 4 as an RDF graph](#rdf-eml-example-4
+- [Example 4 as an RDF graph](#rdf-eml-example-4)
 
 
 <a name="eml-example-4"></a>
@@ -348,7 +348,7 @@ The parts of a triple (subject, predicate, and object) become nodes and links in
 This process of converting a semantic annotation in EML into RDF, is done by parsing applications under development at EDI, NCEAS, rOpenSci, and other data repositories. Careful examination of the examples below also show references to "owl:Class", "owl:ObjectProperty", and other statements that may not be familiar. These are fundamental *entities* or building blocks in W3C-recommended Semantic Web languages, and are determined by the relationships that the triple component identifiers (HTTP URI's) have within their native knowledge graph/ontology.
 
 <a name="rdf-eml-example-3"></a>
-### Graph from Example 3 (attribute annotation):
+### Graph from Example 3 (attribute annotation): ([back to Example 3 XML](#eml-example-3))
 
 
 ![RDF example A](images/RDF_example_a.png "Graph from Example 3 (attribute annotation):") 
@@ -369,7 +369,7 @@ This process of converting a semantic annotation in EML into RDF, is done by par
 _Note: The subject described in the `rdf:Description` `about` attribute should actually be a globally unique HTTP URI for the attribute, rather than 'att.4'. The details of how this HTTP URI GUID is constructed are being developed by EDI, NCEAS, and others._
 
 <a name="rdf-eml-example-4"></a>
-#### Graph from Example 4 (using `annotations` element):
+#### Graph from Example 4 (using `annotations` element): ([back to Example 4 XML](#eml-example-4))
 
 ![RDF example B](images/RDF_example_b.png "Graph from Example 4 (using <annotations> element):")
 
