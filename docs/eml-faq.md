@@ -420,12 +420,12 @@ v2.1.0.
 
 **Q:** What does ‘dereferenced’ mean?  (context: a URI in an annotation)
 
-**A:**
+**A:** Within the context of semantic annotation, "dereferencing" refers to the process of interpreting a URI, and providing "useful information" back about the Resource of interest. The phrase "resolving a URI" is often used synonymously with "dereferencing", but technically "resolution" refers to the process of determining HOW and WHAT to do with the URI, whereas "dereferencing" is explicitly about the action taken, which is typically retrieving a representation of the Resource of interest. The formal specification for these terms and what they mean is found in the IETF's RFC 3986 (<https://tools.ietf.org/html/rfc3986>). 
 
 
 **Q:** Explain the difference between an URI and a URL. (context: sample URIs look a lot like a URL.  What makes it a URI?)
 
-**A:**
+**A:** There distinctions among URIs (Uniform Resource Identifiers), URLs (Uniform Resource Locators), and URNs (Uniform Resource Names), relate to differentiating the functionalities of *identifying* a Resource, as opposed to *locating* a Resource, or serving as both. URLs are all URIs (with some edge case exceptions subject to argument), and URNs are also URIs.  In many cases, URIs serve both to name and locate a Resource.  Within the vision of the Semantic Web, URIs are ideally unique, persistent URNs identifying some Web Resource, that can also serve to locate and retrieve (dereference) a representation of that Resource (URLs). The formal specification for these terms and what they mean is found in the IETF's RFC 3986, section 1.1.3 (<https://tools.ietf.org/html/rfc3986#section-1.1.3>). Another acronym one may encounter with increasing frequency is IRI (Internationalized Resource Identifier) that simply extends the concept of a URI to include full Unicode character set, rather than just ASCII in its construction (<https://tools.ietf.org/html/rfc3987>)
 
 
 **Q:** oveeview (“When are ID’s required in the EML”) - context: annotations
@@ -435,7 +435,7 @@ v2.1.0.
 
 **Q:** What is SKOS?
 
-**A:**
+**A:** SKOS (Simple Knowledge Management System) is a W3C recommendation for organizing a vocabulary in thesauri, taxonomies, and other classification schemes. SKOS provides a set of concepts and properties, that, when expressed in a formal RDF-compatible syntax, can assist with interpreting the relationship of terms with one another, e.g. defining some category as broader than another. For example, one could state that "animals" is a broader concept than "mammals". Definitive specification of SKOS can be found at <https://www.w3.org/TR/2009/REC-skos-reference-20090818/>. SKOS does not provide strong semantics (see RDFS example below), but SKOS concepts and properties can be used within more expressive knowledge organization frameworks, such as OWL ontologies.
 
 
 **Q:** What is RDFS?
