@@ -472,15 +472,23 @@ that asserts:
 
 ...although some semantic purists might question whether the Dublin Core property "Creator" can be used in this way as an RDF predicate, since it is not semantically defined-- would its rdfs:label be "creatorOf" or "hasCreator"?. Regardless of the formal semantic well-formedness  of this Triple, however, one can see the expressive power of the RDF data model, and the value of derefenceable URIs.
 
-A better solution would be to use the semantically defined term from SIO (the Semantic Science Integrated Ontology) <http://semanticscience.org/resource/SIO_000364> as the predicate, with an rdfs:Label *"has creator"*
+A better solution would be to use the semantically defined term from SIO (the Semantic Science Integrated Ontology) <http://semanticscience.org/resource/SIO_000364> as the predicate, with an rdfs:label *"has creator"*
 
 <http://purl.obolibrary.org/obo/NCIT_C20461> <http://semanticscience.org/resource/SIO_000364> <https://orcid.org/0000-0003-1279-3709> .
 
-or conversely, one could use <http://semanticscience.org/resource/SIO_000365> as the predicate, that has rdfs:Label *"is creator of"*
+...that would translate as (based on content of the rdfs:label):
 
- <https://orcid.org/0000-0003-1279-3709> <http://semanticscience.org/resource/SIO_000365> <http://purl.obolibrary.org/obo/NCIT_C20461>.
+*World Wide Web*(Subject) *has creator*(Predicate)  *Tim Berners Lee*(Object)
+
+or inversely, one could use <http://semanticscience.org/resource/SIO_000365> as the predicate, that has rdfs:Label *"is creator of"*
+
+ *Tim Berners Lee*(Subject) *is creator of*(Predicate)  *World Wide Web*(Object)
+
+<https://orcid.org/0000-0003-1279-3709> <http://semanticscience.org/resource/SIO_000365> <http://purl.obolibrary.org/obo/NCIT_C20461>.
  
- Finally, it is worth noting that one's choice of which Ontologies to use is important.  Within the Ecological and Environmental sciences, there are several highly-recommende vocabularies, including those from the OBO Foundry (e.g. ChEBI, EnvO), as well as SIO.
+ Within the SIO ontology, SIO_000364 and SIO_000365 are defined as inverses of one another.  This enables one to ask both questions-- "who created the Web?" (A: Tim Berners Lee), and "what did Tim Berners Lee create" (A: the Web).
+ 
+ Finally, it is worth noting that one's choice of which Ontologies to use is important.  Within the Ecological and Environmental sciences, there are several highly-recommended vocabularies, including those from the OBO Foundry (e.g. ChEBI, EnvO), as well as SIO.  Specifically for annotating scientific *measurements*, the Arctic Data Center and DataONE are developing an Ontology for Ecosystem Measurements, ECSO. 
 
 **Q:** Are there tools are available to help data managers select subjects, predicates, and objects to annotate with? 
 
