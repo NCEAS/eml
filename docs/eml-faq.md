@@ -486,7 +486,7 @@ or inversely, one could use <http://semanticscience.org/resource/SIO_000365> as 
 
 <https://orcid.org/0000-0003-1279-3709> <http://semanticscience.org/resource/SIO_000365> <http://purl.obolibrary.org/obo/NCIT_C20461>.
  
- Within the SIO ontology, SIO_000364 and SIO_000365 are defined as inverses of one another.  This enables one to ask both questions-- "who created the Web?" (A: Tim Berners Lee), and "what did Tim Berners Lee create" (A: the Web).
+ Within the SIO ontology, SIO_000364 and SIO_000365 are defined as inverses of one another.  This enables one to ask both questions-- "who created the Web?" (A: Tim Berners Lee), and "what did Tim Berners Lee create" (A: the Web)-- even though you only asserted one of the Triples.
  
  Finally, it is worth noting that one's choice of which Ontologies to use is important.  Within the Ecological and Environmental sciences, there are several highly-recommended vocabularies, including those from the OBO Foundry (e.g. ChEBI, EnvO), as well as SIO.  Specifically for annotating scientific *measurements*, the Arctic Data Center and DataONE are developing an Ontology for Ecosystem Measurements, ECSO. 
 
