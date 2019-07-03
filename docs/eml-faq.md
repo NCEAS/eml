@@ -440,10 +440,10 @@ v2.1.0.
 
 **Q:** What is RDFS?
 
-**A:** RDFS (Resource Description Framework Schema; <https://www.w3.org/TR/rdf-schema/>) is a W3C recommendation that is a extends the vocabulary for describing Resources expressed in an RDF data model (i.e., a *graph*). RDFS adds to the basic RDF model by defining concepts that are well-defined, such as *rdfs:Class* and *rdfs:subClassOf*. These and other RDFS classes and properties, enable data and knowledge modellers to express many relationships between the Subject and Object of a *Triple*. In contrast, "base" RDF <https://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/> provides a set of concepts for creating a *graph* model of data-- consisting of one or more *triples* relating a *subject*, *predicate*, and *object*.  In the context of the Semantic Web, the RDF model relies extensively on dereferenceable URIs in the subject and predicate positions, and URIs or literals in the object position (there are small formal exceptions to this not immediately relevant here). RDF triples can be expressed in several syntaxes, including XML, JSON-LD, and Turtle, among others. RDFS then can be used to enrich the precision and expressivity of the components of a triple, as well as clarify the relationships among these.
+**A:** RDFS (Resource Description Framework Schema; <https://www.w3.org/TR/rdf-schema/>) is a W3C recommendation that extends the formal vocabulary for describing Resources expressed in an RDF data model (i.e., in a *graph*). "Base" RDF <https://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/> provides a set of concepts for creating a *graph* model of data-- consisting of one or more *triples* relating a *subject*, *predicate*, and *object*.  RDFS adds to the base RDF model by specifying a number of well-defined concepts and properties, such as *rdfs:Class* and *rdfs:subClassOf*. These and other RDFS classes and properties, enable data and knowledge modellers to express many relationships between the Subject and Object of a *Triple*. In the context of the Semantic Web, the RDF model relies extensively on dereferenceable URIs in the subject and predicate positions, and URIs or literals in the object position (there are small formal exceptions to this not immediately relevant here). RDF triples can be expressed in several syntaxes, including XML, JSON-LD, and Turtle, among others. RDFS then can be used to enrich the precision and expressivity of the components of a triple, as well as clarify the relationships among these.
 
 
-**Q:** An example of a controlled vocabulary with a rdfs label or skos label would be helpful here in this text about labels.  
+**Q:** An example of a controlled vocabulary with a *rdfs label* or *skos label* would be helpful here in this text about labels.  
 
 **A:** Most Semantic Web vocabularies make extensive use of *rdfs:label* or SKOS label properties.  For example, this URI:
 <http://purl.dataone.org/odo/ECSO_00000536> is from the ECSO8.owl ontology, under development by NSF's DataONE and Arctic Data Center. Within that ontology, the URI is associated with an *rdfs:label* of "Carbon Dioxide Flux", and a *skos:altLabel* of "CO2 flux". If you dereference the URI, you will see how the BioPortal ontology repository displays this information-- providing a human-readable representation of the underlying RDF/OWL language in which the ontology is stored.
@@ -451,11 +451,37 @@ v2.1.0.
 
 **Q:** RDF Graph: An image is great, but a computer doesn't parse that.  What does the RDF look like?
 
-**A:**  As mentioned above, RDF is a data model based on *triples*, each of which consists of a *subject*, *predicate*, and *object*.  In order to function interoperably on the Web, however, there is the need for these triple components to be constructed of dereferenceable URIs, althoug the *object* value can also be a *literal*..  RDF triples can be "serialized" in several syntaxes, including XML, JSON-LD, Turtle, N-Triples, and others. These syntaxes are isomorphic, such that translations of RDF graphs, from one serialization to another, are available-- enabling consistent interpretation by machines.
+**A:**  As mentioned above, RDF is a data model based on *triples*, each of which consists of a *subject*, *predicate*, and *object*.  In order to function interoperably on the Web, however, there is the need for these triple components to be constructed of dereferenceable URIs, although the *object* value can also be a *literal*. RDF triples can be "serialized" in several syntaxes, including XML, JSON-LD, Turtle, N-Triples, and others. These syntaxes are isomorphic, such that translations of RDF graphs from one serialization to another are available-- enabling consistent interpretation by machines.
 
-Perhaps the most straigthforward serialization is N-Triples, where an RDF triple could look like this:
+Perhaps the most straigthforward serialization of RDF graphs for human interpretation is N-Triples, where an RDF triple could look like this:
 
+ <http://purl.obolibrary.org/obo/CHEBI_16526>   <http://purl.obolibrary.org/obo/RO_0000087>  <http://purl.obolibrary.org/obo/CHEBI_76413>  .
+ 
+These are three URIs-- representing the Subject, Predicate, and Object of a Triple. The "." indicates the end of the Triple. Dereferencing these URIs (e.g. a Web browser or specialized application) one can see that this Triple represents the statement:
+
+*"Carbon dioxide"*(Subject) *"has role"*(Predicate) *"Greenhouse Gas"*(Object)
+
+While the phrasing is a bit awkward sounding, the meaning is clear by simply depicting the *rdfs:Labels* of those terms from the ChEBI (Chemical Entities of Biological Interest) and RO (Relation) ontologies, that are both robust OBO Foundry ontologies.
+
+As another example:
+<http://purl.obolibrary.org/obo/NCIT_C20461> <http://purl.org/dc/elements/1.1/creator> <https://orcid.org/0000-0003-1279-3709> .
+
+that asserts:
+
+*"World Wide Web"*(Subject) *"creator"*(Predicate)  *"Timothy Berners Lee"*(Object) .
+
+...although some semantic purists might question whether the Dublin Core property "Creator" can be used in this way as an RDF predicate, since it is not semantically defined-- would its rdfs:label be "creatorOf" or "hasCreator"?. Regardless of the formal semantic well-formedness  of this Triple, however, one can see the expressive power of the RDF data model, and the value of derefenceable URIs.
+
+A better solution would be to use the semantically defined term from SIO (the Semantic Science Integrated Ontology) <http://semanticscience.org/resource/SIO_000364> as the predicate, with an rdfs:Label *"has creator"*
+
+<http://purl.obolibrary.org/obo/NCIT_C20461> <http://semanticscience.org/resource/SIO_000364> <https://orcid.org/0000-0003-1279-3709> .
+
+or conversely, one could use <http://semanticscience.org/resource/SIO_000365> as the predicate, that has rdfs:Label *"is creator of"*
+
+ <https://orcid.org/0000-0003-1279-3709> <http://semanticscience.org/resource/SIO_000365> <http://purl.obolibrary.org/obo/NCIT_C20461>.
+ 
+ Finally, it is worth noting that one's choice of which Ontologies to use is important.  Within the Ecological and Environmental sciences, there are several highly-recommende vocabularies, including those from the OBO Foundry (e.g. ChEBI, EnvO), as well as SIO.
 
 **Q:** Are there tools are available to help data managers select subjects, predicates, and objects to annotate with? 
 
-**A:**
+**A:** Yes, tools are being built to assist with the semantic annotation of EML documents,  within the DataONE and Arctic Data Center data repository projects, and others.
