@@ -4,7 +4,7 @@
 ## Introduction
 
 EML 2.2.0 now provides ways to embed HTTP URI's within several EML elements, which are semantic annotations of 
-those elements. 
+those elements. [SC: The acronym 'URI' should be expanded here rather than later on in the paragraph]
 In general, a semantic annotation is the attachment of additional semantic metadata to a resource, and in our context it is attached to an EML element. By referencing external *[knowledge graphs](#glossary-knowledge-graph)*
 (sometimes called *controlled vocabularies* or *[ontologies](#glossary-ontology)*), annotations provide rigorous, expressive and consistent interpretation of the 
 metadata contents.  The annotation provides a computer-usable 
@@ -77,7 +77,7 @@ in the EML record. Here is the basic structure. Sections below have more example
   - are recommended to have labels populated by values from the label field (`rdfs:label`) or preferred labels field (`skos:prefLabel`) from the referenced vocabulary
   - should contain URIs that point to terms in controlled vocabularies providing precise definitions, relationships to other terms, and multiple labels for display 
 
-
+[SC: Would the reader know what properties and values mean at this point? Maybe we should include a sentence describing what they mean here or a link to the Semantic Triples section below]
 
 **When are IDs required?**
 Annotations at the dataset, entity or attribute level presume that the parent element is the *subject*. If an element has
@@ -328,7 +328,7 @@ An RDF triple can be constructed as follows, with subject URI, predicate URI, an
 
 While our focus here is on the semantic annotation of EML documents, it is easy to see how the RDF statements can be used to describe and inter-relate any resources that have unique, persistent HTTP URIs!
 
-Note that the above *RDF triple* consists of three HTTP URIs. While the exact distinction among what is a URI, a URN, and a URL can be debated, for our purposes, these HTTP URI's are can be considered both the *name* and *web location* of a resource. Content negotiation between a Web server and a client (which might be a browser, or a Python or R script) can enable an HTTP URI to dereference in ways optimized for the requesting client -- e.g. in one case, presenting a human-readable view of metadata for a dataset, and in another, activating a download of that dataset for import into a script.
+Note that the above *RDF triple* consists of three HTTP URIs. While the exact distinction among what is a URI, a URN, and a URL can be debated, for our purposes, these HTTP URI's are can be considered both the *name* and *web location* of a resource. Content negotiation between a Web server and a client (which might be a browser, or a Python or R script) can enable an HTTP URI to dereference in ways optimized for the requesting client -- e.g. in one case, presenting a human-readable view of metadata for a dataset, and in another, activating a download of that dataset for import into a script. [SC: we should include a link to the FAQ here... can we point directly to the question about URIs vs. URNs?] 
 
 The software needed to extract semantic annotations out of EML, and convert these into valid RDF triples, is under development at NCEAS and EDI, and through the rOpenSci project. The RDF triple described above, however, hopefully gives an idea of how such triples, constructed of dereferenceable HTTP URI's, can be very useful. 
 
