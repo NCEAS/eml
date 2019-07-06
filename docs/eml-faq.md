@@ -420,7 +420,7 @@ v2.1.0.
 
 **Q:** What does ‘dereferenced’ mean?  (context: a URI in an annotation)
 
-**A:** Within the context of semantic annotation, "dereferencing" refers to the process of interpreting a URI, and providing "useful information" back about the Resource of interest. The phrase "resolving a URI" is often used synonymously with "dereferencing", but technically "resolution" refers to the process of determining HOW and WHAT to do with the URI, whereas "dereferencing" is explicitly about the action taken, which is typically retrieving a representation of the Resource of interest. The formal specification for these terms and what they mean is found in the IETF's RFC 3986 (<https://tools.ietf.org/html/rfc3986>). 
+**A:** Within the context of semantic annotation, "dereferencing" refers to the process of interpreting a URI, and providing "useful information" back about the Resource of interest. The phrase "resolving a URI" is often used synonymously with "dereferencing", but technically "resolution" refers to the process of determining HOW and WHAT to do with the URI, whereas "dereferencing" is explicitly about the action taken, which is typically retrieving a representation of the Resource of interest. The formal specification for these terms and what they mean is found in the IETF's RFC 3986 (<https://tools.ietf.org/html/rfc3986>). [SC: I would expand the acronyms for the Internet Engineering Task Force and Request for Comment because this is the first time those terms are introduced.]
 
 
 **Q:** Explain the difference between an URI and a URL. (context: sample URIs look a lot like a URL.  What makes it a URI?)
@@ -470,7 +470,7 @@ that asserts:
 
 *"World Wide Web"*(Subject) *"creator"*(Predicate)  *"Timothy Berners Lee"*(Object) .
 
-...although some semantic purists might question whether the Dublin Core property "Creator" can be used in this way as an RDF predicate, since it is not semantically defined-- would its rdfs:label be "creatorOf" or "hasCreator"?. Regardless of the formal semantic well-formedness  of this Triple, however, one can see the expressive power of the RDF data model, and the value of derefenceable URIs.
+...although some semantic purists might question whether the Dublin Core property "Creator" can be used in this way as an RDF predicate, since it is not semantically defined-- would its rdfs:label be "creatorOf" or "hasCreator"?. Regardless of the formal semantic well-formedness  of this Triple, however, one can see the expressive power of the RDF data model, and the value of dereferenceable URIs.
 
 A better solution would be to use the semantically defined term from SIO (the Semantic Science Integrated Ontology) <http://semanticscience.org/resource/SIO_000364> as the predicate, with an rdfs:label *"has creator"*
 
