@@ -117,11 +117,26 @@
             <doc:description>The 'title' field provides a description of the
             resource that is being documented that is long enough to
             differentiate it from other similar resources. Multiple titles may
-            be provided, particularly when trying to express the title in more
-            than one language (use the "xml:lang" attribute to indicate the
-            language if not English/en).</doc:description>
+            be provided to indicate alternate titles for the resource. When
+            specifying translations of the resource's title, it is recommended
+            that translations be provided in one or more 'value' child elements
+            rather than with repeated 'title' elements. See
+            'i18nNonEmptyStringType' for more information on providing
+            translations.
+            </doc:description>
             <doc:example>Vernal pool amphibian density data, Isla Vista,
             1990-1996.</doc:example>
+            <doc:example><![CDATA[To indicate a translation of a title, add
+              value child elements inside the title field:
+
+              <title>
+                Vernal pool amphibian density data, Isla Vista, 1990-1996.
+                <value xml:lang="es">
+                  Données de densité d'amphibiens de la piscine vernale, Isla
+                  Vista, 1990-1996.
+                </value>
+              </title>
+            ]]></doc:example>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
