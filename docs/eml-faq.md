@@ -425,7 +425,7 @@ v2.1.0.
 
 **Q:** Explain the difference between an URI and a URL. (context: sample URIs look a lot like a URL.  What makes it a URI?)
 
-**A:** The distinctions among URIs (Uniform Resource Identifiers), URLs (Uniform Resource Locators), and URNs (Uniform Resource Names), relate to differentiating the functionalities of *identifying* a Resource, as opposed to *locating* a Resource, or doing both. URLs are all URIs (with some edge case exceptions subject to argument), and URNs are also URIs.  In many cases, URIs serve both to name and locate a Resource.  Within the vision of the Semantic Web, URIs are ideally unique, persistent URNs identifying some Web Resource, that can also serve to locate and retrieve (dereference) a representation of that Resource (URLs). The formal specification for these terms and what they mean is found in the IETF's RFC 3986, section 1.1.3 (<https://tools.ietf.org/html/rfc3986#section-1.1.3>). Another acronym one may encounter with increasing frequency is IRI (Internationalized Resource Identifier) that simply extends the concept of a URI to include full Unicode character set, rather than just ASCII in its construction (<https://tools.ietf.org/html/rfc3987>)
+**A:** The distinctions among URIs (Uniform Resource Identifiers), URLs (Uniform Resource Locators), and URNs (Uniform Resource Names), relate to differentiating the functionalities of *identifying* a Resource, as opposed to *locating* a Resource, or doing both. URLs are all URIs (with some edge case exceptions subject to argument), and URNs are also URIs.  In many cases, URIs serve both to name and locate a Resource.  Within the vision of the Semantic Web, URIs are ideally unique, persistent URNs identifying some Web Resource, that can also serve to locate and retrieve (dereference) a representation of that Resource (URLs). The formal specification for these terms and what they mean is found in the Internet Engineering Task Force's (IETF's) *Request for Comments* RFC 3986, section 1.1.3 (<https://tools.ietf.org/html/rfc3986#section-1.1.3>). Another acronym one may encounter with increasing frequency is IRI (Internationalized Resource Identifier) that simply extends the concept of a URI to include full Unicode character set, rather than just ASCII in its construction (<https://tools.ietf.org/html/rfc3987>)
 
 
 **Q:** oveeview (“When are ID’s required in the EML”) - context: annotations
@@ -470,9 +470,15 @@ that asserts:
 
 *"World Wide Web"*(Subject) *"creator"*(Predicate)  *"Timothy Berners Lee"*(Object) .
 
-...although some semantic purists might question whether the Dublin Core property "Creator" can be used in this way as an RDF predicate, since it is not semantically defined-- would its rdfs:label be "creatorOf" or "hasCreator"?. Regardless of the formal semantic well-formedness  of this Triple, however, one can see the expressive power of the RDF data model, and the value of dereferenceable URIs.
+...although some semantic purists might question whether the Dublin Core property "Creator" can be used in this way as an RDF predicate, since it is not semantically defined-- would its rdfs:label be "creatorOf" or "hasCreator"?. Regardless of the formal semantic well-formedness  of this Triple, however, one can see the expressive power of the RDF data model, and the value of dereferenceable URIs.  Alternatively one could use a schema.org predicate as follows:
 
-A better solution would be to use the semantically defined term from SIO (the Semantic Science Integrated Ontology) <http://semanticscience.org/resource/SIO_000364> as the predicate, with an rdfs:label *"has creator"*
+ <http://purl.obolibrary.org/obo/NCIT_C20461>  <http://schema.org/creator> <https://orcid.org/0000-0003-1279-3709> .
+
+to similarly assert that
+ 
+*"World Wide Web"*(Subject) *"creator"*(Predicate) *"Timothy Berners Lee"*(Object).
+
+A better solution might be to use the more formally semantically defined term from SIO (the Semantic Science Integrated Ontology) <http://semanticscience.org/resource/SIO_000364> as the predicate, with an rdfs:label *"has creator"*
 
 <http://purl.obolibrary.org/obo/NCIT_C20461> <http://semanticscience.org/resource/SIO_000364> <https://orcid.org/0000-0003-1279-3709> .
 
