@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml://ecoinformatics.org/documentation-2.2.0" xmlns="eml://ecoinformatics.org/semantics-2.2.0" targetNamespace="eml://ecoinformatics.org/semantics-2.2.0">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="eml://ecoinformatics.org/documentation-2.2.0" xmlns="eml://ecoinformatics.org/semantics-2.2.0" xmlns:res="eml://ecoinformatics.org/resource-2.2.0" targetNamespace="eml://ecoinformatics.org/semantics-2.2.0">
   <xs:import namespace="eml://ecoinformatics.org/documentation-2.2.0" schemaLocation="eml-documentation.xsd"/>
+  <xs:import namespace="eml://ecoinformatics.org/resource-2.2.0" schemaLocation="eml-resource.xsd"/>
   <xs:annotation>
     <xs:documentation>
     Copyright: 2017 Regents of the University of California
@@ -210,6 +211,9 @@
           </xs:complexType>
         </xs:element>
     </xs:sequence>
+    <xs:attribute name="id" type="res:IDType" use="optional"/>
+    <xs:attribute name="system" type="res:SystemType" use="optional"/>
+    <xs:attribute name="scope" type="res:ScopeType" use="optional" default="document"/>
   </xs:complexType>
   <xs:element name="annotation" type="SemanticAnnotation">
     <xs:annotation>
