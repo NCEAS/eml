@@ -1,12 +1,16 @@
 # Semantic Annotation Primer
 
 <a name="introduction"></a>
-## Introduction
-A semantic annotation is the attachment of semantic metadata to a resource - in this case, a dataset. It provides precise definitions of concepts and clarifies the relationships between concepts in a machine-readable way. The process of creating semantic annotations may seem tedious, but the payoff is enhanced discovery and reuse of your data. 
+## A. Introduction
+A semantic annotation is the attachment of semantic metadata to a resource - in this case, a dataset. 
+It provides precise definitions of concepts and clarifies the relationships between concepts in a machine-readable 
+way. The process of creating semantic annotations may seem tedious, but the payoff is enhanced discovery and reuse 
+of your data. 
 
-EML 2.2.0 now provides ways to embed semantic annotations in several elements, as HTTP URI's. [SC: The acronym 'URI' should be expanded here rather than later on in the paragraph]
+EML 2.2.0 now provides ways to embed semantic annotations in several elements, as [HTTP URI's](#glossary-uri)
 By referencing external *[knowledge graphs](#glossary-knowledge-graph)*
-(sometimes called *controlled vocabularies* or *[ontologies](#glossary-ontology)*), annotations provide rigorous, expressive and consistent interpretation of the 
+(sometimes called *controlled vocabularies* or *[ontologies](#glossary-ontology)*), annotations provide 
+rigorous, expressive and consistent interpretation of the 
 metadata contents.  The annotation provides a computer-usable 
 [ pointer](#glossary-pointer) (or [HTTP uniform resource identifier; URI](#glossary-uri)) 
 that [resolves](#glossary-reslove) (and [dereferences](#glossary-dereference)) 
@@ -18,40 +22,45 @@ discovery and interpretation. Semantic annotations will make it easier for other
 
 1. **Equivalent concepts:** one dataset uses the phrase "carbon dioxide flux" and another dataset "CO2 flux". 
 If they are annotated, the information system is able to recognize that these datasets are about equivalent concepts, 
-because the datasets are annotated with the same same HTTP URI. 
+because the datasets are annotated with the same same [HTTP URI's](#glossary-uri). 
 1. **Disambiguation:** if you perform a search for datasets about "litter" (as in "plant litter"), if datasets have been annotated the 
 system will be able to understand the different meanings of "litter" (as in garbage, the grouping of 
 animals born at the same time to the same mother, etc.). Each type of "litter" would be associated with a
 different identifier ([HTTP URI](#glossary-uri)). 
 1. **Hierarchical searches:** if you search for 
 datasets about "carbon flux", then datasets about "carbon dioxide flux" can also be returned because "carbon 
-dioxide flux" is a type of "carbon flux".  This is possible because the HTTP URI came from a knowledge graph 
-in which the identifier  for "carbon dioxide flux" was a subclass of "carbon flux".
+dioxide flux" is a type of "carbon flux".  This is possible because the [HTTP URI's](#glossary-uri) came 
+from a [knowledge graphs](#glossary-knowledge-graph) 
+in which the identifier  for "carbon dioxide flux" was a [subclass](#glossary-subclass) of "carbon flux".
 
 
-
-**Organization of this document:** The purpose of this primer is to provide an introduction to how semantic annotations are structured 
-in EML documents. It is expected that you already have some familiarity with the EML schema. The focus of this
-document then, is explanation and examples of annotations in EML. Where used, EML elements are shown as inline code blocks (`elementName`).
-
-An addendum contains the following additional information on specific related topics, with links from the main text where appropriate.
-
-1. **[Glossary:](#glossary)** Glossary of terms 
-1. **[Semantic triples:](#semantic-triples)**  details on their structure, and how structure is leveraged by annotations with examples of their power
-1. **[URIs:](#uris)** defined, and as components of semantic triples
-1. **[RDF model:](#rdf)** the W3C's RDF model with example graphs based on EML annotations
-1. **[Logical consistency:](#logical-consistency)** Common mistakes and how to check for them
-1. **[Supplemental background information:](#external-resources)** The EML annotation approach here is compatible with recommended by the World Wide Web Consortium (W3C) for construction of the Semantic Web
-
-
-
-### Take-home messages (could add 1 more sentence to each, but keep it SHORT)
+### Take-home messages
 - **Semantic statements must be logically consistent, as they are not simply a set of loosely structured keywords.** 
 - **EML 2.2.0 has five places or methods to add annotations.**
 - **The best place for advice and feedback on EML annotations is your data management community**
 
+
+###Organization of this document
+The purpose of this Primer is to provide an introduction to how semantic 
+annotations are structured in EML documents. It is expected that you already have some familiarity with the EML schema. 
+The focus of this document then, is explanation and examples of annotations in EML. 
+This Primer is divided into three major sections. You should be able to create EML anntations immediately, using only sections A and B.
+
+ - A. [Introduction:](#introduction) this section
+ - B. [Semantic Annotations in EML 2.2.0](#sa-eml22), with examples that Where used, EML elements are shown as inline code blocks (`elementName`).
+ - C. [Appendix](#appendix). additional information on specific related topics, linked from Sections A and B.
+    1. **[Glossary:](#glossary)** Glossary of terms, lilnked from text
+    1. **[Semantic triples:](#semantic-triples)**  details on their structure, and how that structure is leveraged by annotations with examples of their power
+    1. **[URIs:](#uris)** defined, and as components of semantic triples
+    1. **[RDF model:](#rdf)** the W3C's RDF model with example graphs based on EML annotations
+    1. **[Logical consistency:](#logical-consistency)** Common mistakes and how to check for them
+    1. **[Description of Vocabularies used in Examples:](#external-vocabularies)**with links out to explore them further
+    1. **[Supplemental background information:](#additional-background)** The EML annotation approach here is compatible with recommended by the World Wide Web Consortium (W3C) for construction of the Semantic Web
+
+
+
 <a name="sa-eml22"></a>
-## Semantic Annotations in EML 2.2.0
+## B. Semantic Annotations in EML 2.2.0
 
 In **EML 2.2.0** there are 5 places where annotation elements can appear in an EML document: 
 
@@ -441,10 +450,40 @@ the categories, properties, and relationships among those terms.
 <a name="glossary-pointer"></a>
 **Pointer**  definition here
 
-<a name="external-resources"></a>
-### External resources 
+<a name="glossary-knowledge-graph"></a>
+**knowledge graph**  definition here
+
+
+<a name="glossary-dereference"></a>
+**dereference**  definition here
+
+
+<a name="glossary-subclass"></a>
+**subclasss**  definition here
+
+<a name="glossary-semantic-statement"></a>
+**semantic statement**  definition here
+
+
+<a name="external-vocabularies"></a>
+###Vocalularies used in Examples
+ definition here
+
+<a name="envo"></a>
+- **ENVO**  definition, etc here
+
+<a name="iao"></a>
+- **IAO**  definition, etc here
+
+
+
+
+
+<a name="additional-background"></a>
+### Additional background information 
   
-Following are some supplemental background information
+Following are tutorials and supplemental background reading
+
 - LinkedDataTools tutorial: http://www.linkeddatatools.com/introducing-rdf
 - RDF data model: https://www.w3.org/TR/WD-rdf-syntax-971002/
 - W3C RDF primer: https://www.w3.org/TR/rdf11-primer/
