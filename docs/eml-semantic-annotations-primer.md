@@ -1,7 +1,9 @@
 # Semantic Annotation Primer
 
 <a name="introduction"></a>
+
 ## A. Introduction
+
 A semantic annotation is the attachment of semantic metadata to a resource - in this case, a dataset. 
 It provides precise definitions of concepts and clarifies the relationships between concepts in a machine-readable 
 way. The process of creating semantic annotations may seem tedious, but the payoff is enhanced discovery and reuse 
@@ -37,12 +39,13 @@ to a useful description, definition, or relationships for that annotated resourc
 
 
 ### Take-home messages
+
 - **Semantic statements must be logically consistent, as they are not simply a set of loosely structured keywords.** 
 - **EML 2.2.0 has five places or methods to add annotations.**
 - **The best place for advice and feedback on EML annotations is your data management community**
 
-
 ### Organization of this document
+
 The purpose of this Primer is to provide an introduction to how semantic 
 annotations are structured in EML documents. It is expected that you already have some familiarity with the EML schema. 
 The focus of this document then, is explanation and examples of annotations in EML. 
@@ -63,6 +66,7 @@ only sections A and B, referencing section C when you would like a longer explan
 
 
 <a name="sa-eml22"></a>
+
 ## B. Semantic Annotations in EML 2.2.0
 
 In **EML 2.2.0** there are 5 places where annotation elements can appear in an EML document: 
@@ -74,6 +78,7 @@ In **EML 2.2.0** there are 5 places where annotation elements can appear in an E
 - **eml/additionalMetadata** -- `annotation` elements that reference a main-body element by its id
 
 ### Annotation element structure
+
 All annotation nodes are defined as an XML type, so they have the same structure anywhere they appear
 in the EML record. Here is the basic structure. Sections below have more examples.
 
@@ -105,6 +110,7 @@ Annotations for top-level resources, entities, and attributes follow the same ge
 - The *subject* of the semantic statement is the parent element of the annotation. It must have an `id=" "` attribute. 
 
 <a name="eml-example-1"></a>
+
 #### Example 1: Top-level resource annotation (dataset)
 
 In the following dataset annotation, the *subject* of the semantic statement is the `dataset` element containing 
@@ -139,7 +145,8 @@ Taken together, the semantic statement can be read as "the dataset with the id '
 </dataset>  
 ```
 <a name="eml-example-2"></a>
- #### Example 2: Entity-level annotation
+
+#### Example 2: Entity-level annotation
 
 In the following entity-level annotation, the subject of the semantic statement refers to the `otherEntity` 
 element's `id` attribute value, "urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b". The object property of the 
@@ -166,6 +173,7 @@ Taken together, the semantic statement indicates that "the entity with the id 'u
 </otherEntity>
 ```
 <a name="eml-example-3"></a>
+
 #### Example 3: Attribute annotation
 
 In the following attribute annotation, the subject of the semantic statement is the `attribute` element 
@@ -191,6 +199,7 @@ Taken together, the semantic statement indicates that "the attribute with the id
 
 
 ### `eml/annotations` element annotation
+
 An annotation in the `annotations` element differs from other types of annotations in that the subject is directly referred to by a `references` attribute. Each `annotation` element has a `references` attribute that 
 points to the `id` attribute of the element being annotated. Stated another way, what is listed in the `references` attribute is the id of the subject of the semantic annotation. Any of the EML modules may be referenced by the `references` 
 attribute and because ids are unique within an EML document, this is a single subject. 
@@ -200,6 +209,7 @@ attribute and because ids are unique within an EML document, this is a single su
 
 
 <a name="eml-example-4"></a>
+
 #### Example 4: `annotations` element annotation
 
 Example 4 contains 3 different annotations. For the first annotation, 
@@ -257,7 +267,6 @@ This statement can be read as "'adam.shepherd', the creator (of the dataset), is
 
 **See [Example 4 as an RDF graph](#rdf-eml-example-4)**
 
-
 ### `eml/additionalMetadata` element annotation
 
 If an `additionalMetadata` section holds a semantic annotation, it must have a `describes` element (to hold the subject) with a `metadata` element containing at least one `annotation` element. 
@@ -268,6 +277,7 @@ If an `additionalMetadata` section holds a semantic annotation, it must have a `
 - To annotate different subjects it's best to use additional `additionalMetadata` sections, each with a single subject
 
 <a name="eml-example-5"></a>
+
 #### Example 5: `additionalMetadata` element annotation
 
 The following `additionalMetadata` annotation describes a semantic statement where the subject is the `creator` element with the `id` attribute "adam.shepherd". The object property of the statement is "https://schema.org/memberOf". 
@@ -305,8 +315,11 @@ Taken together, the semantic statement could be read as "'adam.shepherd' (the cr
 </eml>
 ```
 <a name="appendix"></a>
+
 ## Appendix
+
 <a name="semantic-triples"></a>
+
 ### Semantic triples 
 
 Semantic annotations enable the creation of what are called *triples*, that are 3-part statements conforming to the W3C recommended *RDF data model* (learn more: <https://www.w3.org/TR/rdf11-primer/>). 
@@ -324,7 +337,9 @@ There are (perhaps unfortunately) several other ways that the components of an R
 Semantic annotations added to an EML document can be extracted and processed into a semantic web format, such as RDF/XML. These"semantic" statements, i.e. RDF triples, are interpretable by any machines that can process the W3C standard of RDF. Those RDF statements contribute to the Semantic Web.
 
 <a name="uris"></a>
+
 ### URIs 
+
 Ideally, the components of the semantic triple should be globally unique and persistent (unchanging), and consist of resolvable/dereferenceable HTTP uniform resource identifiers (URIs; or more formally, IRI's). The *subjects* of most EML semantic annotations will likely be HTTP URI's that identify the dataset resource itself, or specific attributes or other features within a dataset.  The *objects* of EML semantic annotations, as well as the *predicates* that relate the subject to the object, will most typically be HTTP URI references to terms in controlled vocabularies (also called "knowledge graphs", or "ontologies") accessible through the Web, so that users (or computers) can dereference the URI's and look up precise definitions and relationships of these resources to other terms [^footnote1]. 
 
 An example of a URI is "http://purl.obolibrary.org/obo/ENVO_00000097", when entered into the address bar of a web browser, resolves to the term with a label of "desert area" in the Environment Ontology (EnvO). Users can learn what this URI indicates and explore how the term is related to other terms in the ontology simply by dereferencing its URI in a web browser.  All those other aspects you see on the Web page describing "http://purl.obolibrary.org/obo/ENVO_00000097" are from other RDF statements (triples) related to "ENVO_00000097", and that have been rendered into HTML. From here, you might decide, e.g. that "http://purl.obolibrary.org/obo/ENV0_00000172" ("sandy desert") is a better annotation for your object.
@@ -348,6 +363,7 @@ The sections below describe the exact syntax for embedding annotations in EML 2.
 
 
 <a name="rdf"></a>
+
 ### RDF Graphs 
 
 A graph consists of resources linked to other resources. Thus the simplest graph structure is when you specify how one resource (node) is linked to another resource (node).
@@ -357,6 +373,7 @@ The parts of a triple (subject, predicate, and object) become nodes and links in
 This process of converting a semantic annotation in EML into RDF, is done by parsing applications under development at EDI, NCEAS, rOpenSci, and other data repositories. Careful examination of the examples below also show references to "owl:Class", "owl:ObjectProperty", and other statements that may not be familiar. These are fundamental *entities* or building blocks in W3C-recommended Semantic Web languages, and are determined by the relationships that the triple component identifiers (HTTP URI's) have within their native knowledge graph/ontology.
 
 <a name="rdf-eml-example-3"></a>
+
 #### Graph from Example 3 (attribute annotation): ([back to Example 3 XML](#eml-example-3))
 
 
@@ -378,6 +395,7 @@ This process of converting a semantic annotation in EML into RDF, is done by par
 _Note: The subject described in the `rdf:Description` `about` attribute should actually be a globally unique HTTP URI for the attribute, rather than 'att.4'. The details of how this HTTP URI GUID is constructed are being developed by EDI, NCEAS, and others._
 
 <a name="rdf-eml-example-4"></a>
+
 #### Graph from Example 4 (using `annotations` element): ([back to Example 4 XML](#eml-example-4))
 
 ![RDF example B](images/RDF_example_b.png "Graph from Example 4 (using <annotations> element):")
@@ -402,7 +420,9 @@ _Note: The subject described in the `rdf:Description` `about` attribute should a
 _Note: The subject described in the `rdf:Description` `about` attribute should actually be the globally unique URI issued for 'adam.shepherd'. The details of how this HTTP URI GUID is constructed are being developed by EDI, NCEAS, and others._
 
 <a name="logical-consistency"></a>
+
 ### Check for Logical Consistency 
+
 With semantic annotation, you are adding precise definitions of concepts and relationships that can be traversed 
 with computer logic. Annotations are not simply a set of loosely structured keywords!  This is a really powerful 
 addition to EML, and so it comes with some risk. The main thing you should ensure is that your annotations are 
@@ -435,11 +455,10 @@ Things to check:
 1. In `additionalMetadata`, don't combine `annotations` with more than one `describes` element. EML allows 1:many `describes` elements in a single `additionalMetadata` section. So if you have 2 `describes` and 2 `annotations`, you will have 4 RDF statements. Make sure they are all true, and if not, break them up into multiple `additionalMetadata` sections.
 
 
-
-
-
 <a name="glossary"></a>
+
 ### Glossary -  link terms in the text above to here.
+
 <a name="glossary-ontology"></a> 
 **ontology**: A knowledge *graph* representation of a set of terms, including their names, and descriptions of 
 the categories, properties, and relationships among those terms.
@@ -469,7 +488,9 @@ the categories, properties, and relationships among those terms.
 
 
 <a name="external-vocabularies"></a>
+
 ### Vocalularies used in Examples
+
 Communities using EML annotation will develop recommendations for suitable vocabularies to be used in annotations, based
 on their own requirements (e.g., domain coverage, structure, adaptability, reliabliity and maintenance model). The following
 ontologies are already widely used, and were employed in the examples above:
@@ -488,6 +509,7 @@ ontologies are already widely used, and were employed in the examples above:
 
 
 <a name="additional-background"></a>
+
 ### Additional background information 
   
 Following are tutorials and supplemental background reading
@@ -501,6 +523,7 @@ Following are tutorials and supplemental background reading
 
 
 ## Footnotes
+
 might not be needed.
 
 [^footnote1]: this might be a footnote about URIs
