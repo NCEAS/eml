@@ -4,7 +4,7 @@
 [![EML](https://img.shields.io/badge/eml-2.2.0-blue.svg?style=plastic)](http://github.com/NCEAS/eml)
 
 *Cite as*:
-Matthew B. Jones,  Margaret O'Brien, Bryce Mecum, Carl Boettiger, Mark Schildhauer, Mitchell Maier, Timothy Whiteaker. 2019. **Ecological Metadata Language version 2.2.0.** KNB Data Repository. **DOI TO BE ISSUED**
+Matthew B. Jones,  Margaret O'Brien, Bryce Mecum, Carl Boettiger, Mark Schildhauer, Mitchell Maier, Timothy Whiteaker, Steven Chong. 2019. **Ecological Metadata Language version 2.2.0.** KNB Data Repository. **DOI TO BE ISSUED**
 
 *Abstract:*
 The Ecological Metadata Language (EML) defines a comprehensive vocabulary and a readable XML markup syntax for documenting research data.  It is in widespread use in the earth and environmental sciences, and increasingly in other research disciplines as well.  EML is a community-maintained specification, and evolves to meet the data documentation needs of researchers who want to openly document, preserve, and share data and outputs.  EML includes modules for identifying and citing data packages, for describing the spatial, temporal, taxonomic, and thematic extent of data, for describing research methods and protocols, for describing the structure and content of data within sometimes complex packages of data, and for precisely annotating data with semantic vocabularies. EML includes metadata fields to fully detail data papers that are published in journals specializing in scientific data sharing and preservation.
