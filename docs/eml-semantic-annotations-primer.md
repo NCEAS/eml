@@ -2,17 +2,17 @@
 
 <a name="introduction"></a>
 ## Introduction
+A semantic annotation is the attachment of semantic metadata to a resource - in this case, a dataset. It provides precise definitions of concepts and clarifies the relationships between concepts in a machine-readable way. The process of creating semantic annotations may seem tedious, but the payoff is enhanced discovery and reuse of your data. 
 
-EML 2.2.0 now provides ways to embed HTTP URI's within several EML elements, which are semantic annotations of 
-those elements. [SC: The acronym 'URI' should be expanded here rather than later on in the paragraph]
-In general, a semantic annotation is the attachment of additional semantic metadata to a resource, and in our context it is attached to an EML element. By referencing external *[knowledge graphs](#glossary-knowledge-graph)*
+EML 2.2.0 now provides ways to embed semantic annotations in several elements, as HTTP URI's. [SC: The acronym 'URI' should be expanded here rather than later on in the paragraph]
+By referencing external *[knowledge graphs](#glossary-knowledge-graph)*
 (sometimes called *controlled vocabularies* or *[ontologies](#glossary-ontology)*), annotations provide rigorous, expressive and consistent interpretation of the 
 metadata contents.  The annotation provides a computer-usable 
 [ pointer](#glossary-pointer) (or [HTTP uniform resource identifier; URI](#glossary-uri)) 
 that [resolves](#glossary-reslove) (and [dereferences](#glossary-dereference)) 
 to a useful description, definition, or relationships for that annotated resource. 
 
-**Benefits of annotation:** The process of creating semantic annotations for datasets may seem tedious, but the payoff is vastly enhanced data 
+**Benefits of annotation:** Vastly enhanced data 
 discovery and interpretation. Semantic annotations will make it easier for others to find and reuse data 
 (and thus give proper credit). 
 
