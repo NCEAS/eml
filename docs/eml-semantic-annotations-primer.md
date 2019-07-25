@@ -40,22 +40,23 @@ in which the identifier  for "carbon dioxide flux" was a [subclass](#glossary-su
 - **The best place for advice and feedback on EML annotations is your data management community**
 
 
-###Organization of this document
+### Organization of this document
 The purpose of this Primer is to provide an introduction to how semantic 
 annotations are structured in EML documents. It is expected that you already have some familiarity with the EML schema. 
 The focus of this document then, is explanation and examples of annotations in EML. 
-This Primer is divided into three major sections. You should be able to create EML anntations immediately, using only sections A and B.
+This Primer is divided into three major sections. You should be able to create EML anntations immediately, using 
+only sections A and B, referencing section C when you would like a longer explanation.
 
- - A. [Introduction:](#introduction) this section
- - B. [Semantic Annotations in EML 2.2.0](#sa-eml22), with examples that Where used, EML elements are shown as inline code blocks (`elementName`).
- - C. [Appendix](#appendix). additional information on specific related topics, linked from Sections A and B.
+ - A. **[Introduction:](#introduction)** this section
+ - B. **[Semantic Annotations in EML 2.2.0](#sa-eml22)**, with examples. Where used, EML elements are shown as inline code blocks (`elementName`).
+ - C. **[Appendix](#appendix)** additional information on specific related topics, linked from Sections A and B.
     1. **[Glossary:](#glossary)** Glossary of terms, lilnked from text
     1. **[Semantic triples:](#semantic-triples)**  details on their structure, and how that structure is leveraged by annotations with examples of their power
     1. **[URIs:](#uris)** defined, and as components of semantic triples
     1. **[RDF model:](#rdf)** the W3C's RDF model with example graphs based on EML annotations
     1. **[Logical consistency:](#logical-consistency)** Common mistakes and how to check for them
-    1. **[Description of Vocabularies used in Examples:](#external-vocabularies)**with links out to explore them further
-    1. **[Supplemental background information:](#additional-background)** The EML annotation approach here is compatible with recommended by the World Wide Web Consortium (W3C) for construction of the Semantic Web
+    1. **[Vocabularies used in Examples:](#external-vocabularies)** Descriptions an links out to explore  further
+    1. **[Supplemental background information:](#additional-background)** The EML annotation approach here is compatible with recommended by the World Wide Web Consortium (W3C) for construction of the Semantic Web. A wealth of material is available; a few selected ones are here.
 
 
 
@@ -466,14 +467,19 @@ the categories, properties, and relationships among those terms.
 
 
 <a name="external-vocabularies"></a>
-###Vocalularies used in Examples
- definition here
+### Vocalularies used in Examples
+Communities using EML annotation will develop recommendations for suitable vocabularies to be used in annotations, based
+on their own requirements (e.g., domain coverage, structure, adaptability, reliabliity and maintenance model). The following
+ontologies are already widely used, and were employed in the examples above:
 
 <a name="envo"></a>
-- **ENVO**  definition, etc here
+- **Enviromment Ontology (EnvO)**  definition, etc here
 
 <a name="iao"></a>
-- **IAO**  definition, etc here
+- **Inforamtion Artifact Ontology (IAO)**  definition, etc here
+
+<a name="ecso"></a>
+- **Ecosystem Ontology (EcsO)**  definition, etc here
 
 
 
