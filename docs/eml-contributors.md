@@ -36,7 +36,7 @@ Bryce Mecum | NCEAS, UCSB | mecum@nceas.ucsb.edu
 Carl Boettiger |Berkeley | cboettig@berkeley.edu
 Mitchell Maier | NCEAS, UCSB |
 Timothy Whiteaker | | whiteaker@utexas.edu
-Stevan Earl  |  | 
+Stevan Earl | LTER, ASU | stevan.earl@asu.edu
 Steven Chong | NCEAS, UCSB | chong@nceas.ucsb.edu
 
 ## Past contributors
