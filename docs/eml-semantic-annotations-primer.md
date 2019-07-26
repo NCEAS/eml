@@ -73,7 +73,7 @@ you would like a longer explanation.
 
 <a name="sa-eml22"></a>
 
-## B. Semantic Annotations in EML 2.2.0
+## Semantic Annotations in EML 2.2.0
 
 In **EML 2.2.0** there are 5 places where annotation elements can appear in an EML document: 
 
@@ -135,7 +135,7 @@ id 'dataset-01' is about grassland biome(s)".
 
 - the *subject* of the semantic statement is the `dataset` element containing  the `id` attribute value `"dataset-01"`
 - the `annotation` itself has 2 parts: 
-    - `propertyURI` is 'http://purl.obolibrary.org/obo/IAO_0000136', and explicates the relationship, using a term from the [Information Artifact Ontology, IAO](#iao)., 
+    - `propertyURI` is 'http://purl.obolibrary.org/obo/IAO_0000136', and explicates the relationship, using a term from the [Information Artifact Ontology, IAO](#iao). 
     -  `valueURI` is 'http://purl.obolibrary.org/obo/ENVO_01000177', which resolves to the "grassland biome" term in the [EnvO ontology](#envo) . 
 
 
