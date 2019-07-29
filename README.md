@@ -43,10 +43,10 @@ would be sufficient for citing a data set and for simple discovery in catalogs:
 <?xml version="1.0"?>
 <eml:eml
     packageId="doi:10.xxxx/eml.1.1" system="https://doi.org"
-    xmlns:eml="eml://ecoinformatics.org/eml-2.2.0"
+    xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.1"
-    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.2.0 xsd/eml.xsd">
+    xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0 xsd/eml.xsd">
     
     <dataset>
         <title>Primary production of algal species from Southeast Alaska, 1990-2002</title>

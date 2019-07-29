@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns:eml="eml://ecoinformatics.org/eml-2.2.0" version="1.0">
+    xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0" version="1.0">
   <xsl:output method="xml" encoding="UTF-8" indent="yes"/>
   <!--<xsl:strip-space elements="*"></xsl:strip-space>-->
   <xsl:param name="package-id" select="'newID'"/>
@@ -20,7 +20,7 @@
                     <xsl:call-template name="replace-string">
                       <xsl:with-param name="text" select="$value"/>
                       <xsl:with-param name="replace" select="'eml://ecoinformatics.org/eml-2.1.1'"/>
-                      <xsl:with-param name="with" select="'eml://ecoinformatics.org/eml-2.2.0'"/>
+                      <xsl:with-param name="with" select="'https://eml.ecoinformatics.org/eml-2.2.0'"/>
                     </xsl:call-template>
                   </xsl:variable>
                   <xsl:variable name="second-replace">
@@ -39,7 +39,7 @@
                     <xsl:call-template name="replace-string">
                       <xsl:with-param name="text" select="$value"/>
                       <xsl:with-param name="replace" select="'eml://ecoinformatics.org/eml-2.1.1'"/>
-                      <xsl:with-param name="with" select="'eml://ecoinformatics.org/eml-2.2.0'"/>
+                      <xsl:with-param name="with" select="'https://eml.ecoinformatics.org/eml-2.2.0'"/>
                     </xsl:call-template>
                   </xsl:variable>
                   <xsl:variable name="second-replace">

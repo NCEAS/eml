@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema 
     xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    xmlns="eml://ecoinformatics.org/documentation-2.2.0" 
-    xmlns:txt="eml://ecoinformatics.org/text-2.2.0" 
-    targetNamespace="eml://ecoinformatics.org/documentation-2.2.0"
+    xmlns="https://eml.ecoinformatics.org/documentation-2.2.0" 
+    xmlns:txt="https://eml.ecoinformatics.org/text-2.2.0" 
+    targetNamespace="https://eml.ecoinformatics.org/documentation-2.2.0"
     elementFormDefault="unqualified">
-  <xs:import namespace="eml://ecoinformatics.org/text-2.2.0" 
+    <xs:import namespace="https://eml.ecoinformatics.org/text-2.2.0" 
   schemaLocation="eml-text.xsd"/>
   <xs:annotation>
     <xs:documentation>

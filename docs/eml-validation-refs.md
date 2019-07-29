@@ -115,9 +115,9 @@ references.
     <?xml version="1.0"?>
     <eml:eml
         packageId="eml.1.1" system="knb"
-        xmlns:eml="eml://ecoinformatics.org/eml-2.2.0"
+        xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="eml://ecoinformatics.org/eml-2.2.0 eml.xsd">
+        xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0 eml.xsd">
 
       <dataset id="ds.1">
         <title>Sample Dataset Description</title>
@@ -146,9 +146,9 @@ same id. No two elements can have the same string as an id.
     <?xml version="1.0"?>
     <eml:eml
         packageId="eml.1.1" system="knb"
-        xmlns:eml="eml://ecoinformatics.org/eml-2.2.0"
+        xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="eml://ecoinformatics.org/eml-2.2.0 eml.xsd">
+        xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0 eml.xsd">
 
       <dataset id="ds.1">
         <title>Sample Dataset Description</title>
@@ -180,9 +180,9 @@ an `id` that does not exist. Any referenced `id` must exist in the document.
     <?xml version="1.0"?>
     <eml:eml
         packageId="eml.1.1" system="knb"
-        xmlns:eml="eml://ecoinformatics.org/eml-2.2.0"
+        xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="eml://ecoinformatics.org/eml-2.2.0 eml.xsd">
+        xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0 eml.xsd">
 
       <dataset id="ds.1">
         <title>Sample Dataset Description</title>
@@ -215,9 +215,9 @@ circular references.
     <?xml version="1.0"?>
     <eml:eml
         packageId="eml.1.1" system="knb"
-        xmlns:eml="eml://ecoinformatics.org/eml-2.2.0"
+        xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="eml://ecoinformatics.org/eml-2.2.0 eml.xsd">
+        xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0 eml.xsd">
 
       <dataset id="ds.1">
         <title>Sample Dataset Description</title>

@@ -50,9 +50,9 @@ entirely different concepts.
     <eml:eml
         packageId="eml.1.1" system="knb"
         xml:lang="pt_BR"
-        xmlns:eml="eml://ecoinformatics.org/eml-2.2.0"
+        xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="eml://ecoinformatics.org/eml-2.2.0 eml.xsd">
+        xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0 eml.xsd">
 
       <dataset id="ds.1">
 

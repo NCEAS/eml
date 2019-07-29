@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:res="eml://ecoinformatics.org/resource-2.2.0" xmlns:doc="eml://ecoinformatics.org/documentation-2.2.0" xmlns:cit="eml://ecoinformatics.org/literature-2.2.0" xmlns:cov="eml://ecoinformatics.org/coverage-2.2.0" xmlns:md="eml://ecoinformatics.org/methods-2.2.0" xmlns="eml://ecoinformatics.org/attribute-2.2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:unit="eml://ecoinformatics.org/units-2.2.0" xmlns:sem="eml://ecoinformatics.org/semantics-2.2.0" targetNamespace="eml://ecoinformatics.org/attribute-2.2.0">
-  <xs:import namespace="eml://ecoinformatics.org/documentation-2.2.0" schemaLocation="eml-documentation.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/methods-2.2.0" schemaLocation="eml-methods.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/coverage-2.2.0" schemaLocation="eml-coverage.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/literature-2.2.0" schemaLocation="eml-literature.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/resource-2.2.0" schemaLocation="eml-resource.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/units-2.2.0" schemaLocation="eml-unitTypeDefinitions.xsd"/>
-  <xs:import namespace="eml://ecoinformatics.org/semantics-2.2.0" schemaLocation="eml-semantics.xsd"/>
+<xs:schema xmlns:res="https://eml.ecoinformatics.org/resource-2.2.0" xmlns:doc="https://eml.ecoinformatics.org/documentation-2.2.0" xmlns:cit="https://eml.ecoinformatics.org/literature-2.2.0" xmlns:cov="https://eml.ecoinformatics.org/coverage-2.2.0" xmlns:md="https://eml.ecoinformatics.org/methods-2.2.0" xmlns="https://eml.ecoinformatics.org/attribute-2.2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:unit="https://eml.ecoinformatics.org/units-2.2.0" xmlns:sem="https://eml.ecoinformatics.org/semantics-2.2.0" targetNamespace="https://eml.ecoinformatics.org/attribute-2.2.0">
+    <xs:import namespace="https://eml.ecoinformatics.org/documentation-2.2.0" schemaLocation="eml-documentation.xsd"/>
+    <xs:import namespace="https://eml.ecoinformatics.org/methods-2.2.0" schemaLocation="eml-methods.xsd"/>
+    <xs:import namespace="https://eml.ecoinformatics.org/coverage-2.2.0" schemaLocation="eml-coverage.xsd"/>
+    <xs:import namespace="https://eml.ecoinformatics.org/literature-2.2.0" schemaLocation="eml-literature.xsd"/>
+    <xs:import namespace="https://eml.ecoinformatics.org/resource-2.2.0" schemaLocation="eml-resource.xsd"/>
+    <xs:import namespace="https://eml.ecoinformatics.org/units-2.2.0" schemaLocation="eml-unitTypeDefinitions.xsd"/>
+    <xs:import namespace="https://eml.ecoinformatics.org/semantics-2.2.0" schemaLocation="eml-semantics.xsd"/>
   <xs:annotation>
     <xs:documentation>
     '$RCSfile: eml-attribute.xsd,v $'
@@ -970,14 +970,14 @@
                       <xs:appinfo>
                         <doc:tooltip>Order</doc:tooltip>
                         <doc:summary>Mechanism for specifying what the
-			order of the code-definitions included should
-			be</doc:summary>
+            order of the code-definitions included should
+            be</doc:summary>
                         <doc:description>Ordinal scale measurements have a discrete list
-			of values with a specific ordering of those values. This attributes
-			specifies that order from low to high. For example, for LOW,
+            of values with a specific ordering of those values. This attributes
+            specifies that order from low to high. For example, for LOW,
             MEDIUM, HIGH, the order attribute might be "LOW=1, MEDIUM=2 and
             HIGH=3".
-                  	</doc:description>
+                      </doc:description>
                       </xs:appinfo>
                     </xs:annotation>
                   </xs:attribute>
