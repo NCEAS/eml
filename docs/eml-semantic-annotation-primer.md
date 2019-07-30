@@ -46,20 +46,20 @@ using HTTP [uniform resource identifiers](#glossary-uri) (or URIs). The process 
 The purpose of this Primer is to provide an introduction to how semantic 
 annotations are structured in EML documents. It is expected that you already have some familiarity with the EML schema, and
 the focus of this document then, is explanation and examples of annotations in EML. 
-This Primer is divided into three major sections. You should be able to create EML anntations immediately, using 
-only the main section [Semantic Annotations in EML 2.2.0](,#sa-eml22), referencing the [Appendix](#appendix) when 
+This Primer is divided into three major sections. You should be able to create EML annotations immediately, using 
+only the main section [Semantic Annotations in EML 2.2.0](#sa-eml22), referencing the [Appendix](#appendix) when 
 you would like a longer explanation.
 
- - A. **[Introduction:](#introduction)** this section
+ - A. **[Introduction:](#introduction)** (this section)
  - B. **[Semantic Annotations in EML 2.2.0](#sa-eml22)**, with examples. Where used, EML elements are shown as inline code blocks (`elementName`).
  - C. **[Appendix](#appendix)** additional information on specific related topics, linked from Sections A and B.
-    1. **[Glossary:](#glossary)** Glossary of terms, lilnked from text
+    1. **[Glossary:](#glossary)** Glossary of terms, linked from text
     1. **[Semantic triples:](#semantic-triples)**  details on their structure, and how that structure is leveraged by annotations with examples of their power
     1. **[URIs:](#uris)** defined, and as components of semantic triples
     1. **[RDF model:](#rdf)** the W3C's RDF model with example graphs based on EML annotations
     1. **[Logical consistency:](#logical-consistency)** Common mistakes and how to check for them
-    1. **[Vocabularies used in Examples:](#external-vocabularies)** Descriptions an links out to explore  further
-    1. **[Supplemental background information:](#additional-background)** The EML annotation approach here is compatible with recommended by the World Wide Web Consortium (W3C) for construction of the Semantic Web. A wealth of material is available; a few selected ones are here.
+    1. **[Vocabularies used in examples:](#external-vocabularies)** Descriptions an links out to explore further
+    1. **[Supplemental background information:](#additional-background)** The EML annotation approach here is compatible with recommendations by the World Wide Web Consortium (W3C) for construction of the Semantic Web. A wealth of material is available; a few selected ones are here.
 
 
 
