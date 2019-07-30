@@ -194,8 +194,8 @@ In the following attribute annotation, the semantic statement can be read as
 
 - The subject of the semantic statement is the `attribute` element with the `id` value "att.4". 
 - The annotation itself has 2 parts
-    - `propertyURI` is "http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType", from the [OBOE Observation ontology](#oboe)
-    - `valueURI` is "http://purl.dataone.org/odo/ECSO_00001197", which resolves to "Plant Cover Percentage" in the [ECSO Ontology](#ecso) 
+    - `propertyURI` is "http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType", from the [Extensible Ontology for Observations](#oboe) (OBOE)
+    - `valueURI` is "http://purl.dataone.org/odo/ECSO_00001197", which resolves to "Plant Cover Percentage" in the [Ecosystem Ontology](#ecso) (ECSO) 
 
 
 ```xml
