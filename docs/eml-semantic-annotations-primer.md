@@ -168,13 +168,14 @@ id 'dataset-01' is about grassland biome(s)".
 
 #### Example 2: Entity-level annotation
 
-In the following entity-level annotation, the subject of the semantic statement refers to the `otherEntity` 
-element's `id` attribute value, "urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b". The object property of the 
-statement is "http://purl.obolibrary.org/obo/IAO_0000136". Finally, the object (value) in the semantic statement 
-is "http://purl.obolibrary.org/obo/NCBITaxon_40674", which resolves to the "Mammalia" term in the NCBITaxon 
-ontology (http://www.ontobee.org/ontology/NCBITaxon). 
+In the following entity-level annotation, the semantic statement can be read as 
+"the entity with the id 'urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b' is about Mammalia".
 
-Taken together, the semantic statement indicates that "the entity with the id 'urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b' is about Mammalia".
+- The *subject* of the semantic statement is the `otherEntity` with `id` attribute value, `"urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b"`. 
+- The annotation itself has 2 parts
+    - `propertyURI` is "http://purl.obolibrary.org/obo/IAO_0000136", which resolves to "is about", from [IAO](#iao)
+    - `valueURI` is "http://purl.obolibrary.org/obo/NCBITaxon_40674", which resolves to "Mammalia" in the [NCBI Taxon ontology](#ncbi_taxon). 
+
 
 
 ```xml
@@ -196,12 +197,13 @@ Taken together, the semantic statement indicates that "the entity with the id 'u
 
 #### Example 3: Attribute annotation
 
-In the following attribute annotation, the subject of the semantic statement is the `attribute` element 
-containing the `id` attribute value "att.4". The predicate is of the statement is an object property
-"http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType". Note that the URI for the 
-object property resolves to a specific term in the OBOE ontology (https://github.com/NCEAS/oboe). Finally, the object (value)in the semantic statement is "http://purl.dataone.org/odo/ECSO_00001197", which resolves to the "Plant Cover Percentage" term in the ECSO Ontology (https://github.com/DataONEorg/sem-prov-ontologies/tree/master/observation). 
+In the following attribute annotation, the semantic statement can be read as 
+"the attribute with the id 'att.4' contains measurements of type plant cover percentage"
 
-Taken together, the semantic statement indicates that "the attribute with the id 'att.4' contains measurements of type plant cover percentage".  Of course, this statement needs to be interpreted in the context of the entity within which 'att.4' occurs.
+- The subject of the semantic statement is the `attribute` element with the `id` value "att.4". 
+- The annotation itself has 2 parts
+    - `propertyURI` is "http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType", from the [OBOE Observation ontology](#oboe)
+    - `valueURI` is "http://purl.dataone.org/odo/ECSO_00001197", which resolves to "Plant Cover Percentage" in the [ECSO Ontology](#ecso) 
 
 
 ```xml
@@ -220,8 +222,10 @@ Taken together, the semantic statement indicates that "the attribute with the id
 
 ### `eml/annotations` element annotation
 
-An annotation in the `annotations` element differs from other types of annotations in that the subject is directly referred to by a `references` attribute. Each `annotation` element has a `references` attribute that 
-points to the `id` attribute of the element being annotated. Stated another way, what is listed in the `references` attribute is the id of the subject of the semantic annotation. Any of the EML modules may be referenced by the `references` 
+An annotation in the `annotations` element differs from Examples 1-3 above, because the subject is directly referred 
+to by a `references` attribute. Each `annotation` element has a `references` attribute that 
+points to the `id` attribute of the element being annotated. Stated another way, what is listed in the `references` attribute 
+is the id of the subject of the semantic annotation. Any of the EML modules may be referenced by the `references` 
 attribute and because ids are unique within an EML document, this is a single subject. 
 
 - The *subject* of the semantic statement is implictly the element containing the referenced `id`. 
@@ -516,17 +520,28 @@ on their own requirements (e.g., domain coverage, structure, adaptability, relia
 ontologies are already widely used, and were employed in the examples above:
 
 <a name="envo"></a>
+
 - **Enviromment Ontology (EnvO)**  definition, etc here
 
 <a name="iao"></a>
+
 - **Inforamtion Artifact Ontology (IAO)**  definition, etc here
 
 <a name="ecso"></a>
+
 - **Ecosystem Ontology (EcsO)**  definition, etc here
 
+<a name="ncbi_taxon"></a>
 
+- **NCBITaxon Ontlogy** http://www.ontobee.org/ontology/NCBITaxon
 
+<a name="oboe"></a>
 
+- **Extensible Ontology for Observations (OBOE)** (https://github.com/NCEAS/oboe)
+
+<a name="ecso"></a>
+
+- **ECoSystem Ontology, ECSO** (https://github.com/DataONEorg/sem-prov-ontologies/tree/master/observation). 
 
 <a name="additional-background"></a>
 
