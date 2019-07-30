@@ -510,7 +510,7 @@ the categories, properties, and relationships among those terms.
 **resolve**  definition here
 
 <a name="glossary-rdf"></a> 
-**Resource Description Framework (RDF)**:A family of World Wide Web Consortium (W3C) recommendations that enable the encoding, exchange, and reuse of structured metadata. The RDF data model employs semantic triples composed of a subject, predicate, and object to share and integrate data across different applications and communities through the Web. 
+**Resource Description Framework (RDF)**: A family of World Wide Web Consortium (W3C) recommendations that enable the encoding, exchange, and reuse of structured metadata. The RDF data model employs semantic triples composed of a subject, predicate, and object to share and integrate data across different applications and communities through the Web. 
 
 <a name="glossary-semantic-statement"></a>
 **semantic statement**  definition here
@@ -531,15 +531,15 @@ ontologies are already widely used, and were employed in the examples above:
 
 <a name="ecso"></a>
 
-- **Ecosystem Ontology (ECSO)**  (https://github.com/DataONEorg/sem-prov-ontologies/tree/master/observation). definition, etc here
+- **ECSO (Ecosystem Ontology)**  (https://github.com/DataONEorg/sem-prov-ontologies/tree/master/observation). definition, etc here
 
 <a name="envo"></a>
 
-- **Environment Ontology (EnvO)**  definition, etc here
+- **EnvO (Environment Ontology)**  definition, etc here
 
 <a name="iao"></a>
 
-- **Information Artifact Ontology (IAO)**  definition, etc here
+- **IAO (Information Artifact Ontology)**  definition, etc here
 
 
 <a name="ncbi_taxon"></a>
@@ -548,7 +548,7 @@ ontologies are already widely used, and were employed in the examples above:
 
 <a name="oboe"></a>
 
-- **Extensible Ontology for Observations (OBOE)** (https://github.com/NCEAS/oboe) definition, etc here
+- **OBOE (Extensible Ontology for Observations)** (https://github.com/NCEAS/oboe) definition, etc here
 
 <a name="re3data"></a>
 
