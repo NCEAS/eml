@@ -33,7 +33,7 @@ from a structured system where "carbon dioxide flux" is lower in the hierarchy t
 
 EML 2.2.0 now provides ways to embed references to *[external vocabularies](#glossary-external-vocabulary)*
 using [HTTP uniform resource identifiers (or URI's)](#glossary-uri).
-The process is called *[semantic annotation](#glossary-semantic annotation)*, and provides a  
+The process is called *semantic annotation*, and provides a  
 rigorous, expressive and consistent interpretation of the metadata. Usually the external 
 reference (or annotation) is to a *[knowledge graph](#glossary-knowledge-graph)*, sometimes called 
 a *controlled vocabulary* or *[ontology](#glossary-ontology)*.    
@@ -497,7 +497,7 @@ Things to check:
 
 <a name="glossary"></a>
 
-### Glossary -  link terms in the text above to here.
+### Glossary
 
 <a name="glossary-ontology"></a> 
 **ontology**: A knowledge *graph* representation of a set of terms, including their names, and descriptions of 
@@ -523,13 +523,14 @@ the categories, properties, and relationships among those terms.
 <a name="glossary-subclass"></a>
 **subclasss**  definition here
 
+
 <a name="glossary-semantic-statement"></a>
 **semantic statement**  definition here
 
 
 <a name="external-vocabularies"></a>
 
-### Vocalularies used in Examples
+### Vocabularies used in Examples
 
 Communities using EML annotation will develop recommendations for suitable vocabularies, based
 on their own requirements (e.g., domain coverage, structure, adaptability, reliabliity and maintenance model). The following
@@ -537,11 +538,11 @@ ontologies are already widely used, and were employed in the examples above:
 
 <a name="envo"></a>
 
-- **Enviromment Ontology (EnvO)**  definition, etc here
+- **Environment Ontology (EnvO)**  definition, etc here
 
 <a name="iao"></a>
 
-- **Inforamtion Artifact Ontology (IAO)**  definition, etc here
+- **Information Artifact Ontology (IAO)**  definition, etc here
 
 <a name="ecso"></a>
 
@@ -549,7 +550,7 @@ ontologies are already widely used, and were employed in the examples above:
 
 <a name="ncbi_taxon"></a>
 
-- **NCBITaxon Ontlogy** http://www.ontobee.org/ontology/NCBITaxon definition, etc here
+- **NCBITaxon Ontology** http://www.ontobee.org/ontology/NCBITaxon definition, etc here
 
 <a name="oboe"></a>
 
@@ -557,7 +558,7 @@ ontologies are already widely used, and were employed in the examples above:
 
 <a name="ecso"></a>
 
-- **ECoSystem Ontology, ECSO** (https://github.com/DataONEorg/sem-prov-ontologies/tree/master/observation). definition, etc here
+- **Ecosystem Ontology, ECSO** (https://github.com/DataONEorg/sem-prov-ontologies/tree/master/observation). definition, etc here
 
 <a name="schema.org"></a>
 
