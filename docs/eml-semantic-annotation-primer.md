@@ -505,14 +505,15 @@ the categories, properties, and relationships among those terms.
 <a name="glossary-pointer"></a>
 **pointer**  definition here
 
+
+<a name="glossary-resolve"></a>
+**resolve**  definition here
+
 <a name="glossary-rdf"></a> 
 **Resource Description Framework (RDF)**:A family of World Wide Web Consortium (W3C) recommendations that enable the encoding, exchange, and reuse of structured metadata. The RDF data model employs semantic triples composed of a subject, predicate, and object to share and integrate data across different applications and communities through the Web. 
 
 <a name="glossary-semantic-statement"></a>
 **semantic statement**  definition here
-
-<a name="glossary-resolve"></a>
-**resolve**  definition here
 
 <a name="glossary-subclass"></a>
 **subclass**  definition here
@@ -522,11 +523,15 @@ the categories, properties, and relationships among those terms.
 
 <a name="external-vocabularies"></a>
 
-### Vocabularies used in Examples
+### Vocabularies used in examples
 
-Communities using EML annotation will develop recommendations for suitable vocabularies, based
+Communities using EML annotations will develop recommendations for suitable vocabularies, based
 on their own requirements (e.g., domain coverage, structure, adaptability, reliabliity and maintenance model). The following
 ontologies are already widely used, and were employed in the examples above:
+
+<a name="ecso"></a>
+
+- **Ecosystem Ontology (ECSO)**  (https://github.com/DataONEorg/sem-prov-ontologies/tree/master/observation). definition, etc here
 
 <a name="envo"></a>
 
@@ -536,9 +541,6 @@ ontologies are already widely used, and were employed in the examples above:
 
 - **Information Artifact Ontology (IAO)**  definition, etc here
 
-<a name="ecso"></a>
-
-- **Ecosystem Ontology (EcsO)**  definition, etc here
 
 <a name="ncbi_taxon"></a>
 
@@ -548,18 +550,13 @@ ontologies are already widely used, and were employed in the examples above:
 
 - **Extensible Ontology for Observations (OBOE)** (https://github.com/NCEAS/oboe) definition, etc here
 
-<a name="ecso"></a>
-
-- **Ecosystem Ontology, ECSO** (https://github.com/DataONEorg/sem-prov-ontologies/tree/master/observation). definition, etc here
-
-<a name="schema.org"></a>
-
-- **schema.org**  definition, etc here
-
 <a name="re3data"></a>
 
 - **re3data.org**  definition, etc here
 
+<a name="schema.org"></a>
+
+- **schema.org**  definition, etc here
 
 
 
@@ -577,12 +574,6 @@ Following are tutorials and supplemental background reading
  
 * Tim Berners-Lee's article on the semantic web: ```Berners-Lee, T., Hendler, J., & Lassila, O. (2001). The semantic web. Scientific american, 284(5), 34-43.```
 
-
-## Footnotes
-
-might not be needed.
-
-[^footnote1]: this might be a footnote about URIs
 
 
 ## parking area
