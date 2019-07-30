@@ -493,7 +493,7 @@ Things to check:
 ### Glossary
 
 <a name="glossary-dereference"></a>
-**dereference**  definition here
+**dereference**: To interpret a URI and retrieve information about a resource stored in another location   
 
 <a name="glossary-knowledge-graph"></a>
 **knowledge graph**  definition here
@@ -503,20 +503,15 @@ Things to check:
 the categories, properties, and relationships among those terms.
 
 <a name="glossary-pointer"></a>
-**pointer**  definition here
+**pointer**: A kind of reference to a datum stored in computer memory.   
 
 
 <a name="glossary-resolve"></a>
-**resolve**  definition here
+**resolve**: To interpret a URI and determine a course of action for dereferencing the URI.
 
 <a name="glossary-rdf"></a> 
 **Resource Description Framework (RDF)**: A family of World Wide Web Consortium (W3C) recommendations that enable the encoding, exchange, and reuse of structured metadata. The RDF data model employs semantic triples composed of a subject, predicate, and object to share and integrate data across different applications and communities through the Web. 
 
-<a name="glossary-semantic-statement"></a>
-**semantic statement**  definition here
-
-<a name="glossary-subclass"></a>
-**subclass**  definition here
 
 <a name="glossary-uri"></a>
 **uniform resource identifier (URI)**: A string of characters that unambiguously identifies a particular resource. For semantic annotations, the components of semantic triples are ideally HTTP URIs that resolve and describe precise definitions and relationships to other terms, using Web technology.
