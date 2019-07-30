@@ -232,12 +232,15 @@ All the annotations for a resource can be group together under an `annotations` 
 annotation must have its subject specifically identified with a `references` attribute that points to the subject's id. The group
 of annotations must be placed TO DO< WHERE IN DOC?
 
-Example 4 contains 3 different annotations. In the first, the subject is the `dataTable` element with the `id` 
-attribute "CDF-biodiv-table". It's semantic 
-statement can be read as "the dataTable with the id 'CDR-biodiv-table' is about grassland biome(s)".
-And the annotation components are analagous to Examples 2 above, again referencing terms in [IAO](#iao) and [ENVO](#envo).
+Example 4 contains 3 different annotations. 
 
-The second and third annotations both have an individual their subjects -- the `creator` element that has the id "adam.shepherd".
+In the first, the subject is the `dataTable` element with the `id` 
+attribute "CDF-biodiv-table". Its annotation components are analogous to Example 2 above, again referencing terms in [IAO](#iao) and [ENVO](#envo). The semantic 
+statement can be read as 
+
+-  "the dataTable with the `id` 'CDR-biodiv-table' is about grassland biome(s)".
+
+The second and third annotations both have an individual as their subjects -- the `creator` element that has the `id` "adam.shepherd".
 
 Respectively, their semantic statements can be read as
 
@@ -248,10 +251,10 @@ The ontologies used for adam.shepherd are
 
 - in the second annotation 
     - `propertyURI` : an RDF built-in type, "is a"  (as in, `the subject is an instance of a class`)
-    - `valueURI` : schema.org's concept of a "person"
+    - `valueURI` : [schema.org's](#schema.org) concept of a "person"
 - third annotation
     - `propertyURI` : another [schema.org](#schema.org) concept for a relationship, "is a member of"
-    - `valueURI` : the DOI for the organization BCO-DMO, which is managed by [re3data.org](#re3data).
+    - `valueURI` : the DOI, which is managed by [re3data.org](#re3data), for the organization BCO-DMO.
 
 
 ```xml
