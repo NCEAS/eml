@@ -394,18 +394,16 @@ Note that the above *RDF triple* consists of three HTTP URIs. While the exact di
 
 The software needed to extract semantic annotations out of EML, and convert these into valid RDF triples, is under development at NCEAS and EDI, and through the rOpenSci project. The RDF triple described above, however, hopefully gives an idea of how such triples, constructed of dereferenceable HTTP URIs, can be very useful. 
 
-The sections below describe the exact syntax for embedding annotations in EML 2.2.0 documents. 
-
 
 <a name="rdf"></a>
 
 ### RDF Graphs 
 
-A graph consists of resources linked to other resources. Thus the simplest graph structure is when you specify how one resource (node) is linked to another resource (node).
+A graph consists of resources linked to other resources. Thus, the simplest graph structure is when you specify how one resource (node) is linked to another resource (node).
 
 The parts of a triple (subject, predicate, and object) become nodes and links in a graph. Below are examples of how annotations can be converted to RDF triples in RDF/XML, so that the RDF information is now computer-readable. Be aware that there are several formats for serializing RDF, including RDF/XML, Turtle, N-Triples, and N3, that vary in the level of how human-readable they are. 
 
-This process of converting a semantic annotation in EML into RDF, is done by parsing applications under development at EDI, NCEAS, rOpenSci, and other data repositories. Careful examination of the examples below also show references to "owl:Class", "owl:ObjectProperty", and other statements that may not be familiar. These are fundamental *entities* or building blocks in W3C-recommended Semantic Web languages, and are determined by the relationships that the triple component identifiers (HTTP URI's) have within their native knowledge graph/ontology.
+This process of converting a semantic annotation in EML into RDF, is done by parsing applications under development at EDI, NCEAS, rOpenSci, and other data repositories. Careful examination of the examples below also show references to "owl:Class", "owl:ObjectProperty", and other statements that may not be familiar. These are fundamental *entities* or building blocks in W3C-recommended Semantic Web languages, and are determined by the relationships that the triple component identifiers (HTTP URIs) have within their native knowledge graph/ontology.
 
 <a name="rdf-eml-example-3"></a>
 
