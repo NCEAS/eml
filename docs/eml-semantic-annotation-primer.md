@@ -58,9 +58,9 @@ you would like a longer explanation.
     1. **[URIs:](#uris)** defined, and as components of semantic triples
     1. **[RDF model:](#rdf)** the W3C's RDF model with example graphs based on EML annotations
     1. **[Logical consistency:](#logical-consistency)** Common mistakes and how to check for them
-    1. **[Vocabularies used in examples:](#external-vocabularies)** Descriptions an links out to explore further
+    1. **[Vocabularies and repositories used in examples:](#external-vocabularies)** Descriptions an links out to explore further
     1. **[Supplemental background information:](#additional-background)** The EML annotation approach here is compatible with recommendations by the World Wide Web Consortium (W3C) for construction of the Semantic Web. A wealth of material is available; a few selected ones are here.
-
+    1. **[Frequently asked questions:](#FAQ)** Some questions asked by readers, and their answers
 
 
 <a name="sa-eml22"></a>
@@ -523,7 +523,7 @@ the categories, properties, and relationships among those terms.
 
 <a name="external-vocabularies"></a>
 
-### Vocabularies used in examples
+### Vocabularies and repositories used in examples
 
 Communities using EML annotations will develop recommendations for suitable vocabularies, based
 on their own requirements (e.g., domain coverage, structure, adaptability, reliabliity and maintenance model). The following
@@ -531,33 +531,38 @@ ontologies are already widely used, and were employed in the examples above:
 
 <a name="ecso"></a>
 
-- **ECSO (Ecosystem Ontology)**  (https://github.com/DataONEorg/sem-prov-ontologies/tree/master/observation). definition, etc here
+- **ECSO (Ecosystem Ontology)**  (https://github.com/DataONEorg/sem-prov-ontologies/tree/master/observation).\
+An ontology for ecosystem measurements under development by the Arctic Data Center and DataONE.
 
 <a name="envo"></a>
 
-- **EnvO (Environment Ontology)**  definition, etc here
+- **EnvO (Environment Ontology)**  (http://www.obofoundry.org/ontology/envo.html)
+An OBO Foundry ontology for the concise, controlled description of environments.
 
 <a name="iao"></a>
 
-- **IAO (Information Artifact Ontology)**  definition, etc here
-
+- **IAO (Information Artifact Ontology)**  (http://www.obofoundry.org/ontology/iao.html)
+An OBO Foundry ontology of information entities.
 
 <a name="ncbi_taxon"></a>
 
-- **NCBITaxon Ontology** http://www.ontobee.org/ontology/NCBITaxon definition, etc here
+- **NCBITaxon Ontology** http://www.obofoundry.org/ontology/ncbitaxon.html 
+An OBO Foundry ontology representation of the National Center for Biotechnology Information organismal taxonomy.
 
 <a name="oboe"></a>
 
-- **OBOE (Extensible Ontology for Observations)** (https://github.com/NCEAS/oboe) definition, etc here
+- **OBOE (Extensible Ontology for Observations)** (https://github.com/NCEAS/oboe) 
+An ontology for scientific observations and measurements developed by DataONE and NCEAS.
 
 <a name="re3data"></a>
 
-- **re3data.org**  definition, etc here
+- **re3data.org (Registry of Research Data Repositories)** (https://www.re3data.org/)
+A global registry of research data repositories spanning all academic disciplines.
 
 <a name="schema.org"></a>
 
-- **schema.org**  definition, etc here
-
+- **schema.org** (https://schema.org/) 
+An initiative to create and support a common set of schemas for structured data markup on web pages. Extensions work with the core vocabulary to provide more specialized and/or deeper vocabularies.
 
 
 
@@ -574,7 +579,7 @@ Following are tutorials and supplemental background reading
  
 * Tim Berners-Lee's article on the semantic web: ```Berners-Lee, T., Hendler, J., & Lassila, O. (2001). The semantic web. Scientific american, 284(5), 34-43.```
 
-
+<a name="FAQ"></a>
 
 ## Frequently asked questions
 
