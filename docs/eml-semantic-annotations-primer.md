@@ -9,38 +9,30 @@ It provides precise definitions of concepts and clarifies the relationships betw
 way. The process of creating semantic annotations may seem tedious, but the payoff is enhanced discovery and reuse 
 of your data. 
 
-The main difference between semantic annotation and simply adding keywords is that 
-- annotations can be read and interpreted by computers, and also 
-- describe the relationship between a specific part of the metadata and the external vocabulary.
+The main differences between semantic annotation and simply adding keywords are: 
+- annotations can be read and interpreted by computers 
+- annotations describe the relationship between a specific part of the metadata and an external vocabulary
  
 
-**Benefits of annotation:** Annotation vastly enhances data 
+**Benefits of annotation:** Annotations vastly enhance data 
 discovery and interpretation. Semantic annotations will make it easier for others to find and reuse data 
-(and thus give proper credit). 
+(and thus give proper credit), including the following cases: 
 
-1. **Equivalent concepts:** one dataset uses the phrase "carbon dioxide flux" and another dataset "CO2 flux". 
+1. **Equivalent concepts:** Assume one dataset uses the phrase "carbon dioxide flux" and another dataset "CO2 flux". 
 An information system is able to recognize that these datasets are about equivalent concepts, 
 if the datasets were annotated with the same identifier for that measurement. 
-1. **Disambiguation:** if you perform a search for datasets about "litter" (as in "plant litter"), if datasets have been annotated the 
+1. **Disambiguation:** Assume you are searching for datasets about "litter" (as in "plant litter"). If datasets have been annotated, the 
 system will be able to understand the difference between your meaning and other meanings (e.g., "garbage", a "group 
 of animals born together", a "device for transporting the wounded", etc.). 
 Each type of "litter" would be associated with a different identifier, and connected to related concepts. 
-1. **Hierarchical searches:** if you search for 
+1. **Hierarchical searches:** If you search for 
 datasets about "carbon flux", then datasets about "carbon dioxide flux" can also be returned because "carbon 
 dioxide flux" is a type of "carbon flux".  This is possible because the concepts came 
 from a structured system where "carbon dioxide flux" is lower in the hierarchy than "carbon flux".
 
 
 EML 2.2.0 now provides ways to embed references to *[external vocabularies](#glossary-external-vocabulary)*
-using [HTTP uniform resource identifiers (or URI's)](#glossary-uri).
-The process is called *semantic annotation*, and provides a  
-rigorous, expressive and consistent interpretation of the metadata. Usually the external 
-reference (or annotation) is to a *[knowledge graph](#glossary-knowledge-graph)*, sometimes called 
-a *controlled vocabulary* or *[ontology](#glossary-ontology)*.    
-The annotation provides a computer-usable 
-[ pointer](#glossary-pointer) (the [HTTP URI](#glossary-uri)) 
-that [resolves](#glossary-reslove) (and [dereferences](#glossary-dereference)) 
-to a useful description, definition or other relationships for that annotated resource. 
+using HTTP [uniform resource identifiers](#glossary-uri) (or URIs). The process is called *semantic annotation*, and provides a rigorous, expressive and consistent interpretation of the metadata. Usually the external reference (or annotation) is to a *[knowledge graph](#glossary-knowledge-graph)*, sometimes called a *controlled vocabulary* or *[ontology](#glossary-ontology)*. The annotation provides a computer-usable [pointer](#glossary-pointer) (the HTTP URI) that [resolves](#glossary-resolve) (and [dereferences](#glossary-dereference)) to a useful description, definition or other relationships for that annotated resource. 
 
 
 ### Take-home messages
