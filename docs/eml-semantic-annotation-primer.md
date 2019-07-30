@@ -316,7 +316,7 @@ The semantic statements can be read as "'adam.shepherd', the creator (of the dat
 
 - The *subject* of the semantic statement is the `creator` element with the `id` attribute "adam.shepherd". 
 - The annotation itself has 2 parts
-    - `propertyURI` is "https://schema.org/memberOf", which resolves to "is a menber of", from [schema.org](#schema.org)
+    - `propertyURI` is "https://schema.org/memberOf", which resolves to "is a member of", from [schema.org](#schema.org)
     - `valueURI` is "https://doi.org/10.17616/R37P4C", a DOI which resolves to "BCO-DMO". 
 
 
