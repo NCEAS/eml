@@ -236,21 +236,30 @@ attribute and because ids are unique within an EML document, this is a single su
 
 #### Example 4: `annotations` element annotation
 
-Example 4 contains 3 different annotations. For the first annotation, 
-the subject of the semantic triple is the `dataTable` element with the `id` attribute "CDF-biodiv-table". Notice 
-that the annotation has a `references` attribute that points to the subject id. The object property of the triple 
-is "http://purl.obolibrary.org/obo/IAO_0000136". Finally, the value (object) in the semantic triple 
-is "http://purl.obolibrary.org/obo/ENVO_01000177", which resolves to the "grassland biome" term in the 
-EnvO ontology (http://www.obofoundry.org/ontology/envo.html). Taken together, the first semantic statement could be 
-read as "the dataTable with the id 'CDR-biodiv-table' is about grassland biome(s)".
+All the annotations for a resource can be group together under an `annotations` element. If you use this construct, each
+annotation must have its subject specifically identified with a `references` attribute that points to the subject's id. The group
+of annotations must be placed TO DO< WHERE IN DOC?
 
-The second annotation has as its subject the `creator` element that has the id "adam.shepherd", 
-the object property "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" and the value (object) "https://schema.org/Person". 
-This statement can be interpreted as "'adam.shepherd', the creator (of the dataset), is a person".
+Example 4 contains 3 different annotations. In the first, the subject is the `dataTable` element with the `id` 
+attribute "CDF-biodiv-table". It's semantic 
+statement can be read as "the dataTable with the id 'CDR-biodiv-table' is about grassland biome(s)".
+And the annotation components are analagous to Examples 2 above, again referencing terms in [IAO](#iao) and [ENVO](#envo).
 
-The third annotation also has as its subject the `creator` element that has the id "adam.shepherd". 
-The object property is "https://schema.org/memberOf" and the object (value) is "https://doi.org/10.17616/R37P4C". 
-This statement can be read as "'adam.shepherd', the creator (of the dataset), is a member of BCO-DMO".
+The second and third annotations both have an individual their subjects -- the `creator` element that has the id "adam.shepherd".
+
+Respectively, their semantic statements can be read as
+
+-  "'adam.shepherd', the creator (of the dataset), is a person". 
+-  "'adam.shepherd', the creator (of the dataset), is a member of BCO-DMO".
+
+The ontologies used for adam.shepherd are
+
+- in the second annotation 
+    - `propertyURI` : an RDF built-in type, "is a"  (as in, `the subject is an instance of a class`)
+    - `valueURI` : schema.org's concept of a "person"
+- third annotation
+    - `propertyURI` : another schema.org concept for a relationship, "is a member of"
+    - `valueURI` : the DOI for an organization, BCO-DMO
 
 
 ```xml
@@ -293,7 +302,8 @@ This statement can be read as "'adam.shepherd', the creator (of the dataset), is
 
 ### `eml/additionalMetadata` element annotation
 
-If an `additionalMetadata` section holds a semantic annotation, it must have a `describes` element (to hold the subject) with a `metadata` element containing at least one `annotation` element. 
+If an `additionalMetadata` section holds a semantic annotation, it must have a `describes` element 
+(to hold the subject) with a `metadata` element containing at least one `annotation` element. 
 
 - The *subject* of the semantic statement has its id contained in the `describes` element. 
 - The annotation itself is within the `additionalMetadata` `metadata` section
@@ -304,9 +314,15 @@ If an `additionalMetadata` section holds a semantic annotation, it must have a `
 
 #### Example 5: `additionalMetadata` element annotation
 
-The following `additionalMetadata` annotation describes a semantic statement where the subject is the `creator` element with the `id` attribute "adam.shepherd". The object property of the statement is "https://schema.org/memberOf". 
-Finally, the object (value) in the semantic statement is the DOI for BCO-DMO, "https://doi.org/10.17616/R37P4C". 
-Taken together, the semantic statement could be read as "'adam.shepherd' (the creator of the dataset) is a member of BCO-DMO".
+Example 5 shows one of the same annotations as Example 4, but this time, it is contained in an `additionalMetadata` section.
+
+The semantic statements can be read as "'adam.shepherd', the creator (of the dataset), is a person".
+
+
+- The *subject* of the semantic statement is the `creator` element with the `id` attribute "adam.shepherd". 
+- The annotation itself has 2 parts
+    - `propertyURI` is "https://schema.org/memberOf", which resolves to "is a menber of", from [schema.org](#schema.org)
+    - `valueURI` is "https://doi.org/10.17616/R37P4C", a DOI which resolves to "BCO-DMO". 
 
 
 ```xml
