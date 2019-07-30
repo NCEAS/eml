@@ -258,8 +258,8 @@ The ontologies used for adam.shepherd are
     - `propertyURI` : an RDF built-in type, "is a"  (as in, `the subject is an instance of a class`)
     - `valueURI` : schema.org's concept of a "person"
 - third annotation
-    - `propertyURI` : another schema.org concept for a relationship, "is a member of"
-    - `valueURI` : the DOI for an organization, BCO-DMO
+    - `propertyURI` : another [schema.org](#schema.org) concept for a relationship, "is a member of"
+    - `valueURI` : the DOI for the organization BCO-DMO, which is managed by [re3data.org](#re3data).
 
 
 ```xml
@@ -531,7 +531,7 @@ the categories, properties, and relationships among those terms.
 
 ### Vocalularies used in Examples
 
-Communities using EML annotation will develop recommendations for suitable vocabularies to be used in annotations, based
+Communities using EML annotation will develop recommendations for suitable vocabularies, based
 on their own requirements (e.g., domain coverage, structure, adaptability, reliabliity and maintenance model). The following
 ontologies are already widely used, and were employed in the examples above:
 
@@ -549,15 +549,27 @@ ontologies are already widely used, and were employed in the examples above:
 
 <a name="ncbi_taxon"></a>
 
-- **NCBITaxon Ontlogy** http://www.ontobee.org/ontology/NCBITaxon
+- **NCBITaxon Ontlogy** http://www.ontobee.org/ontology/NCBITaxon definition, etc here
 
 <a name="oboe"></a>
 
-- **Extensible Ontology for Observations (OBOE)** (https://github.com/NCEAS/oboe)
+- **Extensible Ontology for Observations (OBOE)** (https://github.com/NCEAS/oboe) definition, etc here
 
 <a name="ecso"></a>
 
-- **ECoSystem Ontology, ECSO** (https://github.com/DataONEorg/sem-prov-ontologies/tree/master/observation). 
+- **ECoSystem Ontology, ECSO** (https://github.com/DataONEorg/sem-prov-ontologies/tree/master/observation). definition, etc here
+
+<a name="schema.org"></a>
+
+- **schema.org**  definition, etc here
+
+<a name="re3data"></a>
+
+- **re3data.org**  definition, etc here
+
+
+
+
 
 <a name="additional-background"></a>
 
