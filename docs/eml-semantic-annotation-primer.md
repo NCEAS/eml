@@ -390,7 +390,7 @@ An RDF triple can be constructed as follows, with subject URI, predicate URI, an
 
 While our focus here is on the semantic annotation of EML documents, it is easy to see how the RDF statements can be used to describe and inter-relate any resources that have unique, persistent HTTP URIs!
 
-Note that the above *RDF triple* consists of three HTTP URIs. While the exact distinction among what is a URI, a URN, and a URL can be debated, for our purposes, these HTTP URIs are can be considered both the *name* and *web location* of a resource. Content negotiation between a Web server and a client (which might be a browser, or a Python or R script) can enable an HTTP URI to dereference in ways optimized for the requesting client -- e.g. in one case, presenting a human-readable view of metadata for a dataset, and in another, activating a download of that dataset for import into a script. [SC: we should include a link to the FAQ here... can we point directly to the question about URIs vs. URNs?] 
+Note that the above *RDF triple* consists of three HTTP URIs. While the exact distinction among what is a URI, a URN, and a URL can be debated, for our purposes, these HTTP URIs are can be considered both the *name* and *web location* of a resource. Content negotiation between a Web server and a client (which might be a browser, or a Python or R script) can enable an HTTP URI to dereference in ways optimized for the requesting client -- e.g. in one case, presenting a human-readable view of metadata for a dataset, and in another, activating a download of that dataset for import into a script. Read additional information about URIs, URNs and URLs [here](#URIvsURL).
 
 The software needed to extract semantic annotations out of EML, and convert these into valid RDF triples, is under development at NCEAS and EDI, and through the rOpenSci project. The RDF triple described above, however, hopefully gives an idea of how such triples, constructed of dereferenceable HTTP URIs, can be very useful. 
 
@@ -586,13 +586,12 @@ Below are answers to questions some readers had, which may be helpful to you. If
 A: Within the context of semantic annotation, "dereferencing" refers to the process of interpreting a URI, and providing "useful information" back about the Resource of interest. The phrase "resolving a URI" is often used synonymously with "dereferencing", but technically "resolution" refers to the process of determining HOW and WHAT to do with the URI, whereas "dereferencing" is explicitly about the action taken, which is typically retrieving a representation of the Resource of interest. The formal specification for these terms and what they mean is found in the IETF's (Internet Engineering Task Force) RFC (Request for Comment) 3986 (https://tools.ietf.org/html/rfc3986).
 
 
-**Q: What is the difference between an URI and a URL? Sample URIs look a lot like a URL...**
+**Q: What is the difference between an URI and a URL? Sample URIs look a lot like URLs...**
+
+<a name="URIvsURL"></a>
 
 A: The distinctions among URIs (Uniform Resource Identifiers), URLs (Uniform Resource Locators), and URNs (Uniform Resource Names), relate to differentiating the functionalities of identifying a Resource, as opposed to locating a Resource, or doing both. URLs are all URIs (with some edge case exceptions subject to argument), and URNs are also URIs. In many cases, URIs serve both to name and locate a Resource. Within the vision of the Semantic Web, URIs are ideally unique, persistent URNs identifying some Web Resource, that can also serve to locate and retrieve (dereference) a representation of that Resource (URLs). The formal specification for these terms and what they mean is found in the IETF's RFC 3986, section 1.1.3 (https://tools.ietf.org/html/rfc3986#section-1.1.3). Another acronym one may encounter with increasing frequency is IRI (Internationalized Resource Identifier) that simply extends the concept of a URI to include full Unicode character set, rather than just ASCII in its construction (https://tools.ietf.org/html/rfc3987)
 
-**Q: When are ID’s required in the EML (for annotations)?**
-
-A:
 
 **Q: What is SKOS?**
 
