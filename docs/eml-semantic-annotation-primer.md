@@ -73,7 +73,7 @@ In **EML 2.2.0** there are 5 places where annotation elements can appear in an E
 - **entity-level** -- an `annotation` element is a child of a dataset's entity (e.g., `dataTable` )
 - **attribute** -- an `annotation` element is a child of a dataset entity's `attribute` element
 - **eml/annotations** -- a container for a group of `annotation` elements, using references
-- **eml/additionalMetadata** -- `annotation` elements that reference a main-body element by its id
+- **eml/additionalMetadata** -- `annotation` elements that reference a main-body element by its `id` attribute
 
 ### Annotation element structure
 
@@ -90,7 +90,7 @@ in the EML record. Here is the basic structure. Sections below have more example
 An annotation element always has a parent-EML element, which is the 'thing' being annotated, or the *subject*.
 (e.g., `dataset`, `attribute`, see above). The annotation element
 has two required child elements, `propertyURI` and `valueURI`. Together, these three form a "semantic statement", 
-that can become a "semantic triple". The concept of a triple is covered in more detail  (see [Semantic Triples](#se,amtoc-triple), 
+that can become a "semantic triple". The concept of a triple is covered in more detail  (see [Semantic Triples](#semantic-triples), 
 below). 
 Here, we concentrate on the structure of an annotation within the EML doc itself:
 
@@ -98,15 +98,15 @@ Here, we concentrate on the structure of an annotation within the EML doc itself
   - the element's text is the URI for the concept in an external vocabulary. The identifier represents a precise definition, relationships to other concepts, etc. 
   - the XML attribute, `label` is required
       - it should be suitable for application interfaces to display to humans
-      - should be populated by values from the referenced vocabulary's label field (e,g, `rdfs:label` or `skos:prefLabel` ). Note that this assumes the referenced vocabulary is stored as an RDF document, which is best practice for vocabularies..
+      - should be populated by values from the referenced vocabulary's label field (e,g, `rdfs:label` or `skos:prefLabel` ). Note that this assumes the referenced vocabulary is stored as an RDF document, which is best practice for vocabularies.
 
 **When are IDs required in the EML doc?**
 To be precise, all annotations must have an unambiguous subject. 
-At the dataset-, entity- or attribute- level, the parent element is the *subject*. So, if an element has
+At the dataset, entity, or attribute level, the parent element is the *subject*. So, if an element has
 an annotation child, it must also have an id (i.e. the subject, or parent element must have an `id` attribute value). 
 Annotations at `eml/annotations` or `eml/additionalMetadata` will have subjects defined with a `references` attribute or `describes` 
 element. As for other internal EML references, an `id` is required. 
-With EML-2.2, the parser will check that an `id` attribute is present on elements with annotation children. 
+With EML 2.2.0, the parser will check that an `id` attribute is present on elements with annotation children. 
 As a reminder, the `id` must be unique within an EML document. See examples below.
 
 
