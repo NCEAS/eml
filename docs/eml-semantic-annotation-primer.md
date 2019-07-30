@@ -492,36 +492,33 @@ Things to check:
 
 ### Glossary
 
-<a name="glossary-ontology"></a> 
-**ontology**: A knowledge *graph* representation of a set of terms, including their names, and descriptions of 
-the categories, properties, and relationships among those terms.
-
-<a name="glossary-rdf"></a> 
-**Resource Description Framework (RDF)**:A family of World Wide Web Consortium (W3C) recommendations that enable the encoding, exchange, and reuse of structured metadata. The RDF data model employs semantic triples composed of a subject, predicate, and object to share and integrate data across different applications and communities through the Web. 
-
-<a name="glossary-uri"></a>
-**uniform resource identifier (URI)**: A string of characters that unambiguously identifies a particular resource. For semantic annotations, the components of semantic triples are ideally HTTP URIs that resolve and describe precise definitions and relationships to other terms, using Web technology.
-
-<a name="glossary-pointer"></a>
-**Pointer**  definition here
+<a name="glossary-dereference"></a>
+**dereference**  definition here
 
 <a name="glossary-knowledge-graph"></a>
 **knowledge graph**  definition here
 
+<a name="glossary-ontology"></a> 
+**ontology**: A knowledge *graph* representation of a set of terms, including their names, and descriptions of 
+the categories, properties, and relationships among those terms.
 
-<a name="glossary-dereference"></a>
-**dereference**  definition here
+<a name="glossary-pointer"></a>
+**pointer**  definition here
 
-
-<a name="glossary-subclass"></a>
-**subclasss**  definition here
-
+<a name="glossary-rdf"></a> 
+**Resource Description Framework (RDF)**:A family of World Wide Web Consortium (W3C) recommendations that enable the encoding, exchange, and reuse of structured metadata. The RDF data model employs semantic triples composed of a subject, predicate, and object to share and integrate data across different applications and communities through the Web. 
 
 <a name="glossary-semantic-statement"></a>
 **semantic statement**  definition here
 
 <a name="glossary-resolve"></a>
 **resolve**  definition here
+
+<a name="glossary-subclass"></a>
+**subclass**  definition here
+
+<a name="glossary-uri"></a>
+**uniform resource identifier (URI)**: A string of characters that unambiguously identifies a particular resource. For semantic annotations, the components of semantic triples are ideally HTTP URIs that resolve and describe precise definitions and relationships to other terms, using Web technology.
 
 <a name="external-vocabularies"></a>
 
