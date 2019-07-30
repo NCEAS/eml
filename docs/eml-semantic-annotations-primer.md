@@ -31,7 +31,7 @@ dioxide flux" is a type of "carbon flux".  This is possible because the concepts
 from a structured system where "carbon dioxide flux" is lower in the hierarchy than "carbon flux".
 
 
-EML 2.2.0 now provides ways to embed references to *[external vocabularies](#glossary-external-vocabulary)*
+EML 2.2.0 now provides ways to embed references to *[external vocabularies](#external-vocabularies)*
 using HTTP [uniform resource identifiers](#glossary-uri) (or URIs). The process is called *semantic annotation*, and provides a rigorous, expressive and consistent interpretation of the metadata. Usually the external reference (or annotation) is to a *[knowledge graph](#glossary-knowledge-graph)*, sometimes called a *controlled vocabulary* or *[ontology](#glossary-ontology)*. The annotation provides a computer-usable [pointer](#glossary-pointer) (the HTTP URI) that [resolves](#glossary-resolve) (and [dereferences](#glossary-dereference)) to a useful description, definition or other relationships for that annotated resource. 
 
 
@@ -519,6 +519,8 @@ the categories, properties, and relationships among those terms.
 <a name="glossary-semantic-statement"></a>
 **semantic statement**  definition here
 
+<a name="glossary-resolve"></a>
+**resolve**  definition here
 
 <a name="external-vocabularies"></a>
 
