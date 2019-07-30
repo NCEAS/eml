@@ -114,7 +114,7 @@ As a reminder, the `id` must be unique within an EML document. See examples belo
 
 Annotations for top-level resources, entities, and attributes follow the same general pattern.
 
-- The *subject* of the semantic statement is the parent element of the annotation. It must have an `id=" "` attribute. 
+- The *subject* of the semantic statement is the parent element of the annotation. It must have an `id` attribute. 
 
 <a name="eml-example-1"></a>
 
@@ -127,8 +127,8 @@ id 'dataset-01' is about grassland biome(s)".
 
 - the *subject* of the semantic statement is the `dataset` element containing  the `id` attribute value `"dataset-01"`
 - the `annotation` itself has 2 parts: 
-    - `propertyURI` is 'http://purl.obolibrary.org/obo/IAO_0000136', and explicates the relationship, using a term from the [Information Artifact Ontology, IAO](#iao). 
-    -  `valueURI` is 'http://purl.obolibrary.org/obo/ENVO_01000177', which resolves to the "grassland biome" term in the [EnvO ontology](#envo) . 
+    - `propertyURI` is 'http://purl.obolibrary.org/obo/IAO_0000136', and explicates the relationship, using a term from the [Information Artifact Ontology](#iao) (IAO). 
+    -  `valueURI` is 'http://purl.obolibrary.org/obo/ENVO_01000177', which resolves to the "grassland biome" term in the [Environment Ontology](#envo) (EnvO). 
 
 
 
