@@ -198,6 +198,9 @@ In the following attribute annotation, the semantic statement can be read as
     - `valueURI` is "http://purl.dataone.org/odo/ECSO_00001197", which resolves to "Plant Cover Percentage" in the [Ecosystem Ontology](#ecso) (ECSO) 
 
 
+Related FAQ: [Are all EML dataTable attributes measurements?](#FAQ-are-all-eml-attributes-measurements)
+
+
 ```xml
 <attribute id="att.4">
     <attributeName>pctcov</attributeName>
@@ -394,6 +397,10 @@ Note that the above *RDF triple* consists of three HTTP URIs. While the exact di
 
 The software needed to extract semantic annotations out of EML, and convert these into valid RDF triples, is under development at NCEAS and EDI, and through the rOpenSci project. The RDF triple described above, however, hopefully gives an idea of how such triples, constructed of dereferenceable HTTP URIs, can be very useful. 
 
+Related FAQ: [What is the difference between an URI and a URL? ](#FAQ-URIvsURL)
+
+
+
 
 <a name="rdf"></a>
 
@@ -404,6 +411,12 @@ A graph consists of resources linked to other resources. Thus, the simplest grap
 The parts of a triple (subject, predicate, and object) become nodes and links in a graph. Below are examples of how annotations can be converted to RDF triples in RDF/XML, so that the RDF information is now computer-readable. Be aware that there are several formats for serializing RDF, including RDF/XML, Turtle, N-Triples, and N3, that vary in the level of how human-readable they are. 
 
 This process of converting a semantic annotation in EML into RDF, is done by parsing applications under development at EDI, NCEAS, rOpenSci, and other data repositories. Careful examination of the examples below also show references to "owl:Class", "owl:ObjectProperty", and other statements that may not be familiar. These are fundamental *entities* or building blocks in W3C-recommended Semantic Web languages, and are determined by the relationships that the triple component identifiers (HTTP URIs) have within their native knowledge graph/ontology.
+
+Related FAQ: [What is RDFS? ](#FAQ-what-is-rdfs)
+
+Related FAQ: [An image of an RDF Graph is great, but a computer doesn't parse that. What does the RDF look like? ](#FAQ-what-does-RDF-look-like)
+
+
 
 <a name="rdf-eml-example-3"></a>
 
@@ -484,7 +497,7 @@ Things to check:
 
 1. Be sure you have used the right classes, properties, or vocabularies for your annotation components
   1. Become familiar with the vocabularies in your annotation, especially definitions and relationships 
-  1. Check with your community for specific recommendations on the best vocabularies to use for annotations at different levels 
+  1. Check with your community for specific recommendations on the best vocabularies to use for annotations at different levels. Our examples use [well-constructed vocabularies](#external-vocabularies). 
 1. In `additionalMetadata`, don't combine `annotations` with more than one `describes` element. EML allows 1:many `describes` elements in a single `additionalMetadata` section. So if you have 2 `describes` and 2 `annotations`, you will have 4 RDF statements. Make sure they are all true, and if not, break them up into multiple `additionalMetadata` sections.
 
 
@@ -496,8 +509,12 @@ Things to check:
 **dereference**: To interpret a URI and retrieve information about a resource stored in another location   
 
 <a name="glossary-knowledge-graph"></a>
-**knowledge graph**  definition here
-
+**knowledge graph**  any knowledge base that is represented as a mathematical graph. 
+A graph is a structure for a set of objects, where some pairs of the objects are in some sense related. 
+The objects are called nodes or vertices and are interconnected by a set of lines called edges. 
+For a semantic triple, the subject and object may be considered nodes and the relationship between 
+the nodes as an edge.
+ 
 <a name="glossary-ontology"></a> 
 **ontology**: A knowledge *graph* representation of a set of terms, including their names, and descriptions of 
 the categories, properties, and relationships among those terms.
@@ -580,24 +597,27 @@ Following are tutorials and supplemental background reading
 
 Below are answers to questions some readers had, which may be helpful to you. If you have additional questions, please bring them up in your community for feedback.
 
+<a name="FAQ-what-is-deference"></a>
 
 **Q: What does ‘dereferenced’ mean?**
 
 A: Within the context of semantic annotation, "dereferencing" refers to the process of interpreting a URI, and providing "useful information" back about the Resource of interest. The phrase "resolving a URI" is often used synonymously with "dereferencing", but technically "resolution" refers to the process of determining HOW and WHAT to do with the URI, whereas "dereferencing" is explicitly about the action taken, which is typically retrieving a representation of the Resource of interest. The formal specification for these terms and what they mean is found in the IETF's (Internet Engineering Task Force) RFC (Request for Comment) 3986 (https://tools.ietf.org/html/rfc3986).
 
-
 **Q: What is the difference between an URI and a URL? Sample URIs look a lot like URLs...**
 
-<a name="URIvsURL"></a>
+<a name="FAQ-URIvsURL"></a>
 
 A: The distinctions among URIs (Uniform Resource Identifiers), URLs (Uniform Resource Locators), and URNs (Uniform Resource Names), relate to differentiating the functionalities of identifying a Resource, as opposed to locating a Resource, or doing both. URLs are all URIs (with some edge case exceptions subject to argument), and URNs are also URIs. In many cases, URIs serve both to name and locate a Resource. 
 
 Within the vision of the Semantic Web, URIs are ideally unique, persistent URNs identifying some Web Resource, that can also serve to locate and retrieve (dereference) a representation of that Resource (URLs). The formal specification for these terms and what they mean is found in the IETF's RFC 3986, section 1.1.3 (https://tools.ietf.org/html/rfc3986#section-1.1.3). Another acronym one may encounter with increasing frequency is IRI (Internationalized Resource Identifier) that simply extends the concept of a URI to include full Unicode character set, rather than just ASCII in its construction (https://tools.ietf.org/html/rfc3987).
 
+<a name="FAQ-what-is-skos"></a>
 
 **Q: What is SKOS?**
 
 A: SKOS (Simple Knowledge Management System) is a W3C recommendation for organizing a vocabulary in thesauri, taxonomies, and other classification schemes. SKOS provides a set of concepts and properties, that, when expressed in a formal RDF-compatible syntax, can assist with interpreting the relationship of terms with one another, such as defining some category as broader than another. For example, one could state in SKOS syntax, that "animals" is a broader concept than "mammals". Definitive specification of SKOS can be found at https://www.w3.org/TR/2009/REC-skos-reference-20090818/. SKOS does not provide strong semantics (see RDFS example below), but SKOS concepts and properties can be used within more expressive knowledge organization frameworks, such as RDFS/OWL ontologies.
+
+<a name="FAQ-what-is-rdfs"></a>
 
 **Q: What is RDFS?**
 
@@ -605,9 +625,22 @@ A: RDFS (Resource Description Framework Schema; https://www.w3.org/TR/rdf-schema
 
 In the context of the Semantic Web, the RDF model relies extensively on dereferenceable URIs in the subject and predicate positions, and URIs or literals in the object position (there are small formal exceptions to this not immediately relevant here). RDF triples can be expressed in several syntaxes, including XML, JSON-LD, and Turtle, among others. RDFS then can be used to enrich the precision and expressivity of the components of a triple, as well as clarify the relationships among these.
 
+<a name="FAQ-are-all-eml-attributes-measurements"></a>
+
+**Q: Are all EML dataTable attributes "measurements"?**
+
+A: Yes, in the context of a data table and for annotation purposes, any attribute (observation or column of data) can be 
+considered ‘a measurement’. A philosopher might disagree, saying that unique identifiers are not really 
+measurements; but many “nominals”, i.e. text strings identifying some class types (e.g. predator, lizard, 
+tundra) imply quantification. 
+
+<a name="FAQ-example-labels"></a>
+
 **Q: Can you provide an example of a controlled vocabulary with a rdfs:label or skos:label?**
 
 A: Most Semantic Web vocabularies make extensive use of rdfs:label or SKOS label properties. For example, this URI: http://purl.dataone.org/odo/ECSO_00000536 is from the ECSO ontology, under development at NCEAS by NSF's DataONE and Arctic Data Center. Within that ontology, the URI is associated with an rdfs:label of "Carbon Dioxide Flux", and a skos:altLabel of "CO2 flux". If you dereference the URI, you will see how the BioPortal ontology repository displays this information-- providing a human-readable representation of the underlying RDF/OWL language in which the ontology is stored.
+
+<a name="FAQ-what-does-RDF-look-like"></a>
 
 **Q: An image of an RDF graph is great, but a computer doesn't parse that. What does the RDF look like?**
 
@@ -648,6 +681,8 @@ https://orcid.org/0000-0003-1279-3709 http://semanticscience.org/resource/SIO_00
 Within the SIO ontology, SIO_000364 and SIO_000365 are defined as inverses of one another. This enables one to ask both questions-- "who created the Web?" (A: Tim Berners Lee), and "what did Tim Berners Lee create" (A: the Web)-- even though you only asserted one of the Triples.
 
 Finally, it is worth noting that one's choice of which Ontologies to use is important. Within the Ecological and Environmental sciences, there are several highly-recommended vocabularies, including those from the OBO Foundry (e.g. ChEBI, EnvO), as well as SIO. Specifically for annotating scientific measurements, the Arctic Data Center and DataONE are developing an Ontology for Ecosystem Measurements, ECSO. We have used all these in the examples.
+
+<a name="FAQ-what-tools"></a>
 
 **Q: Are there tools available to help data managers select subjects, predicates, and objects to annotate with?**
 
