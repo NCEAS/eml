@@ -50,17 +50,17 @@ This Primer is divided into three major sections. You should be able to create E
 only the main section [Semantic Annotations in EML 2.2.0](#sa-eml22), referencing the [Appendix](#appendix) when 
 you would like a longer explanation.
 
- - A. **[Introduction:](#introduction)** (this section)
- - B. **[Semantic Annotations in EML 2.2.0](#sa-eml22)**, with examples. Where used, EML elements are shown as inline code blocks (`elementName`).
- - C. **[Appendix](#appendix)** additional information on specific related topics, linked from Sections A and B.
-    1. **[Glossary:](#glossary)** Glossary of terms, linked from text
-    1. **[Semantic triples:](#semantic-triples)**  details on their structure, and how that structure is leveraged by annotations with examples of their power
-    1. **[URIs:](#uris)** defined, and as components of semantic triples
-    1. **[RDF model:](#rdf)** the W3C's RDF model with example graphs based on EML annotations
-    1. **[Logical consistency:](#logical-consistency)** Common mistakes and how to check for them
-    1. **[Vocabularies and repositories used in examples:](#external-vocabularies)** Descriptions an links out to explore further
-    1. **[Supplemental background information:](#additional-background)** The EML annotation approach here is compatible with recommendations by the World Wide Web Consortium (W3C) for construction of the Semantic Web. A wealth of material is available; a few selected ones are here.
-    1. **[Frequently asked questions:](#FAQ)** Some questions asked by readers, and their answers
+ -  **[Introduction:](#introduction)** (this section)
+ -  **[Semantic Annotations in EML 2.2.0](#sa-eml22)**, with examples. Where used, EML elements are shown as inline code blocks (`elementName`).
+ -  **[Appendix](#appendix)** additional information on specific related topics, linked from the Introduction and Semantic Annotations in EML 2.2.0 section.
+    - **[Glossary:](#glossary)** Glossary of terms, linked from text
+    - **[Semantic triples:](#semantic-triples)**  details on their structure, and how that structure is leveraged by annotations with examples of their power
+    - **[URIs:](#uris)** defined, and as components of semantic triples
+    - **[RDF model:](#rdf)** the W3C's RDF model with example graphs based on EML annotations
+    - **[Logical consistency:](#logical-consistency)** Common mistakes and how to check for them
+    - **[Vocabularies and repositories used in examples:](#external-vocabularies)** Descriptions an links out to explore further
+    - **[Supplemental background information:](#additional-background)** The EML annotation approach here is compatible with recommendations by the World Wide Web Consortium (W3C) for construction of the Semantic Web. A wealth of material is available; a few selected ones are here.
+    - **[Frequently asked questions:](#FAQ)** Some questions asked by readers, and their answers
 
 
 <a name="sa-eml22"></a>
@@ -526,7 +526,7 @@ ontologies are already widely used, and were employed in the examples above:
 
 <a name="ecso"></a>
 
-- **ECSO (Ecosystem Ontology)**  (https://github.com/DataONEorg/sem-prov-ontologies/tree/master/observation).\
+- **ECSO (Ecosystem Ontology)**  (https://github.com/DataONEorg/sem-prov-ontologies/tree/master/observation).
 An ontology for ecosystem measurements under development by the Arctic Data Center and DataONE.
 
 <a name="envo"></a>
@@ -551,7 +551,7 @@ An ontology for scientific observations and measurements developed by DataONE an
 
 <a name="re3data"></a>
 
-- **re3data.org (Registry of Research Data Repositories)** (https://www.re3data.org/)
+- **re3data.org (Registry of Research Data Repositories)** (https://www.re3data.org)
 A global registry of research data repositories spanning all academic disciplines.
 
 <a name="schema.org"></a>
@@ -609,7 +609,7 @@ In the context of the Semantic Web, the RDF model relies extensively on derefere
 
 A: Most Semantic Web vocabularies make extensive use of rdfs:label or SKOS label properties. For example, this URI: http://purl.dataone.org/odo/ECSO_00000536 is from the ECSO ontology, under development at NCEAS by NSF's DataONE and Arctic Data Center. Within that ontology, the URI is associated with an rdfs:label of "Carbon Dioxide Flux", and a skos:altLabel of "CO2 flux". If you dereference the URI, you will see how the BioPortal ontology repository displays this information-- providing a human-readable representation of the underlying RDF/OWL language in which the ontology is stored.
 
-**Q: An image of an RDF Graph: is great, but a computer doesn't parse that. What does the RDF look like?**
+**Q: An image of an RDF graph is great, but a computer doesn't parse that. What does the RDF look like?**
 
 A: As mentioned above, RDF is a data model based on triples, each of which consists of a subject, predicate, and object. In order to function interoperably on the Web, however, there is the need for these triple components to be constructed of dereferenceable URIs, although the object value can also be a literal. RDF triples can be "serialized" in several syntaxes, including XML, JSON-LD, Turtle, N-Triples, and others. These syntaxes are isomorphic, such that translations of RDF graphs from one serialization to another are available-- enabling consistent interpretation by machines.
 
@@ -649,7 +649,7 @@ Within the SIO ontology, SIO_000364 and SIO_000365 are defined as inverses of on
 
 Finally, it is worth noting that one's choice of which Ontologies to use is important. Within the Ecological and Environmental sciences, there are several highly-recommended vocabularies, including those from the OBO Foundry (e.g. ChEBI, EnvO), as well as SIO. Specifically for annotating scientific measurements, the Arctic Data Center and DataONE are developing an Ontology for Ecosystem Measurements, ECSO. We have used all these in the examples.
 
-**Q: Are there tools are available to help data managers select subjects, predicates, and objects to annotate with?**
+**Q: Are there tools available to help data managers select subjects, predicates, and objects to annotate with?**
 
 A: Yes, tools are being built to assist with the semantic annotation of EML documents, within the DataONE and Arctic Data Center data repository projects, and others.
 
