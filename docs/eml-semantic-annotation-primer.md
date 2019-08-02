@@ -114,7 +114,7 @@ id 'dataset-01' is about grassland biome(s)".
 
 - the *subject* of the semantic statement is the `dataset` element containing  the `id` attribute value `"dataset-01"`
 - the `annotation` itself has 2 parts: 
-    - `propertyURI` is 'http://purl.obolibrary.org/obo/IAO_0000136', and explicates the relationship, using a term from the [Information Artifact Ontology](#iao) (IAO). 
+    - `propertyURI` is 'http://purl.obolibrary.org/obo/IAO_0000136', and describes the nature of the relationship between the subject (above) and object (valueURI below), using a term from the [Information Artifact Ontology](#iao) (IAO). 
     -  `valueURI` is 'http://purl.obolibrary.org/obo/ENVO_01000177', which resolves to the "grassland biome" term in the [Environment Ontology](#envo) (EnvO). 
 
 
@@ -143,14 +143,16 @@ id 'dataset-01' is about grassland biome(s)".
 </dataset>  
 ```
 
+Note that the subject `id` here is not in an optimal format, as it is not in the form of a dereferenceable HTTP URI.  Ideally this "local identifier" can be readily translated into an HTTP URI that will provide an unambiguous and persistent identifier for the subject dataset.  E.g. instead of just "dataset-01" it could be something like "http://search.dataone.org/cdr/dataset-01"
+
 <a name="eml-example-2"></a>
 
 #### Example 2: Entity-level annotation
 
 In the following entity-level annotation, the semantic statement can be read as 
-"the entity with the id 'urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b' is about Mammalia".
+"the entity with the id 'https://cn.dataone.org/cn/v2/resolve/urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b' is about Mammalia".
 
-- The *subject* of the semantic statement is the `otherEntity` with `id` attribute value, `"urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b"`. 
+- The *subject* of the semantic statement is the `otherEntity` with `id` attribute value, `"https://cn.dataone.org/cn/v2/resolve/urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b"`. 
 - The annotation itself has 2 parts
     - `propertyURI` is "http://purl.obolibrary.org/obo/IAO_0000136", which resolves to "is about", from [IAO](#iao)
     - `valueURI` is "http://purl.obolibrary.org/obo/NCBITaxon_40674", which resolves to "Mammalia" in the [NCBI Taxon ontology](#ncbi_taxon). 
@@ -158,7 +160,7 @@ In the following entity-level annotation, the semantic statement can be read as
 
 
 ```xml
-<otherEntity id="urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b" scope="document">
+<otherEntity id="https://cn.dataone.org/cn/v2/resolve/urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b" scope="document">
     <entityName>DBO_MMWatch_SWL2016_MooreGrebmeierVagle.xlsx</entityName>
     <entityDescription>Data contained in the file DBO_MMWatch_SWL2016_MooreGrebmeierVagle.xlsx are marine mammal observations and observation conditions from CCGS Sir Wilfrid Laurier July 10-20, 2016.  Data observations and locations are part of the Distributed Biological Observatory (DBO).</entityDescription>
     <physical scope="document">
@@ -172,6 +174,8 @@ In the following entity-level annotation, the semantic statement can be read as
     <annotation>
 </otherEntity>
 ```
+Note in this case that the *subject* is in the form of a dereferenceable HTTP URI.  It does unambiguously "point to" the correct data object, which we now know, through semantic annotation, is about "Mammalia".  However, if you try to dereference this URI, it will immediately lead to a download dialogue.  In the near future, content negotiation will improve this behavior, such that the server-response will be appropriate for the requesting client: e.g. if the requesting client is a Web-browser, assume a human-readable HTML-page output should be generated; whereas if the requesting client is an R-script, say, a read.csv function, that URI will load to downloading and ingesting the data into the script.
+
 <a name="eml-example-3"></a>
 
 #### Example 3: Attribute annotation
@@ -199,6 +203,13 @@ Related FAQ: [Are all EML dataTable attributes measurements?](#FAQ-are-all-eml-a
     </annotation>
 </attribute>
 ```
+
+Here again we note that the *subject* is NOT in the form of a dereferenceable HTTP URI.  It does unambiguously "point to" a correct metadata object within the EML framework, but it is much more powerful if it could stand-alone as an HTTP URI that points to the correct attribute in some entity described with EML. 
+
+In the near future, DataONE will implement just such a "resolver service", such that an HTTP URI similar in form to:
+<http://search.dataone.org/data/data-entity_ID/attr.4> would place on on the HTML page for that data object, at the location of the appropriate attribute within the appropriate entity.
+
+
 **[Example 3 as an RDF graph](#rdf-eml-example-3)**
 
 
