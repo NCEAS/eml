@@ -5,30 +5,21 @@
 ## Introduction
 
 A semantic annotation is the attachment of semantic metadata to a resource - in this case, a dataset. 
-It provides precise definitions of concepts and clarifies the relationships between concepts in a machine-readable 
-way. The process of creating semantic annotations may seem tedious, but the payoff is enhanced discovery and reuse 
-of your data. 
+What makes the annotation "semantic" is the linking (via an HTTP URI) of a resource to a well-defined term in an Ontology (via another HTTP URI).  In this way, semantic annotation provides access to precise definitions of concepts, and clarifies the relationships among concepts in a machine-readable way, using the Web. The process of creating semantic annotations may seem tedious, but the payoff is enhanced discovery and reuse of your data. 
 
 The main differences between semantic annotation and simply adding keywords are: 
-- annotations can be read and interpreted by computers 
-- annotations describe the relationship between a specific part of the metadata and an external vocabulary
+- semantic annotations can be read and interpreted by computers 
+- semantic annotations describe the relationship between a specific part of the metadata and terms in external vocabularies
+- semantic annotations use W3C-recommended languages to express these relationships via the Web
  
+In discussing further how annotation works within EML, we will assume that all annotations are indeed "semantic annotations", as described above.  That is, more generic methods for annotating data and metadata exist (e.g. using keywords), but these are not nearly as powerful as "semantic annotation".
 
-**Benefits of annotation:** Annotations vastly enhance data 
-discovery and interpretation. Semantic annotations will make it easier for others to find and reuse data 
-(and thus give proper credit), including the following cases: 
+**Benefits of annotation:** Annotations vastly enhance data discovery and interpretation. Semantic annotations will make it easier for others to find and reuse data (and thus give proper credit), including the following cases: 
 
-1. **Equivalent concepts:** Assume one dataset uses the phrase "carbon dioxide flux" and another dataset "CO2 flux". 
-An information system is able to recognize that these datasets are about equivalent concepts, 
-if the datasets were annotated with the same identifier for that measurement. 
-1. **Disambiguation:** Assume you are searching for datasets about "litter" (as in "plant litter"). If datasets have been annotated, the 
-system will be able to understand the difference between your meaning and other meanings (e.g., "garbage", a "group 
-of animals born together", a "device for transporting the wounded", etc.). 
-Each type of "litter" would be associated with a different identifier, and connected to related concepts. 
-1. **Hierarchical searches:** If you search for 
-datasets about "carbon flux", then datasets about "carbon dioxide flux" can also be returned because "carbon 
-dioxide flux" is a type of "carbon flux".  This is possible because the concepts came 
-from a structured system where "carbon dioxide flux" is lower in the hierarchy than "carbon flux".
+1. **Identifying synonymous concepts:** Assume one dataset uses the phrase "carbon dioxide flux" and another dataset "CO2 flux". 
+An information system can recognize, through semantic annotation, that these datasets are about the "same" concepts, if the datasets were annotated using the same term identifier for that measurement. 
+1. **Disambiguating terms:**  If datasets have been annotated, the system will can assist in providing only results relevant for your intended meaning. For example, if you are searching for datasets about "litter" (as in "plant litter"). other irrelevant terms also labelled as "litter" (e.g., "garbage" or a "group of animals born together") can be eliminated from your search results. This is because each distinct type of "litter" would be associated with a different identifier. 
+1. **Hierarchical searches:** If you search for datasets containing "carbon flux" measurements, then datasets annotated as having measurements of "carbon dioxide flux" or "CO2 flux" will also be returned, because these are both types of "carbon flux".  This is possible because the concepts came from a structured vocabulary where "carbon dioxide flux" is within the hierarchy (i.e. is a subclass) of "carbon flux".
 
 
 EML 2.2.0 now provides ways to embed references to *[external vocabularies](#external-vocabularies)*
