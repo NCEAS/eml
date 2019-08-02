@@ -5,31 +5,30 @@
 ## Introduction
 
 A semantic annotation is the attachment of semantic metadata to a resource - in this case, a dataset. 
-What makes the annotation "semantic" is the linking (via an HTTP URI) of a resource to a well-defined term in an Ontology (via another HTTP URI).  In this way, semantic annotation provides access to precise definitions of concepts, and clarifies the relationships among concepts in a machine-readable way, using the Web. The process of creating semantic annotations may seem tedious, but the payoff is enhanced discovery and reuse of your data. 
+What makes the annotation "semantic" is the linking of a resource to a well-defined term in an Ontology.  In this way, semantic annotation provides access to precise definitions of concepts, and clarifies the relationships among concepts in a machine-readable way, using the Web. The process of creating semantic annotations may seem tedious, but the payoff is enhanced discovery and reuse of your data. 
 
 The main differences between semantic annotation and simply adding keywords are: 
 - semantic annotations can be read and interpreted by computers 
 - semantic annotations describe the relationship between a specific part of the metadata and terms in external vocabularies
 - semantic annotations use W3C-recommended languages to express these relationships via the Web
  
-In discussing further how annotation works within EML, we will assume that all annotations are indeed "semantic annotations", as described above.  That is, more generic methods for annotating data and metadata exist (e.g. using keywords), but these are not nearly as powerful as "semantic annotation".
+In discussing further how annotation works within EML, we will assume that all mentions of "annotation" imply "semantic annotation", as described above.  That is, more generic methods for annotating data and metadata exist (e.g. using keywords), but these are not nearly as powerful as "semantic annotation".
 
 **Benefits of annotation:** Annotations vastly enhance data discovery and interpretation. Semantic annotations will make it easier for others to find and reuse data (and thus give proper credit), including the following cases: 
 
-1. **Identifying synonymous concepts:** Assume one dataset uses the phrase "carbon dioxide flux" and another dataset "CO2 flux". 
+1. **Finding synonymous concepts:** Assume one dataset uses the phrase "carbon dioxide flux" and another dataset "CO2 flux". 
 An information system can recognize, through semantic annotation, that these datasets are about the "same" concepts, if the datasets were annotated using the same term identifier for that measurement. 
-1. **Disambiguating terms:**  If datasets have been annotated, the system will can assist in providing only results relevant for your intended meaning. For example, if you are searching for datasets about "litter" (as in "plant litter"). other irrelevant terms also labelled as "litter" (e.g., "garbage" or a "group of animals born together") can be eliminated from your search results. This is because each distinct type of "litter" would be associated with a different identifier. 
-1. **Hierarchical searches:** If you search for datasets containing "carbon flux" measurements, then datasets annotated as having measurements of "carbon dioxide flux" or "CO2 flux" will also be returned, because these are both types of "carbon flux".  This is possible because the concepts came from a structured vocabulary where "carbon dioxide flux" is within the hierarchy (i.e. is a subclass) of "carbon flux".
+1. **Disambiguating terms:**  If datasets have been annotated, the system can assist in providing only results relevant for your intended meaning. For example, if you are searching for datasets about "litter" (as in "plant litter"). other irrelevant terms also labelled as "litter" (e.g., "garbage" or a "group of animals born together") can be eliminated from your search results. This is because each distinct type of "litter" would be associated with a different identifier. 
+1. **Hierarchical searches:** If you search for datasets containing "carbon flux" measurements, then datasets annotated as having measurements of "carbon dioxide flux" or "CO2 flux" will also be returned, because these are both types of "carbon flux".  This is possible if the concepts come from a structured vocabulary where "carbon dioxide flux" is within the hierarchy (i.e. is a subclass) of "carbon flux".
 
 
-EML 2.2.0 now provides ways to embed references to *[external vocabularies](#external-vocabularies)*
-using HTTP [uniform resource identifiers](#glossary-uri) (or URIs). The process is called *semantic annotation*, and provides a rigorous, expressive and consistent interpretation of the metadata. Usually the external reference (or annotation) is to a *[knowledge graph](#glossary-knowledge-graph)*, sometimes called a *controlled vocabulary* or *[ontology](#glossary-ontology)*. The annotation provides a computer-usable [pointer](#glossary-pointer) (the HTTP URI) that [resolves](#glossary-resolve) (and [dereferences](#glossary-dereference)) to a useful description, definition or other relationships for that annotated resource. 
+EML 2.2.0 now provides ways to embed references to terms in *[external vocabularies](#external-vocabularies)* (also known as *ontologies*) using HTTP [uniform resource identifiers](#glossary-uri) (or URIs). The process of associating an element in an EML metadata document with that external reference, is called *semantic annotation*. This referencing to terms from an external vocabulary can provide a rigorous, expressive and consistent interpretation of the metadata, if the external vocabulary is well-constructed, and expressed in a W3C semantic web language. . Since the external reference (or annotation) is to a *controlled vocabulary* or *[ontology](#glossary-ontology)*, the annotation provides a computer-usable [pointer](#glossary-pointer) (the HTTP URI) that [resolves](#glossary-resolve) (and [dereferences](#glossary-dereference)) to a useful description, definition or other relationships for that annotated resource. The annotations can be extracted from an EML document, and expressed in a Semantic Web language such as RDF and JSON-LD.  These annotations (called "assertions" or "triples" in RDF) collectively contribute to a *[knowledge graph](#glossary-knowledge-graph)* of understanding the relationship of the contents of datasets (as "instances") with the concepts represented by terms in ontologies (as "classes"). 
 
 
 ### Take-home messages
 
 - **Semantic statements must be logically consistent, as they are not simply a set of loosely structured keywords.** 
-- **EML 2.2.0 has five places or methods to add annotations.**
+- **EML 2.2.0 has five places or methods to add annotations.**  [[Margaret-- I don't see where you've mentioned this except further below, MPS]]
 - **The best place for advice and feedback on EML annotations is your data management community**
 
 ### Organization of this document
@@ -39,7 +38,7 @@ annotations are structured in EML documents. It is expected that you already hav
 the focus of this document then, is explanation and examples of annotations in EML. 
 This Primer is divided into three major sections. You should be able to create EML annotations immediately, using 
 only the main section [Semantic Annotations in EML 2.2.0](#sa-eml22), referencing the [Appendix](#appendix) when 
-you would like a longer explanation.
+you would like a longer explanation.[[what is the third section? MPS]]
 
  -  **[Introduction:](#introduction)** (this section)
  -  **[Semantic Annotations in EML 2.2.0](#sa-eml22)**, with examples. Where used, EML elements are shown as inline code blocks (`elementName`).
@@ -47,7 +46,7 @@ you would like a longer explanation.
     - **[Glossary:](#glossary)** Glossary of terms, linked from text
     - **[Semantic triples:](#semantic-triples)**  details on their structure, and how that structure is leveraged by annotations with examples of their power
     - **[URIs:](#uris)** defined, and as components of semantic triples
-    - **[RDF model:](#rdf)** the W3C's RDF model with example graphs based on EML annotations
+    - **[RDF model:](#rdf)** brief description of the W3C's RDF model with example graphs based on EML annotations
     - **[Logical consistency:](#logical-consistency)** Common mistakes and how to check for them
     - **[Vocabularies and repositories used in examples:](#external-vocabularies)** Descriptions an links out to explore further
     - **[Supplemental background information:](#additional-background)** The EML annotation approach here is compatible with recommendations by the World Wide Web Consortium (W3C) for construction of the Semantic Web. A wealth of material is available; a few selected ones are here.
