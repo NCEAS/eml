@@ -86,7 +86,7 @@ Here, we concentrate on the structure of an annotation within the EML doc itself
   - the element's text is the URI for the concept in an external vocabulary. The identifier (URI) points to some term in a vocabulary where a definition, description, and potentially that term's relationships to other concepts, are formally modelled. 
   - the XML attribute, `label` is required
       - it should be suitable for application interfaces to display to humans
-      - it should be populated by values from the referenced vocabulary's label field (e,g, `rdfs:label` or `skos:prefLabel` ). Note that this assumes the referenced vocabulary is stored as an RDF document, which is best current practice for sharing scientific vocabularies over the Web.
+      - it should be populated by values from the referenced vocabulary's label field (e,g, `rdfs:label` or `skos:prefLabel` ). Note that this assumes the referenced vocabulary is stored as an RDF document, which is current best practice for sharing scientific vocabularies over the Web.
 
 **When are IDs required in the EML doc?**
 To be precise, all annotations must have an unambiguous subject. 
@@ -174,7 +174,7 @@ In the following entity-level annotation, the semantic statement can be read as
     <annotation>
 </otherEntity>
 ```
-Note in this case that the *subject* is in the form of a dereferenceable HTTP URI.  It does unambiguously "point to" the correct data object, which we now know, through semantic annotation, is about "Mammalia".  However, if you try to dereference this URI, it will immediately lead to a download dialogue.  In the near future, content negotiation will improve this behavior, such that the server-response will be appropriate for the requesting client: e.g. if the requesting client is a Web-browser, assume a human-readable HTML-page output should be generated; whereas if the requesting client is an R-script, say, a read.csv function, that URI will load to downloading and ingesting the data into the script.
+Note in this case that the *subject* is in the form of a (potentially) dereferenceable HTTP URI.  It does unambiguously "point to" the correct data object, which we now know, through semantic annotation, is about "Mammalia".  However, if you dereference this URI, it will immediately lead to a download dialogue.  In the near future, content negotiation will improve this behavior, such that the server-response will be appropriate for the requesting client: e.g. if the requesting client is a Web browser, generate a human-readable HTML-page output; whereas if the requesting client is an R-script, where the URI is an argument to a read.csv function, the data will be downloaded and an appropriate R data-object generated.
 
 <a name="eml-example-3"></a>
 
@@ -204,10 +204,12 @@ Related FAQ: [Are all EML dataTable attributes measurements?](#FAQ-are-all-eml-a
 </attribute>
 ```
 
-Here again we note that the *subject* is NOT in the form of a dereferenceable HTTP URI.  It does unambiguously "point to" a correct metadata object within the EML framework, but it is much more powerful if it could stand-alone as an HTTP URI that points to the correct attribute in some entity described with EML. 
+Here again we note that the *subject* is NOT in the form of a dereferenceable HTTP URI.  It does unambiguously "point to" a specific metadata object *within the EML document*, but it would be much more generally useful and powerful if it could stand-alone as an HTTP URI that points to the correct attribute simply by dereferencing the URI with a Web browser client. 
 
-In the near future, DataONE will implement just such a "resolver service", such that an HTTP URI similar in form to:
-<http://search.dataone.org/data/data-entity_ID/attr.4> would place on on the HTML page for that data object, at the location of the appropriate attribute within the appropriate entity.
+In the near future, DataONE will implement just such a "resolver service", using an HTTP URI similar in format to:
+<http://search.dataone.org/data/data-entity_ID/attr.4> 
+
+Dereferencing this URI would place one on an HTML page for that data object, at the location of the appropriate attribute within the appropriate entity.
 
 
 **[Example 3 as an RDF graph](#rdf-eml-example-3)**
@@ -229,15 +231,14 @@ attribute and because ids are unique within an EML document, this is a single su
 
 #### Example 4: `annotations` element annotation
 
-All the annotations for a resource can be group together under an `annotations` element. If you use this construct, each
+All the annotations for a resource can be grouped together under an `annotations` element. If you use this construct, each
 annotation must have its subject specifically identified with a `references` attribute that points to the subject's id. The group
-of annotations must be placed TO DO< WHERE IN DOC?
+of annotations must be placed TO DO< WHERE IN DOC? [[MPS: I don't know the answer to this. Is there an XML/EML expert in the house?!!!]]
 
 Example 4 contains 3 different annotations. 
 
 In the first, the subject is the `dataTable` element with the `id` 
-attribute "CDF-biodiv-table". Its annotation components are analogous to Example 2 above, again referencing terms in [IAO](#iao) and [ENVO](#envo). The semantic 
-statement can be read as 
+attribute "CDF-biodiv-table". Its annotation components are analogous to Example 2 above, again referencing terms in [IAO](#iao) and [ENVO](#envo). The semantic statement can be read as 
 
 -  "the dataTable with the `id` 'CDR-biodiv-table' is about grassland biome(s)".
 
@@ -263,7 +264,7 @@ The ontologies used for adam.shepherd are
    ...
     <dataset id="dataset-01">
         <title>Data from Cedar Creek LTER on productivity and species richness for use in a workshop titled "An Analysis of the Relationship between Productivity and Diversity using Experimental Results from the Long-Term Ecological Research Network" held at NCEAS in September 1996.</title>
-        <creator id="adam.shepherd">
+        <creator id="adam.shepherd">  [[MPS: I thought at some point I substituted the URI for Adam's ORCID ID here to give a better idea of how this works. Maybe I didn't commit these changes, OR were they removed? ]]
             <individualName>
                 <salutation>Mr.</salutation>
                 <givenName>Adam</givenName>
@@ -293,6 +294,8 @@ The ontologies used for adam.shepherd are
    ...
 </eml>
 ```
+
+As with the prior examples, we really would prefer that the *subjects* of Annotations are dereferenceable HTTP URI's.  If they are not, one must depend on dedicated systems to effectively process them.
 
 **See [Example 4 as an RDF graph](#rdf-eml-example-4)**
 
