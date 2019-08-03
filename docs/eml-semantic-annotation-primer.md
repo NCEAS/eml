@@ -4,8 +4,7 @@
 
 ## Introduction
 
-A semantic annotation is the attachment of semantic metadata to a resource - in this case, a dataset. 
-What makes the annotation "semantic" is that the resource is linked to a well-defined term in an Ontology.  In this way, semantic annotation provides access to precise definitions of concepts, and clarifies the relationships among concepts in a machine-readable way, using the Web. The process of creating semantic annotations may seem tedious, but the payoff is enhanced discovery and reuse of your data. 
+A semantic annotation indicates a relationship between some semantic metadata and a resource - in this case, a dataset, or some other element of a dataset (e.g. an attribute). What makes the annotation "semantic" is that the resource is linked to a well-defined term in an Ontology.  In this way, semantic annotation provides access to precise definitions of concepts, and clarifies the relationships among concepts in a machine-readable way, using the Web. The process of creating semantic annotations may seem tedious, but the payoff is enhanced discovery and reuse of your data. 
 
 The main differences between semantic annotation and simply adding keywords are: 
 - semantic annotations can be read and interpreted by computers 
