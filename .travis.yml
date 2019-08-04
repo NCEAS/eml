@@ -4,6 +4,7 @@ addons:
   apt:
     packages:
     - xmlstarlet
+    - ant
 
 script:
     - xmlstarlet val -e -s xsd/eml.xsd src/test/resources/eml-sample.xml
