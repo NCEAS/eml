@@ -1,5 +1,7 @@
 language: java
 
+dist: bionic
+
 addons:
   apt:
     packages:
@@ -11,4 +13,4 @@ script:
     - free -m
     - xmlstarlet val -e -s xsd/eml.xsd src/test/resources/eml-sample.xml
     - ant -diagnostics
-    - ANT_OPTS=-Xmx2G ant test
+    - ant test
