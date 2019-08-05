@@ -298,7 +298,7 @@ The ontologies used for adam.shepherd are
 </eml>
 ```
 
-As with the prior examples, we really would prefer that the *subjects* of Annotations are dereferenceable HTTP URI's.  If they are not, one must depend on dedicated systems to effectively process them.
+As with the prior examples, ideally the *subjects* of Annotations would be dereferenceable HTTP URI's.  If they are not, one must depend on dedicated systems to effectively process them.
 
 **See [Example 4 as an RDF graph](#rdf-eml-example-4)**
 
@@ -382,9 +382,11 @@ Semantic annotations added to an EML document can be extracted and processed int
 
 ### URIs 
 
-Ideally, the components of the semantic triple should be globally unique and persistent (unchanging), and consist of resolvable/dereferenceable HTTP uniform resource identifiers (URIs; or more formally, IRI's). The *subjects* of most EML semantic annotations will likely be HTTP URIs that identify the dataset resource itself, or specific attributes or other features within a dataset.  The *objects* of EML semantic annotations, as well as the *predicates* that relate the subject to the object, will most typically be HTTP URI references to terms in controlled vocabularies (also called "knowledge graphs", or "ontologies") accessible through the Web, so that users (or computers) can dereference the URIs and look up precise definitions and relationships of these resources to other terms. 
+Ideally, the components of the semantic triple should be globally unique and persistent (unchanging), and consist of resolvable/dereferenceable HTTP uniform resource identifiers (URIs; or more formally, IRI's). The *subjects* of most EML semantic annotations will likely be HTTP URIs that identify the dataset resource itself, or specific attributes or other features within a dataset.  The *objects* of EML semantic annotations, as well as the *predicates* that relate the subject to the object, will most typically be HTTP URI references to terms in controlled vocabularies (also called "ontologies") accessible through the Web, so that users (or computers) can dereference the URIs and look up precise definitions and relationships of these resources to other terms. 
 
-An example of a URI is "http://purl.obolibrary.org/obo/ENVO_00000097". When entered into the address bar of a web browser, it resolves to the term with a label of "desert area" in the Environment Ontology (EnvO). Users can learn what this URI indicates and explore how the term is related to other terms in the ontology simply by dereferencing its URI in a web browser.  All those other aspects you see on the Web page describing "http://purl.obolibrary.org/obo/ENVO_00000097" are from other RDF statements (triples) related to "ENVO_00000097", and that have been rendered into HTML. From here, you might decide, e.g. that "http://purl.obolibrary.org/obo/ENV0_00000172" ("sandy desert") is a better annotation for your object.
+An example of a URI pointing to a term in a controlled vocabulary is-- "http://purl.obolibrary.org/obo/ENVO_00000097". 
+
+When entered into the address bar of a web browser, the abpve URI resolves to the term with a label of "desert area" in the Environment Ontology (EnvO). Users can learn what this URI indicates and explore how the term is related to other terms in the ontology simply by dereferencing its URI in a web browser.  All those other aspects you see on the Web page describing "http://purl.obolibrary.org/obo/ENVO_00000097" are from other RDF statements (triples) related to "ENVO_00000097", and that have been rendered into HTML. From here, you might decide, e.g. that "http://purl.obolibrary.org/obo/ENV0_00000172" ("sandy desert") is a better annotation for your object.
 
 An RDF triple can be constructed as follows, with subject URI, predicate URI, and object URI:
 
@@ -393,13 +395,13 @@ An RDF triple can be constructed as follows, with subject URI, predicate URI, an
 ```   
    .
    
-... indicating that the referenced *dataset* (subject/resource) was *"located in"* (predicate/property) a *"desert area"* (object/value). Note that a blank-space must separate the subject, from the predicate, from the object, and that a "period" completes the triple. This is  a valid RDF triple, expressed in N-Triple syntax.  RDF is most often serialized into XML, however, as Web browsers and many applications are good at parsing XML. 
+... indicating that the referenced *dataset* (subject/resource) was *"located in"* (predicate/property) a *"desert area"* (object/value). Note that when expressing a semantic triple, a blank-space must separate the subject, from the predicate, from the object, and that a "period" completes the triple. This is a valid RDF triple, expressed in N-Triple syntax.  RDF is most often serialized into XML, however, as Web browsers and many applications are good at parsing XML. 
 
 While our focus here is on the semantic annotation of EML documents, it is easy to see how the RDF statements can be used to describe and inter-relate any resources that have unique, persistent HTTP URIs!
 
-Note that the above *RDF triple* consists of three HTTP URIs. While the exact distinction among what is a URI, a URN, and a URL can be debated, for our purposes, these HTTP URIs are can be considered both the *name* and *web location* of a resource. Content negotiation between a Web server and a client (which might be a browser, or a Python or R script) can enable an HTTP URI to dereference in ways optimized for the requesting client -- e.g. in one case, presenting a human-readable view of metadata for a dataset, and in another, activating a download of that dataset for import into a script.
+Note that the above *RDF triple* consists of three HTTP URIs. While the exact distinction among what is a URI, a URN, and a URL can be debated, for our purposes, these HTTP URIs can be considered both the *name* and *web location* of a resource. Content negotiation between a Web server and a client (which might be a browser, or a Python or R script) can enable an HTTP URI to dereference in ways optimized for the requesting client -- e.g. in one case, presenting a human-readable view of metadata for a dataset, and in another, activating a download of that dataset for import into a script.
 
-The software needed to extract semantic annotations out of EML, and convert these into valid RDF triples, is under development at NCEAS and EDI, and through the rOpenSci project. The RDF triple described above, however, hopefully gives an idea of how such triples, constructed of dereferenceable HTTP URIs, can be very useful. 
+Semantic annotations in EML are useful because they enable associating data objects described in EML, with terms from external vocabularies. These external vocabularies can be used by other systems to similarly describe data objects, dataset variables, etc. The ability to extract semantic annotations out of EML, and convert these into valid RDF triples, provides further utility that is a pathway to the future. Sets of RDF triples, called "graphs", or in this case more accurately, "knowledge graphs" (since these triples describe our understanding of data set contents and their relationships)is under development at DataONE, NCEAS, EDI, through the rOpenSci project, and elsewhere.  The RDF triple described above hopefully gives an idea of how such triples, constructed of dereferenceable HTTP URIs, can be very useful. 
 
 Related FAQ: [What is the difference between an URI and a URL? ](#FAQ-URIvsURL)
 
@@ -410,11 +412,11 @@ Related FAQ: [What is the difference between an URI and a URL? ](#FAQ-URIvsURL)
 
 ### RDF Graphs 
 
-A graph consists of resources linked to other resources. Thus, the simplest graph structure is when you specify how one resource (node) is linked to another resource (node).
+In a data-modeling sense, a *graph* consists of resources linked to other resources. Thus, the simplest graph structure is a *triple*, that consists of two nodes that are somehow linked.  This is the basic model underlying RDF:  a *predicate* linking a *subject* to an *object*. A graph consists of many triples that can be linked with one another.
 
-The parts of a triple (subject, predicate, and object) become nodes and links in a graph. Below are examples of how annotations can be converted to RDF triples in RDF/XML, so that the RDF information is now computer-readable. Be aware that there are several formats for serializing RDF, including RDF/XML, Turtle, N-Triples, and N3, that vary in the level of how human-readable they are. 
+Below are examples of how annotations can be converted to RDF triples in RDF/XML, so that the RDF information is now computer-readable. Be aware that there are several formats for serializing RDF, including RDF/XML, Turtle, N-Triples, and N3, that vary in the level of how human-readable they are-- although these are all machine-readable with complete consistency. 
 
-This process of converting a semantic annotation in EML into RDF, is done by parsing applications under development at EDI, NCEAS, rOpenSci, and other data repositories. Careful examination of the examples below also show references to "owl:Class", "owl:ObjectProperty", and other statements that may not be familiar. These are fundamental *entities* or building blocks in W3C-recommended Semantic Web languages, and are determined by the relationships that the triple component identifiers (HTTP URIs) have within their native knowledge graph/ontology.
+The process of converting (i.e., extracting) a semantic annotation in EML into RDF, is done by *parsing applications* under development at EDI, NCEAS, rOpenSci, and other data repositories. Careful examination of the examples below also show references to "owl:Class", "owl:ObjectProperty", and other statements that may not be familiar. These are fundamental *entities* or building blocks in W3C-recommended Semantic Web languages, and are determined by the relationships that the triple component identifiers (HTTP URIs) have within their native knowledge graph/ontology.
 
 Related FAQ: [What is RDFS? ](#FAQ-what-is-rdfs)
 
@@ -442,7 +444,7 @@ Related FAQ: [An image of an RDF Graph is great, but a computer doesn't parse th
 </rdf:RDF>
 
 ```
-_Note: The subject described in the `rdf:Description` `about` attribute should actually be a globally unique HTTP URI for the attribute, rather than 'att.4'. The details of how this HTTP URI GUID is constructed are being developed by EDI, NCEAS, and others._
+_Note: The subject described in the `rdf:Description` `about` attribute ideally would be a globally unique HTTP URI for the attribute, rather than 'att.4'-- which is a localized identifier. Methods for constructing this HTTP URI GUID are being developed by EDI, NCEAS, and others._
 
 <a name="rdf-eml-example-4"></a>
 
@@ -467,7 +469,7 @@ _Note: The subject described in the `rdf:Description` `about` attribute should a
 </rdf:RDF>
 
 ```
-_Note: The subject described in the `rdf:Description` `about` attribute should actually be the globally unique URI issued for 'adam.shepherd'. The details of how this HTTP URI GUID is constructed are being developed by EDI, NCEAS, and others._
+_Note: The subject described in the `rdf:Description` `about` attribute should ideally be the globally unique URI issued for 'adam.shepherd'. Methods for constructing this HTTP URI GUID are being developed by EDI, NCEAS, and others._
 
 <a name="logical-consistency"></a>
 
