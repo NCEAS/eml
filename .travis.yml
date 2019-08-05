@@ -5,7 +5,9 @@ dist: bionic
 env:
   - ANT="apache-ant-1.10.6"
 
-cache: false
+cache:
+    directories:
+        - ${ANT}
 
 before_install:
     - sudo apt-get update
@@ -20,4 +22,4 @@ install:
 
 script:
     - xmlstarlet val -e -s xsd/eml.xsd src/test/resources/eml-sample.xml
-    - ant test
+    - ANT_OPTS="-Xss100m" ant test
