@@ -3,6 +3,7 @@ language: java
 dist: bionic
 
 before-install:
+    - sudo apt-get update
     - sudo apt-get install -y xmlstarlet ant ant-optional
 
 install:
