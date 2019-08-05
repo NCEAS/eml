@@ -2,15 +2,13 @@ language: java
 
 dist: bionic
 
-addons:
-  apt:
-    snaps:
-        - xmlstarlet
-        - ant
-        - ant-optional
+before-install:
+    - sudo apt-get install -y xmlstarlet ant ant-optional
+
+install:
+    - ant -diagnostics
+    - free -m
 
 script:
-    - free -m
     - xmlstarlet val -e -s xsd/eml.xsd src/test/resources/eml-sample.xml
-    - ant -diagnostics
     - ant test
