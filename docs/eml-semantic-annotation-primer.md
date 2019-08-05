@@ -4,7 +4,7 @@
 
 ## Introduction
 
-A semantic annotation indicates a relationship between some semantic metadata and a resource - in this case, a dataset, or some other element of a dataset (e.g. an attribute). What makes the annotation "semantic" is that the resource is linked to a well-defined term in an Ontology.  In this way, semantic annotation provides access to precise definitions of concepts, and clarifies the relationships among concepts in a machine-readable way, using the Web. The process of creating semantic annotations may seem tedious, but the payoff is enhanced discovery and reuse of your data. 
+A semantic annotation creates a relationship between some semantic metadata and a resource - in this case, a dataset, or some other element of a dataset (e.g. an attribute). What makes the annotation "semantic" is that the resource is linked to a well-defined term in an Ontology.  In this way, semantic annotation provides access to precise definitions of concepts, and clarifies the relationships among concepts in a machine-readable way, using the Web. The process of creating semantic annotations may seem tedious, but the payoff is enhanced discovery and reuse of your data. 
 
 The main differences between semantic annotation and simply adding keywords are: 
 - semantic annotations can be read and interpreted by computers 
@@ -17,11 +17,11 @@ In discussing further how annotation works within EML, we will assume that all m
 
 1. **Finding synonymous concepts:** Assume one dataset uses the phrase "carbon dioxide flux" and another dataset "CO2 flux". 
 An information system can recognize, through semantic annotation, that these datasets are about the "same" concepts, if the datasets were annotated using the same term identifier for that measurement. 
-1. **Disambiguating terms:**  If datasets have been annotated, the system can assist in providing only results relevant for your intended meaning. For example, if you are searching for datasets about "litter" (as in "plant litter"). other irrelevant terms also labelled as "litter" (e.g., "garbage" or a "group of animals born together") can be eliminated from your search results. This is because each distinct type of "litter" would be associated with a different identifier. 
+1. **Disambiguating terms:**  If datasets have been annotated, the system can assist in providing only results relevant for your intended meaning. For example, if you are searching for datasets about "litter" (as in "plant litter"), other irrelevant terms also labelled as "litter" (e.g., "garbage" or a "group of animals born together") can be eliminated from your search results. This is because each distinct type of "litter" would be associated with a different identifier. 
 1. **Hierarchical searches:** If you search for datasets containing "carbon flux" measurements, then datasets annotated as having measurements of "carbon dioxide flux" or "CO2 flux" will also be returned, because these are both types of "carbon flux".  This is possible if the concepts come from a structured vocabulary where "carbon dioxide flux" is lower down in the hierarchy (i.e. is a subclass) of "carbon flux".
 
 
-EML 2.2.0 now provides ways to embed references to terms in *[external vocabularies](#external-vocabularies)* (also known as *ontologies*) using HTTP [uniform resource identifiers](#glossary-uri) (or URIs). The association of an element in an EML metadata document with that external reference, is a *semantic annotation*. By referencing terms from an external vocabulary, one can provide a rigorous, expressive and consistent interpretation of the metadata.  This is only true, however, if the external vocabulary itself is well-constructed, and expressed in a W3C semantic web language. . Since the external reference (or annotation) is to a *controlled vocabulary* or *[ontology](#glossary-ontology)*, the annotation provides a computer-usable [pointer](#glossary-pointer) (the HTTP URI) that [resolves](#glossary-resolve) (and [dereferences](#glossary-dereference)) to a useful description, definition or other relationships for that annotated resource. The annotations can be extracted from an EML document, and re-expressed (formally, "serialized") into a Semantic Web language such as RDF or JSON-LD. Annotations (also called "assertions" or "triples" in RDF) collectively contribute to a *[knowledge graph](#glossary-knowledge-graph)*, that captures understanding of the relationship of the contents of datasets (as "instances") with the concepts represented by terms in ontologies (as "classes"). 
+EML 2.2.0 now provides ways to embed references to terms in *[external vocabularies](#external-vocabularies)* (also known as *ontologies*) using HTTP [uniform resource identifiers](#glossary-uri) (or URIs). The association of an element in an EML metadata document with that external reference, is a *semantic annotation*. By referencing terms from an external vocabulary, one can provide a rigorous, expressive and consistent interpretation of the metadata.  This is only true, however, if the external vocabulary itself is well-constructed, and expressed in a W3C semantic web language. . Since the external reference (or annotation) is to a *controlled vocabulary* or *[ontology](#glossary-ontology)*, the annotation provides a computer-usable [pointer](#glossary-pointer) (the HTTP URI) that [resolves](#glossary-resolve) (and [dereferences](#glossary-dereference)) to a useful description, definition or specification of other relationships for that annotated resource. Annotations can also be extracted from an EML document, and re-expressed (formally, "serialized") into a Semantic Web language such as RDF or JSON-LD. Annotations (also called "assertions" or "triples" in RDF) collectively contribute to a *[knowledge graph](#glossary-knowledge-graph)*, that captures understanding of the relationship of the contents of datasets (as "instances") with the concepts represented by terms in ontologies (as "classes"). 
 
 
 ### Take-home messages
@@ -32,23 +32,23 @@ EML 2.2.0 now provides ways to embed references to terms in *[external vocabular
 
 ### Organization of this document
 
-The purpose of this Primer is to provide an introduction to how semantic 
-annotations are structured in EML documents. It is expected that you already have some familiarity with the EML schema, and
-the focus of this document then, is explanation and examples of annotations in EML. 
+The purpose of this Primer is to provide an introduction to how semantic annotations are structured in EML documents. 
+It is expected that you already have some familiarity with the EML schema.
+The focus of this document is specifically to explain and provide examples of annotations in EML. 
 This Primer is divided into three major sections. You should be able to create EML annotations immediately, using 
 only the main section [Semantic Annotations in EML 2.2.0](#sa-eml22), referencing the [Appendix](#appendix) when 
 you would like a longer explanation.[[what is the third section? MPS]]
 
  -  **[Introduction:](#introduction)** (this section)
- -  **[Semantic Annotations in EML 2.2.0](#sa-eml22)**, with examples. Where used, EML elements are shown as inline code blocks (`elementName`).
+ -  **[Semantic Annotations in EML 2.2.0](#sa-eml22)**, with examples. Where used, EML elements are shown as inline code blocks (e.g., `elementName`).
  -  **[Appendix](#appendix)** additional information on specific related topics, linked from the Introduction and Semantic Annotations in EML 2.2.0 section.
     - **[Glossary:](#glossary)** Glossary of terms, linked from text
     - **[Semantic triples:](#semantic-triples)**  details on their structure, and how that structure is leveraged by annotations with examples of their power
     - **[URIs:](#uris)** defined, and as components of semantic triples
     - **[RDF model:](#rdf)** brief description of the W3C's RDF model with example graphs based on EML annotations
     - **[Logical consistency:](#logical-consistency)** Common mistakes and how to check for them
-    - **[Vocabularies and repositories used in examples:](#external-vocabularies)** Descriptions an links out to explore further
-    - **[Supplemental background information:](#additional-background)** The EML annotation approach here is compatible with recommendations by the World Wide Web Consortium (W3C) for construction of the Semantic Web. A wealth of material is available; a few selected ones are here.
+    - **[Vocabularies and repositories used in examples:](#external-vocabularies)** Descriptions and links out to explore further
+    - **[Supplemental background information:](#additional-background)** The EML annotation approach here is compatible with recommendations by the World Wide Web Consortium (W3C) for construction of the Semantic Web. A wealth of material is available; a few selected ones are suggested here.
     - **[Frequently asked questions:](#FAQ)** Some questions asked by readers, and their answers
 
 
@@ -77,15 +77,15 @@ in the EML record. Here is the basic structure. Sections below have more example
 ```
 
 An annotation element always has a parent-EML element, which is the 'thing' being annotated, or the *subject*.
-(e.g., `dataset`, `attribute`, see above). The annotation element
-has two required child elements, `propertyURI` and `valueURI`. Together, these two child elements, along with the *subject*  form a "semantic statement", that can become a "semantic triple". The concept of a triple is covered in more detail  (see [Semantic Triples](#semantic-triples), below). 
+(e.g., `dataset`, `attribute`, etc., see above). The `annotation` element
+has two required child elements, `propertyURI` and `valueURI`. Together, these two child elements, along with the *subject*, form a "semantic statement", that can become a "semantic triple". The concept of a triple is covered in more detail  (see [Semantic Triples](#semantic-triples), below). 
 Here, we concentrate on the structure of an annotation within the EML doc itself:
 
 - `propertyURI` and `valueURI` elements  
-  - the element's text is the URI for the concept in an external vocabulary. The identifier (URI) points to some term in a vocabulary where a definition, description, and potentially that term's relationships to other concepts, are formally modelled. 
+  - the element's text is the URI for the concept in an external vocabulary. The identifier (URI) points to some term in a vocabulary where a definition, description, and (potentially) that term's relationships to other concepts, are formally modelled. 
   - the XML attribute, `label` is required
       - it should be suitable for application interfaces to display to humans
-      - it should be populated by values from the referenced vocabulary's label field (e,g, `rdfs:label` or `skos:prefLabel` ). Note that this assumes the referenced vocabulary is stored as an RDF document, which is current best practice for sharing scientific vocabularies over the Web.
+      - it should be populated, by default, with values from the referenced vocabulary's label field (e,g, `rdfs:label` or `skos:prefLabel` ). Note that this assumes the referenced vocabulary is stored as an RDF document, which is current best practice for sharing scientific vocabularies over the Web.
 
 **When are IDs required in the EML doc?**
 To be precise, all annotations must have an unambiguous subject. 
@@ -142,16 +142,16 @@ id 'dataset-01' is about grassland biome(s)".
 </dataset>  
 ```
 
-Note that the subject `id` here is not in an optimal format, as it is not in the form of a dereferenceable HTTP URI.  Ideally this "local identifier" can be readily translated into an HTTP URI that will provide an unambiguous and persistent identifier for the subject dataset.  E.g. instead of just "dataset-01" it could be something like "http://search.dataone.org/cdr/dataset-01"
+Note that the subject `id` here is not in an optimal format, as it is not in the form of a dereferenceable HTTP URI.  Ideally this "local identifier" can be readily translated into an HTTP URI that will provide an unambiguous and persistent identifier for the subject dataset.  E.g. instead of just "dataset-01" it could be something like "http://search.dataone.org/cdr/dataset-01".  This latter URI either could be specified directly, or generated as appropriate by the metadata framework.  Without a full HTTP URI in the subject position of the Annotation, the Annotation will only be interpretable within the framework that generated the `id`.This is still quite useful, however, as the `property` and `value` URIs are to external sources that provide  information, and that other frameworks can also use and reference, leading to consistency and interoperability in interpreting metadata contents. 
 
 <a name="eml-example-2"></a>
 
 #### Example 2: Entity-level annotation
 
 In the following entity-level annotation, the semantic statement can be read as 
-"the entity with the id 'https://cn.dataone.org/cn/v2/resolve/urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b' is about Mammalia".
+"the entity with the id 'urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b' is about Mammalia".
 
-- The *subject* of the semantic statement is the `otherEntity` with `id` attribute value, `"https://cn.dataone.org/cn/v2/resolve/urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b"`. 
+- The *subject* of the semantic statement is the `otherEntity` with `id` attribute value, `"urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b"`. 
 - The annotation itself has 2 parts
     - `propertyURI` is "http://purl.obolibrary.org/obo/IAO_0000136", which resolves to "is about", from [IAO](#iao)
     - `valueURI` is "http://purl.obolibrary.org/obo/NCBITaxon_40674", which resolves to "Mammalia" in the [NCBI Taxon ontology](#ncbi_taxon). 
@@ -159,7 +159,7 @@ In the following entity-level annotation, the semantic statement can be read as
 
 
 ```xml
-<otherEntity id="https://cn.dataone.org/cn/v2/resolve/urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b" scope="document">
+<otherEntity id="urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b" scope="document">
     <entityName>DBO_MMWatch_SWL2016_MooreGrebmeierVagle.xlsx</entityName>
     <entityDescription>Data contained in the file DBO_MMWatch_SWL2016_MooreGrebmeierVagle.xlsx are marine mammal observations and observation conditions from CCGS Sir Wilfrid Laurier July 10-20, 2016.  Data observations and locations are part of the Distributed Biological Observatory (DBO).</entityDescription>
     <physical scope="document">
@@ -173,7 +173,11 @@ In the following entity-level annotation, the semantic statement can be read as
     <annotation>
 </otherEntity>
 ```
-Note in this case that the *subject* is in the form of a (potentially) dereferenceable HTTP URI.  It does unambiguously "point to" the correct data object, which we now know, through semantic annotation, is about "Mammalia".  However, if you dereference this URI, it will immediately lead to a download dialogue.  In the near future, content negotiation will improve this behavior, such that the server-response will be appropriate for the requesting client: e.g. if the requesting client is a Web browser, generate a human-readable HTML-page output; whereas if the requesting client is an R-script, where the URI is an argument to a read.csv function, the data will be downloaded and an appropriate R data-object generated.
+Note in this case that the *subject* is not in the form of a (potentially) dereferenceable HTTP URI.  It does unambiguously "point to" the correct data object identified by the URN, but this is interpretable within some specific framework (e.g. here it would be a DataONE URN).  We do know, however, through the semantic annotation, that the subject data resource *is about* "Mammalia". Ideally, however, the subject, either internally or as a framework service, can be represented with a fully dereferenceable HTTP URI, e.g. in this case:
+https://cn.dataone.org/cn/v2/resolve/urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b
+
+While the above URI will dereference to the correct dataset on DataONE, it will automatically start downloading the data.
+In the near future, content negotiation will improve this behavior, such that the server-response will be appropriate for the requesting client: e.g. if the requesting client is a Web browser, generate a human-readable HTML-page output; whereas if the requesting client is an R-script, where the URI is an argument to a read.csv function, the data will be downloaded and an appropriate R data-object generated.
 
 <a name="eml-example-3"></a>
 
@@ -237,11 +241,11 @@ of annotations must be placed TO DO< WHERE IN DOC? [[MPS: I don't know the answe
 Example 4 contains 3 different annotations. 
 
 In the first, the subject is the `dataTable` element with the `id` 
-attribute "CDF-biodiv-table". Its annotation components are analogous to Example 2 above, again referencing terms in [IAO](#iao) and [ENVO](#envo). The semantic statement can be read as 
+of "CDF-biodiv-table". Its annotation components are analogous to Example 2 above, again referencing terms in [IAO](#iao) and [ENVO](#envo). The semantic statement can be read as 
 
 -  "the dataTable with the `id` 'CDR-biodiv-table' is about grassland biome(s)".
 
-The second and third annotations both have an individual as their subjects -- the `creator` element that has the `id` "adam.shepherd".
+The second and third annotations both have individual persons as their subjects -- the `creator` element that has the `id` "adam.shepherd".
 
 Respectively, their semantic statements can be read as
 
@@ -251,7 +255,7 @@ Respectively, their semantic statements can be read as
 The ontologies used for adam.shepherd are
 
 - in the second annotation 
-    - `propertyURI` : an RDF built-in type, "is a"  (as in, `the subject is an instance of a class`)
+    - `propertyURI` : uses an RDF built-in type, *rdf:type* that has label "is a"  (as in, `the subject *is an* instance of a class`)
     - `valueURI` : [schema.org's](#schema.org) concept of a "person"
 - third annotation
     - `propertyURI` : another [schema.org](#schema.org) concept for a relationship, "is a member of"
@@ -306,7 +310,7 @@ If an `additionalMetadata` section holds a semantic annotation, it must have a `
 - The *subject* of the semantic statement has its id contained in the `describes` element. 
 - The annotation itself is within the `additionalMetadata` `metadata` section
 - Multiple `annotation` elements may be embedded in the same `metadata` element to assert multiple semantic statements about the same subject.
-- To annotate different subjects it's best to use additional `additionalMetadata` sections, each with a single subject
+- To annotate different subjects it's best to use multiple `additionalMetadata` sections, each with a single subject
 
 <a name="eml-example-5"></a>
 
@@ -317,7 +321,7 @@ Example 5 shows one of the same annotations as Example 4, but this time, it is c
 The semantic statements can be read as "'adam.shepherd', the creator (of the dataset), is a person".
 
 
-- The *subject* of the semantic statement is the `creator` element with the `id` attribute "adam.shepherd". 
+- The *subject* of the semantic statement is the EML `creator` element with the `id` attribute "adam.shepherd". 
 - The annotation itself has 2 parts
     - `propertyURI` is "https://schema.org/memberOf", which resolves to "is a member of", from [schema.org](#schema.org)
     - `valueURI` is "https://doi.org/10.17616/R37P4C", a DOI which resolves to "BCO-DMO". 
@@ -362,17 +366,17 @@ The semantic statements can be read as "'adam.shepherd', the creator (of the dat
 
 Semantic annotations enable the creation of what are called *triples*, that are 3-part statements conforming to the W3C recommended *RDF data model* (learn more: <https://www.w3.org/TR/rdf11-primer/>). 
 
-A *triple* is composed of three parts: a **subject**, a **predicate** (**object property** or **datatype property**), and an **object**.
+A *triple* is composed of three parts: a **subject**, a **predicate** (that can be an **object property** or **datatype property**), and an **object**.
 
 ```
 [subject] [predicate] [object]
 ```
 
-These components are analogous to parts of a sentence: the **subject** and **object** can be thought of as nouns in the sentence and the **predicate** (object property or datatype property) is akin to a verb or relationship that connects the **subject** and **object**. The semantic triple expresses a statement about the associated resource, that is generally the **subject**. 
+These components are analogous to parts of a sentence: the **subject** and **object** can be thought of as nouns in the sentence and the **predicate** (object property or datatype property) is akin to a verb or relationship that connects the **subject** and **object**. The semantic triple expresses a statement about the associated resource, that is the **subject**. 
 
-There are (perhaps unfortunately) several other ways that the components of an RDF statement are sometimes described.  One popular "synonymy" for **subject-predicate-object** is **resource-property-value**, i.e. the subject is referred to as the **resource**, the predicate a **property**, and the object a **value**.  This can be confusing, since the usual definition of a *resource* is any identifiable 'thing' or object, especially one assigned a URI; and by this definition, *resources* can and often do occur in all three components of a triple.  But thinking of a triple as a *resource-property-value* does provide an indication of the directionality of the semantics of an RDF statement.  This latter terminology is also somewhat similar to how analogous components are named in JSON-LD.  Note that JSON-LD is closely compatible with RDF, and one format can often be readily translated to the other (although there are some exceptions).
+There are (perhaps unfortunately) several other ways that the components of an RDF statement are sometimes described.  One popular "synonymy" for **subject-predicate-object** is **resource-property-value**, i.e. the subject is referred to as the **resource**, the predicate a **property**, and the object a **value**.  This can be confusing, since the usual definition of a *resource* in the context of the World Wide Web is any identifiable 'thing' or object, especially one assigned a URI; and by this definition, *resources* can and often do occur in all three components of a triple.  But thinking of a triple as a *resource-property-value* does provide an indication of the directionality of the semantics of an RDF statement.  This latter terminology is also similar to how analogous components are named in JSON-LD.  Note that JSON-LD is closely compatible with RDF, and one format can often be readily translated to the other (although there are some exceptions).
 
-Semantic annotations added to an EML document can be extracted and processed into a semantic web format, such as RDF/XML. These "semantic" statements, i.e. RDF triples, are interpretable by any machines that can process the W3C standard of RDF. Those RDF statements contribute to the Semantic Web.
+Semantic annotations added to an EML document can be extracted and processed into a semantic web format, such as RDF/XML. These "semantic" statements, i.e. RDF triples, are interpretable by any machines that can process the W3C standard of RDF. Those RDF statements collectively constitute the Semantic Web.
 
 <a name="uris"></a>
 
