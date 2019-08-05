@@ -2,17 +2,19 @@ language: java
 
 dist: bionic
 
+env:
+  - ANT="apache-ant-1.10.6"
+
 cache:
   directories:
-  - apache-ant-1.10.6 
+  - ${ANT}
 
 before_install:
     - sudo apt-get update
     - sudo apt-get install -y xmlstarlet
-    - if [ -d "apache-ant-1.10.6" ]; then echo "Ant already downloaded..."; fi
-    - if [ ! -d "apache-ant-1.10.6" ]; then echo "Downloading ant..."; wget https://www.apache.org/dist/ant/binaries/apache-ant-1.10.6-bin.tar.gz; tar -xzvf apache-ant-1.10.6-bin.tar.gz; fi
-    - export PATH=`pwd`/apache-ant-1.10.6/bin:$PATH
-    - echo $(ant -version)
+    - if [ -d "${ANT}" ]; then echo "${ANT} already downloaded..."; ls -l ${ANT}; fi
+    - if [ ! -d "apache-ant-1.10.6" ]; then echo "Downloading ${ANT}..."; wget https://www.apache.org/dist/ant/binaries/${ANT}-bin.tar.gz; tar -xzvf ${ANT}-bin.tar.gz; fi
+    - export PATH=`pwd`/${ANT}/bin:$PATH
 
 install:
     - ant -diagnostics
