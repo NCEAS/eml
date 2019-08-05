@@ -4,10 +4,10 @@ dist: bionic
 
 addons:
   apt:
-    packages:
-    - xmlstarlet
-    - ant
-    - ant-optional
+    snaps:
+        - xmlstarlet
+        - ant
+        - ant-optional
 
 script:
     - free -m
