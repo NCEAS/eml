@@ -11,7 +11,7 @@ before_install:
     - sudo apt-get update
     - sudo apt-get install -y xmlstarlet
     - if [ -d "${ANT}" ]; then echo "${ANT} already downloaded..."; ls -l ${ANT}; fi
-    - if [ -d "apache-ant-1.10.6" ]; then echo "Downloading ${ANT}..."; wget https://www.apache.org/dist/ant/binaries/${ANT}-bin.tar.gz; tar -xzvf ${ANT}-bin.tar.gz; fi
+    - if [ ! -d "apache-ant-1.10.6" ]; then echo "Downloading ${ANT}..."; wget https://www.apache.org/dist/ant/binaries/${ANT}-bin.tar.gz; tar -xzvf ${ANT}-bin.tar.gz; fi
     - export PATH=`pwd`/${ANT}/bin:$PATH
 
 install:
