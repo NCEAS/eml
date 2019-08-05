@@ -378,7 +378,7 @@
                 <pathelement path="${cpath}:${build.dir}/${name}-test.jar:${build.dir}/${name}.jar" />
             </classpath>
 
-            <formatter type="plain" />
+            <formatter type="plain" usefile="false"/>
             <env key="EML_VERSION" value="${version}"/>
 
             <batchtest fork="yes" todir="${build.dir}">
