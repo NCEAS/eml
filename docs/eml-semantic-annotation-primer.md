@@ -637,11 +637,11 @@ In the context of the Semantic Web, the RDF model relies extensively on derefere
 A: Yes, in the context of a data table and for annotation purposes, any attribute (observation or column of data) can be 
 considered ‘a measurement’. A philosopher might disagree, saying that *unique identifiers* are not really 
 measurements; but many other “nominals”, i.e. text strings identifying some class types (e.g. predator, lizard, 
-tundra), imply quantification. 
+tundra), imply quantification and can be construed as measurements. 
 
 <a name="FAQ-example-labels"></a>
 
-**Q: Can you provide an example of a controlled vocabulary with a rdfs:label or skos:label?**
+**Q: Can you provide an example of a controlled vocabulary with an rdfs:label or skos:label?**
 
 A: Most Semantic Web vocabularies make extensive use of rdfs:label or SKOS label properties. For example, this URI: http://purl.dataone.org/odo/ECSO_00000536 is from the ECSO ontology, under development at NCEAS by NSF's DataONE and Arctic Data Center. Within that ontology, the URI is associated with an rdfs:label of "Carbon Dioxide Flux", and a skos:altLabel of "CO2 flux". If you dereference the URI, you will see how the BioPortal ontology repository displays this information-- providing a human-readable representation of the underlying RDF/OWL language in which the ontology is stored.
 
@@ -655,7 +655,7 @@ Perhaps the most straightforward serialization of RDF graphs for human interpret
 
 http://purl.obolibrary.org/obo/CHEBI_16526 http://purl.obolibrary.org/obo/RO_0000087 http://purl.obolibrary.org/obo/CHEBI_76413 .
 
-These are three URIs-- representing the Subject, Predicate, and Object of a Triple. The "." indicates the end of the Triple. Dereferencing these URIs (e.g. a Web browser or specialized application) one can see that this Triple represents the statement:
+These are three URIs here-- representing the Subject, Predicate, and Object of a Triple. The "." indicates the end of the Triple.  Of course, you would need to know that these three URI's are intended to be interpreted as an RDF Triple.  Dereferencing these URIs (e.g. a Web browser or specialized application) one can see that this Triple represents the statement:
 
 "Carbon dioxide"(Subject) "has role"(Predicate) "Greenhouse Gas"(Object)
 
@@ -667,7 +667,7 @@ that asserts:
 
 "World Wide Web"(Subject) "creator"(Predicate) "Timothy Berners Lee"(Object) .
 
-...although some semantic purists might question whether the Dublin Core property "Creator" can be used in this way as an RDF predicate, since it is not semantically defined-- would its rdfs:label be "creatorOf" or "hasCreator"? (Dublin Core does not say!). Regardless of the formal semantic well-formedness of this Triple, however, one can see the expressive power of the RDF data model, and the value of dereferenceable URIs.
+...although some semantic purists might question whether the Dublin Core property "Creator" can be used in this way as an RDF predicate, since it is not semantically defined-- would its rdfs:label be "creatorOf" or "hasCreator"? (Dublin Core does not say explicitly, but implicitly is indicative of "hasCreator"!). Regardless of the formal semantic well-formedness of this Triple, however, one can see the expressive power of the RDF data model, and the value of dereferenceable URIs.
 
 A better solution would be to use the semantically defined term from SIO (the Semantic Science Integrated Ontology) http://semanticscience.org/resource/SIO_000364 as the predicate, with an rdfs:label "has creator"
 
@@ -677,20 +677,20 @@ http://purl.obolibrary.org/obo/NCIT_C20461 http://semanticscience.org/resource/S
 
 World Wide Web(Subject) has creator(Predicate) Tim Berners Lee(Object)
 
-or inversely, one could use http://semanticscience.org/resource/SIO_000365 as the predicate, that has rdfs:Label "is creator of"
+or inversely, one could use http://semanticscience.org/resource/SIO_000365 as the predicate, that has rdfs:label "is creator of"
 
 Tim Berners Lee(Subject) is creator of(Predicate) World Wide Web(Object)
 
 https://orcid.org/0000-0003-1279-3709 http://semanticscience.org/resource/SIO_000365 http://purl.obolibrary.org/obo/NCIT_C20461.
 
-Within the SIO ontology, SIO_000364 and SIO_000365 are defined as inverses of one another. This enables one to ask both questions-- "who created the Web?" (A: Tim Berners Lee), and "what did Tim Berners Lee create" (A: the Web)-- even though you only asserted one of the Triples.
+Within the SIO ontology, SIO_000364 and SIO_000365 are defined as inverses of one another. This enables one (a person or a computer!) to ask either question-- "who created the Web?" (A: Tim Berners Lee), or "what did Tim Berners Lee create" (A: the Web)-- even though you only asserted one of the Triples.
 
-Finally, it is worth noting that one's choice of which Ontologies to use is important. Within the Ecological and Environmental sciences, there are several highly-recommended vocabularies, including those from the OBO Foundry (e.g. ChEBI, EnvO), as well as SIO. Specifically for annotating scientific measurements, the Arctic Data Center and DataONE are developing an Ontology for Ecosystem Measurements, ECSO. We have used all these in the examples.
+Finally, it is worth noting that one's choice of which Ontologies to use is important. Within the Ecological and Environmental sciences, there are several highly-recommended vocabularies, including those from the OBO Foundry (e.g. ChEBI, EnvO, RO, and PATO), as well as SIO. Specifically for annotating scientific measurements, the Arctic Data Center and DataONE are developing an Ontology for Ecosystem Measurements, ECSO.  These use, where possible, terms from the OBO Foundry ontologies mentioned here. We have used all these in the examples.
 
 <a name="FAQ-what-tools"></a>
 
 **Q: Are there tools available to help data managers select subjects, predicates, and objects to annotate with?**
 
-A: Yes, tools are being built to assist with the semantic annotation of EML documents, within the DataONE and Arctic Data Center data repository projects, and others.
+A: Yes, tools are being built to assist with the semantic annotation of EML documents, within the DataONE and Arctic Data Center data repository projects, and others.  In addition, tools are being built to enable semantic search, that uses the annotations to expand searches to capture synonyms, differentiate homonyms, and enable the discovery of sub-classes of the terms that you might originally be searching for.
 
 
