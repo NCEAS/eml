@@ -4,7 +4,7 @@
 
 ## Introduction
 
-A semantic annotation creates a relationship between some semantic metadata and a resource - in this case, a dataset, or some other element of a dataset (e.g. an attribute). What makes the annotation "semantic" is that the resource is linked to a well-defined term in an Ontology.  In this way, semantic annotation provides access to precise definitions of concepts, and clarifies the relationships among concepts in a machine-readable way, using the Web. The process of creating semantic annotations may seem tedious, but the payoff is enhanced discovery and reuse of your data. 
+A semantic annotation creates a relationship between some semantic metadata and a resource - in this case, a dataset, or some other element of a dataset (e.g. an attribute). What makes the annotation "semantic" is that the resource is linked to a well-defined term in a web-accessible Ontology.  In this way, semantic annotation provides access to precise definitions of concepts, and clarifies the relationships among concepts in a machine-readable way. The process of creating semantic annotations may seem tedious, but the payoff is enhanced discovery and reuse of your data. 
 
 The main differences between semantic annotation and simply adding keywords are: 
 - semantic annotations can be read and interpreted by computers 
@@ -469,7 +469,7 @@ _Note: The subject described in the `rdf:Description` `about` attribute ideally 
 </rdf:RDF>
 
 ```
-_Note: The subject described in the `rdf:Description` `about` attribute should ideally be the globally unique URI issued for 'adam.shepherd'. Methods for constructing this HTTP URI GUID are being developed by EDI, NCEAS, and others._
+_Note: The subject described in the `rdf:Description` `about=` attribute should ideally be a globally unique URI issued for 'adam.shepherd'.  The URL for Adam's ORCID ID would be a good candidate for filling this role. Methods for constructing this HTTP URI GUID are being developed by EDI, NCEAS, and others, for referencing datasets and their components (e.g. specific attributes), in their various sponsored data repositories._
 
 <a name="logical-consistency"></a>
 
@@ -502,7 +502,7 @@ If you suspect your RDF triple might look like this, you should go back and exam
 Things to check:
 
 1. Be sure you have used the right classes, properties, or vocabularies for your annotation components
-  1. Become familiar with the vocabularies in your annotation, especially definitions and relationships 
+  1. Become familiar with the vocabularies in your annotation, especially any labels, definitions, and relationships associated with your term(s) of interest. 
   1. Check with your community for specific recommendations on the best vocabularies to use for annotations at different levels. Our examples use [well-constructed vocabularies](#external-vocabularies). 
 1. In `additionalMetadata`, don't combine `annotations` with more than one `describes` element. EML allows 1:many `describes` elements in a single `additionalMetadata` section. So if you have 2 `describes` and 2 `annotations`, you will have 4 RDF statements. Make sure they are all true, and if not, break them up into multiple `additionalMetadata` sections.
 
@@ -512,18 +512,17 @@ Things to check:
 ### Glossary
 
 <a name="glossary-dereference"></a>
-**dereference**: To interpret a URI and retrieve information about a resource stored in another location   
+**dereference**: To interpret ("resolve") a URI, and retrieve information about the resource identified by that URI   
 
 <a name="glossary-knowledge-graph"></a>
 **knowledge graph**  any knowledge base that is represented as a mathematical graph. 
-A graph is a structure for a set of objects, where some pairs of the objects are in some sense related. 
-The objects are called nodes or vertices and are interconnected by a set of lines called edges. 
-For a semantic triple, the subject and object may be considered nodes and the relationship between 
-the nodes as an edge.
+In the mathematical sense, a graph is simply a collection of points connected by lines.  The points are called *nodes* or *vertices*, while the lines are called *edges* or *links*. In an informatics sense, this structure is used to store information about a set of objects, including the identity of the objects (as nodes), and the relationships among the objects (as links). Note that our use of the word "object" here is very general, and is not the same sense as when we describe triples. 
+
+
+In an RDF (semantic) triple, the *subject* and *object* (the word *object* here in the specific RDF sense!) are represented as nodes, and the relationship between the nodes is represented as an edge or link. Note however that a *subject* of one triple can serve as an *object* of another triple, and vice-versa.  The term *Knowledge Graph* is generally used nowadays to refer not so much to an underlying controlled vocabulary or ontology, but rather to the assertions about various objects and how these relate to ontology terms, and other objects.  Thus, as a set of semantic annotations grows, for example, assertions (triples) about the datasets in DataONE, these would be stored in a growing knowledge graph.  The most famous Knowledge Graph as of today is the one that informs search results for Google.
  
 <a name="glossary-ontology"></a> 
-**ontology**: A knowledge *graph* representation of a set of terms, including their names, and descriptions of 
-the categories, properties, and relationships among those terms.
+**ontology**: In an informatics sense, an ontology is a representation of a corpus of knowledge.  The W3C-recommendation is that these representations be constructed using an RDF data model, that has a *graph* structure. The ontology provides a representation of a set of terms, including their names, and descriptions of the categories, properties, and relationships among those terms.
 
 <a name="glossary-pointer"></a>
 **pointer**: A kind of reference to a datum stored in computer memory.   
@@ -533,11 +532,11 @@ the categories, properties, and relationships among those terms.
 **resolve**: To interpret a URI and determine a course of action for dereferencing the URI.
 
 <a name="glossary-rdf"></a> 
-**Resource Description Framework (RDF)**: A family of World Wide Web Consortium (W3C) recommendations that enable the encoding, exchange, and reuse of structured metadata. The RDF data model employs semantic triples composed of a subject, predicate, and object to share and integrate data across different applications and communities through the Web. 
+**Resource Description Framework (RDF)**: A World Wide Web Consortium (W3C) recommendation that enables the encoding, exchange, and reuse of structured metadata using a graph model. The RDF data model employs semantic triples composed of a subject, predicate, and object to share and integrate data across different applications and communities through the Web. 
 
 
 <a name="glossary-uri"></a>
-**uniform resource identifier (URI)**: A string of characters that unambiguously identifies a particular resource. For semantic annotations, the components of semantic triples are ideally HTTP URIs that resolve and describe precise definitions and relationships to other terms, using Web technology.
+**uniform resource identifier (URI)**: In its most general sense, a URI is simply a string of characters that unambiguously identifies a particular resource.  Much more commonly, it refers to an identifier for a resource on the Web, but, e.g. ISBN numbers are also URIs. For semantic annotations, the components of semantic triples are ideally HTTP URIs that dereference using Web technology, to an appropriate representation of a resource, e.g. metadata about the dataset in the case of the *subject*, and definitions and descriptions of the meaning of the *predicate* and *object* terms that provide information about the *subject*.
 
 <a name="external-vocabularies"></a>
 
@@ -615,7 +614,7 @@ A: Within the context of semantic annotation, "dereferencing" refers to the proc
 
 A: The distinctions among URIs (Uniform Resource Identifiers), URLs (Uniform Resource Locators), and URNs (Uniform Resource Names), relate to differentiating the functionalities of identifying a Resource, as opposed to locating a Resource, or doing both. URLs are all URIs (with some edge case exceptions subject to argument), and URNs are also URIs. In many cases, URIs serve both to name and locate a Resource. 
 
-Within the vision of the Semantic Web, URIs are ideally unique, persistent URNs identifying some Web Resource, that can also serve to locate and retrieve (dereference) a representation of that Resource (URLs). The formal specification for these terms and what they mean is found in the IETF's RFC 3986, section 1.1.3 (https://tools.ietf.org/html/rfc3986#section-1.1.3). Another acronym one may encounter with increasing frequency is IRI (Internationalized Resource Identifier) that simply extends the concept of a URI to include full Unicode character set, rather than just ASCII in its construction (https://tools.ietf.org/html/rfc3987).
+Within the vision of the Semantic Web, URIs are ideally unique, persistent URNs identifying some Web Resource, that can also serve to locate and retrieve (dereference) a representation of that Resource (URLs). The formal specification for these terms and what they mean is found in the IETF's RFC 3986, section 1.1.3 (https://tools.ietf.org/html/rfc3986#section-1.1.3). Another acronym one may encounter with increasing frequency is IRI (Internationalized Resource Identifier) that extends the concept of an HTTP URI to allow for use of the full Unicode character set, rather than just ASCII, in its construction (https://tools.ietf.org/html/rfc3987).
 
 <a name="FAQ-what-is-skos"></a>
 
@@ -627,7 +626,7 @@ A: SKOS (Simple Knowledge Management System) is a W3C recommendation for organiz
 
 **Q: What is RDFS?**
 
-A: RDFS (Resource Description Framework Schema; https://www.w3.org/TR/rdf-schema/) is a W3C recommendation that extends the formal vocabulary for describing Resources expressed in an RDF data model (i.e., in a graph). "Base" RDF https://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/ provides a set of concepts for creating a graph model of data-- consisting of one or more triples relating a subject, predicate, and object. RDFS adds to the base RDF model by specifying a number of well-defined concepts and properties, such as rdfs:Class and rdfs:subClassOf. These and other RDFS classes and properties, enable data and knowledge modellers to express many relationships between the Subject and Object of a Triple. 
+A: RDFS (Resource Description Framework Schema; https://www.w3.org/TR/rdf-schema/) is a W3C recommendation that extends the formal vocabulary for describing Resources expressed in an RDF data model (i.e., in a graph). "Base" RDF (https://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/) provides a set of concepts for creating a graph model of data-- consisting of one or more triples relating a subject, predicate, and object. RDFS adds to the base RDF model by specifying an additional number of well-defined concepts and properties, such as rdfs:Label, rdfs:Class and rdfs:subClassOf. These and other RDFS classes and properties, enable data and knowledge modellers to express many relationships between the Subject and Object of a Triple. 
 
 In the context of the Semantic Web, the RDF model relies extensively on dereferenceable URIs in the subject and predicate positions, and URIs or literals in the object position (there are small formal exceptions to this not immediately relevant here). RDF triples can be expressed in several syntaxes, including XML, JSON-LD, and Turtle, among others. RDFS then can be used to enrich the precision and expressivity of the components of a triple, as well as clarify the relationships among these.
 
@@ -636,9 +635,9 @@ In the context of the Semantic Web, the RDF model relies extensively on derefere
 **Q: Are all EML dataTable attributes "measurements"?**
 
 A: Yes, in the context of a data table and for annotation purposes, any attribute (observation or column of data) can be 
-considered ‘a measurement’. A philosopher might disagree, saying that unique identifiers are not really 
-measurements; but many “nominals”, i.e. text strings identifying some class types (e.g. predator, lizard, 
-tundra) imply quantification. 
+considered ‘a measurement’. A philosopher might disagree, saying that *unique identifiers* are not really 
+measurements; but many other “nominals”, i.e. text strings identifying some class types (e.g. predator, lizard, 
+tundra), imply quantification. 
 
 <a name="FAQ-example-labels"></a>
 
