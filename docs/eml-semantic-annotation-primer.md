@@ -21,13 +21,13 @@ An information system can recognize, through semantic annotation, that these dat
 1. **Hierarchical searches:** If you search for datasets containing "carbon flux" measurements, then datasets annotated as having measurements of "carbon dioxide flux" or "CO2 flux" will also be returned, because these are both types of "carbon flux".  This is possible if the concepts come from a structured vocabulary where "carbon dioxide flux" is lower down in the hierarchy (i.e. is a subclass) of "carbon flux".
 
 
-EML 2.2.0 now provides ways to embed references to terms in *[external vocabularies](#external-vocabularies)* (also known as *ontologies*) using HTTP [uniform resource identifiers](#glossary-uri) (or URIs). The association of an element in an EML metadata document with that external reference, is a *semantic annotation*. By referencing terms from an external vocabulary, one can provide a rigorous, expressive and consistent interpretation of the metadata.  This is only true, however, if the external vocabulary itself is well-constructed, and expressed in a W3C semantic web language. . Since the external reference (or annotation) is to a *controlled vocabulary* or *[ontology](#glossary-ontology)*, the annotation provides a computer-usable [pointer](#glossary-pointer) (the HTTP URI) that [resolves](#glossary-resolve) (and [dereferences](#glossary-dereference)) to a useful description, definition or specification of other relationships for that annotated resource. Annotations can also be extracted from an EML document, and re-expressed (formally, "serialized") into a Semantic Web language such as RDF or JSON-LD. Annotations (also called "assertions" or "triples" in RDF) collectively contribute to a *[knowledge graph](#glossary-knowledge-graph)*, that captures understanding of the relationship of the contents of datasets (as "instances") with the concepts represented by terms in ontologies (as "classes"). 
+EML 2.2.0 now provides five ways to embed references to terms in *[external vocabularies](#external-vocabularies)* (also known as *ontologies*) using HTTP [uniform resource identifiers](#glossary-uri) (or URIs). The association of an element in an EML metadata document with that external reference, is a *semantic annotation*. By referencing terms from an external vocabulary, one can provide a rigorous, expressive and consistent interpretation of the metadata.  This is only true, however, if the external vocabulary itself is well-constructed, and expressed in a W3C semantic web language. Since the external reference (or annotation) is to a *controlled vocabulary* or *[ontology](#glossary-ontology)*, the annotation provides a computer-usable [pointer](#glossary-pointer) (the HTTP URI) that [resolves](#glossary-resolve) (and [dereferences](#glossary-dereference)) to a useful description, definition or specification of other relationships for that annotated resource. Annotations can also be extracted from an EML document, and re-expressed (formally, "serialized") into a Semantic Web language such as RDF or JSON-LD. Annotations (also called "assertions" or "triples" in RDF) collectively contribute to a *[knowledge graph](#glossary-knowledge-graph)*, that captures understanding of the relationship of the contents of datasets (as "instances") with the concepts represented by terms in ontologies (as "classes"). 
 
 
 ### Take-home messages
 
 - **Semantic statements must be logically consistent, as they are not simply a set of loosely structured keywords.** 
-- **EML 2.2.0 has five places or methods to add annotations.**  [[Margaret-- I don't see where you've mentioned this except further below, MPS]]
+- **EML 2.2.0 has five places or methods to add annotations** (described in greater detail below).  
 - **The best place for advice and feedback on EML annotations is your data management community**
 
 ### Organization of this document
@@ -35,17 +35,17 @@ EML 2.2.0 now provides ways to embed references to terms in *[external vocabular
 The purpose of this Primer is to provide an introduction to how semantic annotations are structured in EML documents. 
 It is expected that you already have some familiarity with the EML schema.
 The focus of this document is specifically to explain and provide examples of annotations in EML. 
-This Primer is divided into three major sections. You should be able to create EML annotations immediately, using 
+This Primer is divided into three major sections, the first being the [Introduction](#introduction) (this section). You should be able to create EML annotations immediately, using 
 only the main section [Semantic Annotations in EML 2.2.0](#sa-eml22), referencing the [Appendix](#appendix) when 
-you would like a longer explanation.[[what is the third section? MPS]]
+you would like a longer explanation.
 
- -  **[Introduction:](#introduction)** (this section)
+ -  **[Introduction](#introduction)**
  -  **[Semantic Annotations in EML 2.2.0](#sa-eml22)**, with examples. Where used, EML elements are shown as inline code blocks (e.g., `elementName`).
- -  **[Appendix](#appendix)** additional information on specific related topics, linked from the Introduction and Semantic Annotations in EML 2.2.0 section.
+ -  **[Appendix:](#appendix)** Additional information on specific related topics, linked from the Introduction and Semantic Annotations in EML 2.2.0 section.
     - **[Glossary:](#glossary)** Glossary of terms, linked from text
-    - **[Semantic triples:](#semantic-triples)**  details on their structure, and how that structure is leveraged by annotations with examples of their power
-    - **[URIs:](#uris)** defined, and as components of semantic triples
-    - **[RDF model:](#rdf)** brief description of the W3C's RDF model with example graphs based on EML annotations
+    - **[Semantic triples:](#semantic-triples)** Details on their structure, and how that structure is leveraged by annotations with examples of their power
+    - **[URIs:](#uris)** Defined, and as components of semantic triples
+    - **[RDF model:](#rdf)** Brief description of the W3C's RDF model with example graphs based on EML annotations
     - **[Logical consistency:](#logical-consistency)** Common mistakes and how to check for them
     - **[Vocabularies and repositories used in examples:](#external-vocabularies)** Descriptions and links out to explore further
     - **[Supplemental background information:](#additional-background)** The EML annotation approach here is compatible with recommendations by the World Wide Web Consortium (W3C) for construction of the Semantic Web. A wealth of material is available; a few selected ones are suggested here.
