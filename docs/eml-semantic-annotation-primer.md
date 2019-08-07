@@ -401,7 +401,7 @@ While our focus here is on the semantic annotation of EML documents, it is easy 
 
 Note that the above *RDF triple* consists of three HTTP URIs. While the exact distinction among what is a URI, a URN, and a URL can be debated, for our purposes, these HTTP URIs can be considered both the *name* and *web location* of a resource. Content negotiation between a Web server and a client (which might be a browser, or a Python or R script) can enable an HTTP URI to dereference in ways optimized for the requesting client -- e.g. in one case, presenting a human-readable view of metadata for a dataset, and in another, activating a download of that dataset for import into a script.
 
-Semantic annotations in EML are useful because they enable associating data objects described in EML, with terms from external vocabularies. These external vocabularies can be used by other systems to similarly describe data objects, dataset variables, etc. The ability to extract semantic annotations out of EML, and convert these into valid RDF triples, provides further utility that is a pathway to the future. Sets of RDF triples, called "graphs", or in this case more accurately, "knowledge graphs" (since these triples describe our understanding of data set contents and their relationships)is under development at DataONE, NCEAS, EDI, through the rOpenSci project, and elsewhere.  The RDF triple described above hopefully gives an idea of how such triples, constructed of dereferenceable HTTP URIs, can be very useful. 
+Semantic annotations in EML are useful because they enable associating data objects described in EML, with terms from external vocabularies. These external vocabularies can be used by other systems to similarly describe data objects, dataset variables, etc. The ability to extract semantic annotations out of EML, and convert these into valid RDF triples, provides further utility that is a pathway to the future. Sets of RDF triples, called "graphs", or in this case more accurately, "knowledge graphs" (since these triples describe our understanding of data set contents and their relationships) is under development at DataONE, NCEAS, EDI, through the rOpenSci project, and elsewhere.  The RDF triple described above hopefully gives an idea of how such triples, constructed of dereferenceable HTTP URIs, can be very useful. 
 
 Related FAQ: [What is the difference between an URI and a URL? ](#FAQ-URIvsURL)
 
@@ -608,9 +608,9 @@ Below are answers to questions some readers had, which may be helpful to you. If
 
 A: Within the context of semantic annotation, "dereferencing" refers to the process of interpreting a URI, and providing "useful information" back about the Resource of interest. The phrase "resolving a URI" is often used synonymously with "dereferencing", but technically "resolution" refers to the process of determining HOW and WHAT to do with the URI, whereas "dereferencing" is explicitly about the action taken, which is typically retrieving a representation of the Resource of interest. The formal specification for these terms and what they mean is found in the IETF's (Internet Engineering Task Force) RFC (Request for Comment) 3986 (https://tools.ietf.org/html/rfc3986).
 
-**Q: What is the difference between an URI and a URL? Sample URIs look a lot like URLs...**
-
 <a name="FAQ-URIvsURL"></a>
+
+**Q: What is the difference between an URI and a URL? Sample URIs look a lot like URLs...**
 
 A: The distinctions among URIs (Uniform Resource Identifiers), URLs (Uniform Resource Locators), and URNs (Uniform Resource Names), relate to differentiating the functionalities of identifying a Resource, as opposed to locating a Resource, or doing both. URLs are all URIs (with some edge case exceptions subject to argument), and URNs are also URIs. In many cases, URIs serve both to name and locate a Resource. 
 
