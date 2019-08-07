@@ -659,7 +659,7 @@ These are three URIs here-- representing the Subject, Predicate, and Object of a
 
 "Carbon dioxide"(Subject) "has role"(Predicate) "Greenhouse Gas"(Object)
 
-While the phrasing is a bit awkward sounding, the meaning is clear by simply depicting the rdfs:Labels of those terms from the ChEBI (Chemical Entities of Biological Interest) and RO (Relation) ontologies, that are both robust OBO Foundry ontologies.
+While the phrasing is a bit awkward sounding, the meaning is clear by simply depicting the rdfs:labels of those terms from the ChEBI (Chemical Entities of Biological Interest) and RO (Relation) ontologies, that are both robust OBO Foundry ontologies.
 
 As another example: http://purl.obolibrary.org/obo/NCIT_C20461 http://purl.org/dc/elements/1.1/creator https://orcid.org/0000-0003-1279-3709 .
 
@@ -675,15 +675,15 @@ http://purl.obolibrary.org/obo/NCIT_C20461 http://semanticscience.org/resource/S
 
 ...that would translate as (based on content of the rdfs:label):
 
-World Wide Web(Subject) has creator(Predicate) Tim Berners Lee(Object)
+World Wide Web(Subject) has creator(Predicate) Tim Berners-Lee(Object)
 
 or inversely, one could use http://semanticscience.org/resource/SIO_000365 as the predicate, that has rdfs:label "is creator of"
 
-Tim Berners Lee(Subject) is creator of(Predicate) World Wide Web(Object)
+Tim Berners-Lee(Subject) is creator of(Predicate) World Wide Web(Object)
 
 https://orcid.org/0000-0003-1279-3709 http://semanticscience.org/resource/SIO_000365 http://purl.obolibrary.org/obo/NCIT_C20461.
 
-Within the SIO ontology, SIO_000364 and SIO_000365 are defined as inverses of one another. This enables one (a person or a computer!) to ask either question-- "who created the Web?" (A: Tim Berners Lee), or "what did Tim Berners Lee create" (A: the Web)-- even though you only asserted one of the Triples.
+Within the SIO ontology, SIO_000364 and SIO_000365 are defined as inverses of one another. This enables one (a person or a computer!) to ask either question-- "who created the Web?" (A: Tim Berners-Lee), or "what did Tim Berners-Lee create" (A: the Web)-- even though you only asserted one of the Triples.
 
 Finally, it is worth noting that one's choice of which Ontologies to use is important. Within the Ecological and Environmental sciences, there are several highly-recommended vocabularies, including those from the OBO Foundry (e.g. ChEBI, EnvO, RO, and PATO), as well as SIO. Specifically for annotating scientific measurements, the Arctic Data Center and DataONE are developing an Ontology for Ecosystem Measurements, ECSO.  These use, where possible, terms from the OBO Foundry ontologies mentioned here. We have used all these in the examples.
 
