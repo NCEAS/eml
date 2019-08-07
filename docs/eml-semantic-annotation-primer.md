@@ -45,10 +45,10 @@ you would like a longer explanation.
     - **[Glossary:](#glossary)** Glossary of terms, linked from text
     - **[Semantic triples:](#semantic-triples)** Details on their structure, and how that structure is leveraged by annotations with examples of their power
     - **[URIs:](#uris)** Defined, and as components of semantic triples
-    - **[RDF model:](#rdf)** Brief description of the W3C's RDF model with example graphs based on EML annotations
+    - **[RDF model and graphs:](#rdf)** Brief description of the W3C's RDF model with example graphs based on EML annotations
     - **[Logical consistency:](#logical-consistency)** Common mistakes and how to check for them
     - **[Vocabularies and repositories used in examples:](#external-vocabularies)** Descriptions and links out to explore further
-    - **[Supplemental background information:](#additional-background)** The EML annotation approach here is compatible with recommendations by the World Wide Web Consortium (W3C) for construction of the Semantic Web. A wealth of material is available; a few selected ones are suggested here.
+    - **[Additional background information:](#additional-background)** The EML annotation approach here is compatible with recommendations by the World Wide Web Consortium (W3C) for construction of the Semantic Web. A wealth of material is available; a few selected ones are suggested here.
     - **[Frequently asked questions:](#FAQ)** Some questions asked by readers, and their answers
 
 
