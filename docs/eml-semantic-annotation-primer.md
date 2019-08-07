@@ -142,7 +142,7 @@ id 'dataset-01' is about grassland biome(s)".
 </dataset>  
 ```
 
-Note that the subject `id` here is not in an optimal format, as it is not in the form of a dereferenceable HTTP URI.  Ideally this "local identifier" can be readily translated into an HTTP URI that will provide an unambiguous and persistent identifier for the subject dataset.  E.g. instead of just "dataset-01" it could be something like "http://search.dataone.org/cdr/dataset-01".  This latter URI either could be specified directly, or generated as appropriate by the metadata framework.  Without a full HTTP URI in the subject position of the Annotation, the Annotation will only be interpretable within the framework that generated the `id`.This is still quite useful, however, as the `property` and `value` URIs are to external sources that provide  information, and that other frameworks can also use and reference, leading to consistency and interoperability in interpreting metadata contents. 
+Note that the subject `id` here is not in an optimal format, as it is not in the form of a dereferenceable HTTP URI.  Ideally this "local identifier" can be readily translated into an HTTP URI that will provide an unambiguous and persistent identifier for the subject dataset (e.g. instead of just "dataset-01" it could have the format of "http://search.dataone.org/cdr/dataset-01" [a fictional URI shown here for demonstration purposes]).  This latter URI either could be specified directly, or generated as appropriate by the metadata framework.  Without a full HTTP URI in the subject position of the annotation, the annotation will only be interpretable within the framework that generated the `id`. This is still quite useful, however, as the `property` and `value` URIs are to external sources that provide information, and that other frameworks can also use and reference, leading to consistency and interoperability in interpreting metadata contents. 
 
 <a name="eml-example-2"></a>
 
@@ -210,7 +210,7 @@ Related FAQ: [Are all EML dataTable attributes measurements?](#FAQ-are-all-eml-a
 Here again we note that the *subject* is NOT in the form of a dereferenceable HTTP URI.  It does unambiguously "point to" a specific metadata object *within the EML document*, but it would be much more generally useful and powerful if it could stand-alone as an HTTP URI that points to the correct attribute simply by dereferencing the URI with a Web browser client. 
 
 In the near future, DataONE will implement just such a "resolver service", using an HTTP URI similar in format to:
-<http://search.dataone.org/data/data-entity_ID/attr.4> 
+<http://search.dataone.org/data/data-entity_ID/attr.4> (a fictional URI shown here for demonstration purposes).
 
 Dereferencing this URI would place one on an HTML page for that data object, at the location of the appropriate attribute within the appropriate entity.
 
@@ -298,7 +298,7 @@ The ontologies used for adam.shepherd are
 </eml>
 ```
 
-As with the prior examples, ideally the *subjects* of Annotations would be dereferenceable HTTP URI's.  If they are not, one must depend on dedicated systems to effectively process them.
+As with the prior examples, ideally the *subjects* of annotations would be dereferenceable HTTP URIs.  If they are not, one must depend on dedicated systems to effectively process them.
 
 **See [Example 4 as an RDF graph](#rdf-eml-example-4)**
 
@@ -382,11 +382,11 @@ Semantic annotations added to an EML document can be extracted and processed int
 
 ### URIs 
 
-Ideally, the components of the semantic triple should be globally unique and persistent (unchanging), and consist of resolvable/dereferenceable HTTP uniform resource identifiers (URIs; or more formally, IRI's). The *subjects* of most EML semantic annotations will likely be HTTP URIs that identify the dataset resource itself, or specific attributes or other features within a dataset.  The *objects* of EML semantic annotations, as well as the *predicates* that relate the subject to the object, will most typically be HTTP URI references to terms in controlled vocabularies (also called "ontologies") accessible through the Web, so that users (or computers) can dereference the URIs and look up precise definitions and relationships of these resources to other terms. 
+Ideally, the components of the semantic triple should be globally unique and persistent (unchanging), and consist of resolvable/dereferenceable HTTP uniform resource identifiers (URIs; or more formally, IRIs). The *subjects* of most EML semantic annotations will likely be HTTP URIs that identify the dataset resource itself, or specific attributes or other features within a dataset.  The *objects* of EML semantic annotations, as well as the *predicates* that relate the subject to the object, will most typically be HTTP URI references to terms in controlled vocabularies (also called "ontologies") accessible through the Web, so that users (or computers) can dereference the URIs and look up precise definitions and relationships of these resources to other terms. 
 
-An example of a URI pointing to a term in a controlled vocabulary is-- "http://purl.obolibrary.org/obo/ENVO_00000097". 
+An example of a URI pointing to a term in a controlled vocabulary is: http://purl.obolibrary.org/obo/ENVO_00000097. 
 
-When entered into the address bar of a web browser, the abpve URI resolves to the term with a label of "desert area" in the Environment Ontology (EnvO). Users can learn what this URI indicates and explore how the term is related to other terms in the ontology simply by dereferencing its URI in a web browser.  All those other aspects you see on the Web page describing "http://purl.obolibrary.org/obo/ENVO_00000097" are from other RDF statements (triples) related to "ENVO_00000097", and that have been rendered into HTML. From here, you might decide, e.g. that "http://purl.obolibrary.org/obo/ENV0_00000172" ("sandy desert") is a better annotation for your object.
+When entered into the address bar of a web browser, the abpve URI resolves to the term with a label of "desert area" in the Environment Ontology (EnvO). Users can learn what this URI indicates and explore how the term is related to other terms in the ontology simply by dereferencing its URI in a web browser.  All those other aspects you see on the Web page describing "http://purl.obolibrary.org/obo/ENVO_00000097" are from other RDF statements (triples) related to "ENVO_00000097", and that have been rendered into HTML. From here, you might decide that "http://purl.obolibrary.org/obo/ENV0_00000172" ("sandy desert") is a better annotation for your object.
 
 An RDF triple can be constructed as follows, with subject URI, predicate URI, and object URI:
 
@@ -444,7 +444,7 @@ Related FAQ: [An image of an RDF Graph is great, but a computer doesn't parse th
 </rdf:RDF>
 
 ```
-_Note: The subject described in the `rdf:Description` `about` attribute ideally would be a globally unique HTTP URI for the attribute, rather than 'att.4'-- which is a localized identifier. Methods for constructing this HTTP URI GUID are being developed by EDI, NCEAS, and others._
+_Note: The subject described in the `rdf:Description` `about` element attribute ideally would be a globally unique HTTP URI for the (EML) attribute, rather than 'att.4'-- which is a localized identifier. Methods for constructing this HTTP URI are being developed by EDI, NCEAS, and others._
 
 <a name="rdf-eml-example-4"></a>
 
@@ -469,7 +469,7 @@ _Note: The subject described in the `rdf:Description` `about` attribute ideally 
 </rdf:RDF>
 
 ```
-_Note: The subject described in the `rdf:Description` `about=` attribute should ideally be a globally unique URI issued for 'adam.shepherd'.  The URL for Adam's ORCID ID would be a good candidate for filling this role. Methods for constructing this HTTP URI GUID are being developed by EDI, NCEAS, and others, for referencing datasets and their components (e.g. specific attributes), in their various sponsored data repositories._
+_Note: The subject described in the `rdf:Description` `about=` element attribute should ideally be a globally unique URI issued for 'adam.shepherd'.  The URL for Adam's ORCID ID would be a good candidate for filling this role. Methods for constructing this HTTP URI are being developed by EDI, NCEAS, and others, for referencing datasets and their components (e.g. specific attributes), in their various sponsored data repositories._
 
 <a name="logical-consistency"></a>
 
@@ -515,7 +515,7 @@ Things to check:
 **dereference**: To interpret ("resolve") a URI, and retrieve information about the resource identified by that URI   
 
 <a name="glossary-knowledge-graph"></a>
-**knowledge graph**  any knowledge base that is represented as a mathematical graph. 
+**knowledge graph**:  Any knowledge base that is represented as a mathematical graph. 
 In the mathematical sense, a graph is simply a collection of points connected by lines.  The points are called *nodes* or *vertices*, while the lines are called *edges* or *links*. In an informatics sense, this structure is used to store information about a set of objects, including the identity of the objects (as nodes), and the relationships among the objects (as links). Note that our use of the word "object" here is very general, and is not the same sense as when we describe triples. 
 
 
@@ -691,6 +691,6 @@ Finally, it is worth noting that one's choice of which Ontologies to use is impo
 
 **Q: Are there tools available to help data managers select subjects, predicates, and objects to annotate with?**
 
-A: Yes, tools are being built to assist with the semantic annotation of EML documents, within the DataONE and Arctic Data Center data repository projects, and others.  In addition, tools are being built to enable semantic search, that uses the annotations to expand searches to capture synonyms, differentiate homonyms, and enable the discovery of sub-classes of the terms that you might originally be searching for.
+A: Yes, tools are being built to assist with the semantic annotation of EML documents, within the DataONE and Arctic Data Center data repository projects, and others.  In addition, tools are being built to enable semantic search, that use the annotations to expand searches to capture synonyms, differentiate homonyms, and enable the discovery of sub-classes of the terms that you might originally be searching for.
 
 
