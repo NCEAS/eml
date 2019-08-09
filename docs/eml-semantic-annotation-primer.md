@@ -242,12 +242,12 @@ of "CDF-soil-table". Its annotation components are analogous to Example 2 above,
 
 -  "the dataTable with the `id` 'CDR-soil-table' is about grassland biome(s)".
 
-The second and third annotations both have individual persons as their subjects -- the `creator` element that has the `id` "adam.shepherd".
+The second and third annotations both have individual persons as their subjects -- the `creator` element that has the `id` "eric.seabloom".
 
 Respectively, their semantic statements can be read as
 
 -  "'eric.seabloom', the creator (of the dataset), is a person". 
--  "'eric.seabloom', the creator (of the dataset), is a member of BCO-DMO".
+-  "'eric.seabloom', the creator (of the dataset), is a member of University of Minnesota".
 
 The ontologies used for adam.shepherd are
 
@@ -256,7 +256,7 @@ The ontologies used for adam.shepherd are
     - `valueURI` : [schema.org's](#schema.org) concept of a "person"
 - third annotation
     - `propertyURI` : another [schema.org](#schema.org) concept for a relationship, "is a member of"
-    - `valueURI` : the DOI, which is managed by [re3data.org](#re3data), for the organization BCO-DMO.
+    - `valueURI` : the DOI, which is managed by [Research Organization Registry](#ROR), for the organization University of Minnesota.
 
 
 ```xml
@@ -287,7 +287,7 @@ The ontologies used for adam.shepherd are
         </annotation>
         <annotation references="eric.seabloom">
             <propertyURI label="member of">https://schema.org/memberOf</propertyURI>
-            <valueURI label="BCO-DMO">https://doi.org/10.17616/R37P4C</valueURI>
+            <valueURI label="University of Minnesota">https://ror.org/017zqws13</valueURI>
         </annotation>
     </annotations>
    ...
@@ -315,36 +315,35 @@ Example 5 shows one of the same annotations as Example 4, but this time, it is c
 The semantic statements can be read as "'adam.shepherd', the creator (of the dataset), is a person".
 
 
-- The *subject* of the semantic statement is the EML `creator` element with the `id` attribute "adam.shepherd". 
+- The *subject* of the semantic statement is the EML `creator` element with the `id` attribute "eric.seabloom". 
 - The annotation itself has 2 parts
     - `propertyURI` is "https://schema.org/memberOf", which resolves to "is a member of", from [schema.org](#schema.org)
-    - `valueURI` is "https://doi.org/10.17616/R37P4C", a DOI which resolves to "BCO-DMO". 
+    - `valueURI` is "https://ror.org/017zqws13", a DOI which resolves to "University of Minnesota". 
 
 
 ```xml
 <eml>
     ...
     <dataset id="dataset-01">
-        <title>Data from Cedar Creek LTER on productivity and species richness for use in a workshop titled "An Analysis of the Relationship between Productivity and Diversity using Experimental Results from the Long-Term Ecological Research Network" held at NCEAS in September 1996.</title>
-        <creator id="adam.shepherd">
+        <title>Soil organic matter responses to nutrient enrichment in the Nutrient Network:Nutrient Network. A cross-site investigation of bottom-up control over herbaceous plant community dynamics and ecosystem function.</title>
+        <creator id="eric.seabloom">
             <individualName>
-                <salutation>Mr.</salutation>
-                <givenName>Adam</givenName>
-                <surName>Shepherd</surName>
+                <givenName>Eric</givenName>
+                <surName>Seabloom</surName>
             </individualName>
         </creator>
-        <dataTable id="CDR-biodiv-table">
-            <entityName>CDR LTER-patterns among communities.txt</entityName>  
+        <dataTable id="CDR-soil-table">
+            <entityName>e247_Soil organic matter responses to nutrient enrichment in the Nutrient Network</entityName>  
          ...
        </dataTable>  
     </dataset>
     ...
      <additionalMetadata>
-         <describes>adam.shepherd</describes>
+         <describes>eric.seabloom</describes>
          <metadata>
              <annotation>
                  <propertyURI label="member of">https://schema.org/memberOf</propertyURI>
-                 <valueURI label="BCO-DMO">https://doi.org/10.17616/R37P4C</valueURI>
+                 <valueURI label="University of Minnesota">https://ror.org/017zqws13</valueURI>
              </annotation>
          </metadata>
      </additionalMetadata>
@@ -451,12 +450,12 @@ _Note: The subject described in the `rdf:Description` `about` element attribute 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:owl="http://www.w3.org/2002/07/owl#">
     
-    <rdf:Description rdf:about="adam.shepherd"> ### See note below 
+    <rdf:Description rdf:about="eric.seabloom"> ### See note below 
         <owl:ObjectProperty rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">
             <owl:Class rdf:about="https://schema.org/Person" />
         </owl:ObjectProperty> 
         <owl:ObjectProperty rdf:about="https://schema.org/memberOf">
-            <owl:Class rdf:about="https://doi.org/10.17616/R37P4C" />
+            <owl:Class rdf:about="https://ror.org/017zqws13" />
         </owl:ObjectProperty> 
     </rdf>
     
@@ -484,8 +483,8 @@ addition to EML, and so it comes with some risk. The main thing you should ensur
 The graph examples ([Example 3 RDF graph](#rdf-eml-example-3), [Example 4 RDF graph](#rdf-eml-example-4)) make 'true' statements that are logically consistent:
 
 - att.4 contains measurements of the type plant cover percentage
-- adam.shepherd is a person
-- adam.shepherd, member of BCO-DMO
+- eric.seabloom is a person
+- eric.seabloom, member of University of Minnesota
 
 However, below is the kind of statement you would NOT want to make:
 ```
@@ -565,10 +564,10 @@ An OBO Foundry ontology representation of the National Center for Biotechnology 
 - **OBOE (Extensible Ontology for Observations)** (https://github.com/NCEAS/oboe) 
 An ontology for scientific observations and measurements developed by DataONE and NCEAS.
 
-<a name="re3data"></a>
+<a name="ROR"></a>
 
-- **re3data.org (Registry of Research Data Repositories)** (https://www.re3data.org)
-A global registry of research data repositories spanning all academic disciplines.
+- **ROR (Research Organization Registry)** (https://ror.org/)
+A global registry of research organizations.
 
 <a name="schema.org"></a>
 
