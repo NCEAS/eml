@@ -121,7 +121,7 @@ id 'dataset-01' is about grassland biome(s)".
 ```xml
 <dataset id="dataset-01">
     <title>Soil organic matter responses to nutrient enrichment in the Nutrient Network:Nutrient Network. A cross-site investigation of bottom-up control over herbaceous plant community dynamics and ecosystem function.</title>
-    <creator id="clarence.lehman">
+    <creator id="eric.seabloom">
         <individualName>
             <givenName>Eric</givenName>
             <surName>Seabloom</surName>
@@ -249,7 +249,7 @@ Respectively, their semantic statements can be read as
 -  "'eric.seabloom', the creator (of the dataset), is a person". 
 -  "'eric.seabloom', the creator (of the dataset), is a member of University of Minnesota".
 
-The ontologies used for adam.shepherd are
+The ontologies used for eric.seabloom are
 
 - in the second annotation 
     - `propertyURI` : uses an RDF built-in type, *rdf:type* that has label "is a"  (as in, `the subject *is an* instance of a class`)
@@ -312,7 +312,7 @@ If an `additionalMetadata` section holds a semantic annotation, it must have a `
 
 Example 5 shows one of the same annotations as Example 4, but this time, it is contained in an `additionalMetadata` section.
 
-The semantic statements can be read as "'adam.shepherd', the creator (of the dataset), is a person".
+The semantic statements can be read as "'eric.seabloom', the creator (of the dataset), is a person".
 
 
 - The *subject* of the semantic statement is the EML `creator` element with the `id` attribute "eric.seabloom". 
@@ -462,7 +462,7 @@ _Note: The subject described in the `rdf:Description` `about` element attribute 
 </rdf:RDF>
 
 ```
-_Note: The subject described in the `rdf:Description` `about=` element attribute should ideally be a globally unique URI issued for 'adam.shepherd'.  The URL for Adam's ORCID ID would be a good candidate for filling this role. Methods for constructing this HTTP URI are being developed by EDI, NCEAS, and others, for referencing datasets and their components (e.g. specific attributes), in their various sponsored data repositories.  Unlike EML, there are not restrictions on re-using "identifiers" in this way_
+_Note: The subject described in the `rdf:Description` `about=` element attribute should ideally be a globally unique URI issued for 'eric.seabloom'.  The URL for Eric's ORCID ID would be a good candidate for filling this role. Methods for constructing this HTTP URI are being developed by EDI, NCEAS, and others, for referencing datasets and their components (e.g. specific attributes), in their various sponsored data repositories.  Unlike EML, there are not restrictions on re-using "identifiers" in this way_
 
 <a name="logical-consistency"></a>
 
@@ -488,7 +488,7 @@ The graph examples ([Example 3 RDF graph](#rdf-eml-example-3), [Example 4 RDF gr
 
 However, below is the kind of statement you would NOT want to make:
 ```
-[adam.shepherd] [is a type of] [measurement]
+[eric.seabloom] [is a type of] [measurement]
 ```
 If you suspect your RDF triple might look like this, you should go back and examine the way you structured the annotation.
 
