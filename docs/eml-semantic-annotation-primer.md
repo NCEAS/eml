@@ -142,7 +142,7 @@ id 'dataset-01' is about grassland biome(s)".
 </dataset>  
 ```
 
-Note that the subject `id` here is not in an optimal format, as it is not in the form of a dereferenceable HTTP URI.  Ideally this "local identifier" can be readily translated into an HTTP URI that will provide an unambiguous and persistent identifier for the subject dataset (e.g. instead of just "dataset-01" it could have the format of "http://search.dataone.org/cdr/dataset-01" [a fictional URI shown here for demonstration purposes]).  This latter URI either could be specified directly, or generated as appropriate by the metadata framework.  Without a full HTTP URI in the subject position of the annotation, the annotation will only be interpretable within the framework that generated the `id`. This is still quite useful, however, as the `property` and `value` URIs are to external sources that provide information, and that other frameworks can also use and reference, leading to consistency and interoperability in interpreting metadata contents. 
+Note that the subject `id` here is not in an optimal format for creation of a "real" semantic annotation, as it is not in the form of a dereferenceable HTTP URI.  Ideally this "local identifier" can be readily translated into an HTTP URI that will provide an unambiguous and persistent identifier for the subject dataset (e.g. instead of just "dataset-01" it could have the format of "http://dataone.org/datasets/urn:node:cdr/dataset-01" [a fictional URI shown here for demonstration purposes]).  This latter URI either could be specified directly, given certain conditions, or generated as appropriate by the metadata framework.  There needs to be caution that `id`s within an EML document must be unique, unless properly "scoped" and/or a "references" element is used for any further usages of that `id`. Without a full HTTP URI in the subject position of the annotation, the annotation will only be interpretable within the framework that generated the `id`. This is still quite useful, however, as the `property` and `value` URIs are to external sources that provide information, and that other frameworks can also use and reference, leading to consistency and interoperability in interpreting metadata contents. 
 
 <a name="eml-example-2"></a>
 
@@ -173,7 +173,7 @@ In the following entity-level annotation, the semantic statement can be read as
     <annotation>
 </otherEntity>
 ```
-Note in this case that the *subject* is not in the form of a (potentially) dereferenceable HTTP URI.  It does unambiguously "point to" the correct data object identified by the URN, but this is interpretable within some specific framework (e.g. here it would be a DataONE URN).  We do know, however, through the semantic annotation, that the subject data resource *is about* "Mammalia". Ideally, however, the subject, either internally or as a framework service, can be represented with a fully dereferenceable HTTP URI, e.g. in this case:
+Note in this case that the *subject* is again not in the form of a (potentially) dereferenceable HTTP URI.  It does unambiguously "point to" the correct data object identified by the URN, but this is interpretable within some specific framework (e.g. here it would be a DataONE URN).  We do know, however, through the semantic annotation, that the subject data resource *is about* "Mammalia". Ideally, however, the subject, either internally or as a framework service, can be represented with a fully dereferenceable HTTP URI, e.g. in this case:
 https://cn.dataone.org/cn/v2/resolve/urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b
 
 While the above URI will dereference to the correct dataset on DataONE, it will automatically start downloading the data.
@@ -207,10 +207,10 @@ Related FAQ: [Are all EML dataTable attributes measurements?](#FAQ-are-all-eml-a
 </attribute>
 ```
 
-Here again we note that the *subject* is NOT in the form of a dereferenceable HTTP URI.  It does unambiguously "point to" a specific metadata object *within the EML document*, but it would be much more generally useful and powerful if it could stand-alone as an HTTP URI that points to the correct attribute simply by dereferencing the URI with a Web browser client. 
+Here again the *subject* does unambiguously "point to" a specific metadata object *within the EML document*, but it would be much more generally useful and powerful if it could stand-alone as an HTTP URI that points to the correct attribute simply by dereferencing the URI with a Web browser client. 
 
 In the near future, DataONE will implement just such a "resolver service", using an HTTP URI similar in format to:
-<http://search.dataone.org/data/data-entity_ID/attr.4> (a fictional URI shown here for demonstration purposes).
+<http://dataone.org/dataset/urn:node:edi/doi:data-entity_ID/attr.4> (a fictional URI shown here for demonstration purposes).
 
 Dereferencing this URI would place one on an HTML page for that data object, at the location of the appropriate attribute within the appropriate entity.
 
@@ -267,7 +267,7 @@ The ontologies used for adam.shepherd are
    ...
     <dataset id="dataset-01">
         <title>Data from Cedar Creek LTER on productivity and species richness for use in a workshop titled "An Analysis of the Relationship between Productivity and Diversity using Experimental Results from the Long-Term Ecological Research Network" held at NCEAS in September 1996.</title>
-        <creator id="adam.shepherd">  [[MPS: I thought at some point I substituted the URI for Adam's ORCID ID here to give a better idea of how this works. Maybe I didn't commit these changes, OR were they removed? ]]
+        <creator id="adam.shepherd"> 
             <individualName>
                 <salutation>Mr.</salutation>
                 <givenName>Adam</givenName>
@@ -297,8 +297,6 @@ The ontologies used for adam.shepherd are
    ...
 </eml>
 ```
-
-As with the prior examples, ideally the *subjects* of annotations would be dereferenceable HTTP URIs.  If they are not, one must depend on dedicated systems to effectively process them.
 
 **See [Example 4 as an RDF graph](#rdf-eml-example-4)**
 
@@ -364,7 +362,7 @@ The semantic statements can be read as "'adam.shepherd', the creator (of the dat
 
 ### Semantic triples 
 
-Semantic annotations enable the creation of what are called *triples*, that are 3-part statements conforming to the W3C recommended *RDF data model* (learn more: <https://www.w3.org/TR/rdf11-primer/>). 
+Semantic annotations enable the creation of what are called *triples*, that are 3-part statements conforming to the W3C recommended *RDF data model* (learn more: <https://www.w3.org/TR/rdf11-primer/>). The newly introduced *Semantic Annotation* capabilities introduced in EML 2.2.0 are constructed in a way that affords relatively straightforward re-expression of those annotations as true RDF triples.
 
 A *triple* is composed of three parts: a **subject**, a **predicate** (that can be an **object property** or **datatype property**), and an **object**.
 
@@ -444,7 +442,7 @@ Related FAQ: [An image of an RDF Graph is great, but a computer doesn't parse th
 </rdf:RDF>
 
 ```
-_Note: The subject described in the `rdf:Description` `about` element attribute ideally would be a globally unique HTTP URI for the (EML) attribute, rather than 'att.4'-- which is a localized identifier. Methods for constructing this HTTP URI are being developed by EDI, NCEAS, and others._
+_Note: The subject described in the `rdf:Description` `about` element attribute ideally would be a globally unique HTTP URI for the (EML) attribute, rather than 'att.4'-- which is a localized identifier. Methods for constructing this HTTP URI are being developed by EDI, NCEAS, and others.  While care must be taken that the `id` provided in the original EML was unique or defined with proper scoping and referencing elements, in RDF this is not a problem: `id`s specified in "rdf:about" attributes can be repeated without issue._
 
 <a name="rdf-eml-example-4"></a>
 
@@ -469,7 +467,7 @@ _Note: The subject described in the `rdf:Description` `about` element attribute 
 </rdf:RDF>
 
 ```
-_Note: The subject described in the `rdf:Description` `about=` element attribute should ideally be a globally unique URI issued for 'adam.shepherd'.  The URL for Adam's ORCID ID would be a good candidate for filling this role. Methods for constructing this HTTP URI are being developed by EDI, NCEAS, and others, for referencing datasets and their components (e.g. specific attributes), in their various sponsored data repositories._
+_Note: The subject described in the `rdf:Description` `about=` element attribute should ideally be a globally unique URI issued for 'adam.shepherd'.  The URL for Adam's ORCID ID would be a good candidate for filling this role. Methods for constructing this HTTP URI are being developed by EDI, NCEAS, and others, for referencing datasets and their components (e.g. specific attributes), in their various sponsored data repositories.  Unlike EML, there are not restrictions on re-using "identifiers" in this way_
 
 <a name="logical-consistency"></a>
 
