@@ -120,14 +120,11 @@ id 'dataset-01' is about grassland biome(s)".
 
 ```xml
 <dataset id="dataset-01">
-    <title>Data from Cedar Creek LTER on productivity and species richness for use in a workshop titled
-    "An Analysis of the Relationship between Productivity and Diversity using Experimental Results from
-    the Long-Term Ecological Research Network" held at NCEAS in September 1996.</title>
+    <title>Soil organic matter responses to nutrient enrichment in the Nutrient Network:Nutrient Network. A cross-site investigation of bottom-up control over herbaceous plant community dynamics and ecosystem function.</title>
     <creator id="clarence.lehman">
         <individualName>
-            <salutation>Mr.</salutation>
-            <givenName>Clarence</givenName>
-            <surName>Lehman</surName>
+            <givenName>Eric</givenName>
+            <surName>Seabloom</surName>
         </individualName>
     </creator>
     ...    
@@ -241,16 +238,16 @@ of annotations must be placed TO DO< WHERE IN DOC? [[MPS: I don't know the answe
 Example 4 contains 3 different annotations. 
 
 In the first, the subject is the `dataTable` element with the `id` 
-of "CDF-biodiv-table". Its annotation components are analogous to Example 2 above, again referencing terms in [IAO](#iao) and [ENVO](#envo). The semantic statement can be read as 
+of "CDF-soil-table". Its annotation components are analogous to Example 2 above, again referencing terms in [IAO](#iao) and [ENVO](#envo). The semantic statement can be read as 
 
--  "the dataTable with the `id` 'CDR-biodiv-table' is about grassland biome(s)".
+-  "the dataTable with the `id` 'CDR-soil-table' is about grassland biome(s)".
 
 The second and third annotations both have individual persons as their subjects -- the `creator` element that has the `id` "adam.shepherd".
 
 Respectively, their semantic statements can be read as
 
--  "'adam.shepherd', the creator (of the dataset), is a person". 
--  "'adam.shepherd', the creator (of the dataset), is a member of BCO-DMO".
+-  "'eric.seabloom', the creator (of the dataset), is a person". 
+-  "'eric.seabloom', the creator (of the dataset), is a member of BCO-DMO".
 
 The ontologies used for adam.shepherd are
 
@@ -266,30 +263,29 @@ The ontologies used for adam.shepherd are
 <eml>
    ...
     <dataset id="dataset-01">
-        <title>Data from Cedar Creek LTER on productivity and species richness for use in a workshop titled "An Analysis of the Relationship between Productivity and Diversity using Experimental Results from the Long-Term Ecological Research Network" held at NCEAS in September 1996.</title>
-        <creator id="adam.shepherd"> 
+        <title>Soil organic matter responses to nutrient enrichment in the Nutrient Network:Nutrient Network. A cross-site investigation of bottom-up control over herbaceous plant community dynamics and ecosystem function.</title>
+        <creator id="eric.seabloom"> 
             <individualName>
-                <salutation>Mr.</salutation>
-                <givenName>Adam</givenName>
-                <surName>Shepherd</surName>
+                <givenName>Eric</givenName>
+                <surName>Seabloom</surName>
             </individualName>
         </creator>
-        <dataTable id="CDR-biodiv-table">
-            <entityName>CDR LTER-patterns among communities.txt</entityName>  
+        <dataTable id="CDR-soil-table">
+            <entityName>e247_Soil organic matter responses to nutrient enrichment in the Nutrient Network</entityName>  
         ...
        </dataTable>  
     </dataset>
     ...
     <annotations>
-        <annotation references="CDR-biodiv-table">
+        <annotation references="CDR-soil-table">
             <propertyURI label="is about">http://purl.obolibrary.org/obo/IAO_0000136</propertyURI>
             <valueURI label="grassland biome">http://purl.obolibrary.org/obo/ENVO_01000177</valueURI>
         </annotation>
-        <annotation references="adam.shepherd">
+        <annotation references="eric.seabloom">
             <propertyURI label="is a">http://www.w3.org/1999/02/22-rdf-syntax-ns#type</propertyURI>
             <valueURI label="Person">https://schema.org/Person</valueURI>
         </annotation>
-        <annotation references="adam.shepherd">
+        <annotation references="eric.seabloom">
             <propertyURI label="member of">https://schema.org/memberOf</propertyURI>
             <valueURI label="BCO-DMO">https://doi.org/10.17616/R37P4C</valueURI>
         </annotation>
