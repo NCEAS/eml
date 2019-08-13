@@ -8,6 +8,3 @@ bookdown::render_book("index.Rmd", "bookdown::gitbook")
 
 # Copy the HTML Bookdown produces from the ../README.md file to index.html
 file.copy("../dist/eml-ecological-metadata-language.html", "../dist/index.html", overwrite = TRUE)
-
-# Copy the Oxygen XML schema docs into the book
-system(paste("cp -r", "./schema", "../dist/schema"))
