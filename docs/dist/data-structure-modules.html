@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6 Data Structure Modules | Ecological Metadata Language (EML)</title>
+  <meta name="description" content="6 Data Structure Modules | Ecological Metadata Language (EML)" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6 Data Structure Modules | Ecological Metadata Language (EML)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6 Data Structure Modules | Ecological Metadata Language (EML)" />
+  
+  
+  
+
+
+
+<meta name="date" content="2019-08-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="the-eml-module-and-resources.html">
+<link rel="next" href="discovery-and-interpretation-modules.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">EML Specification</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="eml-ecological-metadata-language.html"><a href="eml-ecological-metadata-language.html"><i class="fa fa-check"></i><b>1</b> EML: Ecological Metadata Language</a><ul>
+<li class="chapter" data-level="1.1" data-path="eml-ecological-metadata-language.html"><a href="eml-ecological-metadata-language.html#getting-started"><i class="fa fa-check"></i><b>1.1</b> Getting Started</a></li>
+<li class="chapter" data-level="1.2" data-path="eml-ecological-metadata-language.html"><a href="eml-ecological-metadata-language.html#about-the-eml-project"><i class="fa fa-check"></i><b>1.2</b> About the EML Project</a></li>
+<li class="chapter" data-level="1.3" data-path="eml-ecological-metadata-language.html"><a href="eml-ecological-metadata-language.html#contributing"><i class="fa fa-check"></i><b>1.3</b> Contributing</a></li>
+<li class="chapter" data-level="1.4" data-path="eml-ecological-metadata-language.html"><a href="eml-ecological-metadata-language.html#history"><i class="fa fa-check"></i><b>1.4</b> History</a></li>
+<li class="chapter" data-level="1.5" data-path="eml-ecological-metadata-language.html"><a href="eml-ecological-metadata-language.html#older-versions-deprecated"><i class="fa fa-check"></i><b>1.5</b> Older versions (deprecated)</a></li>
+<li class="chapter" data-level="1.6" data-path="eml-ecological-metadata-language.html"><a href="eml-ecological-metadata-language.html#copyright-and-license"><i class="fa fa-check"></i><b>1.6</b> Copyright and License</a></li>
+<li class="chapter" data-level="1.7" data-path="eml-ecological-metadata-language.html"><a href="eml-ecological-metadata-language.html#funding-and-acknowledgements"><i class="fa fa-check"></i><b>1.7</b> Funding and Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="features.html"><a href="features.html"><i class="fa fa-check"></i><b>2</b> Features</a></li>
+<li class="chapter" data-level="3" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i><b>3</b> Contributors</a><ul>
+<li class="chapter" data-level="3.1" data-path="contributors.html"><a href="contributors.html#current-contributors"><i class="fa fa-check"></i><b>3.1</b> Current contributors</a></li>
+<li class="chapter" data-level="3.2" data-path="contributors.html"><a href="contributors.html#past-contributors"><i class="fa fa-check"></i><b>3.2</b> Past contributors</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html"><i class="fa fa-check"></i><b>4</b> What’s New in EML 2.2.0</a></li>
+<li class="chapter" data-level="5" data-path="the-eml-module-and-resources.html"><a href="the-eml-module-and-resources.html"><i class="fa fa-check"></i><b>5</b> The EML Module and Resources</a><ul>
+<li class="chapter" data-level="5.1" data-path="the-eml-module-and-resources.html"><a href="the-eml-module-and-resources.html#the-eml-module---a-metadata-container"><i class="fa fa-check"></i><b>5.1</b> The eml module - A metadata container</a></li>
+<li class="chapter" data-level="5.2" data-path="the-eml-module-and-resources.html"><a href="the-eml-module-and-resources.html#the-eml-resource-module---base-information-for-all-resources"><i class="fa fa-check"></i><b>5.2</b> The eml-resource module - Base information for all resources</a></li>
+<li class="chapter" data-level="5.3" data-path="the-eml-module-and-resources.html"><a href="the-eml-module-and-resources.html#the-eml-dataset-module---dataset-specific-information"><i class="fa fa-check"></i><b>5.3</b> The eml-dataset module - Dataset specific information</a></li>
+<li class="chapter" data-level="5.4" data-path="the-eml-module-and-resources.html"><a href="the-eml-module-and-resources.html#the-eml-literature-module---citation-specific-information"><i class="fa fa-check"></i><b>5.4</b> The eml-literature module - Citation-specific information</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="the-eml-module-and-resources.html"><a href="the-eml-module-and-resources.html#eml-literature-module---literature-cited"><i class="fa fa-check"></i><b>5.4.1</b> eml-literature module - literature cited</a></li>
+<li class="chapter" data-level="5.4.2" data-path="the-eml-module-and-resources.html"><a href="the-eml-module-and-resources.html#eml-literature-module---usage-citation"><i class="fa fa-check"></i><b>5.4.2</b> eml-literature module - usage citation</a></li>
+<li class="chapter" data-level="5.4.3" data-path="the-eml-module-and-resources.html"><a href="the-eml-module-and-resources.html#eml-literature-module---reference-publication"><i class="fa fa-check"></i><b>5.4.3</b> eml-literature module - reference publication</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="the-eml-module-and-resources.html"><a href="the-eml-module-and-resources.html#the-eml-software-module---software-specific-information"><i class="fa fa-check"></i><b>5.5</b> The eml-software module - Software specific information</a></li>
+<li class="chapter" data-level="5.6" data-path="the-eml-module-and-resources.html"><a href="the-eml-module-and-resources.html#the-eml-protocol-module---research-protocol-specific-information"><i class="fa fa-check"></i><b>5.6</b> The eml-protocol module - Research protocol specific information</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-structure-modules.html"><a href="data-structure-modules.html"><i class="fa fa-check"></i><b>6</b> Data Structure Modules</a><ul>
+<li class="chapter" data-level="6.1" data-path="data-structure-modules.html"><a href="data-structure-modules.html#the-eml-entity-module---entity-level-information-within-datasets"><i class="fa fa-check"></i><b>6.1</b> The eml-entity module - Entity level information within datasets</a></li>
+<li class="chapter" data-level="6.2" data-path="data-structure-modules.html"><a href="data-structure-modules.html#the-eml-attribute-module---attribute-level-information-within-dataset-entities"><i class="fa fa-check"></i><b>6.2</b> The eml-attribute module - Attribute level information within dataset entities</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="data-structure-modules.html"><a href="data-structure-modules.html#philosophy-of-attribute-units"><i class="fa fa-check"></i><b>6.2.1</b> Philosophy of Attribute Units</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="data-structure-modules.html"><a href="data-structure-modules.html#the-eml-constraint-module---relationships-among-and-within-dataset-entities"><i class="fa fa-check"></i><b>6.3</b> The eml-constraint module - Relationships among and within dataset entities</a></li>
+<li class="chapter" data-level="6.4" data-path="data-structure-modules.html"><a href="data-structure-modules.html#the-eml-datatable-module---logical-information-about-data-table-entities"><i class="fa fa-check"></i><b>6.4</b> The eml-dataTable module - Logical information about data table entities</a></li>
+<li class="chapter" data-level="6.5" data-path="data-structure-modules.html"><a href="data-structure-modules.html#the-eml-spatialraster-module---logical-information-about-regularly-gridded-geospatial-image-data"><i class="fa fa-check"></i><b>6.5</b> The eml-spatialRaster module - Logical information about regularly gridded geospatial image data</a></li>
+<li class="chapter" data-level="6.6" data-path="data-structure-modules.html"><a href="data-structure-modules.html#the-eml-spatialvector-module---logical-information-about-non-gridded-geospatial-image-data"><i class="fa fa-check"></i><b>6.6</b> The eml-spatialVector module - Logical information about non-gridded geospatial image data</a></li>
+<li class="chapter" data-level="6.7" data-path="data-structure-modules.html"><a href="data-structure-modules.html#schema-for-validating-spatial-referencing-descriptions"><i class="fa fa-check"></i><b>6.7</b> Schema for validating spatial referencing descriptions</a></li>
+<li class="chapter" data-level="6.8" data-path="data-structure-modules.html"><a href="data-structure-modules.html#the-eml-storedprocedure-module---data-tables-resulting-from-procedures-stored-in-a-database"><i class="fa fa-check"></i><b>6.8</b> The eml-storedProcedure module - Data tables resulting from procedures stored in a database</a></li>
+<li class="chapter" data-level="6.9" data-path="data-structure-modules.html"><a href="data-structure-modules.html#the-eml-view-module---data-tables-resulting-from-a-database-query"><i class="fa fa-check"></i><b>6.9</b> The eml-view module - Data tables resulting from a database query</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="discovery-and-interpretation-modules.html"><a href="discovery-and-interpretation-modules.html"><i class="fa fa-check"></i><b>7</b> Discovery and Interpretation Modules</a><ul>
+<li class="chapter" data-level="7.1" data-path="discovery-and-interpretation-modules.html"><a href="discovery-and-interpretation-modules.html#the-eml-access-module---access-control-rules-for-resources"><i class="fa fa-check"></i><b>7.1</b> The eml-access module - Access control rules for resources</a></li>
+<li class="chapter" data-level="7.2" data-path="discovery-and-interpretation-modules.html"><a href="discovery-and-interpretation-modules.html#the-eml-physical-module---physical-file-format"><i class="fa fa-check"></i><b>7.2</b> The eml-physical module - Physical file format</a></li>
+<li class="chapter" data-level="7.3" data-path="discovery-and-interpretation-modules.html"><a href="discovery-and-interpretation-modules.html#the-eml-party-module---people-and-organization-information"><i class="fa fa-check"></i><b>7.3</b> The eml-party module - People and organization information</a></li>
+<li class="chapter" data-level="7.4" data-path="discovery-and-interpretation-modules.html"><a href="discovery-and-interpretation-modules.html#the-eml-coverage-module---geographic-temporal-and-taxonomic-extents-of-resources"><i class="fa fa-check"></i><b>7.4</b> The eml-coverage module - Geographic, temporal, and taxonomic extents of resources</a></li>
+<li class="chapter" data-level="7.5" data-path="discovery-and-interpretation-modules.html"><a href="discovery-and-interpretation-modules.html#the-eml-project-module---research-context-information-for-resources"><i class="fa fa-check"></i><b>7.5</b> The eml-project module - Research context information for resources</a></li>
+<li class="chapter" data-level="7.6" data-path="discovery-and-interpretation-modules.html"><a href="discovery-and-interpretation-modules.html#the-eml-methods-module---methodological-information-for-resources"><i class="fa fa-check"></i><b>7.6</b> The eml-methods module - Methodological information for resources</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="utility-modules.html"><a href="utility-modules.html"><i class="fa fa-check"></i><b>8</b> Utility Modules</a><ul>
+<li class="chapter" data-level="8.1" data-path="utility-modules.html"><a href="utility-modules.html#the-eml-text-module---text-field-formatting"><i class="fa fa-check"></i><b>8.1</b> The eml-text module - Text field formatting</a></li>
+<li class="chapter" data-level="8.2" data-path="utility-modules.html"><a href="utility-modules.html#the-eml-semantics-module---semantic-annotations-for-formalized-statements-about-eml-components"><i class="fa fa-check"></i><b>8.2</b> The eml-semantics module - Semantic annotations for formalized statements about EML components</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="validation-and-content-references.html"><a href="validation-and-content-references.html"><i class="fa fa-check"></i><b>9</b> Validation and Content references</a><ul>
+<li class="chapter" data-level="9.1" data-path="validation-and-content-references.html"><a href="validation-and-content-references.html#validation-rules"><i class="fa fa-check"></i><b>9.1</b> Validation rules</a></li>
+<li class="chapter" data-level="9.2" data-path="validation-and-content-references.html"><a href="validation-and-content-references.html#validation-algorithm"><i class="fa fa-check"></i><b>9.2</b> Validation algorithm</a></li>
+<li class="chapter" data-level="9.3" data-path="validation-and-content-references.html"><a href="validation-and-content-references.html#content-references"><i class="fa fa-check"></i><b>9.3</b> Content references</a></li>
+<li class="chapter" data-level="9.4" data-path="validation-and-content-references.html"><a href="validation-and-content-references.html#eml-validity-parser"><i class="fa fa-check"></i><b>9.4</b> EML Validity Parser</a></li>
+<li class="chapter" data-level="9.5" data-path="validation-and-content-references.html"><a href="validation-and-content-references.html#id-and-scope-examples"><i class="fa fa-check"></i><b>9.5</b> id and Scope Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html"><i class="fa fa-check"></i><b>10</b> Semantic Annotation Primer</a><ul>
+<li class="chapter" data-level="10.1" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#introduction"><i class="fa fa-check"></i><b>10.1</b> Introduction</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#take-home-messages"><i class="fa fa-check"></i><b>10.1.1</b> Take-home messages</a></li>
+<li class="chapter" data-level="10.1.2" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#organization-of-this-document"><i class="fa fa-check"></i><b>10.1.2</b> Organization of this document</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#semantic-annotations-in-eml-2.2.0"><i class="fa fa-check"></i><b>10.2</b> Semantic Annotations in EML 2.2.0</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#annotation-element-structure"><i class="fa fa-check"></i><b>10.2.1</b> Annotation element structure</a></li>
+<li class="chapter" data-level="10.2.2" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#top-level-resource-entity-level-and-attribute-annotations"><i class="fa fa-check"></i><b>10.2.2</b> Top-level resource, entity-level, and attribute annotations</a></li>
+<li class="chapter" data-level="10.2.3" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#emlannotations-element-annotation"><i class="fa fa-check"></i><b>10.2.3</b> <code>eml/annotations</code> element annotation</a></li>
+<li class="chapter" data-level="10.2.4" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#emladditionalmetadata-element-annotation"><i class="fa fa-check"></i><b>10.2.4</b> <code>eml/additionalMetadata</code> element annotation</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#appendix"><i class="fa fa-check"></i><b>10.3</b> Appendix</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#semantic-triples"><i class="fa fa-check"></i><b>10.3.1</b> Semantic triples</a></li>
+<li class="chapter" data-level="10.3.2" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#uris"><i class="fa fa-check"></i><b>10.3.2</b> URIs</a></li>
+<li class="chapter" data-level="10.3.3" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#rdf-graphs"><i class="fa fa-check"></i><b>10.3.3</b> RDF Graphs</a></li>
+<li class="chapter" data-level="10.3.4" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#check-for-logical-consistency"><i class="fa fa-check"></i><b>10.3.4</b> Check for Logical Consistency</a></li>
+<li class="chapter" data-level="10.3.5" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#glossary"><i class="fa fa-check"></i><b>10.3.5</b> Glossary</a></li>
+<li class="chapter" data-level="10.3.6" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#vocabularies-and-repositories-used-in-examples"><i class="fa fa-check"></i><b>10.3.6</b> Vocabularies and repositories used in examples</a></li>
+<li class="chapter" data-level="10.3.7" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#additional-background-information"><i class="fa fa-check"></i><b>10.3.7</b> Additional background information</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#frequently-asked-questions"><i class="fa fa-check"></i><b>10.4</b> Frequently asked questions</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="internationalization-metadata-in-multiple-languages.html"><a href="internationalization-metadata-in-multiple-languages.html"><i class="fa fa-check"></i><b>11</b> Internationalization - Metadata in multiple languages</a></li>
+<li class="chapter" data-level="12" data-path="release-notes.html"><a href="release-notes.html"><i class="fa fa-check"></i><b>12</b> Release Notes</a><ul>
+<li class="chapter" data-level="12.0.1" data-path="release-notes.html"><a href="release-notes.html#section"><i class="fa fa-check"></i><b>12.0.1</b> 2.2.0</a></li>
+<li class="chapter" data-level="12.0.2" data-path="release-notes.html"><a href="release-notes.html#section-1"><i class="fa fa-check"></i><b>12.0.2</b> 2.1.1</a></li>
+<li class="chapter" data-level="12.0.3" data-path="release-notes.html"><a href="release-notes.html#numbers-refer-to-the-corresponding-bugzilla-bug-id-not-the-github"><i class="fa fa-check"></i><b>12.0.3</b> 2.1.0 (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)</a></li>
+<li class="chapter" data-level="12.0.4" data-path="release-notes.html"><a href="release-notes.html#numbers-refer-to-the-corresponding-bugzilla-bug-id-not-the-github-1"><i class="fa fa-check"></i><b>12.0.4</b> 2.0.1 (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)</a></li>
+<li class="chapter" data-level="12.0.5" data-path="release-notes.html"><a href="release-notes.html#numbers-refer-to-the-corresponding-bugzilla-bug-id-not-the-github-2"><i class="fa fa-check"></i><b>12.0.5</b> 2.0.0 - (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)</a></li>
+<li class="chapter" data-level="12.0.6" data-path="release-notes.html"><a href="release-notes.html#rc3-numbers-refer-to-the-corresponding-bugzilla-bug-id-not-the-github"><i class="fa fa-check"></i><b>12.0.6</b> 2.0.0rc3 (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)</a></li>
+<li class="chapter" data-level="12.0.7" data-path="release-notes.html"><a href="release-notes.html#rc2-numbers-refer-to-the-corresponding-bugzilla-bug-id-not-the-github"><i class="fa fa-check"></i><b>12.0.7</b> RC2 (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)</a></li>
+<li class="chapter" data-level="12.0.8" data-path="release-notes.html"><a href="release-notes.html#rc1-numbers-refer-to-the-corresponding-bugzilla-bug-id-not-the-github"><i class="fa fa-check"></i><b>12.0.8</b> RC1 (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)</a></li>
+<li class="chapter" data-level="12.0.9" data-path="release-notes.html"><a href="release-notes.html#beta9-fixes-"><i class="fa fa-check"></i><b>12.0.9</b> Beta9 Fixes-</a></li>
+<li class="chapter" data-level="12.0.10" data-path="release-notes.html"><a href="release-notes.html#beta-8-fixes-"><i class="fa fa-check"></i><b>12.0.10</b> Beta 8 Fixes-</a></li>
+<li class="chapter" data-level="12.0.11" data-path="release-notes.html"><a href="release-notes.html#beta-7-fixes-"><i class="fa fa-check"></i><b>12.0.11</b> Beta 7 Fixes-</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="about-this-book.html"><a href="about-this-book.html"><i class="fa fa-check"></i><b>13</b> About this book</a></li>
+<li class="chapter" data-level="14" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>14</b> References</a></li>
+<li class="divider"></li>
+<li><a href="../">← Back to main website</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ecological Metadata Language (EML)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-structure-modules" class="section level1">
+<h1><span class="header-section-number">6</span> Data Structure Modules</h1>
+<p>The following three modules are used to document the logical layout of a
+dataset. Many datasets are comprised of multiple entities (e.g. a series
+of tabular data files, or a set of GIS features, or a number of tables
+in a relational database). Each entity within a dataset may contain one
+or more attributes (e.g. multiple columns in a data file, multiple
+attributes of a GIS feature, or multiple columns of a database table).
+Lastly, there may be both simple or complex relationships among the
+entities within a dataset. The relationships, or the constraints that
+are to be enforced in the dataset, are described using the
+eml-constraint module. All entities share a common set of information
+(described using eml-entity), but some discipline specific entities have
+characteristics that are unique to that entity type. Therefore, the
+eml-entity module is extended for each of these types (dataTable,
+spatialRaster, spatialVector, etc...) which are described in the next
+section.</p>
+<div id="the-eml-entity-module---entity-level-information-within-datasets" class="section level2">
+<h2><span class="header-section-number">6.1</span> The eml-entity module - Entity level information within datasets</h2>
+<p>The eml-entity module defines the logical characteristics of each entity
+in the dataset. Entities are usually tables of data (eml-dataTable).
+Data tables may be ascii text files, relational database tables,
+spreadsheets or other type of tabular data with a fixed logical
+structure. Related to data tables are views (eml-view) and stored
+procedures (eml-storedProcedure). Views and stored procedures are
+produced by an RDBMS or related system. Other types of data such as:
+raster (eml-spatialRaster), vector (eml-spatialVector) or
+spatialReference image data are also data entities. An otherEntity
+element would be used to describe types of entities that are not
+described by any other entity type. Each of these entity type uses the eml-entity
+module elements as it’s base set of elements, but then extends the base
+with entity-specific elements. Note that the eml-spatialReference module
+is not an entity type, but is rather a common set of elements used to
+describe spatial reference systems in both eml-spatialRaster and
+eml-spatialVector. It is described here in relation to those two
+modules.</p>
+<p>The eml-entity module, like other modules, may be “referenced” via the
+<code>&lt;references&gt;</code> tag. This allows an entity document to be described once,
+and then used as a reference in other locations within the EML document
+via its ID.</p>
+</div>
+<div id="the-eml-attribute-module---attribute-level-information-within-dataset-entities" class="section level2">
+<h2><span class="header-section-number">6.2</span> The eml-attribute module - Attribute level information within dataset entities</h2>
+<p>The eml-attribute module describes all attributes (variables) in a data
+entity: dataTable, spatialRaster, spatialVector, storedProcedure, view
+or otherEntity. The description includes the name and definition of each
+attribute, its domain, definitions of coded values, and other pertinent
+information. Two structures exist in this module: 1. attribute is used
+to define a single attribute; 2. attributeList is used to define a list
+of attributes that go together in some logical way.</p>
+<p>The eml-attribute module, like other modules, may be &quot;referenced&quot; via
+the &lt;references&gt; tag. This allows an attribute document to be
+described once, and then used as a reference in other locations within
+the EML document via its ID.</p>
+<div id="philosophy-of-attribute-units" class="section level3">
+<h3><span class="header-section-number">6.2.1</span> Philosophy of Attribute Units</h3>
+<p>The concept of &quot;unit&quot; represents one of the most fundamental
+categories of metadata. The classic example of data entropy is the case
+in which a reported numeric value loses meaning due to lack of
+associated units. Much of Ecology is driven by measurement, and most
+measurements are inherently comparative. Good data description requires
+a representation of the basis for comparison, i.e., the unit. In
+modeling the attribute element, the authors of EML drew inspiration from
+the <a href="http://physics.nist.gov/cuu/Units/introduction.html">NIST Reference on Constants, Units, and
+Uncertainty</a>. This
+document defines a unit as &quot;a particular physical quantity, defined and
+adopted by convention, with which other particular quantities of the
+same kind are compared to express their value.&quot; The authors of the EML
+2.0 specification (hereafter &quot;the authors&quot;) decided to make the unit
+element required, wherever possible.</p>
+<p>Units may also be one of the most problematic categories of metadata.
+For instance, there are many candidate attributes that clearly have no
+units, such as named places and letter grades. There are other candidate
+attributes for which units are difficult to identify, despite some
+suspicion that they should exist (e.g. pH, dates, times). In still other
+cases, units may be meaningful, but apparently absent due to dimensional
+analysis (e.g. grams of carbon per gram of soil). The relationship
+between units and dimensions likewise is not completely clear.</p>
+<p>The authors decided to sharpen the model of attribute by nesting unit
+under measurementScale. Measurement Scale is a data typology, borrowed
+from Statistics, that was introduced in the 1940's. Under the adopted
+model, attributes are classified as nominal, ordinal, interval, and
+ratio. Though widely criticized, this classification is well-known and
+provides at least first-order utility in EML. For example, nesting unit
+under measurementScale allows EML to prevent its meaningless inclusion
+for categorical data -- an approach judged superior to making unit
+universally required or universally optional.</p>
+<p>The sharpening of the attribute model allowed the elimination of the
+unit type &quot;undefined&quot; from the standard unit dictionary (see
+eml-unitDictionary.xml). It seemed self-defeating to require the unit
+element exactly where appropriate, yet still allow its content to be
+undefined. An attribute that requires a unit definition is malformed
+until one is provided. The unit type &quot;dimensionless&quot; is preserved,
+however. In EML 2.0, it is synonymous with &quot;unitless&quot; and represents
+the case in which units cannot be associated with an attribute for some
+reason, despite the proper classification of that attribute as interval
+or ratio. Dimensionless may itself be an anomaly arising from the
+limitations of the adopted measurement scale typology.</p>
+<p>Closely related to the concept of unit is the concept of attribute
+domain. The authors decided that a well-formed description of an
+attribute must include some indication of the set of possible values for
+that attribute. The set of possible values is useful, perhaps necessary,
+for interpreting any particular observed value. While universally
+required, attribute domain has different forms, depending on the
+associated measurement scale.</p>
+<p>The element storageType has an obvious relationship to domain. It gives
+some indication of the range of possible values of an attribute, and
+also gives some (potentially critical) operability information about the
+way the attribute is represented or construed in the local storage
+system. The storageType element seems to fall in a gray area between the
+logical and physical aspects of stored data. Neither comfortable with
+eliminating it nor with making it required, the authors left it
+available but optional under attribute. In addition, it is repeatable so
+that different storage types can be provided for various systems (e.g.,
+different databases might use different types for columns, even though
+the domain of the attribute is the same regardless of which database is
+used).</p>
+<p>Attributes representing dates, times, or combinations thereof (hereafter
+&quot;dateTime&quot;) were the most difficult to model in EML. Is dateTime of
+type interval or ordinal? Does it have units or not? Strong cases can be
+made on each side of the issue. The confusion may reflect the
+limitations of the measurement scale typology. The final resolution of
+the dateTime model is probably somewhat arbitrary. There was clearly a
+need, however, to allow for the interoperability of dateTime formats.
+EML 2.0 tries to provide an unambiguous mechanism for describing the
+format of dateTime values by providing a separate category for date and
+time values. This &quot;dateTime&quot; measurement scale allows users to
+explicitly label attributes that contain Gregorian date and time values,
+and allows them to provide the information needed to parse these values
+into their appropriate components (e.g., days, months, years)./</p>
+</div>
+</div>
+<div id="the-eml-constraint-module---relationships-among-and-within-dataset-entities" class="section level2">
+<h2><span class="header-section-number">6.3</span> The eml-constraint module - Relationships among and within dataset entities</h2>
+<p>The eml-constraint schema defines the integrity constraints between
+entities (e.g., data tables) as they would be maintained in a relational
+management system. These constraints include primary key constraints,
+foreign key constraints, unique key constraints, check constraints, and
+not null constraints, among potential others.</p>
+</div>
+<div id="the-eml-datatable-module---logical-information-about-data-table-entities" class="section level2">
+<h2><span class="header-section-number">6.4</span> The eml-dataTable module - Logical information about data table entities</h2>
+<p>The eml-dataTable module is used to describe the logical characteristics
+of each tabular set of information in a dataset. A series of
+comma-separated text files may be considered a dataset, and each file
+would subsequently be considered a dataTable entity within the dataset.
+Since the eml-dataTable module extends the eml-entity module, it uses
+all of the common entity elements to describe the table, along with a
+few elements specific to just data table entities. The eml-dataTable
+module allows for the description of each attribute
+(column/field/variable) within the data table through the use of the
+eml-attribute module. Likewise, there are fields used to describe the
+physical distribution of the data table, its overall coverage, the
+methodology used in creating the data, and other logical structure
+information such as its orientation, case sensitivity, etc.</p>
+</div>
+<div id="the-eml-spatialraster-module---logical-information-about-regularly-gridded-geospatial-image-data" class="section level2">
+<h2><span class="header-section-number">6.5</span> The eml-spatialRaster module - Logical information about regularly gridded geospatial image data</h2>
+<p>The eml-spatialRaster module allows for the description of entities
+composed of rectangular grids of data values that are usually
+georeferenced to a portion of the earth's surface. Specific attributes
+of a spatial raster can be documented here including the spatial
+organization of the raster cells, the cell data values, and if derived
+via imaging sensors, characteristics about the image and its individual
+bands.</p>
+</div>
+<div id="the-eml-spatialvector-module---logical-information-about-non-gridded-geospatial-image-data" class="section level2">
+<h2><span class="header-section-number">6.6</span> The eml-spatialVector module - Logical information about non-gridded geospatial image data</h2>
+<p>The eml-spatialVector module allows for the description of spatial
+objects in a GIS system that are not defined in a regularly gridded
+pattern. These geometries include points and vectors and the
+relationships among them. Specific attributes of a spatial vector can be
+documented here including the vector's geometry type, count and
+topology level.</p>
+</div>
+<div id="schema-for-validating-spatial-referencing-descriptions" class="section level2">
+<h2><span class="header-section-number">6.7</span> Schema for validating spatial referencing descriptions</h2>
+<p>This module defines both projected and unprojected coordinate systems
+for referencing the spatial coordinates of a dataset to the earth. The
+schema is based on that used by Environmental Systems Research Inc
+(ESRI) for its .prj file format. EML provides a library of pre-defined
+coordinate systems that may be referred to by name in the
+horizCoordSysName element. A custom projection may be defined using this
+schema for any projection that does not appear in this dictionary.</p>
+</div>
+<div id="the-eml-storedprocedure-module---data-tables-resulting-from-procedures-stored-in-a-database" class="section level2">
+<h2><span class="header-section-number">6.8</span> The eml-storedProcedure module - Data tables resulting from procedures stored in a database</h2>
+<p>The storedProcedure module is meant to capture information on procedures
+that produce data output in the form of a data table. In an RDBMS one
+can code complex queries and transactions into stored procedures and
+then invoke them directly from front-end applications. It allows the
+optional description of any parameters that are expected to be passed to
+the procedure when it is called.</p>
+</div>
+<div id="the-eml-view-module---data-tables-resulting-from-a-database-query" class="section level2">
+<h2><span class="header-section-number">6.9</span> The eml-view module - Data tables resulting from a database query</h2>
+<p>The eml-view module describes a view from a database management system.
+A view is a query statement that is stored as a database object and
+executed each time the view is called.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="the-eml-module-and-resources.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="discovery-and-interpretation-modules.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

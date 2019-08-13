@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>12 Release Notes | Ecological Metadata Language (EML)</title>
+  <meta name="description" content="12 Release Notes | Ecological Metadata Language (EML)" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="12 Release Notes | Ecological Metadata Language (EML)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="12 Release Notes | Ecological Metadata Language (EML)" />
+  
+  
+  
+
+
+
+<meta name="date" content="2019-08-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="internationalization-metadata-in-multiple-languages.html">
+<link rel="next" href="about-this-book.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">EML Specification</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="eml-ecological-metadata-language.html"><a href="eml-ecological-metadata-language.html"><i class="fa fa-check"></i><b>1</b> EML: Ecological Metadata Language</a><ul>
+<li class="chapter" data-level="1.1" data-path="eml-ecological-metadata-language.html"><a href="eml-ecological-metadata-language.html#getting-started"><i class="fa fa-check"></i><b>1.1</b> Getting Started</a></li>
+<li class="chapter" data-level="1.2" data-path="eml-ecological-metadata-language.html"><a href="eml-ecological-metadata-language.html#about-the-eml-project"><i class="fa fa-check"></i><b>1.2</b> About the EML Project</a></li>
+<li class="chapter" data-level="1.3" data-path="eml-ecological-metadata-language.html"><a href="eml-ecological-metadata-language.html#contributing"><i class="fa fa-check"></i><b>1.3</b> Contributing</a></li>
+<li class="chapter" data-level="1.4" data-path="eml-ecological-metadata-language.html"><a href="eml-ecological-metadata-language.html#history"><i class="fa fa-check"></i><b>1.4</b> History</a></li>
+<li class="chapter" data-level="1.5" data-path="eml-ecological-metadata-language.html"><a href="eml-ecological-metadata-language.html#older-versions-deprecated"><i class="fa fa-check"></i><b>1.5</b> Older versions (deprecated)</a></li>
+<li class="chapter" data-level="1.6" data-path="eml-ecological-metadata-language.html"><a href="eml-ecological-metadata-language.html#copyright-and-license"><i class="fa fa-check"></i><b>1.6</b> Copyright and License</a></li>
+<li class="chapter" data-level="1.7" data-path="eml-ecological-metadata-language.html"><a href="eml-ecological-metadata-language.html#funding-and-acknowledgements"><i class="fa fa-check"></i><b>1.7</b> Funding and Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="features.html"><a href="features.html"><i class="fa fa-check"></i><b>2</b> Features</a></li>
+<li class="chapter" data-level="3" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i><b>3</b> Contributors</a><ul>
+<li class="chapter" data-level="3.1" data-path="contributors.html"><a href="contributors.html#current-contributors"><i class="fa fa-check"></i><b>3.1</b> Current contributors</a></li>
+<li class="chapter" data-level="3.2" data-path="contributors.html"><a href="contributors.html#past-contributors"><i class="fa fa-check"></i><b>3.2</b> Past contributors</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html"><i class="fa fa-check"></i><b>4</b> What’s New in EML 2.2.0</a></li>
+<li class="chapter" data-level="5" data-path="the-eml-module-and-resources.html"><a href="the-eml-module-and-resources.html"><i class="fa fa-check"></i><b>5</b> The EML Module and Resources</a><ul>
+<li class="chapter" data-level="5.1" data-path="the-eml-module-and-resources.html"><a href="the-eml-module-and-resources.html#the-eml-module---a-metadata-container"><i class="fa fa-check"></i><b>5.1</b> The eml module - A metadata container</a></li>
+<li class="chapter" data-level="5.2" data-path="the-eml-module-and-resources.html"><a href="the-eml-module-and-resources.html#the-eml-resource-module---base-information-for-all-resources"><i class="fa fa-check"></i><b>5.2</b> The eml-resource module - Base information for all resources</a></li>
+<li class="chapter" data-level="5.3" data-path="the-eml-module-and-resources.html"><a href="the-eml-module-and-resources.html#the-eml-dataset-module---dataset-specific-information"><i class="fa fa-check"></i><b>5.3</b> The eml-dataset module - Dataset specific information</a></li>
+<li class="chapter" data-level="5.4" data-path="the-eml-module-and-resources.html"><a href="the-eml-module-and-resources.html#the-eml-literature-module---citation-specific-information"><i class="fa fa-check"></i><b>5.4</b> The eml-literature module - Citation-specific information</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="the-eml-module-and-resources.html"><a href="the-eml-module-and-resources.html#eml-literature-module---literature-cited"><i class="fa fa-check"></i><b>5.4.1</b> eml-literature module - literature cited</a></li>
+<li class="chapter" data-level="5.4.2" data-path="the-eml-module-and-resources.html"><a href="the-eml-module-and-resources.html#eml-literature-module---usage-citation"><i class="fa fa-check"></i><b>5.4.2</b> eml-literature module - usage citation</a></li>
+<li class="chapter" data-level="5.4.3" data-path="the-eml-module-and-resources.html"><a href="the-eml-module-and-resources.html#eml-literature-module---reference-publication"><i class="fa fa-check"></i><b>5.4.3</b> eml-literature module - reference publication</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="the-eml-module-and-resources.html"><a href="the-eml-module-and-resources.html#the-eml-software-module---software-specific-information"><i class="fa fa-check"></i><b>5.5</b> The eml-software module - Software specific information</a></li>
+<li class="chapter" data-level="5.6" data-path="the-eml-module-and-resources.html"><a href="the-eml-module-and-resources.html#the-eml-protocol-module---research-protocol-specific-information"><i class="fa fa-check"></i><b>5.6</b> The eml-protocol module - Research protocol specific information</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-structure-modules.html"><a href="data-structure-modules.html"><i class="fa fa-check"></i><b>6</b> Data Structure Modules</a><ul>
+<li class="chapter" data-level="6.1" data-path="data-structure-modules.html"><a href="data-structure-modules.html#the-eml-entity-module---entity-level-information-within-datasets"><i class="fa fa-check"></i><b>6.1</b> The eml-entity module - Entity level information within datasets</a></li>
+<li class="chapter" data-level="6.2" data-path="data-structure-modules.html"><a href="data-structure-modules.html#the-eml-attribute-module---attribute-level-information-within-dataset-entities"><i class="fa fa-check"></i><b>6.2</b> The eml-attribute module - Attribute level information within dataset entities</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="data-structure-modules.html"><a href="data-structure-modules.html#philosophy-of-attribute-units"><i class="fa fa-check"></i><b>6.2.1</b> Philosophy of Attribute Units</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="data-structure-modules.html"><a href="data-structure-modules.html#the-eml-constraint-module---relationships-among-and-within-dataset-entities"><i class="fa fa-check"></i><b>6.3</b> The eml-constraint module - Relationships among and within dataset entities</a></li>
+<li class="chapter" data-level="6.4" data-path="data-structure-modules.html"><a href="data-structure-modules.html#the-eml-datatable-module---logical-information-about-data-table-entities"><i class="fa fa-check"></i><b>6.4</b> The eml-dataTable module - Logical information about data table entities</a></li>
+<li class="chapter" data-level="6.5" data-path="data-structure-modules.html"><a href="data-structure-modules.html#the-eml-spatialraster-module---logical-information-about-regularly-gridded-geospatial-image-data"><i class="fa fa-check"></i><b>6.5</b> The eml-spatialRaster module - Logical information about regularly gridded geospatial image data</a></li>
+<li class="chapter" data-level="6.6" data-path="data-structure-modules.html"><a href="data-structure-modules.html#the-eml-spatialvector-module---logical-information-about-non-gridded-geospatial-image-data"><i class="fa fa-check"></i><b>6.6</b> The eml-spatialVector module - Logical information about non-gridded geospatial image data</a></li>
+<li class="chapter" data-level="6.7" data-path="data-structure-modules.html"><a href="data-structure-modules.html#schema-for-validating-spatial-referencing-descriptions"><i class="fa fa-check"></i><b>6.7</b> Schema for validating spatial referencing descriptions</a></li>
+<li class="chapter" data-level="6.8" data-path="data-structure-modules.html"><a href="data-structure-modules.html#the-eml-storedprocedure-module---data-tables-resulting-from-procedures-stored-in-a-database"><i class="fa fa-check"></i><b>6.8</b> The eml-storedProcedure module - Data tables resulting from procedures stored in a database</a></li>
+<li class="chapter" data-level="6.9" data-path="data-structure-modules.html"><a href="data-structure-modules.html#the-eml-view-module---data-tables-resulting-from-a-database-query"><i class="fa fa-check"></i><b>6.9</b> The eml-view module - Data tables resulting from a database query</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="discovery-and-interpretation-modules.html"><a href="discovery-and-interpretation-modules.html"><i class="fa fa-check"></i><b>7</b> Discovery and Interpretation Modules</a><ul>
+<li class="chapter" data-level="7.1" data-path="discovery-and-interpretation-modules.html"><a href="discovery-and-interpretation-modules.html#the-eml-access-module---access-control-rules-for-resources"><i class="fa fa-check"></i><b>7.1</b> The eml-access module - Access control rules for resources</a></li>
+<li class="chapter" data-level="7.2" data-path="discovery-and-interpretation-modules.html"><a href="discovery-and-interpretation-modules.html#the-eml-physical-module---physical-file-format"><i class="fa fa-check"></i><b>7.2</b> The eml-physical module - Physical file format</a></li>
+<li class="chapter" data-level="7.3" data-path="discovery-and-interpretation-modules.html"><a href="discovery-and-interpretation-modules.html#the-eml-party-module---people-and-organization-information"><i class="fa fa-check"></i><b>7.3</b> The eml-party module - People and organization information</a></li>
+<li class="chapter" data-level="7.4" data-path="discovery-and-interpretation-modules.html"><a href="discovery-and-interpretation-modules.html#the-eml-coverage-module---geographic-temporal-and-taxonomic-extents-of-resources"><i class="fa fa-check"></i><b>7.4</b> The eml-coverage module - Geographic, temporal, and taxonomic extents of resources</a></li>
+<li class="chapter" data-level="7.5" data-path="discovery-and-interpretation-modules.html"><a href="discovery-and-interpretation-modules.html#the-eml-project-module---research-context-information-for-resources"><i class="fa fa-check"></i><b>7.5</b> The eml-project module - Research context information for resources</a></li>
+<li class="chapter" data-level="7.6" data-path="discovery-and-interpretation-modules.html"><a href="discovery-and-interpretation-modules.html#the-eml-methods-module---methodological-information-for-resources"><i class="fa fa-check"></i><b>7.6</b> The eml-methods module - Methodological information for resources</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="utility-modules.html"><a href="utility-modules.html"><i class="fa fa-check"></i><b>8</b> Utility Modules</a><ul>
+<li class="chapter" data-level="8.1" data-path="utility-modules.html"><a href="utility-modules.html#the-eml-text-module---text-field-formatting"><i class="fa fa-check"></i><b>8.1</b> The eml-text module - Text field formatting</a></li>
+<li class="chapter" data-level="8.2" data-path="utility-modules.html"><a href="utility-modules.html#the-eml-semantics-module---semantic-annotations-for-formalized-statements-about-eml-components"><i class="fa fa-check"></i><b>8.2</b> The eml-semantics module - Semantic annotations for formalized statements about EML components</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="validation-and-content-references.html"><a href="validation-and-content-references.html"><i class="fa fa-check"></i><b>9</b> Validation and Content references</a><ul>
+<li class="chapter" data-level="9.1" data-path="validation-and-content-references.html"><a href="validation-and-content-references.html#validation-rules"><i class="fa fa-check"></i><b>9.1</b> Validation rules</a></li>
+<li class="chapter" data-level="9.2" data-path="validation-and-content-references.html"><a href="validation-and-content-references.html#validation-algorithm"><i class="fa fa-check"></i><b>9.2</b> Validation algorithm</a></li>
+<li class="chapter" data-level="9.3" data-path="validation-and-content-references.html"><a href="validation-and-content-references.html#content-references"><i class="fa fa-check"></i><b>9.3</b> Content references</a></li>
+<li class="chapter" data-level="9.4" data-path="validation-and-content-references.html"><a href="validation-and-content-references.html#eml-validity-parser"><i class="fa fa-check"></i><b>9.4</b> EML Validity Parser</a></li>
+<li class="chapter" data-level="9.5" data-path="validation-and-content-references.html"><a href="validation-and-content-references.html#id-and-scope-examples"><i class="fa fa-check"></i><b>9.5</b> id and Scope Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html"><i class="fa fa-check"></i><b>10</b> Semantic Annotation Primer</a><ul>
+<li class="chapter" data-level="10.1" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#introduction"><i class="fa fa-check"></i><b>10.1</b> Introduction</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#take-home-messages"><i class="fa fa-check"></i><b>10.1.1</b> Take-home messages</a></li>
+<li class="chapter" data-level="10.1.2" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#organization-of-this-document"><i class="fa fa-check"></i><b>10.1.2</b> Organization of this document</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#semantic-annotations-in-eml-2.2.0"><i class="fa fa-check"></i><b>10.2</b> Semantic Annotations in EML 2.2.0</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#annotation-element-structure"><i class="fa fa-check"></i><b>10.2.1</b> Annotation element structure</a></li>
+<li class="chapter" data-level="10.2.2" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#top-level-resource-entity-level-and-attribute-annotations"><i class="fa fa-check"></i><b>10.2.2</b> Top-level resource, entity-level, and attribute annotations</a></li>
+<li class="chapter" data-level="10.2.3" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#emlannotations-element-annotation"><i class="fa fa-check"></i><b>10.2.3</b> <code>eml/annotations</code> element annotation</a></li>
+<li class="chapter" data-level="10.2.4" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#emladditionalmetadata-element-annotation"><i class="fa fa-check"></i><b>10.2.4</b> <code>eml/additionalMetadata</code> element annotation</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#appendix"><i class="fa fa-check"></i><b>10.3</b> Appendix</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#semantic-triples"><i class="fa fa-check"></i><b>10.3.1</b> Semantic triples</a></li>
+<li class="chapter" data-level="10.3.2" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#uris"><i class="fa fa-check"></i><b>10.3.2</b> URIs</a></li>
+<li class="chapter" data-level="10.3.3" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#rdf-graphs"><i class="fa fa-check"></i><b>10.3.3</b> RDF Graphs</a></li>
+<li class="chapter" data-level="10.3.4" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#check-for-logical-consistency"><i class="fa fa-check"></i><b>10.3.4</b> Check for Logical Consistency</a></li>
+<li class="chapter" data-level="10.3.5" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#glossary"><i class="fa fa-check"></i><b>10.3.5</b> Glossary</a></li>
+<li class="chapter" data-level="10.3.6" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#vocabularies-and-repositories-used-in-examples"><i class="fa fa-check"></i><b>10.3.6</b> Vocabularies and repositories used in examples</a></li>
+<li class="chapter" data-level="10.3.7" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#additional-background-information"><i class="fa fa-check"></i><b>10.3.7</b> Additional background information</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#frequently-asked-questions"><i class="fa fa-check"></i><b>10.4</b> Frequently asked questions</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="internationalization-metadata-in-multiple-languages.html"><a href="internationalization-metadata-in-multiple-languages.html"><i class="fa fa-check"></i><b>11</b> Internationalization - Metadata in multiple languages</a></li>
+<li class="chapter" data-level="12" data-path="release-notes.html"><a href="release-notes.html"><i class="fa fa-check"></i><b>12</b> Release Notes</a><ul>
+<li class="chapter" data-level="12.0.1" data-path="release-notes.html"><a href="release-notes.html#section"><i class="fa fa-check"></i><b>12.0.1</b> 2.2.0</a></li>
+<li class="chapter" data-level="12.0.2" data-path="release-notes.html"><a href="release-notes.html#section-1"><i class="fa fa-check"></i><b>12.0.2</b> 2.1.1</a></li>
+<li class="chapter" data-level="12.0.3" data-path="release-notes.html"><a href="release-notes.html#numbers-refer-to-the-corresponding-bugzilla-bug-id-not-the-github"><i class="fa fa-check"></i><b>12.0.3</b> 2.1.0 (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)</a></li>
+<li class="chapter" data-level="12.0.4" data-path="release-notes.html"><a href="release-notes.html#numbers-refer-to-the-corresponding-bugzilla-bug-id-not-the-github-1"><i class="fa fa-check"></i><b>12.0.4</b> 2.0.1 (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)</a></li>
+<li class="chapter" data-level="12.0.5" data-path="release-notes.html"><a href="release-notes.html#numbers-refer-to-the-corresponding-bugzilla-bug-id-not-the-github-2"><i class="fa fa-check"></i><b>12.0.5</b> 2.0.0 - (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)</a></li>
+<li class="chapter" data-level="12.0.6" data-path="release-notes.html"><a href="release-notes.html#rc3-numbers-refer-to-the-corresponding-bugzilla-bug-id-not-the-github"><i class="fa fa-check"></i><b>12.0.6</b> 2.0.0rc3 (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)</a></li>
+<li class="chapter" data-level="12.0.7" data-path="release-notes.html"><a href="release-notes.html#rc2-numbers-refer-to-the-corresponding-bugzilla-bug-id-not-the-github"><i class="fa fa-check"></i><b>12.0.7</b> RC2 (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)</a></li>
+<li class="chapter" data-level="12.0.8" data-path="release-notes.html"><a href="release-notes.html#rc1-numbers-refer-to-the-corresponding-bugzilla-bug-id-not-the-github"><i class="fa fa-check"></i><b>12.0.8</b> RC1 (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)</a></li>
+<li class="chapter" data-level="12.0.9" data-path="release-notes.html"><a href="release-notes.html#beta9-fixes-"><i class="fa fa-check"></i><b>12.0.9</b> Beta9 Fixes-</a></li>
+<li class="chapter" data-level="12.0.10" data-path="release-notes.html"><a href="release-notes.html#beta-8-fixes-"><i class="fa fa-check"></i><b>12.0.10</b> Beta 8 Fixes-</a></li>
+<li class="chapter" data-level="12.0.11" data-path="release-notes.html"><a href="release-notes.html#beta-7-fixes-"><i class="fa fa-check"></i><b>12.0.11</b> Beta 7 Fixes-</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="about-this-book.html"><a href="about-this-book.html"><i class="fa fa-check"></i><b>13</b> About this book</a></li>
+<li class="chapter" data-level="14" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>14</b> References</a></li>
+<li class="divider"></li>
+<li><a href="../">← Back to main website</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ecological Metadata Language (EML)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="release-notes" class="section level1">
+<h1><span class="header-section-number">12</span> Release Notes</h1>
+<ul>
+<li>(see also <a href="http://github.com/NCEAS/eml/issues" class="uri">http://github.com/NCEAS/eml/issues</a>)</li>
+</ul>
+<div id="section" class="section level3">
+<h3><span class="header-section-number">12.0.1</span> 2.2.0</h3>
+<div id="major-new-features" class="section level4">
+<h4><span class="header-section-number">12.0.1.1</span> Major New Features</h4>
+</div>
+<div id="schema-changes" class="section level4">
+<h4><span class="header-section-number">12.0.1.2</span> Schema changes:</h4>
+</div>
+</div>
+<div id="section-1" class="section level3">
+<h3><span class="header-section-number">12.0.2</span> 2.1.1</h3>
+<div id="internationalization-in-eml-2.1.1" class="section level4">
+<h4><span class="header-section-number">12.0.2.1</span> Internationalization in EML 2.1.1</h4>
+<p>EML 2.1.1 introduces internationalization capabilities that can be used in most
+text-based elements. Version 2.1.1 remains backward-compatible with the previous
+2.1.0 release. Authors can safely upgrade existing 2.1.0 documents to 2.1.1
+without altering any content, though adding additional language translations is
+encouraged.</p>
+<p>By allowing mixed element content, nested translation elements can be included
+without altering or introducing ambiguity with respect to EML element
+cardinality. Translation elements use standard xml:lang attributes to specify
+the language used for their content. Translation elements can be nested such
+that child elements may inherit or override the language used by their
+ancestors. The top-level EML element may include an xml:lang attribute which
+will apply to every element in the document unless a child element includes a
+different xml:lang attribute to override the document default.</p>
+<p>Multi-lingual authors of EML should carefully consider their primary target
+audience when deciding the default document language. Early adopters should be
+aware search tools like Metacat will require custom configuration in order to
+search arbitrarily nested translations.</p>
+<p>The internationalization feature allows authors to place any language in <value>
+tags nested within most EML text fields. The xml:lang attribute should be used
+to explicitly declare the language used.</p>
+<p>Additional documentation and examples are available in the EML specification.
+The i18nNonEmptyStringType is used for simple text, while i18nString for more
+structured text elements.</p>
+</div>
+<div id="schema-changes-1" class="section level4">
+<h4><span class="header-section-number">12.0.2.2</span> Schema changes:</h4>
+<pre><code>- [76](https://github.com/NCEAS/eml/issues/76): internationalization needed in EML</code></pre>
+</div>
+</div>
+<div id="numbers-refer-to-the-corresponding-bugzilla-bug-id-not-the-github" class="section level3">
+<h3><span class="header-section-number">12.0.3</span> 2.1.0 (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)</h3>
+<p>This release addresses bugs which caused the schema to be invalid with
+respect to the W3C specifications using modern validators
+(e.g., <a href="http://www.w3.org/2001/03/webdata/xsv" class="uri">http://www.w3.org/2001/03/webdata/xsv</a>). Although the changes were minor,
+one was incompatible with 2.0 releases, which necessitated the version
+number “2.1”. In the 2.0 series, the content model for additionalMetadata
+included an element <code>&lt;describes&gt;</code> whose cardinality was 0..many, alongside
+<code>&lt;xs:any&gt;</code>. This construct is non-deterministic, and so a child element
+was added to the additionalMetadata section to contain the <code>&lt;xs:any&gt;</code> content.
+Additionally, several elements of txt:TypeText required additional
+definition so that mixed content could be accommodated. These errors
+were not apparent with validation software available in 2004-2005, but
+were brought to light more recently. Several small changes were made to
+the enumeration list and unitTypes for standard units and stmml descriptions
+of customUnits. Two elements in the literature schema were allowed to be
+optional so that articles-in-press could be described. The named type for
+element gRing was changed to GRingType.</p>
+<p>EML makes use of the STMML schema (stmml.xsd) for describing custom units
+and describing its included list of standardUnits (unitList). The STMML
+schema was also found to be non-deterministic, and the most reasonable fix
+for this bug was not compatible with earlier versions. This error
+was NOT related to elements used by EML (unitList or unitType). However,
+given that authors of EML instance documents may have made use of other
+parts of stmml.xsd, it was decided to the advance the namespace used for
+stmml-related files to “stmml-1.1”, in keeping with the pattern of version
+naming in EML. The stmml authors have been contacted.</p>
+<ul>
+<li>Schema changes:
+<ul>
+<li>1132: eml.xsd, physical.xsd: fix access rule ambiguities</li>
+<li>2054: eml.xsd: added the <metadata> tag to additionalMetadata</li>
+<li>1154: resource.xsd: required element offline has no required children</li>
+<li>3480: resource.xsd, physical.xsd: nearly duplicate complexTypes, DistributionType and PhysicalDistributionType</li>
+<li>3165: resource.xsd: provide a place for a url description</li>
+<li>3227: coverage.xsd: gRing was declared as GRingPointType, is now GRingType</li>
+<li>1019: coverage.xsd: altitudeUnits should use eml-unitDictionary</li>
+<li>3500: coverage.xsd: restrict boundingCoordinates to realistic lat/lon ranges</li>
+<li>1152: attribute.xsd: dateTime elements are named inconsistently; standarized on dateTime</li>
+<li>2272: attribute.xsd: base types in BoundsGroup changed to xs:float</li>
+<li>3051: attribute.xsd: missing units were added to enumeration list to match eml-unitDitionary</li>
+<li>2568: attribute.xsd, entity.xsd: inconsistent naming of methods elements, standardized to <methods></li>
+<li>2703: text.xsd: refined element declarations in txt:TextType for para, section; added ulink, citetitle</li>
+<li>3163: literature.xsd: cardinality of volume and pageRange is now 0..1</li>
+<li>3164: literature.xsd: literature needs a contact tree</li>
+<li>3445: stmml.xsd: non-deterministic</li>
+<li>2083: stmml.xsd: dimension ‘current’ was wrongly entered as ‘charge’</li>
+</ul></li>
+<li>Parser :
+<ul>
+<li>3232: EML parser should use full-schema-checking</li>
+<li>3836: runEMLParser script should include sax-validate</li>
+</ul></li>
+<li>Stylesheets:
+<ul>
+<li>3508: create a stylesheet for EML2.0.x to EML 2.1.0</li>
+<li>3590: eml-documentation stylesheet problem with derived content.</li>
+<li>2048: param attributeindex defined twice in eml-settings.xsl</li>
+<li>2085: Access control rules adapted for 2.0.1 and 2.1 (currently not shown)</li>
+<li>2147: EML Stylesheet problem with web address URL’s</li>
+<li>2226: EML2 style sheet double the number of complex delimited f…</li>
+<li>3492: the word ‘unit’ should be pluralized by default</li>
+</ul></li>
+</ul>
+</div>
+<div id="numbers-refer-to-the-corresponding-bugzilla-bug-id-not-the-github-1" class="section level3">
+<h3><span class="header-section-number">12.0.4</span> 2.0.1 (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)</h3>
+<ul>
+<li>249: Update XSLT stylesheets for EML 2.0 modules</li>
+<li>939: spelling errors for ‘its’ in index</li>
+<li>960: parser not correctly parsing <describes> tag in additiona…</li>
+<li>1008: inline element doesn’t support character child</li>
+<li>1017: documentation error in eml-methods</li>
+<li>1031: enumeratedDomain doesn’t define value order for ordinals</li>
+<li>1035: Technical documentation on eml-methods has an error</li>
+<li>1124: update precision field definition and cardinality</li>
+<li>1129: Change temporalCoverage calendarDate type</li>
+<li>1132: fix access control rule ambiguities</li>
+<li>1136: kelvin conversion incorrect in unit dictionary</li>
+<li>1149: BoundsGroup bounds min &amp; max have incorrect cardinality</li>
+<li>1150: documentation for KeyTypeCode is wrong</li>
+<li>1151: misspelled element name</li>
+<li>1153: dateTimeDomain element should be optional</li>
+<li>1155: Documentation incorrect for dateTimeDomainType bounds</li>
+<li>1195: tracking bug for 2.0.1 release</li>
+<li>1233: dateTime formatString Documentation contains incorrect ex…</li>
+<li>1529: no tag to specify how to handle mutltiple, repeated delimimeters</li>
+<li>1652: eml-constraint documentation error</li>
+</ul>
+</div>
+<div id="numbers-refer-to-the-corresponding-bugzilla-bug-id-not-the-github-2" class="section level3">
+<h3><span class="header-section-number">12.0.5</span> 2.0.0 - (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)</h3>
+<ul>
+<li>670: DateTimeDomain id/reference validation</li>
+<li>924: make date time its own measurement scale</li>
+<li>661: spell check eml-attribute.xsd and synchronize with unitDi</li>
+<li>918: example tag in eml:documentation</li>
+</ul>
+</div>
+<div id="rc3-numbers-refer-to-the-corresponding-bugzilla-bug-id-not-the-github" class="section level3">
+<h3><span class="header-section-number">12.0.6</span> 2.0.0rc3 (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)</h3>
+<ul>
+<li>471: eml spec overview document</li>
+<li>624: eml-methods/methodsType needs clarification on choice/seq…</li>
+<li>627: links broken in EML FAQ</li>
+<li>629: unit conversion coefficients need checking</li>
+<li>637: attributeDomain should be required</li>
+<li>638: request for id/ref in attributeDomain</li>
+<li>654: scope of the unit element</li>
+<li>655: need better model for numeric domains for attributes</li>
+<li>625: Cardinality regarding eml-methods should be corrected in …</li>
+<li>626: ProcedureStepType schema needs revision to protect sequen…</li>
+<li>628: eml-physical has lit: rather than cit: references</li>
+<li>632: broken link in faq</li>
+<li>634: Documentation of reference elements in the schemas</li>
+<li>656: physical should be repeatable</li>
+</ul>
+</div>
+<div id="rc2-numbers-refer-to-the-corresponding-bugzilla-bug-id-not-the-github" class="section level3">
+<h3><span class="header-section-number">12.0.7</span> RC2 (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)</h3>
+<ul>
+<li>568: accommodate of stateful connection information</li>
+<li>586: resolve validation problem with missing keys</li>
+<li>588: Remove lineage tags in documentation stylesheets</li>
+<li>589: eml-coverage: convert element references to types</li>
+<li>592: fix validation error with xs:anyType</li>
+<li>594: change cardinality for designDescription and studyAreaDes…</li>
+<li>596: Proposal: make attribute optional in OtherEntityType.</li>
+<li>597: In eml-dataTable caseSensitive and orientation are modele…</li>
+<li>598: literature namespace references are inconsistent</li>
+<li>599: storageType is repeatable in eml-attribute</li>
+<li>600: eml-storedProcedure - problems &amp; proposal</li>
+<li>601: element names in spatial modules do not follow guidelines</li>
+<li>602: eml-physical fixed textFormat to allow mixed fixed/delimited</li>
+<li>608: release preparation tasks for EML2.0.0rc2</li>
+<li>622: redundancy in eml-physical/binaryRaster</li>
+</ul>
+</div>
+<div id="rc1-numbers-refer-to-the-corresponding-bugzilla-bug-id-not-the-github" class="section level3">
+<h3><span class="header-section-number">12.0.8</span> RC1 (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)</h3>
+<ul>
+<li>471: created an EML specification overview document</li>
+<li>495: created FAQ for EML</li>
+<li>588: removed lineage tags from documentation stylesheet</li>
+<li>484: eml-attribute changes to unit and attributeDomain</li>
+<li>579: fixed eml-docbook validation problems</li>
+<li>491: eml-coverage changed to correctly import types and to fix singleDateTime model</li>
+<li>485: eml-physical changed to fix fixed ascii descriptors and distribution</li>
+<li>477: complexTypes imports changed to consistent model</li>
+<li>486: fixed spelling errors in eml-constraint</li>
+<li>492: eml-literature changed for EndNote consistency</li>
+<li>496: copyright updated throughout</li>
+<li>557: textual elements changed to use docbook subset define in eml-text.xsd</li>
+<li>563: changed id types from xs:ID to xs:string to allow numeric ids</li>
+<li>482: eml-dataset changed to include method element</li>
+<li>489: eml-protocol completely revised based on feedback, eml-method.xsd created</li>
+<li>544: eml-attribute storageType and attributeDomain documentation clarified</li>
+<li>556: format of eml namespaces changed to include ecoinformatics.org</li>
+<li>539: added additionalInfo and alternateIdentifier to eml-dataTable.xsd</li>
+<li>568: redesigned DistributionType to allow richer connection descriptions</li>
+<li>566: changed imports in eml-resource to import resource types not elements</li>
+<li>567: created eml sample documents and XML validation framework using ant/junit</li>
+</ul>
+</div>
+<div id="beta9-fixes-" class="section level3">
+<h3><span class="header-section-number">12.0.9</span> Beta9 Fixes-</h3>
+<ol style="list-style-type: decimal">
+<li>Changed packaging concept to use internal id and references instead
+of triples</li>
+<li>Review and revised all modules according to agreed upon changes from
+the April, 2002 EML meeting at Sevilleta Field Station</li>
+</ol>
+</div>
+<div id="beta-8-fixes-" class="section level3">
+<h3><span class="header-section-number">12.0.10</span> Beta 8 Fixes-</h3>
+<ol style="list-style-type: decimal">
+<li>Fixed illegal declaration of type and extension in eml-entity</li>
+<li>Updated all PNG image files</li>
+</ol>
+</div>
+<div id="beta-7-fixes-" class="section level3">
+<h3><span class="header-section-number">12.0.11</span> Beta 7 Fixes-</h3>
+<ol style="list-style-type: decimal">
+<li>Added a ‘style’ subdirectory with a style sheet for most modules
+. to translate the metadata to HTML</li>
+<li>Changed names of coverage elements to be human readable</li>
+<li>Updated the namespaces to reflect the current version number of EML</li>
+<li>Added an eml-data module for the in-lining of data.</li>
+<li>Added the eml module for creating packages all in one file. It is a single
+node with a model of ANY so any of the eml modules can be put into it.</li>
+<li>Numerous bug fixes (see bugzilla.ecoinformatics.org)</li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="internationalization-metadata-in-multiple-languages.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="about-this-book.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

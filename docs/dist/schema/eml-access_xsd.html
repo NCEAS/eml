@@ -1,0 +1,1932 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for eml-access.xsd</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_eml-access.xsd', 
+				'properties_AccessType_allow', 
+				'properties_AccessRule_principal', 
+				'properties_AccessRule_permission', 
+				'properties_AccessType_deny', 
+				'properties_access', 
+				'properties_AccessType_id', 
+				'properties_AccessType_system', 
+				'properties_AccessType_scope', 
+				'properties_AccessType_order', 
+				'properties_AccessType_authSystem');
+var facetsBoxes= new Array('facets_AccessRule_principal', 
+				'facets_AccessType_scope', 
+				'facets_AccessType_order');
+var usedByBoxes= new Array('usedBy_AccessType', 
+				'usedBy_AccessRule', 
+				'usedBy_AccessType_id', 
+				'usedBy_AccessType_system', 
+				'usedBy_AccessType_scope', 
+				'usedBy_AccessType_order', 
+				'usedBy_AccessType_authSystem');
+var sourceBoxes= new Array('source_AccessType_allow', 
+				'source_AccessRule_principal', 
+				'source_AccessRule_permission', 
+				'source_AccessType_deny', 
+				'source_access', 
+				'source_AccessType', 
+				'source_AccessRule', 
+				'source_AccessType_id', 
+				'source_AccessType_system', 
+				'source_AccessType_scope', 
+				'source_AccessType_order', 
+				'source_AccessType_authSystem');
+var instanceBoxes= new Array('instance_AccessType_allow', 
+				'instance_AccessType_deny', 
+				'instance_access');
+var diagramBoxes= new Array('diagram_AccessType_allow', 
+				'diagram_AccessRule_principal', 
+				'diagram_AccessRule_permission', 
+				'diagram_AccessType_deny', 
+				'diagram_access', 
+				'diagram_AccessType', 
+				'diagram_AccessRule');
+var annotationBoxes= new Array('annotations_eml-access.xsd', 
+				'annotations_AccessType_allow', 
+				'annotations_AccessRule_principal', 
+				'annotations_AccessRule_permission', 
+				'annotations_AccessType_deny', 
+				'annotations_access', 
+				'annotations_AccessType', 
+				'annotations_AccessRule', 
+				'annotations_AccessType_order', 
+				'annotations_AccessType_authSystem');
+var attributesBoxes= new Array('attributes_access', 
+				'attributes_AccessType');
+var modelBoxes= new Array('model_AccessType_allow', 
+				'model_AccessType_deny', 
+				'model_access', 
+				'model_AccessType', 
+				'model_AccessRule');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, facetsBoxes);" class="control" /></span><span class="globalControlName">Facets </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, modelBoxes);" class="control" /></span><span class="globalControlName">Model </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="eml-access.xsd"></a><div class="componentTitle">Imported schema <span class="qname">eml-access.xsd</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>https://eml.ecoinformatics.org/access-2.2.0</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_eml-access.xsd" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_eml-access.xsd');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_eml-access.xsd" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">'$RCSfile: eml-access.xsd,v $'</span><span class="tI">
+</span><span class="tT">       Copyright: 1997-2002 Regents of the University of California,</span><span class="tI">
+</span><span class="tT">                            University of New Mexico, and</span><span class="tI">
+</span><span class="tT">                            Arizona State University</span><span class="tI">
+</span><span class="tT">        Sponsors: National Center for Ecological Analysis and Synthesis and</span><span class="tI">
+</span><span class="tT">                  Partnership for Interdisciplinary Studies of Coastal Oceans,</span><span class="tI">
+</span><span class="tT">                     University of California Santa Barbara</span><span class="tI">
+</span><span class="tT">                  Long-Term Ecological Research Network Office,</span><span class="tI">
+</span><span class="tT">                     University of New Mexico</span><span class="tI">
+</span><span class="tT">                  Center for Environmental Studies, Arizona State University</span><span class="tI">
+</span><span class="tT">   Other funding: National Science Foundation (see README for details)</span><span class="tI">
+</span><span class="tT">                  The David and Lucile Packard Foundation</span><span class="tI">
+</span><span class="tT">     For Details: http://knb.ecoinformatics.org/</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">        '$Author: cjones $'</span><span class="tI">
+</span><span class="tT">          '$Date: 2009-03-05 20:08:47 $'</span><span class="tI">
+</span><span class="tT">      '$Revision: 1.83 $'</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">    This program is free software; you can redistribute it and/or modify</span><span class="tI">
+</span><span class="tT">    it under the terms of the GNU General Public License as published by</span><span class="tI">
+</span><span class="tT">    the Free Software Foundation; either version 2 of the License, or</span><span class="tI">
+</span><span class="tT">    (at your option) any later version.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">    This program is distributed in the hope that it will be useful,</span><span class="tI">
+</span><span class="tT">    but WITHOUT ANY WARRANTY; without even the implied warranty of</span><span class="tI">
+</span><span class="tT">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span><span class="tI">
+</span><span class="tT">    GNU General Public License for more details.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">    You should have received a copy of the GNU General Public License</span><span class="tI">
+</span><span class="tT">    along with this program; if not, write to the Free Software</span><span class="tI">
+</span><span class="tT">    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                              <div class="annotation"></div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_eml-access.xsd" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_eml-access.xsd');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_eml-access.xsd" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">attribute form default</td>
+                                    <td><b>unqualified</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">element form default</td>
+                                    <td><b>unqualified</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="AccessType_allow"></a><div class="componentTitle">Element <span class="qname"><b><a href="eml-access_xsd.html#AccessType" target="mainFrame" title="https://eml.ecoinformatics.org/access-2.2.0" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">AccessType</a></b> / allow</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_AccessType_allow" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_AccessType_allow');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_AccessType_allow" style="display:block">
+                              <div class="annotation"></div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_AccessType_allow" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_AccessType_allow');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_AccessType_allow" style="display:block"><img alt="Diagram" border="0" src="img/eml-access_xsd_Element_allow.png" usemap="#eml-access_xsd_Element_allow" /><map name="eml-access_xsd_Element_allow" id="eml-access_xsd_Element_allow">
+                                 <area alt="eml-access_xsd.tmp#AccessRule_principal" href="eml-access_xsd.html#AccessRule_principal" coords="192,40,270,64" />
+                                 <area alt="eml-access_xsd.tmp#AccessRule_permission" href="eml-access_xsd.html#AccessRule_permission" coords="192,74,283,98" />
+                                 <area alt="eml-access_xsd.tmp#AccessRule" href="eml-access_xsd.html#AccessRule" coords="89,3,201,25" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="eml-access_xsd.html#AccessRule" target="mainFrame" title="https://eml.ecoinformatics.org/access-2.2.0" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">AccessRule</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_AccessType_allow" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_AccessType_allow');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_AccessType_allow" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_AccessType_allow" type="image" src="img/btM.gif" value="-" onclick="switchState('model_AccessType_allow');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="model_AccessType_allow" style="display:block"><b><a href="eml-access_xsd.html#AccessRule_principal" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">principal+</a></b> , <b><a href="eml-access_xsd.html#AccessRule_permission" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">permission+</a></b></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="eml-access_xsd.html#AccessRule_permission" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">permission</a></b>, <b><a href="eml-access_xsd.html#AccessRule_principal" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">principal</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_AccessType_allow" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_AccessType_allow');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_AccessType_allow" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;allow</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;principal</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/principal&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;permission</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/permission&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/allow&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_AccessType_allow" type="image" src="img/btM.gif" value="-" onclick="switchState('source_AccessType_allow');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_AccessType_allow" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"allow"</span><span class="tAN"> type=</span><span class="tAV">"AccessRule"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="AccessRule_principal"></a><div class="componentTitle">Element <span class="qname"><b><a href="eml-access_xsd.html#AccessRule" target="mainFrame" title="https://eml.ecoinformatics.org/access-2.2.0" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">AccessRule</a></b> / principal</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_AccessRule_principal" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_AccessRule_principal');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_AccessRule_principal" style="display:block">
+                              <div class="annotation"></div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_AccessRule_principal" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_AccessRule_principal');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_AccessRule_principal" style="display:block"><img alt="Diagram" border="0" src="img/eml-access_xsd_Element_principal.png" usemap="#eml-access_xsd_Element_principal" /><map name="eml-access_xsd_Element_principal" id="eml-access_xsd_Element_principal">
+                                 <area alt="eml-resource_xsd.tmp#NonEmptyStringType" href="eml-resource_xsd.html#NonEmptyStringType" coords="106,0,294,26" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="eml-resource_xsd.html#NonEmptyStringType" target="mainFrame" title="https://eml.ecoinformatics.org/resource-2.2.0" onclick="updatePageTitle('Schema documentation for eml-resource.xsd')">NonEmptyStringType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_AccessRule_principal" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_AccessRule_principal');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_AccessRule_principal" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>unbounded</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Facets</b></div>
+                           <div class="floatRight"><input id="button_facets_AccessRule_principal" type="image" src="img/btM.gif" value="-" onclick="switchState('facets_AccessRule_principal');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="facets_AccessRule_principal" style="display:block">
+                              <table class="facetsTable">
+                                 <tr>
+                                    <td class="firstColumn">minLength</td>
+                                    <td width="30%"><b>1</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">pattern</td>
+                                    <td width="30%"><b>[\s]*[\S][\s\S]*</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_AccessRule_principal" type="image" src="img/btM.gif" value="-" onclick="switchState('source_AccessRule_principal');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_AccessRule_principal" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"principal"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="AccessRule_permission"></a><div class="componentTitle">Element <span class="qname"><b><a href="eml-access_xsd.html#AccessRule" target="mainFrame" title="https://eml.ecoinformatics.org/access-2.2.0" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">AccessRule</a></b> / permission</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_AccessRule_permission" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_AccessRule_permission');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_AccessRule_permission" style="display:block">
+                              <div class="annotation"></div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_AccessRule_permission" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_AccessRule_permission');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_AccessRule_permission" style="display:block"><img alt="Diagram" border="0" src="img/eml-access_xsd_Element_permission.png" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td>union of(restriction of <b>xs:string</b>, <b>xs:string</b>)
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_AccessRule_permission" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_AccessRule_permission');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_AccessRule_permission" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>unbounded</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_AccessRule_permission" type="image" src="img/btM.gif" value="-" onclick="switchState('source_AccessRule_permission');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_AccessRule_permission" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"permission"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:simpleType</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:union</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:simpleType</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"read"</span><span class="tEl">/&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"write"</span><span class="tEl">/&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"changePermission"</span><span class="tEl">/&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"all"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:restriction&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:simpleType&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:simpleType</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">/&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:simpleType&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:union&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:simpleType&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="AccessType_deny"></a><div class="componentTitle">Element <span class="qname"><b><a href="eml-access_xsd.html#AccessType" target="mainFrame" title="https://eml.ecoinformatics.org/access-2.2.0" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">AccessType</a></b> / deny</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_AccessType_deny" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_AccessType_deny');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_AccessType_deny" style="display:block">
+                              <div class="annotation"></div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_AccessType_deny" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_AccessType_deny');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_AccessType_deny" style="display:block"><img alt="Diagram" border="0" src="img/eml-access_xsd_Element_deny.png" usemap="#eml-access_xsd_Element_deny" /><map name="eml-access_xsd_Element_deny" id="eml-access_xsd_Element_deny">
+                                 <area alt="eml-access_xsd.tmp#AccessRule_principal" href="eml-access_xsd.html#AccessRule_principal" coords="191,40,269,64" />
+                                 <area alt="eml-access_xsd.tmp#AccessRule_permission" href="eml-access_xsd.html#AccessRule_permission" coords="191,74,282,98" />
+                                 <area alt="eml-access_xsd.tmp#AccessRule" href="eml-access_xsd.html#AccessRule" coords="88,3,200,25" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="eml-access_xsd.html#AccessRule" target="mainFrame" title="https://eml.ecoinformatics.org/access-2.2.0" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">AccessRule</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_AccessType_deny" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_AccessType_deny');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_AccessType_deny" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_AccessType_deny" type="image" src="img/btM.gif" value="-" onclick="switchState('model_AccessType_deny');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="model_AccessType_deny" style="display:block"><b><a href="eml-access_xsd.html#AccessRule_principal" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">principal+</a></b> , <b><a href="eml-access_xsd.html#AccessRule_permission" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">permission+</a></b></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="eml-access_xsd.html#AccessRule_permission" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">permission</a></b>, <b><a href="eml-access_xsd.html#AccessRule_principal" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">principal</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_AccessType_deny" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_AccessType_deny');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_AccessType_deny" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;deny</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;principal</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/principal&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;permission</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/permission&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/deny&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_AccessType_deny" type="image" src="img/btM.gif" value="-" onclick="switchState('source_AccessType_deny');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_AccessType_deny" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"deny"</span><span class="tAN"> type=</span><span class="tAV">"AccessRule"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="access"></a><div class="componentTitle">Element <span class="qname">access</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>https://eml.ecoinformatics.org/access-2.2.0</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_access" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_access');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_access" style="display:block">
+                              <div class="annotation"></div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_access" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_access');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_access" style="display:block"><img alt="Diagram" border="0" src="img/eml-access_xsd_Element_access.png" usemap="#eml-access_xsd_Element_access" /><map name="eml-access_xsd_Element_access" id="eml-access_xsd_Element_access">
+                                 <area alt="eml-access_xsd.tmp#AccessType_id" href="eml-access_xsd.html#AccessType_id" coords="123,78,191,102" />
+                                 <area alt="eml-access_xsd.tmp#AccessType_system" href="eml-access_xsd.html#AccessType_system" coords="123,112,209,136" />
+                                 <area alt="eml-access_xsd.tmp#AccessType_scope" href="eml-access_xsd.html#AccessType_scope" coords="123,146,203,170" />
+                                 <area alt="eml-access_xsd.tmp#AccessType_order" href="eml-access_xsd.html#AccessType_order" coords="123,180,201,204" />
+                                 <area alt="eml-access_xsd.tmp#AccessType_authSystem" href="eml-access_xsd.html#AccessType_authSystem" coords="123,214,233,238" />
+                                 <area alt="eml-access_xsd.tmp#AccessType_allow" href="eml-access_xsd.html#AccessType_allow" coords="272,255,330,279" />
+                                 <area alt="eml-access_xsd.tmp#AccessType_deny" href="eml-access_xsd.html#AccessType_deny" coords="272,289,329,313" />
+                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup_references" href="eml-resource_xsd.html#ReferencesGroup_references" coords="286,371,374,395" />
+                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup" href="eml-resource_xsd.html#ReferencesGroup" coords="204,326,372,352" />
+                                 <area alt="eml-access_xsd.tmp#AccessType" href="eml-access_xsd.html#AccessType" coords="98,3,213,25" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="eml-access_xsd.html#AccessType" target="mainFrame" title="https://eml.ecoinformatics.org/access-2.2.0" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">AccessType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_access" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_access');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_access" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_access" type="image" src="img/btM.gif" value="-" onclick="switchState('model_access');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="model_access" style="display:block"><b><a href="eml-access_xsd.html#AccessType_allow" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">allow</a></b> | <b><a href="eml-access_xsd.html#AccessType_deny" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">deny</a></b> | (<b><a href="eml-resource_xsd.html#ReferencesGroup_references" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-resource.xsd')">references</a></b>)
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="eml-access_xsd.html#AccessType_allow" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">allow</a></b>, <b><a href="eml-access_xsd.html#AccessType_deny" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">deny</a></b>, <b><a href="eml-resource_xsd.html#ReferencesGroup_references" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-resource.xsd')">references</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_access" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_access');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_access" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;access</span><span class="tT"> </span><span class="tAN">authSystem=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">id=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">order=</span><span class="tAV">"allowFirst"</span><span class="tT"> </span><span class="tAN">scope=</span><span class="tAV">"document"</span><span class="tT"> </span><span class="tAN">system=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"https://eml.ecoinformatics.org/access-2.2.0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;allow</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/allow&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;deny</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/deny&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;references</span><span class="tT"> </span><span class="tAN">system=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/references&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/access&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_access" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_access');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_access" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="10%">Default</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="eml-access_xsd.html#AccessType_authSystem" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">authSystem</a></b></td>
+                                    <td><b>xs:string</b></td>
+                                    <td></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="eml-access_xsd.html#AccessType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">id</a></b></td>
+                                    <td><b><a href="eml-resource_xsd.html#IDType" target="mainFrame" title="https://eml.ecoinformatics.org/resource-2.2.0" onclick="updatePageTitle('Schema documentation for eml-resource.xsd')">IDType</a></b></td>
+                                    <td></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="eml-access_xsd.html#AccessType_order" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">order</a></b></td>
+                                    <td>restriction of <b>xs:string</b></td>
+                                    <td>allowFirst</td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="eml-access_xsd.html#AccessType_scope" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">scope</a></b></td>
+                                    <td><b><a href="eml-resource_xsd.html#ScopeType" target="mainFrame" title="https://eml.ecoinformatics.org/resource-2.2.0" onclick="updatePageTitle('Schema documentation for eml-resource.xsd')">ScopeType</a></b></td>
+                                    <td>document</td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="eml-access_xsd.html#AccessType_system" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">system</a></b></td>
+                                    <td><b><a href="eml-resource_xsd.html#SystemType" target="mainFrame" title="https://eml.ecoinformatics.org/resource-2.2.0" onclick="updatePageTitle('Schema documentation for eml-resource.xsd')">SystemType</a></b></td>
+                                    <td></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_access" type="image" src="img/btM.gif" value="-" onclick="switchState('source_access');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_access" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"access"</span><span class="tAN"> type=</span><span class="tAV">"AccessType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="AccessType"></a><div class="componentTitle">Complex Type <span class="qname">AccessType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>https://eml.ecoinformatics.org/access-2.2.0</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_AccessType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_AccessType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_AccessType" style="display:block">
+                              <div class="annotation"></div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_AccessType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_AccessType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_AccessType" style="display:block"><img alt="Diagram" border="0" src="img/eml-access_xsd_Complex_Type_AccessType.png" usemap="#eml-access_xsd_Complex_Type_AccessType" /><map name="eml-access_xsd_Complex_Type_AccessType" id="eml-access_xsd_Complex_Type_AccessType">
+                                 <area alt="eml-access_xsd.tmp#AccessType_id" href="eml-access_xsd.html#AccessType_id" coords="161,38,229,62" />
+                                 <area alt="eml-access_xsd.tmp#AccessType_system" href="eml-access_xsd.html#AccessType_system" coords="161,72,247,96" />
+                                 <area alt="eml-access_xsd.tmp#AccessType_scope" href="eml-access_xsd.html#AccessType_scope" coords="161,106,241,130" />
+                                 <area alt="eml-access_xsd.tmp#AccessType_order" href="eml-access_xsd.html#AccessType_order" coords="161,140,239,164" />
+                                 <area alt="eml-access_xsd.tmp#AccessType_authSystem" href="eml-access_xsd.html#AccessType_authSystem" coords="161,174,271,198" />
+                                 <area alt="eml-access_xsd.tmp#AccessType_allow" href="eml-access_xsd.html#AccessType_allow" coords="310,215,368,239" />
+                                 <area alt="eml-access_xsd.tmp#AccessType_deny" href="eml-access_xsd.html#AccessType_deny" coords="310,249,367,273" />
+                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup_references" href="eml-resource_xsd.html#ReferencesGroup_references" coords="324,331,412,355" />
+                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup" href="eml-resource_xsd.html#ReferencesGroup" coords="242,286,410,312" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_AccessType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_AccessType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_AccessType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Elements </td>
+                                    <td><b><a href="eml-physical_xsd.html#PhysicalDistributionType_access" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-physical.xsd')">PhysicalDistributionType/access</a></b>, <b><a href="eml-access_xsd.html#access" target="mainFrame" title="https://eml.ecoinformatics.org/access-2.2.0" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">access</a></b>, <b><a href="eml_xsd.html#eml_access" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml.xsd')">eml/access</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_AccessType" type="image" src="img/btM.gif" value="-" onclick="switchState('model_AccessType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="model_AccessType" style="display:block"><b><a href="eml-access_xsd.html#AccessType_allow" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">allow</a></b> | <b><a href="eml-access_xsd.html#AccessType_deny" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">deny</a></b> | (<b><a href="eml-resource_xsd.html#ReferencesGroup_references" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-resource.xsd')">references</a></b>)
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="eml-access_xsd.html#AccessType_allow" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">allow</a></b>, <b><a href="eml-access_xsd.html#AccessType_deny" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">deny</a></b>, <b><a href="eml-resource_xsd.html#ReferencesGroup_references" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-resource.xsd')">references</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_AccessType" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_AccessType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_AccessType" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="10%">Default</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="eml-access_xsd.html#AccessType_authSystem" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">authSystem</a></b></td>
+                                    <td><b>xs:string</b></td>
+                                    <td></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="eml-access_xsd.html#AccessType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">id</a></b></td>
+                                    <td><b><a href="eml-resource_xsd.html#IDType" target="mainFrame" title="https://eml.ecoinformatics.org/resource-2.2.0" onclick="updatePageTitle('Schema documentation for eml-resource.xsd')">IDType</a></b></td>
+                                    <td></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="eml-access_xsd.html#AccessType_order" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">order</a></b></td>
+                                    <td>restriction of <b>xs:string</b></td>
+                                    <td>allowFirst</td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="eml-access_xsd.html#AccessType_scope" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">scope</a></b></td>
+                                    <td><b><a href="eml-resource_xsd.html#ScopeType" target="mainFrame" title="https://eml.ecoinformatics.org/resource-2.2.0" onclick="updatePageTitle('Schema documentation for eml-resource.xsd')">ScopeType</a></b></td>
+                                    <td>document</td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="eml-access_xsd.html#AccessType_system" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">system</a></b></td>
+                                    <td><b><a href="eml-resource_xsd.html#SystemType" target="mainFrame" title="https://eml.ecoinformatics.org/resource-2.2.0" onclick="updatePageTitle('Schema documentation for eml-resource.xsd')">SystemType</a></b></td>
+                                    <td></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_AccessType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_AccessType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_AccessType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"AccessType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:choice</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:choice</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"allow"</span><span class="tAN"> type=</span><span class="tAV">"AccessRule"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"deny"</span><span class="tAN"> type=</span><span class="tAV">"AccessRule"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:group</span><span class="tAN"> ref=</span><span class="tAV">"res:ReferencesGroup"</span><span class="tEl">/&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"res:IDType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"system"</span><span class="tAN"> type=</span><span class="tAV">"res:SystemType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"scope"</span><span class="tAN"> type=</span><span class="tAV">"res:ScopeType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"document"</span><span class="tEl">/&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"order"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"allowFirst"</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:simpleType</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"allowFirst"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"denyFirst"</span><span class="tEl">/&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:restriction&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:simpleType&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"authSystem"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="AccessRule"></a><div class="componentTitle">Complex Type <span class="qname">AccessRule</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>https://eml.ecoinformatics.org/access-2.2.0</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_AccessRule" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_AccessRule');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_AccessRule" style="display:block">
+                              <div class="annotation"></div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_AccessRule" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_AccessRule');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_AccessRule" style="display:block"><img alt="Diagram" border="0" src="img/eml-access_xsd_Complex_Type_AccessRule.png" usemap="#eml-access_xsd_Complex_Type_AccessRule" /><map name="eml-access_xsd_Complex_Type_AccessRule" id="eml-access_xsd_Complex_Type_AccessRule">
+                                 <area alt="eml-access_xsd.tmp#AccessRule_principal" href="eml-access_xsd.html#AccessRule_principal" coords="236,0,314,24" />
+                                 <area alt="eml-access_xsd.tmp#AccessRule_permission" href="eml-access_xsd.html#AccessRule_permission" coords="236,34,327,58" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_AccessRule" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_AccessRule');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_AccessRule" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Elements </td>
+                                    <td><b><a href="eml-access_xsd.html#AccessType_allow" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">AccessType/allow</a></b>, <b><a href="eml-access_xsd.html#AccessType_deny" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">AccessType/deny</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_AccessRule" type="image" src="img/btM.gif" value="-" onclick="switchState('model_AccessRule');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="model_AccessRule" style="display:block"><b><a href="eml-access_xsd.html#AccessRule_principal" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">principal+</a></b> , <b><a href="eml-access_xsd.html#AccessRule_permission" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">permission+</a></b></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="eml-access_xsd.html#AccessRule_permission" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">permission</a></b>, <b><a href="eml-access_xsd.html#AccessRule_principal" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">principal</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_AccessRule" type="image" src="img/btM.gif" value="-" onclick="switchState('source_AccessRule');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_AccessRule" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"AccessRule"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"principal"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"permission"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:simpleType</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:union</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:simpleType</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"read"</span><span class="tEl">/&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"write"</span><span class="tEl">/&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"changePermission"</span><span class="tEl">/&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"all"</span><span class="tEl">/&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xs:restriction&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:simpleType&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:simpleType</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">/&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:simpleType&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:union&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:simpleType&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="AccessType_id"></a><div class="componentTitle">Attribute <span class="qname"><b><a href="eml-access_xsd.html#AccessType" target="mainFrame" title="https://eml.ecoinformatics.org/access-2.2.0" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">AccessType</a></b> / @id</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="eml-resource_xsd.html#IDType" target="mainFrame" title="https://eml.ecoinformatics.org/resource-2.2.0" onclick="updatePageTitle('Schema documentation for eml-resource.xsd')">IDType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_AccessType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_AccessType_id');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_AccessType_id" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">use</td>
+                                    <td><b>optional</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_AccessType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_AccessType_id');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_AccessType_id" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Complex Type </td>
+                                    <td><b><a href="eml-access_xsd.html#AccessType" target="mainFrame" title="https://eml.ecoinformatics.org/access-2.2.0" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">AccessType</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_AccessType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('source_AccessType_id');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_AccessType_id" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"res:IDType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="AccessType_system"></a><div class="componentTitle">Attribute <span class="qname"><b><a href="eml-access_xsd.html#AccessType" target="mainFrame" title="https://eml.ecoinformatics.org/access-2.2.0" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">AccessType</a></b> / @system</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="eml-resource_xsd.html#SystemType" target="mainFrame" title="https://eml.ecoinformatics.org/resource-2.2.0" onclick="updatePageTitle('Schema documentation for eml-resource.xsd')">SystemType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_AccessType_system" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_AccessType_system');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_AccessType_system" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">use</td>
+                                    <td><b>optional</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_AccessType_system" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_AccessType_system');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_AccessType_system" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Complex Type </td>
+                                    <td><b><a href="eml-access_xsd.html#AccessType" target="mainFrame" title="https://eml.ecoinformatics.org/access-2.2.0" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">AccessType</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_AccessType_system" type="image" src="img/btM.gif" value="-" onclick="switchState('source_AccessType_system');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_AccessType_system" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"system"</span><span class="tAN"> type=</span><span class="tAV">"res:SystemType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="AccessType_scope"></a><div class="componentTitle">Attribute <span class="qname"><b><a href="eml-access_xsd.html#AccessType" target="mainFrame" title="https://eml.ecoinformatics.org/access-2.2.0" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">AccessType</a></b> / @scope</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="eml-resource_xsd.html#ScopeType" target="mainFrame" title="https://eml.ecoinformatics.org/resource-2.2.0" onclick="updatePageTitle('Schema documentation for eml-resource.xsd')">ScopeType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_AccessType_scope" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_AccessType_scope');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_AccessType_scope" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">use</td>
+                                    <td><b>optional</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">default</td>
+                                    <td><b>document</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Facets</b></div>
+                           <div class="floatRight"><input id="button_facets_AccessType_scope" type="image" src="img/btM.gif" value="-" onclick="switchState('facets_AccessType_scope');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="facets_AccessType_scope" style="display:block">
+                              <table class="facetsTable">
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>system</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>document</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_AccessType_scope" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_AccessType_scope');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_AccessType_scope" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Complex Type </td>
+                                    <td><b><a href="eml-access_xsd.html#AccessType" target="mainFrame" title="https://eml.ecoinformatics.org/access-2.2.0" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">AccessType</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_AccessType_scope" type="image" src="img/btM.gif" value="-" onclick="switchState('source_AccessType_scope');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_AccessType_scope" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"scope"</span><span class="tAN"> type=</span><span class="tAV">"res:ScopeType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"document"</span><span class="tEl">/&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="AccessType_order"></a><div class="componentTitle">Attribute <span class="qname"><b><a href="eml-access_xsd.html#AccessType" target="mainFrame" title="https://eml.ecoinformatics.org/access-2.2.0" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">AccessType</a></b> / @order</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_AccessType_order" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_AccessType_order');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_AccessType_order" style="display:block">
+                              <div class="annotation"></div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td>restriction of <b>xs:string</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_AccessType_order" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_AccessType_order');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_AccessType_order" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">use</td>
+                                    <td><b>optional</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">default</td>
+                                    <td><b>allowFirst</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Facets</b></div>
+                           <div class="floatRight"><input id="button_facets_AccessType_order" type="image" src="img/btM.gif" value="-" onclick="switchState('facets_AccessType_order');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="facets_AccessType_order" style="display:block">
+                              <table class="facetsTable">
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>allowFirst</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>denyFirst</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_AccessType_order" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_AccessType_order');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_AccessType_order" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Complex Type </td>
+                                    <td><b><a href="eml-access_xsd.html#AccessType" target="mainFrame" title="https://eml.ecoinformatics.org/access-2.2.0" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">AccessType</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_AccessType_order" type="image" src="img/btM.gif" value="-" onclick="switchState('source_AccessType_order');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_AccessType_order" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"order"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"allowFirst"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:simpleType</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"allowFirst"</span><span class="tEl">/&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"denyFirst"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:restriction&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:simpleType&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:attribute&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="AccessType_authSystem"></a><div class="componentTitle">Attribute <span class="qname"><b><a href="eml-access_xsd.html#AccessType" target="mainFrame" title="https://eml.ecoinformatics.org/access-2.2.0" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">AccessType</a></b> / @authSystem</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_AccessType_authSystem" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_AccessType_authSystem');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_AccessType_authSystem" style="display:block">
+                              <div class="annotation"></div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:string</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_AccessType_authSystem" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_AccessType_authSystem');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_AccessType_authSystem" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">use</td>
+                                    <td><b>required</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_AccessType_authSystem" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_AccessType_authSystem');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_AccessType_authSystem" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Complex Type </td>
+                                    <td><b><a href="eml-access_xsd.html#AccessType" target="mainFrame" title="https://eml.ecoinformatics.org/access-2.2.0" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">AccessType</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_AccessType_authSystem" type="image" src="img/btM.gif" value="-" onclick="switchState('source_AccessType_authSystem');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_AccessType_authSystem" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"authSystem"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:attribute&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor Trial Edition.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>
