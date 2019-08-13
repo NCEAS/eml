@@ -42,7 +42,7 @@ O2_OUTPUT_INDEX='index.html';
 O2_OUTPUT="$O2_OUTPUT_DIR/$O2_OUTPUT_INDEX";
 
 # locaton of final documentation (with other EML docs, note that this is anchored at PWD, root of the checkout)
-OUTPUT='./docs/schema';
+OUTPUT='./dist/schema';
 
 # loop through schema files and xform
 COUNTER=0;
@@ -66,11 +66,11 @@ echo "O2_OUTPUT = $O2_OUTPUT";
 
 
 # copy O2 output to the main documentation area
-
+rm -r "$OUTPUT"
 cp -r "$TMP_OUT/$O2_OUTPUT_DIR" "$OUTPUT" ;
 echo "cp -r $TMP_OUT/$O2_OUTPUT_DIR $OUTPUT ";
 echo "Top of schema documentation is $OUTPUT/$O2_OUTPUT_INDEX ";
 
 
 # tmp files are not tracked in git.
-
+rm -r "$TMP_OUT"
