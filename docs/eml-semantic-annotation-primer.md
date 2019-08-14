@@ -635,9 +635,9 @@ Following are tutorials and supplemental background reading
 Below are answers to questions some readers had, which may be helpful to you. If you have additional questions, please bring them up in your community for feedback.
 
 
-**Q: Why do EML elements with annotations need id attributes? 
+**Q: Why do EML elements with annotations need `id` attributes?** 
 
-A: EML elements that have `annotation` children need ids so that they can be used to construct the *subject* of 
+A: EML elements that have `annotation` children need `id` so that they can be used to construct the *subject* of 
 an RDF triple. [See above](#faq-why-do-annotations-need-ids).
 
 
@@ -689,8 +689,8 @@ as well as clarify the relationships among these.
 
 A: Yes, in the context of a data table and for annotation purposes, any attribute (observation or column of data) can be 
 considered ‘a measurement’. A philosopher might disagree, saying that some content
-you might see in data columns (e.g., *unique identifiers*) are not really 
-measurements; but many other “nominals”, i.e. text strings identifying some class types (e.g. predator, lizard, 
+you might see in data columns (e.g., unique identifiers) are not really 
+measurements; but many other nominals, i.e. text strings identifying some class types (e.g. predator, lizard, 
 tundra), imply quantification and can be construed as measurements. 
 
 <a name="FAQ-example-labels"></a>
@@ -720,8 +720,7 @@ contents of datasets (as "instances") with the concepts represented by terms in 
 A: Actual RDF (XML) is shown in the code blocks of [Example 3](#rdf-eml-example-3) and [Example 4](#rdf-eml-example-4). 
 
 RDF is a data model based on triples, each of which has three components: a subject, 
-predicate, and object, that are
-should be constructed of dereferenceable URIs. 
+predicate, and object, that are constructed of dereferenceable URIs. 
 RDF triples can be "serialized" in several syntaxes, including XML, JSON-LD, Turtle, N-Triples, and others. These syntaxes are isomorphic, such that translations of RDF graphs from one serialization to another are available-- enabling consistent interpretation by machines.
 
 For human interpretation  the most straightforward serialization of RDF graphs
