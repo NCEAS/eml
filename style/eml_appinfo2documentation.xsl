@@ -3,7 +3,7 @@
 <xsl:stylesheet
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:doc="eml://ecoinformatics.org/documentation-2.2.0"
+    xmlns:doc="https://eml.ecoinformatics.org/documentation-2.2.0"
     exclude-result-prefixes="xs"
     version="1.0">
 
@@ -38,8 +38,7 @@
             <xsl:text>|</xsl:text>
         </xsl:variable>
         <xs:documentation>
-
-            <xsl:for-each select="doc:summary|doc:tooltip|doc:description">
+            <xsl:for-each select="doc:summary|doc:tooltip|doc:description|doc:example">
                 <xsl:value-of select="$newline"/>
                 <xsl:variable name="value" select="local-name()"/>
                 <xsl:value-of select="$value"/>
