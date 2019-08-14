@@ -511,7 +511,25 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                     </tr>
                                  </table>
                               </div>
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">moduleName: eml-party</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">moduleDescription: </span><span class="tI">
+</span><span class="tT">          </span><span class="tI">
+</span><span class="tT">            </span><span class="tI">
+</span><span class="tT">            The eml-party module - People and organization information</span><span class="tI">
+</span><span class="tT">          </span><span class="tI">
+</span><span class="tT">          </span><span class="tI">
+</span><span class="tT">        </span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">recommendedUsage: all datasets</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">standAlone: yes</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -568,7 +586,43 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td>
                            <div id="annotations_ResponsibleParty_individualName" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Individual Name</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: The full name of the person being</span><span class="tI">
+</span><span class="tT">                described</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: </span><span class="tI">
+</span><span class="tT">                  </span><span class="tI">
+</span><span class="tT">                    The individualName</span><span class="tI">
+</span><span class="tT">                field contains subfields so that  a person's name can be broken</span><span class="tI">
+</span><span class="tT">                down into               parts.</span><span class="tI">
+</span><span class="tT">                    Note that the the content model for the containing type</span><span class="tI">
+</span><span class="tT">        allows a sequence of choices for the first</span><span class="tI">
+</span><span class="tT">        element(s): &lt;individualName&gt;, &lt;organizationName&gt; and/or &lt;positionName&gt;.</span><span class="tI">
+</span><span class="tT">        This means that a parent element (e.g., creator) may use combinations of the 3 sub-elements</span><span class="tI">
+</span><span class="tT">        to make up a single logical party. For example, a creator with only</span><span class="tI">
+</span><span class="tT">                the individualName of 'Joe Smith' is NOT the same as a</span><span class="tI">
+</span><span class="tT">                creator with the individualName of 'Joe Smith' and the</span><span class="tI">
+</span><span class="tT">                organizationName of 'NSF'. To include both a positionName and</span><span class="tI">
+</span><span class="tT">                 an organizationName as children of a &lt;contact&gt; implies that anyone</span><span class="tI">
+</span><span class="tT">                currently occupying that positionName at that organizationName</span><span class="tI">
+</span><span class="tT">                is an appropriate contact.</span><span class="tI">
+</span><span class="tT">                The positionName should not be</span><span class="tI">
+</span><span class="tT">                used in conjunction with individualName unless only that specific</span><span class="tI">
+</span><span class="tT">                individual at that position would be considered appropriate for that</span><span class="tI">
+</span><span class="tT">                designation.   </span><span class="tI">
+</span><span class="tT">                  </span><span class="tI">
+</span><span class="tT">                </span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: Because this is an 'elementOnly' field, please</span><span class="tI">
+</span><span class="tT">                look at the examples for the subfields 'givenName' and</span><span class="tI">
+</span><span class="tT">                'surName'.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -579,10 +633,10 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td class="diagram">
                            <div id="diagram_ResponsibleParty_individualName" style="display:block"><img alt="Diagram" border="0" src="img/eml-party_xsd_Element_individualName.png" usemap="#eml-party_xsd_Element_individualName" /><map name="eml-party_xsd_Element_individualName" id="eml-party_xsd_Element_individualName">
-                                 <area alt="eml-party_xsd.tmp#Person_salutation" href="eml-party_xsd.html#Person_salutation" coords="247,40,331,64" />
-                                 <area alt="eml-party_xsd.tmp#Person_givenName" href="eml-party_xsd.html#Person_givenName" coords="247,74,337,98" />
-                                 <area alt="eml-party_xsd.tmp#Person_surName" href="eml-party_xsd.html#Person_surName" coords="247,108,326,132" />
-                                 <area alt="eml-party_xsd.tmp#Person" href="eml-party_xsd.html#Person" coords="144,3,232,25" /></map></div>
+                                 <area alt="eml-party_xsd.tmp#Person_salutation" href="eml-party_xsd.html#Person_salutation" coords="267,40,351,64" />
+                                 <area alt="eml-party_xsd.tmp#Person_givenName" href="eml-party_xsd.html#Person_givenName" coords="267,130,357,154" />
+                                 <area alt="eml-party_xsd.tmp#Person_surName" href="eml-party_xsd.html#Person_surName" coords="267,220,346,244" />
+                                 <area alt="eml-party_xsd.tmp#Person" href="eml-party_xsd.html#Person" coords="164,3,252,25" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -646,7 +700,7 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"individualName"</span><span class="tAN"> type=</span><span class="tAV">"Person"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Individual Name summary: The full name of the person being described description: The individualName field contains subfields so that a person's name can be broken down into parts. Note that the the content model for the containing type allows a sequence of choices for the first element(s): &lt;individualName&gt;, &lt;organizationName&gt; and/or &lt;positionName&gt;. This means that a parent element (e.g., creator) may use combinations of the 3 sub-elements to make up a single logical party. For example, a creator with only the individualName of 'Joe Smith' is NOT the same as a creator with the individualName of 'Joe Smith' and the organizationName of 'NSF'. To include both a positionName and an organizationName as children of a &lt;contact&gt; implies that anyone currently occupying that positionName at that organizationName is an appropriate contact. The positionName should not be used in conjunction with individualName unless only that specific individual at that position would be considered appropriate for that designation. example: Because this is an 'elementOnly' field, please look at the examples for the subfields 'givenName' and 'surName'.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
@@ -687,7 +741,22 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td>
                            <div id="annotations_Person_salutation" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Salutation</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: The salutation used to address an</span><span class="tI">
+</span><span class="tT">            individual</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: The salutation field is used in addressing an</span><span class="tI">
+</span><span class="tT">            individual with a particular title, such as Dr., Ms., Mrs., Mr.,</span><span class="tI">
+</span><span class="tT">            etc.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: Dr.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -698,9 +767,9 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td class="diagram">
                            <div id="diagram_Person_salutation" style="display:block"><img alt="Diagram" border="0" src="img/eml-party_xsd_Element_salutation.png" usemap="#eml-party_xsd_Element_salutation" /><map name="eml-party_xsd_Element_salutation" id="eml-party_xsd_Element_salutation">
-                                 <area alt="xml_xsd.tmp#lang" href="xml_xsd.html#lang" coords="140,78,223,102" />
-                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType_value" href="eml-resource_xsd.html#i18nNonEmptyStringType_value" coords="218,123,277,147" />
-                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType" href="eml-resource_xsd.html#i18nNonEmptyStringType" coords="115,3,323,25" /></map></div>
+                                 <area alt="xml_xsd.tmp#lang" href="xml_xsd.html#lang" coords="160,78,243,102" />
+                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType_value" href="eml-resource_xsd.html#i18nNonEmptyStringType_value" coords="238,123,297,147" />
+                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType" href="eml-resource_xsd.html#i18nNonEmptyStringType" coords="135,3,343,25" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -802,7 +871,7 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"salutation"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Salutation summary: The salutation used to address an individual description: The salutation field is used in addressing an individual with a particular title, such as Dr., Ms., Mrs., Mr., etc. example: Dr.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
@@ -843,7 +912,28 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td>
                            <div id="annotations_Person_givenName" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Given name</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: The given name of the individual.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: The given name field can be used for first name of</span><span class="tI">
+</span><span class="tT">            the individual associated with the resource, or for any other names</span><span class="tI">
+</span><span class="tT">            that are not intended to be alphabetized, (as appropriate). Note that</span><span class="tI">
+</span><span class="tT">            while it is possible  to include all given names in one field (as in the</span><span class="tI">
+</span><span class="tT">            example below), it may be not be good practice to do so. For example, if an</span><span class="tI">
+</span><span class="tT">            XSL transformation stylesheet were to abbreviate the content of a</span><span class="tI">
+</span><span class="tT">            givenName to just the first initial, a givenName element that contained</span><span class="tI">
+</span><span class="tT">            more than one name would not be transformed correctly. </span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: Juan Luis</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: Jane</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -854,9 +944,9 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td class="diagram">
                            <div id="diagram_Person_givenName" style="display:block"><img alt="Diagram" border="0" src="img/eml-party_xsd_Element_givenName.png" usemap="#eml-party_xsd_Element_givenName" /><map name="eml-party_xsd_Element_givenName" id="eml-party_xsd_Element_givenName">
-                                 <area alt="xml_xsd.tmp#lang" href="xml_xsd.html#lang" coords="146,78,229,102" />
-                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType_value" href="eml-resource_xsd.html#i18nNonEmptyStringType_value" coords="224,123,283,147" />
-                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType" href="eml-resource_xsd.html#i18nNonEmptyStringType" coords="121,3,329,25" /></map></div>
+                                 <area alt="xml_xsd.tmp#lang" href="xml_xsd.html#lang" coords="166,78,249,102" />
+                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType_value" href="eml-resource_xsd.html#i18nNonEmptyStringType_value" coords="244,123,303,147" />
+                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType" href="eml-resource_xsd.html#i18nNonEmptyStringType" coords="141,3,349,25" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -958,7 +1048,7 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"givenName"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Given name summary: The given name of the individual. description: The given name field can be used for first name of the individual associated with the resource, or for any other names that are not intended to be alphabetized, (as appropriate). Note that while it is possible to include all given names in one field (as in the example below), it may be not be good practice to do so. For example, if an XSL transformation stylesheet were to abbreviate the content of a givenName to just the first initial, a givenName element that contained more than one name would not be transformed correctly. example: Juan Luis example: Jane</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
@@ -999,7 +1089,26 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td>
                            <div id="annotations_Person_surName" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Last name</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: The last name of the individual.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: The surname field is used for the last name of the</span><span class="tI">
+</span><span class="tT">            individual associated with the resource. This is typically the family name</span><span class="tI">
+</span><span class="tT">            of an individual, for example, the name by which s/he is referred to in citations.</span><span class="tI">
+</span><span class="tT">            </span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: San Gil</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: Curtis-Ainsworth</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: Tao</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -1010,9 +1119,9 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td class="diagram">
                            <div id="diagram_Person_surName" style="display:block"><img alt="Diagram" border="0" src="img/eml-party_xsd_Element_surName.png" usemap="#eml-party_xsd_Element_surName" /><map name="eml-party_xsd_Element_surName" id="eml-party_xsd_Element_surName">
-                                 <area alt="xml_xsd.tmp#lang" href="xml_xsd.html#lang" coords="135,78,218,102" />
-                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType_value" href="eml-resource_xsd.html#i18nNonEmptyStringType_value" coords="213,123,272,147" />
-                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType" href="eml-resource_xsd.html#i18nNonEmptyStringType" coords="110,3,318,25" /></map></div>
+                                 <area alt="xml_xsd.tmp#lang" href="xml_xsd.html#lang" coords="155,78,238,102" />
+                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType_value" href="eml-resource_xsd.html#i18nNonEmptyStringType_value" coords="233,123,292,147" />
+                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType" href="eml-resource_xsd.html#i18nNonEmptyStringType" coords="130,3,338,25" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -1106,7 +1215,7 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"surName"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Last name summary: The last name of the individual. description: The surname field is used for the last name of the individual associated with the resource. This is typically the family name of an individual, for example, the name by which s/he is referred to in citations. example: San Gil example: Curtis-Ainsworth example: Tao</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
@@ -1147,7 +1256,44 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td>
                            <div id="annotations_ResponsibleParty_organizationName" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Organization name</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: The full name of the organization being</span><span class="tI">
+</span><span class="tT">                described</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: </span><span class="tI">
+</span><span class="tT">                  </span><span class="tI">
+</span><span class="tT">                    The responsible party field contains the full</span><span class="tI">
+</span><span class="tT">                name of the organization that is associated with the resource.</span><span class="tI">
+</span><span class="tT">                This field is intended to describe which institution or overall</span><span class="tI">
+</span><span class="tT">                organization is associated with the resource being described.</span><span class="tI">
+</span><span class="tT">               </span><span class="tI">
+</span><span class="tT">                    Note that the the content model for the containing type</span><span class="tI">
+</span><span class="tT">        allows a sequence of choices for the first</span><span class="tI">
+</span><span class="tT">        element(s): &lt;individualName&gt;, &lt;organizationName&gt; and/or &lt;positionName&gt;.</span><span class="tI">
+</span><span class="tT">        This means that a parent element (e.g., creator) may use combinations of the 3 sub-elements</span><span class="tI">
+</span><span class="tT">        to make up a single logical party. For example, a creator with only</span><span class="tI">
+</span><span class="tT">                the individualName of 'Joe Smith' is NOT the same as a</span><span class="tI">
+</span><span class="tT">                creator with the individualName of 'Joe Smith' and the</span><span class="tI">
+</span><span class="tT">                organizationName of 'NSF'. To include both a positionName and</span><span class="tI">
+</span><span class="tT">                 an organizationName as children of a &lt;contact&gt; implies that anyone</span><span class="tI">
+</span><span class="tT">                currently occupying that positionName at that organizationName</span><span class="tI">
+</span><span class="tT">                is an appropriate contact.</span><span class="tI">
+</span><span class="tT">                The positionName should not be</span><span class="tI">
+</span><span class="tT">                used in conjunction with individualName unless only that specific</span><span class="tI">
+</span><span class="tT">                individual at that position would be considered appropriate for that</span><span class="tI">
+</span><span class="tT">                designation.   </span><span class="tI">
+</span><span class="tT">                  </span><span class="tI">
+</span><span class="tT">                </span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: National Center for Ecological Analysis and</span><span class="tI">
+</span><span class="tT">                Synthesis</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -1158,9 +1304,9 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td class="diagram">
                            <div id="diagram_ResponsibleParty_organizationName" style="display:block"><img alt="Diagram" border="0" src="img/eml-party_xsd_Element_organizationName.png" usemap="#eml-party_xsd_Element_organizationName" /><map name="eml-party_xsd_Element_organizationName" id="eml-party_xsd_Element_organizationName">
-                                 <area alt="xml_xsd.tmp#lang" href="xml_xsd.html#lang" coords="185,78,268,102" />
-                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType_value" href="eml-resource_xsd.html#i18nNonEmptyStringType_value" coords="263,123,322,147" />
-                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType" href="eml-resource_xsd.html#i18nNonEmptyStringType" coords="160,3,368,25" /></map></div>
+                                 <area alt="xml_xsd.tmp#lang" href="xml_xsd.html#lang" coords="205,78,288,102" />
+                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType_value" href="eml-resource_xsd.html#i18nNonEmptyStringType_value" coords="283,123,342,147" />
+                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType" href="eml-resource_xsd.html#i18nNonEmptyStringType" coords="180,3,388,25" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -1254,7 +1400,7 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"organizationName"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Organization name summary: The full name of the organization being described description: The responsible party field contains the full name of the organization that is associated with the resource. This field is intended to describe which institution or overall organization is associated with the resource being described. Note that the the content model for the containing type allows a sequence of choices for the first element(s): &lt;individualName&gt;, &lt;organizationName&gt; and/or &lt;positionName&gt;. This means that a parent element (e.g., creator) may use combinations of the 3 sub-elements to make up a single logical party. For example, a creator with only the individualName of 'Joe Smith' is NOT the same as a creator with the individualName of 'Joe Smith' and the organizationName of 'NSF'. To include both a positionName and an organizationName as children of a &lt;contact&gt; implies that anyone currently occupying that positionName at that organizationName is an appropriate contact. The positionName should not be used in conjunction with individualName unless only that specific individual at that position would be considered appropriate for that designation. example: National Center for Ecological Analysis and Synthesis</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
@@ -1295,7 +1441,42 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td>
                            <div id="annotations_ResponsibleParty_positionName" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Position Name</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: The name of the title or position associated with</span><span class="tI">
+</span><span class="tT">                the resource.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: </span><span class="tI">
+</span><span class="tT">                  </span><span class="tI">
+</span><span class="tT">                    This field is intended to be used instead of a</span><span class="tI">
+</span><span class="tT">                particular person or full organization name. If the associated</span><span class="tI">
+</span><span class="tT">                person who holds the role changes frequently, then Position</span><span class="tI">
+</span><span class="tT">                Name would be used for consistency. </span><span class="tI">
+</span><span class="tT">                    Note that the the content model for the containing type</span><span class="tI">
+</span><span class="tT">        allows a sequence of choices for the first</span><span class="tI">
+</span><span class="tT">        element(s): &lt;individualName&gt;, &lt;organizationName&gt; and/or &lt;positionName&gt;.</span><span class="tI">
+</span><span class="tT">        This means that a parent element (e.g., creator) may use combinations of the 3 sub-elements</span><span class="tI">
+</span><span class="tT">        to make up a single logical party. For example, a creator with only</span><span class="tI">
+</span><span class="tT">                the individualName of 'Joe Smith' is NOT the same as a</span><span class="tI">
+</span><span class="tT">                creator with the individualName of 'Joe Smith' and the</span><span class="tI">
+</span><span class="tT">                organizationName of 'NSF'. To include both a positionName and</span><span class="tI">
+</span><span class="tT">                 an organizationName as children of a &lt;contact&gt; implies that anyone</span><span class="tI">
+</span><span class="tT">                currently occupying that positionName at that organizationName</span><span class="tI">
+</span><span class="tT">                is an appropriate contact.</span><span class="tI">
+</span><span class="tT">                The positionName should not be</span><span class="tI">
+</span><span class="tT">                used in conjunction with individualName unless only that specific</span><span class="tI">
+</span><span class="tT">                individual at that position would be considered appropriate for that</span><span class="tI">
+</span><span class="tT">                designation.   </span><span class="tI">
+</span><span class="tT">                  </span><span class="tI">
+</span><span class="tT">                </span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: Niwot Ridge Data Manager</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -1306,9 +1487,9 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td class="diagram">
                            <div id="diagram_ResponsibleParty_positionName" style="display:block"><img alt="Diagram" border="0" src="img/eml-party_xsd_Element_positionName.png" usemap="#eml-party_xsd_Element_positionName" /><map name="eml-party_xsd_Element_positionName" id="eml-party_xsd_Element_positionName">
-                                 <area alt="xml_xsd.tmp#lang" href="xml_xsd.html#lang" coords="161,78,244,102" />
-                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType_value" href="eml-resource_xsd.html#i18nNonEmptyStringType_value" coords="239,123,298,147" />
-                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType" href="eml-resource_xsd.html#i18nNonEmptyStringType" coords="136,3,344,25" /></map></div>
+                                 <area alt="xml_xsd.tmp#lang" href="xml_xsd.html#lang" coords="181,78,264,102" />
+                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType_value" href="eml-resource_xsd.html#i18nNonEmptyStringType_value" coords="259,123,318,147" />
+                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType" href="eml-resource_xsd.html#i18nNonEmptyStringType" coords="156,3,364,25" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -1402,7 +1583,7 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"positionName"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Position Name summary: The name of the title or position associated with the resource. description: This field is intended to be used instead of a particular person or full organization name. If the associated person who holds the role changes frequently, then Position Name would be used for consistency. Note that the the content model for the containing type allows a sequence of choices for the first element(s): &lt;individualName&gt;, &lt;organizationName&gt; and/or &lt;positionName&gt;. This means that a parent element (e.g., creator) may use combinations of the 3 sub-elements to make up a single logical party. For example, a creator with only the individualName of 'Joe Smith' is NOT the same as a creator with the individualName of 'Joe Smith' and the organizationName of 'NSF'. To include both a positionName and an organizationName as children of a &lt;contact&gt; implies that anyone currently occupying that positionName at that organizationName is an appropriate contact. The positionName should not be used in conjunction with individualName unless only that specific individual at that position would be considered appropriate for that designation. example: Niwot Ridge Data Manager</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
@@ -1443,7 +1624,22 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td>
                            <div id="annotations_ResponsibleParty_address" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Contact address</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: The full address information for a given responsible</span><span class="tI">
+</span><span class="tT">              party entry.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: The address field is a container for multiple</span><span class="tI">
+</span><span class="tT">              subfields that describe the physical or electronic address of the</span><span class="tI">
+</span><span class="tT">              responsible party for a resource.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: Please see the subfield examples.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -1454,17 +1650,17 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td class="diagram">
                            <div id="diagram_ResponsibleParty_address" style="display:block"><img alt="Diagram" border="0" src="img/eml-party_xsd_Element_address.png" usemap="#eml-party_xsd_Element_address" /><map name="eml-party_xsd_Element_address" id="eml-party_xsd_Element_address">
-                                 <area alt="eml-party_xsd.tmp#Address_id" href="eml-party_xsd.html#Address_id" coords="130,78,198,102" />
-                                 <area alt="eml-party_xsd.tmp#Address_system" href="eml-party_xsd.html#Address_system" coords="130,112,216,136" />
-                                 <area alt="eml-party_xsd.tmp#Address_scope" href="eml-party_xsd.html#Address_scope" coords="130,146,210,170" />
-                                 <area alt="eml-party_xsd.tmp#Address_deliveryPoint" href="eml-party_xsd.html#Address_deliveryPoint" coords="279,187,379,211" />
-                                 <area alt="eml-party_xsd.tmp#Address_city" href="eml-party_xsd.html#Address_city" coords="279,221,330,245" />
-                                 <area alt="eml-party_xsd.tmp#Address_administrativeArea" href="eml-party_xsd.html#Address_administrativeArea" coords="279,255,411,279" />
-                                 <area alt="eml-party_xsd.tmp#Address_postalCode" href="eml-party_xsd.html#Address_postalCode" coords="279,289,371,313" />
-                                 <area alt="eml-party_xsd.tmp#Address_country" href="eml-party_xsd.html#Address_country" coords="279,323,352,347" />
-                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup_references" href="eml-resource_xsd.html#ReferencesGroup_references" coords="272,405,360,429" />
-                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup" href="eml-resource_xsd.html#ReferencesGroup" coords="190,360,358,386" />
-                                 <area alt="eml-party_xsd.tmp#Address" href="eml-party_xsd.html#Address" coords="105,3,201,25" /></map></div>
+                                 <area alt="eml-party_xsd.tmp#Address_id" href="eml-party_xsd.html#Address_id" coords="150,78,218,102" />
+                                 <area alt="eml-party_xsd.tmp#Address_system" href="eml-party_xsd.html#Address_system" coords="150,112,236,136" />
+                                 <area alt="eml-party_xsd.tmp#Address_scope" href="eml-party_xsd.html#Address_scope" coords="150,146,230,170" />
+                                 <area alt="eml-party_xsd.tmp#Address_deliveryPoint" href="eml-party_xsd.html#Address_deliveryPoint" coords="299,187,399,211" />
+                                 <area alt="eml-party_xsd.tmp#Address_city" href="eml-party_xsd.html#Address_city" coords="299,277,350,301" />
+                                 <area alt="eml-party_xsd.tmp#Address_administrativeArea" href="eml-party_xsd.html#Address_administrativeArea" coords="299,367,431,391" />
+                                 <area alt="eml-party_xsd.tmp#Address_postalCode" href="eml-party_xsd.html#Address_postalCode" coords="299,444,391,468" />
+                                 <area alt="eml-party_xsd.tmp#Address_country" href="eml-party_xsd.html#Address_country" coords="299,534,372,558" />
+                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup_references" href="eml-resource_xsd.html#ReferencesGroup_references" coords="292,672,380,696" />
+                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup" href="eml-resource_xsd.html#ReferencesGroup" coords="210,627,378,653" />
+                                 <area alt="eml-party_xsd.tmp#Address" href="eml-party_xsd.html#Address" coords="125,3,221,25" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -1588,7 +1784,7 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"address"</span><span class="tAN"> type=</span><span class="tAV">"Address"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Contact address summary: The full address information for a given responsible party entry. description: The address field is a container for multiple subfields that describe the physical or electronic address of the responsible party for a resource. example: Please see the subfield examples.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
@@ -1629,7 +1825,22 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td>
                            <div id="annotations_Address_deliveryPoint" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Delivery point</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: The location for postal deliveries.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: The delivery point field is used for the</span><span class="tI">
+</span><span class="tT">              physical address for postal communication. This field is used to</span><span class="tI">
+</span><span class="tT">              accommodate the many different international conventions that are</span><span class="tI">
+</span><span class="tT">              the equivalent to a U.S. 'street address'.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: 7209 Coast Drive, Building 44</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -1640,9 +1851,9 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td class="diagram">
                            <div id="diagram_Address_deliveryPoint" style="display:block"><img alt="Diagram" border="0" src="img/eml-party_xsd_Element_deliveryPoint.png" usemap="#eml-party_xsd_Element_deliveryPoint" /><map name="eml-party_xsd_Element_deliveryPoint" id="eml-party_xsd_Element_deliveryPoint">
-                                 <area alt="xml_xsd.tmp#lang" href="xml_xsd.html#lang" coords="156,78,239,102" />
-                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType_value" href="eml-resource_xsd.html#i18nNonEmptyStringType_value" coords="234,123,293,147" />
-                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType" href="eml-resource_xsd.html#i18nNonEmptyStringType" coords="131,3,339,25" /></map></div>
+                                 <area alt="xml_xsd.tmp#lang" href="xml_xsd.html#lang" coords="176,78,259,102" />
+                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType_value" href="eml-resource_xsd.html#i18nNonEmptyStringType_value" coords="254,123,313,147" />
+                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType" href="eml-resource_xsd.html#i18nNonEmptyStringType" coords="151,3,359,25" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -1744,7 +1955,7 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"deliveryPoint"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Delivery point summary: The location for postal deliveries. description: The delivery point field is used for the physical address for postal communication. This field is used to accommodate the many different international conventions that are the equivalent to a U.S. 'street address'. example: 7209 Coast Drive, Building 44</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
@@ -1785,7 +1996,20 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td>
                            <div id="annotations_Address_city" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: City</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: The name of the city for the contact.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: The city field is used for the city name of the</span><span class="tI">
+</span><span class="tT">              contact associated with a particular resource.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: San Francisco</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -1796,9 +2020,9 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td class="diagram">
                            <div id="diagram_Address_city" style="display:block"><img alt="Diagram" border="0" src="img/eml-party_xsd_Element_city.png" usemap="#eml-party_xsd_Element_city" /><map name="eml-party_xsd_Element_city" id="eml-party_xsd_Element_city">
-                                 <area alt="xml_xsd.tmp#lang" href="xml_xsd.html#lang" coords="107,78,190,102" />
-                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType_value" href="eml-resource_xsd.html#i18nNonEmptyStringType_value" coords="185,123,244,147" />
-                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType" href="eml-resource_xsd.html#i18nNonEmptyStringType" coords="82,3,290,25" /></map></div>
+                                 <area alt="xml_xsd.tmp#lang" href="xml_xsd.html#lang" coords="127,78,210,102" />
+                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType_value" href="eml-resource_xsd.html#i18nNonEmptyStringType_value" coords="205,123,264,147" />
+                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType" href="eml-resource_xsd.html#i18nNonEmptyStringType" coords="102,3,310,25" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -1896,7 +2120,7 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"city"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: City summary: The name of the city for the contact. description: The city field is used for the city name of the contact associated with a particular resource. example: San Francisco</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
@@ -1937,7 +2161,22 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td>
                            <div id="annotations_Address_administrativeArea" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Administrative area</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: The political area of a country.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: The administrative area field is the equivalent</span><span class="tI">
+</span><span class="tT">              of a 'state' in the U.S., or Province in Canada. This field is</span><span class="tI">
+</span><span class="tT">              intended to accommodate the many types of international</span><span class="tI">
+</span><span class="tT">              administrative areas.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: Colorado</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -1948,9 +2187,9 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td class="diagram">
                            <div id="diagram_Address_administrativeArea" style="display:block"><img alt="Diagram" border="0" src="img/eml-party_xsd_Element_administrativeArea.png" usemap="#eml-party_xsd_Element_administrativeArea" /><map name="eml-party_xsd_Element_administrativeArea" id="eml-party_xsd_Element_administrativeArea">
-                                 <area alt="xml_xsd.tmp#lang" href="xml_xsd.html#lang" coords="188,78,271,102" />
-                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType_value" href="eml-resource_xsd.html#i18nNonEmptyStringType_value" coords="266,123,325,147" />
-                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType" href="eml-resource_xsd.html#i18nNonEmptyStringType" coords="163,3,371,25" /></map></div>
+                                 <area alt="xml_xsd.tmp#lang" href="xml_xsd.html#lang" coords="208,78,291,102" />
+                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType_value" href="eml-resource_xsd.html#i18nNonEmptyStringType_value" coords="286,123,345,147" />
+                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType" href="eml-resource_xsd.html#i18nNonEmptyStringType" coords="183,3,391,25" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -2048,7 +2287,7 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"administrativeArea"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Administrative area summary: The political area of a country. description: The administrative area field is the equivalent of a 'state' in the U.S., or Province in Canada. This field is intended to accommodate the many types of international administrative areas. example: Colorado</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
@@ -2089,7 +2328,23 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td>
                            <div id="annotations_Address_postalCode" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Postal code</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: The postal code used for routing to an</span><span class="tI">
+</span><span class="tT">              address.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: The postal code is equivalent to a U.S. zip</span><span class="tI">
+</span><span class="tT">              code, or the number used for routing to an international address.</span><span class="tI">
+</span><span class="tT">              The U.S. postal code should include the 5 digit code plus the 4</span><span class="tI">
+</span><span class="tT">              digit extension.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: 93106-2231</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -2100,9 +2355,9 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td class="diagram">
                            <div id="diagram_Address_postalCode" style="display:block"><img alt="Diagram" border="0" src="img/eml-party_xsd_Element_postalCode.png" usemap="#eml-party_xsd_Element_postalCode" /><map name="eml-party_xsd_Element_postalCode" id="eml-party_xsd_Element_postalCode">
-                                 <area alt="xml_xsd.tmp#lang" href="xml_xsd.html#lang" coords="148,78,231,102" />
-                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType_value" href="eml-resource_xsd.html#i18nNonEmptyStringType_value" coords="226,123,285,147" />
-                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType" href="eml-resource_xsd.html#i18nNonEmptyStringType" coords="123,3,331,25" /></map></div>
+                                 <area alt="xml_xsd.tmp#lang" href="xml_xsd.html#lang" coords="168,78,251,102" />
+                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType_value" href="eml-resource_xsd.html#i18nNonEmptyStringType_value" coords="246,123,305,147" />
+                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType" href="eml-resource_xsd.html#i18nNonEmptyStringType" coords="143,3,351,25" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -2200,7 +2455,7 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"postalCode"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Postal code summary: The postal code used for routing to an address. description: The postal code is equivalent to a U.S. zip code, or the number used for routing to an international address. The U.S. postal code should include the 5 digit code plus the 4 digit extension. example: 93106-2231</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
@@ -2241,7 +2496,21 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td>
                            <div id="annotations_Address_country" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Country</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: The name of the country for the contact's</span><span class="tI">
+</span><span class="tT">              address.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: The country field is used for the name of the</span><span class="tI">
+</span><span class="tT">              contact's country.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: U.S.A.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -2252,9 +2521,9 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td class="diagram">
                            <div id="diagram_Address_country" style="display:block"><img alt="Diagram" border="0" src="img/eml-party_xsd_Element_country.png" usemap="#eml-party_xsd_Element_country" /><map name="eml-party_xsd_Element_country" id="eml-party_xsd_Element_country">
-                                 <area alt="xml_xsd.tmp#lang" href="xml_xsd.html#lang" coords="129,78,212,102" />
-                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType_value" href="eml-resource_xsd.html#i18nNonEmptyStringType_value" coords="207,123,266,147" />
-                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType" href="eml-resource_xsd.html#i18nNonEmptyStringType" coords="104,3,312,25" /></map></div>
+                                 <area alt="xml_xsd.tmp#lang" href="xml_xsd.html#lang" coords="149,78,232,102" />
+                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType_value" href="eml-resource_xsd.html#i18nNonEmptyStringType_value" coords="227,123,286,147" />
+                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType" href="eml-resource_xsd.html#i18nNonEmptyStringType" coords="124,3,332,25" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -2352,7 +2621,7 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"country"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Country summary: The name of the country for the contact's address. description: The country field is used for the name of the contact's country. example: U.S.A.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
@@ -2393,7 +2662,23 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td>
                            <div id="annotations_ResponsibleParty_phone" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Phone</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: Information about the contact's</span><span class="tI">
+</span><span class="tT">              telephone</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: The phone field describes information about the</span><span class="tI">
+</span><span class="tT">              responsible party's telephone, be it a voice phone, fax, or</span><span class="tI">
+</span><span class="tT">              TTD/TTY type telephone. This field contains an attribute used to</span><span class="tI">
+</span><span class="tT">              identify the type.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: 805-555-2500</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -2404,7 +2689,7 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td class="diagram">
                            <div id="diagram_ResponsibleParty_phone" style="display:block"><img alt="Diagram" border="0" src="img/eml-party_xsd_Element_phone.png" usemap="#eml-party_xsd_Element_phone" /><map name="eml-party_xsd_Element_phone" id="eml-party_xsd_Element_phone">
-                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_ResponsibleParty_phone_phonetype" href="eml-party_xsd.html#ResponsibleParty_ResponsibleParty_phone_phonetype" coords="107,119,212,143" /></map></div>
+                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_ResponsibleParty_phone_phonetype" href="eml-party_xsd.html#ResponsibleParty_ResponsibleParty_phone_phonetype" coords="127,119,232,143" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -2458,7 +2743,21 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                     <td>voice</td>
                                     <td>optional</td>
                                     <td>
-                                       <div class="annotation"></div>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">tooltip: Phone type</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: The type of the phone to which this number</span><span class="tI">
+</span><span class="tT">                      applies</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: This attribute gives the type of phone</span><span class="tI">
+</span><span class="tT">                      to which this number applies. By default, this is assumed</span><span class="tI">
+</span><span class="tT">                      to be of type "voice", but other possibilities include</span><span class="tI">
+</span><span class="tT">                      "facsimile" and "tdd".</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
                                     </td>
                                  </tr>
                               </table>
@@ -2476,14 +2775,14 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"phone"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Phone summary: Information about the contact's telephone description: The phone field describes information about the responsible party's telephone, be it a voice phone, fax, or TTD/TTY type telephone. This field contains an attribute used to identify the type. example: 805-555-2500</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:simpleContent</span><span class="tEl">&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"phonetype"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"voice"</span><span class="tEl">&gt;</span><span class="tI">
           </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Phone type summary: The type of the phone to which this number applies description: This attribute gives the type of phone to which this number applies. By default, this is assumed to be of type "voice", but other possibilities include "facsimile" and "tdd".</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
           </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
@@ -2528,7 +2827,23 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td>
                            <div id="annotations_ResponsibleParty_electronicMailAddress" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Email address</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: The email address of the contact.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: The electronic mail address is the email address</span><span class="tI">
+</span><span class="tT">              for the party. It is intended to be an Internet SMTP email</span><span class="tI">
+</span><span class="tT">              address, which should consist of a username followed by the @</span><span class="tI">
+</span><span class="tT">              symbol, followed by the email server domain name address. Other</span><span class="tI">
+</span><span class="tT">              address types are allowable.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: my-email@mydomain.edu</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -2539,9 +2854,9 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td class="diagram">
                            <div id="diagram_ResponsibleParty_electronicMailAddress" style="display:block"><img alt="Diagram" border="0" src="img/eml-party_xsd_Element_electronicMailAddress.png" usemap="#eml-party_xsd_Element_electronicMailAddress" /><map name="eml-party_xsd_Element_electronicMailAddress" id="eml-party_xsd_Element_electronicMailAddress">
-                                 <area alt="xml_xsd.tmp#lang" href="xml_xsd.html#lang" coords="206,78,289,102" />
-                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType_value" href="eml-resource_xsd.html#i18nNonEmptyStringType_value" coords="284,123,343,147" />
-                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType" href="eml-resource_xsd.html#i18nNonEmptyStringType" coords="181,3,389,25" /></map></div>
+                                 <area alt="xml_xsd.tmp#lang" href="xml_xsd.html#lang" coords="226,78,309,102" />
+                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType_value" href="eml-resource_xsd.html#i18nNonEmptyStringType_value" coords="304,123,363,147" />
+                                 <area alt="eml-resource_xsd.tmp#i18nNonEmptyStringType" href="eml-resource_xsd.html#i18nNonEmptyStringType" coords="201,3,409,25" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -2643,7 +2958,7 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"electronicMailAddress"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Email address summary: The email address of the contact. description: The electronic mail address is the email address for the party. It is intended to be an Internet SMTP email address, which should consist of a username followed by the @ symbol, followed by the email server domain name address. Other address types are allowable. example: my-email@mydomain.edu</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
@@ -2684,7 +2999,25 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td>
                            <div id="annotations_ResponsibleParty_onlineUrl" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Online Link</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: A link to associated online information, usually a</span><span class="tI">
+</span><span class="tT">              web site.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: A link to associated online information, usually</span><span class="tI">
+</span><span class="tT">              a web site. When the party represents an organization, this is</span><span class="tI">
+</span><span class="tT">              the URL to a website or other online information about the</span><span class="tI">
+</span><span class="tT">              organization. If the party is an individual, it might be their</span><span class="tI">
+</span><span class="tT">              personal web site or other related online information about the</span><span class="tI">
+</span><span class="tT">              party.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: http://www.yourdomain.edu/~doe</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -2736,7 +3069,7 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"onlineUrl"</span><span class="tAN"> type=</span><span class="tAV">"xs:anyURI"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Online Link summary: A link to associated online information, usually a web site. description: A link to associated online information, usually a web site. When the party represents an organization, this is the URL to a website or other online information about the organization. If the party is an individual, it might be their personal web site or other related online information about the party. example: http://www.yourdomain.edu/~doe</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
@@ -2777,7 +3110,29 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td>
                            <div id="annotations_ResponsibleParty_userId" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: User Identifier</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: An identifier that links this party to a</span><span class="tI">
+</span><span class="tT">              directory of individuals</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: An identifier that links this party to a</span><span class="tI">
+</span><span class="tT">              directory of individuals.  Although specific contact information</span><span class="tI">
+</span><span class="tT">              for a party might change, the underlying correspondence to a</span><span class="tI">
+</span><span class="tT">              real individual does not.  This identifier provides a pointer</span><span class="tI">
+</span><span class="tT">              within a directory of individuals that may contain further, and</span><span class="tI">
+</span><span class="tT">              possibly more current, information about the party.</span><span class="tI">
+</span><span class="tT">              </span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: https://orcid.org/0000-0002-1825-0097</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: </span><span class="tI">
+</span><span class="tT">                uid=jtown,o=NCEAS,dc=ecoinformatics,dc=org</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -2788,7 +3143,7 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td class="diagram">
                            <div id="diagram_ResponsibleParty_userId" style="display:block"><img alt="Diagram" border="0" src="img/eml-party_xsd_Element_userId.png" usemap="#eml-party_xsd_Element_userId" /><map name="eml-party_xsd_Element_userId" id="eml-party_xsd_Element_userId">
-                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_ResponsibleParty_userId_directory" href="eml-party_xsd.html#ResponsibleParty_ResponsibleParty_userId_directory" coords="107,119,204,143" /></map></div>
+                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_ResponsibleParty_userId_directory" href="eml-party_xsd.html#ResponsibleParty_ResponsibleParty_userId_directory" coords="127,119,224,143" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -2840,7 +3195,28 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                     <td><b>xs:string</b></td>
                                     <td>required</td>
                                     <td>
-                                       <div class="annotation"></div>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">tooltip: Directory</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: The directory system within which the</span><span class="tI">
+</span><span class="tT">                      directoryId can be retrieved.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: This attribute names the directory system</span><span class="tI">
+</span><span class="tT">                      to which this userId applies. This will generally</span><span class="tI">
+</span><span class="tT">                      be a URL that shows how to look up information, for</span><span class="tI">
+</span><span class="tT">                      example an LDAP URL. However, it could also be a</span><span class="tI">
+</span><span class="tT">                      non-parsable description of the directory system if</span><span class="tI">
+</span><span class="tT">                      that is all that is available.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: https://orcid.org</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: </span><span class="tI">
+</span><span class="tT">                        ldap:///ldap.ecoinformatics.org/dc=ecoinformatics,dc=org</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
                                     </td>
                                  </tr>
                               </table>
@@ -2858,14 +3234,14 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"userId"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: User Identifier summary: An identifier that links this party to a directory of individuals description: An identifier that links this party to a directory of individuals. Although specific contact information for a party might change, the underlying correspondence to a real individual does not. This identifier provides a pointer within a directory of individuals that may contain further, and possibly more current, information about the party. example: https://orcid.org/0000-0002-1825-0097 example: uid=jtown,o=NCEAS,dc=ecoinformatics,dc=org</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:simpleContent</span><span class="tEl">&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"directory"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
           </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Directory summary: The directory system within which the directoryId can be retrieved. description: This attribute names the directory system to which this userId applies. This will generally be a URL that shows how to look up information, for example an LDAP URL. However, it could also be a non-parsable description of the directory system if that is all that is available. example: https://orcid.org example: ldap:///ldap.ecoinformatics.org/dc=ecoinformatics,dc=org</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
           </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
@@ -2910,7 +3286,23 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td>
                            <div id="annotations_party" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Responsible party</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: An individual, organization, or role.</span><span class="tI">
+</span><span class="tT">        </span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: The responsible party contains multiple</span><span class="tI">
+</span><span class="tT">        subfields that are used to describe a person, organization, or</span><span class="tI">
+</span><span class="tT">        position within an organization.</span><span class="tI">
+</span><span class="tT">        It is intended to be used to fully document contact</span><span class="tI">
+</span><span class="tT">        information for many types of associations, such as owner, manager,</span><span class="tI">
+</span><span class="tT">        steward, curator, etc.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -2921,20 +3313,20 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td class="diagram">
                            <div id="diagram_party" style="display:block"><img alt="Diagram" border="0" src="img/eml-party_xsd_Element_party.png" usemap="#eml-party_xsd_Element_party" /><map name="eml-party_xsd_Element_party" id="eml-party_xsd_Element_party">
-                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_id" href="eml-party_xsd.html#ResponsibleParty_id" coords="115,78,183,102" />
-                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_system" href="eml-party_xsd.html#ResponsibleParty_system" coords="115,112,201,136" />
-                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_scope" href="eml-party_xsd.html#ResponsibleParty_scope" coords="115,146,195,170" />
-                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_individualName" href="eml-party_xsd.html#ResponsibleParty_individualName" coords="335,187,448,211" />
-                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_organizationName" href="eml-party_xsd.html#ResponsibleParty_organizationName" coords="335,221,464,245" />
-                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_positionName" href="eml-party_xsd.html#ResponsibleParty_positionName" coords="335,255,440,279" />
-                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_address" href="eml-party_xsd.html#ResponsibleParty_address" coords="264,289,338,313" />
-                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_phone" href="eml-party_xsd.html#ResponsibleParty_phone" coords="264,323,329,347" />
-                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_electronicMailAddress" href="eml-party_xsd.html#ResponsibleParty_electronicMailAddress" coords="264,357,414,381" />
-                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_onlineUrl" href="eml-party_xsd.html#ResponsibleParty_onlineUrl" coords="264,391,344,415" />
-                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_userId" href="eml-party_xsd.html#ResponsibleParty_userId" coords="264,425,329,449" />
-                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup_references" href="eml-resource_xsd.html#ReferencesGroup_references" coords="257,507,345,531" />
-                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup" href="eml-resource_xsd.html#ReferencesGroup" coords="175,462,343,488" />
-                                 <area alt="eml-party_xsd.tmp#ResponsibleParty" href="eml-party_xsd.html#ResponsibleParty" coords="90,3,233,25" /></map></div>
+                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_id" href="eml-party_xsd.html#ResponsibleParty_id" coords="135,78,203,102" />
+                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_system" href="eml-party_xsd.html#ResponsibleParty_system" coords="135,112,221,136" />
+                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_scope" href="eml-party_xsd.html#ResponsibleParty_scope" coords="135,146,215,170" />
+                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_individualName" href="eml-party_xsd.html#ResponsibleParty_individualName" coords="355,187,468,211" />
+                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_organizationName" href="eml-party_xsd.html#ResponsibleParty_organizationName" coords="355,277,484,301" />
+                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_positionName" href="eml-party_xsd.html#ResponsibleParty_positionName" coords="355,354,460,378" />
+                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_address" href="eml-party_xsd.html#ResponsibleParty_address" coords="284,444,358,468" />
+                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_phone" href="eml-party_xsd.html#ResponsibleParty_phone" coords="284,534,349,558" />
+                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_electronicMailAddress" href="eml-party_xsd.html#ResponsibleParty_electronicMailAddress" coords="284,624,434,648" />
+                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_onlineUrl" href="eml-party_xsd.html#ResponsibleParty_onlineUrl" coords="284,701,364,725" />
+                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_userId" href="eml-party_xsd.html#ResponsibleParty_userId" coords="284,791,349,815" />
+                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup_references" href="eml-resource_xsd.html#ReferencesGroup_references" coords="277,929,365,953" />
+                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup" href="eml-resource_xsd.html#ReferencesGroup" coords="195,884,363,910" />
+                                 <area alt="eml-party_xsd.tmp#ResponsibleParty" href="eml-party_xsd.html#ResponsibleParty" coords="110,3,253,25" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -3053,7 +3445,7 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"party"</span><span class="tAN"> type=</span><span class="tAV">"ResponsibleParty"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Responsible party summary: An individual, organization, or role. description: The responsible party contains multiple subfields that are used to describe a person, organization, or position within an organization. It is intended to be used to fully document contact information for many types of associations, such as owner, manager, steward, curator, etc.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
@@ -3094,7 +3486,45 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td>
                            <div id="annotations_ResponsibleParty" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Responsible party</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: The individual, organization, or role associated with a</span><span class="tI">
+</span><span class="tT">        resource.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: </span><span class="tI">
+</span><span class="tT">          </span><span class="tI">
+</span><span class="tT">            The ResponsibleParty Type contains</span><span class="tI">
+</span><span class="tT">        elements that are used to describe the person, organization or</span><span class="tI">
+</span><span class="tT">        position within an organization that is associated in some way with the</span><span class="tI">
+</span><span class="tT">        resource. It is intended to be used to fully document contact</span><span class="tI">
+</span><span class="tT">        information for many types of associations, such as owner, manager,</span><span class="tI">
+</span><span class="tT">        steward, curator, etc.</span><span class="tI">
+</span><span class="tT">            Note that the content model for a responsible party type</span><span class="tI">
+</span><span class="tT">        allows a sequence of choices for the first</span><span class="tI">
+</span><span class="tT">        element(s): &lt;individualName&gt;, &lt;organizationName&gt; and/or &lt;positionName&gt;.</span><span class="tI">
+</span><span class="tT">        This means that a parent element (e.g., creator) may use combinations of the 3 sub-elements</span><span class="tI">
+</span><span class="tT">        to make up a single logical party. For example, a creator with only</span><span class="tI">
+</span><span class="tT">                the individualName of 'Joe Smith' is NOT the same as a</span><span class="tI">
+</span><span class="tT">                creator with the individualName of 'Joe Smith' and the</span><span class="tI">
+</span><span class="tT">                organizationName of 'NSF'. To include both a positionName and</span><span class="tI">
+</span><span class="tT">                 an organizationName as children of a &lt;contact&gt; implies that anyone</span><span class="tI">
+</span><span class="tT">                currently occupying that positionName at that organizationName</span><span class="tI">
+</span><span class="tT">                is an appropriate contact.</span><span class="tI">
+</span><span class="tT">                The positionName should not be</span><span class="tI">
+</span><span class="tT">                used in conjunction with individualName unless only that specific</span><span class="tI">
+</span><span class="tT">                individual at that position would be considered appropriate for that</span><span class="tI">
+</span><span class="tT">                designation.   </span><span class="tI">
+</span><span class="tT">          </span><span class="tI">
+</span><span class="tT">        </span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: Please see the examples for the particular</span><span class="tI">
+</span><span class="tT">        subfields.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -3105,19 +3535,19 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td class="diagram">
                            <div id="diagram_ResponsibleParty" style="display:block"><img alt="Diagram" border="0" src="img/eml-party_xsd_Complex_Type_ResponsibleParty.png" usemap="#eml-party_xsd_Complex_Type_ResponsibleParty" /><map name="eml-party_xsd_Complex_Type_ResponsibleParty" id="eml-party_xsd_Complex_Type_ResponsibleParty">
-                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_id" href="eml-party_xsd.html#ResponsibleParty_id" coords="189,38,257,62" />
-                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_system" href="eml-party_xsd.html#ResponsibleParty_system" coords="189,72,275,96" />
-                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_scope" href="eml-party_xsd.html#ResponsibleParty_scope" coords="189,106,269,130" />
-                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_individualName" href="eml-party_xsd.html#ResponsibleParty_individualName" coords="409,147,522,171" />
-                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_organizationName" href="eml-party_xsd.html#ResponsibleParty_organizationName" coords="409,181,538,205" />
-                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_positionName" href="eml-party_xsd.html#ResponsibleParty_positionName" coords="409,215,514,239" />
-                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_address" href="eml-party_xsd.html#ResponsibleParty_address" coords="338,249,412,273" />
-                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_phone" href="eml-party_xsd.html#ResponsibleParty_phone" coords="338,283,403,307" />
-                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_electronicMailAddress" href="eml-party_xsd.html#ResponsibleParty_electronicMailAddress" coords="338,317,488,341" />
-                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_onlineUrl" href="eml-party_xsd.html#ResponsibleParty_onlineUrl" coords="338,351,418,375" />
-                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_userId" href="eml-party_xsd.html#ResponsibleParty_userId" coords="338,385,403,409" />
-                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup_references" href="eml-resource_xsd.html#ReferencesGroup_references" coords="331,467,419,491" />
-                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup" href="eml-resource_xsd.html#ReferencesGroup" coords="249,422,417,448" /></map></div>
+                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_id" href="eml-party_xsd.html#ResponsibleParty_id" coords="209,38,277,62" />
+                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_system" href="eml-party_xsd.html#ResponsibleParty_system" coords="209,72,295,96" />
+                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_scope" href="eml-party_xsd.html#ResponsibleParty_scope" coords="209,106,289,130" />
+                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_individualName" href="eml-party_xsd.html#ResponsibleParty_individualName" coords="429,147,542,171" />
+                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_organizationName" href="eml-party_xsd.html#ResponsibleParty_organizationName" coords="429,237,558,261" />
+                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_positionName" href="eml-party_xsd.html#ResponsibleParty_positionName" coords="429,314,534,338" />
+                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_address" href="eml-party_xsd.html#ResponsibleParty_address" coords="358,404,432,428" />
+                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_phone" href="eml-party_xsd.html#ResponsibleParty_phone" coords="358,494,423,518" />
+                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_electronicMailAddress" href="eml-party_xsd.html#ResponsibleParty_electronicMailAddress" coords="358,584,508,608" />
+                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_onlineUrl" href="eml-party_xsd.html#ResponsibleParty_onlineUrl" coords="358,661,438,685" />
+                                 <area alt="eml-party_xsd.tmp#ResponsibleParty_userId" href="eml-party_xsd.html#ResponsibleParty_userId" coords="358,751,423,775" />
+                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup_references" href="eml-resource_xsd.html#ReferencesGroup_references" coords="351,889,439,913" />
+                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup" href="eml-resource_xsd.html#ReferencesGroup" coords="269,844,437,870" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -3207,42 +3637,42 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"ResponsibleParty"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Responsible party summary: The individual, organization, or role associated with a resource. description: The ResponsibleParty Type contains elements that are used to describe the person, organization or position within an organization that is associated in some way with the resource. It is intended to be used to fully document contact information for many types of associations, such as owner, manager, steward, curator, etc. Note that the content model for a responsible party type allows a sequence of choices for the first element(s): &lt;individualName&gt;, &lt;organizationName&gt; and/or &lt;positionName&gt;. This means that a parent element (e.g., creator) may use combinations of the 3 sub-elements to make up a single logical party. For example, a creator with only the individualName of 'Joe Smith' is NOT the same as a creator with the individualName of 'Joe Smith' and the organizationName of 'NSF'. To include both a positionName and an organizationName as children of a &lt;contact&gt; implies that anyone currently occupying that positionName at that organizationName is an appropriate contact. The positionName should not be used in conjunction with individualName unless only that specific individual at that position would be considered appropriate for that designation. example: Please see the examples for the particular subfields.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:choice</span><span class="tEl">&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:choice</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"individualName"</span><span class="tAN"> type=</span><span class="tAV">"Person"</span><span class="tEl">&gt;</span><span class="tI">
           </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Individual Name summary: The full name of the person being described description: The individualName field contains subfields so that a person's name can be broken down into parts. Note that the the content model for the containing type allows a sequence of choices for the first element(s): &lt;individualName&gt;, &lt;organizationName&gt; and/or &lt;positionName&gt;. This means that a parent element (e.g., creator) may use combinations of the 3 sub-elements to make up a single logical party. For example, a creator with only the individualName of 'Joe Smith' is NOT the same as a creator with the individualName of 'Joe Smith' and the organizationName of 'NSF'. To include both a positionName and an organizationName as children of a &lt;contact&gt; implies that anyone currently occupying that positionName at that organizationName is an appropriate contact. The positionName should not be used in conjunction with individualName unless only that specific individual at that position would be considered appropriate for that designation. example: Because this is an 'elementOnly' field, please look at the examples for the subfields 'givenName' and 'surName'.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
           </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"organizationName"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
           </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Organization name summary: The full name of the organization being described description: The responsible party field contains the full name of the organization that is associated with the resource. This field is intended to describe which institution or overall organization is associated with the resource being described. Note that the the content model for the containing type allows a sequence of choices for the first element(s): &lt;individualName&gt;, &lt;organizationName&gt; and/or &lt;positionName&gt;. This means that a parent element (e.g., creator) may use combinations of the 3 sub-elements to make up a single logical party. For example, a creator with only the individualName of 'Joe Smith' is NOT the same as a creator with the individualName of 'Joe Smith' and the organizationName of 'NSF'. To include both a positionName and an organizationName as children of a &lt;contact&gt; implies that anyone currently occupying that positionName at that organizationName is an appropriate contact. The positionName should not be used in conjunction with individualName unless only that specific individual at that position would be considered appropriate for that designation. example: National Center for Ecological Analysis and Synthesis</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
           </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"positionName"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
           </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Position Name summary: The name of the title or position associated with the resource. description: This field is intended to be used instead of a particular person or full organization name. If the associated person who holds the role changes frequently, then Position Name would be used for consistency. Note that the the content model for the containing type allows a sequence of choices for the first element(s): &lt;individualName&gt;, &lt;organizationName&gt; and/or &lt;positionName&gt;. This means that a parent element (e.g., creator) may use combinations of the 3 sub-elements to make up a single logical party. For example, a creator with only the individualName of 'Joe Smith' is NOT the same as a creator with the individualName of 'Joe Smith' and the organizationName of 'NSF'. To include both a positionName and an organizationName as children of a &lt;contact&gt; implies that anyone currently occupying that positionName at that organizationName is an appropriate contact. The positionName should not be used in conjunction with individualName unless only that specific individual at that position would be considered appropriate for that designation. example: Niwot Ridge Data Manager</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
           </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"address"</span><span class="tAN"> type=</span><span class="tAV">"Address"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Contact address summary: The full address information for a given responsible party entry. description: The address field is a container for multiple subfields that describe the physical or electronic address of the responsible party for a resource. example: Please see the subfield examples.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"phone"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Phone summary: Information about the contact's telephone description: The phone field describes information about the responsible party's telephone, be it a voice phone, fax, or TTD/TTY type telephone. This field contains an attribute used to identify the type. example: 805-555-2500</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
           </span><span class="tEl">&lt;xs:simpleContent</span><span class="tEl">&gt;</span><span class="tI">
             </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
               </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"phonetype"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"voice"</span><span class="tEl">&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+                  </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Phone type summary: The type of the phone to which this number applies description: This attribute gives the type of phone to which this number applies. By default, this is assumed to be of type "voice", but other possibilities include "facsimile" and "tdd".</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
               </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
             </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
@@ -3251,24 +3681,24 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
       </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"electronicMailAddress"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Email address summary: The email address of the contact. description: The electronic mail address is the email address for the party. It is intended to be an Internet SMTP email address, which should consist of a username followed by the @ symbol, followed by the email server domain name address. Other address types are allowable. example: my-email@mydomain.edu</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"onlineUrl"</span><span class="tAN"> type=</span><span class="tAV">"xs:anyURI"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Online Link summary: A link to associated online information, usually a web site. description: A link to associated online information, usually a web site. When the party represents an organization, this is the URL to a website or other online information about the organization. If the party is an individual, it might be their personal web site or other related online information about the party. example: http://www.yourdomain.edu/~doe</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"userId"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: User Identifier summary: An identifier that links this party to a directory of individuals description: An identifier that links this party to a directory of individuals. Although specific contact information for a party might change, the underlying correspondence to a real individual does not. This identifier provides a pointer within a directory of individuals that may contain further, and possibly more current, information about the party. example: https://orcid.org/0000-0002-1825-0097 example: uid=jtown,o=NCEAS,dc=ecoinformatics,dc=org</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
           </span><span class="tEl">&lt;xs:simpleContent</span><span class="tEl">&gt;</span><span class="tI">
             </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
               </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"directory"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+                  </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Directory summary: The directory system within which the directoryId can be retrieved. description: This attribute names the directory system to which this userId applies. This will generally be a URL that shows how to look up information, for example an LDAP URL. However, it could also be a non-parsable description of the directory system if that is all that is available. example: https://orcid.org example: ldap:///ldap.ecoinformatics.org/dc=ecoinformatics,dc=org</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
               </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
             </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
@@ -3320,7 +3750,53 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td>
                            <div id="annotations_Person" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Person</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: The full name of the individual associated with the</span><span class="tI">
+</span><span class="tT">        resource.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: </span><span class="tI">
+</span><span class="tT">          </span><span class="tI">
+</span><span class="tT">            The person Type is used to enter the salutation, and</span><span class="tI">
+</span><span class="tT">        two types of name parts for an individual associated with the</span><span class="tI">
+</span><span class="tT">        resource. It uses these three subfields to help parse the person's</span><span class="tI">
+</span><span class="tT">        entire name.</span><span class="tI">
+</span><span class="tT">             The two elements, &lt;givenName&gt;  and  &lt;surName&gt;,</span><span class="tI">
+</span><span class="tT">             allow parsing of many types of names, even though distinct elements</span><span class="tI">
+</span><span class="tT">             do not exist for concepts like "middle name" and "compound surname".</span><span class="tI">
+</span><span class="tT">        &lt;givenName&gt; should be used for parts of the name that are often</span><span class="tI">
+</span><span class="tT">        shortened to a first initial, or are not used for ordering, and typically includes</span><span class="tI">
+</span><span class="tT">        first and middle names.</span><span class="tI">
+</span><span class="tT">        The &lt;surName&gt; field is intended to be used for the part of the name that</span><span class="tI">
+</span><span class="tT">        is generally displayed in its entirety and/or is alphabetized or otherwise ordered</span><span class="tI">
+</span><span class="tT">        when appropriate. Note that only one</span><span class="tI">
+</span><span class="tT">        &lt;surName&gt; is allowed, and is required, while &lt;givenName&gt;s are</span><span class="tI">
+</span><span class="tT">       optional and unbounded.    </span><span class="tI">
+</span><span class="tT">            The arrangement and content of the sub-elements is entirely</span><span class="tI">
+</span><span class="tT">       up to the EML document's author, who presumably has first-hand knowledge of</span><span class="tI">
+</span><span class="tT">       how the names are to be constructed. For example, if element position is important</span><span class="tI">
+</span><span class="tT">       (e.g., the list of a book's        authors), then</span><span class="tI">
+</span><span class="tT">       EML authors should put the creators in that order. If it is appropriate for a</span><span class="tI">
+</span><span class="tT">       resource to have its creators sorted alphabetically, then the EML author</span><span class="tI">
+</span><span class="tT">       should construct the name parts so that the&lt;surName&gt; field may be used for</span><span class="tI">
+</span><span class="tT">       this purpose. At this time, EML is not able to express cultural</span><span class="tI">
+</span><span class="tT">       conventions so that authors may indicate the correct order for</span><span class="tI">
+</span><span class="tT">       &lt;givenName&gt;s and &lt;surName&gt; when the whole name is expressed.</span><span class="tI">
+</span><span class="tT">       However support for international names</span><span class="tI">
+</span><span class="tT">       is under consideration for a future version of</span><span class="tI">
+</span><span class="tT">       EML, along with other internationalization features.</span><span class="tI">
+</span><span class="tT">     </span><span class="tI">
+</span><span class="tT">          </span><span class="tI">
+</span><span class="tT">        </span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: Please see the examples within each</span><span class="tI">
+</span><span class="tT">        subfield.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -3331,9 +3807,9 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td class="diagram">
                            <div id="diagram_Person" style="display:block"><img alt="Diagram" border="0" src="img/eml-party_xsd_Complex_Type_Person.png" usemap="#eml-party_xsd_Complex_Type_Person" /><map name="eml-party_xsd_Complex_Type_Person" id="eml-party_xsd_Complex_Type_Person">
-                                 <area alt="eml-party_xsd.tmp#Person_salutation" href="eml-party_xsd.html#Person_salutation" coords="212,0,296,24" />
-                                 <area alt="eml-party_xsd.tmp#Person_givenName" href="eml-party_xsd.html#Person_givenName" coords="212,34,302,58" />
-                                 <area alt="eml-party_xsd.tmp#Person_surName" href="eml-party_xsd.html#Person_surName" coords="212,68,291,92" /></map></div>
+                                 <area alt="eml-party_xsd.tmp#Person_salutation" href="eml-party_xsd.html#Person_salutation" coords="232,0,316,24" />
+                                 <area alt="eml-party_xsd.tmp#Person_givenName" href="eml-party_xsd.html#Person_givenName" coords="232,90,322,114" />
+                                 <area alt="eml-party_xsd.tmp#Person_surName" href="eml-party_xsd.html#Person_surName" coords="232,180,311,204" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -3374,22 +3850,22 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"Person"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Person summary: The full name of the individual associated with the resource. description: The person Type is used to enter the salutation, and two types of name parts for an individual associated with the resource. It uses these three subfields to help parse the person's entire name. The two elements, &lt;givenName&gt; and &lt;surName&gt;, allow parsing of many types of names, even though distinct elements do not exist for concepts like "middle name" and "compound surname". &lt;givenName&gt; should be used for parts of the name that are often shortened to a first initial, or are not used for ordering, and typically includes first and middle names. The &lt;surName&gt; field is intended to be used for the part of the name that is generally displayed in its entirety and/or is alphabetized or otherwise ordered when appropriate. Note that only one &lt;surName&gt; is allowed, and is required, while &lt;givenName&gt;s are optional and unbounded. The arrangement and content of the sub-elements is entirely up to the EML document's author, who presumably has first-hand knowledge of how the names are to be constructed. For example, if element position is important (e.g., the list of a book's authors), then EML authors should put the creators in that order. If it is appropriate for a resource to have its creators sorted alphabetically, then the EML author should construct the name parts so that the&lt;surName&gt; field may be used for this purpose. At this time, EML is not able to express cultural conventions so that authors may indicate the correct order for &lt;givenName&gt;s and &lt;surName&gt; when the whole name is expressed. However support for international names is under consideration for a future version of EML, along with other internationalization features. example: Please see the examples within each subfield.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"salutation"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Salutation summary: The salutation used to address an individual description: The salutation field is used in addressing an individual with a particular title, such as Dr., Ms., Mrs., Mr., etc. example: Dr.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"givenName"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Given name summary: The given name of the individual. description: The given name field can be used for first name of the individual associated with the resource, or for any other names that are not intended to be alphabetized, (as appropriate). Note that while it is possible to include all given names in one field (as in the example below), it may be not be good practice to do so. For example, if an XSL transformation stylesheet were to abbreviate the content of a givenName to just the first initial, a givenName element that contained more than one name would not be transformed correctly. example: Juan Luis example: Jane</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"surName"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Last name summary: The last name of the individual. description: The surname field is used for the last name of the individual associated with the resource. This is typically the family name of an individual, for example, the name by which s/he is referred to in citations. example: San Gil example: Curtis-Ainsworth example: Tao</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
@@ -3432,7 +3908,21 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td>
                            <div id="annotations_Address" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Address</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: The full address of the resposible party.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: The address field is provides detailed information for</span><span class="tI">
+</span><span class="tT">        communicating with a party contact via electronic mail or postal mail,</span><span class="tI">
+</span><span class="tT">        including the physical delivery location.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: Please see the examples for each subfield</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -3443,16 +3933,16 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td class="diagram">
                            <div id="diagram_Address" style="display:block"><img alt="Diagram" border="0" src="img/eml-party_xsd_Complex_Type_Address.png" usemap="#eml-party_xsd_Complex_Type_Address" /><map name="eml-party_xsd_Complex_Type_Address" id="eml-party_xsd_Complex_Type_Address">
-                                 <area alt="eml-party_xsd.tmp#Address_id" href="eml-party_xsd.html#Address_id" coords="142,38,210,62" />
-                                 <area alt="eml-party_xsd.tmp#Address_system" href="eml-party_xsd.html#Address_system" coords="142,72,228,96" />
-                                 <area alt="eml-party_xsd.tmp#Address_scope" href="eml-party_xsd.html#Address_scope" coords="142,106,222,130" />
-                                 <area alt="eml-party_xsd.tmp#Address_deliveryPoint" href="eml-party_xsd.html#Address_deliveryPoint" coords="291,147,391,171" />
-                                 <area alt="eml-party_xsd.tmp#Address_city" href="eml-party_xsd.html#Address_city" coords="291,181,342,205" />
-                                 <area alt="eml-party_xsd.tmp#Address_administrativeArea" href="eml-party_xsd.html#Address_administrativeArea" coords="291,215,423,239" />
-                                 <area alt="eml-party_xsd.tmp#Address_postalCode" href="eml-party_xsd.html#Address_postalCode" coords="291,249,383,273" />
-                                 <area alt="eml-party_xsd.tmp#Address_country" href="eml-party_xsd.html#Address_country" coords="291,283,364,307" />
-                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup_references" href="eml-resource_xsd.html#ReferencesGroup_references" coords="284,365,372,389" />
-                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup" href="eml-resource_xsd.html#ReferencesGroup" coords="202,320,370,346" /></map></div>
+                                 <area alt="eml-party_xsd.tmp#Address_id" href="eml-party_xsd.html#Address_id" coords="162,38,230,62" />
+                                 <area alt="eml-party_xsd.tmp#Address_system" href="eml-party_xsd.html#Address_system" coords="162,72,248,96" />
+                                 <area alt="eml-party_xsd.tmp#Address_scope" href="eml-party_xsd.html#Address_scope" coords="162,106,242,130" />
+                                 <area alt="eml-party_xsd.tmp#Address_deliveryPoint" href="eml-party_xsd.html#Address_deliveryPoint" coords="311,147,411,171" />
+                                 <area alt="eml-party_xsd.tmp#Address_city" href="eml-party_xsd.html#Address_city" coords="311,237,362,261" />
+                                 <area alt="eml-party_xsd.tmp#Address_administrativeArea" href="eml-party_xsd.html#Address_administrativeArea" coords="311,327,443,351" />
+                                 <area alt="eml-party_xsd.tmp#Address_postalCode" href="eml-party_xsd.html#Address_postalCode" coords="311,404,403,428" />
+                                 <area alt="eml-party_xsd.tmp#Address_country" href="eml-party_xsd.html#Address_country" coords="311,494,384,518" />
+                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup_references" href="eml-resource_xsd.html#ReferencesGroup_references" coords="304,632,392,656" />
+                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup" href="eml-resource_xsd.html#ReferencesGroup" coords="222,587,390,613" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -3542,33 +4032,33 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"Address"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Address summary: The full address of the resposible party. description: The address field is provides detailed information for communicating with a party contact via electronic mail or postal mail, including the physical delivery location. example: Please see the examples for each subfield</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:choice</span><span class="tEl">&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"deliveryPoint"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Delivery point summary: The location for postal deliveries. description: The delivery point field is used for the physical address for postal communication. This field is used to accommodate the many different international conventions that are the equivalent to a U.S. 'street address'. example: 7209 Coast Drive, Building 44</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"city"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: City summary: The name of the city for the contact. description: The city field is used for the city name of the contact associated with a particular resource. example: San Francisco</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"administrativeArea"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Administrative area summary: The political area of a country. description: The administrative area field is the equivalent of a 'state' in the U.S., or Province in Canada. This field is intended to accommodate the many types of international administrative areas. example: Colorado</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"postalCode"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Postal code summary: The postal code used for routing to an address. description: The postal code is equivalent to a U.S. zip code, or the number used for routing to an international address. The U.S. postal code should include the 5 digit code plus the 4 digit extension. example: 93106-2231</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"country"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Country summary: The name of the country for the contact's address. description: The country field is used for the name of the contact's country. example: U.S.A.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
@@ -3616,7 +4106,27 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td>
                            <div id="annotations_RoleType" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Role</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: The classification of the associated person or</span><span class="tI">
+</span><span class="tT">        organization.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: The role code field provides information on how a</span><span class="tI">
+</span><span class="tT">        person or organization is related to a resource. There may be many</span><span class="tI">
+</span><span class="tT">        people associated, including an 'originator' of a dataset, an 'author',</span><span class="tI">
+</span><span class="tT">        'editor', or 'publisher' of a literature resource, or an organization</span><span class="tI">
+</span><span class="tT">        that is a 'distributor'. the full list of choices is included in the</span><span class="tI">
+</span><span class="tT">        example.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: author, contentProvider, custodianSteward, distributor,</span><span class="tI">
+</span><span class="tT">        editor, metadataProvider, originator, pointOfContact,</span><span class="tI">
+</span><span class="tT">        principalInvestigator, processor, publisher, or user.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -3661,7 +4171,7 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:simpleType</span><span class="tAN"> name=</span><span class="tAV">"RoleType"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Role summary: The classification of the associated person or organization. description: The role code field provides information on how a person or organization is related to a resource. There may be many people associated, including an 'originator' of a dataset, an 'author', 'editor', or 'publisher' of a literature resource, or an organization that is a 'distributor'. the full list of choices is included in the example. example: author, contentProvider, custodianSteward, distributor, editor, metadataProvider, originator, pointOfContact, principalInvestigator, processor, publisher, or user.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:union</span><span class="tEl">&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:simpleType</span><span class="tEl">&gt;</span><span class="tI">
@@ -3985,7 +4495,21 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td>
                            <div id="annotations_ResponsibleParty_ResponsibleParty_phone_phonetype" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Phone type</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: The type of the phone to which this number</span><span class="tI">
+</span><span class="tT">                      applies</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: This attribute gives the type of phone</span><span class="tI">
+</span><span class="tT">                      to which this number applies. By default, this is assumed</span><span class="tI">
+</span><span class="tT">                      to be of type "voice", but other possibilities include</span><span class="tI">
+</span><span class="tT">                      "facsimile" and "tdd".</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -4040,7 +4564,7 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"phonetype"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"voice"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Phone type summary: The type of the phone to which this number applies description: This attribute gives the type of phone to which this number applies. By default, this is assumed to be of type "voice", but other possibilities include "facsimile" and "tdd".</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:attribute&gt;</span></pre></td>
                                  </tr>
@@ -4081,7 +4605,28 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                         <td>
                            <div id="annotations_ResponsibleParty_ResponsibleParty_userId_directory" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Directory</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: The directory system within which the</span><span class="tI">
+</span><span class="tT">                      directoryId can be retrieved.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: This attribute names the directory system</span><span class="tI">
+</span><span class="tT">                      to which this userId applies. This will generally</span><span class="tI">
+</span><span class="tT">                      be a URL that shows how to look up information, for</span><span class="tI">
+</span><span class="tT">                      example an LDAP URL. However, it could also be a</span><span class="tI">
+</span><span class="tT">                      non-parsable description of the directory system if</span><span class="tI">
+</span><span class="tT">                      that is all that is available.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: https://orcid.org</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: </span><span class="tI">
+</span><span class="tT">                        ldap:///ldap.ecoinformatics.org/dc=ecoinformatics,dc=org</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -4132,7 +4677,7 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"directory"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Directory summary: The directory system within which the directoryId can be retrieved. description: This attribute names the directory system to which this userId applies. This will generally be a URL that shows how to look up information, for example an LDAP URL. However, it could also be a non-parsable description of the directory system if that is all that is available. example: https://orcid.org example: ldap:///ldap.ecoinformatics.org/dc=ecoinformatics,dc=org</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:attribute&gt;</span></pre></td>
                                  </tr>

@@ -340,7 +340,23 @@ var annotationBoxes= new Array('annotations_eml-unitTypeDefinitions.xsd',
                                     </tr>
                                  </table>
                               </div>
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">moduleName: eml-unitTypeDefinitions</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">moduleDescription: </span><span class="tI">
+</span><span class="tT">          </span><span class="tI">
+</span><span class="tT">            EML Unit Type Definitions</span><span class="tI">
+</span><span class="tT">          </span><span class="tI">
+</span><span class="tT">        </span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">recommendedUsage: any module that needs units</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">standAlone: no</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -397,7 +413,24 @@ var annotationBoxes= new Array('annotations_eml-unitTypeDefinitions.xsd',
                         </td>
                         <td>
                            <div id="annotations_LengthUnitType" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Length Units</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: The list of units which are of length type, or have a parentSI of meter</span><span class="tI">
+</span><span class="tT">          SI</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: </span><span class="tI">
+</span><span class="tT">          The LengthUnitType is the enumerated list of units which are of length type, or have</span><span class="tI">
+</span><span class="tT">            a parentSI of meter. These unit names can be used where ever content should be</span><span class="tI">
+</span><span class="tT">            restricted to a length, such as a distance or altitude. The units are defined in the</span><span class="tI">
+</span><span class="tT">            STMML language in a document that is shipped with each release of EML called</span><span class="tI">
+</span><span class="tT">            eml-unitDictionary.xml. See this file for precise, quantitative definitions of each of</span><span class="tI">
+</span><span class="tT">            these units and their relationships to base SI units.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -614,7 +647,7 @@ var annotationBoxes= new Array('annotations_eml-unitTypeDefinitions.xsd',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:simpleType</span><span class="tAN"> name=</span><span class="tAV">"LengthUnitType"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Length Units summary: The list of units which are of length type, or have a parentSI of meter SI description: The LengthUnitType is the enumerated list of units which are of length type, or have a parentSI of meter. These unit names can be used where ever content should be restricted to a length, such as a distance or altitude. The units are defined in the STMML language in a document that is shipped with each release of EML called eml-unitDictionary.xml. See this file for precise, quantitative definitions of each of these units and their relationships to base SI units.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"meter"</span><span class="tEl">/&gt;</span><span class="tI">
@@ -680,7 +713,25 @@ var annotationBoxes= new Array('annotations_eml-unitTypeDefinitions.xsd',
                         </td>
                         <td>
                            <div id="annotations_StandardUnitDictionary" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Standard Units</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: The enumerated list of standard units, mainly S unitsI</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: </span><span class="tI">
+</span><span class="tT">          The unitDictionary is the standard set of units included with the EML distribution,</span><span class="tI">
+</span><span class="tT">            mainly from the SI standard. These unit names should be used in the standardUnit field</span><span class="tI">
+</span><span class="tT">            to describe an attribute. See the accompanying STMML file, eml-unitDictionary.xml, for</span><span class="tI">
+</span><span class="tT">            precise, quantitative definitions of each of these units and their relationships to base</span><span class="tI">
+</span><span class="tT">            SI units.</span><span class="tI">
+</span><span class="tT">          The standard Unit Dictionary is built from a union of simpleTypes. This construct</span><span class="tI">
+</span><span class="tT">            allows unit types to be used individually as appropriate in EML content (e.g.,</span><span class="tI">
+</span><span class="tT">            LengthUnitType for distances )</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -691,10 +742,10 @@ var annotationBoxes= new Array('annotations_eml-unitTypeDefinitions.xsd',
                         </td>
                         <td class="diagram">
                            <div id="diagram_StandardUnitDictionary" style="display:block"><img alt="Diagram" border="0" src="img/eml-unitTypeDefinitions_xsd_Simple_Type_unit_StandardUnitDictionary.png" usemap="#eml-unitTypeDefinitions_xsd_Simple_Type_unit_StandardUnitDictionary" /><map name="eml-unitTypeDefinitions_xsd_Simple_Type_unit_StandardUnitDictionary" id="eml-unitTypeDefinitions_xsd_Simple_Type_unit_StandardUnitDictionary">
-                                 <area alt="eml-unitTypeDefinitions_xsd.tmp#LengthUnitType" href="eml-unitTypeDefinitions_xsd.html#LengthUnitType" coords="208,0,372,26" />
-                                 <area alt="eml-unitTypeDefinitions_xsd.tmp#MassUnitType" href="eml-unitTypeDefinitions_xsd.html#MassUnitType" coords="208,36,362,62" />
-                                 <area alt="eml-unitTypeDefinitions_xsd.tmp#angleUnitType" href="eml-unitTypeDefinitions_xsd.html#angleUnitType" coords="208,72,364,98" />
-                                 <area alt="eml-unitTypeDefinitions_xsd.tmp#otherUnitType" href="eml-unitTypeDefinitions_xsd.html#otherUnitType" coords="208,108,364,134" /></map></div>
+                                 <area alt="eml-unitTypeDefinitions_xsd.tmp#LengthUnitType" href="eml-unitTypeDefinitions_xsd.html#LengthUnitType" coords="228,0,392,26" />
+                                 <area alt="eml-unitTypeDefinitions_xsd.tmp#MassUnitType" href="eml-unitTypeDefinitions_xsd.html#MassUnitType" coords="228,79,382,105" />
+                                 <area alt="eml-unitTypeDefinitions_xsd.tmp#angleUnitType" href="eml-unitTypeDefinitions_xsd.html#angleUnitType" coords="228,158,384,184" />
+                                 <area alt="eml-unitTypeDefinitions_xsd.tmp#otherUnitType" href="eml-unitTypeDefinitions_xsd.html#otherUnitType" coords="228,237,384,263" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -729,7 +780,7 @@ var annotationBoxes= new Array('annotations_eml-unitTypeDefinitions.xsd',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:simpleType</span><span class="tAN"> name=</span><span class="tAV">"StandardUnitDictionary"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Standard Units summary: The enumerated list of standard units, mainly S unitsI description: The unitDictionary is the standard set of units included with the EML distribution, mainly from the SI standard. These unit names should be used in the standardUnit field to describe an attribute. See the accompanying STMML file, eml-unitDictionary.xml, for precise, quantitative definitions of each of these units and their relationships to base SI units. The standard Unit Dictionary is built from a union of simpleTypes. This construct allows unit types to be used individually as appropriate in EML content (e.g., LengthUnitType for distances )</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:union</span><span class="tAN"> memberTypes=</span><span class="tAV">"unit:LengthUnitType unit:MassUnitType unit:angleUnitType unit:otherUnitType"</span><span class="tEl">/&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:simpleType&gt;</span></pre></td>
@@ -771,7 +822,23 @@ var annotationBoxes= new Array('annotations_eml-unitTypeDefinitions.xsd',
                         </td>
                         <td>
                            <div id="annotations_MassUnitType" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Mass Units</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: The list of units which are of mass type, or have a parentSI of kilogram </span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: </span><span class="tI">
+</span><span class="tT">          The MassUnitType is the enumerated list of units which are of mass type, or have a</span><span class="tI">
+</span><span class="tT">            parentSI of kilogram. These unit names can be used where ever content should be</span><span class="tI">
+</span><span class="tT">            restricted to a mass, such as an amount. The units are defined in the STMML language in</span><span class="tI">
+</span><span class="tT">            a document that is shipped with each release of EML called eml-unitDictionary.xml. See</span><span class="tI">
+</span><span class="tT">            this file for precise, quantitative definitions of each of these units and their</span><span class="tI">
+</span><span class="tT">            relationships to base SI units.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -902,7 +969,7 @@ var annotationBoxes= new Array('annotations_eml-unitTypeDefinitions.xsd',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:simpleType</span><span class="tAN"> name=</span><span class="tAV">"MassUnitType"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Mass Units summary: The list of units which are of mass type, or have a parentSI of kilogram description: The MassUnitType is the enumerated list of units which are of mass type, or have a parentSI of kilogram. These unit names can be used where ever content should be restricted to a mass, such as an amount. The units are defined in the STMML language in a document that is shipped with each release of EML called eml-unitDictionary.xml. See this file for precise, quantitative definitions of each of these units and their relationships to base SI units.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"kilogram"</span><span class="tEl">/&gt;</span><span class="tI">
@@ -958,7 +1025,27 @@ var annotationBoxes= new Array('annotations_eml-unitTypeDefinitions.xsd',
                         </td>
                         <td>
                            <div id="annotations_otherUnitType" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Other Standard Units</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: The enumerated list of standard units that are not included in the any other</span><span class="tI">
+</span><span class="tT">          named simpleType</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: </span><span class="tI">
+</span><span class="tT">          The unitDictionary is the standard set of units included with the EML distribution,</span><span class="tI">
+</span><span class="tT">            mainly from the SI standard. These unit names can be used in the standardUnit field to</span><span class="tI">
+</span><span class="tT">            describe an attribute. The units are defined in the STMML language in a document that is</span><span class="tI">
+</span><span class="tT">            shipped with each release of EML. See the accompanying STMML file eml-unitDictionary.xml</span><span class="tI">
+</span><span class="tT">            for precise, quantitative definitions of each of these units and their relationships to</span><span class="tI">
+</span><span class="tT">            base SI units.</span><span class="tI">
+</span><span class="tT">          The standard Unit Dictionary is built from a union of simpleTypes. This Type</span><span class="tI">
+</span><span class="tT">            enumerates the units which are not in other Type definitions, but are to be included as</span><span class="tI">
+</span><span class="tT">            standard.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -3063,7 +3150,7 @@ var annotationBoxes= new Array('annotations_eml-unitTypeDefinitions.xsd',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:simpleType</span><span class="tAN"> name=</span><span class="tAV">"otherUnitType"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Other Standard Units summary: The enumerated list of standard units that are not included in the any other named simpleType description: The unitDictionary is the standard set of units included with the EML distribution, mainly from the SI standard. These unit names can be used in the standardUnit field to describe an attribute. The units are defined in the STMML language in a document that is shipped with each release of EML. See the accompanying STMML file eml-unitDictionary.xml for precise, quantitative definitions of each of these units and their relationships to base SI units. The standard Unit Dictionary is built from a union of simpleTypes. This Type enumerates the units which are not in other Type definitions, but are to be included as standard.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"acre"</span><span class="tEl">/&gt;</span><span class="tI">
@@ -3404,7 +3491,22 @@ var annotationBoxes= new Array('annotations_eml-unitTypeDefinitions.xsd',
                         </td>
                         <td>
                            <div id="annotations_angleUnitType" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Angle Units</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: An example of a group of units which could be added. These units are a derived</span><span class="tI">
+</span><span class="tT">          typein the group of derived SI units with a special name or symbol.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: </span><span class="tI">
+</span><span class="tT">          The AngleUnitType is the enumerated list of angle units. For example, plane angle</span><span class="tI">
+</span><span class="tT">            (radian, rad) and solid angle (steradian, sr) are actually dimensionless, and their</span><span class="tI">
+</span><span class="tT">            symbols used as appropriate (e.g, sr in photometry). These unit names could be used</span><span class="tI">
+</span><span class="tT">            where ever content should be restricted.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -3472,7 +3574,7 @@ var annotationBoxes= new Array('annotations_eml-unitTypeDefinitions.xsd',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:simpleType</span><span class="tAN"> name=</span><span class="tAV">"angleUnitType"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Angle Units summary: An example of a group of units which could be added. These units are a derived typein the group of derived SI units with a special name or symbol. description: The AngleUnitType is the enumerated list of angle units. For example, plane angle (radian, rad) and solid angle (steradian, sr) are actually dimensionless, and their symbols used as appropriate (e.g, sr in photometry). These unit names could be used where ever content should be restricted.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"radian"</span><span class="tEl">/&gt;</span><span class="tI">

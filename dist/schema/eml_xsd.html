@@ -425,7 +425,44 @@ var modelBoxes= new Array('model_eml',
                                     </tr>
                                  </table>
                               </div>
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">moduleName: eml</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">moduleDescription: </span><span class="tI">
+</span><span class="tT">          </span><span class="tI">
+</span><span class="tT">             The eml module - A metadata container </span><span class="tI">
+</span><span class="tT">             The eml module is a wrapper container that allows the inclusion of any metadata</span><span class="tI">
+</span><span class="tT">              content in a single EML document. The eml module is used as a container to hold</span><span class="tI">
+</span><span class="tT">              structured descriptions of ecological resources. In EML, the definition of a resource</span><span class="tI">
+</span><span class="tT">              comes from the </span><span class="tI">
+</span><span class="tT">                 The Dublin Core Metadata Initiative </span><span class="tI">
+</span><span class="tT">              , which describes a general element set used to describe "networked digital</span><span class="tI">
+</span><span class="tT">              resources". The top-level structure of EML has been designed to be compatible with the</span><span class="tI">
+</span><span class="tT">              Dublin Core syntax. In general, dataset resources, literature resources, software</span><span class="tI">
+</span><span class="tT">              resources, and protocol resources comprise the list of information that may be</span><span class="tI">
+</span><span class="tT">              described in EML. EML is largely designed to describe digital resources, however, it</span><span class="tI">
+</span><span class="tT">              may also be used to describe non-digital resources such as paper maps and other</span><span class="tI">
+</span><span class="tT">              non-digital media.  In EML, the definition of a "Data Package" is the</span><span class="tI">
+</span><span class="tT">                combination of both the data and metadata for a resource.  So, data</span><span class="tI">
+</span><span class="tT">              packages are built by using the &lt;eml&gt; wrapper, which will include all of</span><span class="tI">
+</span><span class="tT">              the metadata, and optionally the data (or references to them). All EML packages must</span><span class="tI">
+</span><span class="tT">              begin with the &lt;eml&gt; tag and end with the &lt;/eml&gt; tag. </span><span class="tI">
+</span><span class="tT">             The eml module may be extended to describe other resources by means of its</span><span class="tI">
+</span><span class="tT">              optional sub-field, &lt;additionalMetadata&gt;. This field is largely reserved</span><span class="tI">
+</span><span class="tT">              for the inclusion of metadata that may be highly discipline specific and not covered</span><span class="tI">
+</span><span class="tT">              in this version of EML, or it may be used to internally extend fields within the EML</span><span class="tI">
+</span><span class="tT">              standard. </span><span class="tI">
+</span><span class="tT">          </span><span class="tI">
+</span><span class="tT">        </span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">recommendedUsage: all datasets</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">standAlone: yes</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -482,7 +519,29 @@ var modelBoxes= new Array('model_eml',
                         </td>
                         <td>
                            <div id="annotations_eml" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Ecological Metadata</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: A collection of EML metadata and additional metadata linked using the inline</span><span class="tI">
+</span><span class="tT">          references.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: The "eml" element allows for the inclusion of any metadata content in a</span><span class="tI">
+</span><span class="tT">          single EML document. In general, dataset resources, literature resources, and software</span><span class="tI">
+</span><span class="tT">          resources, or another type that extends eml-resource are described using an eml document.</span><span class="tI">
+</span><span class="tT">          The eml document represents a "package" that can contain both metadata and data. It can</span><span class="tI">
+</span><span class="tT">          optionally include non-EML metadata through the flexibility of the "additionalMetadata"</span><span class="tI">
+</span><span class="tT">          element. Any additional metadata that is provided can provide a pointer into the EML</span><span class="tI">
+</span><span class="tT">          metadata indicating what the context of the additional metadata is (i.e., what it</span><span class="tI">
+</span><span class="tT">          describes). For example, a spatial raster image might be described in EML, and an FGDC</span><span class="tI">
+</span><span class="tT">          CSDGM metadata document could be included in the additionalMetadata element with a pointer</span><span class="tI">
+</span><span class="tT">          to the EML spatialRaster element to indicate that the FGDC metadata is providing</span><span class="tI">
+</span><span class="tT">          supplemental documentation about that particular image entity. There is no validity</span><span class="tI">
+</span><span class="tT">          constraint that restricts what metadata may be present in additionalMetadata.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -493,17 +552,17 @@ var modelBoxes= new Array('model_eml',
                         </td>
                         <td class="diagram">
                            <div id="diagram_eml" style="display:block"><img alt="Diagram" border="0" src="img/eml_xsd_Element_eml.png" usemap="#eml_xsd_Element_eml" /><map name="eml_xsd_Element_eml" id="eml_xsd_Element_eml">
-                                 <area alt="eml_xsd.tmp#eml_packageId" href="eml_xsd.html#eml_packageId" coords="93,40,206,82" />
-                                 <area alt="eml_xsd.tmp#eml_system" href="eml_xsd.html#eml_system" coords="93,92,242,134" />
-                                 <area alt="eml_xsd.tmp#eml_scope" href="eml_xsd.html#eml_scope" coords="93,144,239,204" />
-                                 <area alt="xml_xsd.tmp#lang" href="xml_xsd.html#lang" coords="93,214,176,238" />
-                                 <area alt="eml_xsd.tmp#eml_access" href="eml_xsd.html#eml_access" coords="171,255,321,297" />
-                                 <area alt="eml_xsd.tmp#eml_dataset" href="eml_xsd.html#eml_dataset" coords="242,307,389,349" />
-                                 <area alt="eml_xsd.tmp#eml_citation" href="eml_xsd.html#eml_citation" coords="242,359,391,401" />
-                                 <area alt="eml_xsd.tmp#eml_software" href="eml_xsd.html#eml_software" coords="242,411,396,453" />
-                                 <area alt="eml_xsd.tmp#eml_protocol" href="eml_xsd.html#eml_protocol" coords="242,463,400,505" />
-                                 <area alt="eml_xsd.tmp#eml_annotations" href="eml_xsd.html#eml_annotations" coords="171,515,266,539" />
-                                 <area alt="eml_xsd.tmp#eml_additionalMetadata" href="eml_xsd.html#eml_additionalMetadata" coords="171,549,303,573" /></map></div>
+                                 <area alt="eml_xsd.tmp#eml_packageId" href="eml_xsd.html#eml_packageId" coords="113,40,226,82" />
+                                 <area alt="eml_xsd.tmp#eml_system" href="eml_xsd.html#eml_system" coords="113,148,262,190" />
+                                 <area alt="eml_xsd.tmp#eml_scope" href="eml_xsd.html#eml_scope" coords="113,200,259,260" />
+                                 <area alt="xml_xsd.tmp#lang" href="xml_xsd.html#lang" coords="113,313,196,337" />
+                                 <area alt="eml_xsd.tmp#eml_access" href="eml_xsd.html#eml_access" coords="191,354,341,396" />
+                                 <area alt="eml_xsd.tmp#eml_dataset" href="eml_xsd.html#eml_dataset" coords="262,449,409,491" />
+                                 <area alt="eml_xsd.tmp#eml_citation" href="eml_xsd.html#eml_citation" coords="262,544,411,586" />
+                                 <area alt="eml_xsd.tmp#eml_software" href="eml_xsd.html#eml_software" coords="262,639,416,681" />
+                                 <area alt="eml_xsd.tmp#eml_protocol" href="eml_xsd.html#eml_protocol" coords="262,734,420,776" />
+                                 <area alt="eml_xsd.tmp#eml_annotations" href="eml_xsd.html#eml_annotations" coords="191,829,286,853" />
+                                 <area alt="eml_xsd.tmp#eml_additionalMetadata" href="eml_xsd.html#eml_additionalMetadata" coords="191,919,323,943" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -579,7 +638,29 @@ var modelBoxes= new Array('model_eml',
                                     <td></td>
                                     <td>required</td>
                                     <td>
-                                       <div class="annotation"></div>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">tooltip: Package Identifer</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: A globally unique identifier for the data package described by this EML metadata document that can be used</span><span class="tI">
+</span><span class="tT">              to cite it elsewhere.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: A globally unique identifier for the data package described by this EML metadata document</span><span class="tI">
+</span><span class="tT">              that can be used to cite it elsewhere. This identifier can be interpreted as the formal</span><span class="tI">
+</span><span class="tT">              accession number for the data package, and is therefore required. It must be globally unique</span><span class="tI">
+</span><span class="tT">              within a particular data management system, which should be specified in the system</span><span class="tI">
+</span><span class="tT">              attribute as a URI. Typically a DOI or other identifier that is both citable and</span><span class="tI">
+</span><span class="tT">              resolvable is used for published data packages.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: doi:10.5063/F17P8WGK</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: https://doi.org/10.5063/F17P8WGK</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: urn:uuid:04cd34fd-25d4-447f-ab6e-73a572c5d383</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
                                     </td>
                                  </tr>
                                  <tr>
@@ -588,7 +669,23 @@ var modelBoxes= new Array('model_eml',
                                     <td>system</td>
                                     <td>optional</td>
                                     <td>
-                                       <div class="annotation"></div>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">tooltip: Identifer Scope</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: The scope of the identifier.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: The scope of the identifier. Scope is generally set to either "system",</span><span class="tI">
+</span><span class="tT">              meaning that it is scoped according to the "system" attribute, or "document" if it is</span><span class="tI">
+</span><span class="tT">              only to be in scope within this single document instance. In this particular use of</span><span class="tI">
+</span><span class="tT">              scope, it is FIXED to be "system" because the packageId is required and always has the</span><span class="tI">
+</span><span class="tT">              scope of the required "system". </span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: system</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
                                     </td>
                                  </tr>
                                  <tr>
@@ -624,46 +721,46 @@ var modelBoxes= new Array('model_eml',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"eml"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Ecological Metadata summary: A collection of EML metadata and additional metadata linked using the inline references. description: The "eml" element allows for the inclusion of any metadata content in a single EML document. In general, dataset resources, literature resources, and software resources, or another type that extends eml-resource are described using an eml document. The eml document represents a "package" that can contain both metadata and data. It can optionally include non-EML metadata through the flexibility of the "additionalMetadata" element. Any additional metadata that is provided can provide a pointer into the EML metadata indicating what the context of the additional metadata is (i.e., what it describes). For example, a spatial raster image might be described in EML, and an FGDC CSDGM metadata document could be included in the additionalMetadata element with a pointer to the EML spatialRaster element to indicate that the FGDC metadata is providing supplemental documentation about that particular image entity. There is no validity constraint that restricts what metadata may be present in additionalMetadata.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"access"</span><span class="tAN"> type=</span><span class="tAV">"acc:AccessType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Access summary: Access control rules for the entire resource, which can be overridden by access rules in distribution trees description: An optional access tree at this location controls access to the entire metadata document. If this access element is omitted from the document, then the package submitter should be given full access to the package but all other users should be denied all access.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:choice</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"dataset"</span><span class="tAN"> type=</span><span class="tAV">"ds:DatasetType"</span><span class="tEl">&gt;</span><span class="tI">
           </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Dataset Resource summary: A resource that describes a data set, which can include one or more data entities such as data tables. description: A resource that describes a data set, which can include one or more data entities such as data tables and spatial images (raster and vector). If included, this represents the primary resource that is described in this eml document.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
           </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"citation"</span><span class="tAN"> type=</span><span class="tAV">"cit:CitationType"</span><span class="tEl">&gt;</span><span class="tI">
           </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Literature Resource summary: A resource that describes a literature citation that one might find in a bibliography. description: A resource that describes a literature citation that one might find in a bibliography. If included, this represents the primary resource that is described in this eml document.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
           </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"software"</span><span class="tAN"> type=</span><span class="tAV">"sw:SoftwareType"</span><span class="tEl">&gt;</span><span class="tI">
           </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Software Resource summary: A resource that describes a software package, which can include commercial and non-commercial software as well as data processing programs. description: A resource that describes a software package, which can include commercial and non-commercial software as well as data processing programs. If included, this represents the primary resource that is described in this eml document.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
           </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"protocol"</span><span class="tAN"> type=</span><span class="tAV">"pro:ProtocolType"</span><span class="tEl">&gt;</span><span class="tI">
           </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Protocol Resource summary: A resource that describes a scientific protocol, which can include one or more descriptions of methods and procedures. description: A resource that describes a scientific protocol, which can include one or more descriptions of methods and procedures. If included, this represents the primary resource that is described in this eml document.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
           </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"annotations"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Semantic Annotation List summary: A list of precisely-defined semantic statements about this resource. description: A list of annotations defining precise semantics for parts of this resource. The list consists of a set of annotation elements, each referring to a subject within the EML document using its references attribute, which provides a pointer to the id of the element being annotated.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
           </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
             </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"annotation"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
               </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Semantic Annotation summary: A precisely-defined semantic statement about an element in the EML document. description: An annotation represents a precisely-defined semantic statement that applies to this resource. This semantic statement is used to associate precise semantics with a particular element in the EML document. The id of the element being annotated is listed in the references attribute, and must point to a unique id within the EML document. Each annotation consists of a propertyURI and valueURI that define a property and value that apply to the resource. The subject of the statement is implicitly the element that is listed in the references attribute. The associated labels can be used to display the statement to users. Each URI is resolvable to a controlled vocabulary that provides a definition, relationships to other terms, and multiple labels for displaying the statement.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
               </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
               </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
@@ -678,24 +775,24 @@ var modelBoxes= new Array('model_eml',
       </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"additionalMetadata"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Additional Metadata summary: A flexible field for including any other relevant metadata that pertains to the resource being described. description: A flexible field for including any other relevant metadata that pertains to the resource being described. This field allows EML to be extensible in that any XML-based metadata can be included in this element, including metadata from other standards such as the FGDC CSDGM. The "describes" element of this field allows the specific part of the resource which is described by the additional metadata to be indicated formally.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
           </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
             </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"describes"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
               </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Describes Reference summary: A pointer to the id attribute for the sub-portion of the resource that is described by this additional metadata. description: A pointer to the id attribute for the sub-portion of the resource that is described by this additional metadata. This is a formal field in that it is an error to provide a value in the "describes" element that does not correspond to the value of one of the "id" attributes in another eml module. This is designed to allow automated processors to discover the contextual relationship between the additional metadata and the resource it describes. example: knb.343.22</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
               </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
             </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
             </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"metadata"</span><span class="tEl">&gt;</span><span class="tI">
               </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Additional metadata summary: This element contains the additional metadata that is to be included in the document. The content of this field can be any well-formed XML fragment. description: This element contains the additional metadata to be included in the document. This element should be used for extending EML to include metadata that is not already available in another part of the EML specification, or to include site- or system-specific extensions that are needed beyond the core metadata. The additional metadata contained in this field describes the element referenced in the 'describes' element preceding it. The content of this field is any well-formed XML fragment. If that content contains namespace declarations, and if the namespace declaration can be resolved to a schema definition, then the content will be validated against that schema definition. If no namespace is present, or if no schema can be resolved, validation for this fragment will be skipped (validation is "lax"). example: &lt;embargoDate&gt;2006-10-10&lt;/embargoDate&gt;</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
               </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
               </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
                   </span><span class="tEl">&lt;xs:any</span><span class="tAN"> processContents=</span><span class="tAV">"lax"</span><span class="tEl">&gt;</span><span class="tI">
                     </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                      </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+                      </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Any Metadata summary: Any well-formed XML-formatted metadata may be inserted at this location in the EML document. If an element inserted here contains a reference to its namespace, and if there is an association between that namespace and an XML Schema that can be located by the processing application, then the processing application must validate the metadata element. If these conditions are not met, then validation need not occur. description: Any well-formed XML-formatted metadata may be inserted at this location in the EML document. If an element inserted here contains a reference to its namespace, and if there is an association between that namespace and an XML Schema that can be located by the processing application, then the processing application must validate the metadata element. If these conditions are not met, then validation need not occur.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
                     </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
                   </span><span class="tEl">&lt;/xs:any&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
@@ -708,13 +805,13 @@ var modelBoxes= new Array('model_eml',
     </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"packageId"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Package Identifer summary: A globally unique identifier for the data package described by this EML metadata document that can be used to cite it elsewhere. description: A globally unique identifier for the data package described by this EML metadata document that can be used to cite it elsewhere. This identifier can be interpreted as the formal accession number for the data package, and is therefore required. It must be globally unique within a particular data management system, which should be specified in the system attribute as a URI. Typically a DOI or other identifier that is both citable and resolvable is used for published data packages. example: doi:10.5063/F17P8WGK example: https://doi.org/10.5063/F17P8WGK example: urn:uuid:04cd34fd-25d4-447f-ab6e-73a572c5d383</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"system"</span><span class="tAN"> type=</span><span class="tAV">"res:SystemType"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">/&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"scope"</span><span class="tAN"> type=</span><span class="tAV">"res:ScopeType"</span><span class="tAN"> fixed=</span><span class="tAV">"system"</span><span class="tEl">&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Identifer Scope summary: The scope of the identifier. description: The scope of the identifier. Scope is generally set to either "system", meaning that it is scoped according to the "system" attribute, or "document" if it is only to be in scope within this single document instance. In this particular use of scope, it is FIXED to be "system" because the packageId is required and always has the scope of the required "system". example: system</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> ref=</span><span class="tAV">"xml:lang"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span><span class="tI">
@@ -758,7 +855,17 @@ var modelBoxes= new Array('model_eml',
                         </td>
                         <td>
                            <div id="annotations_eml_access" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Access</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: Access control rules for the entire resource, which can be overridden by access rules in distribution trees</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: An optional access tree at this location controls access to the entire metadata document. If this access element is omitted from the document, then the package submitter should be given full access to the package but all other users should be denied all access.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -769,16 +876,16 @@ var modelBoxes= new Array('model_eml',
                         </td>
                         <td class="diagram">
                            <div id="diagram_eml_access" style="display:block"><img alt="Diagram" border="0" src="img/eml_xsd_Element_access.png" usemap="#eml_xsd_Element_access" /><map name="eml_xsd_Element_access" id="eml_xsd_Element_access">
-                                 <area alt="eml-access_xsd.tmp#AccessType_id" href="eml-access_xsd.html#AccessType_id" coords="206,78,274,102" />
-                                 <area alt="eml-access_xsd.tmp#AccessType_system" href="eml-access_xsd.html#AccessType_system" coords="206,112,292,136" />
-                                 <area alt="eml-access_xsd.tmp#AccessType_scope" href="eml-access_xsd.html#AccessType_scope" coords="206,146,286,170" />
-                                 <area alt="eml-access_xsd.tmp#AccessType_order" href="eml-access_xsd.html#AccessType_order" coords="206,180,284,204" />
-                                 <area alt="eml-access_xsd.tmp#AccessType_authSystem" href="eml-access_xsd.html#AccessType_authSystem" coords="206,214,316,238" />
-                                 <area alt="eml-access_xsd.tmp#AccessType_allow" href="eml-access_xsd.html#AccessType_allow" coords="355,255,413,279" />
-                                 <area alt="eml-access_xsd.tmp#AccessType_deny" href="eml-access_xsd.html#AccessType_deny" coords="355,289,412,313" />
-                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup_references" href="eml-resource_xsd.html#ReferencesGroup_references" coords="369,371,457,395" />
-                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup" href="eml-resource_xsd.html#ReferencesGroup" coords="287,326,455,352" />
-                                 <area alt="eml-access_xsd.tmp#AccessType" href="eml-access_xsd.html#AccessType" coords="181,3,317,25" /></map></div>
+                                 <area alt="eml-access_xsd.tmp#AccessType_id" href="eml-access_xsd.html#AccessType_id" coords="226,78,294,102" />
+                                 <area alt="eml-access_xsd.tmp#AccessType_system" href="eml-access_xsd.html#AccessType_system" coords="226,112,312,136" />
+                                 <area alt="eml-access_xsd.tmp#AccessType_scope" href="eml-access_xsd.html#AccessType_scope" coords="226,146,306,170" />
+                                 <area alt="eml-access_xsd.tmp#AccessType_order" href="eml-access_xsd.html#AccessType_order" coords="226,180,304,204" />
+                                 <area alt="eml-access_xsd.tmp#AccessType_authSystem" href="eml-access_xsd.html#AccessType_authSystem" coords="226,270,336,294" />
+                                 <area alt="eml-access_xsd.tmp#AccessType_allow" href="eml-access_xsd.html#AccessType_allow" coords="375,367,433,391" />
+                                 <area alt="eml-access_xsd.tmp#AccessType_deny" href="eml-access_xsd.html#AccessType_deny" coords="375,457,432,481" />
+                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup_references" href="eml-resource_xsd.html#ReferencesGroup_references" coords="389,595,477,619" />
+                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup" href="eml-resource_xsd.html#ReferencesGroup" coords="307,550,475,576" />
+                                 <area alt="eml-access_xsd.tmp#AccessType" href="eml-access_xsd.html#AccessType" coords="201,3,337,25" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -859,7 +966,27 @@ var modelBoxes= new Array('model_eml',
                                     <td></td>
                                     <td>required</td>
                                     <td>
-                                       <div class="annotation"></div>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">tooltip: Authentication system</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: The authentication system is used to verify the user or</span><span class="tI">
+</span><span class="tT">          group to whom access is allowed or denied.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: The authentication system determines the set of</span><span class="tI">
+</span><span class="tT">          principals (users + groups) that can be used in the access control</span><span class="tI">
+</span><span class="tT">          list, and the membership of users in groups. This element is intended</span><span class="tI">
+</span><span class="tT">          to provide a reference to the authentication system that is used to</span><span class="tI">
+</span><span class="tT">          verify the user or group. This reference is typically in the form</span><span class="tI">
+</span><span class="tT">          of a URI, which includes the connection protocol, Internet host, and</span><span class="tI">
+</span><span class="tT">          path to the authentication mechanism.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: </span><span class="tI">
+</span><span class="tT">          ldap://ldap.ecoinformatics.org:389/dc=ecoinformatics,dc=org</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
                                     </td>
                                  </tr>
                                  <tr>
@@ -877,7 +1004,26 @@ var modelBoxes= new Array('model_eml',
                                     <td>allowFirst</td>
                                     <td>optional</td>
                                     <td>
-                                       <div class="annotation"></div>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">tooltip: Rule order</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: The order in which the allow and deny rules should be</span><span class="tI">
+</span><span class="tT">          applied.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: To obtain the desired access control, use the order</span><span class="tI">
+</span><span class="tT">          attribute to define which rules should be applied first. The acceptable</span><span class="tI">
+</span><span class="tT">          values are 'allowFirst' and 'denyFirst'. If 'allowFirst' is</span><span class="tI">
+</span><span class="tT">          specified, then all 'allow' rules are processed, and then overridden</span><span class="tI">
+</span><span class="tT">          by all 'deny' rules.  If 'denyFirst' is specified, then all 'deny'</span><span class="tI">
+</span><span class="tT">          rules are processed, and then overridden by all 'allow' rules.</span><span class="tI">
+</span><span class="tT">          </span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: allowFirst</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
                                     </td>
                                  </tr>
                                  <tr>
@@ -913,7 +1059,7 @@ var modelBoxes= new Array('model_eml',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"access"</span><span class="tAN"> type=</span><span class="tAV">"acc:AccessType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Access summary: Access control rules for the entire resource, which can be overridden by access rules in distribution trees description: An optional access tree at this location controls access to the entire metadata document. If this access element is omitted from the document, then the package submitter should be given full access to the package but all other users should be denied all access.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
@@ -954,7 +1100,21 @@ var modelBoxes= new Array('model_eml',
                         </td>
                         <td>
                            <div id="annotations_eml_dataset" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Dataset Resource</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: A resource that describes a data set, which can include one or more</span><span class="tI">
+</span><span class="tT">                  data entities such as data tables. </span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: A resource that describes a data set, which can include one or more</span><span class="tI">
+</span><span class="tT">                  data entities such as data tables and spatial images (raster and vector). If</span><span class="tI">
+</span><span class="tT">                  included, this represents the primary resource that is described in this eml</span><span class="tI">
+</span><span class="tT">                  document.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -965,49 +1125,49 @@ var modelBoxes= new Array('model_eml',
                         </td>
                         <td class="diagram">
                            <div id="diagram_eml_dataset" style="display:block"><img alt="Diagram" border="0" src="img/eml_xsd_Element_dataset.png" usemap="#eml_xsd_Element_dataset" /><map name="eml_xsd_Element_dataset" id="eml_xsd_Element_dataset">
-                                 <area alt="eml-dataset_xsd.tmp#DatasetType_id" href="eml-dataset_xsd.html#DatasetType_id" coords="203,78,271,102" />
-                                 <area alt="eml-dataset_xsd.tmp#DatasetType_system" href="eml-dataset_xsd.html#DatasetType_system" coords="203,112,289,136" />
-                                 <area alt="eml-dataset_xsd.tmp#DatasetType_scope" href="eml-dataset_xsd.html#DatasetType_scope" coords="203,146,283,170" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_alternateIdentifier" href="eml-resource_xsd.html#ResourceGroup_alternateIdentifier" coords="458,231,584,255" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_shortName" href="eml-resource_xsd.html#ResourceGroup_shortName" coords="458,265,548,289" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_title" href="eml-resource_xsd.html#ResourceGroup_title" coords="458,299,509,323" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_creator" href="eml-resource_xsd.html#ResourceGroup_creator" coords="458,333,528,357" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_metadataProvider" href="eml-resource_xsd.html#ResourceGroup_metadataProvider" coords="458,367,583,391" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_associatedParty" href="eml-resource_xsd.html#ResourceGroup_associatedParty" coords="458,401,573,425" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_pubDate" href="eml-resource_xsd.html#ResourceGroup_pubDate" coords="458,435,534,459" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_language" href="eml-resource_xsd.html#ResourceGroup_language" coords="458,469,538,493" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_series" href="eml-resource_xsd.html#ResourceGroup_series" coords="458,503,521,527" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_abstract" href="eml-resource_xsd.html#ResourceGroup_abstract" coords="458,537,533,561" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_keywordSet" href="eml-resource_xsd.html#ResourceGroup_keywordSet" coords="458,571,550,595" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_additionalInfo" href="eml-resource_xsd.html#ResourceGroup_additionalInfo" coords="458,605,563,629" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_intellectualRights" href="eml-resource_xsd.html#ResourceGroup_intellectualRights" coords="458,639,581,663" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_licensed" href="eml-resource_xsd.html#ResourceGroup_licensed" coords="458,673,533,697" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_distribution" href="eml-resource_xsd.html#ResourceGroup_distribution" coords="458,707,552,731" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_coverage" href="eml-resource_xsd.html#ResourceGroup_coverage" coords="458,741,538,765" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_annotation" href="eml-resource_xsd.html#ResourceGroup_annotation" coords="458,775,547,799" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup" href="eml-resource_xsd.html#ResourceGroup" coords="355,190,514,216" />
-                                 <area alt="eml-dataset_xsd.tmp#DatasetType_purpose" href="eml-dataset_xsd.html#DatasetType_purpose" coords="352,816,428,840" />
-                                 <area alt="eml-dataset_xsd.tmp#DatasetType_introduction" href="eml-dataset_xsd.html#DatasetType_introduction" coords="352,850,450,874" />
-                                 <area alt="eml-dataset_xsd.tmp#DatasetType_gettingStarted" href="eml-dataset_xsd.html#DatasetType_gettingStarted" coords="352,884,459,908" />
-                                 <area alt="eml-dataset_xsd.tmp#DatasetType_acknowledgements" href="eml-dataset_xsd.html#DatasetType_acknowledgements" coords="352,918,485,942" />
-                                 <area alt="eml-dataset_xsd.tmp#DatasetType_maintenance" href="eml-dataset_xsd.html#DatasetType_maintenance" coords="352,952,451,976" />
-                                 <area alt="eml-dataset_xsd.tmp#DatasetType_contact" href="eml-dataset_xsd.html#DatasetType_contact" coords="352,986,423,1010" />
-                                 <area alt="eml-dataset_xsd.tmp#DatasetType_publisher" href="eml-dataset_xsd.html#DatasetType_publisher" coords="352,1020,434,1044" />
-                                 <area alt="eml-dataset_xsd.tmp#DatasetType_pubPlace" href="eml-dataset_xsd.html#DatasetType_pubPlace" coords="352,1054,431,1078" />
-                                 <area alt="eml-dataset_xsd.tmp#DatasetType_methods" href="eml-dataset_xsd.html#DatasetType_methods" coords="352,1088,430,1112" />
-                                 <area alt="eml-dataset_xsd.tmp#DatasetType_project" href="eml-dataset_xsd.html#DatasetType_project" coords="352,1122,421,1146" />
-                                 <area alt="eml-dataset_xsd.tmp#DatasetType_dataTable" href="eml-dataset_xsd.html#DatasetType_dataTable" coords="423,1156,506,1180" />
-                                 <area alt="eml-dataset_xsd.tmp#DatasetType_spatialRaster" href="eml-dataset_xsd.html#DatasetType_spatialRaster" coords="423,1190,523,1214" />
-                                 <area alt="eml-dataset_xsd.tmp#DatasetType_spatialVector" href="eml-dataset_xsd.html#DatasetType_spatialVector" coords="423,1224,524,1248" />
-                                 <area alt="eml-dataset_xsd.tmp#DatasetType_storedProcedure" href="eml-dataset_xsd.html#DatasetType_storedProcedure" coords="423,1258,544,1282" />
-                                 <area alt="eml-dataset_xsd.tmp#DatasetType_view" href="eml-dataset_xsd.html#DatasetType_view" coords="423,1292,477,1316" />
-                                 <area alt="eml-dataset_xsd.tmp#DatasetType_otherEntity" href="eml-dataset_xsd.html#DatasetType_otherEntity" coords="423,1326,513,1350" />
-                                 <area alt="eml-dataset_xsd.tmp#DatasetType_referencePublication" href="eml-dataset_xsd.html#DatasetType_referencePublication" coords="352,1360,493,1384" />
-                                 <area alt="eml-dataset_xsd.tmp#DatasetType_usageCitation" href="eml-dataset_xsd.html#DatasetType_usageCitation" coords="352,1394,457,1418" />
-                                 <area alt="eml-dataset_xsd.tmp#DatasetType_literatureCited" href="eml-dataset_xsd.html#DatasetType_literatureCited" coords="352,1428,460,1452" />
-                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup_references" href="eml-resource_xsd.html#ReferencesGroup_references" coords="345,1510,433,1534" />
-                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup" href="eml-resource_xsd.html#ReferencesGroup" coords="263,1465,431,1491" />
-                                 <area alt="eml-dataset_xsd.tmp#DatasetType" href="eml-dataset_xsd.html#DatasetType" coords="178,3,311,25" /></map></div>
+                                 <area alt="eml-dataset_xsd.tmp#DatasetType_id" href="eml-dataset_xsd.html#DatasetType_id" coords="223,78,291,102" />
+                                 <area alt="eml-dataset_xsd.tmp#DatasetType_system" href="eml-dataset_xsd.html#DatasetType_system" coords="223,112,309,136" />
+                                 <area alt="eml-dataset_xsd.tmp#DatasetType_scope" href="eml-dataset_xsd.html#DatasetType_scope" coords="223,146,303,170" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_alternateIdentifier" href="eml-resource_xsd.html#ResourceGroup_alternateIdentifier" coords="478,231,604,255" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_shortName" href="eml-resource_xsd.html#ResourceGroup_shortName" coords="478,308,568,332" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_title" href="eml-resource_xsd.html#ResourceGroup_title" coords="478,398,529,422" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_creator" href="eml-resource_xsd.html#ResourceGroup_creator" coords="478,488,548,512" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_metadataProvider" href="eml-resource_xsd.html#ResourceGroup_metadataProvider" coords="478,578,603,602" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_associatedParty" href="eml-resource_xsd.html#ResourceGroup_associatedParty" coords="478,668,593,692" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_pubDate" href="eml-resource_xsd.html#ResourceGroup_pubDate" coords="478,758,554,782" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_language" href="eml-resource_xsd.html#ResourceGroup_language" coords="478,848,558,872" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_series" href="eml-resource_xsd.html#ResourceGroup_series" coords="478,938,541,962" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_abstract" href="eml-resource_xsd.html#ResourceGroup_abstract" coords="478,1028,553,1052" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_keywordSet" href="eml-resource_xsd.html#ResourceGroup_keywordSet" coords="478,1118,570,1142" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_additionalInfo" href="eml-resource_xsd.html#ResourceGroup_additionalInfo" coords="478,1208,583,1232" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_intellectualRights" href="eml-resource_xsd.html#ResourceGroup_intellectualRights" coords="478,1298,601,1322" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_licensed" href="eml-resource_xsd.html#ResourceGroup_licensed" coords="478,1375,553,1399" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_distribution" href="eml-resource_xsd.html#ResourceGroup_distribution" coords="478,1465,572,1489" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_coverage" href="eml-resource_xsd.html#ResourceGroup_coverage" coords="478,1542,558,1566" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_annotation" href="eml-resource_xsd.html#ResourceGroup_annotation" coords="478,1632,567,1656" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup" href="eml-resource_xsd.html#ResourceGroup" coords="375,190,534,216" />
+                                 <area alt="eml-dataset_xsd.tmp#DatasetType_purpose" href="eml-dataset_xsd.html#DatasetType_purpose" coords="372,1772,448,1796" />
+                                 <area alt="eml-dataset_xsd.tmp#DatasetType_introduction" href="eml-dataset_xsd.html#DatasetType_introduction" coords="372,1862,470,1886" />
+                                 <area alt="eml-dataset_xsd.tmp#DatasetType_gettingStarted" href="eml-dataset_xsd.html#DatasetType_gettingStarted" coords="372,1952,479,1976" />
+                                 <area alt="eml-dataset_xsd.tmp#DatasetType_acknowledgements" href="eml-dataset_xsd.html#DatasetType_acknowledgements" coords="372,2029,505,2053" />
+                                 <area alt="eml-dataset_xsd.tmp#DatasetType_maintenance" href="eml-dataset_xsd.html#DatasetType_maintenance" coords="372,2106,471,2130" />
+                                 <area alt="eml-dataset_xsd.tmp#DatasetType_contact" href="eml-dataset_xsd.html#DatasetType_contact" coords="372,2196,443,2220" />
+                                 <area alt="eml-dataset_xsd.tmp#DatasetType_publisher" href="eml-dataset_xsd.html#DatasetType_publisher" coords="372,2286,454,2310" />
+                                 <area alt="eml-dataset_xsd.tmp#DatasetType_pubPlace" href="eml-dataset_xsd.html#DatasetType_pubPlace" coords="372,2376,451,2400" />
+                                 <area alt="eml-dataset_xsd.tmp#DatasetType_methods" href="eml-dataset_xsd.html#DatasetType_methods" coords="372,2466,450,2490" />
+                                 <area alt="eml-dataset_xsd.tmp#DatasetType_project" href="eml-dataset_xsd.html#DatasetType_project" coords="372,2556,441,2580" />
+                                 <area alt="eml-dataset_xsd.tmp#DatasetType_dataTable" href="eml-dataset_xsd.html#DatasetType_dataTable" coords="443,2646,526,2670" />
+                                 <area alt="eml-dataset_xsd.tmp#DatasetType_spatialRaster" href="eml-dataset_xsd.html#DatasetType_spatialRaster" coords="443,2736,543,2760" />
+                                 <area alt="eml-dataset_xsd.tmp#DatasetType_spatialVector" href="eml-dataset_xsd.html#DatasetType_spatialVector" coords="443,2826,544,2850" />
+                                 <area alt="eml-dataset_xsd.tmp#DatasetType_storedProcedure" href="eml-dataset_xsd.html#DatasetType_storedProcedure" coords="443,2903,564,2927" />
+                                 <area alt="eml-dataset_xsd.tmp#DatasetType_view" href="eml-dataset_xsd.html#DatasetType_view" coords="443,2993,497,3017" />
+                                 <area alt="eml-dataset_xsd.tmp#DatasetType_otherEntity" href="eml-dataset_xsd.html#DatasetType_otherEntity" coords="443,3083,533,3107" />
+                                 <area alt="eml-dataset_xsd.tmp#DatasetType_referencePublication" href="eml-dataset_xsd.html#DatasetType_referencePublication" coords="372,3173,513,3197" />
+                                 <area alt="eml-dataset_xsd.tmp#DatasetType_usageCitation" href="eml-dataset_xsd.html#DatasetType_usageCitation" coords="372,3250,477,3274" />
+                                 <area alt="eml-dataset_xsd.tmp#DatasetType_literatureCited" href="eml-dataset_xsd.html#DatasetType_literatureCited" coords="372,3327,480,3351" />
+                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup_references" href="eml-resource_xsd.html#ReferencesGroup_references" coords="365,3452,453,3476" />
+                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup" href="eml-resource_xsd.html#ReferencesGroup" coords="283,3407,451,3433" />
+                                 <area alt="eml-dataset_xsd.tmp#DatasetType" href="eml-dataset_xsd.html#DatasetType" coords="198,3,331,25" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -1154,7 +1314,7 @@ var modelBoxes= new Array('model_eml',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"dataset"</span><span class="tAN"> type=</span><span class="tAV">"ds:DatasetType"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Dataset Resource summary: A resource that describes a data set, which can include one or more data entities such as data tables. description: A resource that describes a data set, which can include one or more data entities such as data tables and spatial images (raster and vector). If included, this represents the primary resource that is described in this eml document.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
@@ -1195,7 +1355,20 @@ var modelBoxes= new Array('model_eml',
                         </td>
                         <td>
                            <div id="annotations_eml_citation" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Literature Resource</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: A resource that describes a literature citation that one might find in</span><span class="tI">
+</span><span class="tT">                  a bibliography. </span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: A resource that describes a literature citation that one might find</span><span class="tI">
+</span><span class="tT">                  in a bibliography. If included, this represents the primary resource that is</span><span class="tI">
+</span><span class="tT">                  described in this eml document.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -1206,45 +1379,45 @@ var modelBoxes= new Array('model_eml',
                         </td>
                         <td class="diagram">
                            <div id="diagram_eml_citation" style="display:block"><img alt="Diagram" border="0" src="img/eml_xsd_Element_citation.png" usemap="#eml_xsd_Element_citation" /><map name="eml_xsd_Element_citation" id="eml_xsd_Element_citation">
-                                 <area alt="eml-literature_xsd.tmp#CitationType_id" href="eml-literature_xsd.html#CitationType_id" coords="205,78,273,102" />
-                                 <area alt="eml-literature_xsd.tmp#CitationType_system" href="eml-literature_xsd.html#CitationType_system" coords="205,112,291,136" />
-                                 <area alt="eml-literature_xsd.tmp#CitationType_scope" href="eml-literature_xsd.html#CitationType_scope" coords="205,146,285,170" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_alternateIdentifier" href="eml-resource_xsd.html#ResourceGroup_alternateIdentifier" coords="460,231,586,255" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_shortName" href="eml-resource_xsd.html#ResourceGroup_shortName" coords="460,265,550,289" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_title" href="eml-resource_xsd.html#ResourceGroup_title" coords="460,299,511,323" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_creator" href="eml-resource_xsd.html#ResourceGroup_creator" coords="460,333,530,357" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_metadataProvider" href="eml-resource_xsd.html#ResourceGroup_metadataProvider" coords="460,367,585,391" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_associatedParty" href="eml-resource_xsd.html#ResourceGroup_associatedParty" coords="460,401,575,425" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_pubDate" href="eml-resource_xsd.html#ResourceGroup_pubDate" coords="460,435,536,459" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_language" href="eml-resource_xsd.html#ResourceGroup_language" coords="460,469,540,493" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_series" href="eml-resource_xsd.html#ResourceGroup_series" coords="460,503,523,527" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_abstract" href="eml-resource_xsd.html#ResourceGroup_abstract" coords="460,537,535,561" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_keywordSet" href="eml-resource_xsd.html#ResourceGroup_keywordSet" coords="460,571,552,595" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_additionalInfo" href="eml-resource_xsd.html#ResourceGroup_additionalInfo" coords="460,605,565,629" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_intellectualRights" href="eml-resource_xsd.html#ResourceGroup_intellectualRights" coords="460,639,583,663" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_licensed" href="eml-resource_xsd.html#ResourceGroup_licensed" coords="460,673,535,697" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_distribution" href="eml-resource_xsd.html#ResourceGroup_distribution" coords="460,707,554,731" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_coverage" href="eml-resource_xsd.html#ResourceGroup_coverage" coords="460,741,540,765" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_annotation" href="eml-resource_xsd.html#ResourceGroup_annotation" coords="460,775,549,799" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup" href="eml-resource_xsd.html#ResourceGroup" coords="357,190,516,216" />
-                                 <area alt="eml-literature_xsd.tmp#CitationType_contact" href="eml-literature_xsd.html#CitationType_contact" coords="354,816,425,840" />
-                                 <area alt="eml-literature_xsd.tmp#CitationType_article" href="eml-literature_xsd.html#CitationType_article" coords="425,850,489,874" />
-                                 <area alt="eml-literature_xsd.tmp#CitationType_book" href="eml-literature_xsd.html#CitationType_book" coords="425,884,483,908" />
-                                 <area alt="eml-literature_xsd.tmp#CitationType_chapter" href="eml-literature_xsd.html#CitationType_chapter" coords="425,918,497,942" />
-                                 <area alt="eml-literature_xsd.tmp#CitationType_editedBook" href="eml-literature_xsd.html#CitationType_editedBook" coords="425,952,515,976" />
-                                 <area alt="eml-literature_xsd.tmp#CitationType_manuscript" href="eml-literature_xsd.html#CitationType_manuscript" coords="425,986,517,1010" />
-                                 <area alt="eml-literature_xsd.tmp#CitationType_report" href="eml-literature_xsd.html#CitationType_report" coords="425,1020,490,1044" />
-                                 <area alt="eml-literature_xsd.tmp#CitationType_thesis" href="eml-literature_xsd.html#CitationType_thesis" coords="425,1054,488,1078" />
-                                 <area alt="eml-literature_xsd.tmp#CitationType_conferenceProceedings" href="eml-literature_xsd.html#CitationType_conferenceProceedings" coords="425,1088,582,1112" />
-                                 <area alt="eml-literature_xsd.tmp#CitationType_personalCommunication" href="eml-literature_xsd.html#CitationType_personalCommunication" coords="425,1122,588,1146" />
-                                 <area alt="eml-literature_xsd.tmp#CitationType_map" href="eml-literature_xsd.html#CitationType_map" coords="425,1156,479,1180" />
-                                 <area alt="eml-literature_xsd.tmp#CitationType_generic" href="eml-literature_xsd.html#CitationType_generic" coords="425,1190,496,1214" />
-                                 <area alt="eml-literature_xsd.tmp#CitationType_audioVisual" href="eml-literature_xsd.html#CitationType_audioVisual" coords="425,1224,518,1248" />
-                                 <area alt="eml-literature_xsd.tmp#CitationType_presentation" href="eml-literature_xsd.html#CitationType_presentation" coords="425,1258,524,1282" />
-                                 <area alt="eml-literature_xsd.tmp#CitationType_bibtex" href="eml-literature_xsd.html#CitationType_bibtex" coords="262,1292,327,1316" />
-                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup_references" href="eml-resource_xsd.html#ReferencesGroup_references" coords="347,1374,435,1398" />
-                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup" href="eml-resource_xsd.html#ReferencesGroup" coords="265,1329,433,1355" />
-                                 <area alt="eml-literature_xsd.tmp#CitationType" href="eml-literature_xsd.html#CitationType" coords="180,3,315,25" /></map></div>
+                                 <area alt="eml-literature_xsd.tmp#CitationType_id" href="eml-literature_xsd.html#CitationType_id" coords="225,78,293,102" />
+                                 <area alt="eml-literature_xsd.tmp#CitationType_system" href="eml-literature_xsd.html#CitationType_system" coords="225,112,311,136" />
+                                 <area alt="eml-literature_xsd.tmp#CitationType_scope" href="eml-literature_xsd.html#CitationType_scope" coords="225,146,305,170" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_alternateIdentifier" href="eml-resource_xsd.html#ResourceGroup_alternateIdentifier" coords="480,231,606,255" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_shortName" href="eml-resource_xsd.html#ResourceGroup_shortName" coords="480,308,570,332" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_title" href="eml-resource_xsd.html#ResourceGroup_title" coords="480,398,531,422" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_creator" href="eml-resource_xsd.html#ResourceGroup_creator" coords="480,488,550,512" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_metadataProvider" href="eml-resource_xsd.html#ResourceGroup_metadataProvider" coords="480,578,605,602" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_associatedParty" href="eml-resource_xsd.html#ResourceGroup_associatedParty" coords="480,668,595,692" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_pubDate" href="eml-resource_xsd.html#ResourceGroup_pubDate" coords="480,758,556,782" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_language" href="eml-resource_xsd.html#ResourceGroup_language" coords="480,848,560,872" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_series" href="eml-resource_xsd.html#ResourceGroup_series" coords="480,938,543,962" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_abstract" href="eml-resource_xsd.html#ResourceGroup_abstract" coords="480,1028,555,1052" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_keywordSet" href="eml-resource_xsd.html#ResourceGroup_keywordSet" coords="480,1118,572,1142" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_additionalInfo" href="eml-resource_xsd.html#ResourceGroup_additionalInfo" coords="480,1208,585,1232" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_intellectualRights" href="eml-resource_xsd.html#ResourceGroup_intellectualRights" coords="480,1298,603,1322" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_licensed" href="eml-resource_xsd.html#ResourceGroup_licensed" coords="480,1375,555,1399" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_distribution" href="eml-resource_xsd.html#ResourceGroup_distribution" coords="480,1465,574,1489" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_coverage" href="eml-resource_xsd.html#ResourceGroup_coverage" coords="480,1542,560,1566" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_annotation" href="eml-resource_xsd.html#ResourceGroup_annotation" coords="480,1632,569,1656" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup" href="eml-resource_xsd.html#ResourceGroup" coords="377,190,536,216" />
+                                 <area alt="eml-literature_xsd.tmp#CitationType_contact" href="eml-literature_xsd.html#CitationType_contact" coords="374,1772,445,1796" />
+                                 <area alt="eml-literature_xsd.tmp#CitationType_article" href="eml-literature_xsd.html#CitationType_article" coords="445,1862,509,1886" />
+                                 <area alt="eml-literature_xsd.tmp#CitationType_book" href="eml-literature_xsd.html#CitationType_book" coords="445,1952,503,1976" />
+                                 <area alt="eml-literature_xsd.tmp#CitationType_chapter" href="eml-literature_xsd.html#CitationType_chapter" coords="445,2042,517,2066" />
+                                 <area alt="eml-literature_xsd.tmp#CitationType_editedBook" href="eml-literature_xsd.html#CitationType_editedBook" coords="445,2132,535,2156" />
+                                 <area alt="eml-literature_xsd.tmp#CitationType_manuscript" href="eml-literature_xsd.html#CitationType_manuscript" coords="445,2222,537,2246" />
+                                 <area alt="eml-literature_xsd.tmp#CitationType_report" href="eml-literature_xsd.html#CitationType_report" coords="445,2312,510,2336" />
+                                 <area alt="eml-literature_xsd.tmp#CitationType_thesis" href="eml-literature_xsd.html#CitationType_thesis" coords="445,2402,508,2426" />
+                                 <area alt="eml-literature_xsd.tmp#CitationType_conferenceProceedings" href="eml-literature_xsd.html#CitationType_conferenceProceedings" coords="445,2492,602,2516" />
+                                 <area alt="eml-literature_xsd.tmp#CitationType_personalCommunication" href="eml-literature_xsd.html#CitationType_personalCommunication" coords="445,2569,608,2593" />
+                                 <area alt="eml-literature_xsd.tmp#CitationType_map" href="eml-literature_xsd.html#CitationType_map" coords="445,2646,499,2670" />
+                                 <area alt="eml-literature_xsd.tmp#CitationType_generic" href="eml-literature_xsd.html#CitationType_generic" coords="445,2736,516,2760" />
+                                 <area alt="eml-literature_xsd.tmp#CitationType_audioVisual" href="eml-literature_xsd.html#CitationType_audioVisual" coords="445,2826,538,2850" />
+                                 <area alt="eml-literature_xsd.tmp#CitationType_presentation" href="eml-literature_xsd.html#CitationType_presentation" coords="445,2916,544,2940" />
+                                 <area alt="eml-literature_xsd.tmp#CitationType_bibtex" href="eml-literature_xsd.html#CitationType_bibtex" coords="282,3006,347,3030" />
+                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup_references" href="eml-resource_xsd.html#ReferencesGroup_references" coords="367,3144,455,3168" />
+                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup" href="eml-resource_xsd.html#ReferencesGroup" coords="285,3099,453,3125" />
+                                 <area alt="eml-literature_xsd.tmp#CitationType" href="eml-literature_xsd.html#CitationType" coords="200,3,335,25" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -1387,7 +1560,7 @@ var modelBoxes= new Array('model_eml',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"citation"</span><span class="tAN"> type=</span><span class="tAV">"cit:CitationType"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Literature Resource summary: A resource that describes a literature citation that one might find in a bibliography. description: A resource that describes a literature citation that one might find in a bibliography. If included, this represents the primary resource that is described in this eml document.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
@@ -1428,7 +1601,21 @@ var modelBoxes= new Array('model_eml',
                         </td>
                         <td>
                            <div id="annotations_eml_software" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Software Resource</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: A resource that describes a software package, which can include</span><span class="tI">
+</span><span class="tT">                  commercial and non-commercial software as well as data processing programs. </span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: A resource that describes a software package, which can include</span><span class="tI">
+</span><span class="tT">                  commercial and non-commercial software as well as data processing programs. If</span><span class="tI">
+</span><span class="tT">                  included, this represents the primary resource that is described in this eml</span><span class="tI">
+</span><span class="tT">                  document.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -1439,36 +1626,36 @@ var modelBoxes= new Array('model_eml',
                         </td>
                         <td class="diagram">
                            <div id="diagram_eml_software" style="display:block"><img alt="Diagram" border="0" src="img/eml_xsd_Element_software.png" usemap="#eml_xsd_Element_software" /><map name="eml_xsd_Element_software" id="eml_xsd_Element_software">
-                                 <area alt="eml-software_xsd.tmp#SoftwareType_id" href="eml-software_xsd.html#SoftwareType_id" coords="210,78,278,102" />
-                                 <area alt="eml-software_xsd.tmp#SoftwareType_system" href="eml-software_xsd.html#SoftwareType_system" coords="210,112,296,136" />
-                                 <area alt="eml-software_xsd.tmp#SoftwareType_scope" href="eml-software_xsd.html#SoftwareType_scope" coords="210,146,290,170" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_alternateIdentifier" href="eml-resource_xsd.html#ResourceGroup_alternateIdentifier" coords="465,231,591,255" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_shortName" href="eml-resource_xsd.html#ResourceGroup_shortName" coords="465,265,555,289" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_title" href="eml-resource_xsd.html#ResourceGroup_title" coords="465,299,516,323" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_creator" href="eml-resource_xsd.html#ResourceGroup_creator" coords="465,333,535,357" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_metadataProvider" href="eml-resource_xsd.html#ResourceGroup_metadataProvider" coords="465,367,590,391" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_associatedParty" href="eml-resource_xsd.html#ResourceGroup_associatedParty" coords="465,401,580,425" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_pubDate" href="eml-resource_xsd.html#ResourceGroup_pubDate" coords="465,435,541,459" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_language" href="eml-resource_xsd.html#ResourceGroup_language" coords="465,469,545,493" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_series" href="eml-resource_xsd.html#ResourceGroup_series" coords="465,503,528,527" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_abstract" href="eml-resource_xsd.html#ResourceGroup_abstract" coords="465,537,540,561" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_keywordSet" href="eml-resource_xsd.html#ResourceGroup_keywordSet" coords="465,571,557,595" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_additionalInfo" href="eml-resource_xsd.html#ResourceGroup_additionalInfo" coords="465,605,570,629" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_intellectualRights" href="eml-resource_xsd.html#ResourceGroup_intellectualRights" coords="465,639,588,663" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_licensed" href="eml-resource_xsd.html#ResourceGroup_licensed" coords="465,673,540,697" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_distribution" href="eml-resource_xsd.html#ResourceGroup_distribution" coords="465,707,559,731" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_coverage" href="eml-resource_xsd.html#ResourceGroup_coverage" coords="465,741,545,765" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_annotation" href="eml-resource_xsd.html#ResourceGroup_annotation" coords="465,775,554,799" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup" href="eml-resource_xsd.html#ResourceGroup" coords="362,190,521,216" />
-                                 <area alt="eml-software_xsd.tmp#SoftwareType_implementation" href="eml-software_xsd.html#SoftwareType_implementation" coords="359,816,473,840" />
-                                 <area alt="eml-software_xsd.tmp#SoftwareType_dependency" href="eml-software_xsd.html#SoftwareType_dependency" coords="359,850,455,874" />
-                                 <area alt="eml-software_xsd.tmp#SoftwareType_licenseURL" href="eml-software_xsd.html#SoftwareType_licenseURL" coords="430,884,519,908" />
-                                 <area alt="eml-software_xsd.tmp#SoftwareType_license" href="eml-software_xsd.html#SoftwareType_license" coords="430,918,498,942" />
-                                 <area alt="eml-software_xsd.tmp#SoftwareType_version" href="eml-software_xsd.html#SoftwareType_version" coords="359,952,430,976" />
-                                 <area alt="eml-software_xsd.tmp#SoftwareType_project" href="eml-software_xsd.html#SoftwareType_project" coords="359,986,428,1010" />
-                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup_references" href="eml-resource_xsd.html#ReferencesGroup_references" coords="352,1068,440,1092" />
-                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup" href="eml-resource_xsd.html#ReferencesGroup" coords="270,1023,438,1049" />
-                                 <area alt="eml-software_xsd.tmp#SoftwareType" href="eml-software_xsd.html#SoftwareType" coords="185,3,325,25" /></map></div>
+                                 <area alt="eml-software_xsd.tmp#SoftwareType_id" href="eml-software_xsd.html#SoftwareType_id" coords="230,78,298,102" />
+                                 <area alt="eml-software_xsd.tmp#SoftwareType_system" href="eml-software_xsd.html#SoftwareType_system" coords="230,112,316,136" />
+                                 <area alt="eml-software_xsd.tmp#SoftwareType_scope" href="eml-software_xsd.html#SoftwareType_scope" coords="230,146,310,170" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_alternateIdentifier" href="eml-resource_xsd.html#ResourceGroup_alternateIdentifier" coords="485,231,611,255" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_shortName" href="eml-resource_xsd.html#ResourceGroup_shortName" coords="485,308,575,332" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_title" href="eml-resource_xsd.html#ResourceGroup_title" coords="485,398,536,422" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_creator" href="eml-resource_xsd.html#ResourceGroup_creator" coords="485,488,555,512" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_metadataProvider" href="eml-resource_xsd.html#ResourceGroup_metadataProvider" coords="485,578,610,602" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_associatedParty" href="eml-resource_xsd.html#ResourceGroup_associatedParty" coords="485,668,600,692" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_pubDate" href="eml-resource_xsd.html#ResourceGroup_pubDate" coords="485,758,561,782" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_language" href="eml-resource_xsd.html#ResourceGroup_language" coords="485,848,565,872" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_series" href="eml-resource_xsd.html#ResourceGroup_series" coords="485,938,548,962" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_abstract" href="eml-resource_xsd.html#ResourceGroup_abstract" coords="485,1028,560,1052" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_keywordSet" href="eml-resource_xsd.html#ResourceGroup_keywordSet" coords="485,1118,577,1142" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_additionalInfo" href="eml-resource_xsd.html#ResourceGroup_additionalInfo" coords="485,1208,590,1232" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_intellectualRights" href="eml-resource_xsd.html#ResourceGroup_intellectualRights" coords="485,1298,608,1322" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_licensed" href="eml-resource_xsd.html#ResourceGroup_licensed" coords="485,1375,560,1399" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_distribution" href="eml-resource_xsd.html#ResourceGroup_distribution" coords="485,1465,579,1489" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_coverage" href="eml-resource_xsd.html#ResourceGroup_coverage" coords="485,1542,565,1566" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_annotation" href="eml-resource_xsd.html#ResourceGroup_annotation" coords="485,1632,574,1656" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup" href="eml-resource_xsd.html#ResourceGroup" coords="382,190,541,216" />
+                                 <area alt="eml-software_xsd.tmp#SoftwareType_implementation" href="eml-software_xsd.html#SoftwareType_implementation" coords="379,1772,493,1796" />
+                                 <area alt="eml-software_xsd.tmp#SoftwareType_dependency" href="eml-software_xsd.html#SoftwareType_dependency" coords="379,1862,475,1886" />
+                                 <area alt="eml-software_xsd.tmp#SoftwareType_licenseURL" href="eml-software_xsd.html#SoftwareType_licenseURL" coords="450,1952,539,1976" />
+                                 <area alt="eml-software_xsd.tmp#SoftwareType_license" href="eml-software_xsd.html#SoftwareType_license" coords="450,2042,518,2066" />
+                                 <area alt="eml-software_xsd.tmp#SoftwareType_version" href="eml-software_xsd.html#SoftwareType_version" coords="379,2119,450,2143" />
+                                 <area alt="eml-software_xsd.tmp#SoftwareType_project" href="eml-software_xsd.html#SoftwareType_project" coords="379,2209,448,2233" />
+                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup_references" href="eml-resource_xsd.html#ReferencesGroup_references" coords="372,2347,460,2371" />
+                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup" href="eml-resource_xsd.html#ReferencesGroup" coords="290,2302,458,2328" />
+                                 <area alt="eml-software_xsd.tmp#SoftwareType" href="eml-software_xsd.html#SoftwareType" coords="205,3,345,25" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -1602,7 +1789,7 @@ var modelBoxes= new Array('model_eml',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"software"</span><span class="tAN"> type=</span><span class="tAV">"sw:SoftwareType"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Software Resource summary: A resource that describes a software package, which can include commercial and non-commercial software as well as data processing programs. description: A resource that describes a software package, which can include commercial and non-commercial software as well as data processing programs. If included, this represents the primary resource that is described in this eml document.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
@@ -1643,7 +1830,20 @@ var modelBoxes= new Array('model_eml',
                         </td>
                         <td>
                            <div id="annotations_eml_protocol" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Protocol Resource</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: A resource that describes a scientific protocol, which can include one</span><span class="tI">
+</span><span class="tT">                  or more descriptions of methods and procedures. </span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: A resource that describes a scientific protocol, which can include</span><span class="tI">
+</span><span class="tT">                  one or more descriptions of methods and procedures. If included, this represents</span><span class="tI">
+</span><span class="tT">                  the primary resource that is described in this eml document.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -1654,31 +1854,31 @@ var modelBoxes= new Array('model_eml',
                         </td>
                         <td class="diagram">
                            <div id="diagram_eml_protocol" style="display:block"><img alt="Diagram" border="0" src="img/eml_xsd_Element_protocol.png" usemap="#eml_xsd_Element_protocol" /><map name="eml_xsd_Element_protocol" id="eml_xsd_Element_protocol">
-                                 <area alt="eml-protocol_xsd.tmp#ProtocolType_id" href="eml-protocol_xsd.html#ProtocolType_id" coords="214,78,282,102" />
-                                 <area alt="eml-protocol_xsd.tmp#ProtocolType_system" href="eml-protocol_xsd.html#ProtocolType_system" coords="214,112,300,136" />
-                                 <area alt="eml-protocol_xsd.tmp#ProtocolType_scope" href="eml-protocol_xsd.html#ProtocolType_scope" coords="214,146,294,170" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_alternateIdentifier" href="eml-resource_xsd.html#ResourceGroup_alternateIdentifier" coords="469,231,595,255" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_shortName" href="eml-resource_xsd.html#ResourceGroup_shortName" coords="469,265,559,289" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_title" href="eml-resource_xsd.html#ResourceGroup_title" coords="469,299,520,323" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_creator" href="eml-resource_xsd.html#ResourceGroup_creator" coords="469,333,539,357" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_metadataProvider" href="eml-resource_xsd.html#ResourceGroup_metadataProvider" coords="469,367,594,391" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_associatedParty" href="eml-resource_xsd.html#ResourceGroup_associatedParty" coords="469,401,584,425" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_pubDate" href="eml-resource_xsd.html#ResourceGroup_pubDate" coords="469,435,545,459" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_language" href="eml-resource_xsd.html#ResourceGroup_language" coords="469,469,549,493" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_series" href="eml-resource_xsd.html#ResourceGroup_series" coords="469,503,532,527" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_abstract" href="eml-resource_xsd.html#ResourceGroup_abstract" coords="469,537,544,561" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_keywordSet" href="eml-resource_xsd.html#ResourceGroup_keywordSet" coords="469,571,561,595" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_additionalInfo" href="eml-resource_xsd.html#ResourceGroup_additionalInfo" coords="469,605,574,629" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_intellectualRights" href="eml-resource_xsd.html#ResourceGroup_intellectualRights" coords="469,639,592,663" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_licensed" href="eml-resource_xsd.html#ResourceGroup_licensed" coords="469,673,544,697" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_distribution" href="eml-resource_xsd.html#ResourceGroup_distribution" coords="469,707,563,731" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_coverage" href="eml-resource_xsd.html#ResourceGroup_coverage" coords="469,741,549,765" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_annotation" href="eml-resource_xsd.html#ResourceGroup_annotation" coords="469,775,558,799" />
-                                 <area alt="eml-resource_xsd.tmp#ResourceGroup" href="eml-resource_xsd.html#ResourceGroup" coords="366,190,525,216" />
-                                 <area alt="eml-protocol_xsd.tmp#ProtocolType_proceduralStep" href="eml-protocol_xsd.html#ProtocolType_proceduralStep" coords="363,816,476,840" />
-                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup_references" href="eml-resource_xsd.html#ReferencesGroup_references" coords="356,898,444,922" />
-                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup" href="eml-resource_xsd.html#ReferencesGroup" coords="274,853,442,879" />
-                                 <area alt="eml-protocol_xsd.tmp#ProtocolType" href="eml-protocol_xsd.html#ProtocolType" coords="189,3,333,25" /></map></div>
+                                 <area alt="eml-protocol_xsd.tmp#ProtocolType_id" href="eml-protocol_xsd.html#ProtocolType_id" coords="234,78,302,102" />
+                                 <area alt="eml-protocol_xsd.tmp#ProtocolType_system" href="eml-protocol_xsd.html#ProtocolType_system" coords="234,112,320,136" />
+                                 <area alt="eml-protocol_xsd.tmp#ProtocolType_scope" href="eml-protocol_xsd.html#ProtocolType_scope" coords="234,146,314,170" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_alternateIdentifier" href="eml-resource_xsd.html#ResourceGroup_alternateIdentifier" coords="489,231,615,255" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_shortName" href="eml-resource_xsd.html#ResourceGroup_shortName" coords="489,308,579,332" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_title" href="eml-resource_xsd.html#ResourceGroup_title" coords="489,398,540,422" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_creator" href="eml-resource_xsd.html#ResourceGroup_creator" coords="489,488,559,512" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_metadataProvider" href="eml-resource_xsd.html#ResourceGroup_metadataProvider" coords="489,578,614,602" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_associatedParty" href="eml-resource_xsd.html#ResourceGroup_associatedParty" coords="489,668,604,692" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_pubDate" href="eml-resource_xsd.html#ResourceGroup_pubDate" coords="489,758,565,782" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_language" href="eml-resource_xsd.html#ResourceGroup_language" coords="489,848,569,872" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_series" href="eml-resource_xsd.html#ResourceGroup_series" coords="489,938,552,962" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_abstract" href="eml-resource_xsd.html#ResourceGroup_abstract" coords="489,1028,564,1052" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_keywordSet" href="eml-resource_xsd.html#ResourceGroup_keywordSet" coords="489,1118,581,1142" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_additionalInfo" href="eml-resource_xsd.html#ResourceGroup_additionalInfo" coords="489,1208,594,1232" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_intellectualRights" href="eml-resource_xsd.html#ResourceGroup_intellectualRights" coords="489,1298,612,1322" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_licensed" href="eml-resource_xsd.html#ResourceGroup_licensed" coords="489,1375,564,1399" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_distribution" href="eml-resource_xsd.html#ResourceGroup_distribution" coords="489,1465,583,1489" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_coverage" href="eml-resource_xsd.html#ResourceGroup_coverage" coords="489,1542,569,1566" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup_annotation" href="eml-resource_xsd.html#ResourceGroup_annotation" coords="489,1632,578,1656" />
+                                 <area alt="eml-resource_xsd.tmp#ResourceGroup" href="eml-resource_xsd.html#ResourceGroup" coords="386,190,545,216" />
+                                 <area alt="eml-protocol_xsd.tmp#ProtocolType_proceduralStep" href="eml-protocol_xsd.html#ProtocolType_proceduralStep" coords="383,1772,496,1796" />
+                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup_references" href="eml-resource_xsd.html#ReferencesGroup_references" coords="376,1854,464,1878" />
+                                 <area alt="eml-resource_xsd.tmp#ReferencesGroup" href="eml-resource_xsd.html#ReferencesGroup" coords="294,1809,462,1835" />
+                                 <area alt="eml-protocol_xsd.tmp#ProtocolType" href="eml-protocol_xsd.html#ProtocolType" coords="209,3,353,25" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -1807,7 +2007,7 @@ var modelBoxes= new Array('model_eml',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"protocol"</span><span class="tAN"> type=</span><span class="tAV">"pro:ProtocolType"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Protocol Resource summary: A resource that describes a scientific protocol, which can include one or more descriptions of methods and procedures. description: A resource that describes a scientific protocol, which can include one or more descriptions of methods and procedures. If included, this represents the primary resource that is described in this eml document.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
@@ -1848,7 +2048,22 @@ var modelBoxes= new Array('model_eml',
                         </td>
                         <td>
                            <div id="annotations_eml_annotations" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Semantic Annotation List</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: A list of precisely-defined semantic statements about this resource.</span><span class="tI">
+</span><span class="tT">					</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: A list of annotations defining precise semantics</span><span class="tI">
+</span><span class="tT">						for parts of this resource.  The list consists of a set</span><span class="tI">
+</span><span class="tT">						of annotation elements, each referring to a subject within</span><span class="tI">
+</span><span class="tT">						the EML document using its references attribute, which provides</span><span class="tI">
+</span><span class="tT">						a pointer to the id of the element being annotated.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -1859,7 +2074,7 @@ var modelBoxes= new Array('model_eml',
                         </td>
                         <td class="diagram">
                            <div id="diagram_eml_annotations" style="display:block"><img alt="Diagram" border="0" src="img/eml_xsd_Element_annotations.png" usemap="#eml_xsd_Element_annotations" /><map name="eml_xsd_Element_annotations" id="eml_xsd_Element_annotations">
-                                 <area alt="eml_xsd.tmp#eml_eml_annotations_annotation" href="eml_xsd.html#eml_eml_annotations_annotation" coords="215,2,489,44" /></map></div>
+                                 <area alt="eml_xsd.tmp#eml_eml_annotations_annotation" href="eml_xsd.html#eml_eml_annotations_annotation" coords="235,2,509,44" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -1925,13 +2140,13 @@ var modelBoxes= new Array('model_eml',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"annotations"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Semantic Annotation List summary: A list of precisely-defined semantic statements about this resource. description: A list of annotations defining precise semantics for parts of this resource. The list consists of a set of annotation elements, each referring to a subject within the EML document using its references attribute, which provides a pointer to the id of the element being annotated.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"annotation"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Semantic Annotation summary: A precisely-defined semantic statement about an element in the EML document. description: An annotation represents a precisely-defined semantic statement that applies to this resource. This semantic statement is used to associate precise semantics with a particular element in the EML document. The id of the element being annotated is listed in the references attribute, and must point to a unique id within the EML document. Each annotation consists of a propertyURI and valueURI that define a property and value that apply to the resource. The subject of the statement is implicitly the element that is listed in the references attribute. The associated labels can be used to display the statement to users. Each URI is resolvable to a controlled vocabulary that provides a definition, relationships to other terms, and multiple labels for displaying the statement.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
           </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
@@ -1982,7 +2197,32 @@ var modelBoxes= new Array('model_eml',
                         </td>
                         <td>
                            <div id="annotations_eml_eml_annotations_annotation" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Semantic Annotation</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: A precisely-defined semantic statement about</span><span class="tI">
+</span><span class="tT">									an element in the EML document.</span><span class="tI">
+</span><span class="tT">								</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: An annotation represents a precisely-defined semantic</span><span class="tI">
+</span><span class="tT">									statement that applies to this resource.  This semantic</span><span class="tI">
+</span><span class="tT">									statement is used to associate precise semantics with a</span><span class="tI">
+</span><span class="tT">									particular element in the EML document.  The id of the</span><span class="tI">
+</span><span class="tT">									element being annotated is listed in the references attribute,</span><span class="tI">
+</span><span class="tT">									and must point to a unique id within the EML document.</span><span class="tI">
+</span><span class="tT">									Each annotation consists of a propertyURI and</span><span class="tI">
+</span><span class="tT">									valueURI that define a property and value that apply to the</span><span class="tI">
+</span><span class="tT">									resource. The subject of the statement is implicitly the</span><span class="tI">
+</span><span class="tT">									element that is listed in the references attribute.</span><span class="tI">
+</span><span class="tT">									The associated labels can be used to display the statement to users.</span><span class="tI">
+</span><span class="tT">									Each URI is resolvable to a controlled vocabulary</span><span class="tI">
+</span><span class="tT">									that provides a definition, relationships to other terms, and</span><span class="tI">
+</span><span class="tT">									multiple labels for displaying the statement.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -1993,13 +2233,13 @@ var modelBoxes= new Array('model_eml',
                         </td>
                         <td class="diagram">
                            <div id="diagram_eml_eml_annotations_annotation" style="display:block"><img alt="Diagram" border="0" src="img/eml_xsd_Element_annotation.png" usemap="#eml_xsd_Element_annotation" /><map name="eml_xsd_Element_annotation" id="eml_xsd_Element_annotation">
-                                 <area alt="eml-semantics_xsd.tmp#SemanticAnnotation_id" href="eml-semantics_xsd.html#SemanticAnnotation_id" coords="330,80,398,104" />
-                                 <area alt="eml-semantics_xsd.tmp#SemanticAnnotation_system" href="eml-semantics_xsd.html#SemanticAnnotation_system" coords="330,114,416,138" />
-                                 <area alt="eml-semantics_xsd.tmp#SemanticAnnotation_scope" href="eml-semantics_xsd.html#SemanticAnnotation_scope" coords="330,148,410,172" />
-                                 <area alt="eml-semantics_xsd.tmp#SemanticAnnotation_propertyURI" href="eml-semantics_xsd.html#SemanticAnnotation_propertyURI" coords="387,189,483,213" />
-                                 <area alt="eml-semantics_xsd.tmp#SemanticAnnotation_valueURI" href="eml-semantics_xsd.html#SemanticAnnotation_valueURI" coords="387,223,464,247" />
-                                 <area alt="eml-semantics_xsd.tmp#SemanticAnnotation" href="eml-semantics_xsd.html#SemanticAnnotation" coords="305,5,581,27" />
-                                 <area alt="eml_xsd.tmp#eml_eml_annotations_eml_eml_annotations_annotation_references" href="eml_xsd.html#eml_eml_annotations_eml_eml_annotations_annotation_references" coords="316,302,429,344" /></map></div>
+                                 <area alt="eml-semantics_xsd.tmp#SemanticAnnotation_id" href="eml-semantics_xsd.html#SemanticAnnotation_id" coords="350,80,418,104" />
+                                 <area alt="eml-semantics_xsd.tmp#SemanticAnnotation_system" href="eml-semantics_xsd.html#SemanticAnnotation_system" coords="350,114,436,138" />
+                                 <area alt="eml-semantics_xsd.tmp#SemanticAnnotation_scope" href="eml-semantics_xsd.html#SemanticAnnotation_scope" coords="350,148,430,172" />
+                                 <area alt="eml-semantics_xsd.tmp#SemanticAnnotation_propertyURI" href="eml-semantics_xsd.html#SemanticAnnotation_propertyURI" coords="407,189,503,213" />
+                                 <area alt="eml-semantics_xsd.tmp#SemanticAnnotation_valueURI" href="eml-semantics_xsd.html#SemanticAnnotation_valueURI" coords="407,279,484,303" />
+                                 <area alt="eml-semantics_xsd.tmp#SemanticAnnotation" href="eml-semantics_xsd.html#SemanticAnnotation" coords="325,5,601,27" />
+                                 <area alt="eml_xsd.tmp#eml_eml_annotations_eml_eml_annotations_annotation_references" href="eml_xsd.html#eml_eml_annotations_eml_eml_annotations_annotation_references" coords="336,457,449,499" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -2135,7 +2375,7 @@ var modelBoxes= new Array('model_eml',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"annotation"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Semantic Annotation summary: A precisely-defined semantic statement about an element in the EML document. description: An annotation represents a precisely-defined semantic statement that applies to this resource. This semantic statement is used to associate precise semantics with a particular element in the EML document. The id of the element being annotated is listed in the references attribute, and must point to a unique id within the EML document. Each annotation consists of a propertyURI and valueURI that define a property and value that apply to the resource. The subject of the statement is implicitly the element that is listed in the references attribute. The associated labels can be used to display the statement to users. Each URI is resolvable to a controlled vocabulary that provides a definition, relationships to other terms, and multiple labels for displaying the statement.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
@@ -2183,7 +2423,23 @@ var modelBoxes= new Array('model_eml',
                         </td>
                         <td>
                            <div id="annotations_eml_additionalMetadata" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Additional Metadata</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: A flexible field for including any other relevant metadata that pertains</span><span class="tI">
+</span><span class="tT">                to the resource being described.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: A flexible field for including any other relevant metadata that</span><span class="tI">
+</span><span class="tT">                pertains to the resource being described. This field allows EML to be extensible in</span><span class="tI">
+</span><span class="tT">                that any XML-based metadata can be included in this element, including metadata from</span><span class="tI">
+</span><span class="tT">                other standards such as the FGDC CSDGM. The "describes" element of this field allows</span><span class="tI">
+</span><span class="tT">                the specific part of the resource which is described by the additional metadata to</span><span class="tI">
+</span><span class="tT">                be indicated formally.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -2194,9 +2450,9 @@ var modelBoxes= new Array('model_eml',
                         </td>
                         <td class="diagram">
                            <div id="diagram_eml_additionalMetadata" style="display:block"><img alt="Diagram" border="0" src="img/eml_xsd_Element_additionalMetadata.png" usemap="#eml_xsd_Element_additionalMetadata" /><map name="eml_xsd_Element_additionalMetadata" id="eml_xsd_Element_additionalMetadata">
-                                 <area alt="eml_xsd.tmp#eml_eml_additionalMetadata_id" href="eml_xsd.html#eml_eml_additionalMetadata_id" coords="174,40,296,82" />
-                                 <area alt="eml_xsd.tmp#eml_eml_additionalMetadata_describes" href="eml_xsd.html#eml_eml_additionalMetadata_describes" coords="252,99,450,141" />
-                                 <area alt="eml_xsd.tmp#eml_eml_additionalMetadata_metadata" href="eml_xsd.html#eml_eml_additionalMetadata_metadata" coords="252,151,332,175" /></map></div>
+                                 <area alt="eml_xsd.tmp#eml_eml_additionalMetadata_id" href="eml_xsd.html#eml_eml_additionalMetadata_id" coords="194,40,316,82" />
+                                 <area alt="eml_xsd.tmp#eml_eml_additionalMetadata_describes" href="eml_xsd.html#eml_eml_additionalMetadata_describes" coords="272,99,470,141" />
+                                 <area alt="eml_xsd.tmp#eml_eml_additionalMetadata_metadata" href="eml_xsd.html#eml_eml_additionalMetadata_metadata" coords="272,194,352,218" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -2291,24 +2547,24 @@ var modelBoxes= new Array('model_eml',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"additionalMetadata"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Additional Metadata summary: A flexible field for including any other relevant metadata that pertains to the resource being described. description: A flexible field for including any other relevant metadata that pertains to the resource being described. This field allows EML to be extensible in that any XML-based metadata can be included in this element, including metadata from other standards such as the FGDC CSDGM. The "describes" element of this field allows the specific part of the resource which is described by the additional metadata to be indicated formally.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"describes"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Describes Reference summary: A pointer to the id attribute for the sub-portion of the resource that is described by this additional metadata. description: A pointer to the id attribute for the sub-portion of the resource that is described by this additional metadata. This is a formal field in that it is an error to provide a value in the "describes" element that does not correspond to the value of one of the "id" attributes in another eml module. This is designed to allow automated processors to discover the contextual relationship between the additional metadata and the resource it describes. example: knb.343.22</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"metadata"</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Additional metadata summary: This element contains the additional metadata that is to be included in the document. The content of this field can be any well-formed XML fragment. description: This element contains the additional metadata to be included in the document. This element should be used for extending EML to include metadata that is not already available in another part of the EML specification, or to include site- or system-specific extensions that are needed beyond the core metadata. The additional metadata contained in this field describes the element referenced in the 'describes' element preceding it. The content of this field is any well-formed XML fragment. If that content contains namespace declarations, and if the namespace declaration can be resolved to a schema definition, then the content will be validated against that schema definition. If no namespace is present, or if no schema can be resolved, validation for this fragment will be skipped (validation is "lax"). example: &lt;embargoDate&gt;2006-10-10&lt;/embargoDate&gt;</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
           </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
             </span><span class="tEl">&lt;xs:any</span><span class="tAN"> processContents=</span><span class="tAV">"lax"</span><span class="tEl">&gt;</span><span class="tI">
               </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Any Metadata summary: Any well-formed XML-formatted metadata may be inserted at this location in the EML document. If an element inserted here contains a reference to its namespace, and if there is an association between that namespace and an XML Schema that can be located by the processing application, then the processing application must validate the metadata element. If these conditions are not met, then validation need not occur. description: Any well-formed XML-formatted metadata may be inserted at this location in the EML document. If an element inserted here contains a reference to its namespace, and if there is an association between that namespace and an XML Schema that can be located by the processing application, then the processing application must validate the metadata element. If these conditions are not met, then validation need not occur.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
               </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
             </span><span class="tEl">&lt;/xs:any&gt;</span><span class="tI">
           </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
@@ -2356,7 +2612,26 @@ var modelBoxes= new Array('model_eml',
                         </td>
                         <td>
                            <div id="annotations_eml_eml_additionalMetadata_describes" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Describes Reference</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: A pointer to the id attribute for the sub-portion of the resource</span><span class="tI">
+</span><span class="tT">                      that is described by this additional metadata. </span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: A pointer to the id attribute for the sub-portion of the</span><span class="tI">
+</span><span class="tT">                      resource that is described by this additional metadata. This is a formal field</span><span class="tI">
+</span><span class="tT">                      in that it is an error to provide a value in the "describes" element that does</span><span class="tI">
+</span><span class="tT">                      not correspond to the value of one of the "id" attributes in another eml</span><span class="tI">
+</span><span class="tT">                      module. This is designed to allow automated processors to discover the</span><span class="tI">
+</span><span class="tT">                      contextual relationship between the additional metadata and the resource it</span><span class="tI">
+</span><span class="tT">                      describes. </span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: knb.343.22</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -2367,7 +2642,7 @@ var modelBoxes= new Array('model_eml',
                         </td>
                         <td class="diagram">
                            <div id="diagram_eml_eml_additionalMetadata_describes" style="display:block"><img alt="Diagram" border="0" src="img/eml_xsd_Element_describes.png" usemap="#eml_xsd_Element_describes" /><map name="eml_xsd_Element_describes" id="eml_xsd_Element_describes">
-                                 <area alt="eml-resource_xsd.tmp#NonEmptyStringType" href="eml-resource_xsd.html#NonEmptyStringType" coords="226,8,414,34" /></map></div>
+                                 <area alt="eml-resource_xsd.tmp#NonEmptyStringType" href="eml-resource_xsd.html#NonEmptyStringType" coords="246,8,434,34" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -2435,7 +2710,7 @@ var modelBoxes= new Array('model_eml',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"describes"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Describes Reference summary: A pointer to the id attribute for the sub-portion of the resource that is described by this additional metadata. description: A pointer to the id attribute for the sub-portion of the resource that is described by this additional metadata. This is a formal field in that it is an error to provide a value in the "describes" element that does not correspond to the value of one of the "id" attributes in another eml module. This is designed to allow automated processors to discover the contextual relationship between the additional metadata and the resource it describes. example: knb.343.22</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
@@ -2476,7 +2751,32 @@ var modelBoxes= new Array('model_eml',
                         </td>
                         <td>
                            <div id="annotations_eml_eml_additionalMetadata_metadata" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Additional metadata</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: This element contains the additional metadata that is to be</span><span class="tI">
+</span><span class="tT">                      included in the document. The content of this field can be any well-formed XML</span><span class="tI">
+</span><span class="tT">                      fragment. </span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: This element contains the additional metadata to be included in</span><span class="tI">
+</span><span class="tT">                      the document. This element should be used for extending EML to include</span><span class="tI">
+</span><span class="tT">                      metadata that is not already available in another part of the EML</span><span class="tI">
+</span><span class="tT">                      specification, or to include site- or system-specific extensions that are</span><span class="tI">
+</span><span class="tT">                      needed beyond the core metadata. The additional metadata contained in this</span><span class="tI">
+</span><span class="tT">                      field describes the element referenced in the 'describes' element preceding</span><span class="tI">
+</span><span class="tT">                      it. The content of this field is any well-formed XML fragment. If that content</span><span class="tI">
+</span><span class="tT">                      contains namespace declarations, and if the namespace declaration can be</span><span class="tI">
+</span><span class="tT">                      resolved to a schema definition, then the content will be validated against</span><span class="tI">
+</span><span class="tT">                      that schema definition. If no namespace is present, or if no schema can be</span><span class="tI">
+</span><span class="tT">                      resolved, validation for this fragment will be skipped (validation is "lax"). </span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: </span><span class="tI">
+</span><span class="tT">                      &lt;embargoDate&gt;2006-10-10&lt;/embargoDate&gt;</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -2523,13 +2823,13 @@ var modelBoxes= new Array('model_eml',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"metadata"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Additional metadata summary: This element contains the additional metadata that is to be included in the document. The content of this field can be any well-formed XML fragment. description: This element contains the additional metadata to be included in the document. This element should be used for extending EML to include metadata that is not already available in another part of the EML specification, or to include site- or system-specific extensions that are needed beyond the core metadata. The additional metadata contained in this field describes the element referenced in the 'describes' element preceding it. The content of this field is any well-formed XML fragment. If that content contains namespace declarations, and if the namespace declaration can be resolved to a schema definition, then the content will be validated against that schema definition. If no namespace is present, or if no schema can be resolved, validation for this fragment will be skipped (validation is "lax"). example: &lt;embargoDate&gt;2006-10-10&lt;/embargoDate&gt;</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:any</span><span class="tAN"> processContents=</span><span class="tAV">"lax"</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Any Metadata summary: Any well-formed XML-formatted metadata may be inserted at this location in the EML document. If an element inserted here contains a reference to its namespace, and if there is an association between that namespace and an XML Schema that can be located by the processing application, then the processing application must validate the metadata element. If these conditions are not met, then validation need not occur. description: Any well-formed XML-formatted metadata may be inserted at this location in the EML document. If an element inserted here contains a reference to its namespace, and if there is an association between that namespace and an XML Schema that can be located by the processing application, then the processing application must validate the metadata element. If these conditions are not met, then validation need not occur.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:any&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
@@ -2727,7 +3027,29 @@ var modelBoxes= new Array('model_eml',
                         </td>
                         <td>
                            <div id="annotations_eml_packageId" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Package Identifer</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: A globally unique identifier for the data package described by this EML metadata document that can be used</span><span class="tI">
+</span><span class="tT">              to cite it elsewhere.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: A globally unique identifier for the data package described by this EML metadata document</span><span class="tI">
+</span><span class="tT">              that can be used to cite it elsewhere. This identifier can be interpreted as the formal</span><span class="tI">
+</span><span class="tT">              accession number for the data package, and is therefore required. It must be globally unique</span><span class="tI">
+</span><span class="tT">              within a particular data management system, which should be specified in the system</span><span class="tI">
+</span><span class="tT">              attribute as a URI. Typically a DOI or other identifier that is both citable and</span><span class="tI">
+</span><span class="tT">              resolvable is used for published data packages.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: doi:10.5063/F17P8WGK</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: https://doi.org/10.5063/F17P8WGK</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: urn:uuid:04cd34fd-25d4-447f-ab6e-73a572c5d383</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -2778,7 +3100,7 @@ var modelBoxes= new Array('model_eml',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"packageId"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Package Identifer summary: A globally unique identifier for the data package described by this EML metadata document that can be used to cite it elsewhere. description: A globally unique identifier for the data package described by this EML metadata document that can be used to cite it elsewhere. This identifier can be interpreted as the formal accession number for the data package, and is therefore required. It must be globally unique within a particular data management system, which should be specified in the system attribute as a URI. Typically a DOI or other identifier that is both citable and resolvable is used for published data packages. example: doi:10.5063/F17P8WGK example: https://doi.org/10.5063/F17P8WGK example: urn:uuid:04cd34fd-25d4-447f-ab6e-73a572c5d383</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:attribute&gt;</span></pre></td>
                                  </tr>
@@ -2896,7 +3218,23 @@ var modelBoxes= new Array('model_eml',
                         </td>
                         <td>
                            <div id="annotations_eml_scope" style="display:block">
-                              <div class="annotation"></div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">tooltip: Identifer Scope</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">summary: The scope of the identifier.</span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">description: The scope of the identifier. Scope is generally set to either "system",</span><span class="tI">
+</span><span class="tT">              meaning that it is scoped according to the "system" attribute, or "document" if it is</span><span class="tI">
+</span><span class="tT">              only to be in scope within this single document instance. In this particular use of</span><span class="tI">
+</span><span class="tT">              scope, it is FIXED to be "system" because the packageId is required and always has the</span><span class="tI">
+</span><span class="tT">              scope of the required "system". </span><span class="tI">
+</span><span class="tT"></span><span class="tI">
+</span><span class="tT">example: system</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </td>
                      </tr>
@@ -2973,7 +3311,7 @@ var modelBoxes= new Array('model_eml',
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"scope"</span><span class="tAN"> type=</span><span class="tAV">"res:ScopeType"</span><span class="tAN"> fixed=</span><span class="tAV">"system"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xmlns:doc=</span><span class="tAV">"eml://ecoinformatics.org/documentation-2.2.0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Identifer Scope summary: The scope of the identifier. description: The scope of the identifier. Scope is generally set to either "system", meaning that it is scoped according to the "system" attribute, or "document" if it is only to be in scope within this single document instance. In this particular use of scope, it is FIXED to be "system" because the packageId is required and always has the scope of the required "system". example: system</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:attribute&gt;</span></pre></td>
                                  </tr>
