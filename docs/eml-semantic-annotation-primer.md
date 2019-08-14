@@ -4,51 +4,36 @@
 
 ## Introduction
 
-A semantic annotation creates a relationship between some semantic metadata and a resource - in this case, a dataset, or some other element of a dataset (e.g. an attribute). What makes the annotation "semantic" is that the resource is linked to a well-defined term in a web-accessible Ontology.  In this way, semantic annotation provides access to precise definitions of concepts, and clarifies the relationships among concepts in a machine-readable way. The process of creating semantic annotations may seem tedious, but the payoff is enhanced discovery and reuse of your data. 
+A semantic annotation creates a relationship between some semantic metadata and a resource - in this case, a dataset, or some other element of a dataset (e.g., an attribute). What makes the annotation "semantic" is that the resource is linked to a well-defined term in a web-accessible ontology. In this way, semantic annotation provides access to precise definitions of concepts, and clarifies the relationships among concepts in a machine-readable way. Creating semantic annotations does require additional effort but payoffs by enhancing discovery and reuse of your data. 
 
 The main differences between semantic annotation and simply adding keywords are: 
 - semantic annotations can be read and interpreted by computers 
 - semantic annotations describe the relationship between a specific part of the metadata and terms in external vocabularies
 - semantic annotations use W3C-recommended languages to express these relationships via the Web
  
-In discussing further how annotation works within EML, we will assume that all mentions of "annotation" imply "semantic annotation", as described above.  That is, more generic methods for annotating data and metadata exist (e.g. using keywords), but these are not nearly as powerful as "semantic annotation".
+For the purposes of this document all mentions of "annotation" imply "semantic annotation" as described above. Whereas more generic methods for annotating data and metadata exist (e.g., using keywords), these are not nearly as powerful as "semantic annotation".
 
-**Benefits of annotation:** Annotations vastly enhance data discovery and interpretation. Semantic annotations will make it easier for others to find and reuse data (and thus give proper credit), including the following cases: 
+**Benefits of annotation:** Annotations enhance data discovery and interpretation thereby making it easier for others to find and reuse data (and thus give proper credit). For example, consider the following cases: 
 
-1. **Finding synonymous concepts:** Assume one dataset uses the phrase "carbon dioxide flux" and another dataset "CO2 flux". 
-An information system can recognize, through semantic annotation, that these datasets are about the "same" concepts, if the datasets were annotated using the same term identifier for that measurement. 
-1. **Disambiguating terms:**  If datasets have been annotated, the system can assist in providing only results relevant for your intended meaning. For example, if you are searching for datasets about "litter" (as in "plant litter"), other irrelevant terms also labelled as "litter" (e.g., "garbage" or a "group of animals born together") can be eliminated from your search results. This is because each distinct type of "litter" would be associated with a different identifier. 
-1. **Hierarchical searches:** If you search for datasets containing "carbon flux" measurements, then datasets annotated as having measurements of "carbon dioxide flux" or "CO2 flux" will also be returned, because these are both types of "carbon flux".  This is possible if the concepts come from a structured vocabulary where "carbon dioxide flux" is lower down in the hierarchy (i.e. is a subclass) of "carbon flux".
+1. **Finding synonymous concepts:** Assume one dataset uses the phrase "carbon dioxide flux" and another dataset "CO2 flux". An information system can recognize, through semantic annotation, that these datasets are about the same concepts if the datasets were annotated using the same term identifier for that measurement. 
+1. **Disambiguating terms:** If datasets have been annotated, the system can assist in providing only results relevant for your intended meaning. For example, if you are searching for datasets about "litter" (as in "plant litter"), other irrelevant terms also labelled as "litter" (e.g., "garbage" or a "group of animals born together") can be eliminated from your search results. This is because each distinct type of "litter" would be associated with a different identifier. 
+1. **Hierarchical searches:** If you search for datasets containing "carbon flux" measurements, then datasets annotated as having measurements of "carbon dioxide flux" or "CO2 flux" will also be returned because these are both types of "carbon flux". This is possible if the concepts come from a structured vocabulary where "carbon dioxide flux" is lower in the hierarchy (i.e., is a subclass) of "carbon flux".
 
 
-EML 2.2.0 now provides five ways to embed references to terms in *[external vocabularies](#external-vocabularies)* 
-(also known as *[ontologies](#glossary-ontology)* using HTTP [uniform resource identifiers or URIs](#glossary-uri). The association of 
-an element in an EML metadata document with that external reference, is a *semantic annotation*. By referencing terms 
-from an external vocabulary, one can provide a rigorous, expressive and consistent interpretation of the metadata.  
-This is only true, however, if the external vocabulary itself is well-constructed, and expressed in a W3C semantic web 
-language. Since the external reference (or annotation) is to a *controlled vocabulary* or *[ontology](#glossary-ontology)*, 
-the annotation provides a computer-usable [pointer](#glossary-pointer) (the HTTP [URI](#glossary-uri)) 
-that [resolves](#glossary-resolve) (and [dereferences](#glossary-dereference)) to a useful description, 
-definition or specification of other relationships for that annotated resource. 
+There are five locations within the EML 2.2.0 schema to embed references to terms in [external vocabularies](#external-vocabularies) (also known as [ontologies](#glossary-ontology)) using HTTP [uniform resource identifiers or URIs](#glossary-uri). The association of an element in an EML metadata document with that external reference is a *semantic annotation*. By referencing terms from an external vocabulary, one can provide a rigorous, expressive, and consistent interpretation of the metadata. This is only true, however, if the external vocabulary itself is well-constructed, and expressed in a W3C semantic web language. Since the external reference (or annotation) is to a *controlled vocabulary* or *[ontology](#glossary-ontology)*, the annotation provides a computer-usable [pointer](#glossary-pointer) (the HTTP [URI](#glossary-uri)) that [resolves](#glossary-resolve) (and [dereferences](#glossary-dereference)) to a useful description, definition, or specification of other relationships for that annotated resource. 
 
 Related FAQ: [How do computers use EML annotations?](#faq-how-do-computers-use-eml-annotations)
 
 
 ### Take-home messages
 
-- **Semantic statements must be logically consistent, as they are not simply a set of loosely structured keywords.** 
-- **EML 2.2.0 has five places or methods to add annotations** (described in greater detail below).  
-- **The best place for advice and feedback on EML annotations is your data management community**
+- Semantic statements must be logically consistent, as they are not simply a set of loosely structured keywords.
+- EML 2.2.0 has five places or methods that accept annotations (described in greater detail below). 
+- The best place for advice and feedback on EML annotations is your data management community
 
 ### Organization of this document
 
-The purpose of this Primer is to provide an introduction to how semantic annotations are structured in EML documents. 
-It is expected that you already are familiar with the EML schema.
-The focus of this document is specifically to explain and provide examples of annotations in EML. 
-This Primer is divided into three major sections, (including this [Introduction](#introduction)). 
-You should be able to create EML annotations immediately, using 
-only the main section [Semantic Annotations in EML 2.2.0](#sa-eml22), referencing the [Appendix](#appendix) when 
-you would like a longer explanation.
+The purpose of this primer is to provide an introduction to how semantic annotations are structured in EML documents. It is expected that the readers is already familiar with the EML schema. This primer is divided into three major sections, including this [Introduction](#introduction)), the central text ([Semantic Annotations in EML 2.2.0](#sa-eml22)), and an [Appendix](#appendix). While the central text of the primer ([Semantic Annotations in EML 2.2.0](#sa-eml22)) should provide all the information needed to create annotations in EML, additional details and more in-depth explanations are provided in the [Appendix](#appendix).
 
  -  **[Introduction](#introduction)**
  -  **[Semantic Annotations in EML 2.2.0](#sa-eml22)**, with examples. Where used, EML elements are shown as inline code blocks (e.g., `elementName`).
@@ -65,26 +50,25 @@ you would like a longer explanation.
 
 ### Other Conventions and Terminology
 
-- Use of the terms "*required*" or "*must*": this features is a *requirement* of EML 2.2
-- Use of the term "*should*": this feature is not required by EML 2.2 schema, but is a recommended or emerging best practice. It is not checked by the EML schema or parser, but could be checked or confirmed by an external system.
+- Use of the terms "*required*" or "*must*": this feature is a *requirement* of EML 2.2
+- Use of the term "*should*": this feature is not required by EML 2.2 schema but is a recommended or emerging best practice. It is not checked by the EML schema or parser, but could be checked or confirmed by an external system.
 
 
 <a name="sa-eml22"></a>
 
 ## Semantic Annotations in EML 2.2.0
 
-In **EML 2.2.0** there are 5 places where annotation elements can appear in an EML document: 
+There are five locations within the EML 2.2.0 schema where annotations can be included: 
 
-- **top-level resource**  -- an `annotation` element is a child of the `dataset`, `literature`, `software`, or `protocol` elements
-- **entity-level** -- an `annotation` element is a child of a dataset's entity (e.g., `dataTable` )
-- **attribute** -- an `annotation` element is a child of a dataset entity's `attribute` element
-- **eml/annotations** -- a container for a group of `annotation` elements, using references
-- **eml/additionalMetadata** -- `annotation` elements that reference a main-body element by its `id` attribute
+- **top-level resource**: an `annotation` element is a child of the `dataset`, `literature`, `software`, or `protocol` elements
+- **entity-level**: an `annotation` element is a child of a dataset's entity (e.g., dataTable)
+- **attribute**: an annotation element is a child of a dataset entity's`attribute element
+- **eml/annotations**: a container for a group of `annotation`elements, using references
+- **eml/additionalMetadata**: `annotation elements that reference a main-body element by its `id` attribute
 
 ### Annotation element structure
 
-All annotation nodes are defined as an XML type, so they have the same structure anywhere they appear
-in the EML record. Here is the basic structure. Sections below have more examples.
+All annotation nodes are defined as an XML type so they have the same structure anywhere they appear in the EML record. The basic structure is listed below (additional examples are provided in the following sections).
 
 ```xml
     <annotation>
@@ -93,38 +77,22 @@ in the EML record. Here is the basic structure. Sections below have more example
     </annotation>
 ```
 
-An annotation element always has a parent-EML element, which is the 'thing' being annotated, or the *subject*.
-(e.g., the `dataset`, `attribute`, etc.). The `annotation` element
-has two required child elements, `propertyURI` and `valueURI`. Together, these two child elements, 
-along with the *subject*, form a "semantic statement", that can become a "semantic triple". 
-The concept of a triple is covered in more detail  (see [Semantic Triples](#semantic-triples), below). 
-Here, we concentrate on the structure of an annotation within the EML doc itself:
+An annotation element always has a parent-EML element, which is the 'thing' being annotated, or the *subject* (e.g., the `dataset`, `attribute`). The `annotation` element has two required child elements: `propertyURI` and `valueURI`. Together, these two child elements, along with the *subject*, form a "semantic statement" that can become a "semantic triple". The concept of a triple is covered in more detail (see [Semantic Triples](#semantic-triples), below). Here, we concentrate on the structure of an annotation within the EML document itself:
 
 - `propertyURI` and `valueURI` elements  
-  - each element's text is the [URI](#faq-uri) for the concept in an external vocabulary. The [URI](#faq-uri) points to a term in a vocabulary where a definition, description, and that term's relationships to other concepts, are formally modelled. Content is required by the EML schema, and it should be a [URI](#faq-uri).
-  - the XML attribute, `label` is required (for both `propertyURI` and `valueURI`)
+  - each element's text is the [URI](#faq-uri) for the concept in an external vocabulary. The [URI](#faq-uri) points to a term in a vocabulary where a definition, description, and that term's relationships to other concepts are formally modelled. Content is required by the EML schema, and it should be a [URI](#faq-uri).
+  - the XML attribute `label` is required (for both `propertyURI` and `valueURI`)
       - it should be suitable for application interfaces to display to humans
-      - it should be populated, with values from the referenced vocabulary's label field (e,g, `rdfs:label` or `skos:prefLabel` ). Note that this assumes the referenced vocabulary is stored as an RDF document, which is current best practice for sharing scientific vocabularies over the Web.
+      - it should be populated with values from the referenced vocabulary's label field (e,g., `rdfs:label` or `skos:prefLabel`). Note that this assumes the referenced vocabulary is stored as an RDF document, which is current best practice for sharing scientific vocabularies over the Web.
 
 <a name="faq-why-do-annotations-need-ids"></a>
 
-**When are IDs required in the EML doc?**
-All annotations must have an unambiguous subject. 
-At the dataset-, entity-, or attribute- level, the parent element *is the subject* (e.g., `<dataset>`, `<dataTable>`, `<attribute>`),
-and precision of nodes in EML is guaranteed by the element's id. 
-Said another way, if an element has
-an annotation child, it must also have an id so it can become the annotation *subject*). 
-Annotations at `eml/annotations` or `eml/additionalMetadata` will have subjects defined with a `references` attribute or `describes` element. 
-As with other internal EML references, an `id` is required. 
-With EML 2.2.0, the parser will check that an `id` attribute is present on elements with annotation children. 
-As a reminder, the `id` must be unique within an EML document.  Ideally, that `id` either is, or can readily be translated into an HTTP URI, that can be dereferenced. See examples below.
+**A note about annotations and element IDs** All annotations must have an unambiguous subject. At the dataset-, entity-, or attribute- level, the parent element *is the subject* (e.g., `<dataset>`, `<dataTable>`, `<attribute>`), and precision of nodes in EML is guaranteed by the element's id. That is, if an element has an annotation child, it must also have an id so it can become the annotation *subject*. Annotations at `eml/annotations` or `eml/additionalMetadata` will have subjects defined with a `references` attribute or `describes` element. As with other internal EML references, an `id` is required. With EML 2.2.0, the parser will check that an `id` attribute is present on elements with annotation children. As a reminder, the `id` must be unique within an EML document. Ideally, that `id` either is, or can readily be translated into, an HTTP URI that can be dereferenced (see examples below).
 
 
 ### Top-level resource, entity-level, and attribute annotations 
 
-Annotations for top-level resources, entities, and attributes follow the same general pattern.
-
-- The *subject* of the semantic statement is the parent element of the annotation. It must have an `id` attribute. 
+Annotations for top-level resources, entities, and attributes follow the same general pattern: the *subject* of the semantic statement is the parent element of the annotation; it must have an `id` attribute. 
 
 <a name="eml-example-1"></a>
 
@@ -163,7 +131,7 @@ id 'dataset-01' is about grassland biome(s)".
 </dataset>  
 ```
 
-TO DO - probably an FAQ HERE  "what is a proper subject?"
+<!-- TODO: probably an FAQ HERE  "what is a proper subject?" -->
 
 
 <a name="eml-example-2"></a>
@@ -197,7 +165,7 @@ In the following entity-level annotation, the semantic statement can be read as
 ```
 
 
-TO DO - probably an FAQ HERE  "what is a proper subject?"
+<!-- TODO: probably an FAQ HERE  "what is a proper subject?" -->
 
 
 <a name="eml-example-3"></a>
@@ -228,36 +196,28 @@ Related FAQ: [Are all EML dataTable attributes measurements?](#FAQ-are-all-eml-a
 </attribute>
 ```
 
-TO DO - probably an FAQ HERE  "what is a proper subject?"
+<!-- TODO: probably an FAQ HERE  "what is a proper subject?" -->
 
 
-**[Example 3 as an RDF graph](#rdf-eml-example-3)**
+[example 3 presented as an RDF graph](#rdf-eml-example-3)
 
 
 ### `eml/annotations` element annotation
 
-An annotation in the `annotations` element differs from Examples 1-3 above, because the subject is directly referred 
-to by a `references` attribute. Each `annotation` element has a `references` attribute that 
-points to the `id` attribute of the element being annotated. Stated another way, what is listed in the `references` attribute 
-is the id of the subject of the semantic annotation. Any of the EML modules may be referenced by the `references` 
-attribute and because ids are unique within an EML document, this is a single subject. 
+An annotation in the `annotations` element differs from Examples 1-3 above because the subject is directly referred to by a `references` attribute. Each `annotation` element has a `references` attribute that points to the `id` attribute of the element being annotated. That is, what is listed in the `references` attribute is the id of the subject of the semantic annotation. Any of the EML modules may be referenced by the `references` attribute and because ids are unique within an EML document, this is a single subject. 
 
-- The *subject* of the semantic statement is implictly the element containing the referenced `id`. 
-
+- The *subject* of the semantic statement is implicitly the element containing the referenced `id`. 
 
 
 <a name="eml-example-4"></a>
 
 #### Example 4: `annotations` element annotation
 
-All the annotations for a resource can be grouped together under an `annotations` element. If you use this construct, each
-annotation must have its subject specifically identified with a `references` attribute that points to the subject's id. The group
-of annotations must be placed TO DO< WHERE IN DOC? [[MPS: I don't know the answer to this. Is there an XML/EML expert in the house?!!!]]
+All the annotations for a resource can be grouped together under an `annotations` element. If you use this construct, each annotation must have its subject specifically identified with a `references` attribute that points to the subject's id. The group of annotations must be placed TO DO< WHERE IN DOC? [[MPS: I don't know the answer to this. Is there an XML/EML expert in the house?!!!]]
 
 Example 4 contains 3 different annotations. 
 
-In the first, the subject is the `dataTable` element with the `id` 
-of "CDF-soil-table". Its annotation components are analogous to Example 2 above, again referencing terms in [IAO](#iao) and [ENVO](#envo). The semantic statement can be read as 
+In the first, the subject is the `dataTable` element with the `id` of "CDF-soil-table". Its annotation components are analogous to Example 2 above, again referencing terms in [IAO](#iao) and [ENVO](#envo). The semantic statement can be read as 
 
 -  "the dataTable with the `id` 'CDR-soil-table' is about grassland biome(s)".
 
