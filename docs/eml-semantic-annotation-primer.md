@@ -163,7 +163,8 @@ id 'dataset-01' is about grassland biome(s)".
 </dataset>  
 ```
 
-Note that the subject `id` here is not in an optimal format for creation of a "real" semantic annotation, as it is not in the form of a dereferenceable HTTP URI.  Ideally this "local identifier" can be readily translated into an HTTP URI that will provide an unambiguous and persistent identifier for the subject dataset (e.g. instead of just "dataset-01" it could have the format of "http://dataone.org/datasets/urn:node:cdr/dataset-01" [a fictional URI shown here for demonstration purposes]).  This latter URI either could be specified directly, given certain conditions, or generated as appropriate by the metadata framework.  There needs to be caution that `id`s within an EML document must be unique, unless properly "scoped" and/or a "references" element is used for any further usages of that `id`. Without a full HTTP URI in the subject position of the annotation, the annotation will only be interpretable within the framework that generated the `id`. This is still quite useful, however, as the `property` and `value` URIs are to external sources that provide information, and that other frameworks can also use and reference, leading to consistency and interoperability in interpreting metadata contents. 
+TO DO - probably an FAQ HERE  "what is a proper subject?"
+
 
 <a name="eml-example-2"></a>
 
@@ -194,11 +195,10 @@ In the following entity-level annotation, the semantic statement can be read as
     <annotation>
 </otherEntity>
 ```
-Note in this case that the *subject* is again not in the form of a (potentially) dereferenceable HTTP URI.  It does unambiguously "point to" the correct data object identified by the URN, but this is interpretable within some specific framework (e.g. here it would be a DataONE URN).  We do know, however, through the semantic annotation, that the subject data resource *is about* "Mammalia". Ideally, however, the subject, either internally or as a framework service, can be represented with a fully dereferenceable HTTP URI, e.g. in this case:
-https://cn.dataone.org/cn/v2/resolve/urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b
 
-While the above URI will dereference to the correct dataset on DataONE, it will automatically start downloading the data.
-In the near future, content negotiation will improve this behavior, such that the server-response will be appropriate for the requesting client: e.g. if the requesting client is a Web browser, generate a human-readable HTML-page output; whereas if the requesting client is an R-script, where the URI is an argument to a read.csv function, the data will be downloaded and an appropriate R data-object generated.
+
+TO DO - probably an FAQ HERE  "what is a proper subject?"
+
 
 <a name="eml-example-3"></a>
 
@@ -228,12 +228,7 @@ Related FAQ: [Are all EML dataTable attributes measurements?](#FAQ-are-all-eml-a
 </attribute>
 ```
 
-Here again the *subject* does unambiguously "point to" a specific metadata object *within the EML document*, but it would be much more generally useful and powerful if it could stand-alone as an HTTP URI that points to the correct attribute simply by dereferencing the URI with a Web browser client. 
-
-In the near future, DataONE will implement just such a "resolver service", using an HTTP URI similar in format to:
-<http://dataone.org/dataset/urn:node:edi/doi:data-entity_ID/attr.4> (a fictional URI shown here for demonstration purposes).
-
-Dereferencing this URI would place one on an HTML page for that data object, at the location of the appropriate attribute within the appropriate entity.
+TO DO - probably an FAQ HERE  "what is a proper subject?"
 
 
 **[Example 3 as an RDF graph](#rdf-eml-example-3)**
