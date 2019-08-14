@@ -21,7 +21,17 @@ An information system can recognize, through semantic annotation, that these dat
 1. **Hierarchical searches:** If you search for datasets containing "carbon flux" measurements, then datasets annotated as having measurements of "carbon dioxide flux" or "CO2 flux" will also be returned, because these are both types of "carbon flux".  This is possible if the concepts come from a structured vocabulary where "carbon dioxide flux" is lower down in the hierarchy (i.e. is a subclass) of "carbon flux".
 
 
-EML 2.2.0 now provides five ways to embed references to terms in *[external vocabularies](#external-vocabularies)* (also known as *ontologies*) using HTTP [uniform resource identifiers](#glossary-uri) (or URIs). The association of an element in an EML metadata document with that external reference, is a *semantic annotation*. By referencing terms from an external vocabulary, one can provide a rigorous, expressive and consistent interpretation of the metadata.  This is only true, however, if the external vocabulary itself is well-constructed, and expressed in a W3C semantic web language. Since the external reference (or annotation) is to a *controlled vocabulary* or *[ontology](#glossary-ontology)*, the annotation provides a computer-usable [pointer](#glossary-pointer) (the HTTP URI) that [resolves](#glossary-resolve) (and [dereferences](#glossary-dereference)) to a useful description, definition or specification of other relationships for that annotated resource. Annotations can also be extracted from an EML document, and re-expressed (formally, "serialized") into a Semantic Web language such as RDF or JSON-LD. Annotations (also called "assertions" or "triples" in RDF) collectively contribute to a *[knowledge graph](#glossary-knowledge-graph)*, that captures understanding of the relationship of the contents of datasets (as "instances") with the concepts represented by terms in ontologies (as "classes"). 
+EML 2.2.0 now provides five ways to embed references to terms in *[external vocabularies](#external-vocabularies)* 
+(also known as *[ontologies](#glossary-ontology)* using HTTP [uniform resource identifiers or URIs](#glossary-uri). The association of 
+an element in an EML metadata document with that external reference, is a *semantic annotation*. By referencing terms 
+from an external vocabulary, one can provide a rigorous, expressive and consistent interpretation of the metadata.  
+This is only true, however, if the external vocabulary itself is well-constructed, and expressed in a W3C semantic web 
+language. Since the external reference (or annotation) is to a *controlled vocabulary* or *[ontology](#glossary-ontology)*, 
+the annotation provides a computer-usable [pointer](#glossary-pointer) (the HTTP [URI](#glossary-uri)) 
+that [resolves](#glossary-resolve) (and [dereferences](#glossary-dereference)) to a useful description, 
+definition or specification of other relationships for that annotated resource. 
+
+Related FAQ: [How do computers use EML annotations?](#faq-how-do-computers-use-eml-annotations)
 
 
 ### Take-home messages
@@ -33,23 +43,30 @@ EML 2.2.0 now provides five ways to embed references to terms in *[external voca
 ### Organization of this document
 
 The purpose of this Primer is to provide an introduction to how semantic annotations are structured in EML documents. 
-It is expected that you already have some familiarity with the EML schema.
+It is expected that you already are familiar with the EML schema.
 The focus of this document is specifically to explain and provide examples of annotations in EML. 
-This Primer is divided into three major sections, the first being the [Introduction](#introduction) (this section). You should be able to create EML annotations immediately, using 
+This Primer is divided into three major sections, (including this [Introduction](#introduction)). 
+You should be able to create EML annotations immediately, using 
 only the main section [Semantic Annotations in EML 2.2.0](#sa-eml22), referencing the [Appendix](#appendix) when 
 you would like a longer explanation.
 
  -  **[Introduction](#introduction)**
  -  **[Semantic Annotations in EML 2.2.0](#sa-eml22)**, with examples. Where used, EML elements are shown as inline code blocks (e.g., `elementName`).
- -  **[Appendix:](#appendix)** Additional information on specific related topics, linked from the Introduction and Semantic Annotations in EML 2.2.0 section.
+ -  **[Appendix:](#appendix)** Additional information on specific related topics, linked from other sections.
     - **[Glossary:](#glossary)** Glossary of terms, linked from text
-    - **[Semantic triples:](#semantic-triples)** Details on their structure, and how that structure is leveraged by annotations with examples of their power
+    - **[Semantic triples:](#semantic-triples)** Details on their structure (and machine use). Explanation of how that structure is leveraged by annotations with examples of their power
     - **[URIs:](#uris)** Defined, and as components of semantic triples
     - **[RDF model and graphs:](#rdf)** Brief description of the W3C's RDF model with example graphs based on EML annotations
     - **[Logical consistency:](#logical-consistency)** Common mistakes and how to check for them
     - **[Vocabularies and repositories used in examples:](#external-vocabularies)** Descriptions and links out to explore further
     - **[Additional background information:](#additional-background)** The EML annotation approach here is compatible with recommendations by the World Wide Web Consortium (W3C) for construction of the Semantic Web. A wealth of material is available; a few selected ones are suggested here.
     - **[Frequently asked questions:](#FAQ)** Some questions asked by readers, and their answers
+
+
+### Other Conventions and Terminology
+
+- Use of the terms "*required*" or "*must*": this features is a *requirement* of EML 2.2
+- Use of the term "*should*": this feature is not required by EML 2.2 schema, but is a recommended or emerging best practice. It is not checked by the EML schema or parser, but could be checked or confirmed by an external system.
 
 
 <a name="sa-eml22"></a>
@@ -77,21 +94,28 @@ in the EML record. Here is the basic structure. Sections below have more example
 ```
 
 An annotation element always has a parent-EML element, which is the 'thing' being annotated, or the *subject*.
-(e.g., `dataset`, `attribute`, etc., see above). The `annotation` element
-has two required child elements, `propertyURI` and `valueURI`. Together, these two child elements, along with the *subject*, form a "semantic statement", that can become a "semantic triple". The concept of a triple is covered in more detail  (see [Semantic Triples](#semantic-triples), below). 
+(e.g., the `dataset`, `attribute`, etc.). The `annotation` element
+has two required child elements, `propertyURI` and `valueURI`. Together, these two child elements, 
+along with the *subject*, form a "semantic statement", that can become a "semantic triple". 
+The concept of a triple is covered in more detail  (see [Semantic Triples](#semantic-triples), below). 
 Here, we concentrate on the structure of an annotation within the EML doc itself:
 
 - `propertyURI` and `valueURI` elements  
-  - the element's text is the URI for the concept in an external vocabulary. The identifier (URI) points to some term in a vocabulary where a definition, description, and (potentially) that term's relationships to other concepts, are formally modelled. 
-  - the XML attribute, `label` is required
+  - each element's text is the [URI](#faq-uri) for the concept in an external vocabulary. The [URI](#faq-uri) points to a term in a vocabulary where a definition, description, and that term's relationships to other concepts, are formally modelled. Content is required by the EML schema, and it should be a [URI](#faq-uri).
+  - the XML attribute, `label` is required (for both `propertyURI` and `valueURI`)
       - it should be suitable for application interfaces to display to humans
-      - it should be populated, by default, with values from the referenced vocabulary's label field (e,g, `rdfs:label` or `skos:prefLabel` ). Note that this assumes the referenced vocabulary is stored as an RDF document, which is current best practice for sharing scientific vocabularies over the Web.
+      - it should be populated, with values from the referenced vocabulary's label field (e,g, `rdfs:label` or `skos:prefLabel` ). Note that this assumes the referenced vocabulary is stored as an RDF document, which is current best practice for sharing scientific vocabularies over the Web.
+
+<a name="faq-why-do-annotations-need-ids"></a>
 
 **When are IDs required in the EML doc?**
-To be precise, all annotations must have an unambiguous subject. 
-At the dataset, entity, or attribute level, the parent element is the *subject*. So, if an element has
-an annotation child, it must also have an id (i.e. the subject, or parent element must have an `id` attribute value). 
-Annotations at `eml/annotations` or `eml/additionalMetadata` will have subjects defined with a `references` attribute or `describes` element. As with other internal EML references, an `id` is required. 
+All annotations must have an unambiguous subject. 
+At the dataset-, entity-, or attribute- level, the parent element *is the subject* (e.g., `<dataset>`, `<dataTable>`, `<attribute>`),
+and precision of nodes in EML is guaranteed by the element's id. 
+Said another way, if an element has
+an annotation child, it must also have an id so it can become the annotation *subject*). 
+Annotations at `eml/annotations` or `eml/additionalMetadata` will have subjects defined with a `references` attribute or `describes` element. 
+As with other internal EML references, an `id` is required. 
 With EML 2.2.0, the parser will check that an `id` attribute is present on elements with annotation children. 
 As a reminder, the `id` must be unique within an EML document.  Ideally, that `id` either is, or can readily be translated into an HTTP URI, that can be dereferenced. See examples below.
 
@@ -615,6 +639,13 @@ Following are tutorials and supplemental background reading
 
 Below are answers to questions some readers had, which may be helpful to you. If you have additional questions, please bring them up in your community for feedback.
 
+
+**Q: Why do EML elements with annotations need id attributes? 
+
+A: EML elements that have `annotation` children need ids so that they can be used to construct the *subject* of 
+an RDF triple. [See above](#faq-why-do-annotations-need-ids).
+
+
 <a name="FAQ-what-is-deference"></a>
 
 **Q: What is the difference between ‘dereference’ and 'resolove'?**
@@ -672,6 +703,20 @@ tundra), imply quantification and can be construed as measurements.
 **Q: Can you provide an example of a controlled vocabulary with an rdfs:label or skos:label?**
 
 A: Most Semantic Web vocabularies make extensive use of rdfs:label or SKOS label properties. For example, this URI: http://purl.dataone.org/odo/ECSO_00000536 is from the ECSO ontology, under development at NCEAS by NSF's DataONE and Arctic Data Center. Within that ontology, the URI is associated with an rdfs:label of "Carbon Dioxide Flux", and a skos:altLabel of "CO2 flux". If you dereference the URI, you will see how the BioPortal ontology repository displays this information-- providing a human-readable representation of the underlying RDF/OWL language in which the ontology is stored.
+
+
+<a name="faq-how-do-computers-use-eml-annotations"></a>
+
+**Q: How do computer use EML annotations?**
+
+A: Annotations can be extracted from the EML document, and re-expressed (formally, "serialized") 
+into a Semantic Web language such as 
+[RDF](#faq-what-is-rdfs) or [JSON-LD](#glossary-jsonld). Annotations (also called "assertions" or "triples" in RDF) 
+collectively contribute 
+to a *[knowledge graph](#glossary-knowledge-graph)*, that captures understanding of the relationship of the 
+contents of datasets (as "instances") with the concepts represented by terms in ontologies (as "classes"). 
+
+
 
 <a name="FAQ-what-does-RDF-look-like"></a>
 
