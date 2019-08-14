@@ -202,7 +202,8 @@ Related FAQ: [Are all EML dataTable attributes measurements?](#FAQ-are-all-eml-a
 [example 3 presented as an RDF graph](#rdf-eml-example-3)
 
 
-### `eml/annotations` element annotation
+### Annotations grouped under the EML `<annotations>` element
+The examples above show annotations directly beneath the *subject* element. However, annotations can also be grouped together, under an `<annotations>` element.  
 
 An annotation in the `annotations` element differs from Examples 1-3 above because the subject is directly referred to by a `references` attribute. Each `annotation` element has a `references` attribute that points to the `id` attribute of the element being annotated. That is, what is listed in the `references` attribute is the id of the subject of the semantic annotation. Any of the EML modules may be referenced by the `references` attribute and because ids are unique within an EML document, this is a single subject. 
 
@@ -211,7 +212,7 @@ An annotation in the `annotations` element differs from Examples 1-3 above becau
 
 <a name="eml-example-4"></a>
 
-#### Example 4: `annotations` element annotation
+#### Example 4: Annotating with the `<annotations>` element
 
 All the annotations for a resource can be grouped together under an `annotations` element. If you use this construct, each annotation must have its subject specifically identified with a `references` attribute that points to the subject's id. The group of annotations must be placed TO DO< WHERE IN DOC? [[MPS: I don't know the answer to this. Is there an XML/EML expert in the house?!!!]]
 
@@ -275,9 +276,8 @@ The ontologies used for eric.seabloom are
 
 **See [Example 4 as an RDF graph](#rdf-eml-example-4)**
 
-### `eml/additionalMetadata` element annotation
-
-If an `additionalMetadata` section holds a semantic annotation, it must have a `describes` element 
+###  Annotations grouped under `<additionalMetadata>`
+Like the annotations grouped under `<annotations>`, they can also be grouped under `<additionalMetadata>`. If an `additionalMetadata` section holds a semantic annotation, it must have a `describes` element 
 (to hold the subject) with a `metadata` element containing at least one `annotation` element. 
 
 - The *subject* of the semantic statement has its id contained in the `describes` element. 
@@ -603,7 +603,7 @@ an RDF triple. [See above](#faq-why-do-annotations-need-ids).
 
 <a name="FAQ-what-is-deference"></a>
 
-**Q: What is the difference between ‘dereference’ and 'resolove'?**
+**Q: What is the difference between ‘dereference’ and 'resolve'?**
 
 A: Within the context of semantic annotation, "dereferencing" refers to the process of interpreting a URI, and providing "useful information" back about the Resource of interest. The phrase "resolving a URI" is often used synonymously with "dereferencing", but technically "resolution" refers to the process of determining HOW and WHAT to do with the URI, whereas "dereferencing" is explicitly about the action taken, which is typically retrieving a representation of the Resource of interest. The formal specification for these terms and what they mean is found in the IETF's (Internet Engineering Task Force) RFC (Request for Comment) 3986 (https://tools.ietf.org/html/rfc3986).
 
