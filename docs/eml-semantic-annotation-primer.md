@@ -505,30 +505,49 @@ Things to check:
 ### Glossary
 
 <a name="glossary-dereference"></a>
-**dereference**: To interpret ("resolve") a URI, and retrieve information about the resource identified by that URI   
+
+**dereference**: To interpret a URI, and retrieve information about the resource identified by that URI   
+See [resolve](#glossary-reslolve).
+
+<a name="glossary-iri"></a>
+
+**IRI**: Internationalized Resource Identifier (IRI), and an extension
+of ASCII characters subset of the Uniform Resource Identifier (URI) protocol.
+
+<a name="glossary-jsonld"></a>
+
+**JSON-LD** (JavaScript Object Notation for Linked Data), is a method of 
+mapping from JSON to an RDF model. It is administered by
+the RDF Working Group and is a World Wide Web Consortium Recommendation.
 
 <a name="glossary-knowledge-graph"></a>
+
 **knowledge graph**:  Any knowledge base that is represented as a mathematical graph. 
-In the mathematical sense, a graph is simply a collection of points connected by lines.  The points are called *nodes* or *vertices*, while the lines are called *edges* or *links*. In an informatics sense, this structure is used to store information about a set of objects, including the identity of the objects (as nodes), and the relationships among the objects (as links). Note that our use of the word "object" here is very general, and is not the same sense as when we describe triples. 
+In the mathematical sense, a graph is simply a collection of points connected by lines.  The points are called *nodes* or *vertices*, while the lines are called *edges* or *links*. In an informatics sense, this structure is used to store information about a set of objects, including the identity of the objects (as nodes), and the relationships among the objects (as links). Note that the use of the word "object" here is very general, and is not the same sense as when we describe triples. 
 
 
-In an RDF (semantic) triple, the *subject* and *object* (the word *object* here in the specific RDF sense!) are represented as nodes, and the relationship between the nodes is represented as an edge or link. Note however that a *subject* of one triple can serve as an *object* of another triple, and vice-versa.  The term *Knowledge Graph* is generally used nowadays to refer not so much to an underlying controlled vocabulary or ontology, but rather to the assertions about various objects and how these relate to ontology terms, and other objects.  Thus, as a set of semantic annotations grows, for example, assertions (triples) about the datasets in DataONE, these would be stored in a growing knowledge graph.  The most famous Knowledge Graph as of today is the one that informs search results for Google.
+In an RDF (semantic) triple, the *subject* and *object* (the word *object* here in the specific RDF sense!) are represented as nodes, and the relationship between the nodes is represented as an edge or link. Note however that a *subject* of one triple can serve as an *object* of another triple, and vice-versa.  The term *Knowledge Graph* is generally used nowadays to refer not so much to an underlying controlled vocabulary or ontology, but rather to the assertions about various objects and how these relate to ontology terms, and other objects.  Thus, as a set of semantic annotations grows, for example, assertions (triples) about datasets, these would be stored in a growing knowledge graph.  The most famous Knowledge Graph as of today is the one that informs search results for Google.
  
 <a name="glossary-ontology"></a> 
 **ontology**: In an informatics sense, an ontology is a representation of a corpus of knowledge.  The W3C-recommendation is that these representations be constructed using an RDF data model, that has a *graph* structure. The ontology provides a representation of a set of terms, including their names, and descriptions of the categories, properties, and relationships among those terms.
 
 <a name="glossary-pointer"></a>
+
 **pointer**: A kind of reference to a datum stored in computer memory.   
 
 
 <a name="glossary-resolve"></a>
+
 **resolve**: To interpret a URI and determine a course of action for dereferencing the URI.
+See [dereference](#glossary-dereference)
 
 <a name="glossary-rdf"></a> 
+
 **Resource Description Framework (RDF)**: A World Wide Web Consortium (W3C) recommendation that enables the encoding, exchange, and reuse of structured metadata using a graph model. The RDF data model employs semantic triples composed of a subject, predicate, and object to share and integrate data across different applications and communities through the Web. 
 
 
 <a name="glossary-uri"></a>
+
 **uniform resource identifier (URI)**: In its most general sense, a URI is simply a string of characters that unambiguously identifies a particular resource.  Much more commonly, it refers to an identifier for a resource on the Web, but, e.g. ISBN numbers are also URIs. For semantic annotations, the components of semantic triples are ideally HTTP URIs that dereference using Web technology, to an appropriate representation of a resource, e.g. metadata about the dataset in the case of the *subject*, and definitions and descriptions of the meaning of the *predicate* and *object* terms that provide information about the *subject*.
 
 <a name="external-vocabularies"></a>
@@ -537,7 +556,8 @@ In an RDF (semantic) triple, the *subject* and *object* (the word *object* here 
 
 Communities using EML annotations will develop recommendations for suitable vocabularies, based
 on their own requirements (e.g., domain coverage, structure, adaptability, reliabliity and maintenance model). The following
-ontologies are already widely used, and were employed in the examples above:
+ontologies are already widely used, were employed in the examples above, and are
+in use by (and in some cases managed by) the authors.:
 
 <a name="ecso"></a>
 
@@ -572,7 +592,7 @@ A global registry of research organizations.
 <a name="schema.org"></a>
 
 - **schema.org** (https://schema.org/) 
-An initiative to create and support a common set of schemas for structured data markup on web pages. Extensions work with the core vocabulary to provide more specialized and/or deeper vocabularies.
+An initiative to create and support common sets of structured data markup on web pages. Extensions work with the core vocabulary to provide more specialized and/or deeper vocabularies.
 
 
 
@@ -597,13 +617,13 @@ Below are answers to questions some readers had, which may be helpful to you. If
 
 <a name="FAQ-what-is-deference"></a>
 
-**Q: What does ‘dereferenced’ mean?**
+**Q: What is the difference between ‘dereference’ and 'resolove'?**
 
 A: Within the context of semantic annotation, "dereferencing" refers to the process of interpreting a URI, and providing "useful information" back about the Resource of interest. The phrase "resolving a URI" is often used synonymously with "dereferencing", but technically "resolution" refers to the process of determining HOW and WHAT to do with the URI, whereas "dereferencing" is explicitly about the action taken, which is typically retrieving a representation of the Resource of interest. The formal specification for these terms and what they mean is found in the IETF's (Internet Engineering Task Force) RFC (Request for Comment) 3986 (https://tools.ietf.org/html/rfc3986).
 
 <a name="FAQ-URIvsURL"></a>
 
-**Q: What is the difference between an URI and a URL? Sample URIs look a lot like URLs...**
+**Q: What is the difference between an URI and a URL? Example URIs look a lot like URLs... What about IRIs?**
 
 A: The distinctions among URIs (Uniform Resource Identifiers), URLs (Uniform Resource Locators), and URNs (Uniform Resource Names), relate to differentiating the functionalities of identifying a Resource, as opposed to locating a Resource, or doing both. URLs are all URIs (with some edge case exceptions subject to argument), and URNs are also URIs. In many cases, URIs serve both to name and locate a Resource. 
 
@@ -619,16 +639,31 @@ A: SKOS (Simple Knowledge Management System) is a W3C recommendation for organiz
 
 **Q: What is RDFS?**
 
-A: RDFS (Resource Description Framework Schema; https://www.w3.org/TR/rdf-schema/) is a W3C recommendation that extends the formal vocabulary for describing Resources expressed in an RDF data model (i.e., in a graph). "Base" RDF (https://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/) provides a set of concepts for creating a graph model of data-- consisting of one or more triples relating a subject, predicate, and object. RDFS adds to the base RDF model by specifying an additional number of well-defined concepts and properties, such as rdfs:Label, rdfs:Class and rdfs:subClassOf. These and other RDFS classes and properties, enable data and knowledge modellers to express many relationships between the Subject and Object of a Triple. 
+A: RDFS stands for Resource Description Framework Schema. It extends the formal vocabulary for describing Resources expressed 
+in an RDF data model (i.e., a graph).  
 
-In the context of the Semantic Web, the RDF model relies extensively on dereferenceable URIs in the subject and predicate positions, and URIs or literals in the object position (there are small formal exceptions to this not immediately relevant here). RDF triples can be expressed in several syntaxes, including XML, JSON-LD, and Turtle, among others. RDFS then can be used to enrich the precision and expressivity of the components of a triple, as well as clarify the relationships among these.
+"Base RDF" is the set of concepts for creating a graph model 
+of data (triples relating a subject, predicate, and object). RDFS adds to the base RDF model by 
+specifying other well-defined concepts and properties, such as rdfs:Label, rdfs:Class and rdfs:subClassOf. 
+These and other RDFS classes and properties, enable data and knowledge modellers to express many relationships 
+between the Subject and Object of a Triple.
+
+In the context of the Semantic Web, the RDF model relies extensively on dereferenceable URIs in the subject 
+and predicate positions, and URIs or literals in the object position (there are small formal exceptions to this 
+not immediately relevant here). RDF triples can be expressed in several syntaxes, including XML, JSON-LD, and Turtle, 
+among others. RDFS then can be used to enrich the precision and expressivity of the components of a triple, 
+as well as clarify the relationships among these.
+
+- Base RDF: https://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/
+- RDFS: https://www.w3.org/TR/rdf-schema/
 
 <a name="FAQ-are-all-eml-attributes-measurements"></a>
 
 **Q: Are all EML dataTable attributes "measurements"?**
 
 A: Yes, in the context of a data table and for annotation purposes, any attribute (observation or column of data) can be 
-considered ‘a measurement’. A philosopher might disagree, saying that *unique identifiers* are not really 
+considered ‘a measurement’. A philosopher might disagree, saying that some content
+you might see in data columns (e.g., *unique identifiers*) are not really 
 measurements; but many other “nominals”, i.e. text strings identifying some class types (e.g. predator, lizard, 
 tundra), imply quantification and can be construed as measurements. 
 
@@ -642,9 +677,15 @@ A: Most Semantic Web vocabularies make extensive use of rdfs:label or SKOS label
 
 **Q: An image of an RDF graph is great, but a computer doesn't parse that. What does the RDF look like?**
 
-A: As mentioned above, RDF is a data model based on triples, each of which consists of a subject, predicate, and object. In order to function interoperably on the Web, however, there is the need for these triple components to be constructed of dereferenceable URIs, although the object value can also be a literal. RDF triples can be "serialized" in several syntaxes, including XML, JSON-LD, Turtle, N-Triples, and others. These syntaxes are isomorphic, such that translations of RDF graphs from one serialization to another are available-- enabling consistent interpretation by machines.
+A: Actual RDF (XML) is shown in the code blocks of [Example 3](#rdf-eml-example-3) and [Example 4](#rdf-eml-example-4). 
 
-Perhaps the most straightforward serialization of RDF graphs for human interpretation is N-Triples, where an RDF triple could look like this:
+RDF is a data model based on triples, each of which has three components: a subject, 
+predicate, and object, that are
+should be constructed of dereferenceable URIs. 
+RDF triples can be "serialized" in several syntaxes, including XML, JSON-LD, Turtle, N-Triples, and others. These syntaxes are isomorphic, such that translations of RDF graphs from one serialization to another are available-- enabling consistent interpretation by machines.
+
+For human interpretation  the most straightforward serialization of RDF graphs
+is N-Triples, where an RDF triple could look like this:
 
 http://purl.obolibrary.org/obo/CHEBI_16526 http://purl.obolibrary.org/obo/RO_0000087 http://purl.obolibrary.org/obo/CHEBI_76413 .
 
