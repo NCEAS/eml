@@ -27,30 +27,6 @@ var facetsBoxes= new Array('facets_EntityGroup_entityName',
 				'facets_EntityGroup_entityDescription', 
 				'facets_OtherEntityType_entityType', 
 				'facets_OtherEntityType_scope');
-var usedByBoxes= new Array('usedBy_OtherEntityType', 
-				'usedBy_EntityGroup_EntityGroup_alternateIdentifier_system', 
-				'usedBy_OtherEntityType_id', 
-				'usedBy_OtherEntityType_system', 
-				'usedBy_OtherEntityType_scope', 
-				'usedBy_EntityGroup');
-var sourceBoxes= new Array('source_EntityGroup_alternateIdentifier', 
-				'source_EntityGroup_entityName', 
-				'source_EntityGroup_entityDescription', 
-				'source_EntityGroup_physical', 
-				'source_EntityGroup_coverage', 
-				'source_EntityGroup_methods', 
-				'source_EntityGroup_additionalInfo', 
-				'source_EntityGroup_annotation', 
-				'source_OtherEntityType_attributeList', 
-				'source_OtherEntityType_constraint', 
-				'source_OtherEntityType_entityType', 
-				'source_otherEntity', 
-				'source_OtherEntityType', 
-				'source_EntityGroup_EntityGroup_alternateIdentifier_system', 
-				'source_OtherEntityType_id', 
-				'source_OtherEntityType_system', 
-				'source_OtherEntityType_scope', 
-				'source_EntityGroup');
 var instanceBoxes= new Array('instance_EntityGroup_physical', 
 				'instance_EntityGroup_coverage', 
 				'instance_EntityGroup_methods', 
@@ -373,12 +349,6 @@ var modelBoxes= new Array('model_EntityGroup_physical',
                      <tr>
                         <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
                      </tr>
-                     <tr>
-                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
-                     </tr>
-                     <tr>
-                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
-                     </tr>
                   </table>
                   <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
                </td>
@@ -632,36 +602,6 @@ var modelBoxes= new Array('model_EntityGroup_physical',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_EntityGroup_alternateIdentifier" type="image" src="img/btM.gif" value="-" onclick="switchState('source_EntityGroup_alternateIdentifier');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_EntityGroup_alternateIdentifier" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"alternateIdentifier"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Alternate Identifier summary: A secondary identifier for this entity description: An additional, secondary identifier for this entity. The primary identifier belongs in the "id" attribute, but additional identifiers that are used to label this entity, possibly from different data management systems, can be listed here. example: VCR3465</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:simpleContent</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"system"</span><span class="tAN"> type=</span><span class="tAV">"res:SystemType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Identifier System summary: The system in which this id is relevant description: The information management system within which this identifier has relevance. Generally, the identifier would be unique within the "system" and would be sufficient to retrieve the entity from the system. The system is often a URL or URI that identifies the main entry point for the information management system. example: http://knb.ecoinformatics.org/knb/</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:simpleContent&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -763,25 +703,6 @@ var modelBoxes= new Array('model_EntityGroup_physical',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_EntityGroup_entityName" type="image" src="img/btM.gif" value="-" onclick="switchState('source_EntityGroup_entityName');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_EntityGroup_entityName" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"entityName"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Entity name summary: The name of the entity name description: The name identifies the entity in the dataset: file name, name of database table, etc. example: SpeciesAbundance1996</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -895,25 +816,6 @@ var modelBoxes= new Array('model_EntityGroup_physical',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_EntityGroup_entityDescription" type="image" src="img/btM.gif" value="-" onclick="switchState('source_EntityGroup_entityDescription');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_EntityGroup_entityDescription" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"entityDescription"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Entity description summary: General description of the entity and its contents description: Text generally describing the entity, its type, and relevant information about the data in the entity. example: Species abundance data for 1996 at the VCR LTER site</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1111,25 +1013,6 @@ var modelBoxes= new Array('model_EntityGroup_physical',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_EntityGroup_physical" type="image" src="img/btM.gif" value="-" onclick="switchState('source_EntityGroup_physical');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_EntityGroup_physical" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"physical"</span><span class="tAN"> type=</span><span class="tAV">"phys:PhysicalType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: physical descriptors summary: Description of the physical format of the entity description: Information on the physical format of this entity. Each logical entity can be serialized in one or more physical formats, which can be described here. For each physical format, provide a "physical" element that describes the format and how to obtain that version. Two physical elements MUST describe the same entity precisely (i.e., after obtaining and parsing the physical data stream described under each physical element, one MUST end with an identical logical entity). For more information see the eml-physical module.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1302,25 +1185,6 @@ var modelBoxes= new Array('model_EntityGroup_physical',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_EntityGroup_coverage" type="image" src="img/btM.gif" value="-" onclick="switchState('source_EntityGroup_coverage');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_EntityGroup_coverage" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"coverage"</span><span class="tAN"> type=</span><span class="tAV">"cov:Coverage"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: coverage descriptors summary: Information on the geographic, spatial and temporal coverages used in this entity. description: Information on the geographic, spatial and temporal coverages used in this entity. Please see the eml-coverage module for more information.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1434,25 +1298,6 @@ var modelBoxes= new Array('model_EntityGroup_physical',
   </span><span class="tEl">&lt;sampling</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/sampling&gt;</span><span class="tI">
   </span><span class="tEl">&lt;qualityControl</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,unbounded}</span><span class="tEl">&lt;/qualityControl&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/methods&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_EntityGroup_methods" type="image" src="img/btM.gif" value="-" onclick="switchState('source_EntityGroup_methods');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_EntityGroup_methods" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"methods"</span><span class="tAN"> type=</span><span class="tAV">"md:MethodsType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: method descriptions summary: description: Information on the specific methods used to collect information in this entity. Please see the eml-methods module for more information. example:</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1609,25 +1454,6 @@ var modelBoxes= new Array('model_EntityGroup_physical',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_EntityGroup_additionalInfo" type="image" src="img/btM.gif" value="-" onclick="switchState('source_EntityGroup_additionalInfo');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_EntityGroup_additionalInfo" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"additionalInfo"</span><span class="tAN"> type=</span><span class="tAV">"txt:TextType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Additional Information summary: Any extra information pertitent to the entity. description: This field provides any information that is not characterized by the other entity metadata fields. example: Multiple sampling events represented</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1809,25 +1635,6 @@ var modelBoxes= new Array('model_EntityGroup_physical',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_EntityGroup_annotation" type="image" src="img/btM.gif" value="-" onclick="switchState('source_EntityGroup_annotation');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_EntityGroup_annotation" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"annotation"</span><span class="tAN"> type=</span><span class="tAV">"sem:SemanticAnnotation"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Semantic Annotation summary: A precisely-defined semantic statement about this entity. description: An annotation represents a precisely-defined semantic statement that applies to this entity. This semantic statement is used to associate precise measurement semantics with the entity. Each annotation consists of a propertyURI and valueURI, which define a property and a value that apply to the entity. The associated labels can be used to display the property and value to users. Each URI is resolvable to a controlled vocabulary that provides a definition, relationships to other terms, and multiple labels for displaying the statement.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1969,25 +1776,6 @@ var modelBoxes= new Array('model_EntityGroup_physical',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_OtherEntityType_attributeList" type="image" src="img/btM.gif" value="-" onclick="switchState('source_OtherEntityType_attributeList');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_OtherEntityType_attributeList" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"attributeList"</span><span class="tAN"> type=</span><span class="tAV">"att:AttributeListType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Attribute List summary: The list of attributes associated with this entity. description: The list of attributes associated with this entity. For more information see the eml-attribute module.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -2170,25 +1958,6 @@ var modelBoxes= new Array('model_EntityGroup_physical',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_OtherEntityType_constraint" type="image" src="img/btM.gif" value="-" onclick="switchState('source_OtherEntityType_constraint');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_OtherEntityType_constraint" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"constraint"</span><span class="tAN"> type=</span><span class="tAV">"con:ConstraintType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Constraint summary: description: Description of any relational constraints on ' this entity. For more information see the eml-constraint module.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2295,25 +2064,6 @@ var modelBoxes= new Array('model_EntityGroup_physical',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_OtherEntityType_entityType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_OtherEntityType_entityType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_OtherEntityType_entityType" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"entityType"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Entity type summary: Contains the name of the type for this entity. description: The entityType field contains the name of the entity's type. The entity's type is typically the name of the type of data represented in the entity, such as "photograph". This field is used only if this is an 'other' entity and you want to specify the kind of "other" entity this is. example: Photograph</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -2509,25 +2259,6 @@ var modelBoxes= new Array('model_EntityGroup_physical',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_otherEntity" type="image" src="img/btM.gif" value="-" onclick="switchState('source_otherEntity');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_otherEntity" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"otherEntity"</span><span class="tAN"> type=</span><span class="tAV">"OtherEntityType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Other Entity summary: Descriptor of single data entity in a dataset of a type not specifically described in eml. description: The other entity element is a descriptor of a not-otherwise-defined entity in the dataset, identified by its name. The element can contain information about the entity's basic identity, its temporal, geographic and taxonomic coverage, and its type. example: Photograph of rocky intertidal plot 12 from Santa Cruz Island</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2578,22 +2309,6 @@ var modelBoxes= new Array('model_EntityGroup_physical',
                                  <area alt="eml-entity_xsd.tmp#OtherEntityType_entityType" href="eml-entity_xsd.html#OtherEntityType_entityType" coords="404,1102,491,1126" />
                                  <area alt="eml-resource_xsd.tmp#ReferencesGroup_references" href="eml-resource_xsd.html#ReferencesGroup_references" coords="326,1240,414,1264" />
                                  <area alt="eml-resource_xsd.tmp#ReferencesGroup" href="eml-resource_xsd.html#ReferencesGroup" coords="244,1195,412,1221" /></map></div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_OtherEntityType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_OtherEntityType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_OtherEntityType" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Elements </td>
-                                    <td><b><a href="eml-dataset_xsd.html#DatasetType_otherEntity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-dataset.xsd')">DatasetType/otherEntity</a></b>, <b><a href="eml-entity_xsd.html#otherEntity" target="mainFrame" title="https://eml.ecoinformatics.org/entity-2.2.0" onclick="updatePageTitle('Schema documentation for eml-entity.xsd')">otherEntity</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
                         </td>
                      </tr>
                      <tr>
@@ -2651,48 +2366,6 @@ var modelBoxes= new Array('model_EntityGroup_physical',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_OtherEntityType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_OtherEntityType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_OtherEntityType" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"OtherEntityType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:choice</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:group</span><span class="tAN"> ref=</span><span class="tAV">"EntityGroup"</span><span class="tEl">/&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"attributeList"</span><span class="tAN"> type=</span><span class="tAV">"att:AttributeListType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Attribute List summary: The list of attributes associated with this entity. description: The list of attributes associated with this entity. For more information see the eml-attribute module.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"constraint"</span><span class="tAN"> type=</span><span class="tAV">"con:ConstraintType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Constraint summary: description: Description of any relational constraints on ' this entity. For more information see the eml-constraint module.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"entityType"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Entity type summary: Contains the name of the type for this entity. description: The entityType field contains the name of the entity's type. The entity's type is typically the name of the type of data represented in the entity, such as "photograph". This field is used only if this is an 'other' entity and you want to specify the kind of "other" entity this is. example: Photograph</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:group</span><span class="tAN"> ref=</span><span class="tAV">"res:ReferencesGroup"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"res:IDType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"system"</span><span class="tAN"> type=</span><span class="tAV">"res:SystemType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"scope"</span><span class="tAN"> type=</span><span class="tAV">"res:ScopeType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"document"</span><span class="tEl">/&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -2775,41 +2448,6 @@ var modelBoxes= new Array('model_EntityGroup_physical',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_EntityGroup_EntityGroup_alternateIdentifier_system" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_EntityGroup_EntityGroup_alternateIdentifier_system');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_EntityGroup_EntityGroup_alternateIdentifier_system" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Element </td>
-                                    <td><b><a href="eml-entity_xsd.html#EntityGroup_alternateIdentifier" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-entity.xsd')">EntityGroup/alternateIdentifier</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_EntityGroup_EntityGroup_alternateIdentifier_system" type="image" src="img/btM.gif" value="-" onclick="switchState('source_EntityGroup_EntityGroup_alternateIdentifier_system');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_EntityGroup_EntityGroup_alternateIdentifier_system" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"system"</span><span class="tAN"> type=</span><span class="tAV">"res:SystemType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Identifier System summary: The system in which this id is relevant description: The information management system within which this identifier has relevance. Generally, the identifier would be unique within the "system" and would be sufficient to retrieve the entity from the system. The system is often a URL or URI that identifies the main entry point for the information management system. example: http://knb.ecoinformatics.org/knb/</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:attribute&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2856,37 +2494,6 @@ var modelBoxes= new Array('model_EntityGroup_physical',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_OtherEntityType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_OtherEntityType_id');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_OtherEntityType_id" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-entity_xsd.html#OtherEntityType" target="mainFrame" title="https://eml.ecoinformatics.org/entity-2.2.0" onclick="updatePageTitle('Schema documentation for eml-entity.xsd')">OtherEntityType</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_OtherEntityType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('source_OtherEntityType_id');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_OtherEntityType_id" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"res:IDType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2928,37 +2535,6 @@ var modelBoxes= new Array('model_EntityGroup_physical',
                                  <tr>
                                     <td class="firstColumn" style="white-space: nowrap;">use</td>
                                     <td><b>optional</b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_OtherEntityType_system" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_OtherEntityType_system');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_OtherEntityType_system" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-entity_xsd.html#OtherEntityType" target="mainFrame" title="https://eml.ecoinformatics.org/entity-2.2.0" onclick="updatePageTitle('Schema documentation for eml-entity.xsd')">OtherEntityType</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_OtherEntityType_system" type="image" src="img/btM.gif" value="-" onclick="switchState('source_OtherEntityType_system');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_OtherEntityType_system" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"system"</span><span class="tAN"> type=</span><span class="tAV">"res:SystemType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -3040,37 +2616,6 @@ var modelBoxes= new Array('model_EntityGroup_physical',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_OtherEntityType_scope" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_OtherEntityType_scope');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_OtherEntityType_scope" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-entity_xsd.html#OtherEntityType" target="mainFrame" title="https://eml.ecoinformatics.org/entity-2.2.0" onclick="updatePageTitle('Schema documentation for eml-entity.xsd')">OtherEntityType</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_OtherEntityType_scope" type="image" src="img/btM.gif" value="-" onclick="switchState('source_OtherEntityType_scope');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_OtherEntityType_scope" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"scope"</span><span class="tAN"> type=</span><span class="tAV">"res:ScopeType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"document"</span><span class="tEl">/&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -3143,22 +2688,6 @@ var modelBoxes= new Array('model_EntityGroup_physical',
                         </td>
                      </tr>
                      <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_EntityGroup" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_EntityGroup');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_EntityGroup" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Types </td>
-                                    <td><b><a href="eml-dataTable_xsd.html#DataTableType" target="mainFrame" title="https://eml.ecoinformatics.org/dataTable-2.2.0" onclick="updatePageTitle('Schema documentation for eml-dataTable.xsd')">DataTableType</a></b>, <b><a href="eml-entity_xsd.html#OtherEntityType" target="mainFrame" title="https://eml.ecoinformatics.org/entity-2.2.0" onclick="updatePageTitle('Schema documentation for eml-entity.xsd')">OtherEntityType</a></b>, <b><a href="eml-spatialRaster_xsd.html#SpatialRasterType" target="mainFrame" title="https://eml.ecoinformatics.org/spatialRaster-2.2.0" onclick="updatePageTitle('Schema documentation for eml-spatialRaster.xsd')">SpatialRasterType</a></b>, <b><a href="eml-spatialVector_xsd.html#SpatialVectorType" target="mainFrame" title="https://eml.ecoinformatics.org/spatialVector-2.2.0" onclick="updatePageTitle('Schema documentation for eml-spatialVector.xsd')">SpatialVectorType</a></b>, <b><a href="eml-storedProcedure_xsd.html#StoredProcedureType" target="mainFrame" title="https://eml.ecoinformatics.org/storedProcedure-2.2.0" onclick="updatePageTitle('Schema documentation for eml-storedProcedure.xsd')">StoredProcedureType</a></b>, <b><a href="eml-view_xsd.html#ViewType" target="mainFrame" title="https://eml.ecoinformatics.org/view-2.2.0" onclick="updatePageTitle('Schema documentation for eml-view.xsd')">ViewType</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_EntityGroup" type="image" src="img/btM.gif" value="-" onclick="switchState('model_EntityGroup');" class="control" /></div>
                         </td>
                         <td>
@@ -3168,78 +2697,6 @@ var modelBoxes= new Array('model_EntityGroup_physical',
                      <tr>
                         <td class="firstColumn"><b>Children</b></td>
                         <td><b><a href="eml-entity_xsd.html#EntityGroup_additionalInfo" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-entity.xsd')">additionalInfo</a></b>, <b><a href="eml-entity_xsd.html#EntityGroup_alternateIdentifier" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-entity.xsd')">alternateIdentifier</a></b>, <b><a href="eml-entity_xsd.html#EntityGroup_annotation" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-entity.xsd')">annotation</a></b>, <b><a href="eml-entity_xsd.html#EntityGroup_coverage" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-entity.xsd')">coverage</a></b>, <b><a href="eml-entity_xsd.html#EntityGroup_entityDescription" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-entity.xsd')">entityDescription</a></b>, <b><a href="eml-entity_xsd.html#EntityGroup_entityName" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-entity.xsd')">entityName</a></b>, <b><a href="eml-entity_xsd.html#EntityGroup_methods" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-entity.xsd')">methods</a></b>, <b><a href="eml-entity_xsd.html#EntityGroup_physical" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-entity.xsd')">physical</a></b></td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_EntityGroup" type="image" src="img/btM.gif" value="-" onclick="switchState('source_EntityGroup');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_EntityGroup" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:group</span><span class="tAN"> name=</span><span class="tAV">"EntityGroup"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Base Entity descriptors summary: Basic information about an entity common to all entity types. description: The EntityGroup defines the common structure for descriptions of any type of entity, including the name and attributes of the entity. The term entity is used in the sense of an entity in a relational model. The most common entity is a table, something with columns and rows, but can also represent an image or other type of data. See 'eml-attribute' for descriptions of the required attribute fields.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"alternateIdentifier"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Alternate Identifier summary: A secondary identifier for this entity description: An additional, secondary identifier for this entity. The primary identifier belongs in the "id" attribute, but additional identifiers that are used to label this entity, possibly from different data management systems, can be listed here. example: VCR3465</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:simpleContent</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"system"</span><span class="tAN"> type=</span><span class="tAV">"res:SystemType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Identifier System summary: The system in which this id is relevant description: The information management system within which this identifier has relevance. Generally, the identifier would be unique within the "system" and would be sufficient to retrieve the entity from the system. The system is often a URL or URI that identifies the main entry point for the information management system. example: http://knb.ecoinformatics.org/knb/</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:simpleContent&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"entityName"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Entity name summary: The name of the entity name description: The name identifies the entity in the dataset: file name, name of database table, etc. example: SpeciesAbundance1996</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"entityDescription"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Entity description summary: General description of the entity and its contents description: Text generally describing the entity, its type, and relevant information about the data in the entity. example: Species abundance data for 1996 at the VCR LTER site</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"physical"</span><span class="tAN"> type=</span><span class="tAV">"phys:PhysicalType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: physical descriptors summary: Description of the physical format of the entity description: Information on the physical format of this entity. Each logical entity can be serialized in one or more physical formats, which can be described here. For each physical format, provide a "physical" element that describes the format and how to obtain that version. Two physical elements MUST describe the same entity precisely (i.e., after obtaining and parsing the physical data stream described under each physical element, one MUST end with an identical logical entity). For more information see the eml-physical module.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"coverage"</span><span class="tAN"> type=</span><span class="tAV">"cov:Coverage"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: coverage descriptors summary: Information on the geographic, spatial and temporal coverages used in this entity. description: Information on the geographic, spatial and temporal coverages used in this entity. Please see the eml-coverage module for more information.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"methods"</span><span class="tAN"> type=</span><span class="tAV">"md:MethodsType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: method descriptions summary: description: Information on the specific methods used to collect information in this entity. Please see the eml-methods module for more information. example:</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"additionalInfo"</span><span class="tAN"> type=</span><span class="tAV">"txt:TextType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Additional Information summary: Any extra information pertitent to the entity. description: This field provides any information that is not characterized by the other entity metadata fields. example: Multiple sampling events represented</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"annotation"</span><span class="tAN"> type=</span><span class="tAV">"sem:SemanticAnnotation"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Semantic Annotation summary: A precisely-defined semantic statement about this entity. description: An annotation represents a precisely-defined semantic statement that applies to this entity. This semantic statement is used to associate precise measurement semantics with the entity. Each annotation consists of a propertyURI and valueURI, which define a property and a value that apply to the entity. The associated labels can be used to display the property and value to users. Each URI is resolvable to a controlled vocabulary that provides a definition, relationships to other terms, and multiple labels for displaying the statement.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:group&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
                      </tr>
                   </tbody>
                </table>

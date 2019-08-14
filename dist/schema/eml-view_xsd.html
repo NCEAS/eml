@@ -16,18 +16,6 @@
 				'properties_ViewType_scope');
 var facetsBoxes= new Array('facets_ViewType_queryStatement', 
 				'facets_ViewType_scope');
-var usedByBoxes= new Array('usedBy_ViewType', 
-				'usedBy_ViewType_id', 
-				'usedBy_ViewType_system', 
-				'usedBy_ViewType_scope');
-var sourceBoxes= new Array('source_ViewType_attributeList', 
-				'source_ViewType_constraint', 
-				'source_ViewType_queryStatement', 
-				'source_view', 
-				'source_ViewType', 
-				'source_ViewType_id', 
-				'source_ViewType_system', 
-				'source_ViewType_scope');
 var instanceBoxes= new Array('instance_ViewType_attributeList', 
 				'instance_ViewType_constraint', 
 				'instance_view');
@@ -316,12 +304,6 @@ var modelBoxes= new Array('model_ViewType_attributeList',
                      <tr>
                         <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
                      </tr>
-                     <tr>
-                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
-                     </tr>
-                     <tr>
-                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
-                     </tr>
                   </table>
                   <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
                </td>
@@ -579,25 +561,6 @@ var modelBoxes= new Array('model_ViewType_attributeList',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ViewType_attributeList" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ViewType_attributeList');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ViewType_attributeList" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"attributeList"</span><span class="tAN"> type=</span><span class="tAV">"att:AttributeListType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Attribute List summary: The list of attributes associated with this entity. description: The list of attributes associated with this entity. For more information see the eml-attribute module.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -775,25 +738,6 @@ var modelBoxes= new Array('model_ViewType_attributeList',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ViewType_constraint" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ViewType_constraint');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ViewType_constraint" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"constraint"</span><span class="tAN"> type=</span><span class="tAV">"con:ConstraintType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Constraint summary: description: Description of any relational constraints on ' this entity. For more information see the eml-constraint module.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -899,25 +843,6 @@ var modelBoxes= new Array('model_ViewType_attributeList',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ViewType_queryStatement" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ViewType_queryStatement');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ViewType_queryStatement" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"queryStatement"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Query Statement summary: Query syntax that produced the view description: The value of a queryStatement field is the actual query statement stored in the database is entered here. The query statement generates the entity being documented. example: Select site as SiteID,common_name as CommonName, count as CountOfIndividuals from samples inner join taxonlist on samples.speciesid=taxonlist.speciesid</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1108,25 +1033,6 @@ var modelBoxes= new Array('model_ViewType_attributeList',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_view" type="image" src="img/btM.gif" value="-" onclick="switchState('source_view');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_view" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"view"</span><span class="tAN"> type=</span><span class="tAV">"ViewType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: View summary: The View element is a container for documenting a view. description: The View element is a container for documenting a view. The structure of the view element is defined by the ViewType.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1204,22 +1110,6 @@ var modelBoxes= new Array('model_ViewType_attributeList',
                         </td>
                      </tr>
                      <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ViewType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ViewType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ViewType" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Elements </td>
-                                    <td><b><a href="eml-dataset_xsd.html#DatasetType_view" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-dataset.xsd')">DatasetType/view</a></b>, <b><a href="eml-view_xsd.html#view" target="mainFrame" title="https://eml.ecoinformatics.org/view-2.2.0" onclick="updatePageTitle('Schema documentation for eml-view.xsd')">view</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_ViewType" type="image" src="img/btM.gif" value="-" onclick="switchState('model_ViewType');" class="control" /></div>
                         </td>
                         <td>
@@ -1279,49 +1169,6 @@ var modelBoxes= new Array('model_ViewType_attributeList',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ViewType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ViewType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ViewType" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"ViewType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: ViewType summary: The ViewType complex type defines the structure for documenting a view. description: The ViewType complex type defines the structure for documenting a view. This type extends the EntityGroup with a queryStatement.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:choice</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:group</span><span class="tAN"> ref=</span><span class="tAV">"ent:EntityGroup"</span><span class="tEl">/&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"attributeList"</span><span class="tAN"> type=</span><span class="tAV">"att:AttributeListType"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Attribute List summary: The list of attributes associated with this entity. description: The list of attributes associated with this entity. For more information see the eml-attribute module.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"constraint"</span><span class="tAN"> type=</span><span class="tAV">"con:ConstraintType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Constraint summary: description: Description of any relational constraints on ' this entity. For more information see the eml-constraint module.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"queryStatement"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Query Statement summary: Query syntax that produced the view description: The value of a queryStatement field is the actual query statement stored in the database is entered here. The query statement generates the entity being documented. example: Select site as SiteID,common_name as CommonName, count as CountOfIndividuals from samples inner join taxonlist on samples.speciesid=taxonlist.speciesid</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:group</span><span class="tAN"> ref=</span><span class="tAV">"res:ReferencesGroup"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"res:IDType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"system"</span><span class="tAN"> type=</span><span class="tAV">"res:SystemType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"scope"</span><span class="tAN"> type=</span><span class="tAV">"res:ScopeType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"document"</span><span class="tEl">/&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1368,37 +1215,6 @@ var modelBoxes= new Array('model_ViewType_attributeList',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ViewType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ViewType_id');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ViewType_id" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-view_xsd.html#ViewType" target="mainFrame" title="https://eml.ecoinformatics.org/view-2.2.0" onclick="updatePageTitle('Schema documentation for eml-view.xsd')">ViewType</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ViewType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ViewType_id');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ViewType_id" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"res:IDType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1440,37 +1256,6 @@ var modelBoxes= new Array('model_ViewType_attributeList',
                                  <tr>
                                     <td class="firstColumn" style="white-space: nowrap;">use</td>
                                     <td><b>optional</b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ViewType_system" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ViewType_system');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ViewType_system" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-view_xsd.html#ViewType" target="mainFrame" title="https://eml.ecoinformatics.org/view-2.2.0" onclick="updatePageTitle('Schema documentation for eml-view.xsd')">ViewType</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ViewType_system" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ViewType_system');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ViewType_system" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"system"</span><span class="tAN"> type=</span><span class="tAV">"res:SystemType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1547,37 +1332,6 @@ var modelBoxes= new Array('model_ViewType_attributeList',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ViewType_scope" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ViewType_scope');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ViewType_scope" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-view_xsd.html#ViewType" target="mainFrame" title="https://eml.ecoinformatics.org/view-2.2.0" onclick="updatePageTitle('Schema documentation for eml-view.xsd')">ViewType</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ViewType_scope" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ViewType_scope');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ViewType_scope" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"scope"</span><span class="tAN"> type=</span><span class="tAV">"res:ScopeType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"document"</span><span class="tEl">/&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>

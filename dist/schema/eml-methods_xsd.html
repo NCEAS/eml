@@ -26,29 +26,6 @@
 				'properties_MethodsType_qualityControl', 
 				'properties_methods');
 var facetsBoxes= new Array('facets_ProcedureStepType_instrumentation');
-var usedByBoxes= new Array('usedBy_MethodsType', 
-				'usedBy_ProcedureStepType');
-var sourceBoxes= new Array('source_MethodsType_methodStep', 
-				'source_ProcedureStepType_description', 
-				'source_ProcedureStepType_citation', 
-				'source_ProcedureStepType_protocol', 
-				'source_ProcedureStepType_instrumentation', 
-				'source_ProcedureStepType_software', 
-				'source_ProcedureStepType_subStep', 
-				'source_MethodsType_MethodsType_methodStep_dataSource', 
-				'source_MethodsType_sampling', 
-				'source_MethodsType_MethodsType_sampling_studyExtent', 
-				'source_MethodsType_MethodsType_sampling_MethodsType_MethodsType_sampling_studyExtent_coverage', 
-				'source_MethodsType_MethodsType_sampling_MethodsType_MethodsType_sampling_studyExtent_description', 
-				'source_MethodsType_MethodsType_sampling_samplingDescription', 
-				'source_MethodsType_MethodsType_sampling_spatialSamplingUnits', 
-				'source_MethodsType_MethodsType_sampling_MethodsType_MethodsType_sampling_spatialSamplingUnits_referencedEntityId', 
-				'source_MethodsType_MethodsType_sampling_MethodsType_MethodsType_sampling_spatialSamplingUnits_coverage', 
-				'source_MethodsType_MethodsType_sampling_citation', 
-				'source_MethodsType_qualityControl', 
-				'source_methods', 
-				'source_MethodsType', 
-				'source_ProcedureStepType');
 var instanceBoxes= new Array('instance_MethodsType_methodStep', 
 				'instance_ProcedureStepType_description', 
 				'instance_ProcedureStepType_citation', 
@@ -402,12 +379,6 @@ var modelBoxes= new Array('model_MethodsType_methodStep',
                      <tr>
                         <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
                      </tr>
-                     <tr>
-                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
-                     </tr>
-                     <tr>
-                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
-                     </tr>
                   </table>
                   <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
                </td>
@@ -659,38 +630,6 @@ var modelBoxes= new Array('model_MethodsType_methodStep',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_MethodsType_methodStep" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MethodsType_methodStep');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_MethodsType_methodStep" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"methodStep"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: method information summary: Information about the methods employed in collecting or generating a data set or other resource. description: The methodStep field allows for repeated sets of elements that document a series of procedures followed to produce a data object. These include text descriptions of the procedures, relevant literature, software, instrumentation, source data and any quality control measures taken. example: Please see the examples for the sub-fields.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"ProcedureStepType"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"dataSource"</span><span class="tAN"> type=</span><span class="tAV">"ds:DatasetType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: data source summary: A source of data used by this methodStep. description: A source of data used by this methodStep.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:complexContent&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -850,25 +789,6 @@ var modelBoxes= new Array('model_MethodsType_methodStep',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ProcedureStepType_description" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ProcedureStepType_description');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ProcedureStepType_description" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"description"</span><span class="tAN"> type=</span><span class="tAV">"txt:TextType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Methods description summary: Description of the methods employed in collecting or generating a data set or other resource or in quality control and assurance. description: The description field allows for repeated text that describes the methodology for a project, experiment, or particular data table or to describe the steps taken to control or assure the quality of the data. Likewise, a literature citation may be provided that describes the methodology that was employed. Or the information my be provided by either referencing a protocol resource or entering the structured protocol information example: 1.Collect tissues from algae of interest. a. We are currently collecting Egregia menziezii, Mazzaella splendens, M. flaccida, Hedophyllum sessile, Postelsia palmaeformis and Fucus gardneri.We stopped collecting Neorhodomela larix and Odonthalia floccosa because they can be heavily fouled and we feared that would skew the results. b. We collect a 7-10 cm blade or branch from each plant. For Egregia, try to sample small, young plants or take the base of the blade. For Postelsia, take a few of the blades. The other plants are small enough so a whole blade can be taken.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1101,25 +1021,6 @@ var modelBoxes= new Array('model_MethodsType_methodStep',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ProcedureStepType_citation" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ProcedureStepType_citation');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ProcedureStepType_citation" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"citation"</span><span class="tAN"> type=</span><span class="tAV">"cit:CitationType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: citation summary: Literature citation relating to the methods used. description: The citation field allows to either reference a literature resource or enter structured literature information</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1321,25 +1222,6 @@ var modelBoxes= new Array('model_MethodsType_methodStep',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ProcedureStepType_protocol" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ProcedureStepType_protocol');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ProcedureStepType_protocol" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"protocol"</span><span class="tAN"> type=</span><span class="tAV">"pro:ProtocolType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Protocol summary: Protocol description relating to the methods used. description: The protocol field is used to either reference a protocol resource or describe methods and identify the processes that have been used to define / improve the quality of a data file, also used to identify potential problems with the data file.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1452,25 +1334,6 @@ var modelBoxes= new Array('model_MethodsType_methodStep',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ProcedureStepType_instrumentation" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ProcedureStepType_instrumentation');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ProcedureStepType_instrumentation" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"instrumentation"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Instrumentation summary: Instruments used for measurement and recording data. description: The Instrumentation field allows the description of any instruments used in the data collection or quality control and quality assurance. The description should include vendor, model number, optional equipment, etc. example: LACHAT analyzer, model XYX.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1691,25 +1554,6 @@ var modelBoxes= new Array('model_MethodsType_methodStep',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ProcedureStepType_software" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ProcedureStepType_software');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ProcedureStepType_software" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"software"</span><span class="tAN"> type=</span><span class="tAV">"sw:SoftwareType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Software summary: Software used in the processing of data. description: The software element allows reference to any software used to process data.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1831,25 +1675,6 @@ var modelBoxes= new Array('model_MethodsType_methodStep',
   </span><span class="tEl">&lt;software</span><span class="tT"> </span><span class="tAN">id=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">scope=</span><span class="tAV">"document"</span><span class="tT"> </span><span class="tAN">system=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,unbounded}</span><span class="tEl">&lt;/software&gt;</span><span class="tI">
   </span><span class="tEl">&lt;subStep</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,unbounded}</span><span class="tEl">&lt;/subStep&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/subStep&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ProcedureStepType_subStep" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ProcedureStepType_subStep');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ProcedureStepType_subStep" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"subStep"</span><span class="tAN"> type=</span><span class="tAV">"ProcedureStepType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: substep summary: description: This fields allows the nesting of additional method steps within this step. This is useful for hierarchical method descriptions.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -2096,25 +1921,6 @@ var modelBoxes= new Array('model_MethodsType_methodStep',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_MethodsType_MethodsType_methodStep_dataSource" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MethodsType_MethodsType_methodStep_dataSource');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_MethodsType_MethodsType_methodStep_dataSource" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"dataSource"</span><span class="tAN"> type=</span><span class="tAV">"ds:DatasetType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: data source summary: A source of data used by this methodStep. description: A source of data used by this methodStep.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2231,77 +2037,6 @@ var modelBoxes= new Array('model_MethodsType_methodStep',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_MethodsType_sampling" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MethodsType_sampling');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_MethodsType_sampling" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"sampling"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: sampling methods summary: Description of sampling procedures including the geographic, temporal and taxonomic coverage of the study. description: Description of sampling procedures including the geographic, temporal and taxonomic coverage of the study. See individual elements for more detailed descriptions.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"studyExtent"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Geographic, temporal, taxonomic coverage summary: A description of the geographic area sampled (geographic coverage), the sampling frequency (temporal coverage), and living organisms sampled (taxonomic coverage. description: The field studyExtent represents both a specific sampling area and the sampling frequency (temporal boundaries, frequency of occurrence). The geographic studyExtent is usually a surrogate (representative area of) for the larger area documented in the "studyAreaDescription". The studyExtent can be entered either in non-structured textual form or using the structure of the coverage element.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:choice</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"coverage"</span><span class="tAN"> type=</span><span class="tAV">"cov:Coverage"</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: coverage summary: A description of the geographic area sampled (geographic coverage), the sampling frequency (temporal coverage), and living organisms sampled (taxonomic coverage. description: The field studyExtent represents both a specific sampling area and the sampling frequency (temporal boundaries, frequency of occurrence). The geographic studyExtent is usually a surrogate (representative area of) for the larger area documented in the "studyAreaDescription". The studyExtent can be entered either in non-structured textual form or using the structure of the coverage element. See eml-coverage for more information.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"description"</span><span class="tAN"> type=</span><span class="tAV">"txt:TextType"</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Text description of the coverage summary: A textual description of the specific areas sampled (geographic coverage), the sampling frequency (temporal coverage), and groups of living organisms sampled (taxonomic coverage). description: The coverage field allows for a textual description of the specific sampling area, the sampling frequency (temporal boundaries, frequency of occurrence), and groups of living organisms sampled (taxonomic coverage). example: The study was conducted on the North Platte River, starting 6 miles downstream and ending 9 miles downstream of the route 132 bridge in Evanston, ND.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"samplingDescription"</span><span class="tAN"> type=</span><span class="tAV">"txt:TextType"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Sampling methods and procedures summary: A description of sampling methods and procedures description: The samplingDescription field allows for a text-based/human readable description of the sampling procedures used in the research project. The content of this element would be similar to a description of sampling procedures found in the methods section of a journal article.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"spatialSamplingUnits"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Spatial sampling units summary: Spatial sampling units represent the plots sampled. description: A spatial sampling unit describes the specific geographic areas sampled. In the case of a study in which the measurements from several disbursed point collection devices are aggregated, then the sampling unit would be the area of that aggregation. Spatial sampling units can either be described by filling out the structured coverage element or by reference to the values in a data table (usually a GIS layer) example: If a researcher places a single light source at a specific point in a research location in order to attract insects to derive an estimate of the insect population, then the sampling unit is the area illuminated by the light source (in actual practice there might be multiple sampling units in this case since different species have different attraction rates). example: The bounding box of a specific 3-meter square plot. example: The location of a weather station.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:choice</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"referencedEntityId"</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: The identifier of a spatial sampling entity. summary: The identifier of an entity described in the entity module. This is usually a GIS layer. description: A value of a referencedEntityId element is a reference to the identifier of the entity module that provides the metadata for a data table (RDBMS, GIS or ascii text) that has the actual spatial sampling unit values. The referencedEntityId field is an indirect pointer to the actual values. The referencedEntityId can be thought of as a foreign key in a relational database. example: x</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"coverage"</span><span class="tAN"> type=</span><span class="tAV">"cov:GeographicCoverage"</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: sampling unit location summary: Structured description of each sampling unit location description: Structured description of each sampling unit location</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"citation"</span><span class="tAN"> type=</span><span class="tAV">"cit:CitationType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: citation summary: Literature citation relating to the sampling procedures used. description: The citation field allows to either reference a literature resource or enter structured literature information</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2411,39 +2146,6 @@ var modelBoxes= new Array('model_MethodsType_methodStep',
   </span><span class="tEl">&lt;coverage</span><span class="tT"> </span><span class="tAN">id=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">scope=</span><span class="tAV">"document"</span><span class="tT"> </span><span class="tAN">system=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/coverage&gt;</span><span class="tI">
   </span><span class="tEl">&lt;description</span><span class="tT"> </span><span class="tAN">xml:lang=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/description&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/studyExtent&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_MethodsType_MethodsType_sampling_studyExtent" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MethodsType_MethodsType_sampling_studyExtent');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_MethodsType_MethodsType_sampling_studyExtent" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"studyExtent"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Geographic, temporal, taxonomic coverage summary: A description of the geographic area sampled (geographic coverage), the sampling frequency (temporal coverage), and living organisms sampled (taxonomic coverage. description: The field studyExtent represents both a specific sampling area and the sampling frequency (temporal boundaries, frequency of occurrence). The geographic studyExtent is usually a surrogate (representative area of) for the larger area documented in the "studyAreaDescription". The studyExtent can be entered either in non-structured textual form or using the structure of the coverage element.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:choice</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"coverage"</span><span class="tAN"> type=</span><span class="tAV">"cov:Coverage"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: coverage summary: A description of the geographic area sampled (geographic coverage), the sampling frequency (temporal coverage), and living organisms sampled (taxonomic coverage. description: The field studyExtent represents both a specific sampling area and the sampling frequency (temporal boundaries, frequency of occurrence). The geographic studyExtent is usually a surrogate (representative area of) for the larger area documented in the "studyAreaDescription". The studyExtent can be entered either in non-structured textual form or using the structure of the coverage element. See eml-coverage for more information.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"description"</span><span class="tAN"> type=</span><span class="tAV">"txt:TextType"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Text description of the coverage summary: A textual description of the specific areas sampled (geographic coverage), the sampling frequency (temporal coverage), and groups of living organisms sampled (taxonomic coverage). description: The coverage field allows for a textual description of the specific sampling area, the sampling frequency (temporal boundaries, frequency of occurrence), and groups of living organisms sampled (taxonomic coverage). example: The study was conducted on the North Platte River, starting 6 miles downstream and ending 9 miles downstream of the route 132 bridge in Evanston, ND.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -2625,25 +2327,6 @@ var modelBoxes= new Array('model_MethodsType_methodStep',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_MethodsType_MethodsType_sampling_MethodsType_MethodsType_sampling_studyExtent_coverage" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MethodsType_MethodsType_sampling_MethodsType_MethodsType_sampling_studyExtent_coverage');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_MethodsType_MethodsType_sampling_MethodsType_MethodsType_sampling_studyExtent_coverage" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"coverage"</span><span class="tAN"> type=</span><span class="tAV">"cov:Coverage"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: coverage summary: A description of the geographic area sampled (geographic coverage), the sampling frequency (temporal coverage), and living organisms sampled (taxonomic coverage. description: The field studyExtent represents both a specific sampling area and the sampling frequency (temporal boundaries, frequency of occurrence). The geographic studyExtent is usually a surrogate (representative area of) for the larger area documented in the "studyAreaDescription". The studyExtent can be entered either in non-structured textual form or using the structure of the coverage element. See eml-coverage for more information.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2800,25 +2483,6 @@ var modelBoxes= new Array('model_MethodsType_methodStep',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_MethodsType_MethodsType_sampling_MethodsType_MethodsType_sampling_studyExtent_description" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MethodsType_MethodsType_sampling_MethodsType_MethodsType_sampling_studyExtent_description');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_MethodsType_MethodsType_sampling_MethodsType_MethodsType_sampling_studyExtent_description" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"description"</span><span class="tAN"> type=</span><span class="tAV">"txt:TextType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Text description of the coverage summary: A textual description of the specific areas sampled (geographic coverage), the sampling frequency (temporal coverage), and groups of living organisms sampled (taxonomic coverage). description: The coverage field allows for a textual description of the specific sampling area, the sampling frequency (temporal boundaries, frequency of occurrence), and groups of living organisms sampled (taxonomic coverage). example: The study was conducted on the North Platte River, starting 6 miles downstream and ending 9 miles downstream of the route 132 bridge in Evanston, ND.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2968,25 +2632,6 @@ var modelBoxes= new Array('model_MethodsType_methodStep',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_MethodsType_MethodsType_sampling_samplingDescription" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MethodsType_MethodsType_sampling_samplingDescription');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_MethodsType_MethodsType_sampling_samplingDescription" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"samplingDescription"</span><span class="tAN"> type=</span><span class="tAV">"txt:TextType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Sampling methods and procedures summary: A description of sampling methods and procedures description: The samplingDescription field allows for a text-based/human readable description of the sampling procedures used in the research project. The content of this element would be similar to a description of sampling procedures found in the methods section of a journal article.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -3115,39 +2760,6 @@ var modelBoxes= new Array('model_MethodsType_methodStep',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_MethodsType_MethodsType_sampling_spatialSamplingUnits" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MethodsType_MethodsType_sampling_spatialSamplingUnits');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_MethodsType_MethodsType_sampling_spatialSamplingUnits" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"spatialSamplingUnits"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Spatial sampling units summary: Spatial sampling units represent the plots sampled. description: A spatial sampling unit describes the specific geographic areas sampled. In the case of a study in which the measurements from several disbursed point collection devices are aggregated, then the sampling unit would be the area of that aggregation. Spatial sampling units can either be described by filling out the structured coverage element or by reference to the values in a data table (usually a GIS layer) example: If a researcher places a single light source at a specific point in a research location in order to attract insects to derive an estimate of the insect population, then the sampling unit is the area illuminated by the light source (in actual practice there might be multiple sampling units in this case since different species have different attraction rates). example: The bounding box of a specific 3-meter square plot. example: The location of a weather station.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:choice</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"referencedEntityId"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: The identifier of a spatial sampling entity. summary: The identifier of an entity described in the entity module. This is usually a GIS layer. description: A value of a referencedEntityId element is a reference to the identifier of the entity module that provides the metadata for a data table (RDBMS, GIS or ascii text) that has the actual spatial sampling unit values. The referencedEntityId field is an indirect pointer to the actual values. The referencedEntityId can be thought of as a foreign key in a relational database. example: x</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"coverage"</span><span class="tAN"> type=</span><span class="tAV">"cov:GeographicCoverage"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: sampling unit location summary: Structured description of each sampling unit location description: Structured description of each sampling unit location</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -3214,25 +2826,6 @@ var modelBoxes= new Array('model_MethodsType_methodStep',
                         </td>
                         <td class="diagram">
                            <div id="diagram_MethodsType_MethodsType_sampling_MethodsType_MethodsType_sampling_spatialSamplingUnits_referencedEntityId" style="display:block"><img alt="Diagram" border="0" src="img/eml-methods_xsd_Element_referencedEntityId.png" /></div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_MethodsType_MethodsType_sampling_MethodsType_MethodsType_sampling_spatialSamplingUnits_referencedEntityId" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MethodsType_MethodsType_sampling_MethodsType_MethodsType_sampling_spatialSamplingUnits_referencedEntityId');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_MethodsType_MethodsType_sampling_MethodsType_MethodsType_sampling_spatialSamplingUnits_referencedEntityId" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"referencedEntityId"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: The identifier of a spatial sampling entity. summary: The identifier of an entity described in the entity module. This is usually a GIS layer. description: A value of a referencedEntityId element is a reference to the identifier of the entity module that provides the metadata for a data table (RDBMS, GIS or ascii text) that has the actual spatial sampling unit values. The referencedEntityId field is an indirect pointer to the actual values. The referencedEntityId can be thought of as a foreign key in a relational database. example: x</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
                         </td>
                      </tr>
                   </tbody>
@@ -3397,25 +2990,6 @@ var modelBoxes= new Array('model_MethodsType_methodStep',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_MethodsType_MethodsType_sampling_MethodsType_MethodsType_sampling_spatialSamplingUnits_coverage" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MethodsType_MethodsType_sampling_MethodsType_MethodsType_sampling_spatialSamplingUnits_coverage');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_MethodsType_MethodsType_sampling_MethodsType_MethodsType_sampling_spatialSamplingUnits_coverage" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"coverage"</span><span class="tAN"> type=</span><span class="tAV">"cov:GeographicCoverage"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: sampling unit location summary: Structured description of each sampling unit location description: Structured description of each sampling unit location</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -3656,25 +3230,6 @@ var modelBoxes= new Array('model_MethodsType_methodStep',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_MethodsType_MethodsType_sampling_citation" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MethodsType_MethodsType_sampling_citation');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_MethodsType_MethodsType_sampling_citation" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"citation"</span><span class="tAN"> type=</span><span class="tAV">"cit:CitationType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: citation summary: Literature citation relating to the sampling procedures used. description: The citation field allows to either reference a literature resource or enter structured literature information</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -3808,25 +3363,6 @@ var modelBoxes= new Array('model_MethodsType_methodStep',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_MethodsType_qualityControl" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MethodsType_qualityControl');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_MethodsType_qualityControl" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"qualityControl"</span><span class="tAN"> type=</span><span class="tAV">"ProcedureStepType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Quality Control summary: Information on possible errors or on the quality of a data set. description: The qualityControl field provides a location for the description of actions taken to either control or assess the quality of data resulting from the associated method step. A quality control description should identify a quality goal and describe prescriptive steps taken to ensure that the data meet those standards and/or postscriptive steps taken to assess the extent to which they are met. A quality control statement is associated with the methodStep that could have affected the targeted quality goal.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -3933,25 +3469,6 @@ var modelBoxes= new Array('model_MethodsType_methodStep',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_methods" type="image" src="img/btM.gif" value="-" onclick="switchState('source_methods');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_methods" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"methods"</span><span class="tAN"> type=</span><span class="tAV">"MethodsType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Comment describing your root element</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -3991,22 +3508,6 @@ var modelBoxes= new Array('model_MethodsType_methodStep',
                         </td>
                      </tr>
                      <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_MethodsType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_MethodsType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_MethodsType" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Elements </td>
-                                    <td><b><a href="eml-attribute_xsd.html#AttributeType_methods" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-attribute.xsd')">AttributeType/methods</a></b>, <b><a href="eml-dataset_xsd.html#DatasetType_methods" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-dataset.xsd')">DatasetType/methods</a></b>, <b><a href="eml-entity_xsd.html#EntityGroup_methods" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-entity.xsd')">EntityGroup/methods</a></b>, <b><a href="eml-methods_xsd.html#methods" target="mainFrame" title="https://eml.ecoinformatics.org/methods-2.2.0" onclick="updatePageTitle('Schema documentation for eml-methods.xsd')">methods</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_MethodsType" type="image" src="img/btM.gif" value="-" onclick="switchState('model_MethodsType');" class="control" /></div>
                         </td>
                         <td>
@@ -4016,104 +3517,6 @@ var modelBoxes= new Array('model_MethodsType_methodStep',
                      <tr>
                         <td class="firstColumn"><b>Children</b></td>
                         <td><b><a href="eml-methods_xsd.html#MethodsType_methodStep" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-methods.xsd')">methodStep</a></b>, <b><a href="eml-methods_xsd.html#MethodsType_qualityControl" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-methods.xsd')">qualityControl</a></b>, <b><a href="eml-methods_xsd.html#MethodsType_sampling" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-methods.xsd')">sampling</a></b></td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_MethodsType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MethodsType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_MethodsType" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"MethodsType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:sequence</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"methodStep"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: method information summary: Information about the methods employed in collecting or generating a data set or other resource. description: The methodStep field allows for repeated sets of elements that document a series of procedures followed to produce a data object. These include text descriptions of the procedures, relevant literature, software, instrumentation, source data and any quality control measures taken. example: Please see the examples for the sub-fields.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"ProcedureStepType"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"dataSource"</span><span class="tAN"> type=</span><span class="tAV">"ds:DatasetType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: data source summary: A source of data used by this methodStep. description: A source of data used by this methodStep.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:complexContent&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"sampling"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: sampling methods summary: Description of sampling procedures including the geographic, temporal and taxonomic coverage of the study. description: Description of sampling procedures including the geographic, temporal and taxonomic coverage of the study. See individual elements for more detailed descriptions.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"studyExtent"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Geographic, temporal, taxonomic coverage summary: A description of the geographic area sampled (geographic coverage), the sampling frequency (temporal coverage), and living organisms sampled (taxonomic coverage. description: The field studyExtent represents both a specific sampling area and the sampling frequency (temporal boundaries, frequency of occurrence). The geographic studyExtent is usually a surrogate (representative area of) for the larger area documented in the "studyAreaDescription". The studyExtent can be entered either in non-structured textual form or using the structure of the coverage element.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:choice</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"coverage"</span><span class="tAN"> type=</span><span class="tAV">"cov:Coverage"</span><span class="tEl">&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: coverage summary: A description of the geographic area sampled (geographic coverage), the sampling frequency (temporal coverage), and living organisms sampled (taxonomic coverage. description: The field studyExtent represents both a specific sampling area and the sampling frequency (temporal boundaries, frequency of occurrence). The geographic studyExtent is usually a surrogate (representative area of) for the larger area documented in the "studyAreaDescription". The studyExtent can be entered either in non-structured textual form or using the structure of the coverage element. See eml-coverage for more information.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"description"</span><span class="tAN"> type=</span><span class="tAV">"txt:TextType"</span><span class="tEl">&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Text description of the coverage summary: A textual description of the specific areas sampled (geographic coverage), the sampling frequency (temporal coverage), and groups of living organisms sampled (taxonomic coverage). description: The coverage field allows for a textual description of the specific sampling area, the sampling frequency (temporal boundaries, frequency of occurrence), and groups of living organisms sampled (taxonomic coverage). example: The study was conducted on the North Platte River, starting 6 miles downstream and ending 9 miles downstream of the route 132 bridge in Evanston, ND.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"samplingDescription"</span><span class="tAN"> type=</span><span class="tAV">"txt:TextType"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Sampling methods and procedures summary: A description of sampling methods and procedures description: The samplingDescription field allows for a text-based/human readable description of the sampling procedures used in the research project. The content of this element would be similar to a description of sampling procedures found in the methods section of a journal article.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"spatialSamplingUnits"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Spatial sampling units summary: Spatial sampling units represent the plots sampled. description: A spatial sampling unit describes the specific geographic areas sampled. In the case of a study in which the measurements from several disbursed point collection devices are aggregated, then the sampling unit would be the area of that aggregation. Spatial sampling units can either be described by filling out the structured coverage element or by reference to the values in a data table (usually a GIS layer) example: If a researcher places a single light source at a specific point in a research location in order to attract insects to derive an estimate of the insect population, then the sampling unit is the area illuminated by the light source (in actual practice there might be multiple sampling units in this case since different species have different attraction rates). example: The bounding box of a specific 3-meter square plot. example: The location of a weather station.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:choice</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"referencedEntityId"</span><span class="tEl">&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: The identifier of a spatial sampling entity. summary: The identifier of an entity described in the entity module. This is usually a GIS layer. description: A value of a referencedEntityId element is a reference to the identifier of the entity module that provides the metadata for a data table (RDBMS, GIS or ascii text) that has the actual spatial sampling unit values. The referencedEntityId field is an indirect pointer to the actual values. The referencedEntityId can be thought of as a foreign key in a relational database. example: x</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"coverage"</span><span class="tAN"> type=</span><span class="tAV">"cov:GeographicCoverage"</span><span class="tEl">&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: sampling unit location summary: Structured description of each sampling unit location description: Structured description of each sampling unit location</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"citation"</span><span class="tAN"> type=</span><span class="tAV">"cit:CitationType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: citation summary: Literature citation relating to the sampling procedures used. description: The citation field allows to either reference a literature resource or enter structured literature information</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"qualityControl"</span><span class="tAN"> type=</span><span class="tAV">"ProcedureStepType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Quality Control summary: Information on possible errors or on the quality of a data set. description: The qualityControl field provides a location for the description of actions taken to either control or assess the quality of data resulting from the associated method step. A quality control description should identify a quality goal and describe prescriptive steps taken to ensure that the data meet those standards and/or postscriptive steps taken to assess the extent to which they are met. A quality control statement is associated with the methodStep that could have affected the targeted quality goal.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
                      </tr>
                   </tbody>
                </table>
@@ -4157,22 +3560,6 @@ var modelBoxes= new Array('model_MethodsType_methodStep',
                         </td>
                      </tr>
                      <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ProcedureStepType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ProcedureStepType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ProcedureStepType" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Elements </td>
-                                    <td><b><a href="eml-methods_xsd.html#MethodsType_methodStep" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-methods.xsd')">MethodsType/methodStep</a></b>, <b><a href="eml-methods_xsd.html#MethodsType_qualityControl" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-methods.xsd')">MethodsType/qualityControl</a></b>, <b><a href="eml-methods_xsd.html#ProcedureStepType_subStep" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-methods.xsd')">ProcedureStepType/subStep</a></b>, <b><a href="eml-protocol_xsd.html#ProtocolType_proceduralStep" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-protocol.xsd')">ProtocolType/proceduralStep</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_ProcedureStepType" type="image" src="img/btM.gif" value="-" onclick="switchState('model_ProcedureStepType');" class="control" /></div>
                         </td>
                         <td>
@@ -4182,58 +3569,6 @@ var modelBoxes= new Array('model_MethodsType_methodStep',
                      <tr>
                         <td class="firstColumn"><b>Children</b></td>
                         <td><b><a href="eml-methods_xsd.html#ProcedureStepType_citation" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-methods.xsd')">citation</a></b>, <b><a href="eml-methods_xsd.html#ProcedureStepType_description" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-methods.xsd')">description</a></b>, <b><a href="eml-methods_xsd.html#ProcedureStepType_instrumentation" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-methods.xsd')">instrumentation</a></b>, <b><a href="eml-methods_xsd.html#ProcedureStepType_protocol" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-methods.xsd')">protocol</a></b>, <b><a href="eml-methods_xsd.html#ProcedureStepType_software" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-methods.xsd')">software</a></b>, <b><a href="eml-methods_xsd.html#ProcedureStepType_subStep" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-methods.xsd')">subStep</a></b></td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ProcedureStepType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ProcedureStepType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ProcedureStepType" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"ProcedureStepType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"description"</span><span class="tAN"> type=</span><span class="tAV">"txt:TextType"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Methods description summary: Description of the methods employed in collecting or generating a data set or other resource or in quality control and assurance. description: The description field allows for repeated text that describes the methodology for a project, experiment, or particular data table or to describe the steps taken to control or assure the quality of the data. Likewise, a literature citation may be provided that describes the methodology that was employed. Or the information my be provided by either referencing a protocol resource or entering the structured protocol information example: 1.Collect tissues from algae of interest. a. We are currently collecting Egregia menziezii, Mazzaella splendens, M. flaccida, Hedophyllum sessile, Postelsia palmaeformis and Fucus gardneri.We stopped collecting Neorhodomela larix and Odonthalia floccosa because they can be heavily fouled and we feared that would skew the results. b. We collect a 7-10 cm blade or branch from each plant. For Egregia, try to sample small, young plants or take the base of the blade. For Postelsia, take a few of the blades. The other plants are small enough so a whole blade can be taken.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:choice</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"citation"</span><span class="tAN"> type=</span><span class="tAV">"cit:CitationType"</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: citation summary: Literature citation relating to the methods used. description: The citation field allows to either reference a literature resource or enter structured literature information</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"protocol"</span><span class="tAN"> type=</span><span class="tAV">"pro:ProtocolType"</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Protocol summary: Protocol description relating to the methods used. description: The protocol field is used to either reference a protocol resource or describe methods and identify the processes that have been used to define / improve the quality of a data file, also used to identify potential problems with the data file.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"instrumentation"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Instrumentation summary: Instruments used for measurement and recording data. description: The Instrumentation field allows the description of any instruments used in the data collection or quality control and quality assurance. The description should include vendor, model number, optional equipment, etc. example: LACHAT analyzer, model XYX.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"software"</span><span class="tAN"> type=</span><span class="tAV">"sw:SoftwareType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Software summary: Software used in the processing of data. description: The software element allows reference to any software used to process data.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"subStep"</span><span class="tAN"> type=</span><span class="tAV">"ProcedureStepType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: substep summary: description: This fields allows the nesting of additional method steps within this step. This is useful for hierarchical method descriptions.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
                      </tr>
                   </tbody>
                </table>

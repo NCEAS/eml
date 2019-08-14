@@ -37,46 +37,6 @@
 				'properties_ResearchProjectType_scope');
 var facetsBoxes= new Array('facets_ResearchProjectType_title', 
 				'facets_ResearchProjectType_scope');
-var usedByBoxes= new Array('usedBy_ResearchProjectType', 
-				'usedBy_AwardType', 
-				'usedBy_DescriptorType', 
-				'usedBy_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_descriptorValue_name_or_id', 
-				'usedBy_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_name', 
-				'usedBy_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_citableClassificationSystem', 
-				'usedBy_ResearchProjectType_id', 
-				'usedBy_ResearchProjectType_system', 
-				'usedBy_ResearchProjectType_scope');
-var sourceBoxes= new Array('source_ResearchProjectType_title', 
-				'source_ResearchProjectType_personnel', 
-				'source_ResearchProjectType_ResearchProjectType_personnel_role', 
-				'source_ResearchProjectType_abstract', 
-				'source_ResearchProjectType_funding', 
-				'source_ResearchProjectType_award', 
-				'source_AwardType_funderName', 
-				'source_AwardType_funderIdentifier', 
-				'source_AwardType_awardNumber', 
-				'source_AwardType_title', 
-				'source_AwardType_awardUrl', 
-				'source_ResearchProjectType_studyAreaDescription', 
-				'source_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor', 
-				'source_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_descriptorValue', 
-				'source_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_citation', 
-				'source_ResearchProjectType_ResearchProjectType_studyAreaDescription_citation', 
-				'source_ResearchProjectType_ResearchProjectType_studyAreaDescription_coverage', 
-				'source_ResearchProjectType_designDescription', 
-				'source_ResearchProjectType_ResearchProjectType_designDescription_description', 
-				'source_ResearchProjectType_ResearchProjectType_designDescription_citation', 
-				'source_ResearchProjectType_relatedProject', 
-				'source_researchProject', 
-				'source_ResearchProjectType', 
-				'source_AwardType', 
-				'source_DescriptorType', 
-				'source_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_descriptorValue_name_or_id', 
-				'source_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_name', 
-				'source_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_citableClassificationSystem', 
-				'source_ResearchProjectType_id', 
-				'source_ResearchProjectType_system', 
-				'source_ResearchProjectType_scope');
 var instanceBoxes= new Array('instance_ResearchProjectType_personnel', 
 				'instance_ResearchProjectType_abstract', 
 				'instance_ResearchProjectType_funding', 
@@ -455,12 +415,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
                      <tr>
                         <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
                      </tr>
-                     <tr>
-                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
-                     </tr>
-                     <tr>
-                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
-                     </tr>
                   </table>
                   <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
                </td>
@@ -671,25 +625,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResearchProjectType_title" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResearchProjectType_title');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResearchProjectType_title" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"title"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Project Title summary: Title of the project. description: A descriptive title for the research project. example: Species diversity in Tennessee riparian habitats.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -882,38 +817,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResearchProjectType_personnel" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResearchProjectType_personnel');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResearchProjectType_personnel" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"personnel"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Personnel summary: Contact and role information for people involved in the research project. description: The Personnel field extends ResponsibleParty with role information and is used to document people involved in a research project by providing contact information and their role in the project.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"rp:ResponsibleParty"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:sequence</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"role"</span><span class="tAN"> type=</span><span class="tAV">"rp:RoleType"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Role summary: Role information for people involved in the research project. description: The role field contains information about role a person plays in a research project. There are a number of suggested roles, however, it is possible to add a role if the suggested roles are not adequate. example: author example: contentProvider example: custodianSteward example: distributor example: editor example: metadataProvider example: originator example: owner example: pointOfContact example: principalInvestigator example: processor example: publisher example: user example: fieldStationManager example: informationManager</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:complexContent&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1021,25 +924,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
                                  <tr>
                                     <td class="firstColumn" style="white-space: nowrap;">content</td>
                                     <td><b>simple</b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResearchProjectType_ResearchProjectType_personnel_role" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResearchProjectType_ResearchProjectType_personnel_role');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResearchProjectType_ResearchProjectType_personnel_role" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"role"</span><span class="tAN"> type=</span><span class="tAV">"rp:RoleType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Role summary: Role information for people involved in the research project. description: The role field contains information about role a person plays in a research project. There are a number of suggested roles, however, it is possible to add a role if the suggested roles are not adequate. example: author example: contentProvider example: custodianSteward example: distributor example: editor example: metadataProvider example: originator example: owner example: pointOfContact example: principalInvestigator example: processor example: publisher example: user example: fieldStationManager example: informationManager</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1188,25 +1072,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResearchProjectType_abstract" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResearchProjectType_abstract');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResearchProjectType_abstract" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"abstract"</span><span class="tAN"> type=</span><span class="tAV">"txt:TextType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Abstract summary: Project Abstract. description: Descriptive abstract that summarizes information about the research project.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1363,25 +1228,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResearchProjectType_funding" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResearchProjectType_funding');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResearchProjectType_funding" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"funding"</span><span class="tAN"> type=</span><span class="tAV">"txt:TextType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Funding summary: Funding information. description: The funding field is used to provide general information about the funding for a project, generally in prose form. This field is included for historical compatibility, and has been augmented by the award field that provides structured information about funding included.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1508,25 +1354,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
   </span><span class="tEl">&lt;title</span><span class="tT"> </span><span class="tAN">xml:lang=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/title&gt;</span><span class="tI">
   </span><span class="tEl">&lt;awardUrl</span><span class="tT"> </span><span class="tAN">xml:lang=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/awardUrl&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/award&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResearchProjectType_award" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResearchProjectType_award');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResearchProjectType_award" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"award"</span><span class="tAN"> type=</span><span class="tAV">"AwardType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Award information summary: Award information. description: The award field is used to provide specific information about the funding awards for a project in a structured format. Sub-fields are provided for the name of the funding agency, the Open Funder Registry identifiers for the agency and program that made the award, the award number assigned, the title of the award, and the URL to the award page describing the award. The award field replaces the earlier funding field from prior EML version releases. In general, the funding agency should be listed with a cross-reference to the appropriate identifier from the Open Funder Registry (included in the EML distribution, but which is also update periodically from the Open Funder Registry).</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1681,25 +1508,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_AwardType_funderName" type="image" src="img/btM.gif" value="-" onclick="switchState('source_AwardType_funderName');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_AwardType_funderName" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"funderName"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Funder Name summary: The name of the funding institution that made this award description: The name of the funding institution, with fully expanded acronyms to show the full, official name of the funding agency. In general, this should match the official name of the funder as listed in an Authority such as the Open Funder Registry. The Open Funder Registry and other organizational authorities may provide a list of other alternative names for the funding agency. example: National Science Foundation</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1864,25 +1672,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_AwardType_funderIdentifier" type="image" src="img/btM.gif" value="-" onclick="switchState('source_AwardType_funderIdentifier');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_AwardType_funderIdentifier" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"funderIdentifier"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Funder identifier summary: The identifier of the funding agency. description: The funder identifier is used to provide one or more canonical identifiers that reference the funder. These identifiers should be globally unique. The most common form of a funder identifier is a DOI identifier of an institution or program drawn from the CrossRef Open Funder Registry (https://github.com/Crossref/open-funder-registry), which assigns DOIs to each funding agency and to their programs, and links these together in a navigable hierarchy. A copy of the current Funder Registry is included as an RDF file with EML for reference, but as the list is constantly growing, users can retrieve new copies of the RDF file to get updates and current metadata about funders. example: http://dx.doi.org/10.13039/100000001</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2038,25 +1827,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_AwardType_awardNumber" type="image" src="img/btM.gif" value="-" onclick="switchState('source_AwardType_awardNumber');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_AwardType_awardNumber" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"awardNumber"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Award Number summary: The assigned award number. description: The awardNumber field provides the unique identifier used by the funder to uniquely identify an award. These are typically alphanumeric values that are unique within the system used by a given funder. The number should be listed using the canonical form that each funder uses to express its award numbers, and not be prefixed or postfixed with extra text such as the acronym of the funder or the name of the funder, which is available instead in the funderName field. example: 1546024</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2203,25 +1973,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_AwardType_title" type="image" src="img/btM.gif" value="-" onclick="switchState('source_AwardType_title');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_AwardType_title" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"title"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Title summary: The title of the award. description: The title field is used for the title of the award or grant being described. example: Scientia Arctica: A Knowledge Archive for Discovery and Reproducible Science in the Arctic</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -2379,25 +2130,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_AwardType_awardUrl" type="image" src="img/btM.gif" value="-" onclick="switchState('source_AwardType_awardUrl');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_AwardType_awardUrl" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"awardUrl"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Award URL summary: The URL associated with award. description: Typically, the awardUrl is use to find and locate the award, and generally addresses the internet location to find out more information about the award. This should point to a funder site for the award, rather than a project site. example: https://www.nsf.gov/awardsearch/showAward?AWD_ID=1546024</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2511,79 +2243,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
   </span><span class="tEl">&lt;citation</span><span class="tT"> </span><span class="tAN">id=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">scope=</span><span class="tAV">"document"</span><span class="tT"> </span><span class="tAN">system=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/citation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;coverage</span><span class="tT"> </span><span class="tAN">id=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">scope=</span><span class="tAV">"document"</span><span class="tT"> </span><span class="tAN">system=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/coverage&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/studyAreaDescription&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResearchProjectType_studyAreaDescription" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResearchProjectType_studyAreaDescription');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResearchProjectType_studyAreaDescription" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"studyAreaDescription"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Description of the study area. summary: Description of the physical area associated with the research project, potentially including coverage, climate, geology, disturbances, etc. description: The studyAreaDescription field documents the physical area associated with the research project. It can include descriptions of the geographic, temporal, and taxonomic coverage of the research location and descriptions of domains (themes) of interest such as climate, geology, soils or disturbances or reference to citable biological or geophysical classification systems such as the Bailey Ecoregions or the Holdridge Life Zones.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:choice</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"descriptor"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Non-coverage characteristics of the study area summary: Description of non-coverage characteristics of the study area such as climate, geology, disturbances description: The descriptor field is used to document domains (themes) of interest such as climate, geology, soils or disturbances or references to citable biological or geophysical classification systems such as the Bailey Ecoregions or the Holdridge Life Zones.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:sequence</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"descriptorValue"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Description of some aspect of the study area. summary: Description of some aspect of the study area. description: The descriptorValue field contains the value of a descriptor, describing some aspect of the study area. This may either be a general description in textual form or the value part of a "name/value" pair where the name is entered in the attribute "name_or_id". For example, if the value of the "name" attribute" of the element "descriptor" is "climate", and the value of the attribute "name_or_id" of the element "descriptorValue" is "Annual Precipitation" then the value of this element could be "12.5 inches". example: 12.5 inches example: tundra-forest</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:simpleContent</span><span class="tEl">&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
-                    </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"name_or_id"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">&gt;</span><span class="tI">
-                      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: The name or ID of a descriptor value. summary: The name part of a name/value pair of a descriptor; or ID portion of a classification, if applicable. description: The name_or_id field is the name part of a name/value pair of a descriptor; or ID portion of a classification, if applicable. The values of biogeophysical classification systems, e.g. Bailey-Ecoregions, often take the form of an ID or Code along with a text representation. For example, the ID/Code M131 refers to the phrase "Open Woodland -Tundra". M131 is an unambiguous reference to a more detailed description. If one is using a published classification system then there should be a corresponding citation to the source, e.g., Bailey,R.G., 1996 "Ecosystem Geography". example: M131 example: Average Annual Rainfall</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-                      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-                    </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;/xs:simpleContent&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"citation"</span><span class="tAN"> type=</span><span class="tAV">"cit:CitationType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: citation summary: A citation for this descriptor. description: A citation for this descriptor.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"name"</span><span class="tAN"> type=</span><span class="tAV">"DescriptorType"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: name summary: The name of the descriptor system. description: The name of the descriptor system. The name can be either a theme such as climate or hydrology, or the name of a citable classification system.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"citableClassificationSystem"</span><span class="tAN"> type=</span><span class="tAV">"xs:boolean"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: citation classification system summary: This boolean attribute defines whether this descriptor comes from a citable classification system or not. description: This boolean attribute defines whether this descriptor comes from a citable classification system or not.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"citation"</span><span class="tAN"> type=</span><span class="tAV">"cit:CitationType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: citation summary: The citation for this descriptor. description: The citation for this descriptor.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"coverage"</span><span class="tAN"> type=</span><span class="tAV">"cov:Coverage"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: coverage summary: The coverage of this descriptor. description: The coverage of this descriptor.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -2766,60 +2425,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"descriptor"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Non-coverage characteristics of the study area summary: Description of non-coverage characteristics of the study area such as climate, geology, disturbances description: The descriptor field is used to document domains (themes) of interest such as climate, geology, soils or disturbances or references to citable biological or geophysical classification systems such as the Bailey Ecoregions or the Holdridge Life Zones.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:sequence</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"descriptorValue"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Description of some aspect of the study area. summary: Description of some aspect of the study area. description: The descriptorValue field contains the value of a descriptor, describing some aspect of the study area. This may either be a general description in textual form or the value part of a "name/value" pair where the name is entered in the attribute "name_or_id". For example, if the value of the "name" attribute" of the element "descriptor" is "climate", and the value of the attribute "name_or_id" of the element "descriptorValue" is "Annual Precipitation" then the value of this element could be "12.5 inches". example: 12.5 inches example: tundra-forest</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:simpleContent</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"name_or_id"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: The name or ID of a descriptor value. summary: The name part of a name/value pair of a descriptor; or ID portion of a classification, if applicable. description: The name_or_id field is the name part of a name/value pair of a descriptor; or ID portion of a classification, if applicable. The values of biogeophysical classification systems, e.g. Bailey-Ecoregions, often take the form of an ID or Code along with a text representation. For example, the ID/Code M131 refers to the phrase "Open Woodland -Tundra". M131 is an unambiguous reference to a more detailed description. If one is using a published classification system then there should be a corresponding citation to the source, e.g., Bailey,R.G., 1996 "Ecosystem Geography". example: M131 example: Average Annual Rainfall</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:simpleContent&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"citation"</span><span class="tAN"> type=</span><span class="tAV">"cit:CitationType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: citation summary: A citation for this descriptor. description: A citation for this descriptor.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"name"</span><span class="tAN"> type=</span><span class="tAV">"DescriptorType"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: name summary: The name of the descriptor system. description: The name of the descriptor system. The name can be either a theme such as climate or hydrology, or the name of a citable classification system.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"citableClassificationSystem"</span><span class="tAN"> type=</span><span class="tAV">"xs:boolean"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: citation classification system summary: This boolean attribute defines whether this descriptor comes from a citable classification system or not. description: This boolean attribute defines whether this descriptor comes from a citable classification system or not.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2972,36 +2577,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
                                           </table>
                                        </div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_descriptorValue" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_descriptorValue');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_descriptorValue" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"descriptorValue"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Description of some aspect of the study area. summary: Description of some aspect of the study area. description: The descriptorValue field contains the value of a descriptor, describing some aspect of the study area. This may either be a general description in textual form or the value part of a "name/value" pair where the name is entered in the attribute "name_or_id". For example, if the value of the "name" attribute" of the element "descriptor" is "climate", and the value of the attribute "name_or_id" of the element "descriptorValue" is "Annual Precipitation" then the value of this element could be "12.5 inches". example: 12.5 inches example: tundra-forest</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:simpleContent</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"name_or_id"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: The name or ID of a descriptor value. summary: The name part of a name/value pair of a descriptor; or ID portion of a classification, if applicable. description: The name_or_id field is the name part of a name/value pair of a descriptor; or ID portion of a classification, if applicable. The values of biogeophysical classification systems, e.g. Bailey-Ecoregions, often take the form of an ID or Code along with a text representation. For example, the ID/Code M131 refers to the phrase "Open Woodland -Tundra". M131 is an unambiguous reference to a more detailed description. If one is using a published classification system then there should be a corresponding citation to the source, e.g., Bailey,R.G., 1996 "Ecosystem Geography". example: M131 example: Average Annual Rainfall</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:simpleContent&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -3241,25 +2816,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_citation" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_citation');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_citation" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"citation"</span><span class="tAN"> type=</span><span class="tAV">"cit:CitationType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: citation summary: A citation for this descriptor. description: A citation for this descriptor.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -3490,25 +3046,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResearchProjectType_ResearchProjectType_studyAreaDescription_citation" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResearchProjectType_ResearchProjectType_studyAreaDescription_citation');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResearchProjectType_ResearchProjectType_studyAreaDescription_citation" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"citation"</span><span class="tAN"> type=</span><span class="tAV">"cit:CitationType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: citation summary: The citation for this descriptor. description: The citation for this descriptor.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -3679,25 +3216,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResearchProjectType_ResearchProjectType_studyAreaDescription_coverage" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResearchProjectType_ResearchProjectType_studyAreaDescription_coverage');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResearchProjectType_ResearchProjectType_studyAreaDescription_coverage" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"coverage"</span><span class="tAN"> type=</span><span class="tAV">"cov:Coverage"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: coverage summary: The coverage of this descriptor. description: The coverage of this descriptor.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -3805,39 +3323,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
   </span><span class="tEl">&lt;description</span><span class="tT"> </span><span class="tAN">xml:lang=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/description&gt;</span><span class="tI">
   </span><span class="tEl">&lt;citation</span><span class="tT"> </span><span class="tAN">id=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">scope=</span><span class="tAV">"document"</span><span class="tT"> </span><span class="tAN">system=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/citation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/designDescription&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResearchProjectType_designDescription" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResearchProjectType_designDescription');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResearchProjectType_designDescription" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"designDescription"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Description of research design summary: Description of the design of the research project description: The field designDescription contains general textual descriptions of research design. It can include detailed accounts of goals, motivations, theory, hypotheses, strategy, statistical design, and actual work. Literature citations may also be used to describe the research design.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:choice</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"description"</span><span class="tAN"> type=</span><span class="tAV">"txt:TextType"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Description of research design summary: Textual description of research design. description: The field designDescription contains general textual descriptions of research design. It can include detailed accounts of goals, motivations, theory, hypotheses, strategy, statistical design, and actual work.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"citation"</span><span class="tAN"> type=</span><span class="tAV">"cit:CitationType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Citation for research design summary: Citation that describes the research design. description: The citation field is a citation to literature that describes elements of the research design, such as goals, motivations, theory, hypotheses, strategy, statistical design, and actual work.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -3986,25 +3471,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResearchProjectType_ResearchProjectType_designDescription_description" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResearchProjectType_ResearchProjectType_designDescription_description');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResearchProjectType_ResearchProjectType_designDescription_description" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"description"</span><span class="tAN"> type=</span><span class="tAV">"txt:TextType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Description of research design summary: Textual description of research design. description: The field designDescription contains general textual descriptions of research design. It can include detailed accounts of goals, motivations, theory, hypotheses, strategy, statistical design, and actual work.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -4242,25 +3708,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResearchProjectType_ResearchProjectType_designDescription_citation" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResearchProjectType_ResearchProjectType_designDescription_citation');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResearchProjectType_ResearchProjectType_designDescription_citation" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"citation"</span><span class="tAN"> type=</span><span class="tAV">"cit:CitationType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Citation for research design summary: Citation that describes the research design. description: The citation field is a citation to literature that describes elements of the research design, such as goals, motivations, theory, hypotheses, strategy, statistical design, and actual work.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -4447,25 +3894,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResearchProjectType_relatedProject" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResearchProjectType_relatedProject');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResearchProjectType_relatedProject" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"relatedProject"</span><span class="tAN"> type=</span><span class="tAV">"ResearchProjectType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: related project summary: This field is a recursive link to another project. description: This field is a recursive link to another project. This allows projects to be nested under one another for the case where one project spawns another.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -4643,25 +4071,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_researchProject" type="image" src="img/btM.gif" value="-" onclick="switchState('source_researchProject');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_researchProject" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"researchProject"</span><span class="tAN"> type=</span><span class="tAV">"ResearchProjectType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: research project summary: The root element of this module. description: The root element of this module. This is used for testing or if you want to instantiate a stand-alone project file.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -4741,22 +4150,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
                         </td>
                      </tr>
                      <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ResearchProjectType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ResearchProjectType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ResearchProjectType" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Elements </td>
-                                    <td><b><a href="eml-dataset_xsd.html#DatasetType_project" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-dataset.xsd')">DatasetType/project</a></b>, <b><a href="eml-project_xsd.html#ResearchProjectType_relatedProject" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-project.xsd')">ResearchProjectType/relatedProject</a></b>, <b><a href="eml-software_xsd.html#SoftwareType_project" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-software.xsd')">SoftwareType/project</a></b>, <b><a href="eml-project_xsd.html#researchProject" target="mainFrame" title="https://eml.ecoinformatics.org/project-2.2.0" onclick="updatePageTitle('Schema documentation for eml-project.xsd')">researchProject</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_ResearchProjectType" type="image" src="img/btM.gif" value="-" onclick="switchState('model_ResearchProjectType');" class="control" /></div>
                         </td>
                         <td>
@@ -4811,154 +4204,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResearchProjectType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResearchProjectType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResearchProjectType" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"ResearchProjectType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Research project descriptor summary: Descriptor of a research context for a dataset or another project. description: The researchProject complex type describes the structure for documenting the research context of a dataset or another project. It can include research goals, motivations, theory, hypotheses, etc., as well as a description of research efforts that form the basis for other work. (To document methods specific to a dataset use eml-methods.) This field can be associated with a dataset using the project field of eml-dataset, and can be associated with another project using the relatedProject field of eml-project (this module).</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:choice</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"title"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Project Title summary: Title of the project. description: A descriptive title for the research project. example: Species diversity in Tennessee riparian habitats.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"personnel"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Personnel summary: Contact and role information for people involved in the research project. description: The Personnel field extends ResponsibleParty with role information and is used to document people involved in a research project by providing contact information and their role in the project.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"rp:ResponsibleParty"</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:sequence</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"role"</span><span class="tAN"> type=</span><span class="tAV">"rp:RoleType"</span><span class="tEl">&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Role summary: Role information for people involved in the research project. description: The role field contains information about role a person plays in a research project. There are a number of suggested roles, however, it is possible to add a role if the suggested roles are not adequate. example: author example: contentProvider example: custodianSteward example: distributor example: editor example: metadataProvider example: originator example: owner example: pointOfContact example: principalInvestigator example: processor example: publisher example: user example: fieldStationManager example: informationManager</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:complexContent&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"abstract"</span><span class="tAN"> type=</span><span class="tAV">"txt:TextType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Abstract summary: Project Abstract. description: Descriptive abstract that summarizes information about the research project.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"funding"</span><span class="tAN"> type=</span><span class="tAV">"txt:TextType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Funding summary: Funding information. description: The funding field is used to provide general information about the funding for a project, generally in prose form. This field is included for historical compatibility, and has been augmented by the award field that provides structured information about funding included.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"award"</span><span class="tAN"> type=</span><span class="tAV">"AwardType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Award information summary: Award information. description: The award field is used to provide specific information about the funding awards for a project in a structured format. Sub-fields are provided for the name of the funding agency, the Open Funder Registry identifiers for the agency and program that made the award, the award number assigned, the title of the award, and the URL to the award page describing the award. The award field replaces the earlier funding field from prior EML version releases. In general, the funding agency should be listed with a cross-reference to the appropriate identifier from the Open Funder Registry (included in the EML distribution, but which is also update periodically from the Open Funder Registry).</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"studyAreaDescription"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Description of the study area. summary: Description of the physical area associated with the research project, potentially including coverage, climate, geology, disturbances, etc. description: The studyAreaDescription field documents the physical area associated with the research project. It can include descriptions of the geographic, temporal, and taxonomic coverage of the research location and descriptions of domains (themes) of interest such as climate, geology, soils or disturbances or reference to citable biological or geophysical classification systems such as the Bailey Ecoregions or the Holdridge Life Zones.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:choice</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"descriptor"</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Non-coverage characteristics of the study area summary: Description of non-coverage characteristics of the study area such as climate, geology, disturbances description: The descriptor field is used to document domains (themes) of interest such as climate, geology, soils or disturbances or references to citable biological or geophysical classification systems such as the Bailey Ecoregions or the Holdridge Life Zones.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:sequence</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"descriptorValue"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-                    </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                      </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Description of some aspect of the study area. summary: Description of some aspect of the study area. description: The descriptorValue field contains the value of a descriptor, describing some aspect of the study area. This may either be a general description in textual form or the value part of a "name/value" pair where the name is entered in the attribute "name_or_id". For example, if the value of the "name" attribute" of the element "descriptor" is "climate", and the value of the attribute "name_or_id" of the element "descriptorValue" is "Annual Precipitation" then the value of this element could be "12.5 inches". example: 12.5 inches example: tundra-forest</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-                    </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-                    </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-                      </span><span class="tEl">&lt;xs:simpleContent</span><span class="tEl">&gt;</span><span class="tI">
-                        </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
-                          </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"name_or_id"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">&gt;</span><span class="tI">
-                            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: The name or ID of a descriptor value. summary: The name part of a name/value pair of a descriptor; or ID portion of a classification, if applicable. description: The name_or_id field is the name part of a name/value pair of a descriptor; or ID portion of a classification, if applicable. The values of biogeophysical classification systems, e.g. Bailey-Ecoregions, often take the form of an ID or Code along with a text representation. For example, the ID/Code M131 refers to the phrase "Open Woodland -Tundra". M131 is an unambiguous reference to a more detailed description. If one is using a published classification system then there should be a corresponding citation to the source, e.g., Bailey,R.G., 1996 "Ecosystem Geography". example: M131 example: Average Annual Rainfall</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-                            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-                          </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
-                        </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
-                      </span><span class="tEl">&lt;/xs:simpleContent&gt;</span><span class="tI">
-                    </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"citation"</span><span class="tAN"> type=</span><span class="tAV">"cit:CitationType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-                    </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                      </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: citation summary: A citation for this descriptor. description: A citation for this descriptor.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-                    </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"name"</span><span class="tAN"> type=</span><span class="tAV">"DescriptorType"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: name summary: The name of the descriptor system. description: The name of the descriptor system. The name can be either a theme such as climate or hydrology, or the name of a citable classification system.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"citableClassificationSystem"</span><span class="tAN"> type=</span><span class="tAV">"xs:boolean"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: citation classification system summary: This boolean attribute defines whether this descriptor comes from a citable classification system or not. description: This boolean attribute defines whether this descriptor comes from a citable classification system or not.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"citation"</span><span class="tAN"> type=</span><span class="tAV">"cit:CitationType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: citation summary: The citation for this descriptor. description: The citation for this descriptor.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"coverage"</span><span class="tAN"> type=</span><span class="tAV">"cov:Coverage"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: coverage summary: The coverage of this descriptor. description: The coverage of this descriptor.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"designDescription"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Description of research design summary: Description of the design of the research project description: The field designDescription contains general textual descriptions of research design. It can include detailed accounts of goals, motivations, theory, hypotheses, strategy, statistical design, and actual work. Literature citations may also be used to describe the research design.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:choice</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"description"</span><span class="tAN"> type=</span><span class="tAV">"txt:TextType"</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Description of research design summary: Textual description of research design. description: The field designDescription contains general textual descriptions of research design. It can include detailed accounts of goals, motivations, theory, hypotheses, strategy, statistical design, and actual work.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"citation"</span><span class="tAN"> type=</span><span class="tAV">"cit:CitationType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Citation for research design summary: Citation that describes the research design. description: The citation field is a citation to literature that describes elements of the research design, such as goals, motivations, theory, hypotheses, strategy, statistical design, and actual work.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"relatedProject"</span><span class="tAN"> type=</span><span class="tAV">"ResearchProjectType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: related project summary: This field is a recursive link to another project. description: This field is a recursive link to another project. This allows projects to be nested under one another for the case where one project spawns another.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:group</span><span class="tAN"> ref=</span><span class="tAV">"res:ReferencesGroup"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"res:IDType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"system"</span><span class="tAN"> type=</span><span class="tAV">"res:SystemType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"scope"</span><span class="tAN"> type=</span><span class="tAV">"res:ScopeType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"document"</span><span class="tEl">/&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -5036,22 +4281,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
                         </td>
                      </tr>
                      <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_AwardType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_AwardType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_AwardType" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Element </td>
-                                    <td><b><a href="eml-project_xsd.html#ResearchProjectType_award" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-project.xsd')">ResearchProjectType/award</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_AwardType" type="image" src="img/btM.gif" value="-" onclick="switchState('model_AwardType');" class="control" /></div>
                         </td>
                         <td>
@@ -5061,59 +4290,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
                      <tr>
                         <td class="firstColumn"><b>Children</b></td>
                         <td><b><a href="eml-project_xsd.html#AwardType_awardNumber" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-project.xsd')">awardNumber</a></b>, <b><a href="eml-project_xsd.html#AwardType_awardUrl" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-project.xsd')">awardUrl</a></b>, <b><a href="eml-project_xsd.html#AwardType_funderIdentifier" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-project.xsd')">funderIdentifier</a></b>, <b><a href="eml-project_xsd.html#AwardType_funderName" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-project.xsd')">funderName</a></b>, <b><a href="eml-project_xsd.html#AwardType_title" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-project.xsd')">title</a></b></td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_AwardType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_AwardType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_AwardType" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"AwardType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: AwardType summary: Information about a funding award. resource. description: The AwardType is used to enter information about a funding award associated with a project. The containing project contains the list of investigators and for the award, while the `award` field contains specifics such as the agency name, award number, and funding program identifiers. example: Please see the examples within each subfield.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tC">&lt;!--
-&lt;funder_name&gt;National Science Foundation&lt;/funder_name &gt;
-&lt;funder_identifier&gt;https://doi.org/10.13039/00000001&lt;funder_identifier&gt;
-&lt;award_number&gt;1546024&lt;/award_number&gt;
-&lt;title&gt;Scientia Arctica: A Knowledge Archive for Discovery and Reproducible Science in the Arctic&lt;/title&gt;
-&lt;awardURL&gt;https://www.nsf.gov/awardsearch/showAward?AWD_ID=1546024&lt;/awardURL&gt;
---&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"funderName"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Funder Name summary: The name of the funding institution that made this award description: The name of the funding institution, with fully expanded acronyms to show the full, official name of the funding agency. In general, this should match the official name of the funder as listed in an Authority such as the Open Funder Registry. The Open Funder Registry and other organizational authorities may provide a list of other alternative names for the funding agency. example: National Science Foundation</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"funderIdentifier"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Funder identifier summary: The identifier of the funding agency. description: The funder identifier is used to provide one or more canonical identifiers that reference the funder. These identifiers should be globally unique. The most common form of a funder identifier is a DOI identifier of an institution or program drawn from the CrossRef Open Funder Registry (https://github.com/Crossref/open-funder-registry), which assigns DOIs to each funding agency and to their programs, and links these together in a navigable hierarchy. A copy of the current Funder Registry is included as an RDF file with EML for reference, but as the list is constantly growing, users can retrieve new copies of the RDF file to get updates and current metadata about funders. example: http://dx.doi.org/10.13039/100000001</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"awardNumber"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Award Number summary: The assigned award number. description: The awardNumber field provides the unique identifier used by the funder to uniquely identify an award. These are typically alphanumeric values that are unique within the system used by a given funder. The number should be listed using the canonical form that each funder uses to express its award numbers, and not be prefixed or postfixed with extra text such as the acronym of the funder or the name of the funder, which is available instead in the funderName field. example: 1546024</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"title"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Title summary: The title of the award. description: The title field is used for the title of the award or grant being described. example: Scientia Arctica: A Knowledge Archive for Discovery and Reproducible Science in the Arctic</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"awardUrl"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Award URL summary: The URL associated with award. description: Typically, the awardUrl is use to find and locate the award, and generally addresses the internet location to find out more information about the award. This should point to a funder site for the award, rather than a project site. example: https://www.nsf.gov/awardsearch/showAward?AWD_ID=1546024</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
                      </tr>
                   </tbody>
                </table>
@@ -5192,57 +4368,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
                      <tr>
                         <td class="firstColumn"><b>Type</b></td>
                         <td>union of(restriction of <b>xs:string</b>, <b>xs:string</b>)
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_DescriptorType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_DescriptorType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_DescriptorType" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Attribute </td>
-                                    <td><b><a href="eml-project_xsd.html#ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_name" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-project.xsd')">ResearchProjectType/studyAreaDescription/descriptor/@name</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_DescriptorType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DescriptorType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_DescriptorType" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:simpleType</span><span class="tAN"> name=</span><span class="tAV">"DescriptorType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Descriptor Theme Type summary: The type of descriptor theme or the name of a classification system. description: The DescriptorType is used to represent either the name of a citable classification system/controlled vocabulary such as the Bailey classification of ecoregions or a domain of physical descriptors such as climate or disturbances. example: climate example: soils example: hydrology example: "bailey" example: biome example: disturbance example: geology</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:union</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:simpleType</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"climate"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"hydrology"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"soils"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"geology"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"disturbance"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"bailey"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"biome"</span><span class="tEl">/&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:restriction&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:simpleType&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:simpleType</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:simpleType&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:union&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:simpleType&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
                         </td>
                      </tr>
                   </tbody>
@@ -5334,41 +4459,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_descriptorValue_name_or_id" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_descriptorValue_name_or_id');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_descriptorValue_name_or_id" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Element </td>
-                                    <td><b><a href="eml-project_xsd.html#ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_descriptorValue" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-project.xsd')">ResearchProjectType/studyAreaDescription/descriptor/descriptorValue</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_descriptorValue_name_or_id" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_descriptorValue_name_or_id');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_descriptorValue_name_or_id" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"name_or_id"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: The name or ID of a descriptor value. summary: The name part of a name/value pair of a descriptor; or ID portion of a classification, if applicable. description: The name_or_id field is the name part of a name/value pair of a descriptor; or ID portion of a classification, if applicable. The values of biogeophysical classification systems, e.g. Bailey-Ecoregions, often take the form of an ID or Code along with a text representation. For example, the ID/Code M131 refers to the phrase "Open Woodland -Tundra". M131 is an unambiguous reference to a more detailed description. If one is using a published classification system then there should be a corresponding citation to the source, e.g., Bailey,R.G., 1996 "Ecosystem Geography". example: M131 example: Average Annual Rainfall</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:attribute&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -5435,41 +4525,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
                                  <tr>
                                     <td class="firstColumn" style="white-space: nowrap;">use</td>
                                     <td><b>required</b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_name" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_name');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_name" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Element </td>
-                                    <td><b><a href="eml-project_xsd.html#ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-project.xsd')">ResearchProjectType/studyAreaDescription/descriptor</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_name" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_name');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_name" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"name"</span><span class="tAN"> type=</span><span class="tAV">"DescriptorType"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: name summary: The name of the descriptor system. description: The name of the descriptor system. The name can be either a theme such as climate or hydrology, or the name of a citable classification system.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:attribute&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -5547,41 +4602,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_citableClassificationSystem" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_citableClassificationSystem');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_citableClassificationSystem" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Element </td>
-                                    <td><b><a href="eml-project_xsd.html#ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-project.xsd')">ResearchProjectType/studyAreaDescription/descriptor</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_citableClassificationSystem" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_citableClassificationSystem');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResearchProjectType_ResearchProjectType_studyAreaDescription_ResearchProjectType_ResearchProjectType_studyAreaDescription_descriptor_citableClassificationSystem" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"citableClassificationSystem"</span><span class="tAN"> type=</span><span class="tAV">"xs:boolean"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: citation classification system summary: This boolean attribute defines whether this descriptor comes from a citable classification system or not. description: This boolean attribute defines whether this descriptor comes from a citable classification system or not.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:attribute&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -5628,37 +4648,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ResearchProjectType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ResearchProjectType_id');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ResearchProjectType_id" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-project_xsd.html#ResearchProjectType" target="mainFrame" title="https://eml.ecoinformatics.org/project-2.2.0" onclick="updatePageTitle('Schema documentation for eml-project.xsd')">ResearchProjectType</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResearchProjectType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResearchProjectType_id');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResearchProjectType_id" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"res:IDType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -5700,37 +4689,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
                                  <tr>
                                     <td class="firstColumn" style="white-space: nowrap;">use</td>
                                     <td><b>optional</b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ResearchProjectType_system" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ResearchProjectType_system');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ResearchProjectType_system" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-project_xsd.html#ResearchProjectType" target="mainFrame" title="https://eml.ecoinformatics.org/project-2.2.0" onclick="updatePageTitle('Schema documentation for eml-project.xsd')">ResearchProjectType</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResearchProjectType_system" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResearchProjectType_system');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResearchProjectType_system" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"system"</span><span class="tAN"> type=</span><span class="tAV">"res:SystemType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -5807,37 +4765,6 @@ var modelBoxes= new Array('model_ResearchProjectType_personnel',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ResearchProjectType_scope" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ResearchProjectType_scope');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ResearchProjectType_scope" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-project_xsd.html#ResearchProjectType" target="mainFrame" title="https://eml.ecoinformatics.org/project-2.2.0" onclick="updatePageTitle('Schema documentation for eml-project.xsd')">ResearchProjectType</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResearchProjectType_scope" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResearchProjectType_scope');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResearchProjectType_scope" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"scope"</span><span class="tAN"> type=</span><span class="tAV">"res:ScopeType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"document"</span><span class="tEl">/&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>

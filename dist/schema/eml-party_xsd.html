@@ -34,47 +34,6 @@
 				'properties_ResponsibleParty_scope');
 var facetsBoxes= new Array('facets_Address_scope', 
 				'facets_ResponsibleParty_scope');
-var usedByBoxes= new Array('usedBy_ResponsibleParty', 
-				'usedBy_Person', 
-				'usedBy_Address', 
-				'usedBy_RoleType', 
-				'usedBy_Address_id', 
-				'usedBy_Address_system', 
-				'usedBy_Address_scope', 
-				'usedBy_ResponsibleParty_ResponsibleParty_phone_phonetype', 
-				'usedBy_ResponsibleParty_ResponsibleParty_userId_directory', 
-				'usedBy_ResponsibleParty_id', 
-				'usedBy_ResponsibleParty_system', 
-				'usedBy_ResponsibleParty_scope');
-var sourceBoxes= new Array('source_ResponsibleParty_individualName', 
-				'source_Person_salutation', 
-				'source_Person_givenName', 
-				'source_Person_surName', 
-				'source_ResponsibleParty_organizationName', 
-				'source_ResponsibleParty_positionName', 
-				'source_ResponsibleParty_address', 
-				'source_Address_deliveryPoint', 
-				'source_Address_city', 
-				'source_Address_administrativeArea', 
-				'source_Address_postalCode', 
-				'source_Address_country', 
-				'source_ResponsibleParty_phone', 
-				'source_ResponsibleParty_electronicMailAddress', 
-				'source_ResponsibleParty_onlineUrl', 
-				'source_ResponsibleParty_userId', 
-				'source_party', 
-				'source_ResponsibleParty', 
-				'source_Person', 
-				'source_Address', 
-				'source_RoleType', 
-				'source_Address_id', 
-				'source_Address_system', 
-				'source_Address_scope', 
-				'source_ResponsibleParty_ResponsibleParty_phone_phonetype', 
-				'source_ResponsibleParty_ResponsibleParty_userId_directory', 
-				'source_ResponsibleParty_id', 
-				'source_ResponsibleParty_system', 
-				'source_ResponsibleParty_scope');
 var instanceBoxes= new Array('instance_ResponsibleParty_individualName', 
 				'instance_Person_salutation', 
 				'instance_Person_givenName', 
@@ -434,12 +393,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                      <tr>
                         <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
                      </tr>
-                     <tr>
-                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
-                     </tr>
-                     <tr>
-                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
-                     </tr>
                   </table>
                   <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
                </td>
@@ -689,25 +642,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResponsibleParty_individualName" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResponsibleParty_individualName');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResponsibleParty_individualName" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"individualName"</span><span class="tAN"> type=</span><span class="tAV">"Person"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Individual Name summary: The full name of the person being described description: The individualName field contains subfields so that a person's name can be broken down into parts. Note that the the content model for the containing type allows a sequence of choices for the first element(s): &lt;individualName&gt;, &lt;organizationName&gt; and/or &lt;positionName&gt;. This means that a parent element (e.g., creator) may use combinations of the 3 sub-elements to make up a single logical party. For example, a creator with only the individualName of 'Joe Smith' is NOT the same as a creator with the individualName of 'Joe Smith' and the organizationName of 'NSF'. To include both a positionName and an organizationName as children of a &lt;contact&gt; implies that anyone currently occupying that positionName at that organizationName is an appropriate contact. The positionName should not be used in conjunction with individualName unless only that specific individual at that position would be considered appropriate for that designation. example: Because this is an 'elementOnly' field, please look at the examples for the subfields 'givenName' and 'surName'.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -855,25 +789,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_Person_salutation" type="image" src="img/btM.gif" value="-" onclick="switchState('source_Person_salutation');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_Person_salutation" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"salutation"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Salutation summary: The salutation used to address an individual description: The salutation field is used in addressing an individual with a particular title, such as Dr., Ms., Mrs., Mr., etc. example: Dr.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1037,25 +952,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_Person_givenName" type="image" src="img/btM.gif" value="-" onclick="switchState('source_Person_givenName');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_Person_givenName" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"givenName"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Given name summary: The given name of the individual. description: The given name field can be used for first name of the individual associated with the resource, or for any other names that are not intended to be alphabetized, (as appropriate). Note that while it is possible to include all given names in one field (as in the example below), it may be not be good practice to do so. For example, if an XSL transformation stylesheet were to abbreviate the content of a givenName to just the first initial, a givenName element that contained more than one name would not be transformed correctly. example: Juan Luis example: Jane</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1199,25 +1095,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_Person_surName" type="image" src="img/btM.gif" value="-" onclick="switchState('source_Person_surName');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_Person_surName" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"surName"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Last name summary: The last name of the individual. description: The surname field is used for the last name of the individual associated with the resource. This is typically the family name of an individual, for example, the name by which s/he is referred to in citations. example: San Gil example: Curtis-Ainsworth example: Tao</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1389,25 +1266,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResponsibleParty_organizationName" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResponsibleParty_organizationName');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResponsibleParty_organizationName" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"organizationName"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Organization name summary: The full name of the organization being described description: The responsible party field contains the full name of the organization that is associated with the resource. This field is intended to describe which institution or overall organization is associated with the resource being described. Note that the the content model for the containing type allows a sequence of choices for the first element(s): &lt;individualName&gt;, &lt;organizationName&gt; and/or &lt;positionName&gt;. This means that a parent element (e.g., creator) may use combinations of the 3 sub-elements to make up a single logical party. For example, a creator with only the individualName of 'Joe Smith' is NOT the same as a creator with the individualName of 'Joe Smith' and the organizationName of 'NSF'. To include both a positionName and an organizationName as children of a &lt;contact&gt; implies that anyone currently occupying that positionName at that organizationName is an appropriate contact. The positionName should not be used in conjunction with individualName unless only that specific individual at that position would be considered appropriate for that designation. example: National Center for Ecological Analysis and Synthesis</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1567,25 +1425,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResponsibleParty_positionName" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResponsibleParty_positionName');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResponsibleParty_positionName" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"positionName"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Position Name summary: The name of the title or position associated with the resource. description: This field is intended to be used instead of a particular person or full organization name. If the associated person who holds the role changes frequently, then Position Name would be used for consistency. Note that the the content model for the containing type allows a sequence of choices for the first element(s): &lt;individualName&gt;, &lt;organizationName&gt; and/or &lt;positionName&gt;. This means that a parent element (e.g., creator) may use combinations of the 3 sub-elements to make up a single logical party. For example, a creator with only the individualName of 'Joe Smith' is NOT the same as a creator with the individualName of 'Joe Smith' and the organizationName of 'NSF'. To include both a positionName and an organizationName as children of a &lt;contact&gt; implies that anyone currently occupying that positionName at that organizationName is an appropriate contact. The positionName should not be used in conjunction with individualName unless only that specific individual at that position would be considered appropriate for that designation. example: Niwot Ridge Data Manager</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1773,25 +1612,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResponsibleParty_address" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResponsibleParty_address');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResponsibleParty_address" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"address"</span><span class="tAN"> type=</span><span class="tAV">"Address"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Contact address summary: The full address information for a given responsible party entry. description: The address field is a container for multiple subfields that describe the physical or electronic address of the responsible party for a resource. example: Please see the subfield examples.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1944,25 +1764,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_Address_deliveryPoint" type="image" src="img/btM.gif" value="-" onclick="switchState('source_Address_deliveryPoint');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_Address_deliveryPoint" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"deliveryPoint"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Delivery point summary: The location for postal deliveries. description: The delivery point field is used for the physical address for postal communication. This field is used to accommodate the many different international conventions that are the equivalent to a U.S. 'street address'. example: 7209 Coast Drive, Building 44</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2104,25 +1905,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_Address_city" type="image" src="img/btM.gif" value="-" onclick="switchState('source_Address_city');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_Address_city" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"city"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: City summary: The name of the city for the contact. description: The city field is used for the city name of the contact associated with a particular resource. example: San Francisco</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -2271,25 +2053,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_Address_administrativeArea" type="image" src="img/btM.gif" value="-" onclick="switchState('source_Address_administrativeArea');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_Address_administrativeArea" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"administrativeArea"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Administrative area summary: The political area of a country. description: The administrative area field is the equivalent of a 'state' in the U.S., or Province in Canada. This field is intended to accommodate the many types of international administrative areas. example: Colorado</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -2444,25 +2207,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_Address_postalCode" type="image" src="img/btM.gif" value="-" onclick="switchState('source_Address_postalCode');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_Address_postalCode" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"postalCode"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Postal code summary: The postal code used for routing to an address. description: The postal code is equivalent to a U.S. zip code, or the number used for routing to an international address. The U.S. postal code should include the 5 digit code plus the 4 digit extension. example: 93106-2231</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2610,25 +2354,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_Address_country" type="image" src="img/btM.gif" value="-" onclick="switchState('source_Address_country');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_Address_country" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"country"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Country summary: The name of the country for the contact's address. description: The country field is used for the name of the contact's country. example: U.S.A.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2759,36 +2484,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                           </table>
                                        </div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResponsibleParty_phone" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResponsibleParty_phone');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResponsibleParty_phone" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"phone"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Phone summary: Information about the contact's telephone description: The phone field describes information about the responsible party's telephone, be it a voice phone, fax, or TTD/TTY type telephone. This field contains an attribute used to identify the type. example: 805-555-2500</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:simpleContent</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"phonetype"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"voice"</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Phone type summary: The type of the phone to which this number applies description: This attribute gives the type of phone to which this number applies. By default, this is assumed to be of type "voice", but other possibilities include "facsimile" and "tdd".</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:simpleContent&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -2947,25 +2642,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResponsibleParty_electronicMailAddress" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResponsibleParty_electronicMailAddress');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResponsibleParty_electronicMailAddress" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"electronicMailAddress"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Email address summary: The email address of the contact. description: The electronic mail address is the email address for the party. It is intended to be an Internet SMTP email address, which should consist of a username followed by the @ symbol, followed by the email server domain name address. Other address types are allowable. example: my-email@mydomain.edu</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -3053,25 +2729,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                  <tr>
                                     <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
                                     <td><b>unbounded</b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResponsibleParty_onlineUrl" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResponsibleParty_onlineUrl');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResponsibleParty_onlineUrl" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"onlineUrl"</span><span class="tAN"> type=</span><span class="tAV">"xs:anyURI"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Online Link summary: A link to associated online information, usually a web site. description: A link to associated online information, usually a web site. When the party represents an organization, this is the URL to a website or other online information about the organization. If the party is an individual, it might be their personal web site or other related online information about the party. example: http://www.yourdomain.edu/~doe</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -3218,36 +2875,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                           </table>
                                        </div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResponsibleParty_userId" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResponsibleParty_userId');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResponsibleParty_userId" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"userId"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: User Identifier summary: An identifier that links this party to a directory of individuals description: An identifier that links this party to a directory of individuals. Although specific contact information for a party might change, the underlying correspondence to a real individual does not. This identifier provides a pointer within a directory of individuals that may contain further, and possibly more current, information about the party. example: https://orcid.org/0000-0002-1825-0097 example: uid=jtown,o=NCEAS,dc=ecoinformatics,dc=org</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:simpleContent</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"directory"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Directory summary: The directory system within which the directoryId can be retrieved. description: This attribute names the directory system to which this userId applies. This will generally be a URL that shows how to look up information, for example an LDAP URL. However, it could also be a non-parsable description of the directory system if that is all that is available. example: https://orcid.org example: ldap:///ldap.ecoinformatics.org/dc=ecoinformatics,dc=org</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:simpleContent&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -3434,25 +3061,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_party" type="image" src="img/btM.gif" value="-" onclick="switchState('source_party');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_party" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"party"</span><span class="tAN"> type=</span><span class="tAV">"ResponsibleParty"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Responsible party summary: An individual, organization, or role. description: The responsible party contains multiple subfields that are used to describe a person, organization, or position within an organization. It is intended to be used to fully document contact information for many types of associations, such as owner, manager, steward, curator, etc.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -3551,22 +3159,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                      </tr>
                      <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ResponsibleParty" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ResponsibleParty');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ResponsibleParty" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Elements </td>
-                                    <td><b><a href="eml-literature_xsd.html#Article_publisher" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-literature.xsd')">Article/publisher</a></b>, <b><a href="eml-literature_xsd.html#AudioVisual_performer" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-literature.xsd')">AudioVisual/performer</a></b>, <b><a href="eml-literature_xsd.html#AudioVisual_publisher" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-literature.xsd')">AudioVisual/publisher</a></b>, <b><a href="eml-literature_xsd.html#Book_publisher" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-literature.xsd')">Book/publisher</a></b>, <b><a href="eml-literature_xsd.html#Chapter_editor" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-literature.xsd')">Chapter/editor</a></b>, <b><a href="eml-literature_xsd.html#CitationType_contact" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-literature.xsd')">CitationType/contact</a></b>, <b><a href="eml-dataset_xsd.html#DatasetType_contact" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-dataset.xsd')">DatasetType/contact</a></b>, <b><a href="eml-dataset_xsd.html#DatasetType_publisher" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-dataset.xsd')">DatasetType/publisher</a></b>, <b><a href="eml-literature_xsd.html#Generic_publisher" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-literature.xsd')">Generic/publisher</a></b>, <b><a href="eml-literature_xsd.html#Manuscript_institution" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-literature.xsd')">Manuscript/institution</a></b>, <b><a href="eml-literature_xsd.html#Map_publisher" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-literature.xsd')">Map/publisher</a></b>, <b><a href="eml-literature_xsd.html#PersonalCommunication_publisher" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-literature.xsd')">PersonalCommunication/publisher</a></b>, <b><a href="eml-literature_xsd.html#PersonalCommunication_recipient" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-literature.xsd')">PersonalCommunication/recipient</a></b>, <b><a href="eml-literature_xsd.html#Report_publisher" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-literature.xsd')">Report/publisher</a></b>, <b><a href="eml-project_xsd.html#ResearchProjectType_personnel" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-project.xsd')">ResearchProjectType/personnel</a></b>, <b><a href="eml-resource_xsd.html#ResourceGroup_associatedParty" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-resource.xsd')">ResourceGroup/associatedParty</a></b>, <b><a href="eml-resource_xsd.html#ResourceGroup_creator" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-resource.xsd')">ResourceGroup/creator</a></b>, <b><a href="eml-resource_xsd.html#ResourceGroup_metadataProvider" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-resource.xsd')">ResourceGroup/metadataProvider</a></b>, <b><a href="eml-coverage_xsd.html#TaxonomicCoverage_TaxonomicCoverage_taxonomicSystem_identifierName" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-coverage.xsd')">TaxonomicCoverage/taxonomicSystem/identifierName</a></b>, <b><a href="eml-coverage_xsd.html#TaxonomicCoverage_TaxonomicCoverage_taxonomicSystem_TaxonomicCoverage_TaxonomicCoverage_taxonomicSystem_vouchers_TaxonomicCoverage_TaxonomicCoverage_taxonomicSystem_TaxonomicCoverage_TaxonomicCoverage_taxonomicSystem_vouchers_repository_originator" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-coverage.xsd')">TaxonomicCoverage/taxonomicSystem/vouchers/repository/originator</a></b>, <b><a href="eml-literature_xsd.html#Thesis_institution" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-literature.xsd')">Thesis/institution</a></b>, <b><a href="eml-party_xsd.html#party" target="mainFrame" title="https://eml.ecoinformatics.org/party-2.2.0" onclick="updatePageTitle('Schema documentation for eml-party.xsd')">party</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_ResponsibleParty" type="image" src="img/btM.gif" value="-" onclick="switchState('model_ResponsibleParty');" class="control" /></div>
                         </td>
                         <td>
@@ -3621,97 +3213,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResponsibleParty" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResponsibleParty');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResponsibleParty" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"ResponsibleParty"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Responsible party summary: The individual, organization, or role associated with a resource. description: The ResponsibleParty Type contains elements that are used to describe the person, organization or position within an organization that is associated in some way with the resource. It is intended to be used to fully document contact information for many types of associations, such as owner, manager, steward, curator, etc. Note that the content model for a responsible party type allows a sequence of choices for the first element(s): &lt;individualName&gt;, &lt;organizationName&gt; and/or &lt;positionName&gt;. This means that a parent element (e.g., creator) may use combinations of the 3 sub-elements to make up a single logical party. For example, a creator with only the individualName of 'Joe Smith' is NOT the same as a creator with the individualName of 'Joe Smith' and the organizationName of 'NSF'. To include both a positionName and an organizationName as children of a &lt;contact&gt; implies that anyone currently occupying that positionName at that organizationName is an appropriate contact. The positionName should not be used in conjunction with individualName unless only that specific individual at that position would be considered appropriate for that designation. example: Please see the examples for the particular subfields.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:choice</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:choice</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"individualName"</span><span class="tAN"> type=</span><span class="tAV">"Person"</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Individual Name summary: The full name of the person being described description: The individualName field contains subfields so that a person's name can be broken down into parts. Note that the the content model for the containing type allows a sequence of choices for the first element(s): &lt;individualName&gt;, &lt;organizationName&gt; and/or &lt;positionName&gt;. This means that a parent element (e.g., creator) may use combinations of the 3 sub-elements to make up a single logical party. For example, a creator with only the individualName of 'Joe Smith' is NOT the same as a creator with the individualName of 'Joe Smith' and the organizationName of 'NSF'. To include both a positionName and an organizationName as children of a &lt;contact&gt; implies that anyone currently occupying that positionName at that organizationName is an appropriate contact. The positionName should not be used in conjunction with individualName unless only that specific individual at that position would be considered appropriate for that designation. example: Because this is an 'elementOnly' field, please look at the examples for the subfields 'givenName' and 'surName'.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"organizationName"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Organization name summary: The full name of the organization being described description: The responsible party field contains the full name of the organization that is associated with the resource. This field is intended to describe which institution or overall organization is associated with the resource being described. Note that the the content model for the containing type allows a sequence of choices for the first element(s): &lt;individualName&gt;, &lt;organizationName&gt; and/or &lt;positionName&gt;. This means that a parent element (e.g., creator) may use combinations of the 3 sub-elements to make up a single logical party. For example, a creator with only the individualName of 'Joe Smith' is NOT the same as a creator with the individualName of 'Joe Smith' and the organizationName of 'NSF'. To include both a positionName and an organizationName as children of a &lt;contact&gt; implies that anyone currently occupying that positionName at that organizationName is an appropriate contact. The positionName should not be used in conjunction with individualName unless only that specific individual at that position would be considered appropriate for that designation. example: National Center for Ecological Analysis and Synthesis</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"positionName"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Position Name summary: The name of the title or position associated with the resource. description: This field is intended to be used instead of a particular person or full organization name. If the associated person who holds the role changes frequently, then Position Name would be used for consistency. Note that the the content model for the containing type allows a sequence of choices for the first element(s): &lt;individualName&gt;, &lt;organizationName&gt; and/or &lt;positionName&gt;. This means that a parent element (e.g., creator) may use combinations of the 3 sub-elements to make up a single logical party. For example, a creator with only the individualName of 'Joe Smith' is NOT the same as a creator with the individualName of 'Joe Smith' and the organizationName of 'NSF'. To include both a positionName and an organizationName as children of a &lt;contact&gt; implies that anyone currently occupying that positionName at that organizationName is an appropriate contact. The positionName should not be used in conjunction with individualName unless only that specific individual at that position would be considered appropriate for that designation. example: Niwot Ridge Data Manager</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"address"</span><span class="tAN"> type=</span><span class="tAV">"Address"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Contact address summary: The full address information for a given responsible party entry. description: The address field is a container for multiple subfields that describe the physical or electronic address of the responsible party for a resource. example: Please see the subfield examples.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"phone"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Phone summary: Information about the contact's telephone description: The phone field describes information about the responsible party's telephone, be it a voice phone, fax, or TTD/TTY type telephone. This field contains an attribute used to identify the type. example: 805-555-2500</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:simpleContent</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"phonetype"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"voice"</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Phone type summary: The type of the phone to which this number applies description: This attribute gives the type of phone to which this number applies. By default, this is assumed to be of type "voice", but other possibilities include "facsimile" and "tdd".</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:simpleContent&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"electronicMailAddress"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Email address summary: The email address of the contact. description: The electronic mail address is the email address for the party. It is intended to be an Internet SMTP email address, which should consist of a username followed by the @ symbol, followed by the email server domain name address. Other address types are allowable. example: my-email@mydomain.edu</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"onlineUrl"</span><span class="tAN"> type=</span><span class="tAV">"xs:anyURI"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Online Link summary: A link to associated online information, usually a web site. description: A link to associated online information, usually a web site. When the party represents an organization, this is the URL to a website or other online information about the organization. If the party is an individual, it might be their personal web site or other related online information about the party. example: http://www.yourdomain.edu/~doe</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"userId"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: User Identifier summary: An identifier that links this party to a directory of individuals description: An identifier that links this party to a directory of individuals. Although specific contact information for a party might change, the underlying correspondence to a real individual does not. This identifier provides a pointer within a directory of individuals that may contain further, and possibly more current, information about the party. example: https://orcid.org/0000-0002-1825-0097 example: uid=jtown,o=NCEAS,dc=ecoinformatics,dc=org</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:simpleContent</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"directory"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Directory summary: The directory system within which the directoryId can be retrieved. description: This attribute names the directory system to which this userId applies. This will generally be a URL that shows how to look up information, for example an LDAP URL. However, it could also be a non-parsable description of the directory system if that is all that is available. example: https://orcid.org example: ldap:///ldap.ecoinformatics.org/dc=ecoinformatics,dc=org</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:simpleContent&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:group</span><span class="tAN"> ref=</span><span class="tAV">"res:ReferencesGroup"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"res:IDType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"system"</span><span class="tAN"> type=</span><span class="tAV">"res:SystemType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"scope"</span><span class="tAN"> type=</span><span class="tAV">"res:ScopeType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"document"</span><span class="tEl">/&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -3813,22 +3314,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                      </tr>
                      <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_Person" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_Person');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_Person" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Element </td>
-                                    <td><b><a href="eml-party_xsd.html#ResponsibleParty_individualName" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-party.xsd')">ResponsibleParty/individualName</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_Person" type="image" src="img/btM.gif" value="-" onclick="switchState('model_Person');" class="control" /></div>
                         </td>
                         <td>
@@ -3838,42 +3323,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                      <tr>
                         <td class="firstColumn"><b>Children</b></td>
                         <td><b><a href="eml-party_xsd.html#Person_givenName" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-party.xsd')">givenName</a></b>, <b><a href="eml-party_xsd.html#Person_salutation" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-party.xsd')">salutation</a></b>, <b><a href="eml-party_xsd.html#Person_surName" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-party.xsd')">surName</a></b></td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_Person" type="image" src="img/btM.gif" value="-" onclick="switchState('source_Person');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_Person" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"Person"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Person summary: The full name of the individual associated with the resource. description: The person Type is used to enter the salutation, and two types of name parts for an individual associated with the resource. It uses these three subfields to help parse the person's entire name. The two elements, &lt;givenName&gt; and &lt;surName&gt;, allow parsing of many types of names, even though distinct elements do not exist for concepts like "middle name" and "compound surname". &lt;givenName&gt; should be used for parts of the name that are often shortened to a first initial, or are not used for ordering, and typically includes first and middle names. The &lt;surName&gt; field is intended to be used for the part of the name that is generally displayed in its entirety and/or is alphabetized or otherwise ordered when appropriate. Note that only one &lt;surName&gt; is allowed, and is required, while &lt;givenName&gt;s are optional and unbounded. The arrangement and content of the sub-elements is entirely up to the EML document's author, who presumably has first-hand knowledge of how the names are to be constructed. For example, if element position is important (e.g., the list of a book's authors), then EML authors should put the creators in that order. If it is appropriate for a resource to have its creators sorted alphabetically, then the EML author should construct the name parts so that the&lt;surName&gt; field may be used for this purpose. At this time, EML is not able to express cultural conventions so that authors may indicate the correct order for &lt;givenName&gt;s and &lt;surName&gt; when the whole name is expressed. However support for international names is under consideration for a future version of EML, along with other internationalization features. example: Please see the examples within each subfield.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"salutation"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Salutation summary: The salutation used to address an individual description: The salutation field is used in addressing an individual with a particular title, such as Dr., Ms., Mrs., Mr., etc. example: Dr.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"givenName"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Given name summary: The given name of the individual. description: The given name field can be used for first name of the individual associated with the resource, or for any other names that are not intended to be alphabetized, (as appropriate). Note that while it is possible to include all given names in one field (as in the example below), it may be not be good practice to do so. For example, if an XSL transformation stylesheet were to abbreviate the content of a givenName to just the first initial, a givenName element that contained more than one name would not be transformed correctly. example: Juan Luis example: Jane</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"surName"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Last name summary: The last name of the individual. description: The surname field is used for the last name of the individual associated with the resource. This is typically the family name of an individual, for example, the name by which s/he is referred to in citations. example: San Gil example: Curtis-Ainsworth example: Tao</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
                      </tr>
                   </tbody>
                </table>
@@ -3946,22 +3395,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         </td>
                      </tr>
                      <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_Address" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_Address');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_Address" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Elements </td>
-                                    <td><b><a href="eml-literature_xsd.html#ConferenceProceedings_conferenceLocation" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-literature.xsd')">ConferenceProceedings/conferenceLocation</a></b>, <b><a href="eml-literature_xsd.html#Presentation_conferenceLocation" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-literature.xsd')">Presentation/conferenceLocation</a></b>, <b><a href="eml-party_xsd.html#ResponsibleParty_address" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-party.xsd')">ResponsibleParty/address</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_Address" type="image" src="img/btM.gif" value="-" onclick="switchState('model_Address');" class="control" /></div>
                         </td>
                         <td>
@@ -4016,58 +3449,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_Address" type="image" src="img/btM.gif" value="-" onclick="switchState('source_Address');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_Address" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"Address"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Address summary: The full address of the resposible party. description: The address field is provides detailed information for communicating with a party contact via electronic mail or postal mail, including the physical delivery location. example: Please see the examples for each subfield</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:choice</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"deliveryPoint"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Delivery point summary: The location for postal deliveries. description: The delivery point field is used for the physical address for postal communication. This field is used to accommodate the many different international conventions that are the equivalent to a U.S. 'street address'. example: 7209 Coast Drive, Building 44</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"city"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: City summary: The name of the city for the contact. description: The city field is used for the city name of the contact associated with a particular resource. example: San Francisco</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"administrativeArea"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Administrative area summary: The political area of a country. description: The administrative area field is the equivalent of a 'state' in the U.S., or Province in Canada. This field is intended to accommodate the many types of international administrative areas. example: Colorado</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"postalCode"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Postal code summary: The postal code used for routing to an address. description: The postal code is equivalent to a U.S. zip code, or the number used for routing to an international address. The U.S. postal code should include the 5 digit code plus the 4 digit extension. example: 93106-2231</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"country"</span><span class="tAN"> type=</span><span class="tAV">"res:i18nNonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Country summary: The name of the country for the contact's address. description: The country field is used for the name of the contact's country. example: U.S.A.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:group</span><span class="tAN"> ref=</span><span class="tAV">"res:ReferencesGroup"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"res:IDType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"system"</span><span class="tAN"> type=</span><span class="tAV">"res:SystemType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"scope"</span><span class="tAN"> type=</span><span class="tAV">"res:ScopeType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"document"</span><span class="tEl">/&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -4144,63 +3525,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                         <td>union of(restriction of <b>xs:string</b>, <b>xs:string</b>)
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_RoleType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_RoleType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_RoleType" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Elements </td>
-                                    <td><b><a href="eml-project_xsd.html#ResearchProjectType_ResearchProjectType_personnel_role" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-project.xsd')">ResearchProjectType/personnel/role</a></b>, <b><a href="eml-resource_xsd.html#ResourceGroup_ResourceGroup_associatedParty_role" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-resource.xsd')">ResourceGroup/associatedParty/role</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_RoleType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_RoleType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_RoleType" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:simpleType</span><span class="tAN"> name=</span><span class="tAV">"RoleType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Role summary: The classification of the associated person or organization. description: The role code field provides information on how a person or organization is related to a resource. There may be many people associated, including an 'originator' of a dataset, an 'author', 'editor', or 'publisher' of a literature resource, or an organization that is a 'distributor'. the full list of choices is included in the example. example: author, contentProvider, custodianSteward, distributor, editor, metadataProvider, originator, pointOfContact, principalInvestigator, processor, publisher, or user.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:union</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:simpleType</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"contentProvider"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"custodianSteward"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"owner"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"user"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"distributor"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"metadataProvider"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"originator"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"pointOfContact"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"principalInvestigator"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"processor"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"publisher"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"author"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"editor"</span><span class="tEl">/&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:restriction&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:simpleType&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:simpleType</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:simpleType&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:union&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:simpleType&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -4247,37 +3571,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_Address_id" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_Address_id');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_Address_id" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-party_xsd.html#Address" target="mainFrame" title="https://eml.ecoinformatics.org/party-2.2.0" onclick="updatePageTitle('Schema documentation for eml-party.xsd')">Address</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_Address_id" type="image" src="img/btM.gif" value="-" onclick="switchState('source_Address_id');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_Address_id" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"res:IDType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -4319,37 +3612,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                  <tr>
                                     <td class="firstColumn" style="white-space: nowrap;">use</td>
                                     <td><b>optional</b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_Address_system" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_Address_system');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_Address_system" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-party_xsd.html#Address" target="mainFrame" title="https://eml.ecoinformatics.org/party-2.2.0" onclick="updatePageTitle('Schema documentation for eml-party.xsd')">Address</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_Address_system" type="image" src="img/btM.gif" value="-" onclick="switchState('source_Address_system');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_Address_system" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"system"</span><span class="tAN"> type=</span><span class="tAV">"res:SystemType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -4431,37 +3693,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_Address_scope" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_Address_scope');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_Address_scope" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-party_xsd.html#Address" target="mainFrame" title="https://eml.ecoinformatics.org/party-2.2.0" onclick="updatePageTitle('Schema documentation for eml-party.xsd')">Address</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_Address_scope" type="image" src="img/btM.gif" value="-" onclick="switchState('source_Address_scope');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_Address_scope" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"scope"</span><span class="tAN"> type=</span><span class="tAV">"res:ScopeType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"document"</span><span class="tEl">/&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -4532,41 +3763,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                  <tr>
                                     <td class="firstColumn" style="white-space: nowrap;">default</td>
                                     <td><b>voice</b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ResponsibleParty_ResponsibleParty_phone_phonetype" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ResponsibleParty_ResponsibleParty_phone_phonetype');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ResponsibleParty_ResponsibleParty_phone_phonetype" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Element </td>
-                                    <td><b><a href="eml-party_xsd.html#ResponsibleParty_phone" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-party.xsd')">ResponsibleParty/phone</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResponsibleParty_ResponsibleParty_phone_phonetype" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResponsibleParty_ResponsibleParty_phone_phonetype');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResponsibleParty_ResponsibleParty_phone_phonetype" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"phonetype"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"voice"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Phone type summary: The type of the phone to which this number applies description: This attribute gives the type of phone to which this number applies. By default, this is assumed to be of type "voice", but other possibilities include "facsimile" and "tdd".</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:attribute&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -4650,41 +3846,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ResponsibleParty_ResponsibleParty_userId_directory" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ResponsibleParty_ResponsibleParty_userId_directory');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ResponsibleParty_ResponsibleParty_userId_directory" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Element </td>
-                                    <td><b><a href="eml-party_xsd.html#ResponsibleParty_userId" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-party.xsd')">ResponsibleParty/userId</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResponsibleParty_ResponsibleParty_userId_directory" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResponsibleParty_ResponsibleParty_userId_directory');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResponsibleParty_ResponsibleParty_userId_directory" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"directory"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Directory summary: The directory system within which the directoryId can be retrieved. description: This attribute names the directory system to which this userId applies. This will generally be a URL that shows how to look up information, for example an LDAP URL. However, it could also be a non-parsable description of the directory system if that is all that is available. example: https://orcid.org example: ldap:///ldap.ecoinformatics.org/dc=ecoinformatics,dc=org</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:attribute&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -4731,37 +3892,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ResponsibleParty_id" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ResponsibleParty_id');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ResponsibleParty_id" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-party_xsd.html#ResponsibleParty" target="mainFrame" title="https://eml.ecoinformatics.org/party-2.2.0" onclick="updatePageTitle('Schema documentation for eml-party.xsd')">ResponsibleParty</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResponsibleParty_id" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResponsibleParty_id');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResponsibleParty_id" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"res:IDType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -4803,37 +3933,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                  <tr>
                                     <td class="firstColumn" style="white-space: nowrap;">use</td>
                                     <td><b>optional</b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ResponsibleParty_system" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ResponsibleParty_system');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ResponsibleParty_system" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-party_xsd.html#ResponsibleParty" target="mainFrame" title="https://eml.ecoinformatics.org/party-2.2.0" onclick="updatePageTitle('Schema documentation for eml-party.xsd')">ResponsibleParty</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResponsibleParty_system" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResponsibleParty_system');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResponsibleParty_system" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"system"</span><span class="tAN"> type=</span><span class="tAV">"res:SystemType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -4910,37 +4009,6 @@ var modelBoxes= new Array('model_ResponsibleParty_individualName',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ResponsibleParty_scope" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ResponsibleParty_scope');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ResponsibleParty_scope" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-party_xsd.html#ResponsibleParty" target="mainFrame" title="https://eml.ecoinformatics.org/party-2.2.0" onclick="updatePageTitle('Schema documentation for eml-party.xsd')">ResponsibleParty</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ResponsibleParty_scope" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ResponsibleParty_scope');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ResponsibleParty_scope" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"scope"</span><span class="tAN"> type=</span><span class="tAV">"res:ScopeType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"document"</span><span class="tEl">/&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>

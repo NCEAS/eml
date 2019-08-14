@@ -44,45 +44,6 @@ var facetsBoxes= new Array('facets_MaintenanceType_maintenanceUpdateFrequency',
 				'facets_DatasetType_pubPlace', 
 				'facets_MaintUpFreqType', 
 				'facets_DatasetType_scope');
-var usedByBoxes= new Array('usedBy_DatasetType', 
-				'usedBy_MaintenanceType', 
-				'usedBy_MaintUpFreqType', 
-				'usedBy_DatasetType_id', 
-				'usedBy_DatasetType_system', 
-				'usedBy_DatasetType_scope');
-var sourceBoxes= new Array('source_DatasetType_purpose', 
-				'source_DatasetType_introduction', 
-				'source_DatasetType_gettingStarted', 
-				'source_DatasetType_acknowledgements', 
-				'source_DatasetType_maintenance', 
-				'source_MaintenanceType_description', 
-				'source_MaintenanceType_maintenanceUpdateFrequency', 
-				'source_MaintenanceType_changeHistory', 
-				'source_MaintenanceType_MaintenanceType_changeHistory_changeScope', 
-				'source_MaintenanceType_MaintenanceType_changeHistory_oldValue', 
-				'source_MaintenanceType_MaintenanceType_changeHistory_changeDate', 
-				'source_MaintenanceType_MaintenanceType_changeHistory_comment', 
-				'source_DatasetType_contact', 
-				'source_DatasetType_publisher', 
-				'source_DatasetType_pubPlace', 
-				'source_DatasetType_methods', 
-				'source_DatasetType_project', 
-				'source_DatasetType_dataTable', 
-				'source_DatasetType_spatialRaster', 
-				'source_DatasetType_spatialVector', 
-				'source_DatasetType_storedProcedure', 
-				'source_DatasetType_view', 
-				'source_DatasetType_otherEntity', 
-				'source_DatasetType_referencePublication', 
-				'source_DatasetType_usageCitation', 
-				'source_DatasetType_literatureCited', 
-				'source_dataset', 
-				'source_DatasetType', 
-				'source_MaintenanceType', 
-				'source_MaintUpFreqType', 
-				'source_DatasetType_id', 
-				'source_DatasetType_system', 
-				'source_DatasetType_scope');
 var instanceBoxes= new Array('instance_DatasetType_purpose', 
 				'instance_DatasetType_introduction', 
 				'instance_DatasetType_gettingStarted', 
@@ -471,12 +432,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                      <tr>
                         <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
                      </tr>
-                     <tr>
-                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
-                     </tr>
-                     <tr>
-                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
-                     </tr>
                   </table>
                   <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
                </td>
@@ -744,25 +699,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_DatasetType_purpose" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DatasetType_purpose');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_DatasetType_purpose" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"purpose"</span><span class="tAN"> type=</span><span class="tAV">"txt:TextType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Purpose summary: A synopsis of the purpose of this dataset. description: A synopsis of the purpose of this dataset. It may include one or more paragraphs as well as inline links to table(s) and figure(s) that summarize the data included in the data paper, including a summary of key findings if appropriate. Note that this element requires DocBook style formatting. See eml-text for more information.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -917,25 +853,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_DatasetType_introduction" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DatasetType_introduction');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_DatasetType_introduction" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"introduction"</span><span class="tAN"> type=</span><span class="tAV">"txt:TextType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Introduction summary: An overview of the background and context for the dataset. description: One to many paragraphs that provide background and context for the dataset with appropriate figures and references. This is similar to the introduction for a journal article, and would include, for example, project objectives, hypotheses being addressed, what is known about the pattern or process under study, how the data have been used to date (including references), and how they could be used in the future. The introduction may include figure(s) and table(s) by first attaching those entities to the dataset (e.g., dataTable, otherEntity), providing an id attribute for that entity, and then referencing that entity id in the text of the introduction using Markdown's syntax for inline images. See eml-text for more information on formatting within this section.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1104,25 +1021,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_DatasetType_gettingStarted" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DatasetType_gettingStarted');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_DatasetType_gettingStarted" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"gettingStarted"</span><span class="tAN"> type=</span><span class="tAV">"txt:TextType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Getting Started summary: A high level overview of interpretation, structure, and content of the dataset. description: One or more paragraphs that describe the overall interpretation, content and structure of the dataset. For example, the number and names of data files, they types of measurements that they contain, how those data files fit together in an overall design, and how they relate to the data collections methods, experimental design, and sampling design that are described in other EML sections. One might describe any specialized software that is available and/or may be necessary for analyzing or interpreting the data, and possibly include a high level description of data formats if they are unusual, keeping in mind that detailed desriptions of data structure and format are contained in the entity sections of EML. Citations, inline figures, and inline images can be included via inline references in Markdown sections. See eml-text for more information on formatting within this section.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1281,25 +1179,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_DatasetType_acknowledgements" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DatasetType_acknowledgements');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_DatasetType_acknowledgements" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"acknowledgements"</span><span class="tAN"> type=</span><span class="tAV">"txt:TextType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Acknowledgements summary: Text that acknowledges funders and other key contributors. description: One or more sentences that acknowledge funders and other key contributors to the study (excluding the dataset authors listed in the creator field). Note that funding awards are also listed by award number in the eml-project award element, which provides a structured list of funders, award numbers, and award URIs for the dataset. When displaying acknowledgements, client software should provide both the information in this acknowledgements element as well as links from the award element. See eml-text for more information on formatting within this section.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1413,25 +1292,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
   </span><span class="tEl">&lt;maintenanceUpdateFrequency</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/maintenanceUpdateFrequency&gt;</span><span class="tI">
   </span><span class="tEl">&lt;changeHistory</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,unbounded}</span><span class="tEl">&lt;/changeHistory&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/maintenance&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_DatasetType_maintenance" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DatasetType_maintenance');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_DatasetType_maintenance" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"maintenance"</span><span class="tAN"> type=</span><span class="tAV">"MaintenanceType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Maintenance summary: A description of the maintenance of this data resource. description: A description of the maintenance of this data resource. This includes information about the frequency of update, and whether there is ongoing data collection.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1578,25 +1438,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_MaintenanceType_description" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MaintenanceType_description');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_MaintenanceType_description" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"description"</span><span class="tAN"> type=</span><span class="tAV">"txt:TextType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Maintenance Description summary: A text description of the maintenance of this data resource. description: A text description of the maintenance of this data resource. Note that this field must be marked up using DocBook like tagging. See eml-text for more information.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1784,25 +1625,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_MaintenanceType_maintenanceUpdateFrequency" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MaintenanceType_maintenanceUpdateFrequency');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_MaintenanceType_maintenanceUpdateFrequency" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"maintenanceUpdateFrequency"</span><span class="tAN"> type=</span><span class="tAV">"MaintUpFreqType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Maintenance Update Frequency summary: Frequency with which changes and additions are made to the dataset after the initial dataset is completed. description: Frequency with which changes and additions are made to the dataset after the initial dataset is completed. The values for this field must come from the enumeration MaintUpFreqType.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1920,49 +1742,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_MaintenanceType_changeHistory" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MaintenanceType_changeHistory');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_MaintenanceType_changeHistory" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"changeHistory"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Change History summary: A description of changes made to the data since its release. description: A description of changes made to the data since its release.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"changeScope"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Change Scope summary: An expression describing the scope to which the documented change was applied. description: The expression should unambiguously identify the entity(s) and attribute(s) that were changed.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"oldValue"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Old Value summary: The previous value of the data prior to the change. description: The previous value or an expression that describes the previous value of the data.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"changeDate"</span><span class="tAN"> type=</span><span class="tAV">"xs:date"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Change Date summary: The date the changes were applied. description: The date the changes were applied.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"comment"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Comment summary: Explanation or justification for the change made to the data. description: Explanation or justification for the change made to the data.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2065,25 +1844,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_MaintenanceType_MaintenanceType_changeHistory_changeScope" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MaintenanceType_MaintenanceType_changeHistory_changeScope');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_MaintenanceType_MaintenanceType_changeHistory_changeScope" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"changeScope"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Change Scope summary: An expression describing the scope to which the documented change was applied. description: The expression should unambiguously identify the entity(s) and attribute(s) that were changed.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -2195,25 +1955,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_MaintenanceType_MaintenanceType_changeHistory_oldValue" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MaintenanceType_MaintenanceType_changeHistory_oldValue');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_MaintenanceType_MaintenanceType_changeHistory_oldValue" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"oldValue"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Old Value summary: The previous value of the data prior to the change. description: The previous value or an expression that describes the previous value of the data.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2286,25 +2027,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                                  <tr>
                                     <td class="firstColumn" style="white-space: nowrap;">content</td>
                                     <td><b>simple</b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_MaintenanceType_MaintenanceType_changeHistory_changeDate" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MaintenanceType_MaintenanceType_changeHistory_changeDate');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_MaintenanceType_MaintenanceType_changeHistory_changeDate" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"changeDate"</span><span class="tAN"> type=</span><span class="tAV">"xs:date"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Change Date summary: The date the changes were applied. description: The date the changes were applied.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -2414,25 +2136,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_MaintenanceType_MaintenanceType_changeHistory_comment" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MaintenanceType_MaintenanceType_changeHistory_comment');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_MaintenanceType_MaintenanceType_changeHistory_comment" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"comment"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Comment summary: Explanation or justification for the change made to the data. description: Explanation or justification for the change made to the data.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -2620,25 +2323,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_DatasetType_contact" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DatasetType_contact');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_DatasetType_contact" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"contact"</span><span class="tAN"> type=</span><span class="tAV">"rp:ResponsibleParty"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Contact summary: The contact for this dataset description: The contact field contains contact information for this dataset. This is the person or institution to contact with questions about the use, interpretation of a data set.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2821,25 +2505,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_DatasetType_publisher" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DatasetType_publisher');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_DatasetType_publisher" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"publisher"</span><span class="tAN"> type=</span><span class="tAV">"rp:ResponsibleParty"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Data Set Publisher summary: The publisher of this data set description: The publisher of this data set. At times this is a traditional publishing house, but it may also simply be an institution that is making the data available in a published (ie, citable) format.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2949,25 +2614,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_DatasetType_pubPlace" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DatasetType_pubPlace');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_DatasetType_pubPlace" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"pubPlace"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Publication place summary: The location that the resource was published. description: The pubPlace field is the location where the resource was published, which may be different from where the resource was created. example: San Francisco, CA, USA example: New York, NY, USA</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -3086,25 +2732,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
   </span><span class="tEl">&lt;sampling</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/sampling&gt;</span><span class="tI">
   </span><span class="tEl">&lt;qualityControl</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,unbounded}</span><span class="tEl">&lt;/qualityControl&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/methods&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_DatasetType_methods" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DatasetType_methods');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_DatasetType_methods" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"methods"</span><span class="tAN"> type=</span><span class="tAV">"md:MethodsType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: methods summary: The methods field documents scientific methods used in the collection of this dataset. description: The methods field documents scientific methods used in the collection of this dataset. It includes information on items such as tools, instrument calibration and software.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -3294,25 +2921,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_DatasetType_project" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DatasetType_project');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_DatasetType_project" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"project"</span><span class="tAN"> type=</span><span class="tAV">"proj:ResearchProjectType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: project summary: The project field contains information on the project in which this dataset was collected. description: The project field contains information on the project in which this dataset was collected. It includes information such as project personnel, funding, study area, project design and related projects. The project description can also contain documentation on subprojects.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -3496,25 +3104,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_DatasetType_dataTable" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DatasetType_dataTable');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_DatasetType_dataTable" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"dataTable"</span><span class="tAN"> type=</span><span class="tAV">"dat:DataTableType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: data table summary: The dataTable field documents the dataTable(s) that make up this dataset. description: The dataTable field documents the dataTable(s) that make up this dataset. A dataTable could be anything from a Comma Separated Value (CSV) file to a spreadsheet to a table in an RDBMS.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -3734,25 +3323,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_DatasetType_spatialRaster" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DatasetType_spatialRaster');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_DatasetType_spatialRaster" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"spatialRaster"</span><span class="tAN"> type=</span><span class="tAV">"sr:SpatialRasterType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: spatial raster summary: The spatialRaster field describes any spatial raster images included in this dataset. description: The spatialRaster field describes any spatial raster images included in this dataset.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -3947,25 +3517,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_DatasetType_spatialVector" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DatasetType_spatialVector');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_DatasetType_spatialVector" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"spatialVector"</span><span class="tAN"> type=</span><span class="tAV">"sv:SpatialVectorType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: spatial vector summary: The spatialVector field describes any spatial vectors included in this dataset. description: The spatialVector field describes any spatial vectors included in this dataset.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -4149,25 +3700,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_DatasetType_storedProcedure" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DatasetType_storedProcedure');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_DatasetType_storedProcedure" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"storedProcedure"</span><span class="tAN"> type=</span><span class="tAV">"sp:StoredProcedureType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: stored procedure summary: The storedProcedure field contains information about any stored procedures included with this dataset. description: The storedProcedure field contains information about any stored procedures included with this dataset. This usually implies that the dataset is stored in a DBMS or some other data management system capable of processing your dataset.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -4361,25 +3893,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_DatasetType_view" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DatasetType_view');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_DatasetType_view" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"view"</span><span class="tAN"> type=</span><span class="tAV">"v:ViewType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: view summary: The view field contains information about any views included with this dataset. description: The view field contains information about any view included with this dataset. This usually implies that the dataset is stored in a DBMS or some other data management system capable of processing your dataset.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -4565,25 +4078,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_DatasetType_otherEntity" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DatasetType_otherEntity');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_DatasetType_otherEntity" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"otherEntity"</span><span class="tAN"> type=</span><span class="tAV">"ent:OtherEntityType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: other entity summary: The otherEntity field contains information about any entity in the dataset that is not any of the preceding entities. description: The otherEntity field contains information about any entity in the dataset that is not any of the preceding entities. (i.e. it is not a table, spatialRaster, spatialVector, storedProcedure or view.) OtherEntity allows the documentation of basic entity fields as well as a plain text field to allow you to type your entity.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -4816,25 +4310,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_DatasetType_referencePublication" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DatasetType_referencePublication');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_DatasetType_referencePublication" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"referencePublication"</span><span class="tAN"> type=</span><span class="tAV">"cit:CitationType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Reference Publication summary: A citation to an additional publication that serves as an important reference for a dataset. description: A citation to an additional publication that serves as an important reference for a dataset. People using this dataset should generally cite the dataset itself (using the creator, pubDate, title, publisher, and packageId fields), and consider providing an additional citation to the Reference Publication. Common cases where a Reference Publication may be useful include when a data paper is published that describes the dataset, or when a paper is intended to be the canonical or examplar reference to the dataset.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -5079,25 +4554,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_DatasetType_usageCitation" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DatasetType_usageCitation');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_DatasetType_usageCitation" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"usageCitation"</span><span class="tAN"> type=</span><span class="tAV">"cit:CitationType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Usage Citation summary: A citation to articles or products in which the dataset is used or referenced. description: A citation to articles or products in which the dataset is used or referenced. The citation element contains general information about a literature resource that has used or references this dataset resource. It is not expected that the list of usageCitations will necessarily be complete, but rather they serve as examples and pointers to scholarly works in which this dataset has been used.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -5213,25 +4669,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
   </span><span class="tEl">&lt;citation</span><span class="tT"> </span><span class="tAN">id=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">scope=</span><span class="tAV">"document"</span><span class="tT"> </span><span class="tAN">system=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/citation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;bibtex</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/bibtex&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/literatureCited&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_DatasetType_literatureCited" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DatasetType_literatureCited');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_DatasetType_literatureCited" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"literatureCited"</span><span class="tAN"> type=</span><span class="tAV">"cit:CitationListType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Literature Cited summary: A citation to articles or products which were referenced in the dataset or its associated metadata. description: A citation to articles or products which were referenced in the dataset or its associated metadata. The list represents the bibliography of works related to the dataset, whether for reference, comparison, or others purposes.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -5476,25 +4913,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_dataset" type="image" src="img/btM.gif" value="-" onclick="switchState('source_dataset');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_dataset" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"dataset"</span><span class="tAN"> type=</span><span class="tAV">"DatasetType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Dataset Descriptors summary: The dataset field encompasses all information about a single dataset. description: The dataset field encompasses all information about a single dataset. A dataset is defined as all of the information describing a data collection event. This event may take place over some period of time and include many actual collections (a time series or remote sensing application) or it could be just one actual collection (a day in the field).</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -5602,22 +5020,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                         </td>
                      </tr>
                      <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_DatasetType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_DatasetType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_DatasetType" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Elements </td>
-                                    <td><b><a href="eml-methods_xsd.html#MethodsType_MethodsType_methodStep_dataSource" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-methods.xsd')">MethodsType/methodStep/dataSource</a></b>, <b><a href="eml-dataset_xsd.html#dataset" target="mainFrame" title="https://eml.ecoinformatics.org/dataset-2.2.0" onclick="updatePageTitle('Schema documentation for eml-dataset.xsd')">dataset</a></b>, <b><a href="eml_xsd.html#eml_dataset" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml.xsd')">eml/dataset</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_DatasetType" type="image" src="img/btM.gif" value="-" onclick="switchState('model_DatasetType');" class="control" /></div>
                         </td>
                         <td>
@@ -5672,131 +5074,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_DatasetType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DatasetType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_DatasetType" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"DatasetType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Dataset summary: DatasetType is the base type for the dataset element. description: DatasetType is the base type for the dataset element. The dataset field encompasses all information about a single dataset. A dataset is defined as all of the information describing a data collection event. This event may take place over some period of time and include many actual collections (a time series or remote sensing application) or it could be just one actual collection (a day in the field).</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:choice</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:group</span><span class="tAN"> ref=</span><span class="tAV">"res:ResourceGroup"</span><span class="tEl">/&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"purpose"</span><span class="tAN"> type=</span><span class="tAV">"txt:TextType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Purpose summary: A synopsis of the purpose of this dataset. description: A synopsis of the purpose of this dataset. It may include one or more paragraphs as well as inline links to table(s) and figure(s) that summarize the data included in the data paper, including a summary of key findings if appropriate. Note that this element requires DocBook style formatting. See eml-text for more information.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"introduction"</span><span class="tAN"> type=</span><span class="tAV">"txt:TextType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Introduction summary: An overview of the background and context for the dataset. description: One to many paragraphs that provide background and context for the dataset with appropriate figures and references. This is similar to the introduction for a journal article, and would include, for example, project objectives, hypotheses being addressed, what is known about the pattern or process under study, how the data have been used to date (including references), and how they could be used in the future. The introduction may include figure(s) and table(s) by first attaching those entities to the dataset (e.g., dataTable, otherEntity), providing an id attribute for that entity, and then referencing that entity id in the text of the introduction using Markdown's syntax for inline images. See eml-text for more information on formatting within this section.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"gettingStarted"</span><span class="tAN"> type=</span><span class="tAV">"txt:TextType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Getting Started summary: A high level overview of interpretation, structure, and content of the dataset. description: One or more paragraphs that describe the overall interpretation, content and structure of the dataset. For example, the number and names of data files, they types of measurements that they contain, how those data files fit together in an overall design, and how they relate to the data collections methods, experimental design, and sampling design that are described in other EML sections. One might describe any specialized software that is available and/or may be necessary for analyzing or interpreting the data, and possibly include a high level description of data formats if they are unusual, keeping in mind that detailed desriptions of data structure and format are contained in the entity sections of EML. Citations, inline figures, and inline images can be included via inline references in Markdown sections. See eml-text for more information on formatting within this section.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"acknowledgements"</span><span class="tAN"> type=</span><span class="tAV">"txt:TextType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Acknowledgements summary: Text that acknowledges funders and other key contributors. description: One or more sentences that acknowledge funders and other key contributors to the study (excluding the dataset authors listed in the creator field). Note that funding awards are also listed by award number in the eml-project award element, which provides a structured list of funders, award numbers, and award URIs for the dataset. When displaying acknowledgements, client software should provide both the information in this acknowledgements element as well as links from the award element. See eml-text for more information on formatting within this section.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"maintenance"</span><span class="tAN"> type=</span><span class="tAV">"MaintenanceType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Maintenance summary: A description of the maintenance of this data resource. description: A description of the maintenance of this data resource. This includes information about the frequency of update, and whether there is ongoing data collection.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"contact"</span><span class="tAN"> type=</span><span class="tAV">"rp:ResponsibleParty"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Contact summary: The contact for this dataset description: The contact field contains contact information for this dataset. This is the person or institution to contact with questions about the use, interpretation of a data set.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"publisher"</span><span class="tAN"> type=</span><span class="tAV">"rp:ResponsibleParty"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Data Set Publisher summary: The publisher of this data set description: The publisher of this data set. At times this is a traditional publishing house, but it may also simply be an institution that is making the data available in a published (ie, citable) format.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"pubPlace"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Publication place summary: The location that the resource was published. description: The pubPlace field is the location where the resource was published, which may be different from where the resource was created. example: San Francisco, CA, USA example: New York, NY, USA</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"methods"</span><span class="tAN"> type=</span><span class="tAV">"md:MethodsType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: methods summary: The methods field documents scientific methods used in the collection of this dataset. description: The methods field documents scientific methods used in the collection of this dataset. It includes information on items such as tools, instrument calibration and software.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"project"</span><span class="tAN"> type=</span><span class="tAV">"proj:ResearchProjectType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: project summary: The project field contains information on the project in which this dataset was collected. description: The project field contains information on the project in which this dataset was collected. It includes information such as project personnel, funding, study area, project design and related projects. The project description can also contain documentation on subprojects.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:choice</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"dataTable"</span><span class="tAN"> type=</span><span class="tAV">"dat:DataTableType"</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: data table summary: The dataTable field documents the dataTable(s) that make up this dataset. description: The dataTable field documents the dataTable(s) that make up this dataset. A dataTable could be anything from a Comma Separated Value (CSV) file to a spreadsheet to a table in an RDBMS.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"spatialRaster"</span><span class="tAN"> type=</span><span class="tAV">"sr:SpatialRasterType"</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: spatial raster summary: The spatialRaster field describes any spatial raster images included in this dataset. description: The spatialRaster field describes any spatial raster images included in this dataset.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"spatialVector"</span><span class="tAN"> type=</span><span class="tAV">"sv:SpatialVectorType"</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: spatial vector summary: The spatialVector field describes any spatial vectors included in this dataset. description: The spatialVector field describes any spatial vectors included in this dataset.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"storedProcedure"</span><span class="tAN"> type=</span><span class="tAV">"sp:StoredProcedureType"</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: stored procedure summary: The storedProcedure field contains information about any stored procedures included with this dataset. description: The storedProcedure field contains information about any stored procedures included with this dataset. This usually implies that the dataset is stored in a DBMS or some other data management system capable of processing your dataset.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"view"</span><span class="tAN"> type=</span><span class="tAV">"v:ViewType"</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: view summary: The view field contains information about any views included with this dataset. description: The view field contains information about any view included with this dataset. This usually implies that the dataset is stored in a DBMS or some other data management system capable of processing your dataset.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"otherEntity"</span><span class="tAN"> type=</span><span class="tAV">"ent:OtherEntityType"</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: other entity summary: The otherEntity field contains information about any entity in the dataset that is not any of the preceding entities. description: The otherEntity field contains information about any entity in the dataset that is not any of the preceding entities. (i.e. it is not a table, spatialRaster, spatialVector, storedProcedure or view.) OtherEntity allows the documentation of basic entity fields as well as a plain text field to allow you to type your entity.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"referencePublication"</span><span class="tAN"> type=</span><span class="tAV">"cit:CitationType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Reference Publication summary: A citation to an additional publication that serves as an important reference for a dataset. description: A citation to an additional publication that serves as an important reference for a dataset. People using this dataset should generally cite the dataset itself (using the creator, pubDate, title, publisher, and packageId fields), and consider providing an additional citation to the Reference Publication. Common cases where a Reference Publication may be useful include when a data paper is published that describes the dataset, or when a paper is intended to be the canonical or examplar reference to the dataset.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"usageCitation"</span><span class="tAN"> type=</span><span class="tAV">"cit:CitationType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Usage Citation summary: A citation to articles or products in which the dataset is used or referenced. description: A citation to articles or products in which the dataset is used or referenced. The citation element contains general information about a literature resource that has used or references this dataset resource. It is not expected that the list of usageCitations will necessarily be complete, but rather they serve as examples and pointers to scholarly works in which this dataset has been used.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"literatureCited"</span><span class="tAN"> type=</span><span class="tAV">"cit:CitationListType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Literature Cited summary: A citation to articles or products which were referenced in the dataset or its associated metadata. description: A citation to articles or products which were referenced in the dataset or its associated metadata. The list represents the bibliography of works related to the dataset, whether for reference, comparison, or others purposes.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:group</span><span class="tAN"> ref=</span><span class="tAV">"res:ReferencesGroup"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"res:IDType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"system"</span><span class="tAN"> type=</span><span class="tAV">"res:SystemType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"scope"</span><span class="tAN"> type=</span><span class="tAV">"res:ScopeType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"document"</span><span class="tEl">/&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -5865,22 +5142,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                         </td>
                      </tr>
                      <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_MaintenanceType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_MaintenanceType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_MaintenanceType" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Element </td>
-                                    <td><b><a href="eml-dataset_xsd.html#DatasetType_maintenance" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-dataset.xsd')">DatasetType/maintenance</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_MaintenanceType" type="image" src="img/btM.gif" value="-" onclick="switchState('model_MaintenanceType');" class="control" /></div>
                         </td>
                         <td>
@@ -5890,66 +5151,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                      <tr>
                         <td class="firstColumn"><b>Children</b></td>
                         <td><b><a href="eml-dataset_xsd.html#MaintenanceType_changeHistory" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-dataset.xsd')">changeHistory</a></b>, <b><a href="eml-dataset_xsd.html#MaintenanceType_description" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-dataset.xsd')">description</a></b>, <b><a href="eml-dataset_xsd.html#MaintenanceType_maintenanceUpdateFrequency" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-dataset.xsd')">maintenanceUpdateFrequency</a></b></td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_MaintenanceType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MaintenanceType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_MaintenanceType" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"MaintenanceType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Maintenance Type summary: The maintenance type defines the fields for the maintenance element. It encompasses all information related to the maintenance and upkeep of this dataset. description: The maintenance type defines the fields for the maintenance element.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"description"</span><span class="tAN"> type=</span><span class="tAV">"txt:TextType"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Maintenance Description summary: A text description of the maintenance of this data resource. description: A text description of the maintenance of this data resource. Note that this field must be marked up using DocBook like tagging. See eml-text for more information.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"maintenanceUpdateFrequency"</span><span class="tAN"> type=</span><span class="tAV">"MaintUpFreqType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Maintenance Update Frequency summary: Frequency with which changes and additions are made to the dataset after the initial dataset is completed. description: Frequency with which changes and additions are made to the dataset after the initial dataset is completed. The values for this field must come from the enumeration MaintUpFreqType.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"changeHistory"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Change History summary: A description of changes made to the data since its release. description: A description of changes made to the data since its release.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"changeScope"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Change Scope summary: An expression describing the scope to which the documented change was applied. description: The expression should unambiguously identify the entity(s) and attribute(s) that were changed.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"oldValue"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Old Value summary: The previous value of the data prior to the change. description: The previous value or an expression that describes the previous value of the data.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"changeDate"</span><span class="tAN"> type=</span><span class="tAV">"xs:date"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Change Date summary: The date the changes were applied. description: The date the changes were applied.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"comment"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Comment summary: Explanation or justification for the change made to the data. description: Explanation or justification for the change made to the data.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
                      </tr>
                   </tbody>
                </table>
@@ -6086,53 +5287,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_MaintUpFreqType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_MaintUpFreqType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_MaintUpFreqType" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Element </td>
-                                    <td><b><a href="eml-dataset_xsd.html#MaintenanceType_maintenanceUpdateFrequency" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-dataset.xsd')">MaintenanceType/maintenanceUpdateFrequency</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_MaintUpFreqType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MaintUpFreqType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_MaintUpFreqType" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:simpleType</span><span class="tAN"> name=</span><span class="tAV">"MaintUpFreqType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"annually"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"asNeeded"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"biannually"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"continually"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"daily"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"irregular"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"monthly"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"notPlanned"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"weekly"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"unknown"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"unkown"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tC">&lt;!-- deprecated, keep for compat., spelling error from prior version --&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"otherMaintenancePeriod"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:restriction&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:simpleType&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -6179,37 +5333,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_DatasetType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_DatasetType_id');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_DatasetType_id" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-dataset_xsd.html#DatasetType" target="mainFrame" title="https://eml.ecoinformatics.org/dataset-2.2.0" onclick="updatePageTitle('Schema documentation for eml-dataset.xsd')">DatasetType</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_DatasetType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DatasetType_id');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_DatasetType_id" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"res:IDType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -6251,37 +5374,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                                  <tr>
                                     <td class="firstColumn" style="white-space: nowrap;">use</td>
                                     <td><b>optional</b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_DatasetType_system" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_DatasetType_system');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_DatasetType_system" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-dataset_xsd.html#DatasetType" target="mainFrame" title="https://eml.ecoinformatics.org/dataset-2.2.0" onclick="updatePageTitle('Schema documentation for eml-dataset.xsd')">DatasetType</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_DatasetType_system" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DatasetType_system');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_DatasetType_system" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"system"</span><span class="tAN"> type=</span><span class="tAV">"res:SystemType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -6358,37 +5450,6 @@ var modelBoxes= new Array('model_DatasetType_purpose',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_DatasetType_scope" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_DatasetType_scope');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_DatasetType_scope" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-dataset_xsd.html#DatasetType" target="mainFrame" title="https://eml.ecoinformatics.org/dataset-2.2.0" onclick="updatePageTitle('Schema documentation for eml-dataset.xsd')">DatasetType</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_DatasetType_scope" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DatasetType_scope');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_DatasetType_scope" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"scope"</span><span class="tAN"> type=</span><span class="tAV">"res:ScopeType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"document"</span><span class="tEl">/&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>

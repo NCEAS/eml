@@ -25,27 +25,6 @@
 				'properties_eml_scope');
 var facetsBoxes= new Array('facets_eml_eml_additionalMetadata_describes', 
 				'facets_eml_scope');
-var usedByBoxes= new Array('usedBy_eml_eml_annotations_eml_eml_annotations_annotation_references', 
-				'usedBy_eml_eml_additionalMetadata_id', 
-				'usedBy_eml_packageId', 
-				'usedBy_eml_system', 
-				'usedBy_eml_scope');
-var sourceBoxes= new Array('source_eml', 
-				'source_eml_access', 
-				'source_eml_dataset', 
-				'source_eml_citation', 
-				'source_eml_software', 
-				'source_eml_protocol', 
-				'source_eml_annotations', 
-				'source_eml_eml_annotations_annotation', 
-				'source_eml_additionalMetadata', 
-				'source_eml_eml_additionalMetadata_describes', 
-				'source_eml_eml_additionalMetadata_metadata', 
-				'source_eml_eml_annotations_eml_eml_annotations_annotation_references', 
-				'source_eml_eml_additionalMetadata_id', 
-				'source_eml_packageId', 
-				'source_eml_system', 
-				'source_eml_scope');
 var instanceBoxes= new Array('instance_eml', 
 				'instance_eml_access', 
 				'instance_eml_dataset', 
@@ -363,12 +342,6 @@ var modelBoxes= new Array('model_eml',
                      </tr>
                      <tr>
                         <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
-                     </tr>
-                     <tr>
-                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
-                     </tr>
-                     <tr>
-                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
                      </tr>
                   </table>
                   <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
@@ -710,118 +683,6 @@ var modelBoxes= new Array('model_eml',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_eml" type="image" src="img/btM.gif" value="-" onclick="switchState('source_eml');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_eml" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"eml"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Ecological Metadata summary: A collection of EML metadata and additional metadata linked using the inline references. description: The "eml" element allows for the inclusion of any metadata content in a single EML document. In general, dataset resources, literature resources, and software resources, or another type that extends eml-resource are described using an eml document. The eml document represents a "package" that can contain both metadata and data. It can optionally include non-EML metadata through the flexibility of the "additionalMetadata" element. Any additional metadata that is provided can provide a pointer into the EML metadata indicating what the context of the additional metadata is (i.e., what it describes). For example, a spatial raster image might be described in EML, and an FGDC CSDGM metadata document could be included in the additionalMetadata element with a pointer to the EML spatialRaster element to indicate that the FGDC metadata is providing supplemental documentation about that particular image entity. There is no validity constraint that restricts what metadata may be present in additionalMetadata.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"access"</span><span class="tAN"> type=</span><span class="tAV">"acc:AccessType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Access summary: Access control rules for the entire resource, which can be overridden by access rules in distribution trees description: An optional access tree at this location controls access to the entire metadata document. If this access element is omitted from the document, then the package submitter should be given full access to the package but all other users should be denied all access.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:choice</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"dataset"</span><span class="tAN"> type=</span><span class="tAV">"ds:DatasetType"</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Dataset Resource summary: A resource that describes a data set, which can include one or more data entities such as data tables. description: A resource that describes a data set, which can include one or more data entities such as data tables and spatial images (raster and vector). If included, this represents the primary resource that is described in this eml document.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"citation"</span><span class="tAN"> type=</span><span class="tAV">"cit:CitationType"</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Literature Resource summary: A resource that describes a literature citation that one might find in a bibliography. description: A resource that describes a literature citation that one might find in a bibliography. If included, this represents the primary resource that is described in this eml document.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"software"</span><span class="tAN"> type=</span><span class="tAV">"sw:SoftwareType"</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Software Resource summary: A resource that describes a software package, which can include commercial and non-commercial software as well as data processing programs. description: A resource that describes a software package, which can include commercial and non-commercial software as well as data processing programs. If included, this represents the primary resource that is described in this eml document.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"protocol"</span><span class="tAN"> type=</span><span class="tAV">"pro:ProtocolType"</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Protocol Resource summary: A resource that describes a scientific protocol, which can include one or more descriptions of methods and procedures. description: A resource that describes a scientific protocol, which can include one or more descriptions of methods and procedures. If included, this represents the primary resource that is described in this eml document.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"annotations"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Semantic Annotation List summary: A list of precisely-defined semantic statements about this resource. description: A list of annotations defining precise semantics for parts of this resource. The list consists of a set of annotation elements, each referring to a subject within the EML document using its references attribute, which provides a pointer to the id of the element being annotated.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"annotation"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Semantic Annotation summary: A precisely-defined semantic statement about an element in the EML document. description: An annotation represents a precisely-defined semantic statement that applies to this resource. This semantic statement is used to associate precise semantics with a particular element in the EML document. The id of the element being annotated is listed in the references attribute, and must point to a unique id within the EML document. Each annotation consists of a propertyURI and valueURI that define a property and value that apply to the resource. The subject of the statement is implicitly the element that is listed in the references attribute. The associated labels can be used to display the statement to users. Each URI is resolvable to a controlled vocabulary that provides a definition, relationships to other terms, and multiple labels for displaying the statement.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"sem:SemanticAnnotation"</span><span class="tEl">&gt;</span><span class="tI">
-                    </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"references"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">/&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;/xs:complexContent&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"additionalMetadata"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Additional Metadata summary: A flexible field for including any other relevant metadata that pertains to the resource being described. description: A flexible field for including any other relevant metadata that pertains to the resource being described. This field allows EML to be extensible in that any XML-based metadata can be included in this element, including metadata from other standards such as the FGDC CSDGM. The "describes" element of this field allows the specific part of the resource which is described by the additional metadata to be indicated formally.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"describes"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Describes Reference summary: A pointer to the id attribute for the sub-portion of the resource that is described by this additional metadata. description: A pointer to the id attribute for the sub-portion of the resource that is described by this additional metadata. This is a formal field in that it is an error to provide a value in the "describes" element that does not correspond to the value of one of the "id" attributes in another eml module. This is designed to allow automated processors to discover the contextual relationship between the additional metadata and the resource it describes. example: knb.343.22</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"metadata"</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Additional metadata summary: This element contains the additional metadata that is to be included in the document. The content of this field can be any well-formed XML fragment. description: This element contains the additional metadata to be included in the document. This element should be used for extending EML to include metadata that is not already available in another part of the EML specification, or to include site- or system-specific extensions that are needed beyond the core metadata. The additional metadata contained in this field describes the element referenced in the 'describes' element preceding it. The content of this field is any well-formed XML fragment. If that content contains namespace declarations, and if the namespace declaration can be resolved to a schema definition, then the content will be validated against that schema definition. If no namespace is present, or if no schema can be resolved, validation for this fragment will be skipped (validation is "lax"). example: &lt;embargoDate&gt;2006-10-10&lt;/embargoDate&gt;</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;xs:any</span><span class="tAN"> processContents=</span><span class="tAV">"lax"</span><span class="tEl">&gt;</span><span class="tI">
-                    </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                      </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Any Metadata summary: Any well-formed XML-formatted metadata may be inserted at this location in the EML document. If an element inserted here contains a reference to its namespace, and if there is an association between that namespace and an XML Schema that can be located by the processing application, then the processing application must validate the metadata element. If these conditions are not met, then validation need not occur. description: Any well-formed XML-formatted metadata may be inserted at this location in the EML document. If an element inserted here contains a reference to its namespace, and if there is an association between that namespace and an XML Schema that can be located by the processing application, then the processing application must validate the metadata element. If these conditions are not met, then validation need not occur.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-                    </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;/xs:any&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"res:IDType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"packageId"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Package Identifer summary: A globally unique identifier for the data package described by this EML metadata document that can be used to cite it elsewhere. description: A globally unique identifier for the data package described by this EML metadata document that can be used to cite it elsewhere. This identifier can be interpreted as the formal accession number for the data package, and is therefore required. It must be globally unique within a particular data management system, which should be specified in the system attribute as a URI. Typically a DOI or other identifier that is both citable and resolvable is used for published data packages. example: doi:10.5063/F17P8WGK example: https://doi.org/10.5063/F17P8WGK example: urn:uuid:04cd34fd-25d4-447f-ab6e-73a572c5d383</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"system"</span><span class="tAN"> type=</span><span class="tAV">"res:SystemType"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"scope"</span><span class="tAN"> type=</span><span class="tAV">"res:ScopeType"</span><span class="tAN"> fixed=</span><span class="tAV">"system"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Identifer Scope summary: The scope of the identifier. description: The scope of the identifier. Scope is generally set to either "system", meaning that it is scoped according to the "system" attribute, or "document" if it is only to be in scope within this single document instance. In this particular use of scope, it is FIXED to be "system" because the packageId is required and always has the scope of the required "system". example: system</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> ref=</span><span class="tAV">"xml:lang"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1043,25 +904,6 @@ var modelBoxes= new Array('model_eml',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_eml_access" type="image" src="img/btM.gif" value="-" onclick="switchState('source_eml_access');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_eml_access" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"access"</span><span class="tAN"> type=</span><span class="tAV">"acc:AccessType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Access summary: Access control rules for the entire resource, which can be overridden by access rules in distribution trees description: An optional access tree at this location controls access to the entire metadata document. If this access element is omitted from the document, then the package submitter should be given full access to the package but all other users should be denied all access.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1303,25 +1145,6 @@ var modelBoxes= new Array('model_eml',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_eml_dataset" type="image" src="img/btM.gif" value="-" onclick="switchState('source_eml_dataset');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_eml_dataset" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"dataset"</span><span class="tAN"> type=</span><span class="tAV">"ds:DatasetType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Dataset Resource summary: A resource that describes a data set, which can include one or more data entities such as data tables. description: A resource that describes a data set, which can include one or more data entities such as data tables and spatial images (raster and vector). If included, this represents the primary resource that is described in this eml document.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1549,25 +1372,6 @@ var modelBoxes= new Array('model_eml',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_eml_citation" type="image" src="img/btM.gif" value="-" onclick="switchState('source_eml_citation');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_eml_citation" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"citation"</span><span class="tAN"> type=</span><span class="tAV">"cit:CitationType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Literature Resource summary: A resource that describes a literature citation that one might find in a bibliography. description: A resource that describes a literature citation that one might find in a bibliography. If included, this represents the primary resource that is described in this eml document.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1778,25 +1582,6 @@ var modelBoxes= new Array('model_eml',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_eml_software" type="image" src="img/btM.gif" value="-" onclick="switchState('source_eml_software');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_eml_software" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"software"</span><span class="tAN"> type=</span><span class="tAV">"sw:SoftwareType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Software Resource summary: A resource that describes a software package, which can include commercial and non-commercial software as well as data processing programs. description: A resource that describes a software package, which can include commercial and non-commercial software as well as data processing programs. If included, this represents the primary resource that is described in this eml document.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1996,25 +1781,6 @@ var modelBoxes= new Array('model_eml',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_eml_protocol" type="image" src="img/btM.gif" value="-" onclick="switchState('source_eml_protocol');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_eml_protocol" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"protocol"</span><span class="tAN"> type=</span><span class="tAV">"pro:ProtocolType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Protocol Resource summary: A resource that describes a scientific protocol, which can include one or more descriptions of methods and procedures. description: A resource that describes a scientific protocol, which can include one or more descriptions of methods and procedures. If included, this represents the primary resource that is described in this eml document.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2124,41 +1890,6 @@ var modelBoxes= new Array('model_eml',
                                     <td width="100%"><pre><span class="tEl">&lt;annotations</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;annotation</span><span class="tT"> </span><span class="tAN">id=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">references=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">scope=</span><span class="tAV">"document"</span><span class="tT"> </span><span class="tAN">system=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/annotations&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_eml_annotations" type="image" src="img/btM.gif" value="-" onclick="switchState('source_eml_annotations');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_eml_annotations" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"annotations"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Semantic Annotation List summary: A list of precisely-defined semantic statements about this resource. description: A list of annotations defining precise semantics for parts of this resource. The list consists of a set of annotation elements, each referring to a subject within the EML document using its references attribute, which provides a pointer to the id of the element being annotated.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"annotation"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Semantic Annotation summary: A precisely-defined semantic statement about an element in the EML document. description: An annotation represents a precisely-defined semantic statement that applies to this resource. This semantic statement is used to associate precise semantics with a particular element in the EML document. The id of the element being annotated is listed in the references attribute, and must point to a unique id within the EML document. Each annotation consists of a propertyURI and valueURI that define a property and value that apply to the resource. The subject of the statement is implicitly the element that is listed in the references attribute. The associated labels can be used to display the statement to users. Each URI is resolvable to a controlled vocabulary that provides a definition, relationships to other terms, and multiple labels for displaying the statement.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"sem:SemanticAnnotation"</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"references"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">/&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:complexContent&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -2364,32 +2095,6 @@ var modelBoxes= new Array('model_eml',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_eml_eml_annotations_annotation" type="image" src="img/btM.gif" value="-" onclick="switchState('source_eml_eml_annotations_annotation');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_eml_eml_annotations_annotation" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"annotation"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Semantic Annotation summary: A precisely-defined semantic statement about an element in the EML document. description: An annotation represents a precisely-defined semantic statement that applies to this resource. This semantic statement is used to associate precise semantics with a particular element in the EML document. The id of the element being annotated is listed in the references attribute, and must point to a unique id within the EML document. Each annotation consists of a propertyURI and valueURI that define a property and value that apply to the resource. The subject of the statement is implicitly the element that is listed in the references attribute. The associated labels can be used to display the statement to users. Each URI is resolvable to a controlled vocabulary that provides a definition, relationships to other terms, and multiple labels for displaying the statement.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"sem:SemanticAnnotation"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"references"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">/&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:complexContent&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2536,49 +2241,6 @@ var modelBoxes= new Array('model_eml',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_eml_additionalMetadata" type="image" src="img/btM.gif" value="-" onclick="switchState('source_eml_additionalMetadata');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_eml_additionalMetadata" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"additionalMetadata"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Additional Metadata summary: A flexible field for including any other relevant metadata that pertains to the resource being described. description: A flexible field for including any other relevant metadata that pertains to the resource being described. This field allows EML to be extensible in that any XML-based metadata can be included in this element, including metadata from other standards such as the FGDC CSDGM. The "describes" element of this field allows the specific part of the resource which is described by the additional metadata to be indicated formally.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"describes"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Describes Reference summary: A pointer to the id attribute for the sub-portion of the resource that is described by this additional metadata. description: A pointer to the id attribute for the sub-portion of the resource that is described by this additional metadata. This is a formal field in that it is an error to provide a value in the "describes" element that does not correspond to the value of one of the "id" attributes in another eml module. This is designed to allow automated processors to discover the contextual relationship between the additional metadata and the resource it describes. example: knb.343.22</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"metadata"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Additional metadata summary: This element contains the additional metadata that is to be included in the document. The content of this field can be any well-formed XML fragment. description: This element contains the additional metadata to be included in the document. This element should be used for extending EML to include metadata that is not already available in another part of the EML specification, or to include site- or system-specific extensions that are needed beyond the core metadata. The additional metadata contained in this field describes the element referenced in the 'describes' element preceding it. The content of this field is any well-formed XML fragment. If that content contains namespace declarations, and if the namespace declaration can be resolved to a schema definition, then the content will be validated against that schema definition. If no namespace is present, or if no schema can be resolved, validation for this fragment will be skipped (validation is "lax"). example: &lt;embargoDate&gt;2006-10-10&lt;/embargoDate&gt;</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:any</span><span class="tAN"> processContents=</span><span class="tAV">"lax"</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Any Metadata summary: Any well-formed XML-formatted metadata may be inserted at this location in the EML document. If an element inserted here contains a reference to its namespace, and if there is an association between that namespace and an XML Schema that can be located by the processing application, then the processing application must validate the metadata element. If these conditions are not met, then validation need not occur. description: Any well-formed XML-formatted metadata may be inserted at this location in the EML document. If an element inserted here contains a reference to its namespace, and if there is an association between that namespace and an XML Schema that can be located by the processing application, then the processing application must validate the metadata element. If these conditions are not met, then validation need not occur.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:any&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"res:IDType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2699,25 +2361,6 @@ var modelBoxes= new Array('model_eml',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_eml_eml_additionalMetadata_describes" type="image" src="img/btM.gif" value="-" onclick="switchState('source_eml_eml_additionalMetadata_describes');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_eml_eml_additionalMetadata_describes" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"describes"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Describes Reference summary: A pointer to the id attribute for the sub-portion of the resource that is described by this additional metadata. description: A pointer to the id attribute for the sub-portion of the resource that is described by this additional metadata. This is a formal field in that it is an error to provide a value in the "describes" element that does not correspond to the value of one of the "id" attributes in another eml module. This is designed to allow automated processors to discover the contextual relationship between the additional metadata and the resource it describes. example: knb.343.22</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2812,34 +2455,6 @@ var modelBoxes= new Array('model_eml',
                            <div id="model_eml_eml_additionalMetadata_metadata" style="display:block"><b>ANY element from ANY namespace</b></div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_eml_eml_additionalMetadata_metadata" type="image" src="img/btM.gif" value="-" onclick="switchState('source_eml_eml_additionalMetadata_metadata');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_eml_eml_additionalMetadata_metadata" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"metadata"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Additional metadata summary: This element contains the additional metadata that is to be included in the document. The content of this field can be any well-formed XML fragment. description: This element contains the additional metadata to be included in the document. This element should be used for extending EML to include metadata that is not already available in another part of the EML specification, or to include site- or system-specific extensions that are needed beyond the core metadata. The additional metadata contained in this field describes the element referenced in the 'describes' element preceding it. The content of this field is any well-formed XML fragment. If that content contains namespace declarations, and if the namespace declaration can be resolved to a schema definition, then the content will be validated against that schema definition. If no namespace is present, or if no schema can be resolved, validation for this fragment will be skipped (validation is "lax"). example: &lt;embargoDate&gt;2006-10-10&lt;/embargoDate&gt;</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:any</span><span class="tAN"> processContents=</span><span class="tAV">"lax"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Any Metadata summary: Any well-formed XML-formatted metadata may be inserted at this location in the EML document. If an element inserted here contains a reference to its namespace, and if there is an association between that namespace and an XML Schema that can be located by the processing application, then the processing application must validate the metadata element. If these conditions are not met, then validation need not occur. description: Any well-formed XML-formatted metadata may be inserted at this location in the EML document. If an element inserted here contains a reference to its namespace, and if there is an association between that namespace and an XML Schema that can be located by the processing application, then the processing application must validate the metadata element. If these conditions are not met, then validation need not occur.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:any&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2886,37 +2501,6 @@ var modelBoxes= new Array('model_eml',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_eml_eml_annotations_eml_eml_annotations_annotation_references" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_eml_eml_annotations_eml_eml_annotations_annotation_references');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_eml_eml_annotations_eml_eml_annotations_annotation_references" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Element </td>
-                                    <td><b><a href="eml_xsd.html#eml_eml_annotations_annotation" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml.xsd')">eml/annotations/annotation</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_eml_eml_annotations_eml_eml_annotations_annotation_references" type="image" src="img/btM.gif" value="-" onclick="switchState('source_eml_eml_annotations_eml_eml_annotations_annotation_references');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_eml_eml_annotations_eml_eml_annotations_annotation_references" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"references"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">/&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2958,37 +2542,6 @@ var modelBoxes= new Array('model_eml',
                                  <tr>
                                     <td class="firstColumn" style="white-space: nowrap;">use</td>
                                     <td><b>optional</b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_eml_eml_additionalMetadata_id" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_eml_eml_additionalMetadata_id');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_eml_eml_additionalMetadata_id" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Element </td>
-                                    <td><b><a href="eml_xsd.html#eml_additionalMetadata" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml.xsd')">eml/additionalMetadata</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_eml_eml_additionalMetadata_id" type="image" src="img/btM.gif" value="-" onclick="switchState('source_eml_eml_additionalMetadata_id');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_eml_eml_additionalMetadata_id" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"res:IDType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -3073,41 +2626,6 @@ var modelBoxes= new Array('model_eml',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_eml_packageId" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_eml_packageId');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_eml_packageId" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Element </td>
-                                    <td><b><a href="eml_xsd.html#eml" target="mainFrame" title="https://eml.ecoinformatics.org/eml-2.2.0" onclick="updatePageTitle('Schema documentation for eml.xsd')">eml</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_eml_packageId" type="image" src="img/btM.gif" value="-" onclick="switchState('source_eml_packageId');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_eml_packageId" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"packageId"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Package Identifer summary: A globally unique identifier for the data package described by this EML metadata document that can be used to cite it elsewhere. description: A globally unique identifier for the data package described by this EML metadata document that can be used to cite it elsewhere. This identifier can be interpreted as the formal accession number for the data package, and is therefore required. It must be globally unique within a particular data management system, which should be specified in the system attribute as a URI. Typically a DOI or other identifier that is both citable and resolvable is used for published data packages. example: doi:10.5063/F17P8WGK example: https://doi.org/10.5063/F17P8WGK example: urn:uuid:04cd34fd-25d4-447f-ab6e-73a572c5d383</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:attribute&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -3149,37 +2667,6 @@ var modelBoxes= new Array('model_eml',
                                  <tr>
                                     <td class="firstColumn" style="white-space: nowrap;">use</td>
                                     <td><b>required</b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_eml_system" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_eml_system');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_eml_system" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Element </td>
-                                    <td><b><a href="eml_xsd.html#eml" target="mainFrame" title="https://eml.ecoinformatics.org/eml-2.2.0" onclick="updatePageTitle('Schema documentation for eml.xsd')">eml</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_eml_system" type="image" src="img/btM.gif" value="-" onclick="switchState('source_eml_system');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_eml_system" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"system"</span><span class="tAN"> type=</span><span class="tAV">"res:SystemType"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">/&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -3279,41 +2766,6 @@ var modelBoxes= new Array('model_eml',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_eml_scope" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_eml_scope');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_eml_scope" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Element </td>
-                                    <td><b><a href="eml_xsd.html#eml" target="mainFrame" title="https://eml.ecoinformatics.org/eml-2.2.0" onclick="updatePageTitle('Schema documentation for eml.xsd')">eml</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_eml_scope" type="image" src="img/btM.gif" value="-" onclick="switchState('source_eml_scope');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_eml_scope" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"scope"</span><span class="tAN"> type=</span><span class="tAV">"res:ScopeType"</span><span class="tAN"> fixed=</span><span class="tAV">"system"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Identifer Scope summary: The scope of the identifier. description: The scope of the identifier. Scope is generally set to either "system", meaning that it is scoped according to the "system" attribute, or "document" if it is only to be in scope within this single document instance. In this particular use of scope, it is FIXED to be "system" because the packageId is required and always has the scope of the required "system". example: system</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:attribute&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>

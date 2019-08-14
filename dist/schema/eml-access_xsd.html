@@ -20,25 +20,6 @@
 var facetsBoxes= new Array('facets_AccessRule_principal', 
 				'facets_AccessType_scope', 
 				'facets_AccessType_order');
-var usedByBoxes= new Array('usedBy_AccessType', 
-				'usedBy_AccessRule', 
-				'usedBy_AccessType_id', 
-				'usedBy_AccessType_system', 
-				'usedBy_AccessType_scope', 
-				'usedBy_AccessType_order', 
-				'usedBy_AccessType_authSystem');
-var sourceBoxes= new Array('source_AccessType_allow', 
-				'source_AccessRule_principal', 
-				'source_AccessRule_permission', 
-				'source_AccessType_deny', 
-				'source_access', 
-				'source_AccessType', 
-				'source_AccessRule', 
-				'source_AccessType_id', 
-				'source_AccessType_system', 
-				'source_AccessType_scope', 
-				'source_AccessType_order', 
-				'source_AccessType_authSystem');
 var instanceBoxes= new Array('instance_AccessType_allow', 
 				'instance_AccessType_deny', 
 				'instance_access');
@@ -332,12 +313,6 @@ var modelBoxes= new Array('model_AccessType_allow',
                      <tr>
                         <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
                      </tr>
-                     <tr>
-                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
-                     </tr>
-                     <tr>
-                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
-                     </tr>
                   </table>
                   <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
                </td>
@@ -564,25 +539,6 @@ var modelBoxes= new Array('model_AccessType_allow',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_AccessType_allow" type="image" src="img/btM.gif" value="-" onclick="switchState('source_AccessType_allow');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_AccessType_allow" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"allow"</span><span class="tAN"> type=</span><span class="tAV">"AccessRule"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Allow rule summary: A rule that grants a permission type. description: The allow element indicates that a particular user or group is granted the defined permission. example: allow</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -701,25 +657,6 @@ var modelBoxes= new Array('model_AccessType_allow',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_AccessRule_principal" type="image" src="img/btM.gif" value="-" onclick="switchState('source_AccessRule_principal');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_AccessRule_principal" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"principal"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: User or group summary: The user or group (principal) for which the access control applies. description: The principal element defines the user or group to which the access control rule applies. The users and groups must be defined in the authentication system described in the authSystem element. The special principal 'public' can be used to indicate that any user or group has a particular access permission, thereby making it easier to specify that anonymous access is allowed. example: public example: uid=alice,o=LTER,dc=ecoinformatics,dc=org</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -814,40 +751,6 @@ var modelBoxes= new Array('model_AccessType_allow',
                                  <tr>
                                     <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
                                     <td><b>unbounded</b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_AccessRule_permission" type="image" src="img/btM.gif" value="-" onclick="switchState('source_AccessRule_permission');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_AccessRule_permission" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"permission"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Type of permission summary: The type of permission being granted or denied. description: The permission that is being granted or denied to a particular user or group for a given resource. The list of permissions come from a predetermined list: 'read' - allow or deny viewing of the resource, 'write' - allow or deny modification of the resource (except for access rules), 'changePermission' - modifications including access rules, and 'all' - all of the above. This element also allows other permission values that may be applicable to some other authentication systems but are not defined in this specification (if these other values are used, access rule enforcement is indeterminate outside of the originating system). example: read</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:simpleType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:union</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:simpleType</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"read"</span><span class="tEl">/&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"write"</span><span class="tEl">/&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"changePermission"</span><span class="tEl">/&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"all"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:restriction&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:simpleType&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:simpleType</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">/&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:simpleType&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:union&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:simpleType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -961,25 +864,6 @@ var modelBoxes= new Array('model_AccessType_allow',
   </span><span class="tEl">&lt;principal</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/principal&gt;</span><span class="tI">
   </span><span class="tEl">&lt;permission</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/permission&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/deny&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_AccessType_deny" type="image" src="img/btM.gif" value="-" onclick="switchState('source_AccessType_deny');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_AccessType_deny" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"deny"</span><span class="tAN"> type=</span><span class="tAV">"AccessRule"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Deny rule summary: A rule that revokes a permission type. description: The deny element indicates that a particular user or group is not granted the defined permission. example: deny</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1214,25 +1098,6 @@ var modelBoxes= new Array('model_AccessType_allow',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_access" type="image" src="img/btM.gif" value="-" onclick="switchState('source_access');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_access" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"access"</span><span class="tAN"> type=</span><span class="tAV">"AccessType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Access control rules summary: The rules defined in this element will determine the level of access to a resource for the defined users and groups. description: The access element contains a list of rules defining permissions for this resource. For descriptions of the individual elements, see the AccessType.The permission rules defined here can be overridden by rules added to an access tree in the PhysicalDistributionType at the entity level. example: See the description of the AccessType.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1305,22 +1170,6 @@ var modelBoxes= new Array('model_AccessType_allow',
                                  <area alt="eml-access_xsd.tmp#AccessType_deny" href="eml-access_xsd.html#AccessType_deny" coords="330,417,387,441" />
                                  <area alt="eml-resource_xsd.tmp#ReferencesGroup_references" href="eml-resource_xsd.html#ReferencesGroup_references" coords="344,555,432,579" />
                                  <area alt="eml-resource_xsd.tmp#ReferencesGroup" href="eml-resource_xsd.html#ReferencesGroup" coords="262,510,430,536" /></map></div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_AccessType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_AccessType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_AccessType" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Elements </td>
-                                    <td><b><a href="eml-physical_xsd.html#PhysicalDistributionType_access" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-physical.xsd')">PhysicalDistributionType/access</a></b>, <b><a href="eml-access_xsd.html#access" target="mainFrame" title="https://eml.ecoinformatics.org/access-2.2.0" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">access</a></b>, <b><a href="eml_xsd.html#eml_access" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml.xsd')">eml/access</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
                         </td>
                      </tr>
                      <tr>
@@ -1440,59 +1289,6 @@ var modelBoxes= new Array('model_AccessType_allow',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_AccessType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_AccessType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_AccessType" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"AccessType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Access control rules summary: The rules defined in this element will determine the level of access to a resource for the defined users and groups. description: The access element contains a list of rules that define the level of access for a resource. There are two uses of access trees: to control access to either metadata or data. To control access to metadata use the eml/access tree. By default, these rules will also apply to the contained data. To override the default controls for specific data entities, use the access element available in the entity's physical/distribution tree. A combination of access trees and their "order rules" (see description of the "order" attribute) allows EML authors to have fine control over permissions for individuals and groups.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:choice</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:choice</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"allow"</span><span class="tAN"> type=</span><span class="tAV">"AccessRule"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Allow rule summary: A rule that grants a permission type. description: The allow element indicates that a particular user or group is granted the defined permission. example: allow</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"deny"</span><span class="tAN"> type=</span><span class="tAV">"AccessRule"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Deny rule summary: A rule that revokes a permission type. description: The deny element indicates that a particular user or group is not granted the defined permission. example: deny</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:group</span><span class="tAN"> ref=</span><span class="tAV">"res:ReferencesGroup"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"res:IDType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"system"</span><span class="tAN"> type=</span><span class="tAV">"res:SystemType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"scope"</span><span class="tAN"> type=</span><span class="tAV">"res:ScopeType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"document"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"order"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"allowFirst"</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Rule order summary: The order in which the allow and deny rules should be applied. description: To obtain the desired access control, use the order attribute to define which rules should be applied first. The acceptable values are 'allowFirst' and 'denyFirst'. If 'allowFirst' is specified, then all 'allow' rules are processed, and then overridden by all 'deny' rules. If 'denyFirst' is specified, then all 'deny' rules are processed, and then overridden by all 'allow' rules. example: allowFirst</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:simpleType</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"allowFirst"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"denyFirst"</span><span class="tEl">/&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:restriction&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:simpleType&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"authSystem"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Authentication system summary: The authentication system is used to verify the user or group to whom access is allowed or denied. description: The authentication system determines the set of principals (users + groups) that can be used in the access control list, and the membership of users in groups. This element is intended to provide a reference to the authentication system that is used to verify the user or group. This reference is typically in the form of a URI, which includes the connection protocol, Internet host, and path to the authentication mechanism. example: ldap://ldap.ecoinformatics.org:389/dc=ecoinformatics,dc=org</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1557,22 +1353,6 @@ var modelBoxes= new Array('model_AccessType_allow',
                         </td>
                      </tr>
                      <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_AccessRule" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_AccessRule');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_AccessRule" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Elements </td>
-                                    <td><b><a href="eml-access_xsd.html#AccessType_allow" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">AccessType/allow</a></b>, <b><a href="eml-access_xsd.html#AccessType_deny" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">AccessType/deny</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_AccessRule" type="image" src="img/btM.gif" value="-" onclick="switchState('model_AccessRule');" class="control" /></div>
                         </td>
                         <td>
@@ -1582,52 +1362,6 @@ var modelBoxes= new Array('model_AccessType_allow',
                      <tr>
                         <td class="firstColumn"><b>Children</b></td>
                         <td><b><a href="eml-access_xsd.html#AccessRule_permission" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">permission</a></b>, <b><a href="eml-access_xsd.html#AccessRule_principal" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">principal</a></b></td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_AccessRule" type="image" src="img/btM.gif" value="-" onclick="switchState('source_AccessRule');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_AccessRule" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"AccessRule"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Access Rule summary: Access Rules define a user's access to a resource. description: The AccessRule type defines a list of users that are derived from a particular authentication system (such as an LDAP directory), whether the user or group is allowed or denied access, the extent of their access (read, write , or changePermission access).</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"principal"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: User or group summary: The user or group (principal) for which the access control applies. description: The principal element defines the user or group to which the access control rule applies. The users and groups must be defined in the authentication system described in the authSystem element. The special principal 'public' can be used to indicate that any user or group has a particular access permission, thereby making it easier to specify that anonymous access is allowed. example: public example: uid=alice,o=LTER,dc=ecoinformatics,dc=org</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"permission"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Type of permission summary: The type of permission being granted or denied. description: The permission that is being granted or denied to a particular user or group for a given resource. The list of permissions come from a predetermined list: 'read' - allow or deny viewing of the resource, 'write' - allow or deny modification of the resource (except for access rules), 'changePermission' - modifications including access rules, and 'all' - all of the above. This element also allows other permission values that may be applicable to some other authentication systems but are not defined in this specification (if these other values are used, access rule enforcement is indeterminate outside of the originating system). example: read</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:simpleType</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:union</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:simpleType</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"read"</span><span class="tEl">/&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"write"</span><span class="tEl">/&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"changePermission"</span><span class="tEl">/&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"all"</span><span class="tEl">/&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:restriction&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:simpleType&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:simpleType</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">/&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:simpleType&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:union&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:simpleType&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
                      </tr>
                   </tbody>
                </table>
@@ -1675,37 +1409,6 @@ var modelBoxes= new Array('model_AccessType_allow',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_AccessType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_AccessType_id');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_AccessType_id" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-access_xsd.html#AccessType" target="mainFrame" title="https://eml.ecoinformatics.org/access-2.2.0" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">AccessType</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_AccessType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('source_AccessType_id');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_AccessType_id" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"res:IDType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1747,37 +1450,6 @@ var modelBoxes= new Array('model_AccessType_allow',
                                  <tr>
                                     <td class="firstColumn" style="white-space: nowrap;">use</td>
                                     <td><b>optional</b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_AccessType_system" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_AccessType_system');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_AccessType_system" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-access_xsd.html#AccessType" target="mainFrame" title="https://eml.ecoinformatics.org/access-2.2.0" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">AccessType</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_AccessType_system" type="image" src="img/btM.gif" value="-" onclick="switchState('source_AccessType_system');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_AccessType_system" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"system"</span><span class="tAN"> type=</span><span class="tAV">"res:SystemType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1854,37 +1526,6 @@ var modelBoxes= new Array('model_AccessType_allow',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_AccessType_scope" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_AccessType_scope');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_AccessType_scope" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-access_xsd.html#AccessType" target="mainFrame" title="https://eml.ecoinformatics.org/access-2.2.0" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">AccessType</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_AccessType_scope" type="image" src="img/btM.gif" value="-" onclick="switchState('source_AccessType_scope');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_AccessType_scope" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"scope"</span><span class="tAN"> type=</span><span class="tAV">"res:ScopeType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"document"</span><span class="tEl">/&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1996,47 +1637,6 @@ var modelBoxes= new Array('model_AccessType_allow',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_AccessType_order" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_AccessType_order');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_AccessType_order" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-access_xsd.html#AccessType" target="mainFrame" title="https://eml.ecoinformatics.org/access-2.2.0" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">AccessType</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_AccessType_order" type="image" src="img/btM.gif" value="-" onclick="switchState('source_AccessType_order');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_AccessType_order" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"order"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"allowFirst"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Rule order summary: The order in which the allow and deny rules should be applied. description: To obtain the desired access control, use the order attribute to define which rules should be applied first. The acceptable values are 'allowFirst' and 'denyFirst'. If 'allowFirst' is specified, then all 'allow' rules are processed, and then overridden by all 'deny' rules. If 'denyFirst' is specified, then all 'deny' rules are processed, and then overridden by all 'allow' rules. example: allowFirst</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:simpleType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"allowFirst"</span><span class="tEl">/&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"denyFirst"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:restriction&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:simpleType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:attribute&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2109,41 +1709,6 @@ var modelBoxes= new Array('model_AccessType_allow',
                                  <tr>
                                     <td class="firstColumn" style="white-space: nowrap;">use</td>
                                     <td><b>required</b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_AccessType_authSystem" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_AccessType_authSystem');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_AccessType_authSystem" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-access_xsd.html#AccessType" target="mainFrame" title="https://eml.ecoinformatics.org/access-2.2.0" onclick="updatePageTitle('Schema documentation for eml-access.xsd')">AccessType</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_AccessType_authSystem" type="image" src="img/btM.gif" value="-" onclick="switchState('source_AccessType_authSystem');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_AccessType_authSystem" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"authSystem"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Authentication system summary: The authentication system is used to verify the user or group to whom access is allowed or denied. description: The authentication system determines the set of principals (users + groups) that can be used in the access control list, and the membership of users in groups. This element is intended to provide a reference to the authentication system that is used to verify the user or group. This reference is typically in the form of a URI, which includes the connection protocol, Internet host, and path to the authentication mechanism. example: ldap://ldap.ecoinformatics.org:389/dc=ecoinformatics,dc=org</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:attribute&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>

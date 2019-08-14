@@ -21,24 +21,6 @@
 var facetsBoxes= new Array('facets_ParameterType_name', 
 				'facets_ParameterType_domainDescription', 
 				'facets_StoredProcedureType_scope');
-var usedByBoxes= new Array('usedBy_StoredProcedureType', 
-				'usedBy_ParameterType', 
-				'usedBy_StoredProcedureType_id', 
-				'usedBy_StoredProcedureType_system', 
-				'usedBy_StoredProcedureType_scope');
-var sourceBoxes= new Array('source_StoredProcedureType_attributeList', 
-				'source_StoredProcedureType_constraint', 
-				'source_StoredProcedureType_parameter', 
-				'source_ParameterType_name', 
-				'source_ParameterType_domainDescription', 
-				'source_ParameterType_required', 
-				'source_ParameterType_repeats', 
-				'source_storedProcedure', 
-				'source_StoredProcedureType', 
-				'source_ParameterType', 
-				'source_StoredProcedureType_id', 
-				'source_StoredProcedureType_system', 
-				'source_StoredProcedureType_scope');
 var instanceBoxes= new Array('instance_StoredProcedureType_attributeList', 
 				'instance_StoredProcedureType_constraint', 
 				'instance_StoredProcedureType_parameter', 
@@ -340,12 +322,6 @@ var modelBoxes= new Array('model_StoredProcedureType_attributeList',
                      <tr>
                         <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
                      </tr>
-                     <tr>
-                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
-                     </tr>
-                     <tr>
-                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
-                     </tr>
                   </table>
                   <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
                </td>
@@ -604,25 +580,6 @@ var modelBoxes= new Array('model_StoredProcedureType_attributeList',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_StoredProcedureType_attributeList" type="image" src="img/btM.gif" value="-" onclick="switchState('source_StoredProcedureType_attributeList');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_StoredProcedureType_attributeList" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"attributeList"</span><span class="tAN"> type=</span><span class="tAV">"att:AttributeListType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Attribute List summary: The list of attributes associated with this entity. description: The list of attributes associated with this entity. For more information see the eml-attribute module.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -800,25 +757,6 @@ var modelBoxes= new Array('model_StoredProcedureType_attributeList',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_StoredProcedureType_constraint" type="image" src="img/btM.gif" value="-" onclick="switchState('source_StoredProcedureType_constraint');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_StoredProcedureType_constraint" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"constraint"</span><span class="tAN"> type=</span><span class="tAV">"con:ConstraintType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Constraint summary: description: Description of any relational constraints on ' this entity. For more information see the eml-constraint module.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -941,25 +879,6 @@ var modelBoxes= new Array('model_StoredProcedureType_attributeList',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_StoredProcedureType_parameter" type="image" src="img/btM.gif" value="-" onclick="switchState('source_StoredProcedureType_parameter');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_StoredProcedureType_parameter" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"parameter"</span><span class="tAN"> type=</span><span class="tAV">"ParameterType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Parameter summary: A parameter that is required as input to the stored procedure. description: The parameter elements defines the fields that may be required to invoke a stored procedure.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1061,25 +980,6 @@ var modelBoxes= new Array('model_StoredProcedureType_attributeList',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ParameterType_name" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ParameterType_name');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ParameterType_name" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"name"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Parameter Name summary: The name of the parameter. description: The value of the name field is the name of the parameter. example: SiteID</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1196,25 +1096,6 @@ var modelBoxes= new Array('model_StoredProcedureType_attributeList',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ParameterType_domainDescription" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ParameterType_domainDescription');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ParameterType_domainDescription" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"domainDescription"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Domain Description summary: A description of domain of valid values for the parameter. description: The domainDescription field is used to describe the valid entries for the parameter being described. A stored procedure will work only when the parameter's value corresponds to an actual value in a database. example: The database has SiteId values that range from cap1 to cap10, however the allowable SiteId values for this stored procedure are cap1,cap2,cap4 or cap7.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1296,25 +1177,6 @@ var modelBoxes= new Array('model_StoredProcedureType_attributeList',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ParameterType_required" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ParameterType_required');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ParameterType_required" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"required"</span><span class="tAN"> type=</span><span class="tAV">"xs:boolean"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Required summary: Whether or not the parameter is required. description: The required field is used to document whether the parameter being described is or is not required when invoking the stored procedure. example: true</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1390,25 +1252,6 @@ var modelBoxes= new Array('model_StoredProcedureType_attributeList',
                                  <tr>
                                     <td class="firstColumn" style="white-space: nowrap;">content</td>
                                     <td><b>simple</b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ParameterType_repeats" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ParameterType_repeats');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ParameterType_repeats" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"repeats"</span><span class="tAN"> type=</span><span class="tAV">"xs:boolean"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Repeats summary: Whether or not the parameter repeats. description: The repeats field is used to document whether or not the parameter being described can be repeated when invoking the stored procedure. example: true</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1605,25 +1448,6 @@ var modelBoxes= new Array('model_StoredProcedureType_attributeList',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_storedProcedure" type="image" src="img/btM.gif" value="-" onclick="switchState('source_storedProcedure');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_storedProcedure" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"storedProcedure"</span><span class="tAN"> type=</span><span class="tAV">"StoredProcedureType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Stored Procedure&gt; summary: The storedProcedure element documents stored procedures. description: The storedProcedure element is meant to capture information on procedures that produce data output in the form of a data table. In an RDBMS one can code complex queries and transactions into stored procedures and then invoke them directly from front-end applications. This element allows the optional description of any parameters that are expected to be passed to the procedure when it is called. A common use of a stored procedure is to rotate a data table from attributes in columns to attributes in rows for statistical analysis.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1699,22 +1523,6 @@ var modelBoxes= new Array('model_StoredProcedureType_attributeList',
                         </td>
                      </tr>
                      <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_StoredProcedureType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_StoredProcedureType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_StoredProcedureType" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Elements </td>
-                                    <td><b><a href="eml-dataset_xsd.html#DatasetType_storedProcedure" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-dataset.xsd')">DatasetType/storedProcedure</a></b>, <b><a href="eml-storedProcedure_xsd.html#storedProcedure" target="mainFrame" title="https://eml.ecoinformatics.org/storedProcedure-2.2.0" onclick="updatePageTitle('Schema documentation for eml-storedProcedure.xsd')">storedProcedure</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_StoredProcedureType" type="image" src="img/btM.gif" value="-" onclick="switchState('model_StoredProcedureType');" class="control" /></div>
                         </td>
                         <td>
@@ -1769,49 +1577,6 @@ var modelBoxes= new Array('model_StoredProcedureType_attributeList',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_StoredProcedureType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_StoredProcedureType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_StoredProcedureType" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"StoredProcedureType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Stored Procedure complex type&gt; summary: Structure for documenting a stored procedure description: The StoredProcedureType complex type defines the structure for documenting a stored procedure.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:choice</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:group</span><span class="tAN"> ref=</span><span class="tAV">"ent:EntityGroup"</span><span class="tEl">/&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"attributeList"</span><span class="tAN"> type=</span><span class="tAV">"att:AttributeListType"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Attribute List summary: The list of attributes associated with this entity. description: The list of attributes associated with this entity. For more information see the eml-attribute module.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"constraint"</span><span class="tAN"> type=</span><span class="tAV">"con:ConstraintType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Constraint summary: description: Description of any relational constraints on ' this entity. For more information see the eml-constraint module.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"parameter"</span><span class="tAN"> type=</span><span class="tAV">"ParameterType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Parameter summary: A parameter that is required as input to the stored procedure. description: The parameter elements defines the fields that may be required to invoke a stored procedure.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:group</span><span class="tAN"> ref=</span><span class="tAV">"res:ReferencesGroup"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"res:IDType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"system"</span><span class="tAN"> type=</span><span class="tAV">"res:SystemType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"scope"</span><span class="tAN"> type=</span><span class="tAV">"res:ScopeType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"document"</span><span class="tEl">/&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1881,22 +1646,6 @@ var modelBoxes= new Array('model_StoredProcedureType_attributeList',
                         </td>
                      </tr>
                      <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ParameterType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ParameterType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ParameterType" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Element </td>
-                                    <td><b><a href="eml-storedProcedure_xsd.html#StoredProcedureType_parameter" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-storedProcedure.xsd')">StoredProcedureType/parameter</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_ParameterType" type="image" src="img/btM.gif" value="-" onclick="switchState('model_ParameterType');" class="control" /></div>
                         </td>
                         <td>
@@ -1906,47 +1655,6 @@ var modelBoxes= new Array('model_StoredProcedureType_attributeList',
                      <tr>
                         <td class="firstColumn"><b>Children</b></td>
                         <td><b><a href="eml-storedProcedure_xsd.html#ParameterType_domainDescription" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-storedProcedure.xsd')">domainDescription</a></b>, <b><a href="eml-storedProcedure_xsd.html#ParameterType_name" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-storedProcedure.xsd')">name</a></b>, <b><a href="eml-storedProcedure_xsd.html#ParameterType_repeats" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-storedProcedure.xsd')">repeats</a></b>, <b><a href="eml-storedProcedure_xsd.html#ParameterType_required" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-storedProcedure.xsd')">required</a></b></td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ParameterType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ParameterType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ParameterType" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"ParameterType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Parameter complex type summary: The structure for defining a parameter that is required as input to the stored procedure. description: The parameter complex type defines the structure for documenting the parameters that may be required to invoke a stored procedure.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"name"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Parameter Name summary: The name of the parameter. description: The value of the name field is the name of the parameter. example: SiteID</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"domainDescription"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Domain Description summary: A description of domain of valid values for the parameter. description: The domainDescription field is used to describe the valid entries for the parameter being described. A stored procedure will work only when the parameter's value corresponds to an actual value in a database. example: The database has SiteId values that range from cap1 to cap10, however the allowable SiteId values for this stored procedure are cap1,cap2,cap4 or cap7.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"required"</span><span class="tAN"> type=</span><span class="tAV">"xs:boolean"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Required summary: Whether or not the parameter is required. description: The required field is used to document whether the parameter being described is or is not required when invoking the stored procedure. example: true</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"repeats"</span><span class="tAN"> type=</span><span class="tAV">"xs:boolean"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Repeats summary: Whether or not the parameter repeats. description: The repeats field is used to document whether or not the parameter being described can be repeated when invoking the stored procedure. example: true</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
                      </tr>
                   </tbody>
                </table>
@@ -1994,37 +1702,6 @@ var modelBoxes= new Array('model_StoredProcedureType_attributeList',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_StoredProcedureType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_StoredProcedureType_id');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_StoredProcedureType_id" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-storedProcedure_xsd.html#StoredProcedureType" target="mainFrame" title="https://eml.ecoinformatics.org/storedProcedure-2.2.0" onclick="updatePageTitle('Schema documentation for eml-storedProcedure.xsd')">StoredProcedureType</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_StoredProcedureType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('source_StoredProcedureType_id');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_StoredProcedureType_id" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"res:IDType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2066,37 +1743,6 @@ var modelBoxes= new Array('model_StoredProcedureType_attributeList',
                                  <tr>
                                     <td class="firstColumn" style="white-space: nowrap;">use</td>
                                     <td><b>optional</b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_StoredProcedureType_system" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_StoredProcedureType_system');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_StoredProcedureType_system" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-storedProcedure_xsd.html#StoredProcedureType" target="mainFrame" title="https://eml.ecoinformatics.org/storedProcedure-2.2.0" onclick="updatePageTitle('Schema documentation for eml-storedProcedure.xsd')">StoredProcedureType</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_StoredProcedureType_system" type="image" src="img/btM.gif" value="-" onclick="switchState('source_StoredProcedureType_system');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_StoredProcedureType_system" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"system"</span><span class="tAN"> type=</span><span class="tAV">"res:SystemType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -2173,37 +1819,6 @@ var modelBoxes= new Array('model_StoredProcedureType_attributeList',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_StoredProcedureType_scope" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_StoredProcedureType_scope');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_StoredProcedureType_scope" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-storedProcedure_xsd.html#StoredProcedureType" target="mainFrame" title="https://eml.ecoinformatics.org/storedProcedure-2.2.0" onclick="updatePageTitle('Schema documentation for eml-storedProcedure.xsd')">StoredProcedureType</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_StoredProcedureType_scope" type="image" src="img/btM.gif" value="-" onclick="switchState('source_StoredProcedureType_scope');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_StoredProcedureType_scope" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"scope"</span><span class="tAN"> type=</span><span class="tAV">"res:ScopeType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"document"</span><span class="tEl">/&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>

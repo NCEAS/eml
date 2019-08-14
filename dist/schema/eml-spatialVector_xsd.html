@@ -32,33 +32,6 @@ var facetsBoxes= new Array('facets_SpatialVectorType_geometry',
 				'facets_GeometryType', 
 				'facets_TopologyLevel', 
 				'facets_SpatialVectorType_scope');
-var usedByBoxes= new Array('usedBy_SpatialVectorType', 
-				'usedBy_GeometryType', 
-				'usedBy_TopologyLevel', 
-				'usedBy_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality', 
-				'usedBy_SpatialVectorType_id', 
-				'usedBy_SpatialVectorType_system', 
-				'usedBy_SpatialVectorType_scope');
-var sourceBoxes= new Array('source_SpatialVectorType_attributeList', 
-				'source_SpatialVectorType_constraint', 
-				'source_SpatialVectorType_geometry', 
-				'source_SpatialVectorType_geometricObjectCount', 
-				'source_SpatialVectorType_topologyLevel', 
-				'source_SpatialVectorType_spatialReference', 
-				'source_SpatialVectorType_horizontalAccuracy', 
-				'source_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality_accuracyReport', 
-				'source_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality_quantitativeAccuracyReport', 
-				'source_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality_quantitativeAccuracyReport_quantitativeAccuracyValue', 
-				'source_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality_quantitativeAccuracyReport_quantitativeAccuracyMethod', 
-				'source_SpatialVectorType_verticalAccuracy', 
-				'source_spatialVector', 
-				'source_SpatialVectorType', 
-				'source_GeometryType', 
-				'source_TopologyLevel', 
-				'source_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality', 
-				'source_SpatialVectorType_id', 
-				'source_SpatialVectorType_system', 
-				'source_SpatialVectorType_scope');
 var instanceBoxes= new Array('instance_SpatialVectorType_attributeList', 
 				'instance_SpatialVectorType_constraint', 
 				'instance_SpatialVectorType_spatialReference', 
@@ -381,12 +354,6 @@ var modelBoxes= new Array('model_SpatialVectorType_attributeList',
                      <tr>
                         <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
                      </tr>
-                     <tr>
-                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
-                     </tr>
-                     <tr>
-                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
-                     </tr>
                   </table>
                   <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
                </td>
@@ -644,25 +611,6 @@ var modelBoxes= new Array('model_SpatialVectorType_attributeList',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_SpatialVectorType_attributeList" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SpatialVectorType_attributeList');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_SpatialVectorType_attributeList" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"attributeList"</span><span class="tAN"> type=</span><span class="tAV">"att:AttributeListType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Attribute List summary: The list of attributes associated with this entity. description: The list of attributes associated with this entity. For more information see the eml-attribute module.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -841,25 +789,6 @@ var modelBoxes= new Array('model_SpatialVectorType_attributeList',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_SpatialVectorType_constraint" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SpatialVectorType_constraint');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_SpatialVectorType_constraint" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"constraint"</span><span class="tAN"> type=</span><span class="tAV">"con:ConstraintType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Constraint summary: Description of any relational constraints on this entity. description: Description of any relational constraints on this entity. For more information see the eml-constraint module.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1015,25 +944,6 @@ var modelBoxes= new Array('model_SpatialVectorType_attributeList',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_SpatialVectorType_geometry" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SpatialVectorType_geometry');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_SpatialVectorType_geometry" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"geometry"</span><span class="tAN"> type=</span><span class="tAV">"GeometryType"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Geometry summary: Type of geometric feature(s) represented in the entity. description: Geometric feature classification is based on an enumeration of simple feature classes defined by the OpenGIS consortium and implemented in Geographic Markup Language as simple feature types. example: polygon</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1140,25 +1050,6 @@ var modelBoxes= new Array('model_SpatialVectorType_attributeList',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_SpatialVectorType_geometricObjectCount" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SpatialVectorType_geometricObjectCount');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_SpatialVectorType_geometricObjectCount" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"geometricObjectCount"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Geometric Object Count summary: Total number of the geometric objects occurring in the dataset. description: Total number of the geometric objects occurring in the dataset. example: 24</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1298,25 +1189,6 @@ var modelBoxes= new Array('model_SpatialVectorType_attributeList',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_SpatialVectorType_topologyLevel" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SpatialVectorType_topologyLevel');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_SpatialVectorType_topologyLevel" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"topologyLevel"</span><span class="tAN"> type=</span><span class="tAV">"TopologyLevel"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Topology Level summary: Code which identifies the degree of complexity. description: This element describes the relative complexity of the geometric information in the data file. example: geometryOnly</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1491,25 +1363,6 @@ var modelBoxes= new Array('model_SpatialVectorType_attributeList',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_SpatialVectorType_spatialReference" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SpatialVectorType_spatialReference');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_SpatialVectorType_spatialReference" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"spatialReference"</span><span class="tAN"> type=</span><span class="tAV">"spref:SpatialReferenceType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Spatial Reference summary: description:</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1623,25 +1476,6 @@ var modelBoxes= new Array('model_SpatialVectorType_attributeList',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_SpatialVectorType_horizontalAccuracy" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SpatialVectorType_horizontalAccuracy');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_SpatialVectorType_horizontalAccuracy" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"horizontalAccuracy"</span><span class="tAN"> type=</span><span class="tAV">"DataQuality"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Horizontal Accuracy summary: Horizontal positional accuracy of the data description: Horizontal positional accuracy of the data expressed as either text or quantitative assessment.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1740,25 +1574,6 @@ var modelBoxes= new Array('model_SpatialVectorType_attributeList',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality_accuracyReport" type="image" src="img/btM.gif" value="-" onclick="switchState('source_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality_accuracyReport');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality_accuracyReport" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"accuracyReport"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Accuracy Report summary: A qualitative statement about the accuracy of the data. description: A text statement of the data quality, included the means by which it was determined.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1876,39 +1691,6 @@ var modelBoxes= new Array('model_SpatialVectorType_attributeList',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality_quantitativeAccuracyReport" type="image" src="img/btM.gif" value="-" onclick="switchState('source_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality_quantitativeAccuracyReport');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality_quantitativeAccuracyReport" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"quantitativeAccuracyReport"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Quantitative Accuracy Report summary: A quantitative assessment of the data quality. description: A quantitative assessment of the data quality expressed as a value and the method of its determination.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"quantitativeAccuracyValue"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Quantitative Accuracy Value summary: The value resulting from the accuracy test. description: The value resulting from the accuracy test. Typically, this will be expressed in units corresponding to those declared for the parameter being assessed. example: 4.5</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"quantitativeAccuracyMethod"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Quantitative Accuracy Method summary: The method used to calculate the accuracy value. description: Identification and explanation of the method used to calculate the quantitative accuracy assessment. example: Error expressed as root mean square of 5 control points.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2015,25 +1797,6 @@ var modelBoxes= new Array('model_SpatialVectorType_attributeList',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality_quantitativeAccuracyReport_quantitativeAccuracyValue" type="image" src="img/btM.gif" value="-" onclick="switchState('source_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality_quantitativeAccuracyReport_quantitativeAccuracyValue');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality_quantitativeAccuracyReport_quantitativeAccuracyValue" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"quantitativeAccuracyValue"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Quantitative Accuracy Value summary: The value resulting from the accuracy test. description: The value resulting from the accuracy test. Typically, this will be expressed in units corresponding to those declared for the parameter being assessed. example: 4.5</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2135,25 +1898,6 @@ var modelBoxes= new Array('model_SpatialVectorType_attributeList',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality_quantitativeAccuracyReport_quantitativeAccuracyMethod" type="image" src="img/btM.gif" value="-" onclick="switchState('source_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality_quantitativeAccuracyReport_quantitativeAccuracyMethod');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality_quantitativeAccuracyReport_quantitativeAccuracyMethod" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"quantitativeAccuracyMethod"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Quantitative Accuracy Method summary: The method used to calculate the accuracy value. description: Identification and explanation of the method used to calculate the quantitative accuracy assessment. example: Error expressed as root mean square of 5 control points.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -2267,25 +2011,6 @@ var modelBoxes= new Array('model_SpatialVectorType_attributeList',
   </span><span class="tEl">&lt;accuracyReport</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/accuracyReport&gt;</span><span class="tI">
   </span><span class="tEl">&lt;quantitativeAccuracyReport</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,unbounded}</span><span class="tEl">&lt;/quantitativeAccuracyReport&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/verticalAccuracy&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_SpatialVectorType_verticalAccuracy" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SpatialVectorType_verticalAccuracy');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_SpatialVectorType_verticalAccuracy" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"verticalAccuracy"</span><span class="tAN"> type=</span><span class="tAV">"DataQuality"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Vertical Accuracy summary: Vertical positional accuracy of the data description: Vertical positional accuracy of the data expressed as either text or quantitative assessment.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -2485,25 +2210,6 @@ var modelBoxes= new Array('model_SpatialVectorType_attributeList',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_spatialVector" type="image" src="img/btM.gif" value="-" onclick="switchState('source_spatialVector');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_spatialVector" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"spatialVector"</span><span class="tAN"> type=</span><span class="tAV">"SpatialVectorType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Spatial Vector summary: Description of a spatial data entity based on features represented by vectors description: Description of a spatial data entity based on features represented by vectors</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2583,22 +2289,6 @@ var modelBoxes= new Array('model_SpatialVectorType_attributeList',
                         </td>
                      </tr>
                      <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_SpatialVectorType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_SpatialVectorType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_SpatialVectorType" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Elements </td>
-                                    <td><b><a href="eml-dataset_xsd.html#DatasetType_spatialVector" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-dataset.xsd')">DatasetType/spatialVector</a></b>, <b><a href="eml-spatialVector_xsd.html#spatialVector" target="mainFrame" title="https://eml.ecoinformatics.org/spatialVector-2.2.0" onclick="updatePageTitle('Schema documentation for eml-spatialVector.xsd')">spatialVector</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_SpatialVectorType" type="image" src="img/btM.gif" value="-" onclick="switchState('model_SpatialVectorType');" class="control" /></div>
                         </td>
                         <td>
@@ -2653,74 +2343,6 @@ var modelBoxes= new Array('model_SpatialVectorType_attributeList',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_SpatialVectorType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SpatialVectorType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_SpatialVectorType" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"SpatialVectorType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Spatial Vector Type summary: description:</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:choice</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:group</span><span class="tAN"> ref=</span><span class="tAV">"ent:EntityGroup"</span><span class="tEl">/&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"attributeList"</span><span class="tAN"> type=</span><span class="tAV">"att:AttributeListType"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Attribute List summary: The list of attributes associated with this entity. description: The list of attributes associated with this entity. For more information see the eml-attribute module.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"constraint"</span><span class="tAN"> type=</span><span class="tAV">"con:ConstraintType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Constraint summary: Description of any relational constraints on this entity. description: Description of any relational constraints on this entity. For more information see the eml-constraint module.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"geometry"</span><span class="tAN"> type=</span><span class="tAV">"GeometryType"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Geometry summary: Type of geometric feature(s) represented in the entity. description: Geometric feature classification is based on an enumeration of simple feature classes defined by the OpenGIS consortium and implemented in Geographic Markup Language as simple feature types. example: polygon</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"geometricObjectCount"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Geometric Object Count summary: Total number of the geometric objects occurring in the dataset. description: Total number of the geometric objects occurring in the dataset. example: 24</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"topologyLevel"</span><span class="tAN"> type=</span><span class="tAV">"TopologyLevel"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Topology Level summary: Code which identifies the degree of complexity. description: This element describes the relative complexity of the geometric information in the data file. example: geometryOnly</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"spatialReference"</span><span class="tAN"> type=</span><span class="tAV">"spref:SpatialReferenceType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Spatial Reference summary: description:</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"horizontalAccuracy"</span><span class="tAN"> type=</span><span class="tAV">"DataQuality"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Horizontal Accuracy summary: Horizontal positional accuracy of the data description: Horizontal positional accuracy of the data expressed as either text or quantitative assessment.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"verticalAccuracy"</span><span class="tAN"> type=</span><span class="tAV">"DataQuality"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Vertical Accuracy summary: Vertical positional accuracy of the data description: Vertical positional accuracy of the data expressed as either text or quantitative assessment.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:group</span><span class="tAN"> ref=</span><span class="tAV">"res:ReferencesGroup"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"res:IDType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"system"</span><span class="tAN"> type=</span><span class="tAV">"res:SystemType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"scope"</span><span class="tAN"> type=</span><span class="tAV">"res:ScopeType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"document"</span><span class="tEl">/&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -2854,51 +2476,6 @@ var modelBoxes= new Array('model_SpatialVectorType_attributeList',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_GeometryType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_GeometryType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_GeometryType" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Element </td>
-                                    <td><b><a href="eml-spatialVector_xsd.html#SpatialVectorType_geometry" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-spatialVector.xsd')">SpatialVectorType/geometry</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_GeometryType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_GeometryType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_GeometryType" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:simpleType</span><span class="tAN"> name=</span><span class="tAV">"GeometryType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Geometry Type summary: description:</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"Point"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"LineString"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"LinearRing"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"Polygon"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"MultiPoint"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"MultiLineString"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"MultiPolygon"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"MultiGeometry"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:restriction&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:simpleType&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -3013,49 +2590,6 @@ var modelBoxes= new Array('model_SpatialVectorType_attributeList',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_TopologyLevel" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_TopologyLevel');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_TopologyLevel" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Element </td>
-                                    <td><b><a href="eml-spatialVector_xsd.html#SpatialVectorType_topologyLevel" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-spatialVector.xsd')">SpatialVectorType/topologyLevel</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_TopologyLevel" type="image" src="img/btM.gif" value="-" onclick="switchState('source_TopologyLevel');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_TopologyLevel" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:simpleType</span><span class="tAN"> name=</span><span class="tAV">"TopologyLevel"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Topology Level Type summary: description:</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"geometryOnly"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"nonPlanarGraph"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"planarLineGraph"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"fullPlanarGraph"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"surfaceGraph"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"fullTopology3D"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:restriction&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:simpleType&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -3115,22 +2649,6 @@ var modelBoxes= new Array('model_SpatialVectorType_attributeList',
                         </td>
                      </tr>
                      <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Elements </td>
-                                    <td><b><a href="eml-spatialVector_xsd.html#SpatialVectorType_horizontalAccuracy" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-spatialVector.xsd')">SpatialVectorType/horizontalAccuracy</a></b>, <b><a href="eml-spatialVector_xsd.html#SpatialVectorType_verticalAccuracy" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-spatialVector.xsd')">SpatialVectorType/verticalAccuracy</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality" type="image" src="img/btM.gif" value="-" onclick="switchState('model_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality');" class="control" /></div>
                         </td>
                         <td>
@@ -3140,51 +2658,6 @@ var modelBoxes= new Array('model_SpatialVectorType_attributeList',
                      <tr>
                         <td class="firstColumn"><b>Children</b></td>
                         <td><b><a href="eml-spatialVector_xsd.html#https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality_accuracyReport" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-spatialVector.xsd')">accuracyReport</a></b>, <b><a href="eml-spatialVector_xsd.html#https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality_quantitativeAccuracyReport" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-spatialVector.xsd')">quantitativeAccuracyReport</a></b></td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality" type="image" src="img/btM.gif" value="-" onclick="switchState('source_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_https___eml.ecoinformatics.org_spatialVector-2.2.0_DataQuality" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"DataQuality"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Data Quality Type summary: description:</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"accuracyReport"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Accuracy Report summary: A qualitative statement about the accuracy of the data. description: A text statement of the data quality, included the means by which it was determined.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"quantitativeAccuracyReport"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Quantitative Accuracy Report summary: A quantitative assessment of the data quality. description: A quantitative assessment of the data quality expressed as a value and the method of its determination.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"quantitativeAccuracyValue"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Quantitative Accuracy Value summary: The value resulting from the accuracy test. description: The value resulting from the accuracy test. Typically, this will be expressed in units corresponding to those declared for the parameter being assessed. example: 4.5</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"quantitativeAccuracyMethod"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Quantitative Accuracy Method summary: The method used to calculate the accuracy value. description: Identification and explanation of the method used to calculate the quantitative accuracy assessment. example: Error expressed as root mean square of 5 control points.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
                      </tr>
                   </tbody>
                </table>
@@ -3232,37 +2705,6 @@ var modelBoxes= new Array('model_SpatialVectorType_attributeList',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_SpatialVectorType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_SpatialVectorType_id');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_SpatialVectorType_id" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-spatialVector_xsd.html#SpatialVectorType" target="mainFrame" title="https://eml.ecoinformatics.org/spatialVector-2.2.0" onclick="updatePageTitle('Schema documentation for eml-spatialVector.xsd')">SpatialVectorType</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_SpatialVectorType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SpatialVectorType_id');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_SpatialVectorType_id" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"res:IDType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -3304,37 +2746,6 @@ var modelBoxes= new Array('model_SpatialVectorType_attributeList',
                                  <tr>
                                     <td class="firstColumn" style="white-space: nowrap;">use</td>
                                     <td><b>optional</b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_SpatialVectorType_system" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_SpatialVectorType_system');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_SpatialVectorType_system" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-spatialVector_xsd.html#SpatialVectorType" target="mainFrame" title="https://eml.ecoinformatics.org/spatialVector-2.2.0" onclick="updatePageTitle('Schema documentation for eml-spatialVector.xsd')">SpatialVectorType</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_SpatialVectorType_system" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SpatialVectorType_system');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_SpatialVectorType_system" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"system"</span><span class="tAN"> type=</span><span class="tAV">"res:SystemType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -3411,37 +2822,6 @@ var modelBoxes= new Array('model_SpatialVectorType_attributeList',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_SpatialVectorType_scope" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_SpatialVectorType_scope');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_SpatialVectorType_scope" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-spatialVector_xsd.html#SpatialVectorType" target="mainFrame" title="https://eml.ecoinformatics.org/spatialVector-2.2.0" onclick="updatePageTitle('Schema documentation for eml-spatialVector.xsd')">SpatialVectorType</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_SpatialVectorType_scope" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SpatialVectorType_scope');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_SpatialVectorType_scope" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"scope"</span><span class="tAN"> type=</span><span class="tAV">"res:ScopeType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"document"</span><span class="tEl">/&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>

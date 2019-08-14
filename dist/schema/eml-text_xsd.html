@@ -36,45 +36,6 @@
 				'properties_ParagraphType', 
 				'properties_SubSuperScriptType', 
 				'properties_ParagraphType_ParagraphType_ulink_url');
-var usedByBoxes= new Array('usedBy_TextType', 
-				'usedBy_SectionType', 
-				'usedBy_i18nString', 
-				'usedBy_ParagraphType', 
-				'usedBy_ListType', 
-				'usedBy_SubSuperScriptType', 
-				'usedBy_ParagraphType_ParagraphType_ulink_url');
-var sourceBoxes= new Array('source_TextType_section', 
-				'source_SectionType_title', 
-				'source_SectionType_para', 
-				'source_ParagraphType_value', 
-				'source_ParagraphType_itemizedlist', 
-				'source_ListType_listitem', 
-				'source_ListType_ListType_listitem_para', 
-				'source_ParagraphType_orderedlist', 
-				'source_ParagraphType_emphasis', 
-				'source_ParagraphType_ParagraphType_emphasis_value', 
-				'source_ParagraphType_subscript', 
-				'source_SubSuperScriptType_value', 
-				'source_SubSuperScriptType_subscript', 
-				'source_SubSuperScriptType_superscript', 
-				'source_ParagraphType_superscript', 
-				'source_ParagraphType_literalLayout', 
-				'source_ParagraphType_ParagraphType_literalLayout_value', 
-				'source_ParagraphType_ulink', 
-				'source_ParagraphType_ParagraphType_ulink_citetitle', 
-				'source_ListType_ListType_listitem_itemizedlist', 
-				'source_ListType_ListType_listitem_orderedlist', 
-				'source_SectionType_section', 
-				'source_TextType_para', 
-				'source_TextType_markdown', 
-				'source_text', 
-				'source_TextType', 
-				'source_SectionType', 
-				'source_i18nString', 
-				'source_ParagraphType', 
-				'source_ListType', 
-				'source_SubSuperScriptType', 
-				'source_ParagraphType_ParagraphType_ulink_url');
 var instanceBoxes= new Array('instance_TextType_section', 
 				'instance_SectionType_para', 
 				'instance_ParagraphType_itemizedlist', 
@@ -464,12 +425,6 @@ var modelBoxes= new Array('model_TextType_section',
                      <tr>
                         <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
                      </tr>
-                     <tr>
-                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
-                     </tr>
-                     <tr>
-                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
-                     </tr>
                   </table>
                   <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
                </td>
@@ -725,25 +680,6 @@ var modelBoxes= new Array('model_TextType_section',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_TextType_section" type="image" src="img/btM.gif" value="-" onclick="switchState('source_TextType_section');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_TextType_section" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"section"</span><span class="tAN"> type=</span><span class="tAV">"SectionType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Section summary: A section of related text. description: The "section" element allows for grouping related paragraphs of text together, with an optional title. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -849,25 +785,6 @@ var modelBoxes= new Array('model_TextType_section',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_SectionType_title" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SectionType_title');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_SectionType_title" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"title"</span><span class="tAN"> type=</span><span class="tAV">"i18nString"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Title summary: The optional title of the section. description: The optional title for a section. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1027,25 +944,6 @@ var modelBoxes= new Array('model_TextType_section',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_SectionType_para" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SectionType_para');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_SectionType_para" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"para"</span><span class="tAN"> type=</span><span class="tAV">"ParagraphType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Paragraph summary: A simple paragraph of text. description: The "paragraph" element allows for both formatted and unformatted text blocks to be included in EML. It can be plain text or text with a limited set of markup tags, including emphasis, subscript, superscript, and lists. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1160,25 +1058,6 @@ var modelBoxes= new Array('model_TextType_section',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ParagraphType_value" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ParagraphType_value');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ParagraphType_value" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"value"</span><span class="tAN"> type=</span><span class="tAV">"i18nString"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Localized string for the paragraph summary: Language translation for the paragraph description: Language translation as specified by the xml:lang attribute</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1281,25 +1160,6 @@ var modelBoxes= new Array('model_TextType_section',
                                     <td width="100%"><pre><span class="tEl">&lt;itemizedlist</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;listitem</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/listitem&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/itemizedlist&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ParagraphType_itemizedlist" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ParagraphType_itemizedlist');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ParagraphType_itemizedlist" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"itemizedlist"</span><span class="tAN"> type=</span><span class="tAV">"ListType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Itemized List summary: A list of items in a text paragraph. description: A list of items in a text paragraph. The list is generally displayed as a bulleted list. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1414,44 +1274,6 @@ var modelBoxes= new Array('model_TextType_section',
   </span><span class="tEl">&lt;itemizedlist</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/itemizedlist&gt;</span><span class="tI">
   </span><span class="tEl">&lt;orderedlist</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/orderedlist&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/listitem&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ListType_listitem" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ListType_listitem');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ListType_listitem" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"listitem"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: List Item summary: An item in a list of items. description: An item in a list of items. Each list item is formatted as a bulleted or numbered item depending on the list type in which it resides. List items contain paragraphs which in turn can be plain text or text with a limited set of markup tags, including emphasis, subscript, superscript, and lists. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:choice</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"para"</span><span class="tAN"> type=</span><span class="tAV">"ParagraphType"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Paragraph summary: A simple paragraph of text. description: The "paragraph" element allows for both formatted and unformatted text blocks to be included in EML. It can be plain text or text with a limited set of markup tags, including emphasis, subscript, superscript, and lists. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"itemizedlist"</span><span class="tAN"> type=</span><span class="tAV">"ListType"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Itemized List summary: A list of items in a text paragraph. description: A list of items in a text paragraph. The list is generally displayed as a bulleted list. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"orderedlist"</span><span class="tAN"> type=</span><span class="tAV">"ListType"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Ordered List summary: An ordered list of items in a text paragraph. description: An ordered list of items in a text paragraph. The list is generally displayed as a numbered list. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1611,25 +1433,6 @@ var modelBoxes= new Array('model_TextType_section',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ListType_ListType_listitem_para" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ListType_ListType_listitem_para');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ListType_ListType_listitem_para" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"para"</span><span class="tAN"> type=</span><span class="tAV">"ParagraphType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Paragraph summary: A simple paragraph of text. description: The "paragraph" element allows for both formatted and unformatted text blocks to be included in EML. It can be plain text or text with a limited set of markup tags, including emphasis, subscript, superscript, and lists. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1732,25 +1535,6 @@ var modelBoxes= new Array('model_TextType_section',
                                     <td width="100%"><pre><span class="tEl">&lt;orderedlist</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;listitem</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/listitem&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/orderedlist&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ParagraphType_orderedlist" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ParagraphType_orderedlist');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ParagraphType_orderedlist" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"orderedlist"</span><span class="tAN"> type=</span><span class="tAV">"ListType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Ordered List summary: An ordered list of items in a text paragraph. description: An ordered list of items in a text paragraph. The list is generally displayed as a numbered list. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1890,31 +1674,6 @@ var modelBoxes= new Array('model_TextType_section',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ParagraphType_emphasis" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ParagraphType_emphasis');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ParagraphType_emphasis" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"emphasis"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Emphasis summary: A span of emphasized text in a paragraph. description: A span of emphasized text in a paragraph. Emphasized text is generally rendered as boldfaced or otherwise distinct from the surrounding text. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tAN"> mixed=</span><span class="tAV">"true"</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"value"</span><span class="tAN"> type=</span><span class="tAV">"i18nString"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> ref=</span><span class="tAV">"xml:lang"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2003,21 +1762,6 @@ var modelBoxes= new Array('model_TextType_section',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ParagraphType_ParagraphType_emphasis_value" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ParagraphType_ParagraphType_emphasis_value');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ParagraphType_ParagraphType_emphasis_value" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"value"</span><span class="tAN"> type=</span><span class="tAV">"i18nString"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">/&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -2166,25 +1910,6 @@ var modelBoxes= new Array('model_TextType_section',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ParagraphType_subscript" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ParagraphType_subscript');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ParagraphType_subscript" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"subscript"</span><span class="tAN"> type=</span><span class="tAV">"SubSuperScriptType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Subscript summary: A subscript in a text paragraph. description: A subscript in a text paragraph. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2294,25 +2019,6 @@ var modelBoxes= new Array('model_TextType_section',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_SubSuperScriptType_value" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SubSuperScriptType_value');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_SubSuperScriptType_value" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"value"</span><span class="tAN"> type=</span><span class="tAV">"i18nString"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Localized string for the sub/superscript summary: Language translation for the sub/superscript description: Language translation as specified by the xml:lang attribute</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -2461,25 +2167,6 @@ var modelBoxes= new Array('model_TextType_section',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_SubSuperScriptType_subscript" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SubSuperScriptType_subscript');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_SubSuperScriptType_subscript" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"subscript"</span><span class="tAN"> type=</span><span class="tAV">"SubSuperScriptType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Subscript summary: A subscript in a text paragraph. description: A subscript in a text paragraph. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2618,25 +2305,6 @@ var modelBoxes= new Array('model_TextType_section',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_SubSuperScriptType_superscript" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SubSuperScriptType_superscript');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_SubSuperScriptType_superscript" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"superscript"</span><span class="tAN"> type=</span><span class="tAV">"SubSuperScriptType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Superscript summary: A superscript in a text paragraph. description: A superscript in a text paragraph. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -2785,25 +2453,6 @@ var modelBoxes= new Array('model_TextType_section',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ParagraphType_superscript" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ParagraphType_superscript');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ParagraphType_superscript" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"superscript"</span><span class="tAN"> type=</span><span class="tAV">"SubSuperScriptType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Superscript summary: A superscript in a text paragraph. description: A superscript in a text paragraph. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2909,30 +2558,6 @@ var modelBoxes= new Array('model_TextType_section',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ParagraphType_literalLayout" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ParagraphType_literalLayout');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ParagraphType_literalLayout" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"literalLayout"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: literalLayout summary: The equivalent to &lt;pre&gt; in html. description: This element specifies that the structure of the text within the tag, specifically the whitespace, should not be altered.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tAN"> mixed=</span><span class="tAV">"true"</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"value"</span><span class="tAN"> type=</span><span class="tAV">"i18nString"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -3021,21 +2646,6 @@ var modelBoxes= new Array('model_TextType_section',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ParagraphType_ParagraphType_literalLayout_value" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ParagraphType_ParagraphType_literalLayout_value');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ParagraphType_ParagraphType_literalLayout_value" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"value"</span><span class="tAN"> type=</span><span class="tAV">"i18nString"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">/&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -3191,39 +2801,6 @@ var modelBoxes= new Array('model_TextType_section',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ParagraphType_ulink" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ParagraphType_ulink');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ParagraphType_ulink" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ulink"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: ulink summary: a link that addresses its target by means of a URL description: this element and its children allow paragraphs to contain urls and titles for anchor tags. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tAN"> mixed=</span><span class="tAV">"true"</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:sequence</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"citetitle"</span><span class="tAN"> type=</span><span class="tAV">"i18nString"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: citetitle summary: the title of the cited work description: the citetitle element contains a text title for the url. It can be displayed in an anchor tag. This markup is a subset of DocBook. example: The Dublin Core Metadata Initiative</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"url"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: url summary: the Uniform Resource Locator for the cited work description: the url attribute contains the location of the work for a link. This markup is a subset of DocBook. example: url="http://dublincore.org/documents/usageguide/"</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -3327,25 +2904,6 @@ var modelBoxes= new Array('model_TextType_section',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ParagraphType_ParagraphType_ulink_citetitle" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ParagraphType_ParagraphType_ulink_citetitle');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ParagraphType_ParagraphType_ulink_citetitle" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"citetitle"</span><span class="tAN"> type=</span><span class="tAV">"i18nString"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: citetitle summary: the title of the cited work description: the citetitle element contains a text title for the url. It can be displayed in an anchor tag. This markup is a subset of DocBook. example: The Dublin Core Metadata Initiative</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -3458,25 +3016,6 @@ var modelBoxes= new Array('model_TextType_section',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ListType_ListType_listitem_itemizedlist" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ListType_ListType_listitem_itemizedlist');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ListType_ListType_listitem_itemizedlist" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"itemizedlist"</span><span class="tAN"> type=</span><span class="tAV">"ListType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Itemized List summary: A list of items in a text paragraph. description: A list of items in a text paragraph. The list is generally displayed as a bulleted list. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -3579,25 +3118,6 @@ var modelBoxes= new Array('model_TextType_section',
                                     <td width="100%"><pre><span class="tEl">&lt;orderedlist</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;listitem</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/listitem&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/orderedlist&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ListType_ListType_listitem_orderedlist" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ListType_ListType_listitem_orderedlist');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ListType_ListType_listitem_orderedlist" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"orderedlist"</span><span class="tAN"> type=</span><span class="tAV">"ListType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Ordered List summary: An ordered list of items in a text paragraph. description: An ordered list of items in a text paragraph. The list is generally displayed as a numbered list. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -3738,25 +3258,6 @@ var modelBoxes= new Array('model_TextType_section',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_SectionType_section" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SectionType_section');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_SectionType_section" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"section"</span><span class="tAN"> type=</span><span class="tAV">"SectionType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Section summary: A section of related text. description: The "section" element allows for grouping related paragraphs of text together, with an optional title. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -3923,25 +3424,6 @@ var modelBoxes= new Array('model_TextType_section',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_TextType_para" type="image" src="img/btM.gif" value="-" onclick="switchState('source_TextType_para');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_TextType_para" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"para"</span><span class="tAN"> type=</span><span class="tAV">"ParagraphType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Paragraph summary: A simple paragraph of text. description: The "paragraph" element allows for both formatted and unformatted text blocks to be included in EML. It can be plain text or text with a limited set of markup tags, including emphasis, subscript, superscript, and lists. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -4103,43 +3585,6 @@ var modelBoxes= new Array('model_TextType_section',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_TextType_markdown" type="image" src="img/btM.gif" value="-" onclick="switchState('source_TextType_markdown');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_TextType_markdown" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"markdown"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Markdown summary: A block of text formatted with Markdown directives. description: Markdown is a family of text-based formatting directives that can be used to structure and format a block of text. A single markdown element in EML can contain multiple formatting directives that support creation of sections and subsections with headings, a wide variety of text formatting directives, the ability to include inline links to external content, and the ability to embed inline citations, figures, and tables. EML's markdown element follows the GitHub Flavored Markdown (GFM) extensions to the CommonMark specification. Clients that display EML should use a markdown preprocessor to convert the Markdown formatting into an appropriate display format such as HTML or PDF as appropriate. When a Markdown block is interleaved with other blocks of text such as section and paragraph elements from Docbook, the Markdown section should be interleaved as a block-level element in the flow of the document. This allows authors to specify, for example, an initial section in DocBook, followed by a Markdown section, and then possibly other sections in DocBook. This will likely be uncommon because Markdown and Docbook have similar formatting capabilities, but it may be helpful when converting legacy documents that use DocBook. Because markdown uses special characters that might be reserved by XML processors, one must be careful to escape such characters, which is typically done by embedding the text in a CDATA block, or other XML escaping measures. These escape sequences must be unescaped before parsing the text with a Markdown processor. Within a Markdown block, one can use embedded images to specify the location where an inline image should be displayed within the document. For example, the syntax for an embedded image uses the markdown reference syntax, for example ![Figure 1][fig.1.ab567w], where "fig.1.ab567w" is the unique id attribute for the entity containing the reference to the image. When client tools process such image links, they should inline the image data from that entity at the location specified, which may involve, for example, resolving the image url from an otherEntity section. This means that there is an implied link in all Markdown documents of the form [id]: url/to/image "Optional title attribute", which is derived from the metadata for each entity within a document. Users do not need to insert these links in order to use them, but client software that might be generating HTML from the markdown will likely need to generate them from the entity metadata if they are using an external Markdown pre-processor to handle conversion to HTML and other languages. Inline citations can also be used to cite scholarly works in the text of an EML document. This follows the Pandoc syntax for citation keys, in which the citation keys are in inside square brackets and separated by semicolons. Each citation is identified by a key, which consists of an ‘@’ symbol and the citation identifier from the entry for that citation. Citation keys may optionally have a prefix, a locator, and a suffix to further qualify what is being cited. For example, a simple citation would be constructed as '[@fegraus_2005]', and a list would be '[@jones_2001; @fegraus_2005]'. The keys must be present in either the 'id' field of a citation element in the EML document, or as the BibTex key in a 'bibtex' entry in the EML document. It is a validation error to cite an entry for which the corresponding citation key is not present in the EML document, and it is a validation error for the same citation key to be reused across citation and bibtex elements in the document (each citation identifier must be unique within the document). Clients that parse and display EML documents should first gather up all citation and bibtex elements in the document to create a citation database in bibtext format, and then pass that database along with the text in markdown sections to pandoc or an equivalent tool to convert the citations into properly formatted, human readable citations. Pandoc supports the use of Citation Style Language (CSL) files to specify the formatting of citations upon conversion. See http://citationstyles.org/ for more details. Because bulleted lists and other structures within Markdown are dependent on indenting the raw markdown text, authors and processors should pay close attention to formatting within the markdown block. In particular, if the XML document within which the markdown block is embedded is in an indented hierarchy, then the first non-whitespace character of the markdown block defines the column for the leftmost column of the markdown, and all subsequent markdown should be indented relative to that column. For example, if the first character of the markdown is in column 16 of the document, then all subsequent markdown lines in that block should also start on column 16. A bulleted list would start on column 16, and its sublist would be indented four space to column 20.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:simpleContent</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tC">&lt;!--
-                            &lt;xs:attribute name="syntax" type="i18nNonEmptyStringType" use="optional"&gt;
-                                &lt;xs:annotation&gt;
-                                    &lt;xs:appinfo&gt;
-                                        &lt;doc:tooltip&gt;url&lt;/doc:tooltip&gt;
-                                        &lt;doc:summary&gt;the Uniform Resource Locator for the cited work&lt;/doc:summary&gt;
-                                        &lt;doc:description&gt;the url attribute contains the location of the work for a link. This markup is a subset of DocBook.&lt;/doc:description&gt;
-                                        &lt;doc:example&gt;url="http://dublincore.org/documents/usageguide/"&lt;/doc:example&gt;
-                                    &lt;/xs:appinfo&gt;
-                                &lt;/xs:annotation&gt;
-                            &lt;/xs:attribute&gt;
-                            --&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:simpleContent&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -4283,25 +3728,6 @@ var modelBoxes= new Array('model_TextType_section',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_text" type="image" src="img/btM.gif" value="-" onclick="switchState('source_text');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_text" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"text"</span><span class="tAN"> type=</span><span class="tAV">"TextType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Text summary: A simple text desription. description: The "text" element allows for both formatted and unformatted text blocks to be included in EML. It can contain a number of relevant subsections that allow the use of titles, sections, and paragraphs in the text block. The structured elements can be specified using a subset of DocBook so the predefined DocBook stylesheets can be used to style EML fields that implement this module, or alternatively can be specified using Markdown text blocks.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -4379,22 +3805,6 @@ var modelBoxes= new Array('model_TextType_section',
                         </td>
                      </tr>
                      <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_TextType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_TextType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_TextType" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Elements </td>
-                                    <td><b><a href="eml-resource_xsd.html#ConnectionDefinitionType_description" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-resource.xsd')">ConnectionDefinitionType/description</a></b>, <b><a href="eml-dataset_xsd.html#DatasetType_acknowledgements" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-dataset.xsd')">DatasetType/acknowledgements</a></b>, <b><a href="eml-dataset_xsd.html#DatasetType_gettingStarted" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-dataset.xsd')">DatasetType/gettingStarted</a></b>, <b><a href="eml-dataset_xsd.html#DatasetType_introduction" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-dataset.xsd')">DatasetType/introduction</a></b>, <b><a href="eml-dataset_xsd.html#DatasetType_purpose" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-dataset.xsd')">DatasetType/purpose</a></b>, <b><a href="eml-entity_xsd.html#EntityGroup_additionalInfo" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-entity.xsd')">EntityGroup/additionalInfo</a></b>, <b><a href="eml-dataset_xsd.html#MaintenanceType_description" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-dataset.xsd')">MaintenanceType/description</a></b>, <b><a href="eml-methods_xsd.html#MethodsType_MethodsType_sampling_samplingDescription" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-methods.xsd')">MethodsType/sampling/samplingDescription</a></b>, <b><a href="eml-methods_xsd.html#MethodsType_MethodsType_sampling_MethodsType_MethodsType_sampling_studyExtent_description" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-methods.xsd')">MethodsType/sampling/studyExtent/description</a></b>, <b><a href="eml-methods_xsd.html#ProcedureStepType_description" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-methods.xsd')">ProcedureStepType/description</a></b>, <b><a href="eml-project_xsd.html#ResearchProjectType_abstract" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-project.xsd')">ResearchProjectType/abstract</a></b>, <b><a href="eml-project_xsd.html#ResearchProjectType_ResearchProjectType_designDescription_description" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-project.xsd')">ResearchProjectType/designDescription/description</a></b>, <b><a href="eml-project_xsd.html#ResearchProjectType_funding" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-project.xsd')">ResearchProjectType/funding</a></b>, <b><a href="eml-resource_xsd.html#ResourceGroup_abstract" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-resource.xsd')">ResourceGroup/abstract</a></b>, <b><a href="eml-resource_xsd.html#ResourceGroup_additionalInfo" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-resource.xsd')">ResourceGroup/additionalInfo</a></b>, <b><a href="eml-resource_xsd.html#ResourceGroup_intellectualRights" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-resource.xsd')">ResourceGroup/intellectualRights</a></b>, <b><a href="eml-documentation_xsd.html#description" target="mainFrame" title="https://eml.ecoinformatics.org/documentation-2.2.0" onclick="updatePageTitle('Schema documentation for eml-documentation.xsd')">description</a></b>, <b><a href="eml-documentation_xsd.html#example" target="mainFrame" title="https://eml.ecoinformatics.org/documentation-2.2.0" onclick="updatePageTitle('Schema documentation for eml-documentation.xsd')">example</a></b>, <b><a href="eml-documentation_xsd.html#moduleDocs_moduleDescription" target="mainFrame" title="https://eml.ecoinformatics.org/documentation-2.2.0" onclick="updatePageTitle('Schema documentation for eml-documentation.xsd')">moduleDocs/moduleDescription</a></b>, <b><a href="eml-text_xsd.html#text" target="mainFrame" title="https://eml.ecoinformatics.org/text-2.2.0" onclick="updatePageTitle('Schema documentation for eml-text.xsd')">text</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_TextType" type="image" src="img/btM.gif" value="-" onclick="switchState('model_TextType');" class="control" /></div>
                         </td>
                         <td>
@@ -4428,61 +3838,6 @@ var modelBoxes= new Array('model_TextType_section',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_TextType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_TextType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_TextType" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"TextType"</span><span class="tAN"> mixed=</span><span class="tAV">"true"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Text summary: A simple text desription. description: The "text" element allows for both formatted and unformatted text blocks to be included in EML. It can contain a number of relevant subsections that allow the use of titles, sections, and paragraphs in the text block. This markup is a subset of DocBook, or alternatively can be specified using Markdown text blocks.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:choice</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"section"</span><span class="tAN"> type=</span><span class="tAV">"SectionType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Section summary: A section of related text. description: The "section" element allows for grouping related paragraphs of text together, with an optional title. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"para"</span><span class="tAN"> type=</span><span class="tAV">"ParagraphType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Paragraph summary: A simple paragraph of text. description: The "paragraph" element allows for both formatted and unformatted text blocks to be included in EML. It can be plain text or text with a limited set of markup tags, including emphasis, subscript, superscript, and lists. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"markdown"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Markdown summary: A block of text formatted with Markdown directives. description: Markdown is a family of text-based formatting directives that can be used to structure and format a block of text. A single markdown element in EML can contain multiple formatting directives that support creation of sections and subsections with headings, a wide variety of text formatting directives, the ability to include inline links to external content, and the ability to embed inline citations, figures, and tables. EML's markdown element follows the GitHub Flavored Markdown (GFM) extensions to the CommonMark specification. Clients that display EML should use a markdown preprocessor to convert the Markdown formatting into an appropriate display format such as HTML or PDF as appropriate. When a Markdown block is interleaved with other blocks of text such as section and paragraph elements from Docbook, the Markdown section should be interleaved as a block-level element in the flow of the document. This allows authors to specify, for example, an initial section in DocBook, followed by a Markdown section, and then possibly other sections in DocBook. This will likely be uncommon because Markdown and Docbook have similar formatting capabilities, but it may be helpful when converting legacy documents that use DocBook. Because markdown uses special characters that might be reserved by XML processors, one must be careful to escape such characters, which is typically done by embedding the text in a CDATA block, or other XML escaping measures. These escape sequences must be unescaped before parsing the text with a Markdown processor. Within a Markdown block, one can use embedded images to specify the location where an inline image should be displayed within the document. For example, the syntax for an embedded image uses the markdown reference syntax, for example ![Figure 1][fig.1.ab567w], where "fig.1.ab567w" is the unique id attribute for the entity containing the reference to the image. When client tools process such image links, they should inline the image data from that entity at the location specified, which may involve, for example, resolving the image url from an otherEntity section. This means that there is an implied link in all Markdown documents of the form [id]: url/to/image "Optional title attribute", which is derived from the metadata for each entity within a document. Users do not need to insert these links in order to use them, but client software that might be generating HTML from the markdown will likely need to generate them from the entity metadata if they are using an external Markdown pre-processor to handle conversion to HTML and other languages. Inline citations can also be used to cite scholarly works in the text of an EML document. This follows the Pandoc syntax for citation keys, in which the citation keys are in inside square brackets and separated by semicolons. Each citation is identified by a key, which consists of an ‘@’ symbol and the citation identifier from the entry for that citation. Citation keys may optionally have a prefix, a locator, and a suffix to further qualify what is being cited. For example, a simple citation would be constructed as '[@fegraus_2005]', and a list would be '[@jones_2001; @fegraus_2005]'. The keys must be present in either the 'id' field of a citation element in the EML document, or as the BibTex key in a 'bibtex' entry in the EML document. It is a validation error to cite an entry for which the corresponding citation key is not present in the EML document, and it is a validation error for the same citation key to be reused across citation and bibtex elements in the document (each citation identifier must be unique within the document). Clients that parse and display EML documents should first gather up all citation and bibtex elements in the document to create a citation database in bibtext format, and then pass that database along with the text in markdown sections to pandoc or an equivalent tool to convert the citations into properly formatted, human readable citations. Pandoc supports the use of Citation Style Language (CSL) files to specify the formatting of citations upon conversion. See http://citationstyles.org/ for more details. Because bulleted lists and other structures within Markdown are dependent on indenting the raw markdown text, authors and processors should pay close attention to formatting within the markdown block. In particular, if the XML document within which the markdown block is embedded is in an indented hierarchy, then the first non-whitespace character of the markdown block defines the column for the leftmost column of the markdown, and all subsequent markdown should be indented relative to that column. For example, if the first character of the markdown is in column 16 of the document, then all subsequent markdown lines in that block should also start on column 16. A bulleted list would start on column 16, and its sublist would be indented four space to column 20.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:simpleContent</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tC">&lt;!--
-                            &lt;xs:attribute name="syntax" type="i18nNonEmptyStringType" use="optional"&gt;
-                                &lt;xs:annotation&gt;
-                                    &lt;xs:appinfo&gt;
-                                        &lt;doc:tooltip&gt;url&lt;/doc:tooltip&gt;
-                                        &lt;doc:summary&gt;the Uniform Resource Locator for the cited work&lt;/doc:summary&gt;
-                                        &lt;doc:description&gt;the url attribute contains the location of the work for a link. This markup is a subset of DocBook.&lt;/doc:description&gt;
-                                        &lt;doc:example&gt;url="http://dublincore.org/documents/usageguide/"&lt;/doc:example&gt;
-                                    &lt;/xs:appinfo&gt;
-                                &lt;/xs:annotation&gt;
-                            &lt;/xs:attribute&gt;
-                            --&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:simpleContent&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> ref=</span><span class="tAV">"xml:lang"</span><span class="tEl">/&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -4549,22 +3904,6 @@ var modelBoxes= new Array('model_TextType_section',
                         </td>
                      </tr>
                      <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_SectionType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_SectionType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_SectionType" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Elements </td>
-                                    <td><b><a href="eml-text_xsd.html#SectionType_section" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-text.xsd')">SectionType/section</a></b>, <b><a href="eml-text_xsd.html#TextType_section" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-text.xsd')">TextType/section</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_SectionType" type="image" src="img/btM.gif" value="-" onclick="switchState('model_SectionType');" class="control" /></div>
                         </td>
                         <td>
@@ -4599,45 +3938,6 @@ var modelBoxes= new Array('model_TextType_section',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_SectionType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SectionType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_SectionType" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"SectionType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Section summary: A section of related text. description: The "section" element allows for grouping related paragraphs (or other sections) of text together, with an optional title. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"title"</span><span class="tAN"> type=</span><span class="tAV">"i18nString"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Title summary: The optional title of the section. description: The optional title for a section. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:choice</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"para"</span><span class="tAN"> type=</span><span class="tAV">"ParagraphType"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Paragraph summary: A simple paragraph of text. description: The "paragraph" element allows for both formatted and unformatted text blocks to be included in EML. It can be plain text or text with a limited set of markup tags, including emphasis, subscript, superscript, and lists. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"section"</span><span class="tAN"> type=</span><span class="tAV">"SectionType"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Section summary: A section of related text. description: The "section" element allows for grouping related paragraphs of text together, with an optional title. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> ref=</span><span class="tAV">"xml:lang"</span><span class="tEl">/&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -4706,22 +4006,6 @@ var modelBoxes= new Array('model_TextType_section',
                      </tr>
                      <tr>
                         <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_i18nString" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_i18nString');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_i18nString" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Elements </td>
-                                    <td><b><a href="eml-text_xsd.html#ParagraphType_ParagraphType_emphasis_value" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-text.xsd')">ParagraphType/emphasis/value</a></b>, <b><a href="eml-text_xsd.html#ParagraphType_ParagraphType_literalLayout_value" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-text.xsd')">ParagraphType/literalLayout/value</a></b>, <b><a href="eml-text_xsd.html#ParagraphType_ParagraphType_ulink_citetitle" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-text.xsd')">ParagraphType/ulink/citetitle</a></b>, <b><a href="eml-text_xsd.html#ParagraphType_value" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-text.xsd')">ParagraphType/value</a></b>, <b><a href="eml-text_xsd.html#SectionType_title" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-text.xsd')">SectionType/title</a></b>, <b><a href="eml-text_xsd.html#SubSuperScriptType_value" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-text.xsd')">SubSuperScriptType/value</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
                            <div class="floatLeft"><b>Attributes</b></div>
                            <div class="floatRight"><input id="button_attributes_i18nString" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_i18nString');" class="control" /></div>
                         </td>
@@ -4743,34 +4027,6 @@ var modelBoxes= new Array('model_TextType_section',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_i18nString" type="image" src="img/btM.gif" value="-" onclick="switchState('source_i18nString');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_i18nString" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"i18nString"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Localized string summary: Language translation for the text description: Language translation as specified by the xml:lang attribute</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:simpleContent</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> ref=</span><span class="tAV">"xml:lang"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: xml:lang summary: language code for element content description: Specifies the language example: xml:lang="en-US"</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:simpleContent&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -4859,22 +4115,6 @@ var modelBoxes= new Array('model_TextType_section',
                         </td>
                      </tr>
                      <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ParagraphType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ParagraphType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ParagraphType" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Elements </td>
-                                    <td><b><a href="eml-text_xsd.html#ListType_ListType_listitem_para" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-text.xsd')">ListType/listitem/para</a></b>, <b><a href="eml-text_xsd.html#SectionType_para" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-text.xsd')">SectionType/para</a></b>, <b><a href="eml-text_xsd.html#TextType_para" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-text.xsd')">TextType/para</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_ParagraphType" type="image" src="img/btM.gif" value="-" onclick="switchState('model_ParagraphType');" class="control" /></div>
                         </td>
                         <td>
@@ -4908,93 +4148,6 @@ var modelBoxes= new Array('model_TextType_section',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ParagraphType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ParagraphType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ParagraphType" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"ParagraphType"</span><span class="tAN"> mixed=</span><span class="tAV">"true"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Paragraph summary: A simple paragraph of text. description: The "paragraph" element allows for both formatted and unformatted text blocks to be included in EML. It can be plain text or text with a limited set of markup tags, including emphasis, subscript, superscript, lists and links. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:choice</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"value"</span><span class="tAN"> type=</span><span class="tAV">"i18nString"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Localized string for the paragraph summary: Language translation for the paragraph description: Language translation as specified by the xml:lang attribute</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"itemizedlist"</span><span class="tAN"> type=</span><span class="tAV">"ListType"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Itemized List summary: A list of items in a text paragraph. description: A list of items in a text paragraph. The list is generally displayed as a bulleted list. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"orderedlist"</span><span class="tAN"> type=</span><span class="tAV">"ListType"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Ordered List summary: An ordered list of items in a text paragraph. description: An ordered list of items in a text paragraph. The list is generally displayed as a numbered list. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"emphasis"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Emphasis summary: A span of emphasized text in a paragraph. description: A span of emphasized text in a paragraph. Emphasized text is generally rendered as boldfaced or otherwise distinct from the surrounding text. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:complexType</span><span class="tAN"> mixed=</span><span class="tAV">"true"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"value"</span><span class="tAN"> type=</span><span class="tAV">"i18nString"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> ref=</span><span class="tAV">"xml:lang"</span><span class="tEl">/&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"subscript"</span><span class="tAN"> type=</span><span class="tAV">"SubSuperScriptType"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Subscript summary: A subscript in a text paragraph. description: A subscript in a text paragraph. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"superscript"</span><span class="tAN"> type=</span><span class="tAV">"SubSuperScriptType"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Superscript summary: A superscript in a text paragraph. description: A superscript in a text paragraph. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"literalLayout"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: literalLayout summary: The equivalent to &lt;pre&gt; in html. description: This element specifies that the structure of the text within the tag, specifically the whitespace, should not be altered.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:complexType</span><span class="tAN"> mixed=</span><span class="tAV">"true"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"value"</span><span class="tAN"> type=</span><span class="tAV">"i18nString"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ulink"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: ulink summary: a link that addresses its target by means of a URL description: this element and its children allow paragraphs to contain urls and titles for anchor tags. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:complexType</span><span class="tAN"> mixed=</span><span class="tAV">"true"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:sequence</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"citetitle"</span><span class="tAN"> type=</span><span class="tAV">"i18nString"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: citetitle summary: the title of the cited work description: the citetitle element contains a text title for the url. It can be displayed in an anchor tag. This markup is a subset of DocBook. example: The Dublin Core Metadata Initiative</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"url"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: url summary: the Uniform Resource Locator for the cited work description: the url attribute contains the location of the work for a link. This markup is a subset of DocBook. example: url="http://dublincore.org/documents/usageguide/"</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> ref=</span><span class="tAV">"xml:lang"</span><span class="tEl">/&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -5058,22 +4211,6 @@ var modelBoxes= new Array('model_TextType_section',
                         </td>
                      </tr>
                      <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ListType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ListType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ListType" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Elements </td>
-                                    <td><b><a href="eml-text_xsd.html#ListType_ListType_listitem_itemizedlist" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-text.xsd')">ListType/listitem/itemizedlist</a></b>, <b><a href="eml-text_xsd.html#ListType_ListType_listitem_orderedlist" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-text.xsd')">ListType/listitem/orderedlist</a></b>, <b><a href="eml-text_xsd.html#ParagraphType_itemizedlist" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-text.xsd')">ParagraphType/itemizedlist</a></b>, <b><a href="eml-text_xsd.html#ParagraphType_orderedlist" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-text.xsd')">ParagraphType/orderedlist</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_ListType" type="image" src="img/btM.gif" value="-" onclick="switchState('model_ListType');" class="control" /></div>
                         </td>
                         <td>
@@ -5083,51 +4220,6 @@ var modelBoxes= new Array('model_TextType_section',
                      <tr>
                         <td class="firstColumn"><b>Children</b></td>
                         <td><b><a href="eml-text_xsd.html#ListType_listitem" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-text.xsd')">listitem</a></b></td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ListType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ListType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ListType" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"ListType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: ListType summary: A list of items in a text paragraph. description: A list of items in a text paragraph. The ListType is used by both orderedlist elements and itemizedlist elements. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"listitem"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: List Item summary: An item in a list of items. description: An item in a list of items. Each list item is formatted as a bulleted or numbered item depending on the list type in which it resides. List items contain paragraphs which in turn can be plain text or text with a limited set of markup tags, including emphasis, subscript, superscript, and lists. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:choice</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"para"</span><span class="tAN"> type=</span><span class="tAV">"ParagraphType"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Paragraph summary: A simple paragraph of text. description: The "paragraph" element allows for both formatted and unformatted text blocks to be included in EML. It can be plain text or text with a limited set of markup tags, including emphasis, subscript, superscript, and lists. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"itemizedlist"</span><span class="tAN"> type=</span><span class="tAV">"ListType"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Itemized List summary: A list of items in a text paragraph. description: A list of items in a text paragraph. The list is generally displayed as a bulleted list. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"orderedlist"</span><span class="tAN"> type=</span><span class="tAV">"ListType"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Ordered List summary: An ordered list of items in a text paragraph. description: An ordered list of items in a text paragraph. The list is generally displayed as a numbered list. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
                      </tr>
                   </tbody>
                </table>
@@ -5207,22 +4299,6 @@ var modelBoxes= new Array('model_TextType_section',
                         </td>
                      </tr>
                      <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_SubSuperScriptType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_SubSuperScriptType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_SubSuperScriptType" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Elements </td>
-                                    <td><b><a href="eml-text_xsd.html#ParagraphType_subscript" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-text.xsd')">ParagraphType/subscript</a></b>, <b><a href="eml-text_xsd.html#ParagraphType_superscript" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-text.xsd')">ParagraphType/superscript</a></b>, <b><a href="eml-text_xsd.html#SubSuperScriptType_subscript" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-text.xsd')">SubSuperScriptType/subscript</a></b>, <b><a href="eml-text_xsd.html#SubSuperScriptType_superscript" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-text.xsd')">SubSuperScriptType/superscript</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_SubSuperScriptType" type="image" src="img/btM.gif" value="-" onclick="switchState('model_SubSuperScriptType');" class="control" /></div>
                         </td>
                         <td>
@@ -5256,43 +4332,6 @@ var modelBoxes= new Array('model_TextType_section',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_SubSuperScriptType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SubSuperScriptType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_SubSuperScriptType" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"SubSuperScriptType"</span><span class="tAN"> mixed=</span><span class="tAV">"true"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Subscript/Superscript Type summary: A subscript or a superscript in a text paragraph. description: A subscript or a superscript in a text paragraph. This type is used by both subscript and superscript elements to define their recursive content. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:choice</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"value"</span><span class="tAN"> type=</span><span class="tAV">"i18nString"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Localized string for the sub/superscript summary: Language translation for the sub/superscript description: Language translation as specified by the xml:lang attribute</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"subscript"</span><span class="tAN"> type=</span><span class="tAV">"SubSuperScriptType"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Subscript summary: A subscript in a text paragraph. description: A subscript in a text paragraph. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"superscript"</span><span class="tAN"> type=</span><span class="tAV">"SubSuperScriptType"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Superscript summary: A superscript in a text paragraph. description: A superscript in a text paragraph. This markup is a subset of DocBook.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> ref=</span><span class="tAV">"xml:lang"</span><span class="tEl">/&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -5358,41 +4397,6 @@ var modelBoxes= new Array('model_TextType_section',
                                  <tr>
                                     <td class="firstColumn" style="white-space: nowrap;">use</td>
                                     <td><b>optional</b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ParagraphType_ParagraphType_ulink_url" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ParagraphType_ParagraphType_ulink_url');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ParagraphType_ParagraphType_ulink_url" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Element </td>
-                                    <td><b><a href="eml-text_xsd.html#ParagraphType_ulink" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-text.xsd')">ParagraphType/ulink</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ParagraphType_ParagraphType_ulink_url" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ParagraphType_ParagraphType_ulink_url');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ParagraphType_ParagraphType_ulink_url" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"url"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: url summary: the Uniform Resource Locator for the cited work description: the url attribute contains the location of the work for a link. This markup is a subset of DocBook. example: url="http://dublincore.org/documents/usageguide/"</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:attribute&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>

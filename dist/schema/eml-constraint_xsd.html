@@ -46,46 +46,6 @@ var facetsBoxes= new Array('facets_ConstraintBaseGroup_constraintName',
 				'facets_ConstraintType_ConstraintType_joinCondition_ConstraintType_ConstraintType_joinCondition_referencedKey_attributeReference', 
 				'facets_ConstraintType_ConstraintType_notNullConstraint_ConstraintType_ConstraintType_notNullConstraint_key_attributeReference', 
 				'facets_ConstraintType_scope');
-var usedByBoxes= new Array('usedBy_ConstraintType', 
-				'usedBy_CardinalityChildOccurancesType', 
-				'usedBy_ConstraintType_ConstraintType_checkConstraint_language', 
-				'usedBy_ConstraintType_id', 
-				'usedBy_ConstraintType_system', 
-				'usedBy_ConstraintType_scope', 
-				'usedBy_ConstraintBaseGroup', 
-				'usedBy_ForeignKeyGroup');
-var sourceBoxes= new Array('source_ConstraintType_primaryKey', 
-				'source_ConstraintBaseGroup_constraintName', 
-				'source_ConstraintBaseGroup_constraintDescription', 
-				'source_ConstraintType_ConstraintType_primaryKey_key', 
-				'source_ConstraintType_ConstraintType_primaryKey_ConstraintType_ConstraintType_primaryKey_key_attributeReference', 
-				'source_ConstraintType_uniqueKey', 
-				'source_ConstraintType_ConstraintType_uniqueKey_key', 
-				'source_ConstraintType_ConstraintType_uniqueKey_ConstraintType_ConstraintType_uniqueKey_key_attributeReference', 
-				'source_ConstraintType_checkConstraint', 
-				'source_ConstraintType_ConstraintType_checkConstraint_checkCondition', 
-				'source_ConstraintType_foreignKey', 
-				'source_ForeignKeyGroup_key', 
-				'source_ForeignKeyGroup_ForeignKeyGroup_key_attributeReference', 
-				'source_ForeignKeyGroup_entityReference', 
-				'source_ForeignKeyGroup_relationshipType', 
-				'source_ForeignKeyGroup_cardinality', 
-				'source_ForeignKeyGroup_ForeignKeyGroup_cardinality_parentOccurences', 
-				'source_ForeignKeyGroup_ForeignKeyGroup_cardinality_childOccurences', 
-				'source_ConstraintType_joinCondition', 
-				'source_ConstraintType_ConstraintType_joinCondition_referencedKey', 
-				'source_ConstraintType_ConstraintType_joinCondition_ConstraintType_ConstraintType_joinCondition_referencedKey_attributeReference', 
-				'source_ConstraintType_notNullConstraint', 
-				'source_ConstraintType_ConstraintType_notNullConstraint_key', 
-				'source_ConstraintType_ConstraintType_notNullConstraint_ConstraintType_ConstraintType_notNullConstraint_key_attributeReference', 
-				'source_ConstraintType', 
-				'source_CardinalityChildOccurancesType', 
-				'source_ConstraintType_ConstraintType_checkConstraint_language', 
-				'source_ConstraintType_id', 
-				'source_ConstraintType_system', 
-				'source_ConstraintType_scope', 
-				'source_ConstraintBaseGroup', 
-				'source_ForeignKeyGroup');
 var instanceBoxes= new Array('instance_ConstraintType_primaryKey', 
 				'instance_ConstraintType_ConstraintType_primaryKey_key', 
 				'instance_ConstraintType_uniqueKey', 
@@ -437,12 +397,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                      <tr>
                         <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
                      </tr>
-                     <tr>
-                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
-                     </tr>
-                     <tr>
-                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
-                     </tr>
                   </table>
                   <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
                </td>
@@ -670,44 +624,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ConstraintType_primaryKey" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConstraintType_primaryKey');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ConstraintType_primaryKey" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"primaryKey"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Primary Key summary: The primary key in the entity description: The primaryKey element declares the primary key in the entity to which the defined constraint pertains. example: date example: site</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:group</span><span class="tAN"> ref=</span><span class="tAV">"ConstraintBaseGroup"</span><span class="tEl">/&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"key"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Key summary: The set of attributes to which this constraint applies. description: The key element defines the set of attributes to which this constraint applies. For a primary key or a unique key, the set of attributes must be identifying. For a foreign key, the set of attributes must match an identifying key in the referenced entity. For a 'not null' constraint, the key indicates the attribute which should not be null. example: site example: plot</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"attributeReference"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Attribute Reference summary: The identifier of an attribute found in the identified entity description: The attributeReference element is the identifier of an attribute that can be found in the identified entity. This id will be unique within an entity and specifies that the attribute participates in the key that is being defined. example: site</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -815,25 +731,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ConstraintBaseGroup_constraintName" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConstraintBaseGroup_constraintName');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ConstraintBaseGroup_constraintName" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"constraintName"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Name of the constraint summary: A meaningfull name of the constraint. description: The constraintName element is a name which represents a human readable and meaningful name for the constraint. example: PrimaryKey_birdSurvey</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -911,25 +808,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                                  <tr>
                                     <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
                                     <td><b>0</b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ConstraintBaseGroup_constraintDescription" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConstraintBaseGroup_constraintDescription');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ConstraintBaseGroup_constraintDescription" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"constraintDescription"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Description of the constraint summary: Descibes the purpose of the constraint. description: The constraintDescription element describes the nature of the constraint. It might be a description of a check condition, or a statement about the composition of a primary key or the nature of the relationship between two database tables or two ascii files. example: 1.Must be greater than 0 but less than 100 2. "The primary key of the table BIRD_SURVEY is composed of two attributes:speciesCode and observationDate 3. The species name associated with the species code in survey.txt can be found in the file speciesList.txt</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1042,34 +920,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                                     <td width="100%"><pre><span class="tEl">&lt;key</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;attributeReference</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/attributeReference&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/key&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ConstraintType_ConstraintType_primaryKey_key" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConstraintType_ConstraintType_primaryKey_key');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ConstraintType_ConstraintType_primaryKey_key" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"key"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Key summary: The set of attributes to which this constraint applies. description: The key element defines the set of attributes to which this constraint applies. For a primary key or a unique key, the set of attributes must be identifying. For a foreign key, the set of attributes must match an identifying key in the referenced entity. For a 'not null' constraint, the key indicates the attribute which should not be null. example: site example: plot</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"attributeReference"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Attribute Reference summary: The identifier of an attribute found in the identified entity description: The attributeReference element is the identifier of an attribute that can be found in the identified entity. This id will be unique within an entity and specifies that the attribute participates in the key that is being defined. example: site</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1189,25 +1039,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ConstraintType_ConstraintType_primaryKey_ConstraintType_ConstraintType_primaryKey_key_attributeReference" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConstraintType_ConstraintType_primaryKey_ConstraintType_ConstraintType_primaryKey_key_attributeReference');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ConstraintType_ConstraintType_primaryKey_ConstraintType_ConstraintType_primaryKey_key_attributeReference" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"attributeReference"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Attribute Reference summary: The identifier of an attribute found in the identified entity description: The attributeReference element is the identifier of an attribute that can be found in the identified entity. This id will be unique within an entity and specifies that the attribute participates in the key that is being defined. example: site</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1315,44 +1146,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
   </span><span class="tEl">&lt;constraintDescription</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/constraintDescription&gt;</span><span class="tI">
   </span><span class="tEl">&lt;key</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/key&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/uniqueKey&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ConstraintType_uniqueKey" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConstraintType_uniqueKey');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ConstraintType_uniqueKey" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"uniqueKey"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Unique Key summary: A unique key in the entity description: The uniqueKey element represents a unique key within the referenced entity. This is different from a primary key in that it does not form any implicit foreign key relationships to other entities, however it is required to be unique within the entity. example: date</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:group</span><span class="tAN"> ref=</span><span class="tAV">"ConstraintBaseGroup"</span><span class="tEl">/&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"key"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Key summary: The set of attributes to which this constraint applies. description: The key element defines the set of attributes to which this constraint applies. For a primary key or a unique key, the set of attributes must be identifying. For a foreign key, the set of attributes must match an identifying key in the referenced entity. For a 'not null' constraint, the key indicates the attribute which should not be null. example: date, site, plot</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"attributeReference"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Attribute Reference summary: The identifier of an attribute found in the identified entity description: The attributeReference element is the identifier of an attribute that can be found in the identified entity. This id will be unique within an entity and specifies that the attribute participates in the key that is being defined. example: site</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1468,34 +1261,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ConstraintType_ConstraintType_uniqueKey_key" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConstraintType_ConstraintType_uniqueKey_key');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ConstraintType_ConstraintType_uniqueKey_key" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"key"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Key summary: The set of attributes to which this constraint applies. description: The key element defines the set of attributes to which this constraint applies. For a primary key or a unique key, the set of attributes must be identifying. For a foreign key, the set of attributes must match an identifying key in the referenced entity. For a 'not null' constraint, the key indicates the attribute which should not be null. example: date, site, plot</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"attributeReference"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Attribute Reference summary: The identifier of an attribute found in the identified entity description: The attributeReference element is the identifier of an attribute that can be found in the identified entity. This id will be unique within an entity and specifies that the attribute participates in the key that is being defined. example: site</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1605,25 +1370,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ConstraintType_ConstraintType_uniqueKey_ConstraintType_ConstraintType_uniqueKey_key_attributeReference" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConstraintType_ConstraintType_uniqueKey_ConstraintType_ConstraintType_uniqueKey_key_attributeReference');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ConstraintType_ConstraintType_uniqueKey_ConstraintType_ConstraintType_uniqueKey_key_attributeReference" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"attributeReference"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Attribute Reference summary: The identifier of an attribute found in the identified entity description: The attributeReference element is the identifier of an attribute that can be found in the identified entity. This id will be unique within an entity and specifies that the attribute participates in the key that is being defined. example: site</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1788,40 +1534,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ConstraintType_checkConstraint" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConstraintType_checkConstraint');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ConstraintType_checkConstraint" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"checkConstraint"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Check Constraint summary: A constraint which checks a conditional clause within an entity. description: The checkConstraint element defines a constraint which checks a conditional clause within an entity. example: if site&gt;1 then plot&gt;10</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:group</span><span class="tAN"> ref=</span><span class="tAV">"ConstraintBaseGroup"</span><span class="tEl">/&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"checkCondition"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Check Condition summary: An SQL statement or other language implementation of the condition for a check constraint. description: The checkCondition element defines an SQL statement or other language implementation of the condition for a check constraint. Generally this provides a means for constraining the values within and among entities. example: (year &gt; 1900 and year &lt; 1990)</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"language"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Language summary: The language that the is used to express or implement the check constraint. description: The language element declares the language that is used to implement the check constraint. This is typically the name and version of a programming language such as Java, C, Perl, Basic, or other. Sometime it is the name and version of a scriptable analysis system such as SAS, Matlab, R, or SPlus. example: Perl 5.6.1</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1929,25 +1641,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ConstraintType_ConstraintType_checkConstraint_checkCondition" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConstraintType_ConstraintType_checkConstraint_checkCondition');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ConstraintType_ConstraintType_checkConstraint_checkCondition" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"checkCondition"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Check Condition summary: An SQL statement or other language implementation of the condition for a check constraint. description: The checkCondition element defines an SQL statement or other language implementation of the condition for a check constraint. Generally this provides a means for constraining the values within and among entities. example: (year &gt; 1900 and year &lt; 1990)</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -2068,28 +1761,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ConstraintType_foreignKey" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConstraintType_foreignKey');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ConstraintType_foreignKey" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"foreignKey"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Foreign Key summary: A foreign key relationship among entities description: The foreignKey element defines a foreign key relationship among entities which relates this entity to another's primary key.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:group</span><span class="tAN"> ref=</span><span class="tAV">"ForeignKeyGroup"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2192,34 +1863,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                                     <td width="100%"><pre><span class="tEl">&lt;key</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;attributeReference</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/attributeReference&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/key&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ForeignKeyGroup_key" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ForeignKeyGroup_key');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ForeignKeyGroup_key" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"key"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Key summary: The set of attributes to which this constraint applies. description: The key element defines the set of attributes to which this constraint applies. For a primary key or a unique key, the set of attributes must be identifying. For a foreign key, the set of attributes must match an identifying key in the referenced entity. For a 'not null' constraint, the key indicates the attribute which should not be null.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"attributeReference"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Attribute Reference summary: The identifier of an attribute found in the identified entity description: The attributeReference element is the identifier of an attribute that can be found in the identified entity. This id will be unique within an entity and specifies that the attribute participates in the key that is being defined. example: site</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -2339,25 +1982,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ForeignKeyGroup_ForeignKeyGroup_key_attributeReference" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ForeignKeyGroup_ForeignKeyGroup_key_attributeReference');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ForeignKeyGroup_ForeignKeyGroup_key_attributeReference" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"attributeReference"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Attribute Reference summary: The identifier of an attribute found in the identified entity description: The attributeReference element is the identifier of an attribute that can be found in the identified entity. This id will be unique within an entity and specifies that the attribute participates in the key that is being defined. example: site</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2463,25 +2087,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ForeignKeyGroup_entityReference" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ForeignKeyGroup_entityReference');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ForeignKeyGroup_entityReference" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"entityReference"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Referenced Entity ID summary: The id of the parent-entity in a foreign key constraint. description: The entityReference element contains the id of the entity to which a foreign key refers, otherwise known as the parent-entity or parent-table. This should be an identifier that matches one of the "identifier" elements for an entity. example: knb.79.4</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -2596,31 +2201,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ForeignKeyGroup_relationshipType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ForeignKeyGroup_relationshipType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ForeignKeyGroup_relationshipType" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"relationshipType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Relationship type: Identifying or non-identifying summary: Relationship type: Identifying or non-identifying description: The relationshipType element defines identifying relationships that propagate from the parent entity's primary key to the child's primary key. Non-identifying relationships propagate the parent's primary key as a non-key attribute of the child entity. example: relationshipType code</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:simpleType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"identifying"</span><span class="tEl">/&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"non-identifying"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:restriction&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:simpleType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -2748,45 +2328,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ForeignKeyGroup_cardinality" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ForeignKeyGroup_cardinality');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ForeignKeyGroup_cardinality" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"cardinality"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Cardinality of the relationship between two entities. summary: Cardinality of the relationship between a parent entity and a child entity. description: The cardinality element represents a statement of the relationship between parent and child entities. Cardinality is expressed as the ratio of related parent and child entities. Cardinality 1 to N is a specific form of cardinality in which zero or one parent records are related to a specified number of child records. The cardinality ratio for the parent entity depends on whether the "existence" is mandatory (one or more) or optional (zero to ...). example: One to many example: One to 10 example: Zero or One to Many</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"parentOccurences"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Parent portion of a 1 to exactly N cardinality summary: Parent portion of a 1 to exactly N cardinality. May have a value of either 0 or 1. description: The parentOccurences element describes the Parent portion of a 1 to exactly N cardinality. May have a value of either 0 or 1. Value of 0 implies that the "existence" of a child record is optional. Value of 1 implies that the "existence" of a child record is mandatory. example: One to 10, Zero or One to Many</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:simpleType</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:integer"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"0"</span><span class="tEl">/&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"1"</span><span class="tEl">/&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:restriction&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:simpleType&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"childOccurences"</span><span class="tAN"> type=</span><span class="tAV">"CardinalityChildOccurancesType"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Child portion of the cardinality expression summary: Child portion of a cardinality expression Allowed values are positive integers including zero or the string value "many". description: The childOccurences element describes the child portion of a cardinality expression Allowed values are positive integers including zero or the string value "many" example: 2, 15, many</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -2898,31 +2439,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ForeignKeyGroup_ForeignKeyGroup_cardinality_parentOccurences" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ForeignKeyGroup_ForeignKeyGroup_cardinality_parentOccurences');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ForeignKeyGroup_ForeignKeyGroup_cardinality_parentOccurences" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"parentOccurences"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Parent portion of a 1 to exactly N cardinality summary: Parent portion of a 1 to exactly N cardinality. May have a value of either 0 or 1. description: The parentOccurences element describes the Parent portion of a 1 to exactly N cardinality. May have a value of either 0 or 1. Value of 0 implies that the "existence" of a child record is optional. Value of 1 implies that the "existence" of a child record is mandatory. example: One to 10, Zero or One to Many</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:simpleType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:integer"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"0"</span><span class="tEl">/&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"1"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:restriction&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:simpleType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -3003,25 +2519,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                                  <tr>
                                     <td class="firstColumn" style="white-space: nowrap;">content</td>
                                     <td><b>simple</b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ForeignKeyGroup_ForeignKeyGroup_cardinality_childOccurences" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ForeignKeyGroup_ForeignKeyGroup_cardinality_childOccurences');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ForeignKeyGroup_ForeignKeyGroup_cardinality_childOccurences" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"childOccurences"</span><span class="tAN"> type=</span><span class="tAV">"CardinalityChildOccurancesType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Child portion of the cardinality expression summary: Child portion of a cardinality expression Allowed values are positive integers including zero or the string value "many". description: The childOccurences element describes the child portion of a cardinality expression Allowed values are positive integers including zero or the string value "many" example: 2, 15, many</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -3146,44 +2643,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ConstraintType_joinCondition" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConstraintType_joinCondition');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ConstraintType_joinCondition" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"joinCondition"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Join Condition summary: A non primary/foreign key join description: The joinCondition element describes any join of two tables that is not done with a primary/foreign key relationship. example: JOIN code</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:group</span><span class="tAN"> ref=</span><span class="tAV">"ForeignKeyGroup"</span><span class="tEl">/&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"referencedKey"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Key summary: The set of attributes to which a foreign key constraint refers. description: The referencedKey element defines set of attributes to which a foreign key constraint refers. If the key refers to the primary key in the referenced entity, then the "referencedKey" is optional. For a foreign key, the set of attributes must match an identifying key in the referenced entity. example: site, plot</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"attributeReference"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Attribute Reference summary: The identifier of an attribute found in the identified entity description: The attributeReference element is the identifier of an attribute that can be found in the identified entity. This id will be unique within an entity and specifies that the attribute participates in the key that is being defined. example: site</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -3288,34 +2747,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                                     <td width="100%"><pre><span class="tEl">&lt;referencedKey</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;attributeReference</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/attributeReference&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/referencedKey&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ConstraintType_ConstraintType_joinCondition_referencedKey" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConstraintType_ConstraintType_joinCondition_referencedKey');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ConstraintType_ConstraintType_joinCondition_referencedKey" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"referencedKey"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Key summary: The set of attributes to which a foreign key constraint refers. description: The referencedKey element defines set of attributes to which a foreign key constraint refers. If the key refers to the primary key in the referenced entity, then the "referencedKey" is optional. For a foreign key, the set of attributes must match an identifying key in the referenced entity. example: site, plot</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"attributeReference"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Attribute Reference summary: The identifier of an attribute found in the identified entity description: The attributeReference element is the identifier of an attribute that can be found in the identified entity. This id will be unique within an entity and specifies that the attribute participates in the key that is being defined. example: site</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -3435,25 +2866,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ConstraintType_ConstraintType_joinCondition_ConstraintType_ConstraintType_joinCondition_referencedKey_attributeReference" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConstraintType_ConstraintType_joinCondition_ConstraintType_ConstraintType_joinCondition_referencedKey_attributeReference');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ConstraintType_ConstraintType_joinCondition_ConstraintType_ConstraintType_joinCondition_referencedKey_attributeReference" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"attributeReference"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Attribute Reference summary: The identifier of an attribute found in the identified entity description: The attributeReference element is the identifier of an attribute that can be found in the identified entity. This id will be unique within an entity and specifies that the attribute participates in the key that is being defined. example: site</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -3563,44 +2975,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ConstraintType_notNullConstraint" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConstraintType_notNullConstraint');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ConstraintType_notNullConstraint" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"notNullConstraint"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Not Null Constraint summary: A constraint that indicates that no null values should be present for an attribute. description: The notNullConstraint element defines a constraint that indicates that no null values should be present for an attribute in this entity.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:group</span><span class="tAN"> ref=</span><span class="tAV">"ConstraintBaseGroup"</span><span class="tEl">/&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"key"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Key summary: The set of attributes to which this constraint applies. description: The key element defines the set of attributes to which this constraint applies. For a primary key or a unique key, the set of attributes must be identifying. For a foreign key, the set of attributes must match an identifying key in the referenced entity. For a 'not null' constraint, the key indicates the attribute which should not be null.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"attributeReference"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Attribute Reference summary: The identifier of an attribute found in the identified entity description: The attributeReference element is the identifier of an attribute that can be found in the identified entity. This id will be unique within an entity and specifies that the attribute participates in the key that is being defined. example: site</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -3704,34 +3078,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                                     <td width="100%"><pre><span class="tEl">&lt;key</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;attributeReference</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/attributeReference&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/key&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ConstraintType_ConstraintType_notNullConstraint_key" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConstraintType_ConstraintType_notNullConstraint_key');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ConstraintType_ConstraintType_notNullConstraint_key" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"key"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Key summary: The set of attributes to which this constraint applies. description: The key element defines the set of attributes to which this constraint applies. For a primary key or a unique key, the set of attributes must be identifying. For a foreign key, the set of attributes must match an identifying key in the referenced entity. For a 'not null' constraint, the key indicates the attribute which should not be null.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"attributeReference"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Attribute Reference summary: The identifier of an attribute found in the identified entity description: The attributeReference element is the identifier of an attribute that can be found in the identified entity. This id will be unique within an entity and specifies that the attribute participates in the key that is being defined. example: site</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -3851,25 +3197,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ConstraintType_ConstraintType_notNullConstraint_ConstraintType_ConstraintType_notNullConstraint_key_attributeReference" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConstraintType_ConstraintType_notNullConstraint_ConstraintType_ConstraintType_notNullConstraint_key_attributeReference');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ConstraintType_ConstraintType_notNullConstraint_ConstraintType_ConstraintType_notNullConstraint_key_attributeReference" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"attributeReference"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Attribute Reference summary: The identifier of an attribute found in the identified entity description: The attributeReference element is the identifier of an attribute that can be found in the identified entity. This id will be unique within an entity and specifies that the attribute participates in the key that is being defined. example: site</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -3942,22 +3269,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                         </td>
                      </tr>
                      <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ConstraintType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ConstraintType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ConstraintType" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Elements </td>
-                                    <td><b><a href="eml-dataTable_xsd.html#DataTableType_constraint" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-dataTable.xsd')">DataTableType/constraint</a></b>, <b><a href="eml-entity_xsd.html#OtherEntityType_constraint" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-entity.xsd')">OtherEntityType/constraint</a></b>, <b><a href="eml-spatialRaster_xsd.html#SpatialRasterType_constraint" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-spatialRaster.xsd')">SpatialRasterType/constraint</a></b>, <b><a href="eml-spatialVector_xsd.html#SpatialVectorType_constraint" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-spatialVector.xsd')">SpatialVectorType/constraint</a></b>, <b><a href="eml-storedProcedure_xsd.html#StoredProcedureType_constraint" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-storedProcedure.xsd')">StoredProcedureType/constraint</a></b>, <b><a href="eml-view_xsd.html#ViewType_constraint" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-view.xsd')">ViewType/constraint</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_ConstraintType" type="image" src="img/btM.gif" value="-" onclick="switchState('model_ConstraintType');" class="control" /></div>
                         </td>
                         <td>
@@ -4011,154 +3322,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ConstraintType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConstraintType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ConstraintType" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"ConstraintType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Relational integrity constraint descriptors summary: Describes the relational integrity constraints of a relational database. description: The ConstraintType type describes the relational integrity constraints of a relational database. This includes primary keys, foreign keys, unique keys, etc. When an eml-constraint module is created, it should be linked into a dataset using the "triple" element, and all of the entities that are referenced in the constraints should be accessible within that same package.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:choice</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"primaryKey"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Primary Key summary: The primary key in the entity description: The primaryKey element declares the primary key in the entity to which the defined constraint pertains. example: date example: site</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:group</span><span class="tAN"> ref=</span><span class="tAV">"ConstraintBaseGroup"</span><span class="tEl">/&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"key"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Key summary: The set of attributes to which this constraint applies. description: The key element defines the set of attributes to which this constraint applies. For a primary key or a unique key, the set of attributes must be identifying. For a foreign key, the set of attributes must match an identifying key in the referenced entity. For a 'not null' constraint, the key indicates the attribute which should not be null. example: site example: plot</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"attributeReference"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Attribute Reference summary: The identifier of an attribute found in the identified entity description: The attributeReference element is the identifier of an attribute that can be found in the identified entity. This id will be unique within an entity and specifies that the attribute participates in the key that is being defined. example: site</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"uniqueKey"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Unique Key summary: A unique key in the entity description: The uniqueKey element represents a unique key within the referenced entity. This is different from a primary key in that it does not form any implicit foreign key relationships to other entities, however it is required to be unique within the entity. example: date</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:group</span><span class="tAN"> ref=</span><span class="tAV">"ConstraintBaseGroup"</span><span class="tEl">/&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"key"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Key summary: The set of attributes to which this constraint applies. description: The key element defines the set of attributes to which this constraint applies. For a primary key or a unique key, the set of attributes must be identifying. For a foreign key, the set of attributes must match an identifying key in the referenced entity. For a 'not null' constraint, the key indicates the attribute which should not be null. example: date, site, plot</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"attributeReference"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Attribute Reference summary: The identifier of an attribute found in the identified entity description: The attributeReference element is the identifier of an attribute that can be found in the identified entity. This id will be unique within an entity and specifies that the attribute participates in the key that is being defined. example: site</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"checkConstraint"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Check Constraint summary: A constraint which checks a conditional clause within an entity. description: The checkConstraint element defines a constraint which checks a conditional clause within an entity. example: if site&gt;1 then plot&gt;10</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:group</span><span class="tAN"> ref=</span><span class="tAV">"ConstraintBaseGroup"</span><span class="tEl">/&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"checkCondition"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Check Condition summary: An SQL statement or other language implementation of the condition for a check constraint. description: The checkCondition element defines an SQL statement or other language implementation of the condition for a check constraint. Generally this provides a means for constraining the values within and among entities. example: (year &gt; 1900 and year &lt; 1990)</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"language"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Language summary: The language that the is used to express or implement the check constraint. description: The language element declares the language that is used to implement the check constraint. This is typically the name and version of a programming language such as Java, C, Perl, Basic, or other. Sometime it is the name and version of a scriptable analysis system such as SAS, Matlab, R, or SPlus. example: Perl 5.6.1</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"foreignKey"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Foreign Key summary: A foreign key relationship among entities description: The foreignKey element defines a foreign key relationship among entities which relates this entity to another's primary key.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:group</span><span class="tAN"> ref=</span><span class="tAV">"ForeignKeyGroup"</span><span class="tEl">/&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"joinCondition"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Join Condition summary: A non primary/foreign key join description: The joinCondition element describes any join of two tables that is not done with a primary/foreign key relationship. example: JOIN code</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:group</span><span class="tAN"> ref=</span><span class="tAV">"ForeignKeyGroup"</span><span class="tEl">/&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"referencedKey"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Key summary: The set of attributes to which a foreign key constraint refers. description: The referencedKey element defines set of attributes to which a foreign key constraint refers. If the key refers to the primary key in the referenced entity, then the "referencedKey" is optional. For a foreign key, the set of attributes must match an identifying key in the referenced entity. example: site, plot</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"attributeReference"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Attribute Reference summary: The identifier of an attribute found in the identified entity description: The attributeReference element is the identifier of an attribute that can be found in the identified entity. This id will be unique within an entity and specifies that the attribute participates in the key that is being defined. example: site</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"notNullConstraint"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Not Null Constraint summary: A constraint that indicates that no null values should be present for an attribute. description: The notNullConstraint element defines a constraint that indicates that no null values should be present for an attribute in this entity.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:group</span><span class="tAN"> ref=</span><span class="tAV">"ConstraintBaseGroup"</span><span class="tEl">/&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"key"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Key summary: The set of attributes to which this constraint applies. description: The key element defines the set of attributes to which this constraint applies. For a primary key or a unique key, the set of attributes must be identifying. For a foreign key, the set of attributes must match an identifying key in the referenced entity. For a 'not null' constraint, the key indicates the attribute which should not be null.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"attributeReference"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-                    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Attribute Reference summary: The identifier of an attribute found in the identified entity description: The attributeReference element is the identifier of an attribute that can be found in the identified entity. This id will be unique within an entity and specifies that the attribute participates in the key that is being defined. example: site</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"res:IDType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"system"</span><span class="tAN"> type=</span><span class="tAV">"res:SystemType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"scope"</span><span class="tAN"> type=</span><span class="tAV">"res:ScopeType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"document"</span><span class="tEl">/&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -4229,48 +3392,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                      <tr>
                         <td class="firstColumn"><b>Type</b></td>
                         <td>union of(<b>xs:integer</b>, restriction of <b>xs:string</b>)
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_CardinalityChildOccurancesType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_CardinalityChildOccurancesType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_CardinalityChildOccurancesType" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Element </td>
-                                    <td><b><a href="eml-constraint_xsd.html#ForeignKeyGroup_ForeignKeyGroup_cardinality_childOccurences" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-constraint.xsd')">ForeignKeyGroup/cardinality/childOccurences</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_CardinalityChildOccurancesType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_CardinalityChildOccurancesType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_CardinalityChildOccurancesType" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:simpleType</span><span class="tAN"> name=</span><span class="tAV">"CardinalityChildOccurancesType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Child portion of a cardinality expression summary: Child portion of a cardinality expression Allowed values are positive integers including zero or the string value "many". description: The CardinalityChildOccurancesType element defines the child portion of a cardinality expression. Allowed values are positive integers including zero or the string value "many". example: 0,1, 2, 15,many</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:union</span><span class="tAN"> memberTypes=</span><span class="tAV">"xs:integer"</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:simpleType</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"many"</span><span class="tEl">/&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:restriction&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:simpleType&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:union&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:simpleType&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
                         </td>
                      </tr>
                   </tbody>
@@ -4349,41 +3470,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ConstraintType_ConstraintType_checkConstraint_language" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ConstraintType_ConstraintType_checkConstraint_language');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ConstraintType_ConstraintType_checkConstraint_language" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Element </td>
-                                    <td><b><a href="eml-constraint_xsd.html#ConstraintType_checkConstraint" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-constraint.xsd')">ConstraintType/checkConstraint</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ConstraintType_ConstraintType_checkConstraint_language" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConstraintType_ConstraintType_checkConstraint_language');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ConstraintType_ConstraintType_checkConstraint_language" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"language"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Language summary: The language that the is used to express or implement the check constraint. description: The language element declares the language that is used to implement the check constraint. This is typically the name and version of a programming language such as Java, C, Perl, Basic, or other. Sometime it is the name and version of a scriptable analysis system such as SAS, Matlab, R, or SPlus. example: Perl 5.6.1</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:attribute&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -4430,37 +3516,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ConstraintType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ConstraintType_id');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ConstraintType_id" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-constraint_xsd.html#ConstraintType" target="mainFrame" title="https://eml.ecoinformatics.org/constraint-2.2.0" onclick="updatePageTitle('Schema documentation for eml-constraint.xsd')">ConstraintType</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ConstraintType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConstraintType_id');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ConstraintType_id" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"res:IDType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -4502,37 +3557,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                                  <tr>
                                     <td class="firstColumn" style="white-space: nowrap;">use</td>
                                     <td><b>optional</b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ConstraintType_system" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ConstraintType_system');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ConstraintType_system" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-constraint_xsd.html#ConstraintType" target="mainFrame" title="https://eml.ecoinformatics.org/constraint-2.2.0" onclick="updatePageTitle('Schema documentation for eml-constraint.xsd')">ConstraintType</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ConstraintType_system" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConstraintType_system');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ConstraintType_system" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"system"</span><span class="tAN"> type=</span><span class="tAV">"res:SystemType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -4614,37 +3638,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ConstraintType_scope" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ConstraintType_scope');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ConstraintType_scope" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-constraint_xsd.html#ConstraintType" target="mainFrame" title="https://eml.ecoinformatics.org/constraint-2.2.0" onclick="updatePageTitle('Schema documentation for eml-constraint.xsd')">ConstraintType</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ConstraintType_scope" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConstraintType_scope');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ConstraintType_scope" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"scope"</span><span class="tAN"> type=</span><span class="tAV">"res:ScopeType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"document"</span><span class="tEl">/&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -4683,26 +3676,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                         </td>
                      </tr>
                      <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ConstraintBaseGroup" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ConstraintBaseGroup');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ConstraintBaseGroup" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Elements </td>
-                                    <td><b><a href="eml-constraint_xsd.html#ConstraintType_checkConstraint" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-constraint.xsd')">ConstraintType/checkConstraint</a></b>, <b><a href="eml-constraint_xsd.html#ConstraintType_notNullConstraint" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-constraint.xsd')">ConstraintType/notNullConstraint</a></b>, <b><a href="eml-constraint_xsd.html#ConstraintType_primaryKey" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-constraint.xsd')">ConstraintType/primaryKey</a></b>, <b><a href="eml-constraint_xsd.html#ConstraintType_uniqueKey" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-constraint.xsd')">ConstraintType/uniqueKey</a></b></td>
-                                 </tr>
-                                 <tr>
-                                    <td class="firstColumn">Element Group </td>
-                                    <td><b><a href="eml-constraint_xsd.html#ForeignKeyGroup" target="mainFrame" title="https://eml.ecoinformatics.org/constraint-2.2.0" onclick="updatePageTitle('Schema documentation for eml-constraint.xsd')">ForeignKeyGroup</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_ConstraintBaseGroup" type="image" src="img/btM.gif" value="-" onclick="switchState('model_ConstraintBaseGroup');" class="control" /></div>
                         </td>
                         <td>
@@ -4712,34 +3685,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                      <tr>
                         <td class="firstColumn"><b>Children</b></td>
                         <td><b><a href="eml-constraint_xsd.html#ConstraintBaseGroup_constraintDescription" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-constraint.xsd')">constraintDescription</a></b>, <b><a href="eml-constraint_xsd.html#ConstraintBaseGroup_constraintName" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-constraint.xsd')">constraintName</a></b></td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ConstraintBaseGroup" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConstraintBaseGroup');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ConstraintBaseGroup" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:group</span><span class="tAN"> name=</span><span class="tAV">"ConstraintBaseGroup"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"constraintName"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Name of the constraint summary: A meaningfull name of the constraint. description: The constraintName element is a name which represents a human readable and meaningful name for the constraint. example: PrimaryKey_birdSurvey</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"constraintDescription"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Description of the constraint summary: Descibes the purpose of the constraint. description: The constraintDescription element describes the nature of the constraint. It might be a description of a check condition, or a statement about the composition of a primary key or the nature of the relationship between two database tables or two ascii files. example: 1.Must be greater than 0 but less than 100 2. "The primary key of the table BIRD_SURVEY is composed of two attributes:speciesCode and observationDate 3. The species name associated with the species code in survey.txt can be found in the file speciesList.txt</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:group&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
                      </tr>
                   </tbody>
                </table>
@@ -4784,22 +3729,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                         </td>
                      </tr>
                      <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ForeignKeyGroup" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ForeignKeyGroup');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ForeignKeyGroup" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Elements </td>
-                                    <td><b><a href="eml-constraint_xsd.html#ConstraintType_foreignKey" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-constraint.xsd')">ConstraintType/foreignKey</a></b>, <b><a href="eml-constraint_xsd.html#ConstraintType_joinCondition" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-constraint.xsd')">ConstraintType/joinCondition</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_ForeignKeyGroup" type="image" src="img/btM.gif" value="-" onclick="switchState('model_ForeignKeyGroup');" class="control" /></div>
                         </td>
                         <td>
@@ -4809,80 +3738,6 @@ var modelBoxes= new Array('model_ConstraintType_primaryKey',
                      <tr>
                         <td class="firstColumn"><b>Children</b></td>
                         <td><b><a href="eml-constraint_xsd.html#ForeignKeyGroup_cardinality" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-constraint.xsd')">cardinality</a></b>, <b><a href="eml-constraint_xsd.html#ConstraintBaseGroup_constraintDescription" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-constraint.xsd')">constraintDescription</a></b>, <b><a href="eml-constraint_xsd.html#ConstraintBaseGroup_constraintName" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-constraint.xsd')">constraintName</a></b>, <b><a href="eml-constraint_xsd.html#ForeignKeyGroup_entityReference" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-constraint.xsd')">entityReference</a></b>, <b><a href="eml-constraint_xsd.html#ForeignKeyGroup_key" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-constraint.xsd')">key</a></b>, <b><a href="eml-constraint_xsd.html#ForeignKeyGroup_relationshipType" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-constraint.xsd')">relationshipType</a></b></td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ForeignKeyGroup" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ForeignKeyGroup');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ForeignKeyGroup" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:group</span><span class="tAN"> name=</span><span class="tAV">"ForeignKeyGroup"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:group</span><span class="tAN"> ref=</span><span class="tAV">"ConstraintBaseGroup"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"key"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Key summary: The set of attributes to which this constraint applies. description: The key element defines the set of attributes to which this constraint applies. For a primary key or a unique key, the set of attributes must be identifying. For a foreign key, the set of attributes must match an identifying key in the referenced entity. For a 'not null' constraint, the key indicates the attribute which should not be null.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"attributeReference"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Attribute Reference summary: The identifier of an attribute found in the identified entity description: The attributeReference element is the identifier of an attribute that can be found in the identified entity. This id will be unique within an entity and specifies that the attribute participates in the key that is being defined. example: site</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"entityReference"</span><span class="tAN"> type=</span><span class="tAV">"res:NonEmptyStringType"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Referenced Entity ID summary: The id of the parent-entity in a foreign key constraint. description: The entityReference element contains the id of the entity to which a foreign key refers, otherwise known as the parent-entity or parent-table. This should be an identifier that matches one of the "identifier" elements for an entity. example: knb.79.4</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"relationshipType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Relationship type: Identifying or non-identifying summary: Relationship type: Identifying or non-identifying description: The relationshipType element defines identifying relationships that propagate from the parent entity's primary key to the child's primary key. Non-identifying relationships propagate the parent's primary key as a non-key attribute of the child entity. example: relationshipType code</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:simpleType</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"identifying"</span><span class="tEl">/&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"non-identifying"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:restriction&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:simpleType&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"cardinality"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Cardinality of the relationship between two entities. summary: Cardinality of the relationship between a parent entity and a child entity. description: The cardinality element represents a statement of the relationship between parent and child entities. Cardinality is expressed as the ratio of related parent and child entities. Cardinality 1 to N is a specific form of cardinality in which zero or one parent records are related to a specified number of child records. The cardinality ratio for the parent entity depends on whether the "existence" is mandatory (one or more) or optional (zero to ...). example: One to many example: One to 10 example: Zero or One to Many</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:complexType</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"parentOccurences"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Parent portion of a 1 to exactly N cardinality summary: Parent portion of a 1 to exactly N cardinality. May have a value of either 0 or 1. description: The parentOccurences element describes the Parent portion of a 1 to exactly N cardinality. May have a value of either 0 or 1. Value of 0 implies that the "existence" of a child record is optional. Value of 1 implies that the "existence" of a child record is mandatory. example: One to 10, Zero or One to Many</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:simpleType</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:integer"</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"0"</span><span class="tEl">/&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"1"</span><span class="tEl">/&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:restriction&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:simpleType&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"childOccurences"</span><span class="tAN"> type=</span><span class="tAV">"CardinalityChildOccurancesType"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: Child portion of the cardinality expression summary: Child portion of a cardinality expression Allowed values are positive integers including zero or the string value "many". description: The childOccurences element describes the child portion of a cardinality expression Allowed values are positive integers including zero or the string value "many" example: 2, 15, many</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:complexType&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:group&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
                      </tr>
                   </tbody>
                </table>

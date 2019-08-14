@@ -13,16 +13,6 @@
 				'properties_ProtocolType_system', 
 				'properties_ProtocolType_scope');
 var facetsBoxes= new Array('facets_ProtocolType_scope');
-var usedByBoxes= new Array('usedBy_ProtocolType', 
-				'usedBy_ProtocolType_id', 
-				'usedBy_ProtocolType_system', 
-				'usedBy_ProtocolType_scope');
-var sourceBoxes= new Array('source_ProtocolType_proceduralStep', 
-				'source_protocol', 
-				'source_ProtocolType', 
-				'source_ProtocolType_id', 
-				'source_ProtocolType_system', 
-				'source_ProtocolType_scope');
 var instanceBoxes= new Array('instance_ProtocolType_proceduralStep', 
 				'instance_protocol');
 var diagramBoxes= new Array('diagram_ProtocolType_proceduralStep', 
@@ -302,12 +292,6 @@ var modelBoxes= new Array('model_ProtocolType_proceduralStep',
                      <tr>
                         <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
                      </tr>
-                     <tr>
-                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
-                     </tr>
-                     <tr>
-                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
-                     </tr>
                   </table>
                   <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
                </td>
@@ -526,21 +510,6 @@ var modelBoxes= new Array('model_ProtocolType_proceduralStep',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ProtocolType_proceduralStep" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ProtocolType_proceduralStep');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ProtocolType_proceduralStep" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"proceduralStep"</span><span class="tAN"> type=</span><span class="tAV">"md:ProcedureStepType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">/&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -739,25 +708,6 @@ var modelBoxes= new Array('model_ProtocolType_proceduralStep',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_protocol" type="image" src="img/btM.gif" value="-" onclick="switchState('source_protocol');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_protocol" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"protocol"</span><span class="tAN"> type=</span><span class="tAV">"ProtocolType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: A prescriptive procedure summary: A reusable container for information related to a prescriptive procedure. description: The protocol field provides a container for other related fields, such as proceduralStep and ResourceGroup.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -845,22 +795,6 @@ var modelBoxes= new Array('model_ProtocolType_proceduralStep',
                         </td>
                      </tr>
                      <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ProtocolType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ProtocolType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ProtocolType" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Elements </td>
-                                    <td><b><a href="eml-methods_xsd.html#ProcedureStepType_protocol" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml-methods.xsd')">ProcedureStepType/protocol</a></b>, <b><a href="eml_xsd.html#eml_protocol" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for eml.xsd')">eml/protocol</a></b>, <b><a href="eml-protocol_xsd.html#protocol" target="mainFrame" title="https://eml.ecoinformatics.org/protocol-2.2.0" onclick="updatePageTitle('Schema documentation for eml-protocol.xsd')">protocol</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_ProtocolType" type="image" src="img/btM.gif" value="-" onclick="switchState('model_ProtocolType');" class="control" /></div>
                         </td>
                         <td>
@@ -920,35 +854,6 @@ var modelBoxes= new Array('model_ProtocolType_proceduralStep',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ProtocolType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ProtocolType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ProtocolType" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"ProtocolType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">tooltip: A prescriptive procedure; a standardized method summary: A reusable container for information related to a prescriptive procedure. description: The ProtocolType container defines a number of reusable fields that can be referenced from multiple EML modules. It represents well-defined, prescriptive procedures that can be used to document other prescriptive procedures or descriptive procedures such as methods.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:choice</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:group</span><span class="tAN"> ref=</span><span class="tAV">"res:ResourceGroup"</span><span class="tEl">/&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"proceduralStep"</span><span class="tAN"> type=</span><span class="tAV">"md:ProcedureStepType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:group</span><span class="tAN"> ref=</span><span class="tAV">"res:ReferencesGroup"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"res:IDType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"system"</span><span class="tAN"> type=</span><span class="tAV">"res:SystemType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"scope"</span><span class="tAN"> type=</span><span class="tAV">"res:ScopeType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"document"</span><span class="tEl">/&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -995,37 +900,6 @@ var modelBoxes= new Array('model_ProtocolType_proceduralStep',
                            </div>
                         </td>
                      </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ProtocolType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ProtocolType_id');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ProtocolType_id" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-protocol_xsd.html#ProtocolType" target="mainFrame" title="https://eml.ecoinformatics.org/protocol-2.2.0" onclick="updatePageTitle('Schema documentation for eml-protocol.xsd')">ProtocolType</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ProtocolType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ProtocolType_id');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ProtocolType_id" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"res:IDType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </td>
@@ -1067,37 +941,6 @@ var modelBoxes= new Array('model_ProtocolType_proceduralStep',
                                  <tr>
                                     <td class="firstColumn" style="white-space: nowrap;">use</td>
                                     <td><b>optional</b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ProtocolType_system" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ProtocolType_system');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ProtocolType_system" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-protocol_xsd.html#ProtocolType" target="mainFrame" title="https://eml.ecoinformatics.org/protocol-2.2.0" onclick="updatePageTitle('Schema documentation for eml-protocol.xsd')">ProtocolType</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ProtocolType_system" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ProtocolType_system');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ProtocolType_system" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"system"</span><span class="tAN"> type=</span><span class="tAV">"res:SystemType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tEl">/&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -1174,37 +1017,6 @@ var modelBoxes= new Array('model_ProtocolType_proceduralStep',
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ProtocolType_scope" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ProtocolType_scope');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ProtocolType_scope" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="eml-protocol_xsd.html#ProtocolType" target="mainFrame" title="https://eml.ecoinformatics.org/protocol-2.2.0" onclick="updatePageTitle('Schema documentation for eml-protocol.xsd')">ProtocolType</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_ProtocolType_scope" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ProtocolType_scope');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_ProtocolType_scope" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"scope"</span><span class="tAN"> type=</span><span class="tAV">"res:ScopeType"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> default=</span><span class="tAV">"document"</span><span class="tEl">/&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
