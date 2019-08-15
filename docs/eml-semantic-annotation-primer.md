@@ -4,7 +4,7 @@
 
 ## Introduction
 
-A semantic annotation creates a relationship between some semantic metadata and a resource - in this case, a dataset, or some other element of a dataset (e.g., an attribute). What makes the annotation "semantic" is that the resource is linked to a well-defined term in a web-accessible ontology. In this way, semantic annotation provides access to precise definitions of concepts, and clarifies the relationships among concepts in a machine-readable way. Creating semantic annotations does require additional effort but payoffs by enhancing discovery and reuse of your data. 
+A semantic annotation creates a relationship between some semantic metadata and a resource - in this case, a dataset, or some other element of a dataset (e.g., an attribute). What makes the annotation "semantic" is that the resource is linked to a well-defined term in a web-accessible ontology. In this way, semantic annotation provides access to precise definitions of concepts, and clarifies the relationships among concepts in a machine-readable way. Creating semantic annotations does require additional effort but pays off by enhancing discovery and reuse of your data. 
 
 The main differences between semantic annotation and simply adding keywords are: 
 - semantic annotations can be read and interpreted by computers 
@@ -62,9 +62,9 @@ There are five locations within the EML 2.2.0 schema where annotations can be in
 
 - **top-level resource**: an `annotation` element is a child of the `dataset`, `literature`, `software`, or `protocol` elements
 - **entity-level**: an `annotation` element is a child of a dataset's entity (e.g., dataTable)
-- **attribute**: an annotation element is a child of a dataset entity's`attribute element
-- **eml/annotations**: a container for a group of `annotation`elements, using references
-- **eml/additionalMetadata**: `annotation elements that reference a main-body element by its `id` attribute
+- **attribute**: an annotation element is a child of a dataset entity's `attribute` element
+- **eml/annotations**: a container for a group of `annotation` elements using references
+- **eml/additionalMetadata**: annotation elements that reference a main-body element by its `id` attribute
 
 ### Annotation element structure
 
@@ -99,8 +99,7 @@ Annotations for top-level resources, entities, and attributes follow the same ge
 #### Example 1: Top-level resource annotation (dataset)
 
 
-In the following dataset annotation, the semantic statement can be read as "the dataset with the 
-id 'dataset-01' is about grassland biome(s)".
+In the following dataset annotation, the semantic statement can be read as "the dataset with the id 'dataset-01' is about grassland biome(s)".
 
 
 - the *subject* of the semantic statement is the `dataset` element containing  the `id` attribute value `"dataset-01"`
@@ -138,8 +137,7 @@ id 'dataset-01' is about grassland biome(s)".
 
 #### Example 2: Entity-level annotation
 
-In the following entity-level annotation, the semantic statement can be read as 
-"the entity with the id 'urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b' is about Mammalia".
+In the following entity-level annotation, the semantic statement can be read as  "the entity with the id 'urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b' is about Mammalia".
 
 - The *subject* of the semantic statement is the `otherEntity` with `id` attribute value, `"urn:uuid:9f0eb128-aca8-4053-9dda-8e7b2c43a81b"`. 
 - The annotation itself has 2 parts
@@ -172,8 +170,7 @@ In the following entity-level annotation, the semantic statement can be read as
 
 #### Example 3: Attribute annotation
 
-In the following attribute annotation, the semantic statement can be read as 
-"the attribute with the id 'att.4' contains measurements of type plant cover percentage"
+In the following attribute annotation, the semantic statement can be read as  "the attribute with the id 'att.4' contains measurements of type plant cover percentage"
 
 - The subject of the semantic statement is the `attribute` element with the `id` value "att.4". 
 - The annotation itself has 2 parts
@@ -203,23 +200,21 @@ Related FAQ: [Are all EML dataTable attributes measurements?](#FAQ-are-all-eml-a
 
 
 ### Annotations grouped under the EML `<annotations>` element
-Examples 1-3 above show annotations directly beneath the a parent element that becomes the *semantic subject*. However, all the annotations for an entire dataset can be grouped together in two ways.   
 
-When the annotations are grouped together,  each `annotation` must have its subject designated by a `references` attribute that points to the `id` attribute of the element being annotated (the *subject*). 
-That is, what is listed in the `references` attribute is the id of the *subject* of the semantic annotation. This means that _any_ EML element with an id can become the subject of an annotation. 
+Examples 1-3 above show annotations directly beneath the parent element, which is the *semantic subject*. However, all the annotations for an entire dataset can be grouped together instead of nested below a parent element. This can be accomplished in two ways/places: (1) in an `<annotations>` element ([example 4](#eml-example-4)), and (2) under `<additionalMetadata>` ([example 5](#eml-example-5)).
 
-- The *subject* of the semantic statement is implicitly the element containing the referenced `id`. 
-
-There are two places where annotations can be grouped. The first is the `<annotations>` element ([Example 4](#eml-example-4)); the second is under `<additionalMetadata>` below, [Example 5](#eml-example-5).
+When the annotations are grouped together, each `annotation` must have its subject designated by a `references` attribute that points to the `id` attribute of the element being annotated (the *subject*). That is, what is listed in the `references` attribute is the id of the *subject* of the semantic annotation. An implication of this is that that _any_ EML element with an id can become the subject of an annotation. 
 
 
 <a name="eml-example-4"></a>
 
 #### Example 4: Annotating with the `<annotations>` element
 
-All the annotations for a resource can be grouped together under an `annotations` element. If you use this construct, each annotation must have its subject specifically identified with a `references` attribute that points to the subject's id. The group of annotations must be placed TO DO< WHERE IN DOC? [[MPS: I don't know the answer to this. Is there an XML/EML expert in the house?!!!]]
+All the annotations for a resource can be grouped together under an `annotations` element. With this construct, each annotation must have its subject specifically identified with a `references` attribute that points to the subject's id. The group of annotations must be placed...
 
-Example 4 contains 3 different annotations. 
+<!-- TODO: WHERE IN DOC? [[MPS: I don't know the answer to this. Is there an XML/EML expert in the house?!!!]] -->
+
+This example 4 contains 3 different annotations: 
 
 In the first, the subject is the `dataTable` element with the `id` of "CDF-soil-table". Its annotation components are analogous to Example 2 above, again referencing terms in [IAO](#iao) and [ENVO](#envo). The semantic statement can be read as 
 
@@ -277,22 +272,21 @@ The ontologies used for eric.seabloom are
 </eml>
 ```
 
-**See [Example 4 as an RDF graph](#rdf-eml-example-4)**
+[example 4 as an RDF graph](#rdf-eml-example-4)
 
 ###  Annotations grouped under `<additionalMetadata>`
-Like the annotations grouped under `<annotations>`, they can also be grouped under `<additionalMetadata>`. If an `additionalMetadata` section holds a semantic annotation, it must have a `describes` element 
-(to hold the subject) with a `metadata` element containing at least one `annotation` element. 
+Like the annotations grouped under `<annotations>`, annotations can also be grouped under `<additionalMetadata>`. If an `additionalMetadata` section holds a semantic annotation, it must have a `describes` element (to hold the subject) with a `metadata` element containing at least one `annotation` element. 
 
 - The *subject* of the semantic statement has its id contained in the `describes` element. 
-- The annotation itself is within the `additionalMetadata` `metadata` section
+- The annotation itself is within the `additionalMetadata` `metadata` section.
 - Multiple `annotation` elements may be embedded in the same `metadata` element to assert multiple semantic statements about the same subject.
-- To annotate different subjects it's best to use multiple `additionalMetadata` sections, each with a single subject
+- To annotate different subjects, it is best to use multiple `additionalMetadata` sections, each with a single subject.
 
 <a name="eml-example-5"></a>
 
 #### Example 5: `additionalMetadata` element annotation
 
-Example 5 shows one of the same annotations as Example 4, but this time, it is contained in an `additionalMetadata` section.
+Example 5 shows one of the same annotations as presneted in Example 4, but here is contained in an `additionalMetadata` section.
 
 The semantic statements can be read as "'eric.seabloom', the creator (of the dataset), is a person".
 
