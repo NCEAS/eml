@@ -286,7 +286,7 @@ Like the annotations grouped under `<annotations>`, annotations can also be grou
 
 #### Example 5: `additionalMetadata` element annotation
 
-Example 5 shows one of the same annotations as presneted in Example 4, but here is contained in an `additionalMetadata` section.
+Example 5 shows one of the same annotations as presented in Example 4, but here is contained in an `additionalMetadata` section.
 
 The semantic statements can be read as "'eric.seabloom', the creator (of the dataset), is a person".
 
