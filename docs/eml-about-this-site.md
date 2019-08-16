@@ -23,7 +23,7 @@ markdown documentation and XSD files.
 ```sh
 $ ./bin/build_schema_documentation.sh
 $ cd docs
-$ R -e 'build_book.R'
+$ R -f 'build_book.R'
 $ cd ..
 $ git add dist
 $ git commit

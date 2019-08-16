@@ -51,7 +51,7 @@
 <style type="text/css">
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -63,11 +63,13 @@ code.sourceCode { white-space: pre-wrap; }
 a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
 pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
 pre.numberSource a.sourceLine::before
   { content: attr(data-line-number);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -269,7 +271,7 @@ Here are example commands for updating the site after you’ve changed the
 markdown documentation and XSD files.</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb36-1" data-line-number="1">$ <span class="ex">./bin/build_schema_documentation.sh</span></a>
 <a class="sourceLine" id="cb36-2" data-line-number="2">$ <span class="bu">cd</span> docs</a>
-<a class="sourceLine" id="cb36-3" data-line-number="3">$ <span class="ex">R</span> -e <span class="st">&#39;build_book.R&#39;</span></a>
+<a class="sourceLine" id="cb36-3" data-line-number="3">$ <span class="ex">R</span> -f <span class="st">&#39;build_book.R&#39;</span></a>
 <a class="sourceLine" id="cb36-4" data-line-number="4">$ <span class="bu">cd</span> ..</a>
 <a class="sourceLine" id="cb36-5" data-line-number="5">$ <span class="fu">git</span> add dist</a>
 <a class="sourceLine" id="cb36-6" data-line-number="6">$ <span class="fu">git</span> commit</a>
@@ -283,7 +285,7 @@ be deployed on the web by pushing the files to the <code>gh_pages</code> branch.
 <code>gh_pages</code> content to the web is currently handled
 by <a href="https://app.netlify.com/sites/ecometadata/overview">Netlify</a>
 which publishes the site to the custom domain
-<a href="https://eml.ecoinformatics.org">https://eml.ecoinformatics.org</a>. To deploy a new
+<a href="https://eml.ecoinformatics.org" class="uri">https://eml.ecoinformatics.org</a>. To deploy a new
 version of the site, first edit, build, and commit the site to the <code>master</code> branch
 as described in the previous section, and then deploy the site using the provided
 deployment shell script which updates the <code>gh_pages</code> branch for you:</p>
@@ -297,7 +299,7 @@ thereafter.</p>
 <h3> References</h3>
 <div id="refs" class="references">
 <div id="ref-xie2015">
-<p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.</p>
+<p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.name/knitr/" class="uri">http://yihui.name/knitr/</a>.</p>
 </div>
 </div>
             </section>
