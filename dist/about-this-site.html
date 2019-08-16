@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6 Data Structure Modules | Ecological Metadata Language (EML)</title>
-  <meta name="description" content="6 Data Structure Modules | Ecological Metadata Language (EML)" />
+  <title>14 About this site | Ecological Metadata Language (EML)</title>
+  <meta name="description" content="14 About this site | Ecological Metadata Language (EML)" />
   <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6 Data Structure Modules | Ecological Metadata Language (EML)" />
+  <meta property="og:title" content="14 About this site | Ecological Metadata Language (EML)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6 Data Structure Modules | Ecological Metadata Language (EML)" />
+  <meta name="twitter:title" content="14 About this site | Ecological Metadata Language (EML)" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="the-eml-module-and-resources.html">
-<link rel="next" href="discovery-and-interpretation-modules.html">
+<link rel="prev" href="release-notes.html">
+<link rel="next" href="references.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -248,206 +248,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-structure-modules" class="section level1">
-<h1><span class="header-section-number">6</span> Data Structure Modules</h1>
-<p>The following three modules are used to document the logical layout of a
-dataset. Many datasets are comprised of multiple entities (e.g. a series
-of tabular data files, or a set of GIS features, or a number of tables
-in a relational database). Each entity within a dataset may contain one
-or more attributes (e.g. multiple columns in a data file, multiple
-attributes of a GIS feature, or multiple columns of a database table).
-Lastly, there may be both simple or complex relationships among the
-entities within a dataset. The relationships, or the constraints that
-are to be enforced in the dataset, are described using the
-eml-constraint module. All entities share a common set of information
-(described using eml-entity), but some discipline specific entities have
-characteristics that are unique to that entity type. Therefore, the
-eml-entity module is extended for each of these types (dataTable,
-spatialRaster, spatialVector, etc...) which are described in the next
-section.</p>
-<div id="the-eml-entity-module---entity-level-information-within-datasets" class="section level2">
-<h2><span class="header-section-number">6.1</span> The eml-entity module - Entity level information within datasets</h2>
-<p>The eml-entity module defines the logical characteristics of each entity
-in the dataset. Entities are usually tables of data (eml-dataTable).
-Data tables may be ascii text files, relational database tables,
-spreadsheets or other type of tabular data with a fixed logical
-structure. Related to data tables are views (eml-view) and stored
-procedures (eml-storedProcedure). Views and stored procedures are
-produced by an RDBMS or related system. Other types of data such as:
-raster (eml-spatialRaster), vector (eml-spatialVector) or
-spatialReference image data are also data entities. An otherEntity
-element would be used to describe types of entities that are not
-described by any other entity type. Each of these entity type uses the eml-entity
-module elements as it’s base set of elements, but then extends the base
-with entity-specific elements. Note that the eml-spatialReference module
-is not an entity type, but is rather a common set of elements used to
-describe spatial reference systems in both eml-spatialRaster and
-eml-spatialVector. It is described here in relation to those two
-modules.</p>
-<p>The eml-entity module, like other modules, may be “referenced” via the
-<code>&lt;references&gt;</code> tag. This allows an entity document to be described once,
-and then used as a reference in other locations within the EML document
-via its ID.</p>
+<div id="about-this-site" class="section level1">
+<h1><span class="header-section-number">14</span> About this site</h1>
+<p>This site was build using Bookdown <span class="citation">(Xie <a href="#ref-xie2015">2015</a>)</span> from Yihui Xie. Thanks!</p>
+<div id="building-the-site" class="section level2">
+<h2><span class="header-section-number">14.1</span> Building the site</h2>
+<p>Source code for the book is maintained in the <code>docs</code> directory of the
+<a href="https://github.com/NCEAS/eml">EML repository</a> in markdown format.
+To edit the site, make changes to the markdown files and configuration files in
+<code>docs</code>, and then run the <code>build_book.R</code> script which builds the bookdown version
+of the site and places the files in the <code>dist</code> directory. The configuration file
+<code>_bookdown.yml</code> controls the inclusion and order of the chapters. Generally, there
+is one markdown file for each chapter, and so it should start with a single
+level 1 heading which will act as the chapter title in the table of contents.</p>
+<p>Note that if you have
+also made changes to the XSD schema files for EML, then you should also regenerate
+the schema documentation using Oxygen. This requires a trial or licensed version
+of Oxygen, and can be run using the shell script <code>bin/build_schema_documentation.sh</code>.
+Here are example commands for updating the site after you’ve changed the
+markdown documentation and XSD files.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb36-1" data-line-number="1">$ <span class="ex">./bin/build_schema_documentation.sh</span></a>
+<a class="sourceLine" id="cb36-2" data-line-number="2">$ <span class="bu">cd</span> docs</a>
+<a class="sourceLine" id="cb36-3" data-line-number="3">$ <span class="ex">R</span> -e <span class="st">&#39;build_book.R&#39;</span></a>
+<a class="sourceLine" id="cb36-4" data-line-number="4">$ <span class="bu">cd</span> ..</a>
+<a class="sourceLine" id="cb36-5" data-line-number="5">$ <span class="fu">git</span> add dist</a>
+<a class="sourceLine" id="cb36-6" data-line-number="6">$ <span class="fu">git</span> commit</a>
+<a class="sourceLine" id="cb36-7" data-line-number="7">$ <span class="fu">git</span> pull --rebase</a>
+<a class="sourceLine" id="cb36-8" data-line-number="8">$ <span class="fu">git</span> push</a></code></pre></div>
 </div>
-<div id="the-eml-attribute-module---attribute-level-information-within-dataset-entities" class="section level2">
-<h2><span class="header-section-number">6.2</span> The eml-attribute module - Attribute level information within dataset entities</h2>
-<p>The eml-attribute module describes all attributes (variables) in a data
-entity: dataTable, spatialRaster, spatialVector, storedProcedure, view
-or otherEntity. The description includes the name and definition of each
-attribute, its domain, definitions of coded values, and other pertinent
-information. Two structures exist in this module: 1. attribute is used
-to define a single attribute; 2. attributeList is used to define a list
-of attributes that go together in some logical way.</p>
-<p>The eml-attribute module, like other modules, may be &quot;referenced&quot; via
-the &lt;references&gt; tag. This allows an attribute document to be
-described once, and then used as a reference in other locations within
-the EML document via its ID.</p>
-<div id="philosophy-of-attribute-units" class="section level3">
-<h3><span class="header-section-number">6.2.1</span> Philosophy of Attribute Units</h3>
-<p>The concept of &quot;unit&quot; represents one of the most fundamental
-categories of metadata. The classic example of data entropy is the case
-in which a reported numeric value loses meaning due to lack of
-associated units. Much of Ecology is driven by measurement, and most
-measurements are inherently comparative. Good data description requires
-a representation of the basis for comparison, i.e., the unit. In
-modeling the attribute element, the authors of EML drew inspiration from
-the <a href="http://physics.nist.gov/cuu/Units/introduction.html">NIST Reference on Constants, Units, and
-Uncertainty</a>. This
-document defines a unit as &quot;a particular physical quantity, defined and
-adopted by convention, with which other particular quantities of the
-same kind are compared to express their value.&quot; The authors of the EML
-2.0 specification (hereafter &quot;the authors&quot;) decided to make the unit
-element required, wherever possible.</p>
-<p>Units may also be one of the most problematic categories of metadata.
-For instance, there are many candidate attributes that clearly have no
-units, such as named places and letter grades. There are other candidate
-attributes for which units are difficult to identify, despite some
-suspicion that they should exist (e.g. pH, dates, times). In still other
-cases, units may be meaningful, but apparently absent due to dimensional
-analysis (e.g. grams of carbon per gram of soil). The relationship
-between units and dimensions likewise is not completely clear.</p>
-<p>The authors decided to sharpen the model of attribute by nesting unit
-under measurementScale. Measurement Scale is a data typology, borrowed
-from Statistics, that was introduced in the 1940's. Under the adopted
-model, attributes are classified as nominal, ordinal, interval, and
-ratio. Though widely criticized, this classification is well-known and
-provides at least first-order utility in EML. For example, nesting unit
-under measurementScale allows EML to prevent its meaningless inclusion
-for categorical data -- an approach judged superior to making unit
-universally required or universally optional.</p>
-<p>The sharpening of the attribute model allowed the elimination of the
-unit type &quot;undefined&quot; from the standard unit dictionary (see
-eml-unitDictionary.xml). It seemed self-defeating to require the unit
-element exactly where appropriate, yet still allow its content to be
-undefined. An attribute that requires a unit definition is malformed
-until one is provided. The unit type &quot;dimensionless&quot; is preserved,
-however. In EML 2.0, it is synonymous with &quot;unitless&quot; and represents
-the case in which units cannot be associated with an attribute for some
-reason, despite the proper classification of that attribute as interval
-or ratio. Dimensionless may itself be an anomaly arising from the
-limitations of the adopted measurement scale typology.</p>
-<p>Closely related to the concept of unit is the concept of attribute
-domain. The authors decided that a well-formed description of an
-attribute must include some indication of the set of possible values for
-that attribute. The set of possible values is useful, perhaps necessary,
-for interpreting any particular observed value. While universally
-required, attribute domain has different forms, depending on the
-associated measurement scale.</p>
-<p>The element storageType has an obvious relationship to domain. It gives
-some indication of the range of possible values of an attribute, and
-also gives some (potentially critical) operability information about the
-way the attribute is represented or construed in the local storage
-system. The storageType element seems to fall in a gray area between the
-logical and physical aspects of stored data. Neither comfortable with
-eliminating it nor with making it required, the authors left it
-available but optional under attribute. In addition, it is repeatable so
-that different storage types can be provided for various systems (e.g.,
-different databases might use different types for columns, even though
-the domain of the attribute is the same regardless of which database is
-used).</p>
-<p>Attributes representing dates, times, or combinations thereof (hereafter
-&quot;dateTime&quot;) were the most difficult to model in EML. Is dateTime of
-type interval or ordinal? Does it have units or not? Strong cases can be
-made on each side of the issue. The confusion may reflect the
-limitations of the measurement scale typology. The final resolution of
-the dateTime model is probably somewhat arbitrary. There was clearly a
-need, however, to allow for the interoperability of dateTime formats.
-EML 2.0 tries to provide an unambiguous mechanism for describing the
-format of dateTime values by providing a separate category for date and
-time values. This &quot;dateTime&quot; measurement scale allows users to
-explicitly label attributes that contain Gregorian date and time values,
-and allows them to provide the information needed to parse these values
-into their appropriate components (e.g., days, months, years)./</p>
-</div>
-</div>
-<div id="the-eml-constraint-module---relationships-among-and-within-dataset-entities" class="section level2">
-<h2><span class="header-section-number">6.3</span> The eml-constraint module - Relationships among and within dataset entities</h2>
-<p>The eml-constraint schema defines the integrity constraints between
-entities (e.g., data tables) as they would be maintained in a relational
-management system. These constraints include primary key constraints,
-foreign key constraints, unique key constraints, check constraints, and
-not null constraints, among potential others.</p>
-</div>
-<div id="the-eml-datatable-module---logical-information-about-data-table-entities" class="section level2">
-<h2><span class="header-section-number">6.4</span> The eml-dataTable module - Logical information about data table entities</h2>
-<p>The eml-dataTable module is used to describe the logical characteristics
-of each tabular set of information in a dataset. A series of
-comma-separated text files may be considered a dataset, and each file
-would subsequently be considered a dataTable entity within the dataset.
-Since the eml-dataTable module extends the eml-entity module, it uses
-all of the common entity elements to describe the table, along with a
-few elements specific to just data table entities. The eml-dataTable
-module allows for the description of each attribute
-(column/field/variable) within the data table through the use of the
-eml-attribute module. Likewise, there are fields used to describe the
-physical distribution of the data table, its overall coverage, the
-methodology used in creating the data, and other logical structure
-information such as its orientation, case sensitivity, etc.</p>
-</div>
-<div id="the-eml-spatialraster-module---logical-information-about-regularly-gridded-geospatial-image-data" class="section level2">
-<h2><span class="header-section-number">6.5</span> The eml-spatialRaster module - Logical information about regularly gridded geospatial image data</h2>
-<p>The eml-spatialRaster module allows for the description of entities
-composed of rectangular grids of data values that are usually
-georeferenced to a portion of the earth's surface. Specific attributes
-of a spatial raster can be documented here including the spatial
-organization of the raster cells, the cell data values, and if derived
-via imaging sensors, characteristics about the image and its individual
-bands.</p>
-</div>
-<div id="the-eml-spatialvector-module---logical-information-about-non-gridded-geospatial-image-data" class="section level2">
-<h2><span class="header-section-number">6.6</span> The eml-spatialVector module - Logical information about non-gridded geospatial image data</h2>
-<p>The eml-spatialVector module allows for the description of spatial
-objects in a GIS system that are not defined in a regularly gridded
-pattern. These geometries include points and vectors and the
-relationships among them. Specific attributes of a spatial vector can be
-documented here including the vector's geometry type, count and
-topology level.</p>
-</div>
-<div id="schema-for-validating-spatial-referencing-descriptions" class="section level2">
-<h2><span class="header-section-number">6.7</span> Schema for validating spatial referencing descriptions</h2>
-<p>This module defines both projected and unprojected coordinate systems
-for referencing the spatial coordinates of a dataset to the earth. The
-schema is based on that used by Environmental Systems Research Inc
-(ESRI) for its .prj file format. EML provides a library of pre-defined
-coordinate systems that may be referred to by name in the
-horizCoordSysName element. A custom projection may be defined using this
-schema for any projection that does not appear in this dictionary.</p>
-</div>
-<div id="the-eml-storedprocedure-module---data-tables-resulting-from-procedures-stored-in-a-database" class="section level2">
-<h2><span class="header-section-number">6.8</span> The eml-storedProcedure module - Data tables resulting from procedures stored in a database</h2>
-<p>The storedProcedure module is meant to capture information on procedures
-that produce data output in the form of a data table. In an RDBMS one
-can code complex queries and transactions into stored procedures and
-then invoke them directly from front-end applications. It allows the
-optional description of any parameters that are expected to be passed to
-the procedure when it is called.</p>
-</div>
-<div id="the-eml-view-module---data-tables-resulting-from-a-database-query" class="section level2">
-<h2><span class="header-section-number">6.9</span> The eml-view module - Data tables resulting from a database query</h2>
-<p>The eml-view module describes a view from a database management system.
-A view is a query statement that is stored as a database object and
-executed each time the view is called.</p>
+<div id="deploying-the-site" class="section level2">
+<h2><span class="header-section-number">14.2</span> Deploying the site</h2>
+<p>Once the changes are committed and pushed in the dist directory, it is ready to
+be deployed on the web by pushing the files to the <code>gh_pages</code> branch. Publishing
+<code>gh_pages</code> content to the web is currently handled
+by <a href="https://app.netlify.com/sites/ecometadata/overview">Netlify</a>
+which publishes the site to the custom domain
+<a href="https://eml.ecoinformatics.org">https://eml.ecoinformatics.org</a>. To deploy a new
+version of the site, first edit, build, and commit the site to the <code>master</code> branch
+as described in the previous section, and then deploy the site using the provided
+deployment shell script which updates the <code>gh_pages</code> branch for you:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb37-1" data-line-number="1">$ <span class="ex">./bin/deploy_site.sh</span></a></code></pre></div>
+<p>This will copy the currently commited files in the <code>dist</code> directory to the
+<code>gh_pages</code> branch, which will be picked up and deployed by Netlify shortly
+thereafter.</p>
 
+</div>
+</div>
+<h3> References</h3>
+<div id="refs" class="references">
+<div id="ref-xie2015">
+<p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.</p>
 </div>
 </div>
             </section>
@@ -455,8 +305,8 @@ executed each time the view is called.</p>
           </div>
         </div>
       </div>
-<a href="the-eml-module-and-resources.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="discovery-and-interpretation-modules.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="release-notes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
