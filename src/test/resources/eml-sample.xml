@@ -62,6 +62,36 @@
     <keyword>species-area</keyword>
     <keyword>species richness</keyword>
   </keywordSet>
+  <coverage scope="document">
+		<geographicCoverage scope="document">
+			<geographicDescription>California, USA</geographicDescription>
+			<boundingCoordinates>
+				<westBoundingCoordinate>-122.44</westBoundingCoordinate>
+				<eastBoundingCoordinate>-117.15</eastBoundingCoordinate>
+				<northBoundingCoordinate>37.38</northBoundingCoordinate>
+				<southBoundingCoordinate>30.00</southBoundingCoordinate>
+			</boundingCoordinates>
+		</geographicCoverage>
+	  <temporalCoverage scope="document">
+			<rangeOfDates>
+				<beginDate>
+					<calendarDate>1957-08-13</calendarDate>
+				</beginDate>
+				<endDate>
+					<calendarDate>2006-02-18</calendarDate>
+				</endDate>
+			</rangeOfDates>
+		</temporalCoverage>
+		<taxonomicCoverage scope="document">
+			<taxonomicClassification id="taxon_MAPY">
+				<taxonRankName>species</taxonRankName>
+				<taxonRankValue>Macrocystis pyrifera</taxonRankValue>
+				<commonName>Giant Kelp</commonName>
+				<taxonId provider="https://itis.gov">11274</taxonId>
+				<taxonId provider="https://www.ncbi.nlm.nih.gov/taxonomy">35122</taxonId>
+			</taxonomicClassification>
+		</taxonomicCoverage>
+	</coverage>
   <annotation>
       <propertyURI label="Subject">http://purl.org/dc/elements/1.1/subject</propertyURI>
       <valueURI label="grassland biome">http://purl.obolibrary.org/obo/ENVO_01000177</valueURI>
