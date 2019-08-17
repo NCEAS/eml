@@ -5,19 +5,19 @@ should also refer to the affected sections in the normative schema documents
 for complete usage information and examples.
 
 EML 2.2 is backward compatible, i.e., EML 2.0 and 2.1 documents could be
-relabled as EML 2.2 without violating the schema. However, some predefined values, particularly units, are deprecated in favor of new values to fix mispellings or inconsistencies. EML authors are encouraged to migrate away from deprecated values.
+relabled as EML 2.2 without violating the schema. However, some predefined values, 
+particularly units, are deprecated in favor of new values to fix mispellings or 
+inconsistencies. EML authors are encouraged to migrate away from deprecated values.
 
-**EML MAINTAINERS: Is this in the works??????**  
-> Existing EML 2.1-series documents can be converted to EML 2.2.0 using the XSL
-> stylesheet that accompanies this release, as described in section 2 below.
+> Existing EML 2.1.1 documents can be converted to EML 2.2.0 using the XSL
+> stylesheet that accompanies this release.
 
-See the 'Readme' that accompanies the distribution for a complete list of the
+See the 'README.md' that accompanies the distribution for a complete list of the
 bugs addressed, and for information of interest to developers.
 
+## Unit Additions and Changes
 
-**Q:** Unit Additions and Changes
-
-**A:** Many units were added for EML 2.2.0, including units supporting
+Many units were added for EML 2.2.0, including units supporting
 oceanography, climatology, forestry and limnology. The following unit types from
 the unit dictionary have been renamed to better reflect their dimensionality:
 
@@ -29,9 +29,9 @@ Dozens of units are now deprecated in favor other units to address issues such
 as naming consistency.  Use the "deprecatedInFavorOf" attribute in
 eml-unitDictionary.xml to identify deprecated units.
 
-**Q:** BibTeX Support
+## BibTeX Support
 
-**A:** CitationType elements can use the new &lt;bibtex&gt; element as an
+CitationType elements can use the new &lt;bibtex&gt; element as an
 alternative to encoding citations in the EML XML structures. BibTeX entries
 generally play well inside of XML structures, but XML escaping is still needed
 for special characters, so consider embedding BibTeX entries in CDATA blocks if
@@ -52,9 +52,9 @@ XML escaping becomes cumbersome.
 ```
 
 
-**Q:** Citation Lists
+## Citation Lists
 
-**A:** EML 2.2.0 includes a new &lt;literatureCited&gt; element as a
+EML 2.2.0 includes a new &lt;literatureCited&gt; element as a
 CitationListType that represents one or more citations. These citations can be a
 series of &lt;citation&gt; elements or a &lt;bibtex&gt; element with a list of
 citations.
@@ -126,9 +126,9 @@ Example of &lt;literatureCited&gt; element in EML 2.2.0:
 </literatureCited>
 ```
 
-**Q:** Markdown Support
+## Markdown Support
 
-**A:** TextType elements can include GitHub Flavored Markdown using the new
+TextType elements can include GitHub Flavored Markdown using the new
 &lt;markdown&gt; element.  See the description for the &lt;markdown&gt; element
 in [eml-text.xsd](https://github.com/NCEAS/eml/blob/master/xsd/eml-text.xsd) for
 more details on embedded images, inline citations, and formatting considerations
@@ -162,9 +162,9 @@ Example of markdown in EML 2.2.0:
 </markdown>
 ```
 
-**Q:** Usage Citations
+## Usage Citations
 
-**A:** EML 2.2.0 documents can include a non-comprehensive list of citations in
+EML 2.2.0 documents can include a non-comprehensive list of citations in
 which the data were explicitly used via a &lt;usageCitation&gt; element, which
 is a CitationType.
 
@@ -193,11 +193,11 @@ Example usageCitation element:
 </dataset>
 ```
 
-**Q:** Reference Publications
+## Reference Publications
 
-**A:** For cases when a research paper illustrates the usage of a dataset, the
+For cases when a research paper or data paper illustrates the usage of a dataset, the
 new &lt;referencePublication&gt; element can be used to associate the dataset
-with the paper.
+with the publication.
 
 ```xml
 <dataset>
@@ -218,9 +218,9 @@ with the paper.
 </dataset>
 ```
 
-**Q:** Data Paper Support
+## Data Paper Support
 
-**A:** ESA and other societies are moving towards the publication of data papers
+ESA and other societies are moving towards the publication of data papers
 that include more complete narratives about a data set and its importance and
 use. To support data papers, EML 2.2.0 includes new optional fields for
 Introduction, Getting Started, and Acknowledgements, as well as markdown and
@@ -229,10 +229,11 @@ citation-related elements described elsewhere in this document.
 See the [example EML document for a data
 paper](https://github.com/NCEAS/eml/blob/master/src/test/resources/eml-data-paper.xml).
 
-**Q:** Dataset license
+## Dataset license
 
-**A:** Datasets can now include a &lt;licensed&gt; element along with a URL to a
-license.
+Datasets can now include a &lt;licensed&gt; element along with a URL to a
+license.  The URLs are best provided using the SPDX license vocabulary for 
+consistency, but other license URIs are allowed.
 
 ```xml
 <dataset>
@@ -246,11 +247,14 @@ license.
 </dataset>
 ```
 
-**Q:** Structured Funding Information
+## Structured Funding Information
 
-**A:** EML 2.2.0 sees the addition of an &lt;award&gt; element to support
+EML 2.2.0 sees the addition of an `<award>` element to support
 structured funding information for a research project. This is used as an
-alternative or in addition to the &lt;funding&gt; element which is a text type.
+alternative or in addition to the &lt;funding&gt; element which is a text type. 
+Generally a textual description of funding sources would go into `<funding>`, while
+structured names and identifiers for the funding agency and award would go into the
+`<award>` element.
 
 ```xml
 <project>
@@ -266,31 +270,30 @@ alternative or in addition to the &lt;funding&gt; element which is a text type.
 </project>
 ```
 
-**Q:** "unkown" deprecated as &lt;maintenanceUpdateFrequency&gt; element value.
+## "unkown" deprecated as <maintenanceUpdateFrequency> element value
 
-**A:** Some EML documents have specified "unkown" instead of "unknown" for the
-maintenanceUpdateFrequency because there is a typo in the list of allowed values
-in eml-dataset.xsd. For EML 2.2.0, a value of "unknown" is added to the list,
-while the the original value of "unkown" is kept in the enumeration for
+ome EML documents have specified "unkown" instead of "unknown" for the
+`<maintenanceUpdateFrequency>` because there is a typo in the list of allowed values
+in eml-dataset.xsd. For EML 2.2.0, a value of `unknown` is added to the list,
+while the the original value of `unkown` is kept in the enumeration for
 backwards compatibility with a note that its use is deprecated.
 
-**Q:** Accommodating Semantic Metadata
+## Supporting Semantic Metadata
 
 **A:** 
-See [EML Semantic Annotation Primer](eml-semantic-annotations-primer.md)
-
-
-EML 2.2.0 supports entering terms from an ontology via &lt;annotation&gt;
-elements to further describe items such as data attributes, entity groups, and
-resource groups.  Annotations are allowed in five locations in the EML document:
+See the [EML Semantic Annotation Primer](eml-semantic-annotations-primer.html) 
+for a thorough overview. In brief, EML 2.2.0 supports entering terms from an 
+ontology via `<annotation>` elements to precisely describe items such as data 
+attributes/variables, datasets, and people.  Annotations are allowed in five 
+locations in the EML document:
 
 * in `attribute`, `entity`, and `dataset` (or other resource) elements
 * in an `/eml/annotations` root element
 * in `/eml/additionalMetadata`
 
 
-When the annotation is embedded in a containing EML attribute element, the
-annotation's subject is that attribute:
+When the annotation is embedded in a containing EML `attribute` element, the
+annotation's subject is that `attribute`:
 
 ```xml
 <attribute id="att.12">
@@ -335,9 +338,9 @@ the id listed within the associated &lt;describes&gt; element:
 </additionalMetadata>
 ```
 
-**Q:** Support for ids in &lt;taxonomicClassification&gt; element
+## Support for ids in taxonomicClassification
 
-**A:** &lt;taxonomicClassification&gt; elements can now include a reference to
+`taxonomicClassification` elements can now include a reference to
 external identifiers, e.g., to a code from a system like ITIS or WoRMS.
 
 ```xml
@@ -350,34 +353,24 @@ external identifiers, e.g., to a code from a system like ITIS or WoRMS.
 </taxonomicClassification>
 ```
 
-**Q:** How can I convert from earlier versions of EML?
+## How can I convert from earlier versions of EML?
 
-**A:** An XSL stylesheet is provided with the EML Utilities to convert valid EML
-2.1-series documents to EML 2.2.0 (see
-<http://knb.ecoinformatics.org/software/eml/>). The stylesheet performs basic
-tasks to create a template EML 2.2.0 document. For more information, see the
-Utilities documentation.
+An XSL stylesheet is provided with the EML Utilities to convert valid EML
+2.1-series documents to EML 2.2.0 (see <http://knb.ecoinformatics.org/software/eml/>). 
+The stylesheet performs basic tasks to create a template EML 2.2.0 document. 
+For more information, see the Utilities documentation.
 
-**Q:** Validity of new EML 2.2.0 documents
+## Validity of new EML 2.2.0 documents
 
-**A:** Because of the flexibility allowed in EML, the stylesheet may encounter
-EML 2.1.0/1 structures that cannot be transformed or that may result in invalid
-EML 2.2.0 after processing. For example, by design &lt;additionalMetadata&gt;
-sections are parsed laxly, and so it is possible for their content in
-EML-2.1.0/1 to contain &lt;access&gt; trees which are invalid. Document authors
-are advised to check the validity of their new EML 2.2.0 after transformation.
 EML instance documents can be validated in these ways:
 
-1. With the [online EML Parser](http://knb.ecoinformatics.org/emlparser/ ). The
-   online parser will validate all versions of EML.
-
-2. Using the Parser that comes with EML. To execute it, change into the 'lib'
-   directory of the EML release and run the 'runEMLParser' script passing your
-   EML instance file as a parameter. The script performs two actions: it checks
+1. Using the command-line validator that comes with EML. To execute it, from the top-level
+   directory of the EML release, run the `./bin/validate.sh` script passing your
+   EML document filepath as a parameter. The script performs two actions: it checks
    the validity of references and id attributes, and it validates the document
-   against the EML 2.2 schema. The EML parser included with the distribution is
-   capable of checking only EML 2.2.0 documents, and *cannot* be used to
-   validate earlier versions (e.g., EML 2.1.1).
+   against the EML 2.2 schema.
+   
+2. Within R, use the `EML::validate()` function.
 
 3. If you are planning to contribute your EML 2.2.0 document to a Metacat
    repository, note that the Metacat servlet checks all versions of incoming EML
