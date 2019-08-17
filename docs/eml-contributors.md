@@ -25,17 +25,17 @@ requests, and will be reviewed and merged by an EML project member.
 
 ## Current contributors
 
-Name | Organization | Email
-----|---------------|------
-Matthew Jones | NCEAS, UCSB | jones@nceas.ucsb.edu |https://orcid.org/0000-0003-0077-4738
-Margaret O'Brien | EDI, UCSB | mob@msi.ucsb.edu | https://orcid.org/0000-0002-1693-8322
-Bryce Mecum | NCEAS, UCSB | mecum@nceas.ucsb.edu | https://orcid.org/0000-0002-0381-3766
-Carl Boettiger |Berkeley | cboettig@berkeley.edu | https://orcid.org/0000-0002-1642-628X
-Mark Schildhauer | NCEAS, UCSB | schild@nceas.ucsb.edu | https://orcid.org/0000-0003-0632-7576
-Mitchell Maier | NCEAS, UCSB | mmaier@ucsb.edu | https://orcid.org/0000-0001-6955-0535
-Timothy Whiteaker | | whiteaker@utexas.edu | https://orcid.org/0000-0002-1940-4158
-Stevan Earl | LTER, ASU | stevan.earl@asu.edu | https://orcid.org/0000-0002-4465-452X
-Steven Chong | NCEAS, UCSB | chong@nceas.ucsb.edu | https://orcid.org/0000-0003-1264-1166
+Name | Organization | Email | ORCID
+----|---------------|-------|-------
+Matthew Jones | NCEAS, UCSB | jones@nceas.ucsb.edu | [0000-0003-0077-4738](https://orcid.org/0000-0003-0077-4738)
+Margaret O'Brien | EDI, UCSB | mob@msi.ucsb.edu | [0000-0002-1693-8322](https://orcid.org/0000-0002-1693-8322)
+Bryce Mecum | NCEAS, UCSB | mecum@nceas.ucsb.edu | [0000-0002-0381-3766](https://orcid.org/0000-0002-0381-3766)
+Carl Boettiger |Berkeley | cboettig@berkeley.edu | [0000-0002-1642-628X](https://orcid.org/0000-0002-1642-628X)
+Mark Schildhauer | NCEAS, UCSB | schild@nceas.ucsb.edu | [0000-0003-0632-7576](https://orcid.org/0000-0003-0632-7576)
+Mitchell Maier | NCEAS, UCSB | mmaier@ucsb.edu | [0000-0001-6955-0535](https://orcid.org/0000-0001-6955-0535)
+Timothy Whiteaker | | whiteaker@utexas.edu | [0000-0002-1940-4158](https://orcid.org/0000-0002-1940-4158)
+Stevan Earl | LTER, ASU | stevan.earl@asu.edu | [0000-0002-4465-452X](https://orcid.org/0000-0002-4465-452X)
+Steven Chong | NCEAS, UCSB | chong@nceas.ucsb.edu | [0000-0003-1264-1166](https://orcid.org/0000-0003-1264-1166)
 
 ## Past contributors
 
