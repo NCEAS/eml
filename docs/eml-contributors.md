@@ -27,23 +27,22 @@ requests, and will be reviewed and merged by an EML project member.
 
 Name | Organization | Email
 ----|---------------|------
-Matthew Jones | NCEAS, UCSB | jones@nceas.ucsb.edu
-Mark Schildhauer | NCEAS, UCSB | schild@nceas.ucsb.edu
-Chris Jones | NCEAS, UCSB | cjones@nceas.ucsb.edu
-Corinna Gries | EDI, UW | gries@ecoinformatics.org
-Margaret O'Brien | EDI, UCSB | mob@msi.ucsb.edu
-Bryce Mecum | NCEAS, UCSB | mecum@nceas.ucsb.edu
-Carl Boettiger |Berkeley | cboettig@berkeley.edu
-Mitchell Maier | NCEAS, UCSB |
-Timothy Whiteaker | | whiteaker@utexas.edu
-Stevan Earl | LTER, ASU | stevan.earl@asu.edu
-Steven Chong | NCEAS, UCSB | chong@nceas.ucsb.edu
+Matthew Jones | NCEAS, UCSB | jones@nceas.ucsb.edu |https://orcid.org/0000-0003-0077-4738
+Margaret O'Brien | EDI, UCSB | mob@msi.ucsb.edu | https://orcid.org/0000-0002-1693-8322
+Bryce Mecum | NCEAS, UCSB | mecum@nceas.ucsb.edu | https://orcid.org/0000-0002-0381-3766
+Carl Boettiger |Berkeley | cboettig@berkeley.edu | https://orcid.org/0000-0002-1642-628X
+Mark Schildhauer | NCEAS, UCSB | schild@nceas.ucsb.edu | https://orcid.org/0000-0003-0632-7576
+Mitchell Maier | NCEAS, UCSB | mmaier@ucsb.edu | https://orcid.org/0000-0001-6955-0535
+Timothy Whiteaker | | whiteaker@utexas.edu | https://orcid.org/0000-0002-1940-4158
+Stevan Earl | LTER, ASU | stevan.earl@asu.edu | https://orcid.org/0000-0002-4465-452X
+Steven Chong | NCEAS, UCSB | chong@nceas.ucsb.edu | https://orcid.org/0000-0003-1264-1166
 
 ## Past contributors
 
 Name | Organization | Email
 ----|---------------|------
 Chad Berkley | NCEAS, UCSB | berkley@nceas.ucsb.edu
+Chris Jones | NCEAS, UCSB | cjones@nceas.ucsb.edu
 Jivka Bojilova | NCEAS, UCSB | bojilova@nceas.ucsb.edu
 James Brunt | LTER, UNM | brunt@ecoinformatics.org
 David Blankman | LTER-Israel, Ma'arg | blankman@ecoinformatics.org
@@ -55,6 +54,7 @@ John Harris | NCEAS, UCSB | harris@nceas.ucsb.edu
 Scott Chapal | Jones Ecological Research Center | chapal@ecoinformatics.org
 Tim Bergsma | LTER KBS, MSU | bergsma@ecoinformatics.org
 Ken Ramsey | LTER JRN, NMSU | ramsey@ecoinformatics.org
+Corinna Gries | EDI, UW | gries@ecoinformatics.org
 Saurabh Garg | NCEAS, UCSB | sgarg@ecoinformatics.org
 Mark Servilla | EDI, UNM | servilla@ecoinformatics.org
 

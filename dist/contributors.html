@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2019-08-15" />
+<meta name="date" content="2019-08-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,7 +51,7 @@
 <style type="text/css">
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -63,13 +63,11 @@ code.sourceCode { white-space: pre-wrap; }
 a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
 pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
+  { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
   { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -286,57 +284,47 @@ requests, and will be reviewed and merged by an EML project member.</p>
 <tr class="odd">
 <td>Matthew Jones</td>
 <td>NCEAS, UCSB</td>
-<td><a href="mailto:jones@nceas.ucsb.edu">jones@nceas.ucsb.edu</a></td>
+<td><a href="mailto:jones@nceas.ucsb.edu" class="email">jones@nceas.ucsb.edu</a></td>
 </tr>
 <tr class="even">
-<td>Mark Schildhauer</td>
-<td>NCEAS, UCSB</td>
-<td><a href="mailto:schild@nceas.ucsb.edu">schild@nceas.ucsb.edu</a></td>
-</tr>
-<tr class="odd">
-<td>Chris Jones</td>
-<td>NCEAS, UCSB</td>
-<td><a href="mailto:cjones@nceas.ucsb.edu">cjones@nceas.ucsb.edu</a></td>
-</tr>
-<tr class="even">
-<td>Corinna Gries</td>
-<td>EDI, UW</td>
-<td><a href="mailto:gries@ecoinformatics.org">gries@ecoinformatics.org</a></td>
-</tr>
-<tr class="odd">
 <td>Margaret O’Brien</td>
 <td>EDI, UCSB</td>
-<td><a href="mailto:mob@msi.ucsb.edu">mob@msi.ucsb.edu</a></td>
-</tr>
-<tr class="even">
-<td>Bryce Mecum</td>
-<td>NCEAS, UCSB</td>
-<td><a href="mailto:mecum@nceas.ucsb.edu">mecum@nceas.ucsb.edu</a></td>
+<td><a href="mailto:mob@msi.ucsb.edu" class="email">mob@msi.ucsb.edu</a></td>
 </tr>
 <tr class="odd">
+<td>Bryce Mecum</td>
+<td>NCEAS, UCSB</td>
+<td><a href="mailto:mecum@nceas.ucsb.edu" class="email">mecum@nceas.ucsb.edu</a></td>
+</tr>
+<tr class="even">
 <td>Carl Boettiger</td>
 <td>Berkeley</td>
-<td><a href="mailto:cboettig@berkeley.edu">cboettig@berkeley.edu</a></td>
+<td><a href="mailto:cboettig@berkeley.edu" class="email">cboettig@berkeley.edu</a></td>
+</tr>
+<tr class="odd">
+<td>Mark Schildhauer</td>
+<td>NCEAS, UCSB</td>
+<td><a href="mailto:schild@nceas.ucsb.edu" class="email">schild@nceas.ucsb.edu</a></td>
 </tr>
 <tr class="even">
 <td>Mitchell Maier</td>
 <td>NCEAS, UCSB</td>
-<td></td>
+<td><a href="mailto:mmaier@ucsb.edu" class="email">mmaier@ucsb.edu</a></td>
 </tr>
 <tr class="odd">
 <td>Timothy Whiteaker</td>
 <td></td>
-<td><a href="mailto:whiteaker@utexas.edu">whiteaker@utexas.edu</a></td>
+<td><a href="mailto:whiteaker@utexas.edu" class="email">whiteaker@utexas.edu</a></td>
 </tr>
 <tr class="even">
 <td>Stevan Earl</td>
 <td>LTER, ASU</td>
-<td><a href="mailto:stevan.earl@asu.edu">stevan.earl@asu.edu</a></td>
+<td><a href="mailto:stevan.earl@asu.edu" class="email">stevan.earl@asu.edu</a></td>
 </tr>
 <tr class="odd">
 <td>Steven Chong</td>
 <td>NCEAS, UCSB</td>
-<td><a href="mailto:chong@nceas.ucsb.edu">chong@nceas.ucsb.edu</a></td>
+<td><a href="mailto:chong@nceas.ucsb.edu" class="email">chong@nceas.ucsb.edu</a></td>
 </tr>
 </tbody>
 </table>
@@ -355,72 +343,82 @@ requests, and will be reviewed and merged by an EML project member.</p>
 <tr class="odd">
 <td>Chad Berkley</td>
 <td>NCEAS, UCSB</td>
-<td><a href="mailto:berkley@nceas.ucsb.edu">berkley@nceas.ucsb.edu</a></td>
+<td><a href="mailto:berkley@nceas.ucsb.edu" class="email">berkley@nceas.ucsb.edu</a></td>
 </tr>
 <tr class="even">
+<td>Chris Jones</td>
+<td>NCEAS, UCSB</td>
+<td><a href="mailto:cjones@nceas.ucsb.edu" class="email">cjones@nceas.ucsb.edu</a></td>
+</tr>
+<tr class="odd">
 <td>Jivka Bojilova</td>
 <td>NCEAS, UCSB</td>
-<td><a href="mailto:bojilova@nceas.ucsb.edu">bojilova@nceas.ucsb.edu</a></td>
+<td><a href="mailto:bojilova@nceas.ucsb.edu" class="email">bojilova@nceas.ucsb.edu</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>James Brunt</td>
 <td>LTER, UNM</td>
-<td><a href="mailto:brunt@ecoinformatics.org">brunt@ecoinformatics.org</a></td>
+<td><a href="mailto:brunt@ecoinformatics.org" class="email">brunt@ecoinformatics.org</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>David Blankman</td>
 <td>LTER-Israel, Ma’arg</td>
-<td><a href="mailto:blankman@ecoinformatics.org">blankman@ecoinformatics.org</a></td>
+<td><a href="mailto:blankman@ecoinformatics.org" class="email">blankman@ecoinformatics.org</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Owen Eddins</td>
 <td>LTER LNO, UNM</td>
-<td><a href="mailto:oeddins@lternet.edu">oeddins@lternet.edu</a></td>
+<td><a href="mailto:oeddins@lternet.edu" class="email">oeddins@lternet.edu</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Daniel Higgens</td>
 <td>NCEAS, UCSB</td>
-<td><a href="mailto:higgins@nceas.ucsb.edu">higgins@nceas.ucsb.edu</a></td>
+<td><a href="mailto:higgins@nceas.ucsb.edu" class="email">higgins@nceas.ucsb.edu</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Peter McCartney</td>
 <td>LTER CAP, ASU</td>
-<td><a href="mailto:mccartney@ecoinformatics.org">mccartney@ecoinformatics.org</a></td>
+<td><a href="mailto:mccartney@ecoinformatics.org" class="email">mccartney@ecoinformatics.org</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Matthew Brooke</td>
 <td>NCEAS, UCSB</td>
-<td><a href="mailto:brooke@ecoinformatics.org">brooke@ecoinformatics.org</a></td>
+<td><a href="mailto:brooke@ecoinformatics.org" class="email">brooke@ecoinformatics.org</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>John Harris</td>
 <td>NCEAS, UCSB</td>
-<td><a href="mailto:harris@nceas.ucsb.edu">harris@nceas.ucsb.edu</a></td>
-</tr>
-<tr class="even">
-<td>Scott Chapal</td>
-<td>Jones Ecological Research Center</td>
-<td><a href="mailto:chapal@ecoinformatics.org">chapal@ecoinformatics.org</a></td>
+<td><a href="mailto:harris@nceas.ucsb.edu" class="email">harris@nceas.ucsb.edu</a></td>
 </tr>
 <tr class="odd">
-<td>Tim Bergsma</td>
-<td>LTER KBS, MSU</td>
-<td><a href="mailto:bergsma@ecoinformatics.org">bergsma@ecoinformatics.org</a></td>
+<td>Scott Chapal</td>
+<td>Jones Ecological Research Center</td>
+<td><a href="mailto:chapal@ecoinformatics.org" class="email">chapal@ecoinformatics.org</a></td>
 </tr>
 <tr class="even">
+<td>Tim Bergsma</td>
+<td>LTER KBS, MSU</td>
+<td><a href="mailto:bergsma@ecoinformatics.org" class="email">bergsma@ecoinformatics.org</a></td>
+</tr>
+<tr class="odd">
 <td>Ken Ramsey</td>
 <td>LTER JRN, NMSU</td>
-<td><a href="mailto:ramsey@ecoinformatics.org">ramsey@ecoinformatics.org</a></td>
+<td><a href="mailto:ramsey@ecoinformatics.org" class="email">ramsey@ecoinformatics.org</a></td>
+</tr>
+<tr class="even">
+<td>Corinna Gries</td>
+<td>EDI, UW</td>
+<td><a href="mailto:gries@ecoinformatics.org" class="email">gries@ecoinformatics.org</a></td>
 </tr>
 <tr class="odd">
 <td>Saurabh Garg</td>
 <td>NCEAS, UCSB</td>
-<td><a href="mailto:sgarg@ecoinformatics.org">sgarg@ecoinformatics.org</a></td>
+<td><a href="mailto:sgarg@ecoinformatics.org" class="email">sgarg@ecoinformatics.org</a></td>
 </tr>
 <tr class="even">
 <td>Mark Servilla</td>
 <td>EDI, UNM</td>
-<td><a href="mailto:servilla@ecoinformatics.org">servilla@ecoinformatics.org</a></td>
+<td><a href="mailto:servilla@ecoinformatics.org" class="email">servilla@ecoinformatics.org</a></td>
 </tr>
 </tbody>
 </table>

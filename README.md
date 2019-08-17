@@ -4,26 +4,24 @@
 [![EML](https://img.shields.io/badge/eml-2.2.0-blue.svg?style=plastic)](http://github.com/NCEAS/eml)
 
 *Cite as*:
-Matthew B. Jones,  Margaret O'Brien, Bryce Mecum, Carl Boettiger, Mark Schildhauer, Mitchell Maier, Timothy Whiteaker, Steven Chong. 2019. **Ecological Metadata Language version 2.2.0.** KNB Data Repository. **DOI TO BE ISSUED**
 
-*Abstract:*
+[Matthew B. Jones](https://orcid.org/0000-0003-0077-4738),  [Margaret O'Brien](https://orcid.org/0000-0002-1693-8322), [Bryce Mecum](https://orcid.org/0000-0002-0381-3766), [Carl Boettiger](https://orcid.org/0000-0002-1642-628X), [Mark Schildhauer](https://orcid.org/0000-0003-0632-7576), [Mitchell Maier](https://orcid.org/0000-0001-6955-0535), [Timothy Whiteaker](https://orcid.org/0000-0002-1940-4158), [Stevan Earl](https://orcid.org/0000-0002-4465-452X), [Steven Chong](https://orcid.org/0000-0003-1264-1166). 2019. **Ecological Metadata Language version 2.2.0.** KNB Data Repository. [doi:10.5063/F11834T2](https://doi.org/10.5063/F11834T2)
+
 The Ecological Metadata Language (EML) defines a comprehensive vocabulary and a readable XML markup syntax for documenting research data.  It is in widespread use in the earth and environmental sciences, and increasingly in other research disciplines as well.  EML is a community-maintained specification, and evolves to meet the data documentation needs of researchers who want to openly document, preserve, and share data and outputs.  EML includes modules for identifying and citing data packages, for describing the spatial, temporal, taxonomic, and thematic extent of data, for describing research methods and protocols, for describing the structure and content of data within sometimes complex packages of data, and for precisely annotating data with semantic vocabularies. EML includes metadata fields to fully detail data papers that are published in journals specializing in scientific data sharing and preservation.
 
 - **EML 2.2.0 Specification**
-    - [Read it online](docs/)
-    - [Download EML](https://knb.ecoinformatics.org/software/dist) - The download consists of the
+    - [Read it online](https://eml.ecoinformatics.org/)
+    - [Download EML](http://knb.ecoinformatics.org/software/dist/eml-2.2.0.tar.gz) - The download consists of the
       EML modules, described in the [XML Schema](http://www.w3.org/XML/Schema) language.
       In addition, the full documentation on the modules is provided in HTML format.
-    - [Changes to EML in version 2.1.1](docs/eml-211info.md)
-    - [EML Frequently Asked Questions (FAQ)](docs/eml-faq.md)
+    - [Changes to EML in version 2.2.0](https://eml.ecoinformatics.org/whats-new-in-eml-2-2-0.html)
 
-- **Version**: 2.2.0 (**In development, not yet released**)
-- **DOI**: (**NOT YET ISSUED**)
+- **Version**: 2.2.0
+- **DOI**: https://doi.org/10.5063/F11834T2 
 - **Feedback**: [eml-dev@ecoinformatics.org](mailto:eml-dev@ecoinformatics.org)
 - **Bug reports**: http://github.com/NCEAS/eml/issues
 - **Web site**: https://eml.ecoinformatics.org/
 - **Source code**: http://github.com/NCEAS/eml
-- **Validation service**: https://knb.ecoinformatics.org/emlparser/
 - **Slack Discussion channel**: #eml on http://slack.nceas.ucsb.edu
 
 ## Getting Started
@@ -85,12 +83,13 @@ Developers may be interested in browsing the [source code repository](https://gi
 
 ## History
 
-EML was originally developed by Matthew Jones at NCEAS based on work done by the [ESA Committee on the Future of Long-Term Ecological Data](https://web.archive.org/web/20040213204322/http://esa.sdsc.edu/FLED/FLED.html) and on a related paper on ecological metadata by Michener et al. (see Michener, William K., et al., 1997. Ecological Applications, "Nongeospatial metadata for the ecological sciences" Vol 7(1). pp. 330-342.).  Version 1.0 was released at NCEAS in 1997 and used internally, with further internal releases of versions 1.2, 1.3, and 1.4, all of which followed the FLED recommendations closely in its content implementation. Version 2 was modified substantially after experience using the specification at NCEAS and from feedback from the ecological community, particularly the Long Term Ecological Research Network. Versions 2.1 and 2.2 introduce significant new features like internationalization, semantic annotations, and support for data papers.
+EML was originally developed by Matthew Jones at NCEAS based on work done by the [ESA Committee on the Future of Long-Term Ecological Data](https://web.archive.org/web/20040213204322/http://esa.sdsc.edu/FLED/FLED.html) and on a related paper on ecological metadata by Michener et al. (see Michener, William K., et al., 1997. Ecological Applications, "Nongeospatial metadata for the ecological sciences" Vol 7(1). pp. 330-342.).  Version 1.0 was released at NCEAS in 1997 and used internally, with further internal releases of versions 1.2, 1.3, and 1.4, all of which followed the FLED recommendations closely in its content implementation. Version 2 became a community-maintained, open specification. Substantial modifications for EML 2.x came from experience using the earlier specification at NCEAS and from feedback from the ecological community, particularly information managers from the Long Term Ecological Research Network. Versions 2.1 and 2.2 introduce significant new features like internationalization, semantic annotations, and support for data papers.
 
 ## Older versions (deprecated)
 
 The following versions are still available for reference purposes, although they have been superseded by the current version (2.2.0).  Please make every effort to use the current version.
 
+- [EML 2.2.0](http://knb.ecoinformatics.org/software/dist/eml-2.2.0.tar.gz)
 - [EML 2.1.1](http://knb.ecoinformatics.org/software/dist/eml-2.1.1.tar.gz)
 - [EML 2.1.0](http://knb.ecoinformatics.org/software/dist/eml-2.1.0.tar.gz)
 - [EML 2.0.1](http://knb.ecoinformatics.org/software/dist/eml-2.0.1.tar.gz)
