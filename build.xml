@@ -529,7 +529,6 @@
 
     <target name="clean" depends="init">
         <delete dir="./build"/>
-        <delete dir="./dist"/>
         <delete file="${eml-version}.zip"/>
         <delete file="${eml-version}.tar.gz"/>
         <delete file="${datamanager.name}.zip"/>

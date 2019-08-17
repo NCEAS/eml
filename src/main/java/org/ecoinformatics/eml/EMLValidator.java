@@ -23,7 +23,7 @@ import org.xml.sax.InputSource;
 /**
  * Validate an EML document by executing additional validation checks that are
  * not already encoded in XML Schema.  These are described in the EML
- * specification. 
+ * specification.
  *
  * Typical usage is to instantiate EMLValidator against an EML filename, and
  * then execute the validate() method.
@@ -74,6 +74,11 @@ public class EMLValidator {
         EMLValidator validator = new EMLValidator(file);
         boolean isValid = validator.validate();
         System.err.println("isValid: " + (new Boolean(isValid)).toString());
+        if (!isValid) {
+            for (String e : validator.getErrors()) {
+                System.err.println(e);
+            }
+        }
     }
 
     /**
@@ -107,11 +112,11 @@ public class EMLValidator {
             isValid = false;
         }
 
-        // If an element references another using a child `references` element 
-        // or references attribute, another element with that value in its `id` 
+        // If an element references another using a child `references` element
+        // or references attribute, another element with that value in its `id`
         // attribute MUST exist in the document
-        // If an `additionalMetadata` element references another using a child 
-        // `describes` element, another element with that value in its `id` 
+        // If an `additionalMetadata` element references another using a child
+        // `describes` element, another element with that value in its `id`
         // attribute MUST exist in the document
         ArrayList<String> refs = getXPathValues("//annotation[@references]/@references|//references|//describes");
         for (String s : refs) {
@@ -122,8 +127,8 @@ public class EMLValidator {
         }
 
 
-        // Elements which contain an `annotation` child element MUST contain an 
-        // `id` attribute, unless the containing `annotation` element contains a 
+        // Elements which contain an `annotation` child element MUST contain an
+        // `id` attribute, unless the containing `annotation` element contains a
         // `references` attribute
         NodeList missing_id_ref = getXPathNodeList("//*[annotation and not(@id) and not(annotation[@references]) and not(parent::*/describes)]");
         length = missing_id_ref.getLength();
@@ -136,7 +141,7 @@ public class EMLValidator {
             //}
         }
 
-        // If an element references another using a child `references` element, 
+        // If an element references another using a child `references` element,
         // it MUST not have an `id` attribute itself
         NodeList both_id_ref = getXPathNodeList("//*[references and @id]");
         length = both_id_ref.getLength();
@@ -149,9 +154,9 @@ public class EMLValidator {
             //}
         }
 
-        // TODO: When `references` is used, the `system` attribute MUST have the 
-        // same value in both the target and source elements, or it must be 
-        // absent in both. For now, we have decided to not enforce this 
+        // TODO: When `references` is used, the `system` attribute MUST have the
+        // same value in both the target and source elements, or it must be
+        // absent in both. For now, we have decided to not enforce this
         // constraint, as snobody seems to use it.
 
         return isValid;
@@ -202,7 +207,7 @@ public class EMLValidator {
     }
 
     /**
-     * Extract a NodeList using an XPath on the provided Node n. 
+     * Extract a NodeList using an XPath on the provided Node n.
      * @param xpath an XPath expression to be executed
      * @param n the XML DOM Node on which to execute the XPath
      */
