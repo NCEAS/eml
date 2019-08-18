@@ -99,11 +99,11 @@ Because some of these rules cannot be enforced in XML-Schema, we have
 written a parser which checks the validity of the references and `id`s
 used in a document. This parser is included with the release of
 EML. To run the parser, you must have Java installed. To execute
-it change into the lib directory of the release and run the
-'runEMLParser' script passing your EML instance file as a parameter.
+it change into the top-lvel directory of the EML release and run the
+'validate.sh' script passing your EML instance file as a parameter.
 There may also be an [online
 version](https://knb.ecoinformatics.org/emlparser) of this parser, which
-is publicly accessible. The online parser will both validate your XML
+is publicly accessible. The validator will both validate your XML
 document against the schema as well as check the integrity of your
 references.
 
