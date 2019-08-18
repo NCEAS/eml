@@ -5,7 +5,99 @@
 
 #### Major New Features
 
+- Semantic Annotations
+- Structured Funding Info
+- Structured license info
+- Fields for data papers
+- Markdown support in text blocks
+- Bibtex citation support
+- New fields for literature cited, and reference publications, and usage citations
+- Added identifiers for taxonClassifications
+- EML namespace changed to use https
+- New validation rules and reference implementation
+
 #### Schema changes:
+
+id   | issue
+-----|-------------------------------------------------------------------------------------------------------------
+[25](https://github.com/NCEAS/eml/issues/25) | semantic metadata module/extensions
+[259](https://github.com/NCEAS/eml/issues/259) | add field to reference data usage citations
+[266](https://github.com/NCEAS/eml/issues/266) | support structured funding information
+[275](https://github.com/NCEAS/eml/issues/275) | Revisit TextType to include Markdown
+[269](https://github.com/NCEAS/eml/issues/269) | add fields to support data papers
+[277](https://github.com/NCEAS/eml/issues/277) | evaluate addition of referencePublication field
+[282](https://github.com/NCEAS/eml/issues/282) | add license URL to EML
+[288](https://github.com/NCEAS/eml/issues/288) | CitationType could accept other formats for biblio info
+[300](https://github.com/NCEAS/eml/issues/300) | add support for a literature cited section
+[341](https://github.com/NCEAS/eml/issues/341) | change namespaces to use https
+[141](https://github.com/NCEAS/eml/issues/141) | requesting support for ids in taxonomicClassification element
+
+#### Bug fixes
+
+id   | issue
+-----|-------------------------------------------------------------------------------------------------------------
+[328](https://github.com/NCEAS/eml/issues/328) | EMLParser misses validity problems
+[115](https://github.com/NCEAS/eml/issues/115) | units missing from Unit Dictionary
+[139](https://github.com/NCEAS/eml/issues/139) | missing or erroneous SI units in unitDictionary
+[140](https://github.com/NCEAS/eml/issues/140) | units not in eml-unitDictionary
+[264](https://github.com/NCEAS/eml/issues/264) | eml-2.1.1 eml-spatialReferenceDictionary.xml error
+
+#### Other changes
+
+id   | issue
+-----|-------------------------------------------------------------------------------------------------------------
+[25](https://github.com/NCEAS/eml/issues/25) | semantic metadata module/extensions
+[1](https://github.com/NCEAS/eml/issues/1) | EMLParser is slow to process large EML documents
+[228](https://github.com/NCEAS/eml/issues/228) | misspelled word in MaintUpFreqType enumeration list
+[230](https://github.com/NCEAS/eml/issues/230) | standardize namespace prefixed used for protocol module
+[250](https://github.com/NCEAS/eml/issues/250) | update documentation for species binomials
+[260](https://github.com/NCEAS/eml/issues/260) | document use of ORCID ids in userId field
+[267](https://github.com/NCEAS/eml/issues/267) | unknown maintenanceUpdateFrequency
+[268](https://github.com/NCEAS/eml/issues/268) | documentation for dateTime/formatString should comply with stds and good practice
+[270](https://github.com/NCEAS/eml/issues/270) | Update version to 2.2.0
+[271](https://github.com/NCEAS/eml/issues/271) | Rearrange directory structure
+[272](https://github.com/NCEAS/eml/pull/272) | Add documentation for usage of ORCIDs in eml-party's userId/directory
+[280](https://github.com/NCEAS/eml/issues/280) | configure CI build with Travlis
+[281](https://github.com/NCEAS/eml/issues/281) | documentation for eml-project incorrectly asserts that there must be a personnel with role originator
+[284](https://github.com/NCEAS/eml/issues/284) | massFlux and parentSI seem incompatible
+[285](https://github.com/NCEAS/eml/issues/285) | amountOfSubstanceWeightFlux unclear
+[286](https://github.com/NCEAS/eml/issues/286) | milliGramsPerMilliLiter inconsistent format
+[287](https://github.com/NCEAS/eml/issues/287) | siemens is singular
+[289](https://github.com/NCEAS/eml/issues/289) | Consider updating  EML's unitDictionary list
+[294](https://github.com/NCEAS/eml/pull/294) | Fixes to centimeterPerYear, millimeterPerDay, and molePerHectare
+[295](https://github.com/NCEAS/eml/pull/295) | Restore version control for eml-unitDictionary.xml and add units
+[296](https://github.com/NCEAS/eml/issues/296) | Create test EML instance for units
+[302](https://github.com/NCEAS/eml/issues/302) | Generate an enumeration for the EML unit list, for eml-unitTypeDefinitions.xsd
+[303](https://github.com/NCEAS/eml/issues/303) | examine udunits library for additional units
+[304](https://github.com/NCEAS/eml/issues/304) | The citation test files in the 2.2.0 testing suite still point to the 2.1.1 schema?
+[305](https://github.com/NCEAS/eml/issues/305) | dependency field not defined as ComplexType
+[306](https://github.com/NCEAS/eml/issues/306) | clarify validation rules
+[310](https://github.com/NCEAS/eml/issues/310) | prepare 2.2.0 release
+[315](https://github.com/NCEAS/eml/issues/315) | create xslt for eml 2.1 to 2.2 conversions
+[321](https://github.com/NCEAS/eml/issues/321) | set up github pages site
+[322](https://github.com/NCEAS/eml/issues/322) | write overview of new citation fields
+[326](https://github.com/NCEAS/eml/issues/326) | Typo in spatialReference.xsd referencing 
+[143](https://github.com/NCEAS/eml/issues/143) | id key definitions in EML
+[145](https://github.com/NCEAS/eml/issues/145) | modify temporalCoverage to support ongoing data sources
+[146](https://github.com/NCEAS/eml/issues/146) | add fields for information about metadata maintenance
+[238](https://github.com/NCEAS/eml/issues/238) | buildDocBook.xsl missing from release distribution
+[255](https://github.com/NCEAS/eml/issues/255) | EML stylesheet problem for i18n text
+[257](https://github.com/NCEAS/eml/issues/257) | Add publication date property to keywordSet
+[261](https://github.com/NCEAS/eml/issues/261) | element alternateIdentifier should be non-empty string type.
+[273](https://github.com/NCEAS/eml/issues/273) | add user-agent field for indicating generator / serialization tool used
+[276](https://github.com/NCEAS/eml/issues/276) | authentication element should have its method attribute required
+[308](https://github.com/NCEAS/eml/issues/308) | Summarize EML 2.2 changes
+[309](https://github.com/NCEAS/eml/issues/309) | revise contributor list
+[311](https://github.com/NCEAS/eml/issues/311) | dateTime formatStrings documentation
+[314](https://github.com/NCEAS/eml/issues/314) | targeted examples of semantic annotation
+[316](https://github.com/NCEAS/eml/issues/316) | add new images and schema-level docs for all eml modules
+[320](https://github.com/NCEAS/eml/issues/320) | create sem annotation primer
+[323](https://github.com/NCEAS/eml/issues/323) | write chapter describing unit handling
+[330](https://github.com/NCEAS/eml/issues/330) | Fill in annotation for EML methods in its schema
+[333](https://github.com/NCEAS/eml/issues/333) | in the primer, clarify relationship between rdf components and annotation earlier
+[335](https://github.com/NCEAS/eml/issues/335) | Should annotations be able to have `id` attributes?
+[337](https://github.com/NCEAS/eml/issues/337) | documentation for party (people) needs updated example, use orcid for userId
+[340](https://github.com/NCEAS/eml/issues/340) | final EML 2.2 documentation cleanup
 
 ### 2.1.1
 

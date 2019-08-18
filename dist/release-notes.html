@@ -269,9 +269,333 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">13.0.1</span> 2.2.0</h3>
 <div id="major-new-features" class="section level4">
 <h4><span class="header-section-number">13.0.1.1</span> Major New Features</h4>
+<ul>
+<li>Semantic Annotations</li>
+<li>Structured Funding Info</li>
+<li>Structured license info</li>
+<li>Fields for data papers</li>
+<li>Markdown support in text blocks</li>
+<li>Bibtex citation support</li>
+<li>New fields for literature cited, and reference publications, and usage citations</li>
+<li>Added identifiers for taxonClassifications</li>
+<li>EML namespace changed to use https</li>
+<li>New validation rules and reference implementation</li>
+</ul>
 </div>
 <div id="schema-changes" class="section level4">
 <h4><span class="header-section-number">13.0.1.2</span> Schema changes:</h4>
+<table>
+<thead>
+<tr class="header">
+<th>id</th>
+<th>issue</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/25">25</a></td>
+<td>semantic metadata module/extensions</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/issues/259">259</a></td>
+<td>add field to reference data usage citations</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/266">266</a></td>
+<td>support structured funding information</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/issues/275">275</a></td>
+<td>Revisit TextType to include Markdown</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/269">269</a></td>
+<td>add fields to support data papers</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/issues/277">277</a></td>
+<td>evaluate addition of referencePublication field</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/282">282</a></td>
+<td>add license URL to EML</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/issues/288">288</a></td>
+<td>CitationType could accept other formats for biblio info</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/300">300</a></td>
+<td>add support for a literature cited section</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/issues/341">341</a></td>
+<td>change namespaces to use https</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/141">141</a></td>
+<td>requesting support for ids in taxonomicClassification element</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="bug-fixes" class="section level4">
+<h4><span class="header-section-number">13.0.1.3</span> Bug fixes</h4>
+<table>
+<thead>
+<tr class="header">
+<th>id</th>
+<th>issue</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/328">328</a></td>
+<td>EMLParser misses validity problems</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/issues/115">115</a></td>
+<td>units missing from Unit Dictionary</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/139">139</a></td>
+<td>missing or erroneous SI units in unitDictionary</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/issues/140">140</a></td>
+<td>units not in eml-unitDictionary</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/264">264</a></td>
+<td>eml-2.1.1 eml-spatialReferenceDictionary.xml error</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="other-changes" class="section level4">
+<h4><span class="header-section-number">13.0.1.4</span> Other changes</h4>
+<table>
+<colgroup>
+<col width="4%" />
+<col width="95%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>id</th>
+<th>issue</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/25">25</a></td>
+<td>semantic metadata module/extensions</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/issues/1">1</a></td>
+<td>EMLParser is slow to process large EML documents</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/228">228</a></td>
+<td>misspelled word in MaintUpFreqType enumeration list</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/issues/230">230</a></td>
+<td>standardize namespace prefixed used for protocol module</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/250">250</a></td>
+<td>update documentation for species binomials</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/issues/260">260</a></td>
+<td>document use of ORCID ids in userId field</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/267">267</a></td>
+<td>unknown maintenanceUpdateFrequency</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/issues/268">268</a></td>
+<td>documentation for dateTime/formatString should comply with stds and good practice</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/270">270</a></td>
+<td>Update version to 2.2.0</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/issues/271">271</a></td>
+<td>Rearrange directory structure</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/pull/272">272</a></td>
+<td>Add documentation for usage of ORCIDs in eml-party’s userId/directory</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/issues/280">280</a></td>
+<td>configure CI build with Travlis</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/281">281</a></td>
+<td>documentation for eml-project incorrectly asserts that there must be a personnel with role originator</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/issues/284">284</a></td>
+<td>massFlux and parentSI seem incompatible</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/285">285</a></td>
+<td>amountOfSubstanceWeightFlux unclear</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/issues/286">286</a></td>
+<td>milliGramsPerMilliLiter inconsistent format</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/287">287</a></td>
+<td>siemens is singular</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/issues/289">289</a></td>
+<td>Consider updating EML’s unitDictionary list</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/pull/294">294</a></td>
+<td>Fixes to centimeterPerYear, millimeterPerDay, and molePerHectare</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/pull/295">295</a></td>
+<td>Restore version control for eml-unitDictionary.xml and add units</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/296">296</a></td>
+<td>Create test EML instance for units</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/issues/302">302</a></td>
+<td>Generate an enumeration for the EML unit list, for eml-unitTypeDefinitions.xsd</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/303">303</a></td>
+<td>examine udunits library for additional units</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/issues/304">304</a></td>
+<td>The citation test files in the 2.2.0 testing suite still point to the 2.1.1 schema?</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/305">305</a></td>
+<td>dependency field not defined as ComplexType</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/issues/306">306</a></td>
+<td>clarify validation rules</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/310">310</a></td>
+<td>prepare 2.2.0 release</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/issues/315">315</a></td>
+<td>create xslt for eml 2.1 to 2.2 conversions</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/321">321</a></td>
+<td>set up github pages site</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/issues/322">322</a></td>
+<td>write overview of new citation fields</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/326">326</a></td>
+<td>Typo in spatialReference.xsd referencing</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/issues/143">143</a></td>
+<td>id key definitions in EML</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/145">145</a></td>
+<td>modify temporalCoverage to support ongoing data sources</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/issues/146">146</a></td>
+<td>add fields for information about metadata maintenance</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/238">238</a></td>
+<td>buildDocBook.xsl missing from release distribution</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/issues/255">255</a></td>
+<td>EML stylesheet problem for i18n text</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/257">257</a></td>
+<td>Add publication date property to keywordSet</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/issues/261">261</a></td>
+<td>element alternateIdentifier should be non-empty string type.</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/273">273</a></td>
+<td>add user-agent field for indicating generator / serialization tool used</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/issues/276">276</a></td>
+<td>authentication element should have its method attribute required</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/308">308</a></td>
+<td>Summarize EML 2.2 changes</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/issues/309">309</a></td>
+<td>revise contributor list</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/311">311</a></td>
+<td>dateTime formatStrings documentation</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/issues/314">314</a></td>
+<td>targeted examples of semantic annotation</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/316">316</a></td>
+<td>add new images and schema-level docs for all eml modules</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/issues/320">320</a></td>
+<td>create sem annotation primer</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/323">323</a></td>
+<td>write chapter describing unit handling</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/issues/330">330</a></td>
+<td>Fill in annotation for EML methods in its schema</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/333">333</a></td>
+<td>in the primer, clarify relationship between rdf components and annotation earlier</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/issues/335">335</a></td>
+<td>Should annotations be able to have <code>id</code> attributes?</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/NCEAS/eml/issues/337">337</a></td>
+<td>documentation for party (people) needs updated example, use orcid for userId</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/NCEAS/eml/issues/340">340</a></td>
+<td>final EML 2.2 documentation cleanup</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div id="section-1" class="section level3">
