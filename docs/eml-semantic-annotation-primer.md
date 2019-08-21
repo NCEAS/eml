@@ -34,20 +34,18 @@ Related FAQ: [How do computers use EML annotations?](#faq-how-do-computers-use-e
 
 ### Organization of this document
 
-The purpose of this primer is to provide an introduction to how semantic annotations are structured in EML documents. It is expected that the readers is already familiar with the EML schema. This primer is divided into three major sections, including this [Introduction](#introduction)), the central text ([Semantic Annotations in EML 2.2.0](#sa-eml22)), and an [Appendix](#appendix). While the central text of the primer ([Semantic Annotations in EML 2.2.0](#sa-eml22)) should provide all the information needed to create annotations in EML, additional details and more in-depth explanations are provided in the [Appendix](#appendix).
-
- -  **[Introduction](#introduction)**
- -  **[Semantic Annotations in EML 2.2.0](#sa-eml22)**, with examples. Where used, EML elements are shown as inline code blocks (e.g., `elementName`).
- -  **[Appendix:](#appendix)** Additional information on specific related topics, linked from other sections.
-    - **[Glossary:](#glossary)** Glossary of terms, linked from text
-    - **[Semantic triples:](#semantic-triples)** Details on their structure (and machine use). Explanation of how that structure is leveraged by annotations with examples of their power
-    - **[URIs:](#uris)** Defined, and as components of semantic triples
-    - **[RDF model and graphs:](#rdf)** Brief description of the W3C's RDF model with example graphs based on EML annotations
-    - **[Logical consistency:](#logical-consistency)** Common mistakes and how to check for them
-    - **[Vocabularies and repositories used in examples:](#external-vocabularies)** Descriptions and links out to explore further
-    - **[Additional background information:](#additional-background)** The EML annotation approach here is compatible with recommendations by the World Wide Web Consortium (W3C) for construction of the Semantic Web. A wealth of material is available; a few selected ones are suggested here.
-    - **[Frequently asked questions:](#FAQ)** Some questions asked by readers, and their answers
-
+The purpose of this primer is to provide an introduction to 
+how semantic annotations are structured in EML documents. It 
+is expected that the readers is already familiar with the EML 
+schema. 
+The central text of the 
+primer ([Semantic Annotations in EML 2.2.0](#sa-eml22)) should 
+provide all the information needed to create annotations in EML, 
+with addtional details in a [Glossary:](#glossary), list of
+[Vocabularies and repositories used in examples:](#external-vocabularies) 
+and [Frequently asked questions:](#FAQ).
+Longer explanations of some concepts are in the [Appendix](#appendix).
+FAQ)** Some questions asked by readers, and their answers
 
 ### Other Conventions and Terminology
 
