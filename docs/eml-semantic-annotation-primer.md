@@ -12,7 +12,7 @@ The main differences between semantic annotation and simply adding keywords are:
 - semantic annotations describe the relationship between a specific part of the metadata and terms in external vocabularies
 - semantic annotations use W3C-recommended languages to express these relationships via the Web
  
-For the purposes of this document all mentions of "annotation" imply "semantic annotation" as described above. Whereas more generic methods for annotating data and metadata exist (e.g., using keywords), these are not nearly as powerful as "semantic annotation".
+For the purposes of this document all mentions of "annotation" imply "semantic annotation" as described above. Generic methods for annotating data and metadata exist (e.g., using keywords), but these are not nearly as powerful as "semantic annotation".
 
 **Benefits of annotation:** Annotations enhance data discovery and interpretation thereby making it easier for others to find and reuse data (and thus give proper credit). For example, consider the following cases: 
 
@@ -211,9 +211,8 @@ When the annotations are grouped together, each `annotation` must have its subje
 
 #### Example 4: Annotating with the `<annotations>` element
 
-All the annotations for a resource can be grouped together under an `annotations` element. With this construct, each annotation must have its subject specifically identified with a `references` attribute that points to the subject's id. The group of annotations must be placed...
+All the annotations for a resource can be grouped together under an `annotations` element. With this construct, each annotation must have its subject specifically identified with a `references` attribute that points to the subject's id. The `<annotations>` element is a sibling of the top level element (e.g., `<dataset`>), and appears after it, just before `<additionalMetadata>`.
 
-<!-- TODO: WHERE IN DOC? [[MPS: I don't know the answer to this. Is there an XML/EML expert in the house?!!!]] -->
 
 This example 4 contains 3 different annotations: 
 
@@ -254,7 +253,6 @@ The ontologies used for eric.seabloom are
         ...
        </dataTable>  
     </dataset>
-    ...
     <annotations>
         <annotation references="CDR-soil-table">
             <propertyURI label="is about">http://purl.obolibrary.org/obo/IAO_0000136</propertyURI>
@@ -269,7 +267,9 @@ The ontologies used for eric.seabloom are
             <valueURI label="University of Minnesota">https://ror.org/017zqws13</valueURI>
         </annotation>
     </annotations>
-   ...
+    <additionalMetadata>
+     ...
+    </additionalMetadata>
 </eml>
 ```
 
@@ -326,6 +326,108 @@ The semantic statements can be read as "'eric.seabloom', the creator (of the dat
      </additionalMetadata>
 </eml>
 ```
+
+
+
+
+
+<a name="glossary"></a>
+
+## Glossary
+
+<a name="glossary-dereference"></a>
+
+**dereference**: To interpret a uniform resource identifier (URI), and retrieve information about the resource identified by that URI. See [resolve](#glossary-resolve).
+
+<a name="glossary-iri"></a>
+
+**Internationalized Resource Identifier (IRI)**: An extension of ASCII characters subset of the Uniform Resource Identifier (URI) protocol.
+
+<a name="glossary-jsonld"></a>
+
+**JSON-LD** (JavaScript Object Notation for Linked Data), is a method of 
+mapping from JSON to an RDF model. It is administered by
+the RDF Working Group and is a World Wide Web Consortium Recommendation.
+
+<a name="glossary-knowledge-graph"></a>
+
+**knowledge graph**:  Any knowledge base that is represented as a mathematical graph. 
+In the mathematical sense, a graph is simply a collection of points connected by lines.  The points are called *nodes* or *vertices*, while the lines are called *edges* or *links*. In an informatics sense, this structure is used to store information about a set of objects, including the identity of the objects (as nodes), and the relationships among the objects (as links). Note that the use of the word "object" here is very general, and is not the same sense as when we describe triples. 
+
+
+In an RDF (semantic) triple, the *subject* and *object* (the word *object* here in the specific RDF sense!) are represented as nodes, and the relationship between the nodes is represented as an edge or link. Note however that a *subject* of one triple can serve as an *object* of another triple, and vice-versa.  The term *Knowledge Graph* is generally used nowadays to refer not so much to an underlying controlled vocabulary or ontology, but rather to the assertions about various objects and how these relate to ontology terms, and other objects.  Thus, as a set of semantic annotations grows, for example, assertions (triples) about datasets, these would be stored in a growing knowledge graph.  The most famous Knowledge Graph as of today is the one that informs search results for Google.
+ 
+<a name="glossary-ontology"></a> 
+**ontology**: In an informatics sense, an ontology is a representation of a corpus of knowledge.  The W3C-recommendation is that these representations be constructed using an RDF data model, that has a *graph* structure. The ontology provides a representation of a set of terms, including their names, and descriptions of the categories, properties, and relationships among those terms.
+
+<a name="glossary-pointer"></a>
+
+**pointer**: A kind of reference to a datum stored in computer memory.   
+
+
+<a name="glossary-resolve"></a>
+
+**resolve**: To interpret a URI and determine a course of action for dereferencing the URI.
+See [dereference](#glossary-dereference)
+.
+<a name="glossary-rdf"></a> 
+
+**Resource Description Framework (RDF)**: A World Wide Web Consortium (W3C) recommendation that enables the encoding, exchange, and reuse of structured metadata using a graph model. The RDF data model employs semantic triples composed of a subject, predicate, and object to share and integrate data across different applications and communities through the Web. 
+
+
+<a name="glossary-uri"></a>
+
+**uniform resource identifier (URI)**: In its most general sense, a URI is simply a string of characters that unambiguously identifies a particular resource.  Much more commonly, it refers to an identifier for a resource on the Web, but, e.g. ISBN numbers are also URIs. For semantic annotations, the components of semantic triples are ideally HTTP URIs that dereference using Web technology, to an appropriate representation of a resource, e.g. metadata about the dataset in the case of the *subject*, and definitions and descriptions of the meaning of the *predicate* and *object* terms that provide information about the *subject*.
+
+<a name="external-vocabularies"></a>
+
+## Vocabularies and repositories used in examples
+
+Communities using EML annotations will develop recommendations for suitable vocabularies, based
+on their own requirements (e.g., domain coverage, structure, adaptability, reliabliity and maintenance model). The following
+ontologies are already widely used, were employed in the examples above, and are
+in use by (and in some cases managed by) the authors.
+
+<a name="ecso"></a>
+
+- **ECSO (Ecosystem Ontology)**  (https://github.com/DataONEorg/sem-prov-ontologies/tree/master/observation).
+An ontology for ecosystem measurements under development by the Arctic Data Center and DataONE.
+
+<a name="envo"></a>
+
+- **EnvO (Environment Ontology)**  (http://www.obofoundry.org/ontology/envo.html)
+An OBO Foundry ontology for the concise, controlled description of environments.
+
+<a name="iao"></a>
+
+- **IAO (Information Artifact Ontology)**  (http://www.obofoundry.org/ontology/iao.html)
+An OBO Foundry ontology of information entities.
+
+<a name="ncbi_taxon"></a>
+
+- **NCBITaxon Ontology** http://www.obofoundry.org/ontology/ncbitaxon.html 
+An OBO Foundry ontology representation of the National Center for Biotechnology Information organismal taxonomy.
+
+<a name="oboe"></a>
+
+- **OBOE (Extensible Ontology for Observations)** (https://github.com/NCEAS/oboe) 
+An ontology for scientific observations and measurements developed by DataONE and NCEAS.
+
+<a name="ROR"></a>
+
+- **ROR (Research Organization Registry)** (https://ror.org/)
+A global registry of research organizations.
+
+<a name="schema.org"></a>
+
+- **schema.org** (https://schema.org/) 
+An initiative to create and support common sets of structured data markup on web pages. Extensions work with the core vocabulary to provide more specialized and/or deeper vocabularies.
+
+
+
+
+
+
 <a name="appendix"></a>
 
 ## Appendix
@@ -396,7 +498,7 @@ Related FAQ: [An image of an RDF Graph is great, but a computer doesn't parse th
 
 <a name="rdf-eml-example-3"></a>
 
-#### Graph from Example 3 (attribute annotation): ([back to Example 3 XML](#eml-example-3))
+#### Graph from Example 3[XML](#eml-example-3), using attribute/annotation : 
 
 
 ![RDF example A](images/RDF_example_a.png "Graph from Example 3 (attribute annotation):") 
@@ -406,7 +508,7 @@ Related FAQ: [An image of an RDF Graph is great, but a computer doesn't parse th
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:owl="http://www.w3.org/2002/07/owl#">
     
-    <rdf:Description rdf:about="att.4"> ### See note below
+    <rdf:Description rdf:about="att.4">
         <owl:ObjectProperty rdf:about="http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType">
             <owl:Class rdf:about="http://purl.dataone.org/odo/ECSO_00001197" />
         </owl:ObjectProperty> 
@@ -414,11 +516,12 @@ Related FAQ: [An image of an RDF Graph is great, but a computer doesn't parse th
 </rdf:RDF>
 
 ```
-_Note: The subject described in the `rdf:Description` `about` element attribute ideally would be a globally unique HTTP URI for the (EML) attribute, rather than 'att.4'-- which is a localized identifier. Methods for constructing this HTTP URI are being developed by EDI, NCEAS, and others.  While care must be taken that the `id` provided in the original EML was unique or defined with proper scoping and referencing elements, in RDF this is not a problem: `id`s specified in "rdf:about" attributes can be repeated without issue._
+
+<!-- TODO: probably an FAQ HERE  "what is a proper subject?" -->
 
 <a name="rdf-eml-example-4"></a>
 
-#### Graph from Example 4 (using `annotations` element): ([back to Example 4 XML](#eml-example-4))
+#### Graph from Example 4 [XML](#eml-example-4), using `annotations` element: 
 
 ![RDF example B](images/RDF_example_b.png "Graph from Example 4 (using <annotations> element):")
 
@@ -427,7 +530,7 @@ _Note: The subject described in the `rdf:Description` `about` element attribute 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:owl="http://www.w3.org/2002/07/owl#">
     
-    <rdf:Description rdf:about="eric.seabloom"> ### See note below 
+    <rdf:Description rdf:about="eric.seabloom">
         <owl:ObjectProperty rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">
             <owl:Class rdf:about="https://schema.org/Person" />
         </owl:ObjectProperty> 
@@ -439,7 +542,8 @@ _Note: The subject described in the `rdf:Description` `about` element attribute 
 </rdf:RDF>
 
 ```
-_Note: The subject described in the `rdf:Description` `about=` element attribute should ideally be a globally unique URI issued for 'eric.seabloom'.  The URL for Eric's ORCID ID would be a good candidate for filling this role. Methods for constructing this HTTP URI are being developed by EDI, NCEAS, and others, for referencing datasets and their components (e.g. specific attributes), in their various sponsored data repositories.  Unlike EML, there are not restrictions on re-using "identifiers" in this way_
+<!-- TODO: probably an FAQ HERE  "what is a proper subject?" -->
+
 
 <a name="logical-consistency"></a>
 
@@ -475,99 +579,6 @@ Things to check:
   1. Become familiar with the vocabularies in your annotation, especially any labels, definitions, and relationships associated with your term(s) of interest. 
   1. Check with your community for specific recommendations on the best vocabularies to use for annotations at different levels. Our examples use [well-constructed vocabularies](#external-vocabularies). 
 1. In `additionalMetadata`, don't combine `annotations` with more than one `describes` element. EML allows 1:many `describes` elements in a single `additionalMetadata` section. So if you have 2 `describes` and 2 `annotations`, you will have 4 RDF statements. Make sure they are all true, and if not, break them up into multiple `additionalMetadata` sections.
-
-
-<a name="glossary"></a>
-
-### Glossary
-
-<a name="glossary-dereference"></a>
-
-**dereference**: To interpret a uniform resource identifier (URI), and retrieve information about the resource identified by that URI. See [resolve](#glossary-resolve).
-
-<a name="glossary-iri"></a>
-
-**Internationalized Resource Identifier (IRI)**: An extension of ASCII characters subset of the Uniform Resource Identifier (URI) protocol.
-
-<a name="glossary-jsonld"></a>
-
-**JSON-LD** (JavaScript Object Notation for Linked Data), is a method of 
-mapping from JSON to an RDF model. It is administered by
-the RDF Working Group and is a World Wide Web Consortium Recommendation.
-
-<a name="glossary-knowledge-graph"></a>
-
-**knowledge graph**:  Any knowledge base that is represented as a mathematical graph. 
-In the mathematical sense, a graph is simply a collection of points connected by lines.  The points are called *nodes* or *vertices*, while the lines are called *edges* or *links*. In an informatics sense, this structure is used to store information about a set of objects, including the identity of the objects (as nodes), and the relationships among the objects (as links). Note that the use of the word "object" here is very general, and is not the same sense as when we describe triples. 
-
-
-In an RDF (semantic) triple, the *subject* and *object* (the word *object* here in the specific RDF sense!) are represented as nodes, and the relationship between the nodes is represented as an edge or link. Note however that a *subject* of one triple can serve as an *object* of another triple, and vice-versa.  The term *Knowledge Graph* is generally used nowadays to refer not so much to an underlying controlled vocabulary or ontology, but rather to the assertions about various objects and how these relate to ontology terms, and other objects.  Thus, as a set of semantic annotations grows, for example, assertions (triples) about datasets, these would be stored in a growing knowledge graph.  The most famous Knowledge Graph as of today is the one that informs search results for Google.
- 
-<a name="glossary-ontology"></a> 
-**ontology**: In an informatics sense, an ontology is a representation of a corpus of knowledge.  The W3C-recommendation is that these representations be constructed using an RDF data model, that has a *graph* structure. The ontology provides a representation of a set of terms, including their names, and descriptions of the categories, properties, and relationships among those terms.
-
-<a name="glossary-pointer"></a>
-
-**pointer**: A kind of reference to a datum stored in computer memory.   
-
-
-<a name="glossary-resolve"></a>
-
-**resolve**: To interpret a URI and determine a course of action for dereferencing the URI.
-See [dereference](#glossary-dereference)
-.
-<a name="glossary-rdf"></a> 
-
-**Resource Description Framework (RDF)**: A World Wide Web Consortium (W3C) recommendation that enables the encoding, exchange, and reuse of structured metadata using a graph model. The RDF data model employs semantic triples composed of a subject, predicate, and object to share and integrate data across different applications and communities through the Web. 
-
-
-<a name="glossary-uri"></a>
-
-**uniform resource identifier (URI)**: In its most general sense, a URI is simply a string of characters that unambiguously identifies a particular resource.  Much more commonly, it refers to an identifier for a resource on the Web, but, e.g. ISBN numbers are also URIs. For semantic annotations, the components of semantic triples are ideally HTTP URIs that dereference using Web technology, to an appropriate representation of a resource, e.g. metadata about the dataset in the case of the *subject*, and definitions and descriptions of the meaning of the *predicate* and *object* terms that provide information about the *subject*.
-
-<a name="external-vocabularies"></a>
-
-### Vocabularies and repositories used in examples
-
-Communities using EML annotations will develop recommendations for suitable vocabularies, based
-on their own requirements (e.g., domain coverage, structure, adaptability, reliabliity and maintenance model). The following
-ontologies are already widely used, were employed in the examples above, and are
-in use by (and in some cases managed by) the authors.
-
-<a name="ecso"></a>
-
-- **ECSO (Ecosystem Ontology)**  (https://github.com/DataONEorg/sem-prov-ontologies/tree/master/observation).
-An ontology for ecosystem measurements under development by the Arctic Data Center and DataONE.
-
-<a name="envo"></a>
-
-- **EnvO (Environment Ontology)**  (http://www.obofoundry.org/ontology/envo.html)
-An OBO Foundry ontology for the concise, controlled description of environments.
-
-<a name="iao"></a>
-
-- **IAO (Information Artifact Ontology)**  (http://www.obofoundry.org/ontology/iao.html)
-An OBO Foundry ontology of information entities.
-
-<a name="ncbi_taxon"></a>
-
-- **NCBITaxon Ontology** http://www.obofoundry.org/ontology/ncbitaxon.html 
-An OBO Foundry ontology representation of the National Center for Biotechnology Information organismal taxonomy.
-
-<a name="oboe"></a>
-
-- **OBOE (Extensible Ontology for Observations)** (https://github.com/NCEAS/oboe) 
-An ontology for scientific observations and measurements developed by DataONE and NCEAS.
-
-<a name="ROR"></a>
-
-- **ROR (Research Organization Registry)** (https://ror.org/)
-A global registry of research organizations.
-
-<a name="schema.org"></a>
-
-- **schema.org** (https://schema.org/) 
-An initiative to create and support common sets of structured data markup on web pages. Extensions work with the core vocabulary to provide more specialized and/or deeper vocabularies.
 
 
 
