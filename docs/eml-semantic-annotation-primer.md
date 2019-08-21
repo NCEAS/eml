@@ -483,13 +483,11 @@ Things to check:
 
 <a name="glossary-dereference"></a>
 
-**dereference**: To interpret a URI, and retrieve information about the resource identified by that URI   
-See [resolve](#glossary-reslolve).
+**dereference**: To interpret a uniform resource identifier (URI), and retrieve information about the resource identified by that URI. See [resolve](#glossary-resolve).
 
 <a name="glossary-iri"></a>
 
-**IRI**: Internationalized Resource Identifier (IRI), and an extension
-of ASCII characters subset of the Uniform Resource Identifier (URI) protocol.
+**Internationalized Resource Identifier (IRI)**: An extension of ASCII characters subset of the Uniform Resource Identifier (URI) protocol.
 
 <a name="glossary-jsonld"></a>
 
@@ -517,7 +515,7 @@ In an RDF (semantic) triple, the *subject* and *object* (the word *object* here 
 
 **resolve**: To interpret a URI and determine a course of action for dereferencing the URI.
 See [dereference](#glossary-dereference)
-
+.
 <a name="glossary-rdf"></a> 
 
 **Resource Description Framework (RDF)**: A World Wide Web Consortium (W3C) recommendation that enables the encoding, exchange, and reuse of structured metadata using a graph model. The RDF data model employs semantic triples composed of a subject, predicate, and object to share and integrate data across different applications and communities through the Web. 
@@ -534,7 +532,7 @@ See [dereference](#glossary-dereference)
 Communities using EML annotations will develop recommendations for suitable vocabularies, based
 on their own requirements (e.g., domain coverage, structure, adaptability, reliabliity and maintenance model). The following
 ontologies are already widely used, were employed in the examples above, and are
-in use by (and in some cases managed by) the authors.:
+in use by (and in some cases managed by) the authors.
 
 <a name="ecso"></a>
 
