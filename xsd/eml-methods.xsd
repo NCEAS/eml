@@ -72,7 +72,16 @@
   </xs:annotation>
   <xs:element name="methods" type="MethodsType">
     <xs:annotation>
-      <xs:documentation>Comment describing your root element</xs:documentation>
+      <xs:appinfo>
+        <doc:tooltip>method information</doc:tooltip>
+        <doc:summary>Detailed descriptions of methods and precedural steps.</doc:summary>
+        <doc:description>Information about the methods employed in collecting
+          or generating a data set or other resource. There are subtrees for
+          specific methods steps, sampling details (study extent, sampling units 
+          detailed description) and quailty control.</doc:description>
+        <doc:example>Please see the examples for the
+          sub-fields.</doc:example>
+      </xs:appinfo>
     </xs:annotation>
   </xs:element>
   <xs:complexType name="MethodsType">
@@ -81,8 +90,7 @@
         <xs:annotation>
           <xs:appinfo>
             <doc:tooltip>method information</doc:tooltip>
-            <doc:summary>Information about the methods employed in collecting
-            or generating a data set or other resource.</doc:summary>
+            <doc:summary>Description of a specific step of the method.</doc:summary>
             <doc:description>The methodStep field allows for repeated sets of
             elements that document a series of procedures followed to produce a
             data object. These include text descriptions of the procedures,
