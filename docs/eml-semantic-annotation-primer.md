@@ -379,7 +379,7 @@ in use by (and in some cases managed by) the authors.
 <a name="ecso"></a>
 
 - **ECSO (Ecosystem Ontology)**  (https://github.com/DataONEorg/sem-prov-ontologies/tree/master/observation).
-An ontology for ecosystem measurements under development by the Arctic Data Center and DataONE.
+An ontology for ecosystem measurements led by NCEAS.
 
 <a name="envo"></a>
 
@@ -583,6 +583,14 @@ Following are tutorials and supplemental background reading
  
 * Tim Berners-Lee's article on the semantic web: ```Berners-Lee, T., Hendler, J., & Lassila, O. (2001). The semantic web. Scientific american, 284(5), 34-43.```
 
+
+<!-- 
+### About this primer
+ontology work initially by the Arctic Data Center and DataONE
+
+
+ -->
+
 <a name="FAQ"></a>
 
 ## Frequently asked questions
@@ -713,12 +721,12 @@ https://orcid.org/0000-0003-1279-3709 http://semanticscience.org/resource/SIO_00
 
 Within the SIO ontology, SIO_000364 and SIO_000365 are defined as inverses of one another. This enables one (a person or a computer!) to ask either question-- "who created the Web?" (A: Tim Berners-Lee), or "what did Tim Berners-Lee create" (A: the Web)-- even though you only asserted one of the Triples.
 
-Finally, it is worth noting that one's choice of which Ontologies to use is important. Within the Ecological and Environmental sciences, there are several highly-recommended vocabularies, including those from the OBO Foundry (e.g. ChEBI, EnvO, RO, and PATO), as well as SIO. Specifically for annotating scientific measurements, the Arctic Data Center and DataONE are developing an Ontology for Ecosystem Measurements, ECSO.  These use, where possible, terms from the OBO Foundry ontologies mentioned here. We have used all these in the examples.
+Finally, it is worth noting that one's choice of which Ontologies to use is important. Within the Ecological and Environmental sciences, there are several highly-recommended vocabularies, including those from the OBO Foundry (e.g. ChEBI, EnvO, RO, and PATO), as well as SIO. Specifically for annotating scientific measurements, NCEAS is developing an Ontology for Ecosystem Measurements, ECSO  (with the Arctic Data Center and DataONE).  These use, where possible, terms from the OBO Foundry ontologies mentioned here. We have used all these in the examples.
 
 <a name="FAQ-what-tools"></a>
 
 **Q: Are there tools available to help data managers select subjects, predicates, and objects to annotate with?**
 
-A: Yes, tools are being built to assist with the semantic annotation of EML documents, within the DataONE and Arctic Data Center data repository projects, and others.  In addition, tools are being built to enable semantic search, that use the annotations to expand searches to capture synonyms, differentiate homonyms, and enable the discovery of sub-classes of the terms that you might originally be searching for.
+A: Yes, tools are being built to assist with the semantic annotation of EML documents.  In addition, tools are being built to enable semantic search, that use the annotations to expand searches to capture synonyms, differentiate homonyms, and enable the discovery of sub-classes of the terms that you might originally be searching for. 
 
 
