@@ -414,6 +414,145 @@ An initiative to create and support common sets of structured data markup on web
 
 
 
+<a name="FAQ"></a>
+
+## Frequently asked questions
+
+Below are answers to questions some readers had, which may be helpful to you. If you have additional questions, please bring them up in your community for feedback.
+
+
+**Q: Why do EML elements with annotations need `id` attributes?** 
+
+A: EML elements that have `annotation` children need `id` so that they can be used to construct the *subject* of 
+an RDF triple. [See above](#faq-why-do-annotations-need-ids).
+
+
+<a name="FAQ-what-is-deference"></a>
+
+**Q: What is the difference between ‘dereference’ and 'resolve'?**
+
+A: Within the context of semantic annotation, "dereferencing" refers to the process of interpreting a URI, and providing "useful information" back about the Resource of interest. The phrase "resolving a URI" is often used synonymously with "dereferencing", but technically "resolution" refers to the process of determining HOW and WHAT to do with the URI, whereas "dereferencing" is explicitly about the action taken, which is typically retrieving a representation of the Resource of interest. The formal specification for these terms and what they mean is found in the IETF's (Internet Engineering Task Force) RFC (Request for Comment) 3986 (https://tools.ietf.org/html/rfc3986).
+
+<a name="FAQ-URIvsURL"></a>
+
+**Q: What is the difference between an URI and a URL? Example URIs look a lot like URLs... What about IRIs?**
+
+A: The distinctions among URIs (Uniform Resource Identifiers), URLs (Uniform Resource Locators), and URNs (Uniform Resource Names), relate to differentiating the functionalities of identifying a Resource, as opposed to locating a Resource, or doing both. URLs are all URIs (with some edge case exceptions subject to argument), and URNs are also URIs. In many cases, URIs serve both to name and locate a Resource. 
+
+Within the vision of the Semantic Web, URIs are ideally unique, persistent URNs identifying some Web Resource, that can also serve to locate and retrieve (dereference) a representation of that Resource (URLs). The formal specification for these terms and what they mean is found in the IETF's RFC 3986, section 1.1.3 (https://tools.ietf.org/html/rfc3986#section-1.1.3). Another acronym one may encounter with increasing frequency is IRI (Internationalized Resource Identifier) that extends the concept of an HTTP URI to allow for use of the full Unicode character set, rather than just ASCII, in its construction (https://tools.ietf.org/html/rfc3987).
+
+<a name="FAQ-what-is-skos"></a>
+
+**Q: What is SKOS?**
+
+A: SKOS (Simple Knowledge Management System) is a W3C recommendation for organizing a vocabulary in thesauri, taxonomies, and other classification schemes. SKOS provides a set of concepts and properties, that, when expressed in a formal RDF-compatible syntax, can assist with interpreting the relationship of terms with one another, such as defining some category as broader than another. For example, one could state in SKOS syntax, that "animals" is a broader concept than "mammals". Definitive specification of SKOS can be found at https://www.w3.org/TR/2009/REC-skos-reference-20090818/. SKOS does not provide strong semantics (see RDFS example below), but SKOS concepts and properties can be used within more expressive knowledge organization frameworks, such as RDFS/OWL ontologies.
+
+<a name="FAQ-what-is-rdfs"></a>
+
+**Q: What is RDFS?**
+
+A: RDFS stands for Resource Description Framework Schema. It extends the formal vocabulary for describing Resources expressed 
+in an RDF data model (i.e., a graph).  
+
+"Base RDF" is the set of concepts for creating a graph model 
+of data (triples relating a subject, predicate, and object). RDFS adds to the base RDF model by 
+specifying other well-defined concepts and properties, such as rdfs:Label, rdfs:Class and rdfs:subClassOf. 
+These and other RDFS classes and properties, enable data and knowledge modellers to express many relationships 
+between the Subject and Object of a Triple.
+
+In the context of the Semantic Web, the RDF model relies extensively on dereferenceable URIs in the subject 
+and predicate positions, and URIs or literals in the object position (there are small formal exceptions to this 
+not immediately relevant here). RDF triples can be expressed in several syntaxes, including XML, JSON-LD, and Turtle, 
+among others. RDFS then can be used to enrich the precision and expressivity of the components of a triple, 
+as well as clarify the relationships among these.
+
+- Base RDF: https://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/
+- RDFS: https://www.w3.org/TR/rdf-schema/
+
+<a name="FAQ-are-all-eml-attributes-measurements"></a>
+
+**Q: Are all EML dataTable attributes "measurements"?**
+
+A: Yes, in the context of a data table and for annotation purposes, any attribute (observation or column of data) can be 
+considered ‘a measurement’. A philosopher might disagree, saying that some content
+you might see in data columns (e.g., unique identifiers) are not really 
+measurements; but many other nominals, i.e. text strings identifying some class types (e.g. predator, lizard, 
+tundra), imply quantification and can be construed as measurements. 
+
+<a name="FAQ-example-labels"></a>
+
+**Q: Can you provide an example of a controlled vocabulary with an rdfs:label or skos:label?**
+
+A: Most Semantic Web vocabularies make extensive use of rdfs:label or SKOS label properties. For example, this URI: http://purl.dataone.org/odo/ECSO_00000536 is from the ECSO ontology, under development at NCEAS by NSF's DataONE and Arctic Data Center. Within that ontology, the URI is associated with an rdfs:label of "Carbon Dioxide Flux", and a skos:altLabel of "CO2 flux". If you dereference the URI, you will see how the BioPortal ontology repository displays this information-- providing a human-readable representation of the underlying RDF/OWL language in which the ontology is stored.
+
+
+<a name="faq-how-do-computers-use-eml-annotations"></a>
+
+**Q: How do computer use EML annotations?**
+
+A: Annotations can be extracted from the EML document, and re-expressed (formally, "serialized") 
+into a Semantic Web language such as 
+[RDF](#faq-what-is-rdfs) or [JSON-LD](#glossary-jsonld). Annotations (also called "assertions" or "triples" in RDF) 
+collectively contribute 
+to a *[knowledge graph](#glossary-knowledge-graph)*, that captures understanding of the relationship of the 
+contents of datasets (as "instances") with the concepts represented by terms in ontologies (as "classes"). 
+
+
+
+<a name="FAQ-what-does-RDF-look-like"></a>
+
+**Q: An image of an RDF graph is great, but a computer doesn't parse that. What does the RDF look like?**
+
+A: Actual RDF (XML) is shown in the code blocks of [Example 3](#rdf-eml-example-3) and [Example 4](#rdf-eml-example-4). 
+
+RDF is a data model based on triples, each of which has three components: a subject, 
+predicate, and object, that are constructed of dereferenceable URIs. 
+RDF triples can be "serialized" in several syntaxes, including XML, JSON-LD, Turtle, N-Triples, and others. These syntaxes are isomorphic, such that translations of RDF graphs from one serialization to another are available-- enabling consistent interpretation by machines.
+
+For human interpretation  the most straightforward serialization of RDF graphs
+is N-Triples, where an RDF triple could look like this:
+
+http://purl.obolibrary.org/obo/CHEBI_16526 http://purl.obolibrary.org/obo/RO_0000087 http://purl.obolibrary.org/obo/CHEBI_76413 .
+
+These are three URIs here-- representing the Subject, Predicate, and Object of a Triple. The "." indicates the end of the Triple.  Of course, you would need to know that these three URI's are intended to be interpreted as an RDF Triple.  Dereferencing these URIs (e.g. a Web browser or specialized application) one can see that this Triple represents the statement:
+
+"Carbon dioxide"(Subject) "has role"(Predicate) "Greenhouse Gas"(Object)
+
+While the phrasing is a bit awkward sounding, the meaning is clear by simply depicting the rdfs:labels of those terms from the ChEBI (Chemical Entities of Biological Interest) and RO (Relation) ontologies, that are both robust OBO Foundry ontologies.
+
+As another example: http://purl.obolibrary.org/obo/NCIT_C20461 http://purl.org/dc/elements/1.1/creator https://orcid.org/0000-0003-1279-3709 .
+
+that asserts:
+
+"World Wide Web"(Subject) "creator"(Predicate) "Timothy Berners Lee"(Object) .
+
+...although some semantic purists might question whether the Dublin Core property "Creator" can be used in this way as an RDF predicate, since it is not semantically defined-- would its rdfs:label be "creatorOf" or "hasCreator"? (Dublin Core does not say explicitly, but implicitly is indicative of "hasCreator"!). Regardless of the formal semantic well-formedness of this Triple, however, one can see the expressive power of the RDF data model, and the value of dereferenceable URIs.
+
+A better solution would be to use the semantically defined term from SIO (the Semantic Science Integrated Ontology) http://semanticscience.org/resource/SIO_000364 as the predicate, with an rdfs:label "has creator"
+
+http://purl.obolibrary.org/obo/NCIT_C20461 http://semanticscience.org/resource/SIO_000364 https://orcid.org/0000-0003-1279-3709 .
+
+...that would translate as (based on content of the rdfs:label):
+
+World Wide Web(Subject) has creator(Predicate) Tim Berners-Lee(Object)
+
+or inversely, one could use http://semanticscience.org/resource/SIO_000365 as the predicate, that has rdfs:label "is creator of"
+
+Tim Berners-Lee(Subject) is creator of(Predicate) World Wide Web(Object)
+
+https://orcid.org/0000-0003-1279-3709 http://semanticscience.org/resource/SIO_000365 http://purl.obolibrary.org/obo/NCIT_C20461.
+
+Within the SIO ontology, SIO_000364 and SIO_000365 are defined as inverses of one another. This enables one (a person or a computer!) to ask either question-- "who created the Web?" (A: Tim Berners-Lee), or "what did Tim Berners-Lee create" (A: the Web)-- even though you only asserted one of the Triples.
+
+Finally, it is worth noting that one's choice of which Ontologies to use is important. Within the Ecological and Environmental sciences, there are several highly-recommended vocabularies, including those from the OBO Foundry (e.g. ChEBI, EnvO, RO, and PATO), as well as SIO. Specifically for annotating scientific measurements, NCEAS is developing an Ontology for Ecosystem Measurements, ECSO  (with the Arctic Data Center and DataONE).  These use, where possible, terms from the OBO Foundry ontologies mentioned here. We have used all these in the examples.
+
+<a name="FAQ-what-tools"></a>
+
+**Q: Are there tools available to help data managers select subjects, predicates, and objects to annotate with?**
+
+A: Yes, tools are being built to assist with the semantic annotation of EML documents.  In addition, tools are being built to enable semantic search, that use the annotations to expand searches to capture synonyms, differentiate homonyms, and enable the discovery of sub-classes of the terms that you might originally be searching for. 
+
+
 
 
 <a name="appendix"></a>
@@ -590,143 +729,4 @@ ontology work initially by the Arctic Data Center and DataONE
 
 
  -->
-
-<a name="FAQ"></a>
-
-## Frequently asked questions
-
-Below are answers to questions some readers had, which may be helpful to you. If you have additional questions, please bring them up in your community for feedback.
-
-
-**Q: Why do EML elements with annotations need `id` attributes?** 
-
-A: EML elements that have `annotation` children need `id` so that they can be used to construct the *subject* of 
-an RDF triple. [See above](#faq-why-do-annotations-need-ids).
-
-
-<a name="FAQ-what-is-deference"></a>
-
-**Q: What is the difference between ‘dereference’ and 'resolve'?**
-
-A: Within the context of semantic annotation, "dereferencing" refers to the process of interpreting a URI, and providing "useful information" back about the Resource of interest. The phrase "resolving a URI" is often used synonymously with "dereferencing", but technically "resolution" refers to the process of determining HOW and WHAT to do with the URI, whereas "dereferencing" is explicitly about the action taken, which is typically retrieving a representation of the Resource of interest. The formal specification for these terms and what they mean is found in the IETF's (Internet Engineering Task Force) RFC (Request for Comment) 3986 (https://tools.ietf.org/html/rfc3986).
-
-<a name="FAQ-URIvsURL"></a>
-
-**Q: What is the difference between an URI and a URL? Example URIs look a lot like URLs... What about IRIs?**
-
-A: The distinctions among URIs (Uniform Resource Identifiers), URLs (Uniform Resource Locators), and URNs (Uniform Resource Names), relate to differentiating the functionalities of identifying a Resource, as opposed to locating a Resource, or doing both. URLs are all URIs (with some edge case exceptions subject to argument), and URNs are also URIs. In many cases, URIs serve both to name and locate a Resource. 
-
-Within the vision of the Semantic Web, URIs are ideally unique, persistent URNs identifying some Web Resource, that can also serve to locate and retrieve (dereference) a representation of that Resource (URLs). The formal specification for these terms and what they mean is found in the IETF's RFC 3986, section 1.1.3 (https://tools.ietf.org/html/rfc3986#section-1.1.3). Another acronym one may encounter with increasing frequency is IRI (Internationalized Resource Identifier) that extends the concept of an HTTP URI to allow for use of the full Unicode character set, rather than just ASCII, in its construction (https://tools.ietf.org/html/rfc3987).
-
-<a name="FAQ-what-is-skos"></a>
-
-**Q: What is SKOS?**
-
-A: SKOS (Simple Knowledge Management System) is a W3C recommendation for organizing a vocabulary in thesauri, taxonomies, and other classification schemes. SKOS provides a set of concepts and properties, that, when expressed in a formal RDF-compatible syntax, can assist with interpreting the relationship of terms with one another, such as defining some category as broader than another. For example, one could state in SKOS syntax, that "animals" is a broader concept than "mammals". Definitive specification of SKOS can be found at https://www.w3.org/TR/2009/REC-skos-reference-20090818/. SKOS does not provide strong semantics (see RDFS example below), but SKOS concepts and properties can be used within more expressive knowledge organization frameworks, such as RDFS/OWL ontologies.
-
-<a name="FAQ-what-is-rdfs"></a>
-
-**Q: What is RDFS?**
-
-A: RDFS stands for Resource Description Framework Schema. It extends the formal vocabulary for describing Resources expressed 
-in an RDF data model (i.e., a graph).  
-
-"Base RDF" is the set of concepts for creating a graph model 
-of data (triples relating a subject, predicate, and object). RDFS adds to the base RDF model by 
-specifying other well-defined concepts and properties, such as rdfs:Label, rdfs:Class and rdfs:subClassOf. 
-These and other RDFS classes and properties, enable data and knowledge modellers to express many relationships 
-between the Subject and Object of a Triple.
-
-In the context of the Semantic Web, the RDF model relies extensively on dereferenceable URIs in the subject 
-and predicate positions, and URIs or literals in the object position (there are small formal exceptions to this 
-not immediately relevant here). RDF triples can be expressed in several syntaxes, including XML, JSON-LD, and Turtle, 
-among others. RDFS then can be used to enrich the precision and expressivity of the components of a triple, 
-as well as clarify the relationships among these.
-
-- Base RDF: https://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/
-- RDFS: https://www.w3.org/TR/rdf-schema/
-
-<a name="FAQ-are-all-eml-attributes-measurements"></a>
-
-**Q: Are all EML dataTable attributes "measurements"?**
-
-A: Yes, in the context of a data table and for annotation purposes, any attribute (observation or column of data) can be 
-considered ‘a measurement’. A philosopher might disagree, saying that some content
-you might see in data columns (e.g., unique identifiers) are not really 
-measurements; but many other nominals, i.e. text strings identifying some class types (e.g. predator, lizard, 
-tundra), imply quantification and can be construed as measurements. 
-
-<a name="FAQ-example-labels"></a>
-
-**Q: Can you provide an example of a controlled vocabulary with an rdfs:label or skos:label?**
-
-A: Most Semantic Web vocabularies make extensive use of rdfs:label or SKOS label properties. For example, this URI: http://purl.dataone.org/odo/ECSO_00000536 is from the ECSO ontology, under development at NCEAS by NSF's DataONE and Arctic Data Center. Within that ontology, the URI is associated with an rdfs:label of "Carbon Dioxide Flux", and a skos:altLabel of "CO2 flux". If you dereference the URI, you will see how the BioPortal ontology repository displays this information-- providing a human-readable representation of the underlying RDF/OWL language in which the ontology is stored.
-
-
-<a name="faq-how-do-computers-use-eml-annotations"></a>
-
-**Q: How do computer use EML annotations?**
-
-A: Annotations can be extracted from the EML document, and re-expressed (formally, "serialized") 
-into a Semantic Web language such as 
-[RDF](#faq-what-is-rdfs) or [JSON-LD](#glossary-jsonld). Annotations (also called "assertions" or "triples" in RDF) 
-collectively contribute 
-to a *[knowledge graph](#glossary-knowledge-graph)*, that captures understanding of the relationship of the 
-contents of datasets (as "instances") with the concepts represented by terms in ontologies (as "classes"). 
-
-
-
-<a name="FAQ-what-does-RDF-look-like"></a>
-
-**Q: An image of an RDF graph is great, but a computer doesn't parse that. What does the RDF look like?**
-
-A: Actual RDF (XML) is shown in the code blocks of [Example 3](#rdf-eml-example-3) and [Example 4](#rdf-eml-example-4). 
-
-RDF is a data model based on triples, each of which has three components: a subject, 
-predicate, and object, that are constructed of dereferenceable URIs. 
-RDF triples can be "serialized" in several syntaxes, including XML, JSON-LD, Turtle, N-Triples, and others. These syntaxes are isomorphic, such that translations of RDF graphs from one serialization to another are available-- enabling consistent interpretation by machines.
-
-For human interpretation  the most straightforward serialization of RDF graphs
-is N-Triples, where an RDF triple could look like this:
-
-http://purl.obolibrary.org/obo/CHEBI_16526 http://purl.obolibrary.org/obo/RO_0000087 http://purl.obolibrary.org/obo/CHEBI_76413 .
-
-These are three URIs here-- representing the Subject, Predicate, and Object of a Triple. The "." indicates the end of the Triple.  Of course, you would need to know that these three URI's are intended to be interpreted as an RDF Triple.  Dereferencing these URIs (e.g. a Web browser or specialized application) one can see that this Triple represents the statement:
-
-"Carbon dioxide"(Subject) "has role"(Predicate) "Greenhouse Gas"(Object)
-
-While the phrasing is a bit awkward sounding, the meaning is clear by simply depicting the rdfs:labels of those terms from the ChEBI (Chemical Entities of Biological Interest) and RO (Relation) ontologies, that are both robust OBO Foundry ontologies.
-
-As another example: http://purl.obolibrary.org/obo/NCIT_C20461 http://purl.org/dc/elements/1.1/creator https://orcid.org/0000-0003-1279-3709 .
-
-that asserts:
-
-"World Wide Web"(Subject) "creator"(Predicate) "Timothy Berners Lee"(Object) .
-
-...although some semantic purists might question whether the Dublin Core property "Creator" can be used in this way as an RDF predicate, since it is not semantically defined-- would its rdfs:label be "creatorOf" or "hasCreator"? (Dublin Core does not say explicitly, but implicitly is indicative of "hasCreator"!). Regardless of the formal semantic well-formedness of this Triple, however, one can see the expressive power of the RDF data model, and the value of dereferenceable URIs.
-
-A better solution would be to use the semantically defined term from SIO (the Semantic Science Integrated Ontology) http://semanticscience.org/resource/SIO_000364 as the predicate, with an rdfs:label "has creator"
-
-http://purl.obolibrary.org/obo/NCIT_C20461 http://semanticscience.org/resource/SIO_000364 https://orcid.org/0000-0003-1279-3709 .
-
-...that would translate as (based on content of the rdfs:label):
-
-World Wide Web(Subject) has creator(Predicate) Tim Berners-Lee(Object)
-
-or inversely, one could use http://semanticscience.org/resource/SIO_000365 as the predicate, that has rdfs:label "is creator of"
-
-Tim Berners-Lee(Subject) is creator of(Predicate) World Wide Web(Object)
-
-https://orcid.org/0000-0003-1279-3709 http://semanticscience.org/resource/SIO_000365 http://purl.obolibrary.org/obo/NCIT_C20461.
-
-Within the SIO ontology, SIO_000364 and SIO_000365 are defined as inverses of one another. This enables one (a person or a computer!) to ask either question-- "who created the Web?" (A: Tim Berners-Lee), or "what did Tim Berners-Lee create" (A: the Web)-- even though you only asserted one of the Triples.
-
-Finally, it is worth noting that one's choice of which Ontologies to use is important. Within the Ecological and Environmental sciences, there are several highly-recommended vocabularies, including those from the OBO Foundry (e.g. ChEBI, EnvO, RO, and PATO), as well as SIO. Specifically for annotating scientific measurements, NCEAS is developing an Ontology for Ecosystem Measurements, ECSO  (with the Arctic Data Center and DataONE).  These use, where possible, terms from the OBO Foundry ontologies mentioned here. We have used all these in the examples.
-
-<a name="FAQ-what-tools"></a>
-
-**Q: Are there tools available to help data managers select subjects, predicates, and objects to annotate with?**
-
-A: Yes, tools are being built to assist with the semantic annotation of EML documents.  In addition, tools are being built to enable semantic search, that use the annotations to expand searches to capture synonyms, differentiate homonyms, and enable the discovery of sub-classes of the terms that you might originally be searching for. 
-
 
