@@ -34,18 +34,8 @@ Related FAQ: [How do computers use EML annotations?](#faq-how-do-computers-use-e
 
 ### Organization of this document
 
-The purpose of this primer is to provide an introduction to 
-how semantic annotations are structured in EML documents. It 
-is expected that the readers is already familiar with the EML 
-schema. 
-The central text of the 
-primer ([Semantic Annotations in EML 2.2.0](#sa-eml22)) should 
-provide all the information needed to create annotations in EML, 
-with addtional details in a [Glossary:](#glossary), list of
-[Vocabularies and repositories used in examples:](#external-vocabularies) 
-and [Frequently asked questions:](#FAQ).
-Longer explanations of some concepts are in the [Appendix](#appendix).
-FAQ)** Some questions asked by readers, and their answers
+The purpose of this primer is to provide an introduction to how semantic annotations are structured in EML documents. It is expected that the readers is already familiar with the EML schema. The central text of the primer ([Semantic Annotations in EML 2.2.0](#sa-eml22)) should provide all the information needed to create annotations in EML, with addtional details in a [Glossary:](#glossary), list of [Vocabularies and repositories used in examples:](#external-vocabularies) and [Frequently asked questions:](#FAQ). Longer explanations of some concepts are in the [Appendix](#appendix).
+
 
 ### Other Conventions and Terminology
 
