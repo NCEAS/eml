@@ -2,6 +2,11 @@
 
 ## The eml module - A metadata container
 
+Links:
+
+- [Module Diagram](./images/eml.png)
+- [Interactive Module Documentation](./schema/eml_xsd.html)
+
 The eml module is a wrapper container that allows the inclusion of any
 metadata content in a single EML document. The eml module is used as a
 container to hold structured descriptions of ecological resources. In
@@ -29,6 +34,11 @@ internally extend fields within the EML standard.
 
 ## The eml-resource module - Base information for all resources
 
+Links:
+
+- [Module Diagram](./images/eml-resource.png)
+- [Interactive Module Documentation](./schema/eml-resource_xsd.html)
+
 The eml-resource module contains general information that describes
 dataset resources, literature resources, protocol resources, and
 software resources. Each of the above four types of resources share a
@@ -54,6 +64,11 @@ module.
 
 ## The eml-dataset module - Dataset specific information
 
+Links:
+
+- [Module Diagram](./images/eml-dataset.png)
+- [Interactive Module Documentation](./schema/eml-dataset_xsd.html)
+
 The eml-dataset module contains general information that describes
 dataset resources. It is intended to provide overview information about
 the dataset: broad information such as the title, abstract, keywords,
@@ -75,6 +90,11 @@ then used as a reference in other locations within the EML document via
 its ID.
 
 ## The eml-literature module - Citation-specific information
+
+Links:
+
+- [Module Diagram](./images/eml-literature.png)
+- [Interactive Module Documentation](./schema/eml-literature_xsd.html)
 
 The eml-literature module contains information that describes literature resources. It is intended to provide overview information about the literature citation, including title, abstract, keywords, and contacts. Citation types follow the conventions laid out by [EndNote](http://www.endnote.com), and there is an attempt to represent a compatible subset of the EndNote citation types. These citation types include: article, book, chapter, edited book, manuscript, report, thesis, conference proceedings, personal communication, map, generic, audio visual, and presentation. The generic citation type would be used when one of the other types will not work.
 
@@ -239,6 +259,11 @@ A citation to an article or other resource that serves as an important reference
 
 ## The eml-software module - Software specific information
 
+Links:
+
+- [Module Diagram](./images/eml-software.png)
+- [Interactive Module Documentation](./schema/eml-software_xsd.html)
+
 The eml-software module contains general information that describes
 software resources. This module is intended to fully document software
 that is needed in order to view a resource (such as a dataset) or to
@@ -252,6 +277,11 @@ once, and then used as a reference in other locations within the EML
 document via its ID.
 
 ## The eml-protocol module - Research protocol specific information
+
+Links:
+
+- [Module Diagram](./images/eml-protocol.png)
+- [Interactive Module Documentation](./schema/eml-protocol_xsd.html)
 
 The EML Protocol Module is used to define abstract, prescriptive
 procedures for generating or processing data. Conceptually, a protocol

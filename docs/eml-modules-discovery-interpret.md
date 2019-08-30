@@ -13,6 +13,11 @@ a dataset, rather than the entire dataset as a whole.
 
 ## The eml-access module - Access control rules for resources
 
+Links:
+
+- [Module Diagram](./images/eml-access.png)
+- [Interactive Module Documentation](./schema/eml-access_xsd.html)
+
 The eml-access module describes the level of access that is to be
 allowed or denied to a resource for a particular user or group of users,
 and can be described independently for metadata and data. The eml-access
@@ -157,6 +162,11 @@ those entities.
 
 ## The eml-physical module - Physical file format
 
+Links:
+
+- [Module Diagram](./images/eml-physical.png)
+- [Interactive Module Documentation](./schema/eml-physical_xsd.html)
+
 The eml-physical module describes the external and internal physical
 characteristics of a data object as well as the information required for
 its distribution. Examples of the external physical characteristics of a
@@ -180,6 +190,11 @@ document via its ID.
 
 ## The eml-party module - People and organization information
 
+Links:
+
+- [Module Diagram](./images/eml-party.png)
+- [Interactive Module Documentation](./schema/eml-party_xsd.html)
+
 The eml-party module describes a responsible party and is typically used
 to name the creator of a resource or metadata document. A responsible
 party may be an individual person, an organization or a named position
@@ -193,6 +208,11 @@ used as a reference in other locations within the EML document via its
 ID.
 
 ## The eml-coverage module - Geographic, temporal, and taxonomic extents of resources
+
+Links:
+
+- [Module Diagram](./images/eml-coverage.png)
+- [Interactive Module Documentation](./schema/eml-coverage_xsd.html)
 
 The eml-coverage module contains fields for describing the coverage of a
 resource in terms of time, space, and taxonomy. These coverages
@@ -243,6 +263,11 @@ document via its ID.
 
 ## The eml-project module - Research context information for resources
 
+Links:
+
+- [Module Diagram](./images/eml-project.png)
+- [Interactive Module Documentation](./schema/eml-project_xsd.html)
+
 The eml-project module describes the research context in which the
 dataset was created, including descriptions of over-all motivations and
 goals, funding, personnel, description of the study area etc. This is
@@ -257,6 +282,11 @@ once, and then used as a reference in other locations within the EML
 document via its ID.
 
 ## The eml-methods module - Methodological information for resources
+
+Links:
+
+- [Module Diagram](./images/eml-methods.png)
+- [Interactive Module Documentation](./schema/eml-methods_xsd.html)
 
 The eml-methods module describes the methods followed in the creation of
 the dataset, including description of field, laboratory and processing

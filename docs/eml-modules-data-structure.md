@@ -18,6 +18,11 @@ section.
 
 ## The eml-entity module - Entity level information within datasets
 
+Links:
+
+- [Module Diagram](./images/eml-entity.png)
+- [Interactive Module Documentation](./schema/eml-entity_xsd.html)
+
 The eml-entity module defines the logical characteristics of each entity
 in the dataset. Entities are usually tables of data (eml-dataTable).
 Data tables may be ascii text files, relational database tables,
@@ -42,6 +47,11 @@ and then used as a reference in other locations within the EML document
 via its ID.
 
 ## The eml-attribute module - Attribute level information within dataset entities
+
+Links:
+
+- [Module Diagram](./images/eml-attribute.png)
+- [Interactive Module Documentation](./schema/eml-attribute_xsd.html)
 
 The eml-attribute module describes all attributes (variables) in a data
 entity: dataTable, spatialRaster, spatialVector, storedProcedure, view
@@ -141,6 +151,11 @@ into their appropriate components (e.g., days, months, years)./
 
 ## The eml-constraint module - Relationships among and within dataset entities
 
+Links:
+
+- [Module Diagram](./images/eml-constraint.png)
+- [Interactive Module Documentation](./schema/eml-constraint_xsd.html)
+
 The eml-constraint schema defines the integrity constraints between
 entities (e.g., data tables) as they would be maintained in a relational
 management system. These constraints include primary key constraints,
@@ -148,6 +163,11 @@ foreign key constraints, unique key constraints, check constraints, and
 not null constraints, among potential others.
 
 ## The eml-dataTable module - Logical information about data table entities
+
+Links:
+
+- [Module Diagram](./images/eml-dataTable.png)
+- [Interactive Module Documentation](./schema/eml-dataTable_xsd.html)
 
 The eml-dataTable module is used to describe the logical characteristics
 of each tabular set of information in a dataset. A series of
@@ -165,6 +185,11 @@ information such as its orientation, case sensitivity, etc.
 
 ## The eml-spatialRaster module - Logical information about regularly gridded geospatial image data
 
+Links:
+
+- [Module Diagram](./images/eml-spatialRaster.png)
+- [Interactive Module Documentation](./schema/eml-spatialRaster_xsd.html)
+
 The eml-spatialRaster module allows for the description of entities
 composed of rectangular grids of data values that are usually
 georeferenced to a portion of the earth\'s surface. Specific attributes
@@ -174,6 +199,11 @@ via imaging sensors, characteristics about the image and its individual
 bands.
 
 ## The eml-spatialVector module - Logical information about non-gridded geospatial image data
+
+Links:
+
+- [Module Diagram](./images/eml-spatialVector.png)
+- [Interactive Module Documentation](./schema/eml-spatialVector_xsd.html)
 
 The eml-spatialVector module allows for the description of spatial
 objects in a GIS system that are not defined in a regularly gridded
@@ -194,6 +224,11 @@ schema for any projection that does not appear in this dictionary.
 
 ## The eml-storedProcedure module - Data tables resulting from procedures stored in a database
 
+Links:
+
+- [Module Diagram](./images/eml-storedProcedure.png)
+- [Interactive Module Documentation](./schema/eml-storedProcedure_xsd.html)
+
 The storedProcedure module is meant to capture information on procedures
 that produce data output in the form of a data table. In an RDBMS one
 can code complex queries and transactions into stored procedures and
@@ -202,6 +237,11 @@ optional description of any parameters that are expected to be passed to
 the procedure when it is called.
 
 ## The eml-view module - Data tables resulting from a database query
+
+Links:
+
+- [Module Diagram](./images/eml-view.png)
+- [Interactive Module Documentation](./schema/eml-view_xsd.html)
 
 The eml-view module describes a view from a database management system.
 A view is a query statement that is stored as a database object and

@@ -8,6 +8,11 @@ paragraphs, lists, subscript, superscript, emphasis, etc.)
 
 ## The eml-text module - Text field formatting
 
+Links:
+
+- [Module Diagram](./images/eml-text.png)
+- [Interactive Module Documentation](./schema/eml-text_xsd.html)
+
 The eml-text module is a wrapper container that allows general text
 descriptions to be used within the various modules of eml. It can
 include either structured or unstructured text blocks. It isn\'t really
@@ -25,6 +30,12 @@ sections can be interleaved in any order, but most people will likely
 find the markdown syntax the easiest to use.
 
 ## The eml-semantics module - Semantic annotations for formalized statements about EML components
+
+Links:
+
+- [Module Diagram](./images/eml-semantics.png)
+- [Interactive Module Documentation](./schema/eml-semantics_xsd.html)
+
 The eml-semantics module defines types and elements for
 annotating other structures within EML with semantically-precise
 statements from various controlled vocabularies.  This is
