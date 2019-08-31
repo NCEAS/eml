@@ -25,21 +25,20 @@ $ ./bin/build_schema_documentation.sh
 $ cd docs
 $ R -f 'build_book.R'
 $ cd ..
-$ git add dist
-$ git commit
-$ git pull --rebase
-$ git push
 ```
+
+At this point, you have a local copy of the documentation built that you can view
+in a web browser.
 
 ## Deploying the site
 
-Once the changes are committed and pushed in the dist directory, it is ready to 
+Once the changes are committed in the docs directory, it is ready to 
 be deployed on the web by pushing the files to the `gh_pages` branch.  Publishing 
 `gh_pages` content to the web is currently handled 
 by [Netlify](https://app.netlify.com/sites/ecometadata/overview) 
 which publishes the site to the custom domain 
 [https://eml.ecoinformatics.org](https://eml.ecoinformatics.org).  To deploy a new
-version of the site, first edit, build, and commit the site to the `master` branch
+version of the site, first edit and commit the site changes to the `master` branch
 as described in the previous section, and then deploy the site using the provided
 deployment shell script which updates the `gh_pages` branch for you:
 
@@ -47,6 +46,7 @@ deployment shell script which updates the `gh_pages` branch for you:
 $ ./bin/deploy_site.sh
 ```
 
-This will copy the currently commited files in the `dist` directory to the 
-`gh_pages` branch, which will be picked up and deployed by Netlify shortly
-thereafter.
+This will remove the current `dist` directory, build a clean copy of the `dist`
+directory from the documentation source files, then copy the built files in 
+the `dist` directory to the `gh_pages` branch, which will be picked up and 
+deployed by Netlify shortly thereafter to [https://eml.ecoinformatics.org](https://eml.ecoinformatics.org).
