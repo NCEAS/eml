@@ -42,7 +42,7 @@ O2_OUTPUT_INDEX='index.html';
 O2_OUTPUT="$O2_OUTPUT_DIR/$O2_OUTPUT_INDEX";
 
 # locaton of final documentation (with other EML docs, note that this is anchored at PWD, root of the checkout)
-OUTPUT='./dist/schema';
+OUTPUT='./docs/schema';
 
 # loop through schema files and xform
 COUNTER=0;
