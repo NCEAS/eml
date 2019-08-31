@@ -18,7 +18,6 @@ cd ..
 # 3. Add and commit the build site to dist on the temp branch
 git add dist
 git commit -m "Deploy site to netlify"
-git status
 
 # 4. delete the current gh_pages branch
 # 5. push the temp dist directory to origin gh_pages
@@ -28,7 +27,6 @@ git push origin :gh-pages && git subtree push --prefix dist origin gh-pages
 git checkout ${CURRENT_BRANCH}
 
 # 7. delete the temporary branch
-git branch -l
 git branch -D ${TEMP_BRANCH}
 
 echo "Site deployed. Check https://eml.ecoinformatics.org "
