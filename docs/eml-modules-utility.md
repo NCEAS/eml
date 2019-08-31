@@ -1,4 +1,4 @@
-# Utility Modules
+## Utility Modules
 
 The following modules are used to highlight the information being
 documented in each of the above modules where prose may be needed to
@@ -6,7 +6,7 @@ convey the critical metadata. The eml-text module provides a number of
 text-based constructs to enhance a document (including sections,
 paragraphs, lists, subscript, superscript, emphasis, etc.)
 
-## The eml-text module - Text field formatting
+### The eml-text module - Text field formatting
 
 Links:
 
@@ -29,7 +29,7 @@ text blocks. Combinations of plain text, docbook sections, and markdown
 sections can be interleaved in any order, but most people will likely
 find the markdown syntax the easiest to use.
 
-## The eml-semantics module - Semantic annotations for formalized statements about EML components
+### The eml-semantics module - Semantic annotations for formalized statements about EML components
 
 Links:
 

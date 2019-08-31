@@ -1,6 +1,6 @@
-# The EML Module and Resources
+## The EML Module and Resources
 
-## The eml module - A metadata container
+### The eml module - A metadata container
 
 Links:
 
@@ -32,7 +32,7 @@ reserved for the inclusion of metadata that may be highly discipline
 specific and not covered in this version of EML, or it may be used to
 internally extend fields within the EML standard.
 
-## The eml-resource module - Base information for all resources
+### The eml-resource module - Base information for all resources
 
 Links:
 
@@ -62,7 +62,7 @@ document in a library of protocols. Likewise, citations are used
 throughout the top-level resource modules by importing the literature
 module.
 
-## The eml-dataset module - Dataset specific information
+### The eml-dataset module - Dataset specific information
 
 Links:
 
@@ -89,7 +89,7 @@ the \<references\> tag. This allows a dataset to be described once, and
 then used as a reference in other locations within the EML document via
 its ID.
 
-## The eml-literature module - Citation-specific information
+### The eml-literature module - Citation-specific information
 
 Links:
 
@@ -105,7 +105,7 @@ Similar to other eml modules, each of the CitationType elements may be reference
 As of EML 2.2.0, each CitationType element can use the \<bibtex\> element as an alternative to encoding citations in the EML XML structures. BibTeX entries generally play well inside of XML structures, but XML escaping is still needed for special characters so consider embedding BibTeX entries in CDATA blocks if XML escaping is cumbersome.
 
 
-### eml-literature module - literature cited
+#### eml-literature module - literature cited
 
 Citations to articles or other resources that are referenced in the data set or its associated metadata should be included in a \<literatureCited\> element. \<literatureCited\> is a CitationListType cataloging one or more citations that represent a bibliography of works related to the data set for reference, comparison, or other purposes. These citations can be a series of \<citation\> elements, a \<bibtex\> element featuring one or more BibTeX-style citations, or a mix of the two types. 
 
@@ -180,7 +180,7 @@ Citations to articles or other resources that are referenced in the data set or 
 </dataset>
 ```
 
-### eml-literature module - usage citation
+#### eml-literature module - usage citation
 
 A citation to an article or other resource in which the data set is used or referenced should be included in a \<usageCitation\> element, a CitationType detailing a literature resource that has used or references this data set. It is not expected that one or more usage citations will necessarily be an exhaustive list of resources that employ the data set, but rather will serve as a example(s) and pointer(s) to scholarly works in which this data set has been used. The \<usageCitation\> element can be a \<citation\> or \<bibtex\> element.
 
@@ -227,7 +227,7 @@ A citation to an article or other resource in which the data set is used or refe
 </dataset>
 ```
 
-### eml-literature module - reference publication 
+#### eml-literature module - reference publication 
 
 A citation to an article or other resource that serves as an important reference for a data set should be documented in a \<referencePublication\> element. Anyone using the data set should generally cite the data set itself (using the creator, pubDate, title, publisher, and packageId fields), and consider providing an additional citation to the reference publication. The \<referencePublication\> element will typically be used when the data set and a companion or associated paper are published near concurrently. Common cases where a reference publication may be useful include when a data paper is published that describes the dataset, or when a paper is intended to be the canonical or exemplar reference to the dataset – these are features that distinguish the \<referencePublication\> CitationType from the \<usageCitation\> CitationType.
 
@@ -257,7 +257,7 @@ A citation to an article or other resource that serves as an important reference
 ```
 
 
-## The eml-software module - Software specific information
+### The eml-software module - Software specific information
 
 Links:
 
@@ -276,7 +276,7 @@ the \<references\> tag. This allows a software resource to be described
 once, and then used as a reference in other locations within the EML
 document via its ID.
 
-## The eml-protocol module - Research protocol specific information
+### The eml-protocol module - Research protocol specific information
 
 Links:
 

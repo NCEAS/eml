@@ -1,4 +1,4 @@
-# Discovery and Interpretation Modules
+## Discovery and Interpretation Modules
 
 The following six modules are used to qualify the resources being
 described in more detail. They are used to describe access control
@@ -11,7 +11,7 @@ in many locations in order to limit the scope of the description. For
 instance, the eml-coverage module may be used for a particular column of
 a dataset, rather than the entire dataset as a whole.
 
-## The eml-access module - Access control rules for resources
+### The eml-access module - Access control rules for resources
 
 Links:
 
@@ -160,7 +160,7 @@ rules can be overridden for particular data entities by adding
 additional \<access\> elements in the physical/distribution trees of
 those entities.
 
-## The eml-physical module - Physical file format
+### The eml-physical module - Physical file format
 
 Links:
 
@@ -188,7 +188,7 @@ the \<references\> tag. This allows a physical document to be described
 once, and then used as a reference in other locations within the EML
 document via its ID.
 
-## The eml-party module - People and organization information
+### The eml-party module - People and organization information
 
 Links:
 
@@ -207,7 +207,7 @@ The eml-party module, like other modules, may be \"referenced\" via the
 used as a reference in other locations within the EML document via its
 ID.
 
-## The eml-coverage module - Geographic, temporal, and taxonomic extents of resources
+### The eml-coverage module - Geographic, temporal, and taxonomic extents of resources
 
 Links:
 
@@ -261,7 +261,7 @@ the \<references\> tag. This allows the coverage extent to be described
 once, and then used as a reference in other locations within the EML
 document via its ID.
 
-## The eml-project module - Research context information for resources
+### The eml-project module - Research context information for resources
 
 Links:
 
@@ -281,7 +281,7 @@ the \<references\> tag. This allows a research project to be described
 once, and then used as a reference in other locations within the EML
 document via its ID.
 
-## The eml-methods module - Methodological information for resources
+### The eml-methods module - Methodological information for resources
 
 Links:
 

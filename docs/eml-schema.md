@@ -5,6 +5,4 @@ of a valid EML document.  In this chapter, all of the elements and types
 defined within those EML schemas are displayed using diagrams illustrating 
 the relationships among these components.
 
-```{r echo=FALSE}
-knitr::include_url("./schema/index.html", height="1200px")
-```
+<a href="./schema/index.html" target="_blank">Browse EML Schema Documentation</a>

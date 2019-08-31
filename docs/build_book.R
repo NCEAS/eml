@@ -4,7 +4,7 @@
 # of the repo as the index page for the entire book, rather than duplicating
 # the content or writing new content.
 
-bookdown::render_book("index.Rmd", "bookdown::gitbook")
+suppressWarnings(bookdown::render_book("index.Rmd", "bookdown::gitbook"))
 
 # Copy the HTML Bookdown produces from the ../README.md file to index.html
 file.copy("../dist/eml-ecological-metadata-language.html", "../dist/index.html", overwrite = TRUE)

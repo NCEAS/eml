@@ -1,4 +1,4 @@
-# Data Structure Modules
+## Data Structure Modules
 
 The following three modules are used to document the logical layout of a
 dataset. Many datasets are comprised of multiple entities (e.g. a series
@@ -16,7 +16,7 @@ eml-entity module is extended for each of these types (dataTable,
 spatialRaster, spatialVector, etc\...) which are described in the next
 section.
 
-## The eml-entity module - Entity level information within datasets
+### The eml-entity module - Entity level information within datasets
 
 Links:
 
@@ -46,7 +46,7 @@ The eml-entity module, like other modules, may be "referenced" via the
 and then used as a reference in other locations within the EML document
 via its ID.
 
-## The eml-attribute module - Attribute level information within dataset entities
+### The eml-attribute module - Attribute level information within dataset entities
 
 Links:
 
@@ -66,7 +66,7 @@ the \<references\> tag. This allows an attribute document to be
 described once, and then used as a reference in other locations within
 the EML document via its ID.
 
-### Philosophy of Attribute Units
+#### Philosophy of Attribute Units
 
 The concept of \"unit\" represents one of the most fundamental
 categories of metadata. The classic example of data entropy is the case
@@ -149,7 +149,7 @@ explicitly label attributes that contain Gregorian date and time values,
 and allows them to provide the information needed to parse these values
 into their appropriate components (e.g., days, months, years)./
 
-## The eml-constraint module - Relationships among and within dataset entities
+### The eml-constraint module - Relationships among and within dataset entities
 
 Links:
 
@@ -162,7 +162,7 @@ management system. These constraints include primary key constraints,
 foreign key constraints, unique key constraints, check constraints, and
 not null constraints, among potential others.
 
-## The eml-dataTable module - Logical information about data table entities
+### The eml-dataTable module - Logical information about data table entities
 
 Links:
 
@@ -183,7 +183,7 @@ physical distribution of the data table, its overall coverage, the
 methodology used in creating the data, and other logical structure
 information such as its orientation, case sensitivity, etc.
 
-## The eml-spatialRaster module - Logical information about regularly gridded geospatial image data
+### The eml-spatialRaster module - Logical information about regularly gridded geospatial image data
 
 Links:
 
@@ -198,7 +198,7 @@ organization of the raster cells, the cell data values, and if derived
 via imaging sensors, characteristics about the image and its individual
 bands.
 
-## The eml-spatialVector module - Logical information about non-gridded geospatial image data
+### The eml-spatialVector module - Logical information about non-gridded geospatial image data
 
 Links:
 
@@ -212,7 +212,7 @@ relationships among them. Specific attributes of a spatial vector can be
 documented here including the vector\'s geometry type, count and
 topology level.
 
-## Schema for validating spatial referencing descriptions
+### Schema for validating spatial referencing descriptions
 
 This module defines both projected and unprojected coordinate systems
 for referencing the spatial coordinates of a dataset to the earth. The
@@ -222,7 +222,7 @@ coordinate systems that may be referred to by name in the
 horizCoordSysName element. A custom projection may be defined using this
 schema for any projection that does not appear in this dictionary.
 
-## The eml-storedProcedure module - Data tables resulting from procedures stored in a database
+### The eml-storedProcedure module - Data tables resulting from procedures stored in a database
 
 Links:
 
@@ -236,7 +236,7 @@ then invoke them directly from front-end applications. It allows the
 optional description of any parameters that are expected to be passed to
 the procedure when it is called.
 
-## The eml-view module - Data tables resulting from a database query
+### The eml-view module - Data tables resulting from a database query
 
 Links:
 
