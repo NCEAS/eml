@@ -11,6 +11,7 @@ The Ecological Metadata Language (EML) defines a comprehensive vocabulary and a 
 
 - **EML 2.2.0 Specification**
     - [Read it online](https://eml.ecoinformatics.org/)
+    - [Browse the interactive EML schema documentation](https://eml.ecoinformatics.org/schema)
     - [Download EML](http://knb.ecoinformatics.org/software/dist/eml-2.2.0.tar.gz) - The download consists of the
       EML modules, described in the [XML Schema](http://www.w3.org/XML/Schema) language.
       In addition, the full documentation on the modules is provided in HTML format.
