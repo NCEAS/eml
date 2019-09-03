@@ -10,6 +10,9 @@ suppressWarnings(bookdown::render_book("index.Rmd", "bookdown::gitbook"))
 # Copy the HTML Bookdown produces from the ../README.md file to index.html
 file.copy("../dist/eml-ecological-metadata-language.html", "../dist/index.html", overwrite = TRUE)
 
+# Netlify redirect configuration
+file.copy("_redirects", "../dist/_redirects", overwrite = TRUE)
+
 # Copy the schema docs from oxygen into the built book
 dir.create("../dist/schema")
 file.copy(dir("schema", full.names = TRUE), "../dist/schema", recursive = TRUE)
