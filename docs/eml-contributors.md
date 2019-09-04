@@ -1,29 +1,20 @@
 # Contributors
 
-The EML project is an open source, community oriented project
-dedicated to providing a high-quality metadata specification
-for describing data relevant to the ecological discipline.
-The project is completely comprised of voluntary project
-members who donate their time and experience in order to advance
-information management for ecology. Project decisions are made by
-concensus according to the voting procedures described in the 
-[ecoinformatics.org Charter](http://www.ecoinformatics.org/charter.html).
+The EML project is an open source, community oriented project dedicated to providing a high-quality metadata specification for describing data relevant to diverse disciplines that involve observational research like ecology, earth, and environmental science. The specification is maintained by [voluntary project members](docs/contributors.md) who donate their time and experience in order to advance information management for ecology. Project decisions are made by consensus of the current maintainers on the project.
 
 We welcome contributions to this work in any form.  Individuals
 who invest substantial amounts of time and make valuable
 contributions to the development and maintenance of EML (in the
-opinion of current project members) will be invited to become
-EML project members according to the rules set forth in the <a
-href="http://www.ecoinformatics.org/charter.html">ecoinformatics.org
-Charter</a>. Contributions can take many forms, including the
+opinion of current project maintainers) will be invited to become
+EML project maintainers. Contributions can take many forms, including the
 development of the EML schemas, writing documentation, and helping
 with maintenance, among others.
 
 Write access to the EML source code repository is reserved for
-EML project members. Contributions should be submitted as pull
+EML project maintainers. Contributions should be submitted as pull
 requests, and will be reviewed and merged by an EML project member.
 
-## Current contributors
+## Current maintainers
 
 Name | Organization | Email | ORCID
 ----|---------------|-------|-------
