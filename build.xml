@@ -72,6 +72,28 @@
         </sequential>
     </macrodef>
 
+    <macrodef name = "checkout-and-copy">
+        <attribute name = "dest" />
+        <attribute name = "refname" />
+        <attribute name = "target" />
+        <attribute name = "xsd" default = "" />
+
+        <sequential>
+            <echo>Getting EML from source: @{refname}</echo>
+            <git command = "checkout" dir = "@{dest}">
+                <args>
+                    <arg value = "@{refname}" />
+                </args>
+            </git>
+            <mkdir dir="@{target}" />
+            <copy todir="@{target}" filtering="yes">
+                <fileset dir="@{dest}/@{xsd}">
+                    <include name="*.xsd"/>
+                </fileset>
+            </copy>
+        </sequential>
+    </macrodef>
+
     <target name="config">
         <property file="build.properties"/>
         <!-- User specified properties -->
@@ -409,74 +431,19 @@
           tofile="${servlet.install.dir}/WEB-INF/lib/xercesImpl.jar"/>
 
         <!-- Copy eml-2.0.0 schema. Add code here for copying any other schemas. -->
-        <echo>Getting EML 2.0.0 from source: ${eml2_0_0-tag}</echo>
-        <git command = "checkout" dir = "${build.emlgit}">
-            <args>
-                <arg value = "${eml2_0_0-tag}" />
-            </args>
-        </git>
-        <mkdir dir="${servlet.install.dir}/schema/eml-2.0.0" />
-        <copy todir="${servlet.install.dir}/schema/eml-2.0.0" filtering="yes">
-            <fileset dir="${build.emlgit}">
-                <include name="*.xsd"/>
-            </fileset>
-        </copy>
+        <checkout-and-copy dest = "${build.emlgit}" refname = "${eml2_0_0-tag}" target = "${servlet.install.dir}/schema/eml-2.0.0" />
 
         <!-- Copy eml-2.0.1 schema. Add code here for copying any other schemas. -->
-        <echo>Getting EML 2.0.1 from source: ${eml2_0_1-tag}</echo>
-        <git command = "checkout" dir = "${build.emlgit}">
-            <args>
-                <arg value = "${eml2_0_1-tag}" />
-            </args>
-        </git>
-        <mkdir dir="${servlet.install.dir}/schema/eml-2.0.1" />
-        <copy todir="${servlet.install.dir}/schema/eml-2.0.1" filtering="yes">
-            <fileset dir="${build.emlgit}">
-                <include name="*.xsd"/>
-            </fileset>
-        </copy>
+        <checkout-and-copy dest = "${build.emlgit}" refname = "${eml2_0_1-tag}" target = "${servlet.install.dir}/schema/eml-2.0.1" />
 
         <!-- Copy eml-2.1.0 schema. Add code here for copying any other schemas. -->
-        <echo>Getting EML 2.1.0 from source: ${eml2_1_0-tag}</echo>
-        <git command = "checkout" dir = "${build.emlgit}">
-            <args>
-                <arg value = "${eml2_1_0-tag}" />
-            </args>
-        </git>
-        <mkdir dir="${servlet.install.dir}/schema/eml-2.1.0" />
-        <copy todir="${servlet.install.dir}/schema/eml-2.1.0" filtering="yes">
-            <fileset dir="${build.emlgit}">
-                <include name="*.xsd"/>
-            </fileset>
-        </copy>
+        <checkout-and-copy dest = "${build.emlgit}" refname = "${eml2_1_0-tag}" target = "${servlet.install.dir}/schema/eml-2.1.0" />
 
         <!-- Copy eml-2.1.1 schema. Add code here for copying any other schemas. -->
-        <echo>Getting EML 2.1.1 from source: ${eml2_1_1-tag}</echo>
-        <git command = "checkout" dir = "${build.emlgit}">
-            <args>
-                <arg value = "${eml2_1_1-tag}" />
-            </args>
-        </git>
-        <mkdir dir="${servlet.install.dir}/schema/eml-2.1.1" />
-        <copy todir="${servlet.install.dir}/schema/eml-2.1.1" filtering="yes">
-            <fileset dir="${build.emlgit}">
-                <include name="*.xsd"/>
-            </fileset>
-        </copy>
+        <checkout-and-copy dest = "${build.emlgit}" refname = "${eml2_1_1-tag}" target = "${servlet.install.dir}/schema/eml-2.1.1" />
 
         <!-- Copy eml-2.2.0 schema. Add code here for copying any other schemas. -->
-        <echo>Getting EML 2.2.0 from source: ${eml2_2_0-tag}</echo>
-        <git command = "checkout" dir = "${build.emlgit}">
-            <args>
-                <arg value = "${eml2_2_0-tag}" />
-            </args>
-        </git>
-        <mkdir dir="${servlet.install.dir}/schema/eml-2.2.0" />
-        <copy todir="${servlet.install.dir}/schema/eml-2.2.0" filtering="yes">
-            <fileset dir="${build.emlgit}/xsd">
-                <include name="*.xsd"/>
-            </fileset>
-        </copy>
+        <checkout-and-copy dest = "${build.emlgit}" refname = "${eml2_2_0-tag}" target = "${servlet.install.dir}/schema/eml-2.2.0" xsd="xsd" />
 
     </target>
 
