@@ -55,3 +55,161 @@ be applied within the EML additionalMetadata field to label
 arbitrary structures within EML, in which case the subject of
 the annotation is the element listed in the describes element
 within the additionalMetadata field.
+
+
+### The eml-access module - Access control rules for resources
+
+**DEPRECATED**
+
+- *Note that use of the `eml-access` module is deprecated, as most systems
+have internal representations of access control and have not been 
+provided or maintained.  Thus, we no longer recommend using any of the
+`access` elements throughout the schema, even though they have been 
+retained for backwards compatibility.*
+
+Links:
+
+- [Module Diagram](./images/eml-access.png)
+- [Interactive Module Documentation](./schema/eml-access_xsd.html)
+
+The eml-access module describes the level of access that is to be
+allowed or denied to a resource for a particular user or group of users,
+and can be described independently for metadata and data. The eml-access
+module uses a reference to a particular authentication system to
+determine the set of principals (users or groups) that can be specified
+in the access rules. The special principal \'public\' can be used to
+indicate that any user or group has access permission, thereby making it
+easier to specify that anonymous access is allowed.
+
+There are two mechanisms for including access control via the eml-access
+module:
+
+1.  The top-level \"eml\" element may have an optional \<access\>
+    element that is used to establish the default access control for the
+    entire EML package. If this access element is omitted from the
+    document, then the package submitter should be given full access to
+    the package but all other users should be denied all access. To
+    allow the package to be publicly viewable, the EML author must
+    explicitly include a rule stating so. Barring the existence of a
+    distribution-level \<access\> element (see below), access to data
+    entities will be controlled by the package-level \<access\> element
+    in the \<eml\> element.
+
+2.  Exceptions for particular entity-level components of the package can
+    be controlled at a finer grain by using an access description in
+    that entity\'s physical/distribution tree. When access control rules
+    are specified at this level, they apply only to the data in the
+    parent distribution element, and not to the metadata. Thus, it will
+    control access to the content of the \<inline\> element, as well as
+    resources that are referenced by the \<online/url\> and
+    \<online/connection\> paths. These exceptions to access for
+    particular data resources are applied after the default access rules
+    at the package-level have been applied, so they effectively override
+    the default rules when they overlap.
+
+In previous versions of EML access rules for entity-level distribution
+were contained in \<additionalMetadata\> sections and referenced via the
+\<describes\> tag. Although in theory these could have referenced any
+node, in application such node-level access control is problematic.
+Since the most common uses of access control rules were to limit access
+to specific data entities, the access tree has been placed there
+explicitly in EML 2.1.0.
+
+Access is specified with a choice of child elements, either \<allow\> or
+\<deny\>. Within these rules, values can be assigned for each
+\<principal\> using the \<permission\> element. Users given \"read\"
+permission can view the resource; \"write\" allows changes to the
+resource excluding changes to the access rules; \"changePermission\"
+includes \"write\" plus the changing of access rules. Users allowed
+\"all\" permissions; may do all of the above. Access to data and
+metadata is affected by the order attribute of the \<access\> element.
+It is possible for a deny rule to override an allow rule, and vice
+versa. In the case where the order attribute is set to \"allowFirst\",
+and there are rules similar to the following (with non-critical sections
+deleted):
+
+```xml
+      <deny>
+        <principal>public</principal>
+        <permission>read</permission>
+      </deny>
+      <allow>
+        <principal>uid=alice,o=NASA,dc=ecoinformatics,dc=org</principal>
+        <permission>read</permission>
+      </allow>
+```
+
+the principal \"uid=alice \...\" will be denied access, because it is a
+member of the special \"public\" principal, and the deny rule is
+processed second. For this allow rule to truly allow access to that
+principal, the order attribute should be set to \"denyFirst\", and the
+allow rule will override the deny rule when it is processed second.
+
+An example is given below, with non-critical sections deleted:
+```xml
+      <eml>
+          <access
+              authSystem="ldap://ldap.ecoinformatics.org:389/dc=ecoinformatics,dc=org"
+              order="allowFirst">
+            <allow>
+              <principal>uid=alice,o=NASA,dc=ecoinformatics,dc=org</principal>
+              <permission>read</permission>
+              <permission>write</permission>
+            <allow>
+          </access>
+          <dataset>
+          ...
+          ...
+          <dataTable id="entity123">
+          ...
+            <physical>
+            ...
+              <distribution>
+              ...
+                <access id="access123"
+                authSystem="ldap://ldap.ecoinformatics.org:389/dc=ecoinformatics,dc=org"
+                order="allowFirst">
+                  <deny>
+                    <principal>uid=alice,o=NASA,dc=ecoinformatics,dc=org</principal>
+                    <permission>write</permission>
+                </deny>
+              </access>
+             </distribution>
+           </physical>
+          </dataTable>
+          <dataTable id="entity234">
+            ...
+            <physical>
+            ...
+              <distribution>
+                ...
+                <access>
+                  <references>access123</references>
+                </access>
+              </distribution>
+            </physical>
+          </dataTable>
+          ...    
+        </dataset>
+      <eml>
+```
+
+In this example, the overall default access is to allow the user=alice
+(but no one else) to read and write all metadata and data. However,
+under \"entity123\" and \"entity234\", there is an additional rule
+saying that user=alice does not have write permission. The net effect is
+that Alice can read and make changes to the metadata, but cannot make
+changes to the two data entities. In addition, Alice cannot change these
+access rules; although the submitter can.
+
+This example also shows how the eml-access module, like other modules,
+may be \"referenced\" via the \<references\> tag. This allows an access
+control document to be described once, and then used as a reference in
+other locations within the EML document via its ID.
+
+In summary, access rules can be applied in two places in an eml
+document. Default access rules are established in the top \<access\>
+element for the main eml document (e.g., \"/eml/access\"). These default
+rules can be overridden for particular data entities by adding
+additional \<access\> elements in the physical/distribution trees of
+those entities.
