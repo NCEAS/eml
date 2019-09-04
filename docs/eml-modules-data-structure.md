@@ -56,9 +56,10 @@ Links:
 The eml-attribute module describes all attributes (variables) in a data
 entity: dataTable, spatialRaster, spatialVector, storedProcedure, view
 or otherEntity. The description includes the name and definition of each
-attribute, its domain, definitions of coded values, and other pertinent
-information. Two structures exist in this module: 1. attribute is used
-to define a single attribute; 2. attributeList is used to define a list
+attribute, its domain, definitions of coded values, definitions of missing
+values, and other pertinent
+information. Two structures exist in this module: 1. `attribute` is used
+to define a single attribute; 2. `attributeList` is used to define a list
 of attributes that go together in some logical way.
 
 The eml-attribute module, like other modules, may be \"referenced\" via
@@ -71,7 +72,7 @@ the EML document via its ID.
 The concept of \"unit\" represents one of the most fundamental
 categories of metadata. The classic example of data entropy is the case
 in which a reported numeric value loses meaning due to lack of
-associated units. Much of Ecology is driven by measurement, and most
+associated units. Much of ecology is driven by measurement, and most
 measurements are inherently comparative. Good data description requires
 a representation of the basis for comparison, i.e., the unit. In
 modeling the attribute element, the authors of EML drew inspiration from
@@ -147,7 +148,22 @@ format of dateTime values by providing a separate category for date and
 time values. This \"dateTime\" measurement scale allows users to
 explicitly label attributes that contain Gregorian date and time values,
 and allows them to provide the information needed to parse these values
-into their appropriate components (e.g., days, months, years)./
+into their appropriate components (e.g., days, months, years).
+
+Representations of both coded values (for nominal and ordinal attributes) 
+and missing value codes are critical metadata.  Coded values need to be
+defined in metadata for proper interpretation.  EML provides the `enumeratedDomain`
+field for explicitly listing codes and their definitions, or through elements
+to reference external codesets and codes that are defined in other tables in
+a dataset.  Missing values can also be coded and defined in the 
+`missingValueCode` element.  Providing an explicit indication of 
+"missingness" as a coded value that has an explicit
+interpretation eliminates the guesswork that happens when missing values are
+expressed simply as empty cells with NULL values and no explanation.  While it
+might seem simple to provide an emty cell in a csv file, the interpreation of
+that value is left ambiguous. Researchers would be better served to define explicit
+missing value codes, e.g., one for 'Data not collected' and another for
+'Data corrupted during network transfer'.
 
 ### The eml-constraint module - Relationships among and within dataset entities
 
