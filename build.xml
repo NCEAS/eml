@@ -215,7 +215,7 @@
     </target>
 
 
-    <target name="dist">
+    <target name="dist" depends="init">
         <mkdir dir="${release.dir}"/>
         <delete dir="${ver.dir}"/>
         <mkdir dir="${ver.dir}"/>
@@ -225,11 +225,11 @@
 <!--        <mkdir dir="${ver.dir}/style"/> -->
         <copy file="./build.xml" todir="${ver.dir}"/>
         <copy file="./LICENSE" todir="${ver.dir}"/>
-        <copy file="./README" todir="${ver.dir}"/>
+        <copy file="./README.md" todir="${ver.dir}"/>
         <copy todir="${ver.dir}" filtering="no">
             <fileset dir=".">
                 <include name="*.xsd"/>
-                <!--<include name="*.dtd"/>-->
+                <include name="xsd/*.xsd"/>
                 <include name="eml-unitDictionary.xml"/>
                 <include name="eml-spatialReferenceDictionary.xml"/>
             </fileset>
@@ -251,12 +251,12 @@
             </fileset>
         </copy>
 
-        <delete file="./eml-${version}.zip"/>
-        <zip zipfile="./eml-${version}.zip" basedir="${release.dir}"/>
-        <delete file="./eml-${version}.tar.gz"/>
-        <tar tarfile="./eml-${version}.tar" basedir="${release.dir}"/>
-        <gzip zipfile="./eml-${version}.tar.gz" src="./eml-${version}.tar"/>
-        <delete file="./eml-${version}.tar"/>
+        <delete file="${release.dir}/eml-${version}.zip"/>
+        <zip zipfile="${release.dir}/eml-${version}.zip" basedir="${release.dir}"/>
+        <delete file="${release.dir}/eml-${version}.tar.gz"/>
+        <tar tarfile="${release.dir}/eml-${version}.tar" basedir="${release.dir}"/>
+        <gzip zipfile="${release.dir}/eml-${version}.tar.gz" src="${release.dir}/eml-${version}.tar"/>
+        <delete file="${release.dir}/eml-${version}.tar"/>
     </target>
 
     <target name="buildenumerations" depends="init">
