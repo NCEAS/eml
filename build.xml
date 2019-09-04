@@ -133,6 +133,7 @@
         <property name="build.docs" value="${build.dir}/docs"/>
         <property name="build.javadocs" value="${build.dir}/javadocs"/>
         <property name="build.stripped" value="stripped"/>
+        <property name="build.emlgit" value="${build.dir}/emlgit"/>
         <property name="style.dir" value="./style"/>
         <property name="config.file" value="${src.resources.dir}/config.xml"/>
 
@@ -171,8 +172,8 @@
         <filter token="servletdir" value="${servletdir}"/>
         <filter token="servletpath" value="${servletpath}"/>
 
-        <property name="dist.dir" value="./dist"/>
-        <property name="ver.dir" value="${dist.dir}/eml-${version}"/>
+        <property name="release.dir" value="./release"/>
+        <property name="ver.dir" value="${release.dir}/eml-${version}"/>
         <property name="ver.lib" value="${ver.dir}/lib"/>
         <property name="ver.docs" value="${ver.dir}/docs"/>
         <property name="ver.src" value="${ver.dir}/src"/>
@@ -192,48 +193,11 @@
     </target>
 
 
-    <!-- Generate HTML documentation using an XSLT transform -->
-    <!-- Note that you MUST have a Xalan 1.x XSLT processor on
-        your CLASSPATH in order for this to work -->
-    <target name="docs" depends="init">
-        <style basedir="." destdir="${build.docs}/eml-${version}" style="eml-documentation.xsl"
-            includes="xsd/*.xsd" excludes="eml-documentation.xsd" classpath="${cpath}" processor="trax"/>
-        <copy todir="${build.docs}" filtering="yes">
-            <fileset dir=".">
-                <include name="default.css"/>
-            </fileset>
-        </copy>
-        <copy todir="${build.docs}/eml-${version}" filtering="no">
-            <fileset dir=".">
-                <include name="img/*.png"/>
-                <include name="eml-dublinCore.html"/>
-            </fileset>
-        </copy>
-    </target>
-    <!-- Generate versions of the XSD files with all annotation
-        tags stripped from the source -->
-    <!-- Note that you MUST have a Xalan 1.x XSLT processor on
-        your CLASSPATH in order for this to work -->
-    <target name="stripdocs" depends="init">
-        <mkdir dir="${build.stripped}"/>
-        <style basedir="." destdir="${build.stripped}" extension=".xsd"
-            style="${style.dir}/removeAnnotation.xsl" includes="*.xsd" classpath="${cpath}" processor="trax"/>
-        <echo>
-
-           ******************************************
-                           Success!
-           Stripped versions of the XSD files can now
-           be found in the directory named "${build.stripped}"
-           ******************************************
-     </echo>
-    </target>
-
-    <target name="dist" depends="docs">
-        <mkdir dir="${dist.dir}"/>
+    <target name="dist">
+        <mkdir dir="${release.dir}"/>
         <delete dir="${ver.dir}"/>
         <mkdir dir="${ver.dir}"/>
         <mkdir dir="${ver.lib}"/>
-        <mkdir dir="${ver.docs}"/>
         <mkdir dir="${ver.src}"/>
         <mkdir dir="${ver.tst}"/>
 <!--        <mkdir dir="${ver.dir}/style"/> -->
@@ -253,13 +217,6 @@
                 <exclude name="${datamanager.name}/**"/>
             </fileset>
         </copy>
-        <copy todir="${ver.docs}" filtering="no">
-            <fileset dir="./docs">
-                <exclude name="${datamanager.name}/**"/>
-            </fileset>
-            <fileset dir="${build.docs}">
-            </fileset>
-        </copy>
         <copy todir="${ver.src}" filtering="yes">
             <fileset dir="${srcdir}">
                 <exclude name="emlconversions/**"/>
@@ -271,14 +228,11 @@
                 <exclude name="${datamanager.dir}/**"/>
             </fileset>
         </copy>
-<!--        <copy todir="${ver.dir}/style">
-            <fileset dir="${style.dir}"/>
-        </copy> -->
 
         <delete file="./eml-${version}.zip"/>
-        <zip zipfile="./eml-${version}.zip" basedir="${dist.dir}"/>
+        <zip zipfile="./eml-${version}.zip" basedir="${release.dir}"/>
         <delete file="./eml-${version}.tar.gz"/>
-        <tar tarfile="./eml-${version}.tar" basedir="${dist.dir}"/>
+        <tar tarfile="./eml-${version}.tar" basedir="${release.dir}"/>
         <gzip zipfile="./eml-${version}.tar.gz" src="./eml-${version}.tar"/>
         <delete file="./eml-${version}.tar"/>
     </target>
@@ -429,7 +383,16 @@
         </junit>
     </target>
 
-    <target name="servletinstall" depends="jar">
+    <target name="-check-clone" unless="clone.exists">
+        <available property="clone.exists" file="${build.emlgit}"/>
+    </target>
+
+    <target name="clone-eml" depends="-check-clone" unless="clone.exists">
+        <git-clone-pull repository="${eml.git.repository.url}" dest="${build.emlgit}" refname="${eml2_0_0-tag}" />
+        <available property="clone.exists" file="${build.emlgit}"/>
+    </target>
+
+    <target name="servletinstall" depends="jar, clone-eml" if="${clone.exists}">
         <copy file="lib/emlparser.html" tofile="${servlet.install.dir}/index.html"/>
         <copy file="src/test/resources/eml-sample.xml"
           tofile="${servlet.install.dir}/eml-sample.xml"/>
@@ -445,80 +408,81 @@
         <copy file="${xmlp}"
           tofile="${servlet.install.dir}/WEB-INF/lib/xercesImpl.jar"/>
 
-        <!--<copy todir="${servlet.install.dir}/schema/${eml-version}">
-            <fileset dir=".">
-                <include name="*.xsd"/>
-            </fileset>
-        </copy>-->
-
         <!-- Copy eml-2.0.0 schema. Add code here for copying any other schemas. -->
         <echo>Getting EML 2.0.0 from source: ${eml2_0_0-tag}</echo>
-        <git-clone-pull repository="${eml.git.repository.url}"
-                        dest="${servlettempdir}/eml_${eml2_0_0-tag}" refname="${eml2_0_0-tag}" />
+        <git command = "checkout" dir = "${build.emlgit}">
+            <args>
+                <arg value = "${eml2_0_0-tag}" />
+            </args>
+        </git>
         <mkdir dir="${servlet.install.dir}/schema/eml-2.0.0" />
         <copy todir="${servlet.install.dir}/schema/eml-2.0.0" filtering="yes">
-            <fileset dir="${servlettempdir}/eml_${eml2_0_0-tag}">
+            <fileset dir="${build.emlgit}">
                 <include name="*.xsd"/>
             </fileset>
         </copy>
 
         <!-- Copy eml-2.0.1 schema. Add code here for copying any other schemas. -->
         <echo>Getting EML 2.0.1 from source: ${eml2_0_1-tag}</echo>
-        <git-clone-pull repository="${eml.git.repository.url}"
-                        dest="${servlettempdir}/eml_${eml2_0_1-tag}" refname="${eml2_0_1-tag}" />
+        <git command = "checkout" dir = "${build.emlgit}">
+            <args>
+                <arg value = "${eml2_0_1-tag}" />
+            </args>
+        </git>
         <mkdir dir="${servlet.install.dir}/schema/eml-2.0.1" />
         <copy todir="${servlet.install.dir}/schema/eml-2.0.1" filtering="yes">
-            <fileset dir="${servlettempdir}/eml_${eml2_0_1-tag}">
+            <fileset dir="${build.emlgit}">
                 <include name="*.xsd"/>
             </fileset>
         </copy>
 
         <!-- Copy eml-2.1.0 schema. Add code here for copying any other schemas. -->
         <echo>Getting EML 2.1.0 from source: ${eml2_1_0-tag}</echo>
-        <git-clone-pull repository="${eml.git.repository.url}"
-                        dest="${servlettempdir}/eml_${eml2_1_0-tag}" refname="${eml2_1_0-tag}" />
+        <git command = "checkout" dir = "${build.emlgit}">
+            <args>
+                <arg value = "${eml2_1_0-tag}" />
+            </args>
+        </git>
         <mkdir dir="${servlet.install.dir}/schema/eml-2.1.0" />
         <copy todir="${servlet.install.dir}/schema/eml-2.1.0" filtering="yes">
-            <fileset dir="${servlettempdir}/eml_${eml2_1_0-tag}">
+            <fileset dir="${build.emlgit}">
                 <include name="*.xsd"/>
             </fileset>
         </copy>
 
         <!-- Copy eml-2.1.1 schema. Add code here for copying any other schemas. -->
         <echo>Getting EML 2.1.1 from source: ${eml2_1_1-tag}</echo>
-        <git-clone-pull repository="${eml.git.repository.url}"
-                        dest="${servlettempdir}/eml_${eml2_1_1-tag}" refname="${eml2_1_1-tag}" />
+        <git command = "checkout" dir = "${build.emlgit}">
+            <args>
+                <arg value = "${eml2_1_1-tag}" />
+            </args>
+        </git>
         <mkdir dir="${servlet.install.dir}/schema/eml-2.1.1" />
         <copy todir="${servlet.install.dir}/schema/eml-2.1.1" filtering="yes">
-            <fileset dir="${servlettempdir}/eml_${eml2_1_1-tag}">
+            <fileset dir="${build.emlgit}">
                 <include name="*.xsd"/>
             </fileset>
         </copy>
 
         <!-- Copy eml-2.2.0 schema. Add code here for copying any other schemas. -->
         <echo>Getting EML 2.2.0 from source: ${eml2_2_0-tag}</echo>
-        <git-clone-pull repository="${eml.git.repository.url}"
-                        dest="${servlettempdir}/eml_${eml2_2_0-tag}" refname="${eml2_2_0-tag}" />
+        <git command = "checkout" dir = "${build.emlgit}">
+            <args>
+                <arg value = "${eml2_2_0-tag}" />
+            </args>
+        </git>
         <mkdir dir="${servlet.install.dir}/schema/eml-2.2.0" />
         <copy todir="${servlet.install.dir}/schema/eml-2.2.0" filtering="yes">
-            <fileset dir="${servlettempdir}/eml_${eml2_2_0-tag}/xsd">
+            <fileset dir="${build.emlgit}/xsd">
                 <include name="*.xsd"/>
-            </fileset>
-        </copy>
-
-        <!-- Copy EML docs -->
-        <echo>Copying EML documentation from ${build.docs} </echo>
-        <mkdir dir="${servlet.install.dir}/docs" />
-        <copy todir="${servlet.install.dir}/docs">
-            <fileset dir="${build.docs}">
             </fileset>
         </copy>
 
     </target>
 
-    <target name="emlparser_war" depends="docs, servletinstall">
-        <mkdir dir="${dist.dir}" />
-        <war destfile="${dist.dir}/${servletdir}.war"
+    <target name="emlparser_war" depends="servletinstall">
+        <mkdir dir="${release.dir}" />
+        <war destfile="${release.dir}/${servletdir}.war"
             webxml="${servlet.install.dir}/WEB-INF/web.xml">
             <fileset dir="${servlet.install.dir}" />
             <lib dir="${servlet.install.dir}/WEB-INF/lib" />
@@ -559,7 +523,7 @@
         <property name="datamanager.lib" value="lib/datamanager"/>
         <property name="version.datamanager" value="1.0.0"/>
         <property name="datamanager-version" value="${datamanager.name}-${version.datamanager}"/>
-        <property name="ver.dir.datamanager" value="${dist.dir}/${datamanager-version}"/>
+        <property name="ver.dir.datamanager" value="${release.dir}/${datamanager-version}"/>
         <property name="ver.docs.datamanager" value="${ver.dir.datamanager}/docs"/>
         <property name="ver.lib.datamanager" value="${ver.dir.datamanager}/${datamanager.lib}"/>
         <property name="ver.src.datamanager" value="${ver.dir.datamanager}/src"/>
@@ -622,7 +586,7 @@
 
     <target name="dist-datamanager-lib"
             depends="jar-datamanager-lib,javadoc-datamanager-lib">
-        <mkdir dir="${dist.dir}"/>
+        <mkdir dir="${release.dir}"/>
         <delete dir="${ver.dir}"/>
         <delete dir="${ver.dir.datamanager}"/>
         <mkdir dir="${ver.dir.datamanager}"/>
