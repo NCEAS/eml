@@ -429,6 +429,8 @@
           tofile="${servlet.install.dir}/WEB-INF/lib/xml-apis.jar"/>
         <copy file="${xmlp}"
           tofile="${servlet.install.dir}/WEB-INF/lib/xercesImpl.jar"/>
+        <copy file="${utilities}"
+          tofile="${servlet.install.dir}/WEB-INF/lib/utilities.jar"/>
 
         <!-- Copy eml-2.0.0 schema. Add code here for copying any other schemas. -->
         <checkout-and-copy dest = "${build.emlgit}" refname = "${eml2_0_0-tag}" target = "${servlet.install.dir}/schema/eml-2.0.0" />
