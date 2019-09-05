@@ -1,9 +1,10 @@
 <script type='application/ld+json'>
 {
-    "@context": [
-        "https://doi.org/10.5063/schema/codemeta-2.0",
-        "http://schema.org"
-    ],
+    "@context": {
+        "@vocab": "https://doi.org/10.5063/schema/codemeta-2.0/",
+        "schema": "http://schema.org/",
+        "datacite": "http://purl.org/spar/datacite/"
+    },
     "@type": "SoftwareSourceCode",
 	"@id": "https://doi.org/10.5063/F11834T2",
     "name": "Ecological Metadata Language version 2.2.0",
