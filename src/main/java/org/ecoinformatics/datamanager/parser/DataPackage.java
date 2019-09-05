@@ -102,7 +102,11 @@ public class DataPackage
   private String title = null;
   private String abstractText = null;
   private List<Party> creators = null;
-    
+  private String language = null;
+  private List<String> keywords = null;
+  private String abstract_str = null;
+  private Party publisher = null;
+
   
   /*
    * Constructors
@@ -118,7 +122,7 @@ public class DataPackage
 	  this.packageId = packageId;  
     this.qualityReport = new QualityReport(this);
     this.creators = new ArrayList<Party>();
-    
+    this.keywords = new ArrayList<String> ();
     qualityCheckPackageId(packageId);
   }
   
@@ -252,6 +256,56 @@ public class DataPackage
 	  }
 	  return null;
   }
+  
+  /**
+   * Get the language used in this eml document
+   * @return the language 
+   */
+  public String getLanguage() {
+      return language;
+  }
+
+  /**
+   * Set the language description
+   * @param language
+   */
+  public void setLanguage(String language) {
+      this.language = language;
+  }
+
+
+  /**
+   * Get the list of keywords in this eml document
+   * @return
+   */
+  public List<String> getKeywords() {
+      return keywords;
+  }
+
+  /**
+   * Set the keywords list
+   * @param keywords
+   */
+  public void setKeywords(List<String> keywords) {
+      this.keywords = keywords;
+  }
+
+  /**
+   * Get the abstract of this eml document
+   * @return the abstract
+   */
+  public String getAbstract() {
+      return abstract_str;
+  }
+
+  /**
+   * Set the abstract 
+   * @param absctrac
+   */
+  public void setAbstract(String abstract_str) {
+      this.abstract_str = abstract_str;
+  }
+
   
   
   /**
@@ -1044,6 +1098,14 @@ public class DataPackage
     }
   }
   
+  /**
+   * Get the publication date of this package
+   * @return
+   */
+  public String getPubDate() {
+      return this.pubDate;
+  }
+  
   
   /**
    * Sets the value of the 'system' to the specified String 
@@ -1120,12 +1182,29 @@ public class DataPackage
   
   public List<Party> getCreators() {
 	return creators;
-}
+  }
 
 
-public void setCreators(List<Party> creators) {
+  public void setCreators(List<Party> creators) {
 	this.creators = creators;
-}
+  }
+
+  /**
+   * Get the publisher of this package
+   * @return
+   */
+  public Party getPublisher() {
+    return publisher;
+  }
+
+  /**
+   * Set the publisher of this package
+   * @param publisher
+   */
+  public void setPublisher(Party publisher) {
+    this.publisher = publisher;
+  }
+
 
 
 /**

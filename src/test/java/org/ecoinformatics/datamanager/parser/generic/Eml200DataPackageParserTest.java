@@ -2,6 +2,7 @@ package org.ecoinformatics.datamanager.parser.generic;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.List;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -280,6 +281,13 @@ public class Eml200DataPackageParserTest extends TestCase
 
       String[] missingValue = att3.getMissingValueCode();
 	  assertEquals(missingValue, null);
+	  
+	  List<String> keywords = dataPackage.getKeywords();
+      assertTrue(keywords.get(0).equals("Old field grassland"));
+      assertTrue(keywords.get(1).equals("biomass"));
+      assertTrue(keywords.get(2).equals("productivity"));
+      assertTrue(keywords.get(3).equals("species-area"));
+      assertTrue(keywords.get(4).equals("species richness"));
   }
 
 }

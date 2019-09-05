@@ -32,6 +32,7 @@
 
 package org.ecoinformatics.datamanager.parser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -47,6 +48,8 @@ public class Party {
 	private String surName;
 	private List<String> givenNames;
 	private String organization;
+	private String positionName;
+	private List<UserId> userIdList = new ArrayList<UserId>();
 
 
 	/**
@@ -87,6 +90,45 @@ public class Party {
 	public void setOrganization(String organization) {
 		this.organization = organization;
 	}
+
+
+    public List<UserId> getUserIdList() {
+        return userIdList;
+    }
+
+
+    public void setUserIdList(List<UserId> userIdList) {
+        this.userIdList = userIdList;
+    }
+	
+    /**
+     * Add a given userId object to the list
+     * @param userId
+     */
+	public void addUserId(UserId userId) {
+	    if(userId != null) {
+	        if(this.userIdList == null) {
+	            this.userIdList = new ArrayList<UserId>();
+	        }
+	        this.userIdList.add(userId);
+	    }
+	}
+
+	/**
+	 * Get the position name of this party
+	 * @return
+	 */
+    public String getPositionName() {
+        return positionName;
+    }
+
+    /**
+     * Set the position name of this party
+     * @param positionName
+     */
+    public void setPositionName(String positionName) {
+        this.positionName = positionName;
+    }
 	
 	
 }
