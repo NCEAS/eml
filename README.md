@@ -1,11 +1,11 @@
 # EML: Ecological Metadata Language
 
 [![Build Status](https://travis-ci.org/NCEAS/eml.svg?branch=BRANCH_EML_2_2)](https://travis-ci.org/NCEAS/eml)
-[![EML](https://img.shields.io/badge/eml-2.2.0-blue.svg?style=plastic)](http://github.com/NCEAS/eml)
+[![EML](https://img.shields.io/badge/eml-2.2.0-blue.svg?style=plastic)](https://github.com/NCEAS/eml)
 
 *Cite as*:
 
-[Matthew B. Jones](https://orcid.org/0000-0003-0077-4738),  [Margaret O'Brien](https://orcid.org/0000-0002-1693-8322), [Bryce Mecum](https://orcid.org/0000-0002-0381-3766), [Carl Boettiger](https://orcid.org/0000-0002-1642-628X), [Mark Schildhauer](https://orcid.org/0000-0003-0632-7576), [Mitchell Maier](https://orcid.org/0000-0001-6955-0535), [Timothy Whiteaker](https://orcid.org/0000-0002-1940-4158), [Stevan Earl](https://orcid.org/0000-0002-4465-452X), [Steven Chong](https://orcid.org/0000-0003-1264-1166). 2019. **Ecological Metadata Language version 2.2.0.** KNB Data Repository. [doi:10.5063/F11834T2](https://doi.org/10.5063/F11834T2) <button id="bibtext-button">Copy Bibtex</button>
+[Matthew B. Jones](https://orcid.org/0000-0003-0077-4738),  [Margaret O'Brien](https://orcid.org/0000-0002-1693-8322), [Bryce Mecum](https://orcid.org/0000-0002-0381-3766), [Carl Boettiger](https://orcid.org/0000-0002-1642-628X), [Mark Schildhauer](https://orcid.org/0000-0003-0632-7576), [Mitchell Maier](https://orcid.org/0000-0001-6955-0535), [Timothy Whiteaker](https://orcid.org/0000-0002-1940-4158), [Stevan Earl](https://orcid.org/0000-0002-4465-452X), [Steven Chong](https://orcid.org/0000-0003-1264-1166). 2019. **Ecological Metadata Language version 2.2.0.** KNB Data Repository. [doi:10.5063/F11834T2](https://doi.org/10.5063/F11834T2) <button id="bibtext-button">Copy BibTeX</button>
 
 <input type="text" id="placeholder"/>
 <span id="bibtex">
@@ -32,10 +32,10 @@ The Ecological Metadata Language (EML) defines a comprehensive vocabulary and a 
 - **Version**: 2.2.0
 - **DOI**: https://doi.org/10.5063/F11834T2 
 - **Feedback**: [eml-dev@ecoinformatics.org](mailto:eml-dev@ecoinformatics.org)
-- **Bug reports**: http://github.com/NCEAS/eml/issues
+- **Bug reports**: https://github.com/NCEAS/eml/issues
 - **Web site**: https://eml.ecoinformatics.org/
-- **Source code**: http://github.com/NCEAS/eml
-- **Slack Discussion channel**: #eml on http://slack.nceas.ucsb.edu
+- **Source code**: https://github.com/NCEAS/eml
+- **Slack Discussion channel**: #eml on https://slack.nceas.ucsb.edu
 
 ## Getting Started
 
@@ -92,7 +92,7 @@ We welcome contributions to this work in any form. Individuals who invest substa
 
 ## Contributing
 
-Developers may be interested in browsing the [source code repository](https://github.com/NCEAS/eml/) that we use in developing EML. Starting with EML 2.1.1, the master branch reflects the current stable release of EML. Development occurs in development branches (e.g., BRANCH_EML_2_2), which allows experimental additions as they are being proposed by the community.  This always contains the most recent development version of EML, and therefore may be in flux, or otherwise broken. It is unlikely that it will contain the same files that are in the current release. Development branches are virtually guaranteed to change before they are released, and so they should not be used in production environments. Use development branches at your own risk for testing.  Write access to this repository is reserved for current project maintainers. Please submit contributions as pull requests. We welcome contributions to this work in any form.  Contributions can take many forms, including the development of the EML schema, writing documentation, and helping with maintenance, among others. Non-project members can contribute by submitting their feedback, revisions, fixes, code, or any other contribution through pull requests at GitHub. Discussion of issues occurs on the [Slack channel](https://slack.nceas.ucsb.edu), or through the [EML Issue Tracking system](http://github.com/NCEAS/eml/issues). The preferred way to submit problems with EML or feature requests is the issue tracking system.
+Developers may be interested in browsing the [source code repository](https://github.com/NCEAS/eml/) that we use in developing EML. Starting with EML 2.1.1, the master branch reflects the current stable release of EML. Development occurs in development branches (e.g., BRANCH_EML_2_2), which allows experimental additions as they are being proposed by the community.  This always contains the most recent development version of EML, and therefore may be in flux, or otherwise broken. It is unlikely that it will contain the same files that are in the current release. Development branches are virtually guaranteed to change before they are released, and so they should not be used in production environments. Use development branches at your own risk for testing.  Write access to this repository is reserved for current project maintainers. Please submit contributions as pull requests. We welcome contributions to this work in any form.  Contributions can take many forms, including the development of the EML schema, writing documentation, and helping with maintenance, among others. Non-project members can contribute by submitting their feedback, revisions, fixes, code, or any other contribution through pull requests at GitHub. Discussion of issues occurs on the [Slack channel](https://slack.nceas.ucsb.edu), or through the [EML Issue Tracking system](https://github.com/NCEAS/eml/issues). The preferred way to submit problems with EML or feature requests is the issue tracking system.
 
 ## History
 

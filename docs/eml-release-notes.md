@@ -1,5 +1,5 @@
 # Release Notes
-- (see also http://github.com/NCEAS/eml/issues)
+- (see also https://github.com/NCEAS/eml/issues)
 
 ### 2.2.0
 
