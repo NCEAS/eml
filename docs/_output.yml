@@ -5,3 +5,6 @@ bookdown::gitbook:
       collapse: section
       before: |
         <li><a href="./">EML Specification</a></li>
+  includes:
+    after_body: javascript.html
+    in_header: codemeta.json

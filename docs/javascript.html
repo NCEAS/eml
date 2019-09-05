@@ -1,0 +1,17 @@
+<script type="text/javascript">
+document.body.addEventListener('click', copy);
+
+function copy(e) {
+  // copy data to placeholder - Don't use .innerText, use .textContent
+  placeholder.value = bibtex.textContent;
+  if (placeholder.select) {
+    placeholder.select();
+    try {
+      // copy text
+      document.execCommand('copy');
+    } catch (err) {
+      alert('Use Ctrl/Cmd+C to copy');
+    }
+  }
+}
+</script>
