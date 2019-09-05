@@ -34,13 +34,13 @@ Related FAQ: [How do computers use EML annotations?](#faq-how-do-computers-use-e
 
 ### Organization of this document
 
-The purpose of this primer is to provide an introduction to how semantic annotations are structured in EML documents. It is expected that the readers is already familiar with the EML schema. The central text of the primer ([Semantic Annotations in EML 2.2.0](#sa-eml22)) should provide all the information needed to create annotations in EML, with addtional details in a [Glossary:](#glossary), list of [Vocabularies and repositories used in examples:](#external-vocabularies) and [Frequently asked questions:](#FAQ). Longer explanations of some concepts are in the [Appendix](#appendix).
+The purpose of this primer is to provide an introduction to how semantic annotations are structured in EML documents. It is expected that the readers is already familiar with the EML schema. The central text of the primer ([Semantic Annotations in EML 2.2.0](#sa-eml22)) should provide all the information needed to create annotations in EML, with addtional details in a [Glossary](#glossary), list of [Vocabularies and repositories used in examples](#external-vocabularies) and [Frequently asked questions](#FAQ). Longer explanations of some concepts are in the [Appendix](#appendix).
 
 
 ### Other Conventions and Terminology
 
 - Use of the terms "*required*" or "*must*": this feature is a *requirement* of EML 2.2
-- Use of the term "*should*": this feature is not required by EML 2.2 schema but is a recommended or emerging best practice. It is not checked by the EML schema or parser, but could be checked or confirmed by an external system.
+- Use of the term "*should*": this feature is not required by the EML 2.2 schema but is a recommended or emerging best practice. It is not checked by the EML schema or parser, but could be checked or confirmed by an external system.
 
 
 <a name="sa-eml22"></a>
@@ -185,7 +185,7 @@ Related FAQ: [Are all EML dataTable attributes measurements?](#FAQ-are-all-eml-a
 <!-- TODO: probably an FAQ HERE  "what is a proper subject?" -->
 
 
-[example 3 presented as an RDF graph](#rdf-eml-example-3)
+[Example 3 presented as an RDF graph](#rdf-eml-example-3)
 
 
 ### Annotations grouped under the EML `<annotations>` element
@@ -202,7 +202,7 @@ When the annotations are grouped together, each `annotation` must have its subje
 All the annotations for a resource can be grouped together under an `annotations` element. With this construct, each annotation must have its subject specifically identified with a `references` attribute that points to the subject's id. The `<annotations>` element is a sibling of the top level element (e.g., `<dataset`>), and appears after it, just before `<additionalMetadata>`.
 
 
-This example 4 contains 3 different annotations: 
+This example contains 3 different annotations: 
 
 In the first, the subject is the `dataTable` element with the `id` of "CDF-soil-table". Its annotation components are analogous to Example 2 above, again referencing terms in [IAO](#iao) and [ENVO](#envo). The semantic statement can be read as 
 
@@ -261,7 +261,7 @@ The ontologies used for eric.seabloom are
 </eml>
 ```
 
-[example 4 as an RDF graph](#rdf-eml-example-4)
+[Example 4 as an RDF graph](#rdf-eml-example-4)
 
 ###  Annotations grouped under `<additionalMetadata>`
 Like the annotations grouped under `<annotations>`, annotations can also be grouped under `<additionalMetadata>`. If an `additionalMetadata` section holds a semantic annotation, it must have a `describes` element (to hold the subject) with a `metadata` element containing at least one `annotation` element. 
@@ -625,7 +625,7 @@ Related FAQ: [An image of an RDF Graph is great, but a computer doesn't parse th
 
 <a name="rdf-eml-example-3"></a>
 
-#### Graph from Example 3[XML](#eml-example-3), using attribute/annotation : 
+#### Graph from Example 3 [XML](#eml-example-3), using attribute/annotation : 
 
 
 ![RDF example A](images/RDF_example_a.png "Graph from Example 3 (attribute annotation):") 
