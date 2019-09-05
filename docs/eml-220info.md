@@ -272,15 +272,24 @@ structured names and identifiers for the funding agency and award would go into 
 
 ## "unkown" deprecated as <maintenanceUpdateFrequency> element value
 
-ome EML documents have specified "unkown" instead of "unknown" for the
+Some EML documents have specified "unkown" instead of "unknown" for the
 `<maintenanceUpdateFrequency>` because there is a typo in the list of allowed values
 in eml-dataset.xsd. For EML 2.2.0, a value of `unknown` is added to the list,
 while the the original value of `unkown` is kept in the enumeration for
 backwards compatibility with a note that its use is deprecated.
 
+## access elements deprecated
+
+While eml-access has been part of the standard for many years, its use has been 
+extremely limited, and most systems seem to omit and ignore the `access` elements 
+in the document in favor of using repository-specific mechanisms to control access.
+Therefore, EML 2.2.0 deprecates use of the `access` elements in EML documents, and
+this module will be removed in a future version of EML.  As this is a backwards
+incompatible change, the elements are still available in EML 2.2.0, but expect them to
+be removed in a future release.
+
 ## Supporting Semantic Metadata
 
-**A:** 
 See the [EML Semantic Annotation Primer](eml-semantic-annotations-primer.html) 
 for a thorough overview. In brief, EML 2.2.0 supports entering terms from an 
 ontology via `<annotation>` elements to precisely describe items such as data 
