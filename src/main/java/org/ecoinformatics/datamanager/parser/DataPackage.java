@@ -100,7 +100,6 @@ public class DataPackage
   private QualityReport qualityReport = null;
   private String system = null;
   private String title = null;
-  private String abstractText = null;
   private List<Party> creators = null;
   private String language = null;
   private List<String> keywords = null;
@@ -1115,22 +1114,6 @@ public class DataPackage
    */
   public void setSystem(String systemValue) {
     this.system = systemValue;
-  }
-  
-  /**
-   * Set the abstract content for the datapackage
-   * @param abstractText
-   */
-  public void setAbstract(String abstractText) {
-	  this.abstractText = abstractText;
-  }
-  
-  /**
-   * Retrieve the abstract content for the datapackage
-   * @return
-   */
-  public String getAbstract() {
-	  return this.abstractText;
   }
   
   
