@@ -200,6 +200,7 @@
         <property name="ver.docs" value="${ver.dir}/docs"/>
         <property name="ver.src" value="${ver.dir}/src"/>
         <property name="ver.tst" value="${ver.dir}/test"/>
+        <property name="ver.site" value="${ver.dir}/site"/>
         <property name="package.home" value="org/ecoinformatics" />
         <property name="cpath" value="${utilities}:${servlet}:${cos}:${xalan}:${xml-apis}:${io}:${xmlp}:${serializer}:${jtidy}:${itext}:${renderer}:${renderer-min}:${jdom}:${junit}:${build.dir}/${name}.jar"/>
 
@@ -214,15 +215,13 @@
 
     </target>
 
-
-    <target name="dist" depends="init">
+    <target name="release" depends="init">
         <mkdir dir="${release.dir}"/>
         <delete dir="${ver.dir}"/>
         <mkdir dir="${ver.dir}"/>
         <mkdir dir="${ver.lib}"/>
         <mkdir dir="${ver.src}"/>
         <mkdir dir="${ver.tst}"/>
-<!--        <mkdir dir="${ver.dir}/style"/> -->
         <copy file="./build.xml" todir="${ver.dir}"/>
         <copy file="./LICENSE" todir="${ver.dir}"/>
         <copy file="./README.md" todir="${ver.dir}"/>
@@ -249,6 +248,15 @@
             <fileset dir="./test">
                 <exclude name="${datamanager.dir}/**"/>
             </fileset>
+        </copy>
+        <copy todir="${ver.docs}" filtering="no">
+            <fileset dir="docs"/>
+        </copy>
+        <exec dir="docs" executable="R" resolveexecutable="true">
+            <arg value="-f build_book.R"/>
+        </exec>
+        <copy todir="${ver.site}" filtering="no">
+            <fileset dir="dist"/>
         </copy>
 
         <delete file="${release.dir}/eml-${version}.zip"/>
