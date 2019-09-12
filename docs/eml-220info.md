@@ -280,13 +280,17 @@ backwards compatibility with a note that its use is deprecated.
 
 ## access elements deprecated
 
-While eml-access has been part of the standard for many years, its use has been 
+While eml-access has been part of the standard for many years, use has been 
 extremely limited, and most systems seem to omit and ignore the `access` elements 
 in the document in favor of using repository-specific mechanisms to control access.
-Therefore, EML 2.2.0 deprecates use of the `access` elements in EML documents, and
-this module will be removed in a future version of EML.  As this is a backwards
-incompatible change, the elements are still available in EML 2.2.0, but expect them to
-be removed in a future release.
+Therefore, EML 2.2.0 deprecates use of the `access` elements in the main body of EML 
+documents, with the exception of use within the `additionalMetadata` element.  As this is a 
+backwards incompatible change, the elements are still available in EML 2.2.0, but users 
+should expect schema changes to occur in a future release that eliminate the use of `access` 
+elements outside of `additionalMetadata`.  In addition, because authorization systems 
+are system-dependent, the content within any `access` element should be considered 
+advisory and may not reflect the actual authorization policies in place at a given point 
+in time in a given repository.
 
 ## Supporting Semantic Metadata
 

@@ -61,11 +61,17 @@ within the additionalMetadata field.
 
 **DEPRECATED**
 
-- *Note that use of the `eml-access` module is deprecated, as most systems
-have internal representations of access control and have not been 
-provided or maintained.  Thus, we no longer recommend using any of the
-`access` elements throughout the schema, even though they have been 
-retained for backwards compatibility.*
+- *While eml-access has been part of the standard for many years, use has been 
+extremely limited, and most systems seem to omit and ignore the `access` elements 
+in the document in favor of using repository-specific mechanisms to control access.
+Therefore, EML 2.2.0 deprecates use of the `access` elements in the main body of EML 
+documents, with the exception of use within the `additionalMetadata` element.  As this is a 
+backwards incompatible change, the elements are still available in EML 2.2.0, but users 
+should expect schema changes to occur in a future release that eliminate the use of `access` 
+elements outside of `additionalMetadata`.  In addition, because authorization systems 
+are system-dependent, the content within any `access` element should be considered 
+advisory and may not reflect the actual authorization policies in place at a given point 
+in time in a given repository.*
 
 Links:
 
