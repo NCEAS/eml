@@ -15,19 +15,76 @@ Links:
 
 The eml-text module is a wrapper container that allows general text
 descriptions to be used within the various modules of eml. It can
-include either structured or unstructured text blocks. It isn\'t really
+include either structured or unstructured text blocks. It isn't really
 appropriate to use this module outside of the context of a parent
 module, because the parent module determines the appropriate context to
 which this text description applies. The eml-text module allows one to
 provide structure to a text description in order to convey concepts such
 as sections (paragraphs), hierarchy (ordered and unordered lists),
-emphasis (bold, superscript, subscript) etc. The structured elements can
+emphasis (bold, superscript, subscript), etc. The structured elements can
 be specified using a subset of [DocBook](http://www.docbook.org) so the
 predefined DocBook stylesheets can be used to style EML fields that
 implement this module, or alternatively can be specified using Markdown
 text blocks. Combinations of plain text, docbook sections, and markdown
 sections can be interleaved in any order, but most people will likely
 find the markdown syntax the easiest to use.
+
+Markdown sections, which are new to EML 2.2.0, provide significant new flexibility
+in how to format text for human readability. The following example `introduction`
+element that exercises a number of the markdown features.
+
+```xml
+<introduction>
+    <markdown>
+        An introduction goes here, with *italics* and **bold** text, and other markdown niceties.
+        
+        It can include multiple paragraphs. And these paragraphs should have enough text to wrap in a wide browser. So, repeat that last thought. And these paragraphs should have enough text to wrap in a wide browser. So, repeat that last thought.
+        
+        Text can also cite other works, such as [@jones_2001], in which case the associated key must be present
+        as either the citation identifier in a `bibtex` element in the EML document, or as the `id` attribute on
+        one of the `citation` elements in the EML document. These identifiers must be unique across the document. Tools
+        such as Pandoc will readily convert these citations and citation entries into various formats, including HTML, PDF,
+        and others.
+        
+        And bulleted lists are also supported:
+        
+        - Science
+        - Engineering
+        - Math
+        
+        It can also include equations:
+        
+        $$\left( x + a \right)^{n} = \sum_{k = 0}^{n}{\left( \frac{n}{k} \right)x^{k}a^{n - k}}$$
+        
+        Plus, it can include all of the other features of [Github Flavored Markdown (GFM)](https://github.github.com/gfm/).
+    </markdown>
+</introduction>
+```
+
+Because Markdown treats whitespace as significant in formatting, it is important
+to consistently embed Markdown text inside of an EML document.  For example,
+bulleted lists and other structures within Markdown are dependent on indenting
+the raw markdown text. Thus, authors and processors should pay close attention
+to formatting within the markdown block.  In particular, if the XML document
+within which the markdown block is embedded is in an indented hierarchy using
+whitespace, then the first non-whitespace character of the markdown block
+defines the column for the leftmost column of the markdown, and all subsequent
+markdown should be indented relative to that column.  For example, if the first
+character of the markdown is in column 16 of the document, then all subsequent
+markdown lines in that block should also start on column 16.  A bulleted list
+would start on column 16, and its sublist would be indented four space to column
+20.
+
+In the above example, the first line of the `markdown` block is indented by 8
+spaces, and so that becomes the default indenting level for the markdown block.
+EML processors should first extract the markdown text from the XML document
+without normalizing any whitespace, then remove the default leading whitespace
+(in this case, 8 space characters), and then pass the resulting text to a
+conforming markdown parser that handles Github Flavored Markdown (GFM). The
+resulting parse tree can then be used for display in applications.
+
+Further details about handling and authoring markdown are included in the 
+definition of the `markdown` element in the eml-text module.
 
 ### The eml-semantics module - Semantic annotations for formalized statements about EML components
 
