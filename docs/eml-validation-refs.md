@@ -100,7 +100,7 @@ written a parser which checks the validity of the references and `id`s
 used in a document. This parser is included with the release of
 EML. To run the parser, you must have Java installed. To execute
 it change into the top-level directory of the EML release and run the
-'validate.sh' script passing your EML instance file as a parameter. You can also usinvalidate your EML document from R, using the EML::validate() function.
+'validate.sh' script passing your EML instance file as a parameter. You can also validate your EML document from R, using the EML::validate() function.
 There may also be an [online
 version](https://knb.ecoinformatics.org/emlparser) of this parser, which
 is publicly accessible. The validator will both validate your XML
