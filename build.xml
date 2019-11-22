@@ -424,6 +424,8 @@
 
     <target name="servletinstall" depends="jar, clone-eml" if="${clone.exists}">
         <copy file="lib/emlparser.html" tofile="${servlet.install.dir}/index.html"/>
+        <mkdir dir="${servlet.install.dir}/docs" />
+        <copy file="lib/emlparser-docs.html" tofile="${servlet.install.dir}/docs/index.html"/>
         <copy file="src/test/resources/eml-sample.xml"
           tofile="${servlet.install.dir}/eml-sample.xml"/>
         <copy file="${config.file}" tofile="${servlet.install.dir}/lib/config.xml" filtering="yes"/>
