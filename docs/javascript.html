@@ -1,5 +1,9 @@
 <script type="text/javascript">
-document.body.addEventListener('click', copy);
+var bibButton = document.getElementById("bibtext-button");
+if (bibButton) {
+  bibButton.addEventListener('click', copy);
+}
+
 
 function copy(e) {
   // copy data to placeholder - Don't use .innerText, use .textContent
