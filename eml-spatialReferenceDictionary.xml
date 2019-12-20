@@ -33746,5 +33746,21 @@
       </projection>
     </projCoordSys>
   </horizCoordSysDef>
+  <horizCoordSysDef name="Sinusoidal">
+    <projCoordSys>
+      <geogCoordSys name="GCS_Undefined">
+        <datum name="Undefined"/>
+        <spheroid name="User_Defined_Spheroid" semiAxisMajor="6371007.181"/>
+        <primeMeridian name="Greenwich" longitude="0"/>
+        <unit name="degree" value="0.0174532925199433"/>
+      </geogCoordSys>
+      <projection name="Sinusoidal">
+        <parameter name="False_Easting" value="0.0"/>
+        <parameter name="False_Northing" value="0.0"/>
+        <parameter name="Central_Meridian" value="0.0"/>
+        <unit name="meter" value="1.0"/>
+      </projection>
+    </projCoordSys>
+  </horizCoordSysDef>
 </sp:projectionList>
 
