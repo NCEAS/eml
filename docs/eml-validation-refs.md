@@ -25,6 +25,8 @@ For a document to be EML-valid, all of the following constraints must hold true:
   it MUST not have an `id` attribute itself
 - If an `additionalMetadata` element references another using a child `describes` element, 
   another element with that value in its `id` attribute MUST exist in the document
+- If a customUnit is referenced in a document, it must have a
+  corresponding STMML unit definition in the document with a matching @id
 
 ## Validation algorithm
 
@@ -54,6 +56,10 @@ structures in order to do the final consistency check. For example, in pseudocod
     - For each `describes` element within an `additionalMetadata` element
         - If the `describes` key is not in `referencesHash`, 
           then add it as a key with the empty string '' value to `referencesHash`
+    - For each `customUnit` element
+        - If the `customUnit` key is not in `unitsHash`, then add it as a key to `unitsHash`
+    - Once document processing is complete, for each `unit` in `unitsHash`
+        - If `!identifierHash.hasKey(unit)'` then the document is invalid
     - Once document processing is complete, for each `key` in `referencesHash`
         - If `!identifierHash.hasKey(key) OR 'referencesHash[key] != identifierHash[key]'` then the document is invalid
     - If no validity errors are found above or by the parser, then the document is valid
@@ -100,7 +106,8 @@ written a parser which checks the validity of the references and `id`s
 used in a document. This parser is included with the release of
 EML. To run the parser, you must have Java installed. To execute
 it change into the top-level directory of the EML release and run the
-'validate.sh' script passing your EML instance file as a parameter. You can also validate your EML document from R, using the EML::validate() function.
+'validate.sh' script passing your EML instance file as a parameter. 
+You can also validate your EML document from R, using the EML::validate() function.
 There may also be an [online
 version](https://knb.ecoinformatics.org/emlparser) of this parser, which
 is publicly accessible. The validator will both validate your XML
