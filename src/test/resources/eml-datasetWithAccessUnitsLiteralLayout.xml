@@ -489,6 +489,13 @@ Clip strips are 10cm wide and 3m long.
 </attributeList>
 </dataTable>
 </dataset>
-<additionalMetadata><metadata>
-<unitList><unit id="g/sample"></unit></unitList></metadata></additionalMetadata>
+<additionalMetadata>
+    <metadata>
+      <unitList xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.1"
+        xsi:schemaLocation="http://www.xml-cml.org/schema/stmml-1.1 ../../../xsd/stmml.xsd">
+        <!--note that the unitTypes here are taken from the eml-unitDictionary.xml-->
+        <unit name="g/sample" unitType="arealMassDensity" id="g/sample" parentSI="kilogramsPerSquareMeter" multiplierToSI=".001"/>
+      </unitList>
+    </metadata>
+</additionalMetadata>
 </eml:eml>

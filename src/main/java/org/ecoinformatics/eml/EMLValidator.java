@@ -126,7 +126,6 @@ public class EMLValidator {
             }
         }
 
-
         // Elements which contain an `annotation` child element MUST contain an
         // `id` attribute, unless the containing `annotation` element contains a
         // `references` attribute
@@ -152,6 +151,18 @@ public class EMLValidator {
             //Node n = both_id_ref.item(i);
             //debugNode(n, "");
             //}
+        }
+
+        // If a customUnit is referenced in a document, it must have a
+        // corresponding STMML unit definition in the document with a matching
+        // @id
+        ArrayList<String> unitIdentifiers = getXPathValues("//*[local-name() = 'unitList']/*[local-name() = 'unit']/@id");
+        ArrayList<String> unitReferences = getXPathValues("//unit/customUnit");
+        for (String s : unitReferences) {
+            if (!unitIdentifiers.contains(s)) {
+                errors.add("Invalid: Custom unit definition missing: " + s);
+                isValid = false;
+            }
         }
 
         // TODO: When `references` is used, the `system` attribute MUST have the

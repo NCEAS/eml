@@ -359,10 +359,13 @@
     </metadata>
   </additionalMetadata>
   <additionalMetadata>
-  <metadata>
-    <unitList>
-      <unit id="gramsPerSquareMeter"/>
-            <unit id="speciesPerSquareMeter"/>
-    </unitList></metadata>
+    <metadata>
+      <stmml:unitList xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.1"
+        xsi:schemaLocation="http://www.xml-cml.org/schema/stmml-1.1 ../../../xsd/stmml.xsd">
+        <!--note that the unitTypes here are taken from the eml-unitDictionary.xml-->
+        <stmml:unit name="gramsPerSquareMeter" unitType="arealMassDensity" id="gramsPerSquareMeter" parentSI="kilogramsPerSquareMeter" multiplierToSI=".001"/>
+        <stmml:unit name="speciesPerSquareMeter" unitType="arealDensity" id="speciesPerSquareMeter" parentSI="numberPerSquareMeter" multiplierToSI="1"/>
+      </stmml:unitList>
+  </metadata>
   </additionalMetadata>
 </eml:eml>
