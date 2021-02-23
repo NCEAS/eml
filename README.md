@@ -1,6 +1,7 @@
 # EML: Ecological Metadata Language
 
-[![Build Status](https://travis-ci.org/NCEAS/eml.svg?branch=BRANCH_EML_2_2)](https://travis-ci.org/NCEAS/eml)
+[![Main Build Status](https://travis-ci.com/NCEAS/eml.svg?branch=main)](https://travis-ci.com/NCEAS/eml)
+[![Develop Build Status](https://travis-ci.com/NCEAS/eml.svg?branch=develop)](https://travis-ci.com/NCEAS/eml)
 [![EML](https://img.shields.io/badge/eml-2.2.0-blue.svg?style=plastic)](https://github.com/NCEAS/eml)
 
 *Cite as*:
