@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <eml:eml packageId="eml.1.1" system="knb" xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.1" xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0 xsd/eml.xsd">
-  <dataset id="1555" scope="document">
+  <dataset>
     <title>Data from Cedar Creek LTER on productivity and species richness
   for use in a workshop titled "An Analysis of the Relationship between
   Productivity and Diversity using Experimental Results from the Long-Term
@@ -55,7 +55,7 @@
     <contact>
       <references>richard.inouye</references>
     </contact>
-    <dataTable>
+    <dataTable id="xyz">
       <entityName>CDR LTER-patterns among communities.txt</entityName>
       <entityDescription>patterns amoung communities at CDR</entityDescription>
       <physical>
@@ -77,7 +77,7 @@
           </online>
         </distribution>
       </physical>
-      <attributeList>
+      <attributeList id="at.1">
         <attribute id="att.1">
           <attributeName>fld</attributeName>
           <attributeLabel>Field</attributeLabel>
@@ -120,13 +120,13 @@
           <measurementScale>
             <interval>
               <unit>
-                <standardUnit>dimensionless</standardUnit>
+                <standardUnit>number</standardUnit>
               </unit>
               <precision>0.5</precision>
               <numericDomain id="nd.3">
                 <numberType>real</numberType>
                 <bounds>
-                  <minimum exclusive="false">0</minimum>
+                  <minimum exclusive="true">0</minimum>
                 </bounds>
               </numericDomain>
             </interval>
@@ -147,8 +147,8 @@
               <numericDomain id="nd.4">
                 <numberType>real</numberType>
                 <bounds>
-                  <minimum exclusive="false">0</minimum>
-                  <maximum exclusive="false">100</maximum>
+                  <minimum exclusive="true">0</minimum>
+                  <maximum exclusive="true">1e2</maximum>
                 </bounds>
               </numericDomain>
             </ratio>
@@ -163,13 +163,13 @@
           <measurementScale>
             <ratio>
               <unit>
-                <standardUnit>dimensionless</standardUnit>
+                <standardUnit>second</standardUnit>
               </unit>
               <precision>0.1</precision>
               <numericDomain id="nd.5">
                 <numberType>real</numberType>
                 <bounds>
-                  <minimum exclusive="false">0</minimum>
+                  <minimum exclusive="true">0</minimum>
                 </bounds>
               </numericDomain>
             </ratio>
@@ -184,7 +184,7 @@
           <measurementScale>
             <ratio>
               <unit>
-                <standardUnit>dimensionless</standardUnit>
+                <standardUnit>cubicFeetPerSecond</standardUnit>
               </unit>
               <precision>0.1</precision>
               <numericDomain>
@@ -202,7 +202,7 @@
           <measurementScale>
             <ratio>
               <unit>
-                <standardUnit>dimensionless</standardUnit>
+                <standardUnit>cubicMeter</standardUnit>
               </unit>
               <precision>0.1</precision>
               <numericDomain>
@@ -220,7 +220,7 @@
           <measurementScale>
             <ratio>
               <unit>
-                <standardUnit>dimensionless</standardUnit>
+                <standardUnit>radian</standardUnit>
               </unit>
               <precision>0.1</precision>
               <numericDomain>
@@ -238,7 +238,7 @@
           <measurementScale>
             <ratio>
               <unit>
-                <standardUnit>dimensionless</standardUnit>
+                <standardUnit>meter</standardUnit>
               </unit>
               <precision>0.1</precision>
               <numericDomain>
@@ -256,7 +256,7 @@
           <measurementScale>
             <ratio>
               <unit>
-                <standardUnit>dimensionless</standardUnit>
+                <standardUnit>inch</standardUnit>
               </unit>
               <precision>0.1</precision>
               <numericDomain>
@@ -274,7 +274,7 @@
           <measurementScale>
             <ratio>
               <unit>
-                <standardUnit>dimensionless</standardUnit>
+                <standardUnit>nanogram</standardUnit>
               </unit>
               <precision>0.1</precision>
               <numericDomain>
@@ -292,13 +292,15 @@
           <measurementScale>
             <ratio>
               <unit>
+                <!-- Document is invalid because the custom unit 
+                     is not defined in additionalMetadata -->
                 <customUnit>gramsPerSquareMeter</customUnit>
               </unit>
               <precision>0.01</precision>
               <numericDomain id="nd.6">
                 <numberType>real</numberType>
                 <bounds>
-                  <minimum exclusive="false">0</minimum>
+                  <minimum exclusive="true">0</minimum>
                 </bounds>
               </numericDomain>
             </ratio>
@@ -319,10 +321,29 @@
               <numericDomain id="nd.7">
                 <numberType>real</numberType>
                 <bounds>
-                  <minimum exclusive="false">0</minimum>
+                  <minimum exclusive="true">0</minimum>
                 </bounds>
               </numericDomain>
             </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute id="att.14">
+          <attributeName>time</attributeName>
+          <attributeLabel>Time</attributeLabel>
+          <attributeDefinition>The time of day for this observation, 24 hour clock
+        </attributeDefinition>
+          <storageType>time</storageType>
+          <measurementScale>
+            <dateTime>
+              <formatString>hh:mm:ss.s</formatString>
+              <dateTimePrecision>0.1</dateTimePrecision>
+              <dateTimeDomain id="dd.3">
+                <bounds>
+                  <minimum exclusive="true">15:00:00.0</minimum>
+                  <maximum exclusive="true">19:00:00.0</maximum>
+                </bounds>
+              </dateTimeDomain>
+            </dateTime>
           </measurementScale>
         </attribute>
       </attributeList>
@@ -330,42 +351,4 @@
       <numberOfRecords>22</numberOfRecords>
     </dataTable>
   </dataset>
-  <additionalMetadata>
-    <describes>1555</describes>
-    <metadata>
-        <cit:citation id="345" scope="document" xmlns:cit="https://eml.ecoinformatics.org/literature-2.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://eml.ecoinformatics.org/literature-2.2.0 
-          xsd/eml-literature.xsd">
-        <title>Measuring the effectiveness of EML in the field.</title>
-        <creator>
-          <individualName>
-            <givenName>Matthew</givenName>
-            <givenName>B.</givenName>
-            <surName>Jones</surName>
-          </individualName>
-        </creator>
-        <pubDate>2002</pubDate>
-        <abstract>
-          <para>This is the abstract's first paragraph.</para>
-          <para>This is the abstract's second paragraph. With
-        <emphasis>emphasis</emphasis>.</para>
-        </abstract>
-        <article>
-          <journal>Journal of Irreproducible Results</journal>
-          <volume>23</volume>
-          <issue>5</issue>
-          <pageRange>44-63</pageRange>
-        </article>
-      </cit:citation>
-    </metadata>
-  </additionalMetadata>
-  <additionalMetadata>
-    <metadata>
-      <stmml:unitList xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.1"
-        xsi:schemaLocation="http://www.xml-cml.org/schema/stmml-1.1 ../../../xsd/stmml.xsd">
-        <!--note that the unitTypes here are taken from the eml-unitDictionary.xml-->
-        <stmml:unit name="gramsPerSquareMeter" unitType="arealMassDensity" id="gramsPerSquareMeter" parentSI="kilogramsPerSquareMeter" multiplierToSI=".001"/>
-        <stmml:unit name="speciesPerSquareMeter" unitType="arealDensity" id="speciesPerSquareMeter" parentSI="numberPerSquareMeter" multiplierToSI="1"/>
-      </stmml:unitList>
-  </metadata>
-  </additionalMetadata>
 </eml:eml>
