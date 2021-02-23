@@ -294,10 +294,10 @@ in time in a given repository.
 
 ## Supporting Semantic Metadata
 
-See the [EML Semantic Annotation Primer](eml-semantic-annotations-primer.html) 
-for a thorough overview. In brief, EML 2.2.0 supports entering terms from an 
-ontology via `<annotation>` elements to precisely describe items such as data 
-attributes/variables, datasets, and people.  Annotations are allowed in five 
+See the [EML Semantic Annotation Primer](semantic-annotation-primer.html)
+for a thorough overview. In brief, EML 2.2.0 supports entering terms from an
+ontology via `<annotation>` elements to precisely describe items such as data
+attributes/variables, datasets, and people.  Annotations are allowed in five
 locations in the EML document:
 
 * in `attribute`, `entity`, and `dataset` (or other resource) elements
