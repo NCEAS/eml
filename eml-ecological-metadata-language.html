@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Ecological Metadata Language (EML)</title>
+  <meta name="description" content="Ecological Metadata Language (EML)" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Ecological Metadata Language (EML)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Ecological Metadata Language (EML)" />
+  
+  
+  
+
+
+
+<meta name="date" content="2021-02-22" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="features.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script type='application/ld+json'>
+{
+    "@context": {
+        "@vocab": "https://doi.org/10.5063/schema/codemeta-2.0/",
+        "schema": "http://schema.org/",
+        "datacite": "http://purl.org/spar/datacite/"
+    },
+    "@type": "SoftwareSourceCode",
+	"@id": "https://doi.org/10.5063/F11834T2",
+    "name": "Ecological Metadata Language version 2.2.0",
+    "url": "https://eml.ecoinformatics.org",
+    "sameAs": "doi:10.5063/F11834T2",
+    "version": "2.2.0",
+    "license": "https://spdx.org/licenses/GPL-2.0-or-later.html",
+    "identifier": {
+        "@type": ["PropertyValue", "datacite:ResourceIdentifier"],
+        "datacite:usesIdentifierScheme": {
+            "@id": "datacite:doi"
+        },
+        "propertyID": "DOI",
+        "url": "https://doi.org/10.5063/F11834T2",
+        "value": "10.5063/F11834T2"
+    },
+    "programmingLanguage": {
+        "@type": "ComputerLanguage",
+        "name": "XML"
+    },
+    "creator": [
+		{
+	        "@id": "https://orcid.org/0000-0003-0077-4738",
+	        "@type": "Person",
+	        "name": "Matthew B. Jones",
+	        "givenName": "Matthew",
+	        "familyName": "Jones",
+	        "url": "https://orcid.org/0000-0003-0077-4738"
+    	},
+		{
+			"@id": "https://orcid.org/0000-0002-1693-8322",
+			"@type": "Person",
+			"name": "Margaret O’Brien",
+			"givenName": "Margaret",
+			"familyName": "O’Brien",
+			"url": "https://orcid.org/0000-0002-1693-8322"
+		},
+		{
+	        "@id": "https://orcid.org/0000-0002-0381-3766",
+	        "@type": "Person",
+	        "name": "Bryce Mecum",
+	        "givenName": "Bryce",
+	        "familyName": "Mecum",
+	        "url": "https://orcid.org/0000-0002-0381-3766"
+    	},
+		{
+	        "@id": "https://orcid.org/0000-0002-1642-628X",
+	        "@type": "Person",
+	        "name": "Carl Boettiger",
+	        "givenName": "Carl",
+	        "familyName": "Boettiger",
+	        "url": "https://orcid.org/0000-0002-1642-628X"
+    	},
+		{
+	        "@id": "https://orcid.org/0000-0003-0632-7576",
+	        "@type": "Person",
+	        "name": "Mark Schildhauer",
+	        "givenName": "Mark",
+	        "familyName": "Schildhauer",
+	        "url": "https://orcid.org/0000-0003-0632-7576"
+    	},
+		{
+	        "@id": "https://orcid.org/0000-0001-6955-0535",
+	        "@type": "Person",
+	        "name": "Mitchell",
+	        "givenName": "Mitchell Maier",
+	        "familyName": "Maier",
+	        "url": "https://orcid.org/0000-0001-6955-0535"
+    	},
+		{
+	        "@id": "https://orcid.org/0000-0002-1940-4158",
+	        "@type": "Person",
+	        "name": "Timothy Whiteaker",
+	        "givenName": "Timothy",
+	        "familyName": "Whiteaker",
+	        "url": "https://orcid.org/0000-0002-1940-4158"
+    	},
+		{
+	        "@id": "https://orcid.org/0000-0002-4465-452X",
+	        "@type": "Person",
+	        "name": "Stevan Earl",
+	        "givenName": "Stevan",
+	        "familyName": "Earl",
+	        "url": "https://orcid.org/0000-0002-4465-452X"
+    	},
+		{
+	        "@id": "https://orcid.org/0000-0003-1264-1166",
+	        "@type": "Person",
+	        "name": "Steven Chong",
+	        "givenName": "Steven",
+	        "familyName": "Chong",
+	        "url": "https://orcid.org/0000-0003-1264-1166"
+    	}
+	],
+	"copyrightYear": "2019",
+    "datePublished": "2019",
+    "isAccessibleForFree": true,
+    "keywords": ["metadata", "xml", "specification", "ecology", "environmental science", "earth science", "EML"],
+    "codeRepository": "https://github.com/NCEAS/eml",
+    "issueTracker": "https://github.com/NCEAS/eml/issues"
+}
+</script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">EML Specification</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="eml-ecological-metadata-language.html"><a href="eml-ecological-metadata-language.html"><i class="fa fa-check"></i><b>1</b> EML: Ecological Metadata Language</a><ul>
+<li class="chapter" data-level="1.1" data-path="eml-ecological-metadata-language.html"><a href="eml-ecological-metadata-language.html#getting-started"><i class="fa fa-check"></i><b>1.1</b> Getting Started</a></li>
+<li class="chapter" data-level="1.2" data-path="eml-ecological-metadata-language.html"><a href="eml-ecological-metadata-language.html#about-the-eml-project"><i class="fa fa-check"></i><b>1.2</b> About the EML Project</a></li>
+<li class="chapter" data-level="1.3" data-path="eml-ecological-metadata-language.html"><a href="eml-ecological-metadata-language.html#contributing"><i class="fa fa-check"></i><b>1.3</b> Contributing</a></li>
+<li class="chapter" data-level="1.4" data-path="eml-ecological-metadata-language.html"><a href="eml-ecological-metadata-language.html#history"><i class="fa fa-check"></i><b>1.4</b> History</a></li>
+<li class="chapter" data-level="1.5" data-path="eml-ecological-metadata-language.html"><a href="eml-ecological-metadata-language.html#older-versions-deprecated"><i class="fa fa-check"></i><b>1.5</b> Older versions (deprecated)</a></li>
+<li class="chapter" data-level="1.6" data-path="eml-ecological-metadata-language.html"><a href="eml-ecological-metadata-language.html#copyright-and-license"><i class="fa fa-check"></i><b>1.6</b> Copyright and License</a></li>
+<li class="chapter" data-level="1.7" data-path="eml-ecological-metadata-language.html"><a href="eml-ecological-metadata-language.html#funding-and-acknowledgements"><i class="fa fa-check"></i><b>1.7</b> Funding and Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="features.html"><a href="features.html"><i class="fa fa-check"></i><b>2</b> Features</a></li>
+<li class="chapter" data-level="3" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i><b>3</b> Contributors</a><ul>
+<li class="chapter" data-level="3.1" data-path="contributors.html"><a href="contributors.html#current-maintainers"><i class="fa fa-check"></i><b>3.1</b> Current maintainers</a></li>
+<li class="chapter" data-level="3.2" data-path="contributors.html"><a href="contributors.html#past-contributors"><i class="fa fa-check"></i><b>3.2</b> Past contributors</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html"><i class="fa fa-check"></i><b>4</b> What’s New in EML 2.2.0</a><ul>
+<li class="chapter" data-level="4.1" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html#unit-additions-and-changes"><i class="fa fa-check"></i><b>4.1</b> Unit Additions and Changes</a></li>
+<li class="chapter" data-level="4.2" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html#bibtex-support"><i class="fa fa-check"></i><b>4.2</b> BibTeX Support</a></li>
+<li class="chapter" data-level="4.3" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html#citation-lists"><i class="fa fa-check"></i><b>4.3</b> Citation Lists</a></li>
+<li class="chapter" data-level="4.4" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html#markdown-support"><i class="fa fa-check"></i><b>4.4</b> Markdown Support</a></li>
+<li class="chapter" data-level="4.5" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html#usage-citations"><i class="fa fa-check"></i><b>4.5</b> Usage Citations</a></li>
+<li class="chapter" data-level="4.6" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html#reference-publications"><i class="fa fa-check"></i><b>4.6</b> Reference Publications</a></li>
+<li class="chapter" data-level="4.7" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html#data-paper-support"><i class="fa fa-check"></i><b>4.7</b> Data Paper Support</a></li>
+<li class="chapter" data-level="4.8" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html#dataset-license"><i class="fa fa-check"></i><b>4.8</b> Dataset license</a></li>
+<li class="chapter" data-level="4.9" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html#structured-funding-information"><i class="fa fa-check"></i><b>4.9</b> Structured Funding Information</a></li>
+<li class="chapter" data-level="4.10" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html#unkown-deprecated-as-element-value"><i class="fa fa-check"></i><b>4.10</b> “unkown” deprecated as <maintenanceUpdateFrequency> element value</a></li>
+<li class="chapter" data-level="4.11" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html#access-elements-deprecated"><i class="fa fa-check"></i><b>4.11</b> access elements deprecated</a></li>
+<li class="chapter" data-level="4.12" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html#supporting-semantic-metadata"><i class="fa fa-check"></i><b>4.12</b> Supporting Semantic Metadata</a></li>
+<li class="chapter" data-level="4.13" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html#support-for-ids-in-taxonomicclassification"><i class="fa fa-check"></i><b>4.13</b> Support for ids in taxonomicClassification</a></li>
+<li class="chapter" data-level="4.14" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html#how-can-i-convert-from-earlier-versions-of-eml"><i class="fa fa-check"></i><b>4.14</b> How can I convert from earlier versions of EML?</a></li>
+<li class="chapter" data-level="4.15" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html#validity-of-new-eml-2.2.0-documents"><i class="fa fa-check"></i><b>4.15</b> Validity of new EML 2.2.0 documents</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="eml-schema.html"><a href="eml-schema.html"><i class="fa fa-check"></i><b>5</b> EML Schema</a><ul>
+<li class="chapter" data-level="5.1" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-module-and-resources"><i class="fa fa-check"></i><b>5.1</b> The EML Module and Resources</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-module---a-metadata-container"><i class="fa fa-check"></i><b>5.1.1</b> The eml module - A metadata container</a></li>
+<li class="chapter" data-level="5.1.2" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-resource-module---base-information-for-all-resources"><i class="fa fa-check"></i><b>5.1.2</b> The eml-resource module - Base information for all resources</a></li>
+<li class="chapter" data-level="5.1.3" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-dataset-module---dataset-specific-information"><i class="fa fa-check"></i><b>5.1.3</b> The eml-dataset module - Dataset specific information</a></li>
+<li class="chapter" data-level="5.1.4" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-literature-module---citation-specific-information"><i class="fa fa-check"></i><b>5.1.4</b> The eml-literature module - Citation-specific information</a></li>
+<li class="chapter" data-level="5.1.5" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-software-module---software-specific-information"><i class="fa fa-check"></i><b>5.1.5</b> The eml-software module - Software specific information</a></li>
+<li class="chapter" data-level="5.1.6" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-protocol-module---research-protocol-specific-information"><i class="fa fa-check"></i><b>5.1.6</b> The eml-protocol module - Research protocol specific information</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="eml-schema.html"><a href="eml-schema.html#data-structure-modules"><i class="fa fa-check"></i><b>5.2</b> Data Structure Modules</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-entity-module---entity-level-information-within-datasets"><i class="fa fa-check"></i><b>5.2.1</b> The eml-entity module - Entity level information within datasets</a></li>
+<li class="chapter" data-level="5.2.2" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-attribute-module---attribute-level-information-within-dataset-entities"><i class="fa fa-check"></i><b>5.2.2</b> The eml-attribute module - Attribute level information within dataset entities</a></li>
+<li class="chapter" data-level="5.2.3" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-constraint-module---relationships-among-and-within-dataset-entities"><i class="fa fa-check"></i><b>5.2.3</b> The eml-constraint module - Relationships among and within dataset entities</a></li>
+<li class="chapter" data-level="5.2.4" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-datatable-module---logical-information-about-data-table-entities"><i class="fa fa-check"></i><b>5.2.4</b> The eml-dataTable module - Logical information about data table entities</a></li>
+<li class="chapter" data-level="5.2.5" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-spatialraster-module---logical-information-about-regularly-gridded-geospatial-image-data"><i class="fa fa-check"></i><b>5.2.5</b> The eml-spatialRaster module - Logical information about regularly gridded geospatial image data</a></li>
+<li class="chapter" data-level="5.2.6" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-spatialvector-module---logical-information-about-non-gridded-geospatial-image-data"><i class="fa fa-check"></i><b>5.2.6</b> The eml-spatialVector module - Logical information about non-gridded geospatial image data</a></li>
+<li class="chapter" data-level="5.2.7" data-path="eml-schema.html"><a href="eml-schema.html#schema-for-validating-spatial-referencing-descriptions"><i class="fa fa-check"></i><b>5.2.7</b> Schema for validating spatial referencing descriptions</a></li>
+<li class="chapter" data-level="5.2.8" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-storedprocedure-module---data-tables-resulting-from-procedures-stored-in-a-database"><i class="fa fa-check"></i><b>5.2.8</b> The eml-storedProcedure module - Data tables resulting from procedures stored in a database</a></li>
+<li class="chapter" data-level="5.2.9" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-view-module---data-tables-resulting-from-a-database-query"><i class="fa fa-check"></i><b>5.2.9</b> The eml-view module - Data tables resulting from a database query</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="eml-schema.html"><a href="eml-schema.html#discovery-and-interpretation-modules"><i class="fa fa-check"></i><b>5.3</b> Discovery and Interpretation Modules</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-physical-module---physical-file-format"><i class="fa fa-check"></i><b>5.3.1</b> The eml-physical module - Physical file format</a></li>
+<li class="chapter" data-level="5.3.2" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-party-module---people-and-organization-information"><i class="fa fa-check"></i><b>5.3.2</b> The eml-party module - People and organization information</a></li>
+<li class="chapter" data-level="5.3.3" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-coverage-module---geographic-temporal-and-taxonomic-extents-of-resources"><i class="fa fa-check"></i><b>5.3.3</b> The eml-coverage module - Geographic, temporal, and taxonomic extents of resources</a></li>
+<li class="chapter" data-level="5.3.4" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-project-module---research-context-information-for-resources"><i class="fa fa-check"></i><b>5.3.4</b> The eml-project module - Research context information for resources</a></li>
+<li class="chapter" data-level="5.3.5" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-methods-module---methodological-information-for-resources"><i class="fa fa-check"></i><b>5.3.5</b> The eml-methods module - Methodological information for resources</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="eml-schema.html"><a href="eml-schema.html#utility-modules"><i class="fa fa-check"></i><b>5.4</b> Utility Modules</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-text-module---text-field-formatting"><i class="fa fa-check"></i><b>5.4.1</b> The eml-text module - Text field formatting</a></li>
+<li class="chapter" data-level="5.4.2" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-semantics-module---semantic-annotations-for-formalized-statements-about-eml-components"><i class="fa fa-check"></i><b>5.4.2</b> The eml-semantics module - Semantic annotations for formalized statements about EML components</a></li>
+<li class="chapter" data-level="5.4.3" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-access-module---access-control-rules-for-resources"><i class="fa fa-check"></i><b>5.4.3</b> The eml-access module - Access control rules for resources</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="validation-and-content-references.html"><a href="validation-and-content-references.html"><i class="fa fa-check"></i><b>6</b> Validation and Content references</a><ul>
+<li class="chapter" data-level="6.1" data-path="validation-and-content-references.html"><a href="validation-and-content-references.html#validation-rules"><i class="fa fa-check"></i><b>6.1</b> Validation rules</a></li>
+<li class="chapter" data-level="6.2" data-path="validation-and-content-references.html"><a href="validation-and-content-references.html#validation-algorithm"><i class="fa fa-check"></i><b>6.2</b> Validation algorithm</a></li>
+<li class="chapter" data-level="6.3" data-path="validation-and-content-references.html"><a href="validation-and-content-references.html#content-references"><i class="fa fa-check"></i><b>6.3</b> Content references</a></li>
+<li class="chapter" data-level="6.4" data-path="validation-and-content-references.html"><a href="validation-and-content-references.html#eml-validity-parser"><i class="fa fa-check"></i><b>6.4</b> EML Validity Parser</a></li>
+<li class="chapter" data-level="6.5" data-path="validation-and-content-references.html"><a href="validation-and-content-references.html#id-and-scope-examples"><i class="fa fa-check"></i><b>6.5</b> id and Scope Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html"><i class="fa fa-check"></i><b>7</b> Semantic Annotation Primer</a><ul>
+<li class="chapter" data-level="7.1" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#introduction"><i class="fa fa-check"></i><b>7.1</b> Introduction</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#take-home-messages"><i class="fa fa-check"></i><b>7.1.1</b> Take-home messages</a></li>
+<li class="chapter" data-level="7.1.2" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#organization-of-this-document"><i class="fa fa-check"></i><b>7.1.2</b> Organization of this document</a></li>
+<li class="chapter" data-level="7.1.3" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#other-conventions-and-terminology"><i class="fa fa-check"></i><b>7.1.3</b> Other Conventions and Terminology</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#semantic-annotations-in-eml-2.2.0"><i class="fa fa-check"></i><b>7.2</b> Semantic Annotations in EML 2.2.0</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#annotation-element-structure"><i class="fa fa-check"></i><b>7.2.1</b> Annotation element structure</a></li>
+<li class="chapter" data-level="7.2.2" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#top-level-resource-entity-level-and-attribute-annotations"><i class="fa fa-check"></i><b>7.2.2</b> Top-level resource, entity-level, and attribute annotations</a></li>
+<li class="chapter" data-level="7.2.3" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#annotations-grouped-under-the-eml-annotations-element"><i class="fa fa-check"></i><b>7.2.3</b> Annotations grouped under the EML <code>&lt;annotations&gt;</code> element</a></li>
+<li class="chapter" data-level="7.2.4" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#annotations-grouped-under-additionalmetadata"><i class="fa fa-check"></i><b>7.2.4</b> Annotations grouped under <code>&lt;additionalMetadata&gt;</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#glossary"><i class="fa fa-check"></i><b>7.3</b> Glossary</a></li>
+<li class="chapter" data-level="7.4" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#vocabularies-and-repositories-used-in-examples"><i class="fa fa-check"></i><b>7.4</b> Vocabularies and repositories used in examples</a></li>
+<li class="chapter" data-level="7.5" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#frequently-asked-questions"><i class="fa fa-check"></i><b>7.5</b> Frequently asked questions</a></li>
+<li class="chapter" data-level="7.6" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#appendix"><i class="fa fa-check"></i><b>7.6</b> Appendix</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#semantic-triples"><i class="fa fa-check"></i><b>7.6.1</b> Semantic triples</a></li>
+<li class="chapter" data-level="7.6.2" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#uris"><i class="fa fa-check"></i><b>7.6.2</b> URIs</a></li>
+<li class="chapter" data-level="7.6.3" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#rdf-graphs"><i class="fa fa-check"></i><b>7.6.3</b> RDF Graphs</a></li>
+<li class="chapter" data-level="7.6.4" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#check-for-logical-consistency"><i class="fa fa-check"></i><b>7.6.4</b> Check for Logical Consistency</a></li>
+<li class="chapter" data-level="7.6.5" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#additional-background-information"><i class="fa fa-check"></i><b>7.6.5</b> Additional background information</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="internationalization-metadata-in-multiple-languages.html"><a href="internationalization-metadata-in-multiple-languages.html"><i class="fa fa-check"></i><b>8</b> Internationalization - Metadata in multiple languages</a></li>
+<li class="chapter" data-level="9" data-path="release-notes.html"><a href="release-notes.html"><i class="fa fa-check"></i><b>9</b> Release Notes</a><ul>
+<li class="chapter" data-level="9.0.1" data-path="release-notes.html"><a href="release-notes.html#section"><i class="fa fa-check"></i><b>9.0.1</b> 2.2.0</a></li>
+<li class="chapter" data-level="9.0.2" data-path="release-notes.html"><a href="release-notes.html#section-1"><i class="fa fa-check"></i><b>9.0.2</b> 2.1.1</a></li>
+<li class="chapter" data-level="9.0.3" data-path="release-notes.html"><a href="release-notes.html#numbers-refer-to-the-corresponding-bugzilla-bug-id-not-the-github"><i class="fa fa-check"></i><b>9.0.3</b> 2.1.0 (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)</a></li>
+<li class="chapter" data-level="9.0.4" data-path="release-notes.html"><a href="release-notes.html#numbers-refer-to-the-corresponding-bugzilla-bug-id-not-the-github-1"><i class="fa fa-check"></i><b>9.0.4</b> 2.0.1 (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)</a></li>
+<li class="chapter" data-level="9.0.5" data-path="release-notes.html"><a href="release-notes.html#numbers-refer-to-the-corresponding-bugzilla-bug-id-not-the-github-2"><i class="fa fa-check"></i><b>9.0.5</b> 2.0.0 - (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)</a></li>
+<li class="chapter" data-level="9.0.6" data-path="release-notes.html"><a href="release-notes.html#rc3-numbers-refer-to-the-corresponding-bugzilla-bug-id-not-the-github"><i class="fa fa-check"></i><b>9.0.6</b> 2.0.0rc3 (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)</a></li>
+<li class="chapter" data-level="9.0.7" data-path="release-notes.html"><a href="release-notes.html#rc2-numbers-refer-to-the-corresponding-bugzilla-bug-id-not-the-github"><i class="fa fa-check"></i><b>9.0.7</b> RC2 (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)</a></li>
+<li class="chapter" data-level="9.0.8" data-path="release-notes.html"><a href="release-notes.html#rc1-numbers-refer-to-the-corresponding-bugzilla-bug-id-not-the-github"><i class="fa fa-check"></i><b>9.0.8</b> RC1 (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)</a></li>
+<li class="chapter" data-level="9.0.9" data-path="release-notes.html"><a href="release-notes.html#beta9-fixes-"><i class="fa fa-check"></i><b>9.0.9</b> Beta9 Fixes-</a></li>
+<li class="chapter" data-level="9.0.10" data-path="release-notes.html"><a href="release-notes.html#beta-8-fixes-"><i class="fa fa-check"></i><b>9.0.10</b> Beta 8 Fixes-</a></li>
+<li class="chapter" data-level="9.0.11" data-path="release-notes.html"><a href="release-notes.html#beta-7-fixes-"><i class="fa fa-check"></i><b>9.0.11</b> Beta 7 Fixes-</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="about-this-site.html"><a href="about-this-site.html"><i class="fa fa-check"></i><b>10</b> About this site</a><ul>
+<li class="chapter" data-level="10.1" data-path="about-this-site.html"><a href="about-this-site.html#building-the-site"><i class="fa fa-check"></i><b>10.1</b> Building the site</a></li>
+<li class="chapter" data-level="10.2" data-path="about-this-site.html"><a href="about-this-site.html#deploying-the-site"><i class="fa fa-check"></i><b>10.2</b> Deploying the site</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>11</b> References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ecological Metadata Language (EML)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Ecological Metadata Language (EML)</h1>
+<p class="date"><em>2021-02-22</em></p>
+</div>
+<div id="eml-ecological-metadata-language" class="section level1">
+<h1><span class="header-section-number">1</span> EML: Ecological Metadata Language</h1>
+<p><a href="https://travis-ci.com/NCEAS/eml"><img src="https://travis-ci.com/NCEAS/eml.svg?branch=main" alt="Main Build Status" /></a>
+<a href="https://travis-ci.com/NCEAS/eml"><img src="https://travis-ci.com/NCEAS/eml.svg?branch=develop" alt="Develop Build Status" /></a>
+<a href="https://github.com/NCEAS/eml"><img src="https://img.shields.io/badge/eml-2.2.0-blue.svg?style=plastic" alt="EML" /></a></p>
+<p><em>Cite as</em>:</p>
+<p><a href="https://orcid.org/0000-0003-0077-4738">Matthew B. Jones</a>, <a href="https://orcid.org/0000-0002-1693-8322">Margaret O’Brien</a>, <a href="https://orcid.org/0000-0002-0381-3766">Bryce Mecum</a>, <a href="https://orcid.org/0000-0002-1642-628X">Carl Boettiger</a>, <a href="https://orcid.org/0000-0003-0632-7576">Mark Schildhauer</a>, <a href="https://orcid.org/0000-0001-6955-0535">Mitchell Maier</a>, <a href="https://orcid.org/0000-0002-1940-4158">Timothy Whiteaker</a>, <a href="https://orcid.org/0000-0002-4465-452X">Stevan Earl</a>, <a href="https://orcid.org/0000-0003-1264-1166">Steven Chong</a>. 2019. <strong>Ecological Metadata Language version 2.2.0.</strong> KNB Data Repository. <a href="https://doi.org/10.5063/F11834T2">doi:10.5063/F11834T2</a> <button id="bibtext-button">Copy BibTeX</button></p>
+<p><input type="text" id="placeholder"/>
+<span id="bibtex">
+@article{EML_2019,
+title={Ecological Metadata Language version 2.2.0},
+url={<a href="https://eml.ecoinformatics.org" class="uri">https://eml.ecoinformatics.org</a>},
+DOI={10.5063/f11834t2},
+publisher={KNB Data Repository},
+author={Jones, Matthew and O’Brien, Margaret and Mecum, Bryce and Boettiger, Carl and Schildhauer, Mark and Maier, Mitchell and Whiteaker, Timothy and Earl, Stevan and Chong, Steven},
+year={2019}
+}
+</span></p>
+<p>The Ecological Metadata Language (EML) defines a comprehensive vocabulary and a readable XML markup syntax for documenting research data. It is in widespread use in the earth and environmental sciences, and increasingly in other research disciplines as well. EML is a community-maintained specification, and evolves to meet the data documentation needs of researchers who want to openly document, preserve, and share data and outputs. EML includes modules for identifying and citing data packages, for describing the spatial, temporal, taxonomic, and thematic extent of data, for describing research methods and protocols, for describing the structure and content of data within sometimes complex packages of data, and for precisely annotating data with semantic vocabularies. EML includes metadata fields to fully detail data papers that are published in journals specializing in scientific data sharing and preservation.</p>
+<ul>
+<li><strong>EML 2.2.0 Specification</strong>
+<ul>
+<li><a href="https://eml.ecoinformatics.org/">Read it online</a></li>
+<li><a href="https://eml.ecoinformatics.org/schema">Browse the interactive EML schema documentation</a></li>
+<li><a href="http://knb.ecoinformatics.org/software/dist/eml-2.2.0.tar.gz">Download EML</a> - The download consists of the
+EML modules, described in the <a href="http://www.w3.org/XML/Schema">XML Schema</a> language.
+In addition, the full documentation on the modules is provided in HTML format.</li>
+<li><a href="https://eml.ecoinformatics.org/whats-new-in-eml-2-2-0.html">Changes to EML in version 2.2.0</a></li>
+</ul></li>
+<li><strong>Version</strong>: 2.2.0</li>
+<li><strong>DOI</strong>: <a href="https://doi.org/10.5063/F11834T2" class="uri">https://doi.org/10.5063/F11834T2</a></li>
+<li><strong>Feedback</strong>: <a href="mailto:eml-dev@ecoinformatics.org">eml-dev@ecoinformatics.org</a></li>
+<li><strong>Bug reports</strong>: <a href="https://github.com/NCEAS/eml/issues" class="uri">https://github.com/NCEAS/eml/issues</a></li>
+<li><strong>Web site</strong>: <a href="https://eml.ecoinformatics.org/" class="uri">https://eml.ecoinformatics.org/</a></li>
+<li><strong>Source code</strong>: <a href="https://github.com/NCEAS/eml" class="uri">https://github.com/NCEAS/eml</a></li>
+<li><strong>Slack Discussion channel</strong>: #eml on <a href="https://slack.nceas.ucsb.edu" class="uri">https://slack.nceas.ucsb.edu</a></li>
+</ul>
+<div id="getting-started" class="section level2">
+<h2><span class="header-section-number">1.1</span> Getting Started</h2>
+<p>Composing an EML document can be done in a simple text editor (e.g., Atom),
+via scripting languages like R and python (e.g., the R <a href="https://github.com/ropensci/eml">eml</a> package),
+in general-purpose XML authoring tools (e.g., Oxygen), and in custom web-based metadata editing tools
+(e.g., MetacatUI). While these tools expand and shift over time, the core metadata language
+has been consistent and backwards compatible, allowing for decades of seamless
+interoperability of data sets in many repositories.</p>
+<p>EML documents can be started simply, and then additional detail added over time.
+On the simple end, an EML document that provides basic bibliographic information
+would be sufficient for citing a data set and for simple discovery in catalogs:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="eml-ecological-metadata-language.html#cb1-1"></a><span class="kw">&lt;?xml</span> version=&quot;1.0&quot;<span class="kw">?&gt;</span></span>
+<span id="cb1-2"><a href="eml-ecological-metadata-language.html#cb1-2"></a><span class="kw">&lt;eml:eml</span></span>
+<span id="cb1-3"><a href="eml-ecological-metadata-language.html#cb1-3"></a><span class="ot">    packageId=</span><span class="st">&quot;doi:10.xxxx/eml.1.1&quot;</span><span class="ot"> system=</span><span class="st">&quot;https://doi.org&quot;</span></span>
+<span id="cb1-4"><a href="eml-ecological-metadata-language.html#cb1-4"></a><span class="ot">    xmlns:eml=</span><span class="st">&quot;https://eml.ecoinformatics.org/eml-2.2.0&quot;</span></span>
+<span id="cb1-5"><a href="eml-ecological-metadata-language.html#cb1-5"></a><span class="ot">    xmlns:xsi=</span><span class="st">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span>
+<span id="cb1-6"><a href="eml-ecological-metadata-language.html#cb1-6"></a><span class="ot">    xmlns:stmml=</span><span class="st">&quot;http://www.xml-cml.org/schema/stmml-1.1&quot;</span></span>
+<span id="cb1-7"><a href="eml-ecological-metadata-language.html#cb1-7"></a><span class="ot">    xsi:schemaLocation=</span><span class="st">&quot;https://eml.ecoinformatics.org/eml-2.2.0 xsd/eml.xsd&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb1-8"><a href="eml-ecological-metadata-language.html#cb1-8"></a>    </span>
+<span id="cb1-9"><a href="eml-ecological-metadata-language.html#cb1-9"></a>    <span class="kw">&lt;dataset&gt;</span></span>
+<span id="cb1-10"><a href="eml-ecological-metadata-language.html#cb1-10"></a>        <span class="kw">&lt;title&gt;</span>Primary production of algal species from Southeast Alaska, 1990-2002<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb1-11"><a href="eml-ecological-metadata-language.html#cb1-11"></a>        <span class="kw">&lt;creator</span><span class="ot"> id=</span><span class="st">&quot;https://orcid.org/0000-0003-0077-4738&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb1-12"><a href="eml-ecological-metadata-language.html#cb1-12"></a>            <span class="kw">&lt;individualName&gt;</span></span>
+<span id="cb1-13"><a href="eml-ecological-metadata-language.html#cb1-13"></a>                <span class="kw">&lt;givenName&gt;</span>Matthew<span class="kw">&lt;/givenName&gt;</span></span>
+<span id="cb1-14"><a href="eml-ecological-metadata-language.html#cb1-14"></a>                <span class="kw">&lt;givenName&gt;</span>B.<span class="kw">&lt;/givenName&gt;</span></span>
+<span id="cb1-15"><a href="eml-ecological-metadata-language.html#cb1-15"></a>                <span class="kw">&lt;surName&gt;</span>Jones<span class="kw">&lt;/surName&gt;</span></span>
+<span id="cb1-16"><a href="eml-ecological-metadata-language.html#cb1-16"></a>            <span class="kw">&lt;/individualName&gt;</span></span>
+<span id="cb1-17"><a href="eml-ecological-metadata-language.html#cb1-17"></a>            <span class="kw">&lt;electronicMailAddress&gt;</span>jones@nceas.ucsb.edu<span class="kw">&lt;/electronicMailAddress&gt;</span></span>
+<span id="cb1-18"><a href="eml-ecological-metadata-language.html#cb1-18"></a>            <span class="kw">&lt;userId</span><span class="ot"> directory=</span><span class="st">&quot;https://orcid.org&quot;</span><span class="kw">&gt;</span>https://orcid.org/0000-0003-0077-4738<span class="kw">&lt;/userId&gt;</span></span>
+<span id="cb1-19"><a href="eml-ecological-metadata-language.html#cb1-19"></a>        <span class="kw">&lt;/creator&gt;</span></span>
+<span id="cb1-20"><a href="eml-ecological-metadata-language.html#cb1-20"></a>        <span class="kw">&lt;keywordSet&gt;</span></span>
+<span id="cb1-21"><a href="eml-ecological-metadata-language.html#cb1-21"></a>            <span class="kw">&lt;keyword&gt;</span>biomass<span class="kw">&lt;/keyword&gt;</span></span>
+<span id="cb1-22"><a href="eml-ecological-metadata-language.html#cb1-22"></a>            <span class="kw">&lt;keyword&gt;</span>productivity<span class="kw">&lt;/keyword&gt;</span></span>
+<span id="cb1-23"><a href="eml-ecological-metadata-language.html#cb1-23"></a>        <span class="kw">&lt;/keywordSet&gt;</span></span>
+<span id="cb1-24"><a href="eml-ecological-metadata-language.html#cb1-24"></a>        <span class="kw">&lt;contact&gt;</span></span>
+<span id="cb1-25"><a href="eml-ecological-metadata-language.html#cb1-25"></a>            <span class="kw">&lt;references&gt;</span>https://orcid.org/0000-0003-0077-4738<span class="kw">&lt;/references&gt;</span></span>
+<span id="cb1-26"><a href="eml-ecological-metadata-language.html#cb1-26"></a>        <span class="kw">&lt;/contact&gt;</span></span>
+<span id="cb1-27"><a href="eml-ecological-metadata-language.html#cb1-27"></a>    <span class="kw">&lt;/dataset&gt;</span></span>
+<span id="cb1-28"><a href="eml-ecological-metadata-language.html#cb1-28"></a><span class="kw">&lt;/eml:eml&gt;</span></span></code></pre></div>
+<p>This document can then be supplemented with additional metadata describing research
+projects and methods, structural information about the data, and much more.</p>
+</div>
+<div id="about-the-eml-project" class="section level2">
+<h2><span class="header-section-number">1.2</span> About the EML Project</h2>
+<p>The EML project is an open source, community oriented project dedicated to providing a high-quality metadata specification for describing data relevant to diverse disciplines that involve observational research like ecology, earth, and environmental science. The specification is maintained by <a href="docs/contributors.md">voluntary project members</a> who donate their time and experience in order to advance information management for ecology. Project decisions are made by consensus of the current maintainers on the project.</p>
+<p>We welcome contributions to this work in any form. Individuals who invest substantial amounts of time and make valuable contributions to the development and maintenance of EML (in the opinion of current project maintainers) will be invited to become EML project maintainers. Contributions can take many forms, including the development of the EML schemas, writing documentation, and helping with maintenance, among others.</p>
+</div>
+<div id="contributing" class="section level2">
+<h2><span class="header-section-number">1.3</span> Contributing</h2>
+<p>Developers may be interested in browsing the <a href="https://github.com/NCEAS/eml/">source code repository</a> that we use in developing EML. Starting with EML 2.1.1, the master branch reflects the current stable release of EML. Development occurs in development branches (e.g., BRANCH_EML_2_2), which allows experimental additions as they are being proposed by the community. This always contains the most recent development version of EML, and therefore may be in flux, or otherwise broken. It is unlikely that it will contain the same files that are in the current release. Development branches are virtually guaranteed to change before they are released, and so they should not be used in production environments. Use development branches at your own risk for testing. Write access to this repository is reserved for current project maintainers. Please submit contributions as pull requests. We welcome contributions to this work in any form. Contributions can take many forms, including the development of the EML schema, writing documentation, and helping with maintenance, among others. Non-project members can contribute by submitting their feedback, revisions, fixes, code, or any other contribution through pull requests at GitHub. Discussion of issues occurs on the <a href="https://slack.nceas.ucsb.edu">Slack channel</a>, or through the <a href="https://github.com/NCEAS/eml/issues">EML Issue Tracking system</a>. The preferred way to submit problems with EML or feature requests is the issue tracking system.</p>
+</div>
+<div id="history" class="section level2">
+<h2><span class="header-section-number">1.4</span> History</h2>
+<p>EML was originally developed by Matthew Jones at NCEAS based on a report by the <a href="https://web.archive.org/web/20040213204322/http://esa.sdsc.edu/FLED/FLED.html">ESA Committee on the Future of Long-Term Ecological Data</a> and on a related paper on ecological metadata by Michener et al. (see Michener, William K., et al., 1997. Ecological Applications, “Nongeospatial metadata for the ecological sciences” Vol 7(1). pp. 330-342.). Version 1.0 was released at NCEAS in 1997 and used internally, with further internal releases of versions 1.2, 1.3, and 1.4, all of which followed the FLED recommendations closely in its content implementation. Version 2 became a community-maintained, open specification. Substantial modifications for EML 2.x came from experience using the earlier specification at NCEAS and from feedback from the ecological community, particularly information managers from the Long Term Ecological Research Network. Versions 2.1 and 2.2 introduce significant new features like internationalization, semantic annotations, and support for data papers.</p>
+</div>
+<div id="older-versions-deprecated" class="section level2">
+<h2><span class="header-section-number">1.5</span> Older versions (deprecated)</h2>
+<p>The following versions are still available for reference purposes, although they have been superseded by the current version (2.2.0). Please make every effort to use the current version.</p>
+<ul>
+<li><a href="http://knb.ecoinformatics.org/software/dist/eml-2.2.0.tar.gz">EML 2.2.0</a></li>
+<li><a href="http://knb.ecoinformatics.org/software/dist/eml-2.1.1.tar.gz">EML 2.1.1</a></li>
+<li><a href="http://knb.ecoinformatics.org/software/dist/eml-2.1.0.tar.gz">EML 2.1.0</a></li>
+<li><a href="http://knb.ecoinformatics.org/software/dist/eml-2.0.1.tar.gz">EML 2.0.1</a></li>
+<li><a href="http://knb.ecoinformatics.org/software/dist/eml-2.0.0.tar.gz">EML 2.0.0</a></li>
+<li><a href="http://knb.ecoinformatics.org/software/dist/eml-1.4.1.tar.gz">EML 1.4.1</a></li>
+</ul>
+</div>
+<div id="copyright-and-license" class="section level2">
+<h2><span class="header-section-number">1.6</span> Copyright and License</h2>
+<p>Copyright: 1997-2019 Regents of the University of California</p>
+<p>This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.</p>
+<p>This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.</p>
+<p>You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA</p>
+</div>
+<div id="funding-and-acknowledgements" class="section level2">
+<h2><span class="header-section-number">1.7</span> Funding and Acknowledgements</h2>
+<p>EML was developed and is maintained with support from the <a href="https://www.nceas.ucsb.edu/">National Center for
+Ecological Analysis and Synthesis (NCEAS)</a>, a Center
+funded by the University of California Santa Barbara and the state of California.</p>
+<p>This material is based upon work supported by the US <a href="https://nsf.gov">National Science Foundation</a>
+under Grant No. DEB-9980154, DBI-9904777, 0225676, DEB-0072909, DBI-9983132,
+and DEB-9634135. Any opinions, findings and conclusions or recommendations
+expressed in this material are those of the author(s) and do not necessarily
+reflect the views of the National Science Foundation (NSF).</p>
+<p>This product includes software developed by the Apache Software
+Foundation (<a href="http://www.apache.org/" class="uri">http://www.apache.org/</a>). See the LICENSE file in lib/apache
+for details.</p>
+<p>The source code, object code, and documentation in the com.oreilly.servlet
+package is copyright and owned by Jason Hunter. See the cos-license.html file
+for details of the license. Licensor retains title to and ownership of the
+Software and all enhancements, modifications, and updates to the Software.</p>
+<p>This product includes software developed by the JDOM Project
+(<a href="http://www.jdom.org/" class="uri">http://www.jdom.org/</a>). See jdom-LICENSE.txt for details.</p>
+
+</div>
+</div>
+<script type="text/javascript">
+var bibButton = document.getElementById("bibtext-button");
+if (bibButton) {
+  bibButton.addEventListener('click', copy);
+}
+
+
+function copy(e) {
+  // copy data to placeholder - Don't use .innerText, use .textContent
+  placeholder.value = bibtex.textContent;
+  if (placeholder.select) {
+    placeholder.select();
+    try {
+      // copy text
+      document.execCommand('copy');
+    } catch (err) {
+      alert('Use Ctrl/Cmd+C to copy');
+    }
+  }
+}
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="features.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

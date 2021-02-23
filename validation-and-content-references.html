@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6 Validation and Content references | Ecological Metadata Language (EML)</title>
+  <meta name="description" content="6 Validation and Content references | Ecological Metadata Language (EML)" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6 Validation and Content references | Ecological Metadata Language (EML)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6 Validation and Content references | Ecological Metadata Language (EML)" />
+  
+  
+  
+
+
+
+<meta name="date" content="2021-02-22" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="eml-schema.html"/>
+<link rel="next" href="semantic-annotation-primer.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script type='application/ld+json'>
+{
+    "@context": {
+        "@vocab": "https://doi.org/10.5063/schema/codemeta-2.0/",
+        "schema": "http://schema.org/",
+        "datacite": "http://purl.org/spar/datacite/"
+    },
+    "@type": "SoftwareSourceCode",
+	"@id": "https://doi.org/10.5063/F11834T2",
+    "name": "Ecological Metadata Language version 2.2.0",
+    "url": "https://eml.ecoinformatics.org",
+    "sameAs": "doi:10.5063/F11834T2",
+    "version": "2.2.0",
+    "license": "https://spdx.org/licenses/GPL-2.0-or-later.html",
+    "identifier": {
+        "@type": ["PropertyValue", "datacite:ResourceIdentifier"],
+        "datacite:usesIdentifierScheme": {
+            "@id": "datacite:doi"
+        },
+        "propertyID": "DOI",
+        "url": "https://doi.org/10.5063/F11834T2",
+        "value": "10.5063/F11834T2"
+    },
+    "programmingLanguage": {
+        "@type": "ComputerLanguage",
+        "name": "XML"
+    },
+    "creator": [
+		{
+	        "@id": "https://orcid.org/0000-0003-0077-4738",
+	        "@type": "Person",
+	        "name": "Matthew B. Jones",
+	        "givenName": "Matthew",
+	        "familyName": "Jones",
+	        "url": "https://orcid.org/0000-0003-0077-4738"
+    	},
+		{
+			"@id": "https://orcid.org/0000-0002-1693-8322",
+			"@type": "Person",
+			"name": "Margaret O’Brien",
+			"givenName": "Margaret",
+			"familyName": "O’Brien",
+			"url": "https://orcid.org/0000-0002-1693-8322"
+		},
+		{
+	        "@id": "https://orcid.org/0000-0002-0381-3766",
+	        "@type": "Person",
+	        "name": "Bryce Mecum",
+	        "givenName": "Bryce",
+	        "familyName": "Mecum",
+	        "url": "https://orcid.org/0000-0002-0381-3766"
+    	},
+		{
+	        "@id": "https://orcid.org/0000-0002-1642-628X",
+	        "@type": "Person",
+	        "name": "Carl Boettiger",
+	        "givenName": "Carl",
+	        "familyName": "Boettiger",
+	        "url": "https://orcid.org/0000-0002-1642-628X"
+    	},
+		{
+	        "@id": "https://orcid.org/0000-0003-0632-7576",
+	        "@type": "Person",
+	        "name": "Mark Schildhauer",
+	        "givenName": "Mark",
+	        "familyName": "Schildhauer",
+	        "url": "https://orcid.org/0000-0003-0632-7576"
+    	},
+		{
+	        "@id": "https://orcid.org/0000-0001-6955-0535",
+	        "@type": "Person",
+	        "name": "Mitchell",
+	        "givenName": "Mitchell Maier",
+	        "familyName": "Maier",
+	        "url": "https://orcid.org/0000-0001-6955-0535"
+    	},
+		{
+	        "@id": "https://orcid.org/0000-0002-1940-4158",
+	        "@type": "Person",
+	        "name": "Timothy Whiteaker",
+	        "givenName": "Timothy",
+	        "familyName": "Whiteaker",
+	        "url": "https://orcid.org/0000-0002-1940-4158"
+    	},
+		{
+	        "@id": "https://orcid.org/0000-0002-4465-452X",
+	        "@type": "Person",
+	        "name": "Stevan Earl",
+	        "givenName": "Stevan",
+	        "familyName": "Earl",
+	        "url": "https://orcid.org/0000-0002-4465-452X"
+    	},
+		{
+	        "@id": "https://orcid.org/0000-0003-1264-1166",
+	        "@type": "Person",
+	        "name": "Steven Chong",
+	        "givenName": "Steven",
+	        "familyName": "Chong",
+	        "url": "https://orcid.org/0000-0003-1264-1166"
+    	}
+	],
+	"copyrightYear": "2019",
+    "datePublished": "2019",
+    "isAccessibleForFree": true,
+    "keywords": ["metadata", "xml", "specification", "ecology", "environmental science", "earth science", "EML"],
+    "codeRepository": "https://github.com/NCEAS/eml",
+    "issueTracker": "https://github.com/NCEAS/eml/issues"
+}
+</script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">EML Specification</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="eml-ecological-metadata-language.html"><a href="eml-ecological-metadata-language.html"><i class="fa fa-check"></i><b>1</b> EML: Ecological Metadata Language</a><ul>
+<li class="chapter" data-level="1.1" data-path="eml-ecological-metadata-language.html"><a href="eml-ecological-metadata-language.html#getting-started"><i class="fa fa-check"></i><b>1.1</b> Getting Started</a></li>
+<li class="chapter" data-level="1.2" data-path="eml-ecological-metadata-language.html"><a href="eml-ecological-metadata-language.html#about-the-eml-project"><i class="fa fa-check"></i><b>1.2</b> About the EML Project</a></li>
+<li class="chapter" data-level="1.3" data-path="eml-ecological-metadata-language.html"><a href="eml-ecological-metadata-language.html#contributing"><i class="fa fa-check"></i><b>1.3</b> Contributing</a></li>
+<li class="chapter" data-level="1.4" data-path="eml-ecological-metadata-language.html"><a href="eml-ecological-metadata-language.html#history"><i class="fa fa-check"></i><b>1.4</b> History</a></li>
+<li class="chapter" data-level="1.5" data-path="eml-ecological-metadata-language.html"><a href="eml-ecological-metadata-language.html#older-versions-deprecated"><i class="fa fa-check"></i><b>1.5</b> Older versions (deprecated)</a></li>
+<li class="chapter" data-level="1.6" data-path="eml-ecological-metadata-language.html"><a href="eml-ecological-metadata-language.html#copyright-and-license"><i class="fa fa-check"></i><b>1.6</b> Copyright and License</a></li>
+<li class="chapter" data-level="1.7" data-path="eml-ecological-metadata-language.html"><a href="eml-ecological-metadata-language.html#funding-and-acknowledgements"><i class="fa fa-check"></i><b>1.7</b> Funding and Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="features.html"><a href="features.html"><i class="fa fa-check"></i><b>2</b> Features</a></li>
+<li class="chapter" data-level="3" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i><b>3</b> Contributors</a><ul>
+<li class="chapter" data-level="3.1" data-path="contributors.html"><a href="contributors.html#current-maintainers"><i class="fa fa-check"></i><b>3.1</b> Current maintainers</a></li>
+<li class="chapter" data-level="3.2" data-path="contributors.html"><a href="contributors.html#past-contributors"><i class="fa fa-check"></i><b>3.2</b> Past contributors</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html"><i class="fa fa-check"></i><b>4</b> What’s New in EML 2.2.0</a><ul>
+<li class="chapter" data-level="4.1" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html#unit-additions-and-changes"><i class="fa fa-check"></i><b>4.1</b> Unit Additions and Changes</a></li>
+<li class="chapter" data-level="4.2" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html#bibtex-support"><i class="fa fa-check"></i><b>4.2</b> BibTeX Support</a></li>
+<li class="chapter" data-level="4.3" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html#citation-lists"><i class="fa fa-check"></i><b>4.3</b> Citation Lists</a></li>
+<li class="chapter" data-level="4.4" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html#markdown-support"><i class="fa fa-check"></i><b>4.4</b> Markdown Support</a></li>
+<li class="chapter" data-level="4.5" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html#usage-citations"><i class="fa fa-check"></i><b>4.5</b> Usage Citations</a></li>
+<li class="chapter" data-level="4.6" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html#reference-publications"><i class="fa fa-check"></i><b>4.6</b> Reference Publications</a></li>
+<li class="chapter" data-level="4.7" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html#data-paper-support"><i class="fa fa-check"></i><b>4.7</b> Data Paper Support</a></li>
+<li class="chapter" data-level="4.8" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html#dataset-license"><i class="fa fa-check"></i><b>4.8</b> Dataset license</a></li>
+<li class="chapter" data-level="4.9" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html#structured-funding-information"><i class="fa fa-check"></i><b>4.9</b> Structured Funding Information</a></li>
+<li class="chapter" data-level="4.10" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html#unkown-deprecated-as-element-value"><i class="fa fa-check"></i><b>4.10</b> “unkown” deprecated as <maintenanceUpdateFrequency> element value</a></li>
+<li class="chapter" data-level="4.11" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html#access-elements-deprecated"><i class="fa fa-check"></i><b>4.11</b> access elements deprecated</a></li>
+<li class="chapter" data-level="4.12" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html#supporting-semantic-metadata"><i class="fa fa-check"></i><b>4.12</b> Supporting Semantic Metadata</a></li>
+<li class="chapter" data-level="4.13" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html#support-for-ids-in-taxonomicclassification"><i class="fa fa-check"></i><b>4.13</b> Support for ids in taxonomicClassification</a></li>
+<li class="chapter" data-level="4.14" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html#how-can-i-convert-from-earlier-versions-of-eml"><i class="fa fa-check"></i><b>4.14</b> How can I convert from earlier versions of EML?</a></li>
+<li class="chapter" data-level="4.15" data-path="whats-new-in-eml-2-2-0.html"><a href="whats-new-in-eml-2-2-0.html#validity-of-new-eml-2.2.0-documents"><i class="fa fa-check"></i><b>4.15</b> Validity of new EML 2.2.0 documents</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="eml-schema.html"><a href="eml-schema.html"><i class="fa fa-check"></i><b>5</b> EML Schema</a><ul>
+<li class="chapter" data-level="5.1" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-module-and-resources"><i class="fa fa-check"></i><b>5.1</b> The EML Module and Resources</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-module---a-metadata-container"><i class="fa fa-check"></i><b>5.1.1</b> The eml module - A metadata container</a></li>
+<li class="chapter" data-level="5.1.2" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-resource-module---base-information-for-all-resources"><i class="fa fa-check"></i><b>5.1.2</b> The eml-resource module - Base information for all resources</a></li>
+<li class="chapter" data-level="5.1.3" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-dataset-module---dataset-specific-information"><i class="fa fa-check"></i><b>5.1.3</b> The eml-dataset module - Dataset specific information</a></li>
+<li class="chapter" data-level="5.1.4" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-literature-module---citation-specific-information"><i class="fa fa-check"></i><b>5.1.4</b> The eml-literature module - Citation-specific information</a></li>
+<li class="chapter" data-level="5.1.5" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-software-module---software-specific-information"><i class="fa fa-check"></i><b>5.1.5</b> The eml-software module - Software specific information</a></li>
+<li class="chapter" data-level="5.1.6" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-protocol-module---research-protocol-specific-information"><i class="fa fa-check"></i><b>5.1.6</b> The eml-protocol module - Research protocol specific information</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="eml-schema.html"><a href="eml-schema.html#data-structure-modules"><i class="fa fa-check"></i><b>5.2</b> Data Structure Modules</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-entity-module---entity-level-information-within-datasets"><i class="fa fa-check"></i><b>5.2.1</b> The eml-entity module - Entity level information within datasets</a></li>
+<li class="chapter" data-level="5.2.2" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-attribute-module---attribute-level-information-within-dataset-entities"><i class="fa fa-check"></i><b>5.2.2</b> The eml-attribute module - Attribute level information within dataset entities</a></li>
+<li class="chapter" data-level="5.2.3" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-constraint-module---relationships-among-and-within-dataset-entities"><i class="fa fa-check"></i><b>5.2.3</b> The eml-constraint module - Relationships among and within dataset entities</a></li>
+<li class="chapter" data-level="5.2.4" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-datatable-module---logical-information-about-data-table-entities"><i class="fa fa-check"></i><b>5.2.4</b> The eml-dataTable module - Logical information about data table entities</a></li>
+<li class="chapter" data-level="5.2.5" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-spatialraster-module---logical-information-about-regularly-gridded-geospatial-image-data"><i class="fa fa-check"></i><b>5.2.5</b> The eml-spatialRaster module - Logical information about regularly gridded geospatial image data</a></li>
+<li class="chapter" data-level="5.2.6" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-spatialvector-module---logical-information-about-non-gridded-geospatial-image-data"><i class="fa fa-check"></i><b>5.2.6</b> The eml-spatialVector module - Logical information about non-gridded geospatial image data</a></li>
+<li class="chapter" data-level="5.2.7" data-path="eml-schema.html"><a href="eml-schema.html#schema-for-validating-spatial-referencing-descriptions"><i class="fa fa-check"></i><b>5.2.7</b> Schema for validating spatial referencing descriptions</a></li>
+<li class="chapter" data-level="5.2.8" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-storedprocedure-module---data-tables-resulting-from-procedures-stored-in-a-database"><i class="fa fa-check"></i><b>5.2.8</b> The eml-storedProcedure module - Data tables resulting from procedures stored in a database</a></li>
+<li class="chapter" data-level="5.2.9" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-view-module---data-tables-resulting-from-a-database-query"><i class="fa fa-check"></i><b>5.2.9</b> The eml-view module - Data tables resulting from a database query</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="eml-schema.html"><a href="eml-schema.html#discovery-and-interpretation-modules"><i class="fa fa-check"></i><b>5.3</b> Discovery and Interpretation Modules</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-physical-module---physical-file-format"><i class="fa fa-check"></i><b>5.3.1</b> The eml-physical module - Physical file format</a></li>
+<li class="chapter" data-level="5.3.2" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-party-module---people-and-organization-information"><i class="fa fa-check"></i><b>5.3.2</b> The eml-party module - People and organization information</a></li>
+<li class="chapter" data-level="5.3.3" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-coverage-module---geographic-temporal-and-taxonomic-extents-of-resources"><i class="fa fa-check"></i><b>5.3.3</b> The eml-coverage module - Geographic, temporal, and taxonomic extents of resources</a></li>
+<li class="chapter" data-level="5.3.4" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-project-module---research-context-information-for-resources"><i class="fa fa-check"></i><b>5.3.4</b> The eml-project module - Research context information for resources</a></li>
+<li class="chapter" data-level="5.3.5" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-methods-module---methodological-information-for-resources"><i class="fa fa-check"></i><b>5.3.5</b> The eml-methods module - Methodological information for resources</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="eml-schema.html"><a href="eml-schema.html#utility-modules"><i class="fa fa-check"></i><b>5.4</b> Utility Modules</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-text-module---text-field-formatting"><i class="fa fa-check"></i><b>5.4.1</b> The eml-text module - Text field formatting</a></li>
+<li class="chapter" data-level="5.4.2" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-semantics-module---semantic-annotations-for-formalized-statements-about-eml-components"><i class="fa fa-check"></i><b>5.4.2</b> The eml-semantics module - Semantic annotations for formalized statements about EML components</a></li>
+<li class="chapter" data-level="5.4.3" data-path="eml-schema.html"><a href="eml-schema.html#the-eml-access-module---access-control-rules-for-resources"><i class="fa fa-check"></i><b>5.4.3</b> The eml-access module - Access control rules for resources</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="validation-and-content-references.html"><a href="validation-and-content-references.html"><i class="fa fa-check"></i><b>6</b> Validation and Content references</a><ul>
+<li class="chapter" data-level="6.1" data-path="validation-and-content-references.html"><a href="validation-and-content-references.html#validation-rules"><i class="fa fa-check"></i><b>6.1</b> Validation rules</a></li>
+<li class="chapter" data-level="6.2" data-path="validation-and-content-references.html"><a href="validation-and-content-references.html#validation-algorithm"><i class="fa fa-check"></i><b>6.2</b> Validation algorithm</a></li>
+<li class="chapter" data-level="6.3" data-path="validation-and-content-references.html"><a href="validation-and-content-references.html#content-references"><i class="fa fa-check"></i><b>6.3</b> Content references</a></li>
+<li class="chapter" data-level="6.4" data-path="validation-and-content-references.html"><a href="validation-and-content-references.html#eml-validity-parser"><i class="fa fa-check"></i><b>6.4</b> EML Validity Parser</a></li>
+<li class="chapter" data-level="6.5" data-path="validation-and-content-references.html"><a href="validation-and-content-references.html#id-and-scope-examples"><i class="fa fa-check"></i><b>6.5</b> id and Scope Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html"><i class="fa fa-check"></i><b>7</b> Semantic Annotation Primer</a><ul>
+<li class="chapter" data-level="7.1" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#introduction"><i class="fa fa-check"></i><b>7.1</b> Introduction</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#take-home-messages"><i class="fa fa-check"></i><b>7.1.1</b> Take-home messages</a></li>
+<li class="chapter" data-level="7.1.2" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#organization-of-this-document"><i class="fa fa-check"></i><b>7.1.2</b> Organization of this document</a></li>
+<li class="chapter" data-level="7.1.3" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#other-conventions-and-terminology"><i class="fa fa-check"></i><b>7.1.3</b> Other Conventions and Terminology</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#semantic-annotations-in-eml-2.2.0"><i class="fa fa-check"></i><b>7.2</b> Semantic Annotations in EML 2.2.0</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#annotation-element-structure"><i class="fa fa-check"></i><b>7.2.1</b> Annotation element structure</a></li>
+<li class="chapter" data-level="7.2.2" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#top-level-resource-entity-level-and-attribute-annotations"><i class="fa fa-check"></i><b>7.2.2</b> Top-level resource, entity-level, and attribute annotations</a></li>
+<li class="chapter" data-level="7.2.3" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#annotations-grouped-under-the-eml-annotations-element"><i class="fa fa-check"></i><b>7.2.3</b> Annotations grouped under the EML <code>&lt;annotations&gt;</code> element</a></li>
+<li class="chapter" data-level="7.2.4" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#annotations-grouped-under-additionalmetadata"><i class="fa fa-check"></i><b>7.2.4</b> Annotations grouped under <code>&lt;additionalMetadata&gt;</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#glossary"><i class="fa fa-check"></i><b>7.3</b> Glossary</a></li>
+<li class="chapter" data-level="7.4" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#vocabularies-and-repositories-used-in-examples"><i class="fa fa-check"></i><b>7.4</b> Vocabularies and repositories used in examples</a></li>
+<li class="chapter" data-level="7.5" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#frequently-asked-questions"><i class="fa fa-check"></i><b>7.5</b> Frequently asked questions</a></li>
+<li class="chapter" data-level="7.6" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#appendix"><i class="fa fa-check"></i><b>7.6</b> Appendix</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#semantic-triples"><i class="fa fa-check"></i><b>7.6.1</b> Semantic triples</a></li>
+<li class="chapter" data-level="7.6.2" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#uris"><i class="fa fa-check"></i><b>7.6.2</b> URIs</a></li>
+<li class="chapter" data-level="7.6.3" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#rdf-graphs"><i class="fa fa-check"></i><b>7.6.3</b> RDF Graphs</a></li>
+<li class="chapter" data-level="7.6.4" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#check-for-logical-consistency"><i class="fa fa-check"></i><b>7.6.4</b> Check for Logical Consistency</a></li>
+<li class="chapter" data-level="7.6.5" data-path="semantic-annotation-primer.html"><a href="semantic-annotation-primer.html#additional-background-information"><i class="fa fa-check"></i><b>7.6.5</b> Additional background information</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="internationalization-metadata-in-multiple-languages.html"><a href="internationalization-metadata-in-multiple-languages.html"><i class="fa fa-check"></i><b>8</b> Internationalization - Metadata in multiple languages</a></li>
+<li class="chapter" data-level="9" data-path="release-notes.html"><a href="release-notes.html"><i class="fa fa-check"></i><b>9</b> Release Notes</a><ul>
+<li class="chapter" data-level="9.0.1" data-path="release-notes.html"><a href="release-notes.html#section"><i class="fa fa-check"></i><b>9.0.1</b> 2.2.0</a></li>
+<li class="chapter" data-level="9.0.2" data-path="release-notes.html"><a href="release-notes.html#section-1"><i class="fa fa-check"></i><b>9.0.2</b> 2.1.1</a></li>
+<li class="chapter" data-level="9.0.3" data-path="release-notes.html"><a href="release-notes.html#numbers-refer-to-the-corresponding-bugzilla-bug-id-not-the-github"><i class="fa fa-check"></i><b>9.0.3</b> 2.1.0 (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)</a></li>
+<li class="chapter" data-level="9.0.4" data-path="release-notes.html"><a href="release-notes.html#numbers-refer-to-the-corresponding-bugzilla-bug-id-not-the-github-1"><i class="fa fa-check"></i><b>9.0.4</b> 2.0.1 (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)</a></li>
+<li class="chapter" data-level="9.0.5" data-path="release-notes.html"><a href="release-notes.html#numbers-refer-to-the-corresponding-bugzilla-bug-id-not-the-github-2"><i class="fa fa-check"></i><b>9.0.5</b> 2.0.0 - (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)</a></li>
+<li class="chapter" data-level="9.0.6" data-path="release-notes.html"><a href="release-notes.html#rc3-numbers-refer-to-the-corresponding-bugzilla-bug-id-not-the-github"><i class="fa fa-check"></i><b>9.0.6</b> 2.0.0rc3 (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)</a></li>
+<li class="chapter" data-level="9.0.7" data-path="release-notes.html"><a href="release-notes.html#rc2-numbers-refer-to-the-corresponding-bugzilla-bug-id-not-the-github"><i class="fa fa-check"></i><b>9.0.7</b> RC2 (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)</a></li>
+<li class="chapter" data-level="9.0.8" data-path="release-notes.html"><a href="release-notes.html#rc1-numbers-refer-to-the-corresponding-bugzilla-bug-id-not-the-github"><i class="fa fa-check"></i><b>9.0.8</b> RC1 (numbers refer to the corresponding Bugzilla bug id, not the GitHub #)</a></li>
+<li class="chapter" data-level="9.0.9" data-path="release-notes.html"><a href="release-notes.html#beta9-fixes-"><i class="fa fa-check"></i><b>9.0.9</b> Beta9 Fixes-</a></li>
+<li class="chapter" data-level="9.0.10" data-path="release-notes.html"><a href="release-notes.html#beta-8-fixes-"><i class="fa fa-check"></i><b>9.0.10</b> Beta 8 Fixes-</a></li>
+<li class="chapter" data-level="9.0.11" data-path="release-notes.html"><a href="release-notes.html#beta-7-fixes-"><i class="fa fa-check"></i><b>9.0.11</b> Beta 7 Fixes-</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="about-this-site.html"><a href="about-this-site.html"><i class="fa fa-check"></i><b>10</b> About this site</a><ul>
+<li class="chapter" data-level="10.1" data-path="about-this-site.html"><a href="about-this-site.html#building-the-site"><i class="fa fa-check"></i><b>10.1</b> Building the site</a></li>
+<li class="chapter" data-level="10.2" data-path="about-this-site.html"><a href="about-this-site.html#deploying-the-site"><i class="fa fa-check"></i><b>10.2</b> Deploying the site</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>11</b> References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ecological Metadata Language (EML)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="validation-and-content-references" class="section level1">
+<h1><span class="header-section-number">6</span> Validation and Content references</h1>
+<p>This section explains the validation rules of EML. While most of the validation
+rules are expressed as constraints within the XML Schema definition files, there are
+some rules that cannot be written directly into the XML Schemas nor enforced
+by an XML parser. These additional validation rules MUST be enforced by every
+EML package in order for it to be considered EML-compliant.</p>
+<div id="validation-rules" class="section level2">
+<h2><span class="header-section-number">6.1</span> Validation rules</h2>
+<p>For a document to be EML-valid, all of the following constraints must hold true:</p>
+<ul>
+<li>The document MUST validate using a compliant XML Schema validating parser</li>
+<li>All EML documents MUST have the ‘eml’ module as the root</li>
+<li>A <code>packageId</code> attribute MUST be present on the root <code>eml</code> element</li>
+<li>All <code>id</code> attributes within the document MUST be unique</li>
+<li>Elements which contain an <code>annotation</code> child element MUST contain an <code>id</code> attribute,
+unless the containing <code>annotation</code> element contains a <code>references</code> attribute</li>
+<li>If an element references another using a child <code>references</code> element,
+another element with that value in its <code>id</code> attribute MUST exist in the document</li>
+<li>When <code>references</code> is used, the <code>system</code> attribute MUST have
+the same value in both the target and source elements, or it must be absent in both.
+Frequently it is absent in both.</li>
+<li>If an element references another using a child <code>references</code> element,
+it MUST not have an <code>id</code> attribute itself</li>
+<li>If an <code>additionalMetadata</code> element references another using a child <code>describes</code> element,
+another element with that value in its <code>id</code> attribute MUST exist in the document</li>
+<li>If a customUnit is referenced in a document, it must have a
+corresponding STMML unit definition in the document with a matching <span class="citation">(<span class="citeproc-not-found" data-reference-id="id"><strong>???</strong></span>)</span></li>
+</ul>
+</div>
+<div id="validation-algorithm" class="section level2">
+<h2><span class="header-section-number">6.2</span> Validation algorithm</h2>
+<p>One reasonable algorithm for assessing these constraints without loading the XML into
+a DOM structure could be implemented by checking <code>id</code> and <code>references</code> fields while
+parsing the document and storing their values in <code>identifierHash</code> and <code>referencesHash</code> data
+structures in order to do the final consistency check. For example, in pseudocode:</p>
+<ul>
+<li>Parse the XML document using an XML Schema-compliant parser
+<ul>
+<li>If the root element is not <code>eml</code>, then the document is invalid</li>
+<li>For each element, record whether it has an <code>id</code> attribute or not
+<ul>
+<li>If an element does not contain an <code>id</code>, but it has a child <code>annotation</code>
+element, and that child annotation does not contain a <code>references</code> attribute, then the document is invalid</li>
+</ul></li>
+<li>For each <code>id</code> attribute
+<ul>
+<li>If <code>id</code> is not in <code>identifiersHash</code> then add it as the key of <code>identifiersHash</code>, with its <code>system</code> as the value</li>
+<li>If <code>id</code> is already in <code>identifiersHash</code> then the document is invalid</li>
+<li>If the element containing the id contains a <code>references</code> element as an
+immediate child then the document is invalid</li>
+</ul></li>
+<li>For each <code>references</code> element
+<ul>
+<li>If the <code>references</code> key is not in <code>referencesHash</code>,
+then add it as a key with the <code>system</code> value to <code>referencesHash</code></li>
+<li>If the <code>references</code> key is in <code>referencesHash</code>, but the current <code>system</code>
+value does not match the value for that key, then the document is invalid</li>
+</ul></li>
+<li>For each <code>references</code> attribute on an <code>annotation</code> element
+<ul>
+<li>If the <code>references</code> key is not in <code>referencesHash</code>,
+then add it as a key with the empty string ’’ value to <code>referencesHash</code></li>
+</ul></li>
+<li>For each <code>describes</code> element within an <code>additionalMetadata</code> element
+<ul>
+<li>If the <code>describes</code> key is not in <code>referencesHash</code>,
+then add it as a key with the empty string ’’ value to <code>referencesHash</code></li>
+</ul></li>
+<li>For each <code>customUnit</code> element
+<ul>
+<li>If the <code>customUnit</code> key is not in <code>unitsHash</code>, then add it as a key to <code>unitsHash</code></li>
+</ul></li>
+<li>Once document processing is complete, for each <code>unit</code> in <code>unitsHash</code>
+<ul>
+<li>If <code>!identifierHash.hasKey(unit)'</code> then the document is invalid</li>
+</ul></li>
+<li>Once document processing is complete, for each <code>key</code> in <code>referencesHash</code>
+<ul>
+<li>If <code>!identifierHash.hasKey(key) OR 'referencesHash[key] != identifierHash[key]'</code> then the document is invalid</li>
+</ul></li>
+<li>If no validity errors are found above or by the parser, then the document is valid</li>
+</ul></li>
+</ul>
+</div>
+<div id="content-references" class="section level2">
+<h2><span class="header-section-number">6.3</span> Content references</h2>
+<p>Each EML module, with the exception of “eml” itself, has a top level
+choice between the structured content of that element or a
+“references” field. This enables the reuse of content previously
+defined elsewhere in the document. This allows, for example, an author to
+create a single <code>&lt;creator id='m.jones'&gt;</code> element with all of its child detail,
+and then reference that as <code>&lt;contact&gt;&lt;references&gt;m.jones&lt;/references&gt;&lt;/contact&gt;</code>
+to indicate that the same person is both the creator and contact. This creates
+an unambiguous linkage via the <code>id</code> field that the two elements refer to the same
+entity, in this case a person, and avoids having to re-enter the same information
+multiple times in the document. Another common location for re-use is when a single
+<code>attributeList</code> is defined with a set of variables and their metadata, and then
+that list is referenced in multiple <code>dataTable</code> elements to show that they are
+structured identically.</p>
+<p>The reuse of structured content is accomplished through the
+use of <code>id</code>/<code>references</code> pairs. Each element that is to be reused will contain a
+unique <code>id</code> attribute on the element. Because this identifier is guaranteed to
+be unique within the EML document, any other location that wants to point at that
+content can do so using the <code>references</code> element, as shown in the example above.
+These types of references can also be used in the <code>references</code> attribute of
+<code>annotation</code> elements, and in the <code>describes</code> element within the <code>additionalMetadata</code>
+element.</p>
+<p>If an <code>id</code> attribute is provided for content, then that content is considered
+to represent a different entity than all other elements that are defined in
+the document, except for those that include its <code>id</code> in the <code>references</code> child.
+This is useful to indicate, for example, that two people with similar names
+(e.g., “D. Clark” and “D. Clark”) are in fact distinct individuals
+(e.g., “Deborah Clark” and “David Clark”), or that two variables with the same
+<code>attributeName</code> are in fact different variables. While it would be bad practice
+to reuse attribute names like this, it does happen and EML needs to be able to document it
+when it does.</p>
+</div>
+<div id="eml-validity-parser" class="section level2">
+<h2><span class="header-section-number">6.4</span> EML Validity Parser</h2>
+<p>Because some of these rules cannot be enforced in XML-Schema, we have
+written a parser which checks the validity of the references and <code>id</code>s
+used in a document. This parser is included with the release of
+EML. To run the parser, you must have Java installed. To execute
+it change into the top-level directory of the EML release and run the
+‘validate.sh’ script passing your EML instance file as a parameter.
+You can also validate your EML document from R, using the EML::validate() function.
+There may also be an <a href="https://knb.ecoinformatics.org/emlparser">online
+version</a> of this parser, which
+is publicly accessible. The validator will both validate your XML
+document against the schema as well as check the integrity of your
+references.</p>
+</div>
+<div id="id-and-scope-examples" class="section level2">
+<h2><span class="header-section-number">6.5</span> id and Scope Examples</h2>
+<p><strong>Example: Invalid EML due to duplicate identifiers</strong></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb19-1"><a href="validation-and-content-references.html#cb19-1"></a>    <span class="kw">&lt;?xml</span> version=&quot;1.0&quot;<span class="kw">?&gt;</span></span>
+<span id="cb19-2"><a href="validation-and-content-references.html#cb19-2"></a>    <span class="kw">&lt;eml:eml</span></span>
+<span id="cb19-3"><a href="validation-and-content-references.html#cb19-3"></a><span class="ot">        packageId=</span><span class="st">&quot;eml.1.1&quot;</span><span class="ot"> system=</span><span class="st">&quot;knb&quot;</span></span>
+<span id="cb19-4"><a href="validation-and-content-references.html#cb19-4"></a><span class="ot">        xmlns:eml=</span><span class="st">&quot;https://eml.ecoinformatics.org/eml-2.2.0&quot;</span></span>
+<span id="cb19-5"><a href="validation-and-content-references.html#cb19-5"></a><span class="ot">        xmlns:xsi=</span><span class="st">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span>
+<span id="cb19-6"><a href="validation-and-content-references.html#cb19-6"></a><span class="ot">        xsi:schemaLocation=</span><span class="st">&quot;https://eml.ecoinformatics.org/eml-2.2.0 eml.xsd&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb19-7"><a href="validation-and-content-references.html#cb19-7"></a></span>
+<span id="cb19-8"><a href="validation-and-content-references.html#cb19-8"></a>      <span class="kw">&lt;dataset</span><span class="ot"> id=</span><span class="st">&quot;ds.1&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb19-9"><a href="validation-and-content-references.html#cb19-9"></a>        <span class="kw">&lt;title&gt;</span>Sample Dataset Description<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb19-10"><a href="validation-and-content-references.html#cb19-10"></a>        <span class="co">&lt;!-- the two creators have the same id.  this should be an error--&gt;</span></span>
+<span id="cb19-11"><a href="validation-and-content-references.html#cb19-11"></a>        <span class="kw">&lt;creator</span><span class="ot"> id=</span><span class="st">&quot;23445&quot;</span><span class="ot"> scope=</span><span class="st">&quot;document&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb19-12"><a href="validation-and-content-references.html#cb19-12"></a>          <span class="kw">&lt;individualName&gt;</span></span>
+<span id="cb19-13"><a href="validation-and-content-references.html#cb19-13"></a>            <span class="kw">&lt;surName&gt;</span>Smith<span class="kw">&lt;/surName&gt;</span></span>
+<span id="cb19-14"><a href="validation-and-content-references.html#cb19-14"></a>          <span class="kw">&lt;/individualName&gt;</span></span>
+<span id="cb19-15"><a href="validation-and-content-references.html#cb19-15"></a>        <span class="kw">&lt;/creator&gt;</span></span>
+<span id="cb19-16"><a href="validation-and-content-references.html#cb19-16"></a>        <span class="kw">&lt;creator</span><span class="ot"> id=</span><span class="st">&quot;23445&quot;</span><span class="ot"> scope=</span><span class="st">&quot;document&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb19-17"><a href="validation-and-content-references.html#cb19-17"></a>          <span class="kw">&lt;individualName&gt;</span></span>
+<span id="cb19-18"><a href="validation-and-content-references.html#cb19-18"></a>            <span class="kw">&lt;surName&gt;</span>Smith<span class="kw">&lt;/surName&gt;</span></span>
+<span id="cb19-19"><a href="validation-and-content-references.html#cb19-19"></a>          <span class="kw">&lt;/individualName&gt;</span></span>
+<span id="cb19-20"><a href="validation-and-content-references.html#cb19-20"></a>        <span class="kw">&lt;/creator&gt;</span></span>
+<span id="cb19-21"><a href="validation-and-content-references.html#cb19-21"></a>        ...</span>
+<span id="cb19-22"><a href="validation-and-content-references.html#cb19-22"></a>      <span class="kw">&lt;/dataset&gt;</span></span>
+<span id="cb19-23"><a href="validation-and-content-references.html#cb19-23"></a>    <span class="kw">&lt;/eml:eml&gt;</span></span></code></pre></div>
+<p>This instance document is invalid because both creator elements have the
+same id. No two elements can have the same string as an id.</p>
+<p><strong>Example: Invalid EML due to a non-existent reference</strong></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb20-1"><a href="validation-and-content-references.html#cb20-1"></a>    <span class="kw">&lt;?xml</span> version=&quot;1.0&quot;<span class="kw">?&gt;</span></span>
+<span id="cb20-2"><a href="validation-and-content-references.html#cb20-2"></a>    <span class="kw">&lt;eml:eml</span></span>
+<span id="cb20-3"><a href="validation-and-content-references.html#cb20-3"></a><span class="ot">        packageId=</span><span class="st">&quot;eml.1.1&quot;</span><span class="ot"> system=</span><span class="st">&quot;knb&quot;</span></span>
+<span id="cb20-4"><a href="validation-and-content-references.html#cb20-4"></a><span class="ot">        xmlns:eml=</span><span class="st">&quot;https://eml.ecoinformatics.org/eml-2.2.0&quot;</span></span>
+<span id="cb20-5"><a href="validation-and-content-references.html#cb20-5"></a><span class="ot">        xmlns:xsi=</span><span class="st">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span>
+<span id="cb20-6"><a href="validation-and-content-references.html#cb20-6"></a><span class="ot">        xsi:schemaLocation=</span><span class="st">&quot;https://eml.ecoinformatics.org/eml-2.2.0 eml.xsd&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb20-7"><a href="validation-and-content-references.html#cb20-7"></a></span>
+<span id="cb20-8"><a href="validation-and-content-references.html#cb20-8"></a>      <span class="kw">&lt;dataset</span><span class="ot"> id=</span><span class="st">&quot;ds.1&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb20-9"><a href="validation-and-content-references.html#cb20-9"></a>        <span class="kw">&lt;title&gt;</span>Sample Dataset Description<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb20-10"><a href="validation-and-content-references.html#cb20-10"></a>        <span class="kw">&lt;creator</span><span class="ot"> id=</span><span class="st">&quot;23445&quot;</span><span class="ot"> scope=</span><span class="st">&quot;document&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb20-11"><a href="validation-and-content-references.html#cb20-11"></a>          <span class="kw">&lt;individualName&gt;</span></span>
+<span id="cb20-12"><a href="validation-and-content-references.html#cb20-12"></a>            <span class="kw">&lt;surName&gt;</span>Smith<span class="kw">&lt;/surName&gt;</span></span>
+<span id="cb20-13"><a href="validation-and-content-references.html#cb20-13"></a>          <span class="kw">&lt;/individualName&gt;</span></span>
+<span id="cb20-14"><a href="validation-and-content-references.html#cb20-14"></a>        <span class="kw">&lt;/creator&gt;</span></span>
+<span id="cb20-15"><a href="validation-and-content-references.html#cb20-15"></a>        <span class="kw">&lt;creator</span><span class="ot"> id=</span><span class="st">&quot;23446&quot;</span><span class="ot"> scope=</span><span class="st">&quot;document&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb20-16"><a href="validation-and-content-references.html#cb20-16"></a>          <span class="kw">&lt;individualName&gt;</span></span>
+<span id="cb20-17"><a href="validation-and-content-references.html#cb20-17"></a>            <span class="kw">&lt;surName&gt;</span>Myer<span class="kw">&lt;/surName&gt;</span></span>
+<span id="cb20-18"><a href="validation-and-content-references.html#cb20-18"></a>          <span class="kw">&lt;/individualName&gt;</span></span>
+<span id="cb20-19"><a href="validation-and-content-references.html#cb20-19"></a>        <span class="kw">&lt;/creator&gt;</span></span>
+<span id="cb20-20"><a href="validation-and-content-references.html#cb20-20"></a>        ...</span>
+<span id="cb20-21"><a href="validation-and-content-references.html#cb20-21"></a>        <span class="kw">&lt;contact&gt;</span></span>
+<span id="cb20-22"><a href="validation-and-content-references.html#cb20-22"></a>          <span class="kw">&lt;references&gt;</span>23447<span class="kw">&lt;/references&gt;</span></span>
+<span id="cb20-23"><a href="validation-and-content-references.html#cb20-23"></a>        <span class="kw">&lt;/contact&gt;</span></span>
+<span id="cb20-24"><a href="validation-and-content-references.html#cb20-24"></a>      <span class="kw">&lt;/dataset&gt;</span></span>
+<span id="cb20-25"><a href="validation-and-content-references.html#cb20-25"></a>    <span class="kw">&lt;/eml:eml&gt;</span></span></code></pre></div>
+<p>This instance document is invalid because the contact element references
+an <code>id</code> that does not exist. Any referenced <code>id</code> must exist in the document.</p>
+<p><strong>Example: Invalid EML due to a conflicting id attribute and a
+<code>&lt;references&gt;</code> element</strong></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb21-1"><a href="validation-and-content-references.html#cb21-1"></a>    <span class="kw">&lt;?xml</span> version=&quot;1.0&quot;<span class="kw">?&gt;</span></span>
+<span id="cb21-2"><a href="validation-and-content-references.html#cb21-2"></a>    <span class="kw">&lt;eml:eml</span></span>
+<span id="cb21-3"><a href="validation-and-content-references.html#cb21-3"></a><span class="ot">        packageId=</span><span class="st">&quot;eml.1.1&quot;</span><span class="ot"> system=</span><span class="st">&quot;knb&quot;</span></span>
+<span id="cb21-4"><a href="validation-and-content-references.html#cb21-4"></a><span class="ot">        xmlns:eml=</span><span class="st">&quot;https://eml.ecoinformatics.org/eml-2.2.0&quot;</span></span>
+<span id="cb21-5"><a href="validation-and-content-references.html#cb21-5"></a><span class="ot">        xmlns:xsi=</span><span class="st">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span>
+<span id="cb21-6"><a href="validation-and-content-references.html#cb21-6"></a><span class="ot">        xsi:schemaLocation=</span><span class="st">&quot;https://eml.ecoinformatics.org/eml-2.2.0 eml.xsd&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb21-7"><a href="validation-and-content-references.html#cb21-7"></a></span>
+<span id="cb21-8"><a href="validation-and-content-references.html#cb21-8"></a>      <span class="kw">&lt;dataset</span><span class="ot"> id=</span><span class="st">&quot;ds.1&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb21-9"><a href="validation-and-content-references.html#cb21-9"></a>        <span class="kw">&lt;title&gt;</span>Sample Dataset Description<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb21-10"><a href="validation-and-content-references.html#cb21-10"></a>        <span class="kw">&lt;creator</span><span class="ot"> id=</span><span class="st">&quot;23445&quot;</span><span class="ot"> scope=</span><span class="st">&quot;document&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb21-11"><a href="validation-and-content-references.html#cb21-11"></a>          <span class="kw">&lt;individualName&gt;</span></span>
+<span id="cb21-12"><a href="validation-and-content-references.html#cb21-12"></a>            <span class="kw">&lt;surName&gt;</span>Smith<span class="kw">&lt;/surName&gt;</span></span>
+<span id="cb21-13"><a href="validation-and-content-references.html#cb21-13"></a>          <span class="kw">&lt;/individualName&gt;</span></span>
+<span id="cb21-14"><a href="validation-and-content-references.html#cb21-14"></a>        <span class="kw">&lt;/creator&gt;</span></span>
+<span id="cb21-15"><a href="validation-and-content-references.html#cb21-15"></a>        <span class="kw">&lt;creator</span><span class="ot"> id=</span><span class="st">&quot;23446&quot;</span><span class="ot"> scope=</span><span class="st">&quot;document&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb21-16"><a href="validation-and-content-references.html#cb21-16"></a>          <span class="kw">&lt;individualName&gt;</span></span>
+<span id="cb21-17"><a href="validation-and-content-references.html#cb21-17"></a>            <span class="kw">&lt;surName&gt;</span>Meyer<span class="kw">&lt;/surName&gt;</span></span>
+<span id="cb21-18"><a href="validation-and-content-references.html#cb21-18"></a>          <span class="kw">&lt;/individualName&gt;</span></span>
+<span id="cb21-19"><a href="validation-and-content-references.html#cb21-19"></a>        <span class="kw">&lt;/creator&gt;</span></span>
+<span id="cb21-20"><a href="validation-and-content-references.html#cb21-20"></a>        ...</span>
+<span id="cb21-21"><a href="validation-and-content-references.html#cb21-21"></a>        <span class="kw">&lt;contact</span><span class="ot"> id=</span><span class="st">&quot;522&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb21-22"><a href="validation-and-content-references.html#cb21-22"></a>          <span class="kw">&lt;references&gt;</span>23445<span class="kw">&lt;/references&gt;</span></span>
+<span id="cb21-23"><a href="validation-and-content-references.html#cb21-23"></a>        <span class="kw">&lt;/contact&gt;</span></span>
+<span id="cb21-24"><a href="validation-and-content-references.html#cb21-24"></a>      <span class="kw">&lt;/dataset&gt;</span></span>
+<span id="cb21-25"><a href="validation-and-content-references.html#cb21-25"></a>    <span class="kw">&lt;/eml:eml&gt;</span></span></code></pre></div>
+<p>This instance document is invalid because the contact element both
+references another element and has an id itself. If an element
+references another element, it may not have an id. This prevents
+circular references.</p>
+<p><strong>Example: A valid EML document</strong></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb22-1"><a href="validation-and-content-references.html#cb22-1"></a>    <span class="kw">&lt;?xml</span> version=&quot;1.0&quot;<span class="kw">?&gt;</span></span>
+<span id="cb22-2"><a href="validation-and-content-references.html#cb22-2"></a>    <span class="kw">&lt;eml:eml</span></span>
+<span id="cb22-3"><a href="validation-and-content-references.html#cb22-3"></a><span class="ot">        packageId=</span><span class="st">&quot;eml.1.1&quot;</span><span class="ot"> system=</span><span class="st">&quot;knb&quot;</span></span>
+<span id="cb22-4"><a href="validation-and-content-references.html#cb22-4"></a><span class="ot">        xmlns:eml=</span><span class="st">&quot;https://eml.ecoinformatics.org/eml-2.2.0&quot;</span></span>
+<span id="cb22-5"><a href="validation-and-content-references.html#cb22-5"></a><span class="ot">        xmlns:xsi=</span><span class="st">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span>
+<span id="cb22-6"><a href="validation-and-content-references.html#cb22-6"></a><span class="ot">        xsi:schemaLocation=</span><span class="st">&quot;https://eml.ecoinformatics.org/eml-2.2.0 eml.xsd&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb22-7"><a href="validation-and-content-references.html#cb22-7"></a></span>
+<span id="cb22-8"><a href="validation-and-content-references.html#cb22-8"></a>      <span class="kw">&lt;dataset</span><span class="ot"> id=</span><span class="st">&quot;ds.1&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb22-9"><a href="validation-and-content-references.html#cb22-9"></a>        <span class="kw">&lt;title&gt;</span>Sample Dataset Description<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb22-10"><a href="validation-and-content-references.html#cb22-10"></a>        <span class="kw">&lt;creator</span><span class="ot"> id=</span><span class="st">&quot;23445&quot;</span><span class="ot"> scope=</span><span class="st">&quot;document&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb22-11"><a href="validation-and-content-references.html#cb22-11"></a>          <span class="kw">&lt;individualName&gt;</span></span>
+<span id="cb22-12"><a href="validation-and-content-references.html#cb22-12"></a>            <span class="kw">&lt;surName&gt;</span>Smith<span class="kw">&lt;/surName&gt;</span></span>
+<span id="cb22-13"><a href="validation-and-content-references.html#cb22-13"></a>          <span class="kw">&lt;/individualName&gt;</span></span>
+<span id="cb22-14"><a href="validation-and-content-references.html#cb22-14"></a>        <span class="kw">&lt;/creator&gt;</span></span>
+<span id="cb22-15"><a href="validation-and-content-references.html#cb22-15"></a>        <span class="kw">&lt;creator</span><span class="ot"> id=</span><span class="st">&quot;23446&quot;</span><span class="ot"> scope=</span><span class="st">&quot;document&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb22-16"><a href="validation-and-content-references.html#cb22-16"></a>          <span class="kw">&lt;individualName&gt;</span></span>
+<span id="cb22-17"><a href="validation-and-content-references.html#cb22-17"></a>            <span class="kw">&lt;surName&gt;</span>Smith<span class="kw">&lt;/surName&gt;</span></span>
+<span id="cb22-18"><a href="validation-and-content-references.html#cb22-18"></a>          <span class="kw">&lt;/individualName&gt;</span></span>
+<span id="cb22-19"><a href="validation-and-content-references.html#cb22-19"></a>        <span class="kw">&lt;/creator&gt;</span></span>
+<span id="cb22-20"><a href="validation-and-content-references.html#cb22-20"></a>        ...</span>
+<span id="cb22-21"><a href="validation-and-content-references.html#cb22-21"></a>        <span class="kw">&lt;contact&gt;</span></span>
+<span id="cb22-22"><a href="validation-and-content-references.html#cb22-22"></a>          <span class="kw">&lt;references&gt;</span>23446<span class="kw">&lt;/references&gt;</span></span>
+<span id="cb22-23"><a href="validation-and-content-references.html#cb22-23"></a>        <span class="kw">&lt;/contact&gt;</span></span>
+<span id="cb22-24"><a href="validation-and-content-references.html#cb22-24"></a>        <span class="kw">&lt;contact&gt;</span></span>
+<span id="cb22-25"><a href="validation-and-content-references.html#cb22-25"></a>          <span class="kw">&lt;references&gt;</span>23445<span class="kw">&lt;/references&gt;</span></span>
+<span id="cb22-26"><a href="validation-and-content-references.html#cb22-26"></a>        <span class="kw">&lt;/contact&gt;</span></span>
+<span id="cb22-27"><a href="validation-and-content-references.html#cb22-27"></a>      <span class="kw">&lt;/dataset&gt;</span></span>
+<span id="cb22-28"><a href="validation-and-content-references.html#cb22-28"></a>    <span class="kw">&lt;/eml:eml&gt;</span></span></code></pre></div>
+<p>This instance document is valid. Each contact is referencing one of the
+creators above and all the ids are unique. The each creator has a its own <code>id</code>
+indicates that they are different people, even though they have the same
+<code>surName</code> and there is no other distinguishing metadata.</p>
+
+</div>
+</div>
+<script type="text/javascript">
+var bibButton = document.getElementById("bibtext-button");
+if (bibButton) {
+  bibButton.addEventListener('click', copy);
+}
+
+
+function copy(e) {
+  // copy data to placeholder - Don't use .innerText, use .textContent
+  placeholder.value = bibtex.textContent;
+  if (placeholder.select) {
+    placeholder.select();
+    try {
+      // copy text
+      document.execCommand('copy');
+    } catch (err) {
+      alert('Use Ctrl/Cmd+C to copy');
+    }
+  }
+}
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="eml-schema.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="semantic-annotation-primer.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
