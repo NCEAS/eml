@@ -147,7 +147,7 @@ In the following entity-level annotation, the semantic statement can be read as 
     <annotation>
         <propertyURI label="is about">http://purl.obolibrary.org/obo/IAO_0000136</propertyURI>
         <valueURI label="Mammalia">http://purl.obolibrary.org/obo/NCBITaxon_40674</valueURI>  
-    <annotation>
+    </annotation>
 </otherEntity>
 ```
 
