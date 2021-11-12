@@ -132,7 +132,7 @@ public class EMLValidator {
         NodeList missing_id_ref = getXPathNodeList("//*[annotation and not(@id) and not(annotation[@references]) and not(parent::*/describes)]");
         length = missing_id_ref.getLength();
         if (length > 0) {
-            errors.add("Invalid: annotations lack id or references: " + length);
+            errors.add("Invalid: Elements which contain an `annotation` child element MUST contain an `id` attribute, unless the containing `annotation` element contains a `references` attribute: " + length);
             isValid = false;
             //for (int i = 0; i < missing_id_ref.getLength(); i++) {
             //Node n = missing_id_ref.item(i);
