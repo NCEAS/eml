@@ -83,7 +83,7 @@ discovery, access, integration and synthesis.
 
 **A:** All the documents associated with the EML development effort are
 available via the project web server at
-<http://knb.ecoinformatics.org/software/eml/>. These projects are
+<https://knb.ecoinformatics.org/tools/eml>. These projects are
 licensed under the GPL (Gnu Public License) agreement and can be freely
 distributed and modified.
 
@@ -93,12 +93,12 @@ XML editor. How then do you get content into EML?
 
 **A:** The Knowledge Network for Biocomplexity project has developed a
 software client specifically to address this need.
-[Morpho](http://knb.ecoinformatics.org/software/) (after the butterfly
+[Morpho](https://knb.ecoinformatics.org/tools/morpho) (after the butterfly
 genus) is written in java (making portable across computer platforms)
 combines an easy to use interface to EML with a number of tools to make
 it easier for ecologists to document data. These include a
 reverse-engineering wizard. Morpho is available from
-<http://knb.ecoinformatics.org/software>. Morpho currently supports the
+<https://knb.ecoinformatics.org/tools/morpho>. Morpho currently supports the
 EML 2.1.0 release.
 
 **Q:** EML contains provisions for communication. Is it possible to
@@ -139,7 +139,7 @@ metadata into EML depending on what form your existing metadata take.
         into EML compliant XML.
 
     3.  Use an special purpose XML editor that generates EML (
-        [Morpho](http://knb.ecoinformatics.org/software) or
+        [Morpho](https://knb.ecoinformatics.org/tools/morpho) or
         [Xylographa](http://ces.asu.edu/bdi/Subjects/xylographa) ) and
         manually retype the metadata.
 
@@ -185,7 +185,7 @@ metadata into EML depending on what form your existing metadata take.
 
 NOTE: In each of the cases it may be necessary to add some additional
 metadata in order to produce EML compliant documents.
-[Morpho](http://knb.ecoinformatics.org/software) will automatically
+[Morpho](https://knb.ecoinformatics.org/tools/morpho) will automatically
 create EML compliant metadata either by adding it for you or indicating
 that certain fields are mandatory.
 
@@ -195,7 +195,7 @@ query them or use them for data management?
 
 **A:** EML is an exchange standard for communication of metadata but it
 can be used as the framework for a data management system.
-[Metacat](http://knb.ecoinformatics.org/software) is a multipurpose XML
+[Metacat](https://knb.ecoinformatics.org/tools/metacat) is a multipurpose XML
 metadata and data repository that is optimized for use with EML. If you
 store your metadata in a relational database management system or plan
 to then there are also solutions.

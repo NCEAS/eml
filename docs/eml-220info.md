@@ -369,7 +369,7 @@ external identifiers, e.g., to a code from a system like ITIS or WoRMS.
 ## How can I convert from earlier versions of EML?
 
 An XSL stylesheet is provided with the EML Utilities to convert valid EML
-2.1-series documents to EML 2.2.0 (see <http://knb.ecoinformatics.org/software/eml/>). 
+2.1-series documents to EML 2.2.0 (see <https://knb.ecoinformatics.org/software/eml/>). 
 The stylesheet performs basic tasks to create a template EML 2.2.0 document. 
 For more information, see the Utilities documentation.
 
