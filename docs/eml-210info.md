@@ -461,7 +461,7 @@ Converting EML documents from v2.0.0/1 to v2.1.0
 
 **A:** An XSL stylesheet is provided with the EML Utilities to convert
 valid EML 2.0-series documents to EML 2.1.0 (see
-<http://knb.ecoinformatics.org/software/eml/>). The stylesheet performs
+<https://knb.ecoinformatics.org/software/eml/>). The stylesheet performs
 basic tasks to create a template EML 2.1.0 document (below). For more
 information, see the Utilities documentation.
 
@@ -492,7 +492,7 @@ and data types are not detectable by a stylesheet. Document authors are
 advised to check the validity of their new EML 2.1.0 after
 transformation. EML instance documents can be validated in these ways:
 
-1.  With the [online EML Parser](http://knb.ecoinformatics.org/emlparser/ ). The online
+1.  With the [online EML Parser](https://knb.ecoinformatics.org/emlparser/). The online
     parser will validate all versions of EML.
 
 2.  Using the Parser that comes with EML. To execute it, change into the

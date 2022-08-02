@@ -25,7 +25,7 @@ The Ecological Metadata Language (EML) defines a comprehensive vocabulary and a 
 - **EML 2.2.0 Specification**
     - [Read it online](https://eml.ecoinformatics.org/)
     - [Browse the interactive EML schema documentation](https://eml.ecoinformatics.org/schema)
-    - [Download EML](http://knb.ecoinformatics.org/software/dist/eml-2.2.0.tar.gz) - The download consists of the
+    - [Download EML](https://knb.ecoinformatics.org/software/dist/eml-2.2.0.tar.gz) - The download consists of the
       EML modules, described in the [XML Schema](http://www.w3.org/XML/Schema) language.
       In addition, the full documentation on the modules is provided in HTML format.
     - [Changes to EML in version 2.2.0](https://eml.ecoinformatics.org/whats-new-in-eml-2-2-0.html)
@@ -103,12 +103,12 @@ EML was originally developed by Matthew Jones at NCEAS based on a report by the 
 
 The following versions are still available for reference purposes, although they have been superseded by the current version (2.2.0).  Please make every effort to use the current version.
 
-- [EML 2.2.0](http://knb.ecoinformatics.org/software/dist/eml-2.2.0.tar.gz)
-- [EML 2.1.1](http://knb.ecoinformatics.org/software/dist/eml-2.1.1.tar.gz)
-- [EML 2.1.0](http://knb.ecoinformatics.org/software/dist/eml-2.1.0.tar.gz)
-- [EML 2.0.1](http://knb.ecoinformatics.org/software/dist/eml-2.0.1.tar.gz)
-- [EML 2.0.0](http://knb.ecoinformatics.org/software/dist/eml-2.0.0.tar.gz)
-- [EML 1.4.1](http://knb.ecoinformatics.org/software/dist/eml-1.4.1.tar.gz)
+- [EML 2.2.0](https://knb.ecoinformatics.org/software/dist/eml-2.2.0.tar.gz)
+- [EML 2.1.1](https://knb.ecoinformatics.org/software/dist/eml-2.1.1.tar.gz)
+- [EML 2.1.0](https://knb.ecoinformatics.org/software/dist/eml-2.1.0.tar.gz)
+- [EML 2.0.1](https://knb.ecoinformatics.org/software/dist/eml-2.0.1.tar.gz)
+- [EML 2.0.0](https://knb.ecoinformatics.org/software/dist/eml-2.0.0.tar.gz)
+- [EML 1.4.1](https://knb.ecoinformatics.org/software/dist/eml-1.4.1.tar.gz)
 
 ## Copyright and License
 Copyright: 1997-2019 Regents of the University of California
