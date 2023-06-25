@@ -1,5 +1,7 @@
 # EML: Ecological Metadata Language
 
+<img align="right" width="100" src="img/eml-logo.svg">
+
 [![Main Build Status](https://travis-ci.com/NCEAS/eml.svg?branch=main)](https://travis-ci.com/NCEAS/eml)
 [![Develop Build Status](https://travis-ci.com/NCEAS/eml.svg?branch=develop)](https://travis-ci.com/NCEAS/eml)
 [![EML](https://img.shields.io/badge/eml-2.2.0-blue.svg?style=plastic)](https://github.com/NCEAS/eml)
