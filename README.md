@@ -11,6 +11,7 @@
 [Matthew B. Jones](https://orcid.org/0000-0003-0077-4738),  [Margaret O'Brien](https://orcid.org/0000-0002-1693-8322), [Bryce Mecum](https://orcid.org/0000-0002-0381-3766), [Carl Boettiger](https://orcid.org/0000-0002-1642-628X), [Mark Schildhauer](https://orcid.org/0000-0003-0632-7576), [Mitchell Maier](https://orcid.org/0000-0001-6955-0535), [Timothy Whiteaker](https://orcid.org/0000-0002-1940-4158), [Stevan Earl](https://orcid.org/0000-0002-4465-452X), [Steven Chong](https://orcid.org/0000-0003-1264-1166). 2019. **Ecological Metadata Language version 2.2.0.** KNB Data Repository. [doi:10.5063/F11834T2](https://doi.org/10.5063/F11834T2) <button id="bibtext-button">Copy BibTeX</button>
 
 <input type="text" id="placeholder"/>
+<pre>
 <span id="bibtex">
 &#x0040;article{EML_2019,
   title={Ecological Metadata Language version 2.2.0},
@@ -21,6 +22,7 @@
   year={2019}
 }
 </span>
+</pre>
 
 The Ecological Metadata Language (EML) defines a comprehensive vocabulary and a readable XML markup syntax for documenting research data.  It is in widespread use in the earth and environmental sciences, and increasingly in other research disciplines as well.  EML is a community-maintained specification, and evolves to meet the data documentation needs of researchers who want to openly document, preserve, and share data and outputs.  EML includes modules for identifying and citing data packages, for describing the spatial, temporal, taxonomic, and thematic extent of data, for describing research methods and protocols, for describing the structure and content of data within sometimes complex packages of data, and for precisely annotating data with semantic vocabularies. EML includes metadata fields to fully detail data papers that are published in journals specializing in scientific data sharing and preservation.
 
